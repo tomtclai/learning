@@ -1,0 +1,380 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		795CF0A519C7E13600D37189 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 795CF0A419C7E13600D37189 /* main.cpp */; };
+		795CF0B719C7E97E00D37189 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 795CF0AB19C7E97E00D37189 /* Window.cpp */; };
+		795CF0B819C7E97E00D37189 /* Simple_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 795CF0B019C7E97E00D37189 /* Simple_window.cpp */; };
+		795CF0B919C7E97E00D37189 /* GUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 795CF0B219C7E97E00D37189 /* GUI.cpp */; };
+		795CF0BA19C7E97E00D37189 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 795CF0B419C7E97E00D37189 /* Graph.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		795CF09F19C7E13600D37189 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		795CF0A119C7E13600D37189 /* windowsgui */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = windowsgui; sourceTree = BUILT_PRODUCTS_DIR; };
+		795CF0A419C7E13600D37189 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		795CF0AB19C7E97E00D37189 /* Window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Window.cpp; path = ../Window.cpp; sourceTree = "<group>"; };
+		795CF0AC19C7E97E00D37189 /* Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Window.h; path = ../Window.h; sourceTree = "<group>"; };
+		795CF0AD19C7E97E00D37189 /* Simple_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Simple_window.h; path = ../Simple_window.h; sourceTree = "<group>"; };
+		795CF0AE19C7E97E00D37189 /* std_lib_facilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = std_lib_facilities.h; path = ../std_lib_facilities.h; sourceTree = "<group>"; };
+		795CF0AF19C7E97E00D37189 /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Point.h; path = ../Point.h; sourceTree = "<group>"; };
+		795CF0B019C7E97E00D37189 /* Simple_window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Simple_window.cpp; path = ../Simple_window.cpp; sourceTree = "<group>"; };
+		795CF0B219C7E97E00D37189 /* GUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GUI.cpp; path = ../GUI.cpp; sourceTree = "<group>"; };
+		795CF0B319C7E97E00D37189 /* Gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gui.h; path = ../Gui.h; sourceTree = "<group>"; };
+		795CF0B419C7E97E00D37189 /* Graph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Graph.cpp; path = ../Graph.cpp; sourceTree = "<group>"; };
+		795CF0B519C7E97E00D37189 /* Graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Graph.h; path = ../Graph.h; sourceTree = "<group>"; };
+		795CF0B619C7E97E00D37189 /* fltk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fltk.h; path = ../fltk.h; sourceTree = "<group>"; };
+		795CF0F219C9EB0D00D37189 /* stroustrup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stroustrup.jpg; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		795CF09E19C7E13600D37189 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		795CF09819C7E13600D37189 = {
+			isa = PBXGroup;
+			children = (
+				795CF0A319C7E13600D37189 /* windowsgui */,
+				795CF0A219C7E13600D37189 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		795CF0A219C7E13600D37189 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				795CF0A119C7E13600D37189 /* windowsgui */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		795CF0A319C7E13600D37189 /* windowsgui */ = {
+			isa = PBXGroup;
+			children = (
+				795CF0F219C9EB0D00D37189 /* stroustrup.jpg */,
+				795CF0AB19C7E97E00D37189 /* Window.cpp */,
+				795CF0AC19C7E97E00D37189 /* Window.h */,
+				795CF0AD19C7E97E00D37189 /* Simple_window.h */,
+				795CF0AE19C7E97E00D37189 /* std_lib_facilities.h */,
+				795CF0AF19C7E97E00D37189 /* Point.h */,
+				795CF0B019C7E97E00D37189 /* Simple_window.cpp */,
+				795CF0B219C7E97E00D37189 /* GUI.cpp */,
+				795CF0B319C7E97E00D37189 /* Gui.h */,
+				795CF0B419C7E97E00D37189 /* Graph.cpp */,
+				795CF0B519C7E97E00D37189 /* Graph.h */,
+				795CF0B619C7E97E00D37189 /* fltk.h */,
+				795CF0A419C7E13600D37189 /* main.cpp */,
+			);
+			path = windowsgui;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		795CF0A019C7E13600D37189 /* windowsgui */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 795CF0A819C7E13600D37189 /* Build configuration list for PBXNativeTarget "windowsgui" */;
+			buildPhases = (
+				795CF09D19C7E13600D37189 /* Sources */,
+				795CF09E19C7E13600D37189 /* Frameworks */,
+				795CF09F19C7E13600D37189 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = windowsgui;
+			productName = windowsgui;
+			productReference = 795CF0A119C7E13600D37189 /* windowsgui */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		795CF09919C7E13600D37189 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Tsz Chun Lai";
+				TargetAttributes = {
+					795CF0A019C7E13600D37189 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+				};
+			};
+			buildConfigurationList = 795CF09C19C7E13600D37189 /* Build configuration list for PBXProject "windowsgui" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 795CF09819C7E13600D37189;
+			productRefGroup = 795CF0A219C7E13600D37189 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				795CF0A019C7E13600D37189 /* windowsgui */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		795CF09D19C7E13600D37189 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				795CF0A519C7E13600D37189 /* main.cpp in Sources */,
+				795CF0B919C7E97E00D37189 /* GUI.cpp in Sources */,
+				795CF0B719C7E97E00D37189 /* Window.cpp in Sources */,
+				795CF0B819C7E97E00D37189 /* Simple_window.cpp in Sources */,
+				795CF0BA19C7E97E00D37189 /* Graph.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		795CF0A619C7E13600D37189 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "-I/usr/local/include";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-L/usr/local/Cellar/fltk/1.3.2_1/lib",
+					"-lfltk",
+					"-lpthread",
+					"-framework",
+					Cocoa,
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-L/usr/local/Cellar/fltk/1.3.2_1/lib",
+					"-lfltk",
+					"-lpthread",
+					"-framework",
+					Cocoa,
+				);
+				SDKROOT = macosx10.9;
+				USER_HEADER_SEARCH_PATHS = "-I/usr/local/include";
+			};
+			name = Debug;
+		};
+		795CF0A719C7E13600D37189 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "-I/usr/local/include";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"-L/usr/local/Cellar/fltk/1.3.2_1/lib",
+					"-lfltk",
+					"-lpthread",
+					"-framework",
+					Cocoa,
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-L/usr/local/Cellar/fltk/1.3.2_1/lib",
+					"-lfltk",
+					"-lpthread",
+					"-framework",
+					Cocoa,
+				);
+				SDKROOT = macosx10.9;
+				USER_HEADER_SEARCH_PATHS = "-I/usr/local/include";
+			};
+			name = Release;
+		};
+		795CF0A919C7E13600D37189 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					/usr/local/Cellar/fltk/1.3.2_1/include,
+				);
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"-I/usr/local/include",
+					"/Applications/Xcode6-Beta4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+				);
+				LIBRARY_SEARCH_PATHS = "";
+				"LIBRARY_SEARCH_PATHS[arch=*]" = /usr/local/lib;
+				OTHER_LDFLAGS = (
+					"-L/usr/local/Cellar/fltk/1.3.2_1/lib",
+					"-lfltk",
+					"-lpthread",
+					"-framework",
+					Cocoa,
+					"-lfltk_images",
+					"-lpng",
+					"-lz",
+					"-ljpeg",
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-L/usr/local/Cellar/fltk/1.3.2_1/lib",
+					"-lfltk",
+					"-lpthread",
+					"-framework",
+					Cocoa,
+					"-L/usr/local/Cellar/fltk/1.3.2_1/lib",
+					"-lfltk_images",
+					"-lpng",
+					"-lz",
+					"-ljpeg",
+					"-lfltk",
+					"-lpthread",
+					"-framework",
+					Cocoa,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = /usr/local/Cellar/fltk/1.3.2_1/include;
+			};
+			name = Debug;
+		};
+		795CF0AA19C7E13600D37189 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					/usr/local/Cellar/fltk/1.3.2_1/include,
+				);
+				"HEADER_SEARCH_PATHS[arch=*]" = /usr/local/Cellar/fltk/1.3.2_1/include;
+				LIBRARY_SEARCH_PATHS = "";
+				"LIBRARY_SEARCH_PATHS[arch=*]" = /usr/local/lib;
+				OTHER_LDFLAGS = (
+					"-L/usr/local/Cellar/fltk/1.3.2_1/lib",
+					"-lfltk",
+					"-lpthread",
+					"-framework",
+					Cocoa,
+					"-L/usr/local/Cellar/fltk/1.3.2_1/lib",
+					"-lfltk_images",
+					"-lpng",
+					"-lz",
+					"-ljpeg",
+					"-lfltk",
+					"-lpthread",
+					"-framework",
+					Cocoa,
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-L/usr/local/Cellar/fltk/1.3.2_1/lib",
+					"-lfltk",
+					"-lpthread",
+					"-framework",
+					Cocoa,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = /usr/local/Cellar/fltk/1.3.2_1/include;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		795CF09C19C7E13600D37189 /* Build configuration list for PBXProject "windowsgui" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				795CF0A619C7E13600D37189 /* Debug */,
+				795CF0A719C7E13600D37189 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		795CF0A819C7E13600D37189 /* Build configuration list for PBXNativeTarget "windowsgui" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				795CF0A919C7E13600D37189 /* Debug */,
+				795CF0AA19C7E13600D37189 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 795CF09919C7E13600D37189 /* Project object */;
+}

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Planets</title>
+        <script>
+        function init() {
+            var planet = document.getElementById("greenplanet");
+            if (planet !=null)
+            {
+                planet.innerHTML = "Red Alert : hit by phaser fire!";
+                planet.setAttribute("class", "redtext");
+            }
+        }
+        //Here assigning the function init to the onload proporty
+        window.onload = init; 
+        </script>
+    </head>
+    <style>
+        .redtext { color: red; }
+    </style>
+    <body>
+        <h1>Gree Planet</h1>
+        <p id="greenplanet"> All is well</p>
+        <h1>Red Planet</h1>
+        <p id="redplanet"> Nothing to report</p>
+        <h1>Blue Planet</h1>
+        <p id="blueplanet"> All systems A-OK</p>
+    </body>
+</html>

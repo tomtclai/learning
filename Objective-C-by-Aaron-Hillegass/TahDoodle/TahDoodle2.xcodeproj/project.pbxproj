@@ -1,0 +1,434 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7637FBE21A720019002D8DCB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7637FBE11A720019002D8DCB /* AppDelegate.m */; };
+		7637FBE41A720019002D8DCB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7637FBE31A720019002D8DCB /* main.m */; };
+		7637FBE71A720019002D8DCB /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 7637FBE61A720019002D8DCB /* Document.m */; };
+		7637FBEA1A720019002D8DCB /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7637FBE81A720019002D8DCB /* Document.xib */; };
+		7637FBEC1A720019002D8DCB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7637FBEB1A720019002D8DCB /* Images.xcassets */; };
+		7637FBEF1A720019002D8DCB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7637FBED1A720019002D8DCB /* MainMenu.xib */; };
+		7637FBFB1A720019002D8DCB /* TahDoodle2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7637FBFA1A720019002D8DCB /* TahDoodle2Tests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7637FBF51A720019002D8DCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7637FBD31A720019002D8DCB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7637FBDA1A720019002D8DCB;
+			remoteInfo = TahDoodle2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7637FBDB1A720019002D8DCB /* TahDoodle2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TahDoodle2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7637FBDF1A720019002D8DCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7637FBE01A720019002D8DCB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7637FBE11A720019002D8DCB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7637FBE31A720019002D8DCB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7637FBE51A720019002D8DCB /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
+		7637FBE61A720019002D8DCB /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
+		7637FBE91A720019002D8DCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
+		7637FBEB1A720019002D8DCB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		7637FBEE1A720019002D8DCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		7637FBF41A720019002D8DCB /* TahDoodle2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TahDoodle2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7637FBF91A720019002D8DCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7637FBFA1A720019002D8DCB /* TahDoodle2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TahDoodle2Tests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7637FBD81A720019002D8DCB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7637FBF11A720019002D8DCB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7637FBD21A720019002D8DCB = {
+			isa = PBXGroup;
+			children = (
+				7637FBDD1A720019002D8DCB /* TahDoodle2 */,
+				7637FBF71A720019002D8DCB /* TahDoodleTests2 */,
+				7637FBDC1A720019002D8DCB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7637FBDC1A720019002D8DCB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7637FBDB1A720019002D8DCB /* TahDoodle2.app */,
+				7637FBF41A720019002D8DCB /* TahDoodle2Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7637FBDD1A720019002D8DCB /* TahDoodle2 */ = {
+			isa = PBXGroup;
+			children = (
+				7637FBE01A720019002D8DCB /* AppDelegate.h */,
+				7637FBE11A720019002D8DCB /* AppDelegate.m */,
+				7637FBE51A720019002D8DCB /* Document.h */,
+				7637FBE61A720019002D8DCB /* Document.m */,
+				7637FBE81A720019002D8DCB /* Document.xib */,
+				7637FBEB1A720019002D8DCB /* Images.xcassets */,
+				7637FBED1A720019002D8DCB /* MainMenu.xib */,
+				7637FBDE1A720019002D8DCB /* Supporting Files */,
+			);
+			path = TahDoodle2;
+			sourceTree = "<group>";
+		};
+		7637FBDE1A720019002D8DCB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7637FBDF1A720019002D8DCB /* Info.plist */,
+				7637FBE31A720019002D8DCB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7637FBF71A720019002D8DCB /* TahDoodleTests2 */ = {
+			isa = PBXGroup;
+			children = (
+				7637FBFA1A720019002D8DCB /* TahDoodle2Tests.m */,
+				7637FBF81A720019002D8DCB /* Supporting Files */,
+			);
+			name = TahDoodleTests2;
+			path = TahDoodle2Tests;
+			sourceTree = "<group>";
+		};
+		7637FBF81A720019002D8DCB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7637FBF91A720019002D8DCB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7637FBDA1A720019002D8DCB /* TahDoodle2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7637FBFE1A720019002D8DCB /* Build configuration list for PBXNativeTarget "TahDoodle2" */;
+			buildPhases = (
+				7637FBD71A720019002D8DCB /* Sources */,
+				7637FBD81A720019002D8DCB /* Frameworks */,
+				7637FBD91A720019002D8DCB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TahDoodle2;
+			productName = TahDoodle2;
+			productReference = 7637FBDB1A720019002D8DCB /* TahDoodle2.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7637FBF31A720019002D8DCB /* TahDoodle2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7637FC011A720019002D8DCB /* Build configuration list for PBXNativeTarget "TahDoodle2Tests" */;
+			buildPhases = (
+				7637FBF01A720019002D8DCB /* Sources */,
+				7637FBF11A720019002D8DCB /* Frameworks */,
+				7637FBF21A720019002D8DCB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7637FBF61A720019002D8DCB /* PBXTargetDependency */,
+			);
+			name = TahDoodle2Tests;
+			productName = TahDoodle2Tests;
+			productReference = 7637FBF41A720019002D8DCB /* TahDoodle2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7637FBD31A720019002D8DCB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Tsz Chun Lai";
+				TargetAttributes = {
+					7637FBDA1A720019002D8DCB = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					7637FBF31A720019002D8DCB = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 7637FBDA1A720019002D8DCB;
+					};
+				};
+			};
+			buildConfigurationList = 7637FBD61A720019002D8DCB /* Build configuration list for PBXProject "TahDoodle2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7637FBD21A720019002D8DCB;
+			productRefGroup = 7637FBDC1A720019002D8DCB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7637FBDA1A720019002D8DCB /* TahDoodle2 */,
+				7637FBF31A720019002D8DCB /* TahDoodle2Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7637FBD91A720019002D8DCB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7637FBEA1A720019002D8DCB /* Document.xib in Resources */,
+				7637FBEC1A720019002D8DCB /* Images.xcassets in Resources */,
+				7637FBEF1A720019002D8DCB /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7637FBF21A720019002D8DCB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7637FBD71A720019002D8DCB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7637FBE71A720019002D8DCB /* Document.m in Sources */,
+				7637FBE41A720019002D8DCB /* main.m in Sources */,
+				7637FBE21A720019002D8DCB /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7637FBF01A720019002D8DCB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7637FBFB1A720019002D8DCB /* TahDoodle2Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7637FBF61A720019002D8DCB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7637FBDA1A720019002D8DCB /* TahDoodle2 */;
+			targetProxy = 7637FBF51A720019002D8DCB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7637FBE81A720019002D8DCB /* Document.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7637FBE91A720019002D8DCB /* Base */,
+			);
+			name = Document.xib;
+			sourceTree = "<group>";
+		};
+		7637FBED1A720019002D8DCB /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7637FBEE1A720019002D8DCB /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7637FBFC1A720019002D8DCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		7637FBFD1A720019002D8DCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		7637FBFF1A720019002D8DCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TahDoodle2/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = TahDoodle2;
+			};
+			name = Debug;
+		};
+		7637FC001A720019002D8DCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TahDoodle2/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = TahDoodle2;
+			};
+			name = Release;
+		};
+		7637FC021A720019002D8DCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TahDoodle2Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = TahDoodle2Tests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TahDoodle2.app/Contents/MacOS/TahDoodle2";
+			};
+			name = Debug;
+		};
+		7637FC031A720019002D8DCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TahDoodle2Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = TahDoodle2Tests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TahDoodle2.app/Contents/MacOS/TahDoodle2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7637FBD61A720019002D8DCB /* Build configuration list for PBXProject "TahDoodle2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7637FBFC1A720019002D8DCB /* Debug */,
+				7637FBFD1A720019002D8DCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7637FBFE1A720019002D8DCB /* Build configuration list for PBXNativeTarget "TahDoodle2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7637FBFF1A720019002D8DCB /* Debug */,
+				7637FC001A720019002D8DCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7637FC011A720019002D8DCB /* Build configuration list for PBXNativeTarget "TahDoodle2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7637FC021A720019002D8DCB /* Debug */,
+				7637FC031A720019002D8DCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7637FBD31A720019002D8DCB /* Project object */;
+}

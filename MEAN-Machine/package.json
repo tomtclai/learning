@@ -1,0 +1,17 @@
+{
+    "name": "mean-machine-code",
+    "version": "1.0.0",
+    "description": "The code repo for the book, MEAN MACHINE.",
+    "main": "server.js",
+    "repository" : {
+        "type": "git",
+        "url": "https://github.com/scotch-io/mean-machine-code"
+    },
+    "dependencies": {
+        "express": "latest",
+        "mongoose": "latest"
+    },
+    "author": "Chris Servilleja & Holly Lloyd",
+    "license": "MIT",
+    "homepage": "https://github.com/scotch-io/mean-machine-code"
+}

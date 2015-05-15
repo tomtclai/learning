@@ -1,0 +1,81 @@
+Camry
+Nikon
+Apple
+Ford
+Audi
+Google
+Nike
+Amazon
+Honda
+Mazda
+Buick
+Fiat
+Jeep
+Lexus
+Volvo
+Fuji
+Sony
+Delta
+Focus
+Puma
+Samsung
+Tivo
+Halo
+Sting
+Shrek
+Avatar
+Shell
+Visa
+Vogue
+Twitter
+Lego
+Pepsi
+
+4   puma  9   jeep  3   sony  5   fuji
+2   19    7   12    1   16    3   15
+010 10011 111  1100 001 10000 011  1111
+0101 0011 1110 1100 0011 0000 0110 1111
+0x53EC306F
+
+
+This program should produce output like this:
+In Data = <53ec306f 955c6668>
+Got string "4 Puma 9 Jeep 3 Sony 5 Fuji 6 Tivo 4 Vogue 5 Nike 5 Honda"
+Out data: <53ec306f 955c6668>
+Expected error: Unable to parse
+Program ended with exit code: 0
+At some point, you will find yourself asking, “Where is the next digit?” You can use NSCharacterSet to find it.
+NSString *string =
+
+// Get the digit character set
+NSCharacterSet *digits = [NSCharacterSet decimalDigitCharacterSet];
+NSRange searchRange;
+searchRange.location = 0;
+searchRange.length = [string length];
+
+// Find the location of the first digit in the string
+NSRange digitRange = [str rangeOfCharacterFromSet:digits
+options:NSLiteralSearch
+range:searchRange];
+
+// Are there no digits?
+if (digitRange.length == 0) {
+NSLog(@"Searched whole string and found no digits");
+} else {
+NSLog(@"Character %d is a digit", digitRange.location);
+}
+You will need to look at the documentation for NSString and NSMutableString to find some of the ways that you can manipulate substrings using NSRange.
+In dataWithSpeakableString:error:, you will need to deal with badly formatted strings by creating an NSError and returning nil. This will look something like this:
+// Did the parse fail?
+if (!success) {
+
+// Did the caller give me a place to put the error?
+if (e) {
+NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"Unable to parse"};
+*e = [NSError errorWithDomain:@"SpeakableBytes
+code:1
+userInfo:userInfo];
+return nil;
+}
+}
+You will use several bitwise operations.

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My First Angular Application!</title>
+
+	<!-- CSS -->
+	<!-- load bootstrap and our stylesheet -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<style>
+		body { padding-top:50px; }
+	</style>
+
+	<!-- JS -->
+	<!-- load angular and our custom application -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+	<script src="js/app.js"></script>
+</head>
+
+<!-- declare our angular application and angular controller -->
+<body class="container" ng-app="firstApp" ng-controller="mainController as main">
+
+<div class="jumbotron">
+
+	<!-- form to update the message variable using ng-model -->
+	<div class="form-group">
+		<label>Message</label>
+		<input type="text" class="form-control" ng-model="main.message">
+	</div>
+
+	<!-- display the message -->
+	<h2>This is my message:</h2>
+	{{ main.message }}
+
+	<!-- display the list using ng-repeat -->
+	<h2>This is my list:</h2>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<td>Name</td>
+				<td>Color</td>
+				<td>Nerd Level</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="computer in main.computers">
+				<td>{{ computer.name }}</td>
+				<td>{{ computer.color }}</td>
+				<td>{{ computer.nerdness }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<!-- form to add computer to the list -->
+	<form class="form-inline" ng-submit="main.addComputer()">
+
+		<input type="text" class="form-control" placeholder="Macbook" ng-model="main.computerData.name">
+		<input type="text" class="form-control" placeholder="Silver" ng-model="main.computerData.color">
+		<input type="number" class="form-control" placeholder="8" ng-model="main.computerData.nerdness">
+
+		<button type="submit" class="btn btn-success">Add</button>
+	</form>
+</div>
+
+</body>
+</html>

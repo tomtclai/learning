@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang = "en">
+    <head>
+        <meta charset="utf-8">
+        <title>Bubble Factory Test Lab</title>
+        <script>
+            var scores = [60, 50, 60, 58, 54, 54,
+                          58, 50, 52, 54, 48, 69,
+                          34, 55, 51, 52, 44, 51,
+                          69, 64, 66, 55, 52, 61,
+                          46, 31, 57, 52, 44, 18,
+                          41, 53, 55, 61, 51, 44];
+            var costs = [.25, .27, .25, .25, .25, .25,
+                         .33, .31, .25, .29, .27, .22,
+                         .31, .25, .25, .33, .21, .25,
+                         .25, .25, .28, .25, .24, .22,
+                         .20, .25, .30, .25, .24, .25,
+                         .25, .25, .27, .25, .26, .29];
+            var highScore = 0;
+            var output;
+            for (var i = 0; i < scores.length; i++) {
+                output = "Bubble solution #" + i + 
+                    " score: " + scores[i];
+                console.log(output);
+                if ( scores[i] > highScore) {
+                    highScore = scores[i];
+                }
+            }
+            
+            function getMostCostEffectiveSolution(scores, costs, highscore) {
+                var cost = 100;
+                var index;
+                for (var i = 1; i<scores.length; i++)
+                {
+                    if (highScore==scores[i])
+                        if (cost>costs[i])
+                        {
+                            index= i;
+                            cost = costs[i];
+                        }
+                }
+                return index;
+            }
+            console.log("Bubbles tests: "+ scores.length);
+            console.log("Highest bubble score: " + highScore);
+            var mostCostEffeictive = getMostCostEffectiveSolution(scores,costs,highScore);
+            console.log("Bubble solution #" + mostCostEffeictive+" is the most cost effective");
+        </script>
+    </head>
+    <body></body>
+</html>
