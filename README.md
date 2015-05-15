@@ -2,8 +2,8 @@ This repository contains my work and/or practices while going through various te
 
 ###I'm done reading
  - [Head First Javascript Programming](Head-First-JavaScript-Programming/)
- - [Objective C by Aaron Hillegass](Objective-C-by-Aaron-Hillegass/)
+ - [Objective-C Programming: The Big Nerd Ranch Guide](Objective-C-by-Aaron-Hillegass/)
 
 ###I'm actively working on
  - [Head First JQuery](Head-First-JQuery/)
- - [iOS Programming by Aaron Hillegass](iOS-Programming-by-Aaron-Hillegass/)
+ - [IOS Programming: The Big Nerd Ranch Guide](iOS-Programming-by-Aaron-Hillegass/)
