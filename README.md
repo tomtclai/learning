@@ -6,4 +6,4 @@ This repository contains my work and/or practices while going through various te
 
 ###I'm working on
  - [Head First JQuery](Head-First-JQuery/)
- - [IOS Programming: The Big Nerd Ranch Guide](iOS-Programming-by-Aaron-Hillegass/)
+ - [IOS Programming: The Big Nerd Ranch Guide](iOS-Programming/)
