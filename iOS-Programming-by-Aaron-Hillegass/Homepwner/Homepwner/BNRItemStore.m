@@ -27,7 +27,16 @@
     
     return sharedStore;
 }
-
+- (BOOL)saveChanges
+{
+    NSString *path = [self itemArchivePath];
+    
+    // Returns YES on success
+    return [NSKeyedArchiver archiveRootObject:self.privateItems
+                                       toFile:path];
+    // The archiveRootObject method takes care of saving every single BNRItem in
+    // privateItems to the itemArchivePath. Yes, It is that simple.
+}
 
 // If a programmer calls [[BNRItemStore alloc] init], let him
 // know the error of his ways
@@ -85,4 +94,22 @@
     [self.privateItems insertObject:item atIndex:toIndex];
 }
 
+- (NSString *)itemArchivePath
+{
+    // Make sure that the first argument is NSDocumentDirectory
+    // and not NSDocumentationDirectory
+    NSArray *documentDirectories =
+
+    // This function is borrowed from OS X.
+    // The first argument is a constant that specifies the directory in the
+    // sandbox you want the payh to. On iOS, the last two arguments are always
+    // the same.
+    // On iOS, there will only be one path that match the search criteria.
+    NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    // Get the one document directory from that list
+    NSString * documentDirectory = [documentDirectories firstObject];
+    
+    return [documentDirectory stringByAppendingPathComponent:@"items.archive"];
+}
 @end
