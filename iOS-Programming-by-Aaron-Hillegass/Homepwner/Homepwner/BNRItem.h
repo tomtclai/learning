@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BNRImageStore.h"
-@interface BNRItem : NSObject
+@interface BNRItem : NSObject <NSCoding>
 
 + (id)randomItem;
 

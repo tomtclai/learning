@@ -17,15 +17,15 @@
 {
     // Call the superclass's designated initializer
     self = [super init];
-    
+
     if (self) {
         // Give the instance variables initial values
         [self setItemName:name];
         [self setSerialNumber:sNumber];
         [self setValueInDollars:value];
-        
+
         dateCreated = [[NSDate alloc] init];
-        
+
         // Create an NSUUID object - get its string representation
         NSUUID *uuid = [[NSUUID alloc] init];
         NSString *key = [uuid UUIDString];
@@ -51,7 +51,7 @@
      serialNumber,
      valueInDollars,
      dateCreated];
-    
+
     return descriptionString;
 }
 
@@ -65,18 +65,18 @@
     NSArray *randomNounList = [NSArray arrayWithObjects:@"Bear",
                                @"Spork",
                                @"Mac", nil];
-    
+
     // Get the index of a random adjective/nount from the lists
     NSInteger adjectiveIndex =  rand() % [randomAdjectiveList count];
     NSInteger nounIndex      =  rand() % [randomNounList count];
-    
+
     // Note that NSINteger is not an object, but a type definition
     // for "unsiged long"
-    
+
      NSString *randomName = [NSString stringWithFormat:@"%@ %@",
                              [randomAdjectiveList objectAtIndex:adjectiveIndex],
                              [randomNounList objectAtIndex:nounIndex]];
-    
+
     int randomValue = rand() % 100;
     NSString *randomSerialNumber = [NSString stringWithFormat:@"%c%c%c%c%c",
                                     '0' + rand() % 10,
@@ -88,7 +88,7 @@
     BNRItem *newItem = [[self alloc] initWithItemName:randomName
                                        valueInDollars:randomValue
                                          serialNumber:randomSerialNumber];
-    
+
     return newItem;
 }
 
@@ -96,5 +96,24 @@
 {
     NSLog(@"Destroyed :%@", self);
 }
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.itemName forKey:@"itemName"];
+    [aCoder encodeObject:self.serialNumber forKey:@"serialNumber"];
+    [aCoder encodeObject:self.dateCreated  forKey:@"dateCreated"];
+    [aCoder encodeObject:self.itemKey forKey:@"itemKey"];
+    [aCoder encodeInt:self.valueInDollars forKey:@"valueInDollars"];
+}
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if(self) {
+        itemName = [aDecoder decodeObjectForKey:@"itemName"];
+        serialNumber = [aDecoder decodeObjectForKey:@"serialNumber"];
+        dateCreated = [aDecoder decodeObjectForKey:@"dateCreated"];
+        valueInDollars = [aDecoder decodeIntForKey:@"valueInDollars"];
+    }
+    return self;
+}
 @end

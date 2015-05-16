@@ -46,7 +46,7 @@
 // 2. Override the superclass's designated initilizer to call yours
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
-    return [self init];
+    return [super initWithStyle:style];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
