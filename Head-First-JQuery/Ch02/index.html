@@ -15,16 +15,6 @@
 			<div class="guess_box"><img src="images/jump4.jpg"/></div>
 		</div>
 		<script src="scripts/jquery-1.6.2.min.js"></script>
-		<script>
-            $(document).ready(function() {
-                $(".guess_box").click(function() {
-                    $(".guess_box p").remove();
-                    var my_num = Math.floor((Math.random() *5) + 5);
-                    var discount_msg = "<p>Your Discount is "+my_num+"%</p>";
-                    $(".guess_box").unbind();
-                    $(this).append(discount_msg);
-                }); //end click function
-            }); //end doc ready
-		</script>
+		<script src="scripts/my_script.js"></script>
 	</body>
 </html>
