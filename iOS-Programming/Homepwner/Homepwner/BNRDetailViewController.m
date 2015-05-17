@@ -10,6 +10,7 @@
 #import "BNRItem.h"
 #import "BNRItemStore.h"
 #import "BNRPopoverBackgroundView.h"
+#import "BNRItemsViewController.h"
 
 @interface BNRDetailViewController () <UINavigationControllerDelegate,
     UIImagePickerControllerDelegate, UITextFieldDelegate,
@@ -258,15 +259,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     item.valueInDollars = [self.valueField.text intValue];
 }
 
+
 - (void)setItem:(BNRItem *)item {
     _item = item;
     self.navigationItem.title = _item.itemName;
-//    UIBarButtonItem *bbi = [[UIBarButtonItem alloc]
-//                            initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-//                            target:self.view
-//                            action:@selector(endEditing:)];
-
-//    self.navigationItem.rightBarButtonItem= bbi;
 }
 
 - (void)prepareViewsForOrientation:(UIInterfaceOrientation)orientation

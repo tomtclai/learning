@@ -71,7 +71,11 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BNRDetailViewController *detailViewController = [[BNRDetailViewController alloc] initForNewItem:NO];
-
+    
+    detailViewController.dismissBlock = ^{
+        [self.tableView reloadData];
+    };
+    
     NSArray *items = [[BNRItemStore sharedStore] allItems];
     if (indexPath.row == items.count) return;
     BNRItem *selectedItem = items[indexPath.row];
@@ -80,6 +84,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     
     // Push it onto the top of the navigation controller's stack
     [self.navigationController pushViewController:detailViewController animated:YES];
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -182,7 +187,7 @@ titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
     detailViewController.item = newItem;
     
     detailViewController.dismissBlock = ^{
-        [self.tableView reloadData];
+    [self.tableView reloadData];
     };
     
     // This instance of UINavigationController will never be used for navigation,
@@ -202,6 +207,7 @@ titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [self.tableView reloadData];
 }
 
 - (IBAction)toggleEditingMode:(id)sender
