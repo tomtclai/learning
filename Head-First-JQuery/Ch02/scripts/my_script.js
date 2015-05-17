@@ -1,6 +1,23 @@
 $(document).ready(function() {
     $(".guess_box").click(checkForCode);
 
+    function getRandom(num) {
+        var my_num = Math.floor(Math.random()*nam);
+        return my_num;
+    }
+
+    var hideCode = function() {
+        var numRand = getRandom(4);
+        $(".guess_box").each(function(index, value) {
+            if(numRand == index) {
+                $(this).append("<span id='has_discount'></span>");
+                return false; // returns false means exit loop
+            }
+        });
+    };
+
+    hideCode();
+
     function checkForCode () {
         var discount;
 
@@ -12,10 +29,10 @@ $(document).ready(function() {
             discount = "<p>Sorry, no discount this time!</p>";
         }
 
-        $(this).append(discount_msg);
+        $(this).append(discount);
 
         $(".guess_box").each( function() {
             $(this).unbind('click');
         });
     }
-}); //end doc ready
+}); //end document.ready()
