@@ -10,6 +10,7 @@
 #import "BNRItemsViewController.h"
 #import "BNRItemStore.h"
 #import "BNRItem.h"
+#import "BNRItemCell.h"
 @interface BNRItemsViewController()
 
 @end
@@ -52,9 +53,11 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    return [[[BNRItemStore sharedStore] allItems] count] + 1;
+    return [[[BNRItemStore sharedStore] allItems] count];
 //    return 5;
 }
+
+
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -90,56 +93,33 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    // Create an instance of UITableViewCell, with default appearance
-//    UITableViewCell *cell = [[UITableViewCell alloc]
-//                             initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
-//
     // Get a new or recycled cell
-    UITableViewCell *cell =
-    [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"
+    BNRItemCell *cell =
+    [tableView dequeueReusableCellWithIdentifier:@"BNRItemCell"
      forIndexPath:indexPath];
-    // Set the test on the cell with the descriptiont of the item
-    // that is at the n-th index of items, where n = row this cell
-    // will appear in on the tableview
     NSArray *items = [[BNRItemStore sharedStore] allItems];
-    
-    if (indexPath.row == [items count])
-    {
-        cell.textLabel.text = @"No more items!";
 
-        return cell;
-    }
     BNRItem *item = items[indexPath.row];
-    cell.textLabel.text = [item description];
-    cell.textLabel.font = [UIFont systemFontOfSize:20];
+
+    // Configure the cell with the BNRItem
+    cell.nameLabel.text = item.itemName;
+    cell.serialNumberLabel.text = item.serialNumber;
+    cell.valueLabel.text = [NSString stringWithFormat:@"$%d",
+                            item.valueInDollars];
+    
     return cell;
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self.tableView registerClass:[UITableViewCell class]
-           forCellReuseIdentifier:@"UITableViewCell"];
-//    UIImage *tempImage = [UIImage imageNamed:@"Hazy-Nature.jpg"];
-//    UIImageView *tempImageView = [[UIImageView alloc]initWithImage:tempImage];
-//    [tempImageView setFrame:self.tableView.frame];
-//    self.tableView.backgroundView = tempImageView;
-//    self.tableView.contentInset = UIEdgeInsetsMake(20.0f, 0.0f, 0.0f, 0.0f);
-//    
-//    UIView *header = self.headerView;
-//    [self.tableView setTableHeaderView:header];
+    // Load the NIB file
+    UINib *nib = [UINib nibWithNibName:@"BNRItemCell" bundle:nil];
+    
+    // Register the NIB, which contain the cell
+    [self.tableView registerNib:nib
+         forCellReuseIdentifier:@"BNRItemCell"];
 }
-
-//- (UIView *)headerView
-//{
-//    if (!_headerView) {
-//        // Load HeaderView.xib
-//        [[NSBundle mainBundle] loadNibNamed:@"HeaderView"
-//                                      owner:self
-//                                    options:nil];
-//    }
-//    return _headerView;
-//}
 
 - (void)tableView:(UITableView *)tableView
 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
@@ -202,7 +182,6 @@ titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
     
     [self presentViewController:navController animated:YES completion:nil];
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {

@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7767C0CF1B0A47E50098B769 /* BNRItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7767C0CE1B0A47E50098B769 /* BNRItemCell.m */; };
 		77AE90671B04F51C00EA2C68 /* BNRPopoverBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AE90661B04F51C00EA2C68 /* BNRPopoverBackgroundView.m */; };
+		77DD606A1B0A712600731884 /* BNRItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77DD60691B0A712600731884 /* BNRItemCell.xib */; };
 		79495FBB1AA17A2200187E3E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79495FBA1AA17A2200187E3E /* main.m */; };
 		79495FC61AA17A2300187E3E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79495FC51AA17A2300187E3E /* Images.xcassets */; };
 		79495FD51AA17A2600187E3E /* HomepwnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79495FD41AA17A2600187E3E /* HomepwnerTests.m */; };
@@ -35,8 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7767C0CD1B0A47E50098B769 /* BNRItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRItemCell.h; sourceTree = "<group>"; };
+		7767C0CE1B0A47E50098B769 /* BNRItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItemCell.m; sourceTree = "<group>"; };
 		77AE90651B04F51C00EA2C68 /* BNRPopoverBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRPopoverBackgroundView.h; sourceTree = "<group>"; };
 		77AE90661B04F51C00EA2C68 /* BNRPopoverBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRPopoverBackgroundView.m; sourceTree = "<group>"; };
+		77DD60691B0A712600731884 /* BNRItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRItemCell.xib; sourceTree = "<group>"; };
 		79495FB51AA17A2200187E3E /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79495FB91AA17A2200187E3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79495FBA1AA17A2200187E3E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -83,9 +88,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7767C0D01B0A486C0098B769 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				797BC8691ABDE8CA00F52F91 /* BNRImageStore.h */,
+				797BC86A1ABDE8CA00F52F91 /* BNRImageStore.m */,
+				79495FF61AA4E83800187E3E /* BNRItemStore.h */,
+				79495FF71AA4E83800187E3E /* BNRItemStore.m */,
+			);
+			name = Store;
+			sourceTree = "<group>";
+		};
+		7767C0D11B0A487C0098B769 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				79E33E981ABCC259003FD583 /* BNRDetailViewController.xib */,
+				79E33E961ABCC259003FD583 /* BNRDetailViewController.h */,
+				79E33E971ABCC259003FD583 /* BNRDetailViewController.m */,
+				79495FF01AA4E03800187E3E /* BNRItemsViewController.h */,
+				79495FF11AA4E03800187E3E /* BNRItemsViewController.m */,
+				797BC8641ABCF9AC00F52F91 /* BNRDetailDateViewController.h */,
+				797BC8651ABCF9AC00F52F91 /* BNRDetailDateViewController.m */,
+				797BC8661ABCF9AC00F52F91 /* BNRDetailDateViewController.xib */,
+				79495FE01AA17A5F00187E3E /* ViewController.h */,
+				79495FE11AA17A5F00187E3E /* ViewController.m */,
+				79495FE21AA17A5F00187E3E /* ViewController.xib */,
+			);
+			name = "View Controller";
+			sourceTree = "<group>";
+		};
+		7767C0D21B0A48B40098B769 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				77AE90651B04F51C00EA2C68 /* BNRPopoverBackgroundView.h */,
+				77AE90661B04F51C00EA2C68 /* BNRPopoverBackgroundView.m */,
+				7767C0CD1B0A47E50098B769 /* BNRItemCell.h */,
+				7767C0CE1B0A47E50098B769 /* BNRItemCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		79495FAC1AA17A2200187E3E = {
 			isa = PBXGroup;
 			children = (
+				77DD60691B0A712600731884 /* BNRItemCell.xib */,
 				79495FB71AA17A2200187E3E /* Homepwner */,
 				79495FD11AA17A2500187E3E /* HomepwnerTests */,
 				79495FB61AA17A2200187E3E /* Products */,
@@ -104,27 +150,13 @@
 		79495FB71AA17A2200187E3E /* Homepwner */ = {
 			isa = PBXGroup;
 			children = (
-				79E33E961ABCC259003FD583 /* BNRDetailViewController.h */,
-				79E33E971ABCC259003FD583 /* BNRDetailViewController.m */,
-				77AE90651B04F51C00EA2C68 /* BNRPopoverBackgroundView.h */,
-				77AE90661B04F51C00EA2C68 /* BNRPopoverBackgroundView.m */,
-				79E33E981ABCC259003FD583 /* BNRDetailViewController.xib */,
-				797BC8691ABDE8CA00F52F91 /* BNRImageStore.h */,
-				797BC86A1ABDE8CA00F52F91 /* BNRImageStore.m */,
-				79495FF61AA4E83800187E3E /* BNRItemStore.h */,
-				79495FF71AA4E83800187E3E /* BNRItemStore.m */,
-				79495FF31AA4E40C00187E3E /* BNRItem.h */,
-				79495FF41AA4E40C00187E3E /* BNRItem.m */,
+				7767C0D21B0A48B40098B769 /* View */,
+				7767C0D01B0A486C0098B769 /* Store */,
 				79495FDE1AA17A5F00187E3E /* BNRAppDelegate.h */,
 				79495FDF1AA17A5F00187E3E /* BNRAppDelegate.m */,
-				79495FF01AA4E03800187E3E /* BNRItemsViewController.h */,
-				79495FF11AA4E03800187E3E /* BNRItemsViewController.m */,
-				797BC8641ABCF9AC00F52F91 /* BNRDetailDateViewController.h */,
-				797BC8651ABCF9AC00F52F91 /* BNRDetailDateViewController.m */,
-				797BC8661ABCF9AC00F52F91 /* BNRDetailDateViewController.xib */,
-				79495FE01AA17A5F00187E3E /* ViewController.h */,
-				79495FE11AA17A5F00187E3E /* ViewController.m */,
-				79495FE21AA17A5F00187E3E /* ViewController.xib */,
+				79495FF31AA4E40C00187E3E /* BNRItem.h */,
+				79495FF41AA4E40C00187E3E /* BNRItem.m */,
+				7767C0D11B0A487C0098B769 /* View Controller */,
 				79495FC51AA17A2300187E3E /* Images.xcassets */,
 				79495FB81AA17A2200187E3E /* Supporting Files */,
 			);
@@ -242,6 +274,7 @@
 				79495FE51AA17A5F00187E3E /* ViewController.xib in Resources */,
 				797BC8681ABCF9AC00F52F91 /* BNRDetailDateViewController.xib in Resources */,
 				79495FC61AA17A2300187E3E /* Images.xcassets in Resources */,
+				77DD606A1B0A712600731884 /* BNRItemCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +295,7 @@
 				79495FE41AA17A5F00187E3E /* ViewController.m in Sources */,
 				77AE90671B04F51C00EA2C68 /* BNRPopoverBackgroundView.m in Sources */,
 				79495FE31AA17A5F00187E3E /* BNRAppDelegate.m in Sources */,
+				7767C0CF1B0A47E50098B769 /* BNRItemCell.m in Sources */,
 				797BC86B1ABDE8CA00F52F91 /* BNRImageStore.m in Sources */,
 				797BC8671ABCF9AC00F52F91 /* BNRDetailDateViewController.m in Sources */,
 				79495FF51AA4E40C00187E3E /* BNRItem.m in Sources */,
@@ -325,7 +359,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -360,7 +394,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
