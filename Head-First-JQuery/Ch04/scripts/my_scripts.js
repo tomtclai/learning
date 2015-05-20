@@ -8,7 +8,7 @@ $(document).ready(function(){
         // Detach fish
         $f=$("li.fish").parent().parent().detach();
 
-        // Replace hamburger with Porobello
+        // Replace hamburger with Portobello
         $(".hamburger").replaceWith("<li class='portobello'><em>Portobello Mushroom</em></li>");
 
         // Replace various meat with tofu
