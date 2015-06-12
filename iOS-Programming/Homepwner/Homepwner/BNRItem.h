@@ -24,4 +24,7 @@
 @property (nonatomic) int valueInDollars;
 @property (nonatomic, strong) NSDate *dateCreated;
 @property (nonatomic, readonly) NSString* itemKey;
+@property (nonatomic, copy) UIImage *thumbnail;
+
+- (void)setThumbnailFromImage:(UIImage *)image;
 @end

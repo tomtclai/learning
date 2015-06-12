@@ -62,14 +62,7 @@
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([indexPath row]==[[[BNRItemStore sharedStore] allItems] count] )
-    {
         return 44;
-    }
-    else
-    {
-        return 60;
-    }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -109,7 +102,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     cell.serialNumberLabel.text = item.serialNumber;
     cell.valueLabel.text = [NSString stringWithFormat:@"$%d",
                             item.valueInDollars];
-    
+    cell.thumbnailView.image = item.thumbnail;
     return cell;
 }
 - (void)viewDidLoad
@@ -148,9 +141,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 - (BOOL)tableView:(UITableView *)tableView
 canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row == [[[BNRItemStore sharedStore] allItems] count])
-        return NO;
-    else return YES;
+    return YES;
 }
 
 - (NSString *)tableView:(UITableView *)tableView
@@ -192,6 +183,7 @@ titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 1100, 0, 1100)];
     [self.tableView reloadData];
 }
 
