@@ -93,6 +93,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Once a UINib has been registered with a table view, the table view can be
+    // asked to load the instance of BNRItemCell when given the reuse identifier
+    // "BNRItemCell".
     // Get a new or recycled cell
     BNRItemCell *cell =
     [tableView dequeueReusableCellWithIdentifier:@"BNRItemCell"
@@ -116,9 +119,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     // Load the NIB file
     UINib *nib = [UINib nibWithNibName:@"BNRItemCell" bundle:nil];
     
-    // Register the NIB, which contain the cell
+    // Register this NIB, which contain the cell
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"BNRItemCell"];
+    // The table view simply stores the UINib instance in an NSDictionary
+    // for the key "BNRItemCell". A UINib contains all of the data stored in its
+    // XIB file
 }
 
 - (void)tableView:(UITableView *)tableView
