@@ -7,7 +7,7 @@
 //
 
 #import "BNRImageViewController.h"
-@interface BNRImageViewController () <UIScrollViewDelegate>
+@interface BNRImageViewController ()
 
 @end
 
@@ -25,13 +25,9 @@
 }
 - (void)loadView
 {
-
     UIImageView *imageView = [[UIImageView alloc] init];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
-    UIScrollView *scrollView = [[UIScrollView alloc] init];
-    [scrollView addSubview:imageView];
-    scrollView.delegate=self;
-    self.view = scrollView;
+    self.view = imageView;
 }
 #pragma mark - view will appaer
 - (void)viewWillAppear:(BOOL)animated
@@ -39,7 +35,7 @@
     [super viewWillAppear:animated];
     
     // We must cast the view to UIImageView to send it setImage:
-    UIImageView *imageView = (UIImageView *)self.view.subviews;
+    UIImageView *imageView = (UIImageView *)self.view;
     imageView.image = self.image;
 }
 @end
