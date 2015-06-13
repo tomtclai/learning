@@ -43,7 +43,7 @@
 //    BNRHypnosisView *anotherView = [[BNRHypnosisView alloc] initWithFrame:screenRect];
 //    [scrollView addSubview:anotherView];
     
-    //Tell the scroll view how bit its content area is
+    //Tell the scroll view how big its content area is
     
     ViewController* qvc = [[ViewController alloc] init];
     scrollView.contentSize = initRect.size;
