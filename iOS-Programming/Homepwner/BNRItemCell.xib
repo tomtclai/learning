@@ -49,10 +49,22 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QCi-qa-O8D">
+                        <rect key="frame" x="10" y="0.0" width="40" height="40"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="showImage:" destination="QNx-iI-IHb" eventType="touchUpInside" id="EFR-jd-DBK"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="6Mi-6f-jnf" firstAttribute="trailing" secondItem="QCi-qa-O8D" secondAttribute="trailing" id="2DA-VK-p70"/>
+                    <constraint firstItem="6Mi-6f-jnf" firstAttribute="leading" secondItem="QCi-qa-O8D" secondAttribute="leading" id="6yy-fL-XBJ"/>
                     <constraint firstItem="prn-DL-b22" firstAttribute="top" secondItem="SDS-Id-ylR" secondAttribute="topMargin" constant="-8" id="7PY-Xv-8Nb"/>
                     <constraint firstItem="Deq-i5-aMv" firstAttribute="centerY" secondItem="SDS-Id-ylR" secondAttribute="centerY" constant="-0.5" id="AJK-9A-3AM"/>
+                    <constraint firstItem="6Mi-6f-jnf" firstAttribute="top" secondItem="QCi-qa-O8D" secondAttribute="top" id="FHZ-jc-ZlW"/>
                     <constraint firstItem="jYx-0R-XaJ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="prn-DL-b22" secondAttribute="bottom" constant="-3" id="JUG-rs-zgx"/>
                     <constraint firstItem="prn-DL-b22" firstAttribute="leading" secondItem="6Mi-6f-jnf" secondAttribute="trailing" constant="8" id="VHj-5s-PFs"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Deq-i5-aMv" secondAttribute="trailing" constant="-7" id="Xf6-fT-WkD"/>
@@ -61,6 +73,7 @@
                     <constraint firstAttribute="bottomMargin" secondItem="jYx-0R-XaJ" secondAttribute="bottom" constant="-1" id="fPQ-0J-oOH"/>
                     <constraint firstItem="Deq-i5-aMv" firstAttribute="top" secondItem="SDS-Id-ylR" secondAttribute="topMargin" constant="5" id="fm3-EQ-71L"/>
                     <constraint firstItem="Deq-i5-aMv" firstAttribute="leading" secondItem="jYx-0R-XaJ" secondAttribute="trailing" constant="8" id="lyF-eF-LKj"/>
+                    <constraint firstItem="6Mi-6f-jnf" firstAttribute="bottom" secondItem="QCi-qa-O8D" secondAttribute="bottom" id="oeF-FI-aEL"/>
                     <constraint firstItem="jYx-0R-XaJ" firstAttribute="leading" secondItem="6Mi-6f-jnf" secondAttribute="trailing" constant="8" id="qr4-OZ-Zu4"/>
                     <constraint firstAttribute="centerY" secondItem="6Mi-6f-jnf" secondAttribute="centerY" id="yDC-tc-pTW"/>
                     <constraint firstItem="6Mi-6f-jnf" firstAttribute="leading" secondItem="SDS-Id-ylR" secondAttribute="leadingMargin" constant="2" id="yPH-Xb-UpQ"/>

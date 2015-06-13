@@ -11,12 +11,16 @@
 #import "BNRItemStore.h"
 #import "BNRItem.h"
 #import "BNRItemCell.h"
-@interface BNRItemsViewController()
+#import "BNRImageStore.h"
+#import "BNRImageViewController.h"
 
+@interface BNRItemsViewController() <UIPopoverControllerDelegate>
+@property (nonatomic, strong) UIPopoverController *imagePopover;
 @end
 
 @implementation BNRItemsViewController
 
+#pragma mark - init
 
 // Changing designated initializer to init
 // 1. Call the superclass's designated initilizer from yours
@@ -50,11 +54,12 @@
     return [super initWithStyle:style];
 }
 
+
+#pragma mark - table view controller
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
     return [[[BNRItemStore sharedStore] allItems] count];
-//    return 5;
 }
 
 
@@ -103,22 +108,46 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     cell.valueLabel.text = [NSString stringWithFormat:@"$%d",
                             item.valueInDollars];
     cell.thumbnailView.image = item.thumbnail;
+    
+    // by default, cell has a strong reference to actionBlack, actionBlock has a
+    // strong reference to cell.
+    // the following line breaks the strong reference cycle.
+    __weak BNRItemCell *weakCell = cell;
+    
+    cell.actionBlock = ^{
+        // temporarily take strong ownership, make sure the cell hangs around until
+        // actionBlock is done executing
+        BNRItemCell *cell = weakCell;
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            NSString *itemKey = item.itemKey;
+            // if there is no image, we don't need to display anything
+            UIImage *img = [[BNRImageStore sharedStore] imageForKey:itemKey];
+            if (!img) return;
+            
+            // Make a rectangle for the frame of the thumbnail relative to our table view
+            CGRect rect = [self.view convertRect:cell.thumbnailView.bounds
+                                        fromView:cell.thumbnailView];
+            
+            // Create a new BNRImageViewController and set its image
+            BNRImageViewController *ivc = [[BNRImageViewController alloc] init];
+            ivc.image = img;
+            
+            // Present a 600x600 popover from the rect
+            self.imagePopover = [[UIPopoverController alloc] initWithContentViewController:ivc];
+            
+            self.imagePopover.delegate = self;
+            self.imagePopover.popoverContentSize = CGSizeMake(600, 600);
+            
+            [self.imagePopover presentPopoverFromRect:rect
+                                               inView:self.view
+                             permittedArrowDirections:UIPopoverArrowDirectionAny
+                                             animated:YES];
+        }
+    };
+    
     return cell;
 }
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    // Load the NIB file
-    UINib *nib = [UINib nibWithNibName:@"BNRItemCell" bundle:nil];
-    
-    // Register this NIB, which contain the cell
-    [self.tableView registerNib:nib
-         forCellReuseIdentifier:@"BNRItemCell"];
-    // The table view simply stores the UINib instance in an NSDictionary
-    // for the key "BNRItemCell". A UINib contains all of the data stored in its
-    // XIB file
-}
+
 
 - (void)tableView:(UITableView *)tableView
 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
@@ -156,7 +185,39 @@ titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
         return UITableViewCellEditingStyleNone;
     return UITableViewCellEditingStyleDelete;
 }
+- (void)tableView:(UITableView *)tableView
+moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
+      toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    [[BNRItemStore sharedStore] moveItemAtIndex:sourceIndexPath.row
+                                        toIndex:destinationIndexPath.row];
+}
 
+
+
+#pragma mark - view controller
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // Load the NIB file
+    UINib *nib = [UINib nibWithNibName:@"BNRItemCell" bundle:nil];
+    
+    // Register this NIB, which contain the cell
+    [self.tableView registerNib:nib
+         forCellReuseIdentifier:@"BNRItemCell"];
+    // The table view simply stores the UINib instance in an NSDictionary
+    // for the key "BNRItemCell". A UINib contains all of the data stored in its
+    // XIB file
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
+}
+
+#pragma mark - buttons
 - (IBAction)addNewItem:(id)sender
 {
     BNRItem *newItem = [[BNRItemStore sharedStore] createItem];
@@ -164,7 +225,7 @@ titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
     detailViewController.item = newItem;
     
     detailViewController.dismissBlock = ^{
-    [self.tableView reloadData];
+        [self.tableView reloadData];
     };
     
     // This instance of UINavigationController will never be used for navigation,
@@ -180,12 +241,7 @@ titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
     [self presentViewController:navController animated:YES completion:nil];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 1100, 0, 1100)];
-    [self.tableView reloadData];
-}
+
 
 - (IBAction)toggleEditingMode:(id)sender
 {
@@ -202,12 +258,5 @@ titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
     }
 }
 
-- (void)tableView:(UITableView *)tableView
-moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
-      toIndexPath:(NSIndexPath *)destinationIndexPath
-{
-    [[BNRItemStore sharedStore] moveItemAtIndex:sourceIndexPath.row
-                                        toIndex:destinationIndexPath.row];
-}
 
 @end

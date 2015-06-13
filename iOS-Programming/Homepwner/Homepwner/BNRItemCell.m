@@ -11,4 +11,11 @@
 
 @implementation BNRItemCell
 
+- (IBAction)showImage:(id)sender
+{
+    if (self.actionBlock) {
+        self.actionBlock();
+    }
+}
+
 @end

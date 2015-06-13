@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 @interface BNRItemCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *thumbnailView;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *serialNumberLabel;
-@property (weak, nonatomic) IBOutlet UILabel *valueLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *thumbnailView;
+@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *serialNumberLabel;
+@property (nonatomic, weak) IBOutlet UILabel *valueLabel;
+@property (nonatomic, copy) void (^actionBlock) (void);
 @end

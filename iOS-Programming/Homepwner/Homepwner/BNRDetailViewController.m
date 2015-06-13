@@ -116,7 +116,7 @@
 
 - (IBAction)takePicture:(id)sender {
     if ([self.imagePickerPopover isPopoverVisible]) {
-        // If the popover is already up, get right of it
+        // If the popover is already up, get rid of it
         [self.imagePickerPopover dismissPopoverAnimated:YES];
         self.imagePickerPopover = nil;
         return;
@@ -140,7 +140,6 @@
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         // Create a new popover contoller that will display the imagepicker
         self.imagePickerPopover = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
-        self.imagePickerPopover.popoverBackgroundViewClass = [BNRPopoverBackgroundView class];
         self.imagePickerPopover.delegate = self;
         
         // Display the popover controller; sender
@@ -152,16 +151,6 @@
         [self presentViewController:imagePicker animated:YES completion:nil];
     }
 
-//    // Show cross hair
-//    UIView * crossHair = [[UIView alloc] init];
-//    UIImage * crossHairImage =[UIImage imageNamed:@"cross-hair-target-md.png"];
-//    UIImageView * crossHairImageView = [[UIImageView alloc] initWithImage:
-//                                    crossHairImage];
-//    crossHair.bounds = crossHairImageView.bounds;
-//    crossHair.center = self.view.center;
-//    [crossHair addSubview:crossHairImageView];
-//    imagePicker.cameraOverlayView = crossHair;
-//    imagePicker.cameraOverlayView.backgroundColor = [UIColor clearColor];
 }
 - (IBAction)removePhoto:(id)sender {
     // Delete the image in the BNRImageStore for this key
