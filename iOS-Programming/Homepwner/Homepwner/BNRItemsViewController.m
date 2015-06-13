@@ -107,6 +107,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     cell.serialNumberLabel.text = item.serialNumber;
     cell.valueLabel.text = [NSString stringWithFormat:@"$%d",
                             item.valueInDollars];
+    if (item.valueInDollars >50)//worth more than 50
+    {
+        cell.valueLabel.textColor= [UIColor greenColor];
+    } else
+    {
+        cell.valueLabel.textColor= [UIColor redColor];
+    }
     cell.thumbnailView.image = item.thumbnail;
     
     // by default, cell has a strong reference to actionBlack, actionBlock has a

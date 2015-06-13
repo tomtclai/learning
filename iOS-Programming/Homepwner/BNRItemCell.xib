@@ -15,8 +15,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="371" height="40"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Deq-i5-aMv">
-                        <rect key="frame" x="251" y="13" width="119" height="13"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Deq-i5-aMv">
+                        <rect key="frame" x="244" y="13" width="119" height="13"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="119" id="z8U-Cp-Q3d"/>
                         </constraints>
@@ -67,12 +67,12 @@
                     <constraint firstItem="6Mi-6f-jnf" firstAttribute="top" secondItem="QCi-qa-O8D" secondAttribute="top" id="FHZ-jc-ZlW"/>
                     <constraint firstItem="jYx-0R-XaJ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="prn-DL-b22" secondAttribute="bottom" constant="-3" id="JUG-rs-zgx"/>
                     <constraint firstItem="prn-DL-b22" firstAttribute="leading" secondItem="6Mi-6f-jnf" secondAttribute="trailing" constant="8" id="VHj-5s-PFs"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Deq-i5-aMv" secondAttribute="trailing" constant="-7" id="Xf6-fT-WkD"/>
-                    <constraint firstItem="Deq-i5-aMv" firstAttribute="leading" secondItem="prn-DL-b22" secondAttribute="trailing" constant="8" id="bDM-sX-CkJ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Deq-i5-aMv" secondAttribute="trailing" id="Xf6-fT-WkD"/>
+                    <constraint firstItem="Deq-i5-aMv" firstAttribute="leading" secondItem="prn-DL-b22" secondAttribute="trailing" constant="1" id="bDM-sX-CkJ"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Deq-i5-aMv" secondAttribute="bottom" constant="6" id="fFK-D8-IX7"/>
                     <constraint firstAttribute="bottomMargin" secondItem="jYx-0R-XaJ" secondAttribute="bottom" constant="-1" id="fPQ-0J-oOH"/>
                     <constraint firstItem="Deq-i5-aMv" firstAttribute="top" secondItem="SDS-Id-ylR" secondAttribute="topMargin" constant="5" id="fm3-EQ-71L"/>
-                    <constraint firstItem="Deq-i5-aMv" firstAttribute="leading" secondItem="jYx-0R-XaJ" secondAttribute="trailing" constant="8" id="lyF-eF-LKj"/>
+                    <constraint firstItem="Deq-i5-aMv" firstAttribute="leading" secondItem="jYx-0R-XaJ" secondAttribute="trailing" constant="1" id="lyF-eF-LKj"/>
                     <constraint firstItem="6Mi-6f-jnf" firstAttribute="bottom" secondItem="QCi-qa-O8D" secondAttribute="bottom" id="oeF-FI-aEL"/>
                     <constraint firstItem="jYx-0R-XaJ" firstAttribute="leading" secondItem="6Mi-6f-jnf" secondAttribute="trailing" constant="8" id="qr4-OZ-Zu4"/>
                     <constraint firstAttribute="centerY" secondItem="6Mi-6f-jnf" secondAttribute="centerY" id="yDC-tc-pTW"/>
