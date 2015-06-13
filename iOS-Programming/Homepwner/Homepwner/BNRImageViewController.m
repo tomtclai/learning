@@ -28,33 +28,25 @@
     UIScrollView *scrollView = [[UIScrollView alloc] init];
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:self.image];
-    
-    
-    self.imageView = imageView;
-    self.scrollView = scrollView;
-    self.view = scrollView;
-    
-    
+
     imageView.contentMode = UIViewContentModeCenter;
-    
     
     // Tell scrollview the size of content contained within
     CGPoint center= CGPointMake(600/2.0,600/2.0);
-    [self.imageView setCenter:center];
+    [imageView setCenter:center];
     
-    
-    [[self scrollView]addSubview:self.imageView];
-    
+    [scrollView addSubview: imageView];
     
     // Specifying the zoom factor and the delegate object are the min requirements
     // to support zoomming in using the pinch gestures
-    self.scrollView.contentSize = self.imageView.frame.size;
+    scrollView.contentSize = imageView.frame.size;
     scrollView.minimumZoomScale=1.0;
     scrollView.maximumZoomScale=2.0;
     scrollView.delegate=self;
     
-    
-    
+    self.imageView = imageView;
+    self.scrollView = scrollView;
+    self.view = scrollView;
     
 }
 #pragma mark - view will appaer
@@ -62,8 +54,11 @@
 {
     [super viewWillAppear:animated];
     
-//    // We must cast the view to UIImageView to send it setImage:
-//    UIImageView *imageView = (UIImageView *)self.view;
-//    imageView.image = self.image;
 }
+#pragma mark - scrollview
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return self.imageView;
+}
+
 @end
