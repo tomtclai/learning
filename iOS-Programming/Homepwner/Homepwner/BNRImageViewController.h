@@ -10,5 +10,7 @@
 
 @interface BNRImageViewController : UIViewController
 @property (nonatomic, strong) UIImage *image; // How do we give it the image?
+@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIScrollView *scrollView;
 
 @end
