@@ -42,7 +42,7 @@
 		77AE90661B04F51C00EA2C68 /* BNRPopoverBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRPopoverBackgroundView.m; sourceTree = "<group>"; };
 		77D57E651B2B94D700A1A194 /* BNRImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRImageViewController.h; sourceTree = "<group>"; };
 		77D57E661B2B94D700A1A194 /* BNRImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRImageViewController.m; sourceTree = "<group>"; };
-		77DD60691B0A712600731884 /* BNRItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRItemCell.xib; sourceTree = "<group>"; };
+		77DD60691B0A712600731884 /* BNRItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BNRItemCell.xib; path = ../BNRItemCell.xib; sourceTree = "<group>"; };
 		79495FB51AA17A2200187E3E /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79495FB91AA17A2200187E3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79495FBA1AA17A2200187E3E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -115,6 +115,7 @@
 				77AE90661B04F51C00EA2C68 /* BNRPopoverBackgroundView.m */,
 				7767C0CD1B0A47E50098B769 /* BNRItemCell.h */,
 				7767C0CE1B0A47E50098B769 /* BNRItemCell.m */,
+				77DD60691B0A712600731884 /* BNRItemCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -160,7 +161,6 @@
 		79495FAC1AA17A2200187E3E = {
 			isa = PBXGroup;
 			children = (
-				77DD60691B0A712600731884 /* BNRItemCell.xib */,
 				79495FB71AA17A2200187E3E /* Homepwner */,
 				79495FD11AA17A2500187E3E /* HomepwnerTests */,
 				79495FB61AA17A2200187E3E /* Products */,
