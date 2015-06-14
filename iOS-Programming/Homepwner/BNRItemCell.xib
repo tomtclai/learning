@@ -37,7 +37,7 @@
                         <rect key="frame" x="10" y="0.0" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="Ei1-BH-Xcc"/>
-                            <constraint firstAttribute="width" constant="40" id="qPs-J1-khU"/>
+                            <constraint firstAttribute="width" constant="40" placeholder="YES" id="qPs-J1-khU"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prn-DL-b22">
@@ -81,7 +81,6 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="imageViewHeightConstraint" destination="Ei1-BH-Xcc" id="FZv-0r-hJn"/>
-                <outlet property="imageViewWidthConstraint" destination="qPs-J1-khU" id="Fob-KB-vlR"/>
                 <outlet property="nameLabel" destination="prn-DL-b22" id="TIw-ni-wT2"/>
                 <outlet property="serialNumberLabel" destination="jYx-0R-XaJ" id="gd2-Md-cEq"/>
                 <outlet property="thumbnailView" destination="6Mi-6f-jnf" id="Abm-pu-sNv"/>
