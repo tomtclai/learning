@@ -14,8 +14,25 @@
 - (void)loadView
 {
     UIWebView *webView = [[UIWebView alloc] init];
+    UIToolbar *toolBar = [[UIToolbar alloc] init];
+
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]init];
+    backButton.title = @"back";
+    backButton.action = @selector(goBack);
+    
+    UIBarButtonItem *forwardButton = [[UIBarButtonItem alloc]init];
+    forwardButton.title = @"forward";
+    forwardButton.action = @selector(goForward);
+    
+    [toolBar setItems:[[NSArray alloc] initWithObjects:backButton, forwardButton, nil]];
+    
     webView.scalesPageToFit = YES;
+
+
+    self.webView = webView;
     self.view = webView;
+//    [webView addSubview:toolBar]; why doesn't this work?
 }
 
 - (void)setURL:(NSURL *)URL
@@ -24,6 +41,7 @@
     if (_URL) {
         NSURLRequest *req = [NSURLRequest requestWithURL:_URL];
         [(UIWebView *)self.view loadRequest:req];
+//        [self.webView loadRequest:req]; why doesn't this work?
     }
 }
 
