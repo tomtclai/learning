@@ -158,6 +158,16 @@
 			name = "Image ";
 			sourceTree = "<group>";
 		};
+		77E62CFD1B2DE12D00039336 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				79495FF31AA4E40C00187E3E /* BNRItem.h */,
+				79495FF41AA4E40C00187E3E /* BNRItem.m */,
+				7767C0D01B0A486C0098B769 /* Store */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		79495FAC1AA17A2200187E3E = {
 			isa = PBXGroup;
 			children = (
@@ -180,11 +190,9 @@
 			isa = PBXGroup;
 			children = (
 				7767C0D21B0A48B40098B769 /* View */,
-				7767C0D01B0A486C0098B769 /* Store */,
 				79495FDE1AA17A5F00187E3E /* BNRAppDelegate.h */,
 				79495FDF1AA17A5F00187E3E /* BNRAppDelegate.m */,
-				79495FF31AA4E40C00187E3E /* BNRItem.h */,
-				79495FF41AA4E40C00187E3E /* BNRItem.m */,
+				77E62CFD1B2DE12D00039336 /* Model */,
 				7767C0D11B0A487C0098B769 /* View Controller */,
 				79495FC51AA17A2300187E3E /* Images.xcassets */,
 				79495FB81AA17A2200187E3E /* Supporting Files */,
