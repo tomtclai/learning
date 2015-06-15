@@ -30,9 +30,8 @@
     webView.scalesPageToFit = YES;
 
 
-    self.webView = webView;
     self.view = webView;
-//    [webView addSubview:toolBar]; why doesn't this work?
+    //    self.webView = webView; why doesn't this work?
 }
 
 - (void)setURL:(NSURL *)URL
