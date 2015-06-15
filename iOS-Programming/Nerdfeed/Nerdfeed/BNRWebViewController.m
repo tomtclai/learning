@@ -16,23 +16,7 @@
 
     return self;
 }
-- (void)deviceOrientationDidChange: (NSNotification *) nsn
-{
-    
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    
-    if (orientation == UIDeviceOrientationPortrait ||
-        orientation == UIDeviceOrientationLandscapeLeft ||
-        orientation == UIDeviceOrientationLandscapeRight)
-    {
-        
-        CGRect screenRect = [[UIScreen mainScreen] bounds];
-        CGFloat screenWidth = screenRect.size.width;
-        CGFloat screenHeight = screenRect.size.height;
-        [self.toolBar setFrame:CGRectMake(0, screenHeight-36,
-                                          screenWidth, 36)];
-    }
-}
+
 #pragma mark toolBar
 - (void)setUpToolBar
 {
@@ -67,16 +51,27 @@
     
     webView.scalesPageToFit = YES;
     [self setUpToolBar];
-//    [toolBar addConstraints:toolBarConstraints];
-
 }
 
 #pragma mark UIview
 - (void)viewDidLoad
 {
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(deviceOrientationDidChange:) name: UIDeviceOrientationDidChangeNotification object: nil];
+    NSDictionary *labels = @{
+                            @"toolbar":self.toolBar,
+                            @"webview":self.webView
+                            };
+    NSArray *Vconstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[toolbar(36@1000)]-|"
+                                                                    options:0
+                                                                    metrics:nil
+                                                                      views:labels];
+    
+    NSArray *Hconstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[toolbar(1000@10)]"
+                                                                    options:0
+                                                                    metrics:nil
+                                                                      views:labels];
+    self.toolBar.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addConstraints:Vconstraints];
+    [self.view addConstraints:Hconstraints];
 }
 - (void)setURL:(NSURL *)URL
 {
@@ -88,8 +83,7 @@
 }
 #pragma mark dealloc
 -(void) dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver: self];
-    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+    
 }
 
 @end
