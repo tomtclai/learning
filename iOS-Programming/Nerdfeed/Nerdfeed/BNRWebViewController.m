@@ -9,14 +9,42 @@
 #import "BNRWebViewController.h"
 
 @implementation BNRWebViewController 
-
-#pragma webview
-- (void)loadView
+#pragma mark init
+- (instancetype) init
 {
-    UIWebView *webView = [[UIWebView alloc] init];
-    UIToolbar *toolBar = [[UIToolbar alloc] init];
+    self = [super init];
 
+    return self;
+}
+- (void)deviceOrientationDidChange: (NSNotification *) nsn
+{
     
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    
+    if (orientation == UIDeviceOrientationPortrait ||
+        orientation == UIDeviceOrientationLandscapeLeft ||
+        orientation == UIDeviceOrientationLandscapeRight)
+    {
+        
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat screenWidth = screenRect.size.width;
+        CGFloat screenHeight = screenRect.size.height;
+        [self.toolBar setFrame:CGRectMake(0, screenHeight-36,
+                                          screenWidth, 36)];
+    }
+}
+#pragma mark toolBar
+- (void)setUpToolBar
+{
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    
+    
+    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:
+                          CGRectMake(0, screenHeight-36,
+                                     screenWidth, 36)];
+    self.toolBar = toolBar;
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]init];
     backButton.title = @"back";
     backButton.action = @selector(goBack);
@@ -27,21 +55,41 @@
     
     [toolBar setItems:[[NSArray alloc] initWithObjects:backButton, forwardButton, nil]];
     
-    webView.scalesPageToFit = YES;
-
-
+    [self.view addSubview:toolBar];
+}
+#pragma mark webview
+- (void)loadView
+{
+    UIWebView *webView = [[UIWebView alloc] init];
+    self.webView = webView;
     self.view = webView;
-    //    self.webView = webView; why doesn't this work?
+
+    
+    webView.scalesPageToFit = YES;
+    [self setUpToolBar];
+//    [toolBar addConstraints:toolBarConstraints];
+
 }
 
+#pragma mark UIview
+- (void)viewDidLoad
+{
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(deviceOrientationDidChange:) name: UIDeviceOrientationDidChangeNotification object: nil];
+}
 - (void)setURL:(NSURL *)URL
 {
     _URL = URL;
     if (_URL) {
         NSURLRequest *req = [NSURLRequest requestWithURL:_URL];
-        [(UIWebView *)self.view loadRequest:req];
-//        [self.webView loadRequest:req]; why doesn't this work?
+        [(UIWebView *)self.view loadRequest:req]; //why doesn't this work?
     }
+}
+#pragma mark dealloc
+-(void) dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver: self];
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
 }
 
 @end
