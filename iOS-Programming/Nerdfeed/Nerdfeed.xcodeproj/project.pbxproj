@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		776BFD531B306FB20020C94D /* BNRCoursesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BFD511B306FB20020C94D /* BNRCoursesTableViewCell.m */; };
+		776BFD541B306FB20020C94D /* BNRCoursesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 776BFD521B306FB20020C94D /* BNRCoursesTableViewCell.xib */; };
 		77E62D0C1B2DE22E00039336 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E62D0B1B2DE22E00039336 /* main.m */; };
 		77E62D0F1B2DE22E00039336 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E62D0E1B2DE22E00039336 /* AppDelegate.m */; };
 		77E62D171B2DE22E00039336 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77E62D161B2DE22E00039336 /* Assets.xcassets */; };
@@ -32,6 +34,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		776BFD501B306FB20020C94D /* BNRCoursesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRCoursesTableViewCell.h; sourceTree = "<group>"; };
+		776BFD511B306FB20020C94D /* BNRCoursesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRCoursesTableViewCell.m; sourceTree = "<group>"; };
+		776BFD521B306FB20020C94D /* BNRCoursesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRCoursesTableViewCell.xib; sourceTree = "<group>"; };
 		77E62D071B2DE22E00039336 /* Nerdfeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nerdfeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77E62D0B1B2DE22E00039336 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		77E62D0D1B2DE22E00039336 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -123,6 +128,9 @@
 		77E62D431B2DE40200039336 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				776BFD501B306FB20020C94D /* BNRCoursesTableViewCell.h */,
+				776BFD511B306FB20020C94D /* BNRCoursesTableViewCell.m */,
+				776BFD521B306FB20020C94D /* BNRCoursesTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -249,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77E62D171B2DE22E00039336 /* Assets.xcassets in Resources */,
+				776BFD541B306FB20020C94D /* BNRCoursesTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77E62D4B1B2E127A00039336 /* BNRWebViewController.m in Sources */,
+				776BFD531B306FB20020C94D /* BNRCoursesTableViewCell.m in Sources */,
 				77E62D0F1B2DE22E00039336 /* AppDelegate.m in Sources */,
 				77E62D461B2DE44B00039336 /* BNRCoursesViewController.m in Sources */,
 				77E62D0C1B2DE22E00039336 /* main.m in Sources */,

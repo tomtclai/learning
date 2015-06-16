@@ -8,6 +8,7 @@
 
 #import "BNRWebViewController.h"
 #import "BNRCoursesViewController.h"
+#import "BNRCoursesTableViewCell.h"
 @interface BNRCoursesViewController () <NSURLSessionDataDelegate>
 
 
@@ -66,12 +67,31 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"
+    BNRCoursesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BNRCoursesTableViewCell"
                                                             forIndexPath:indexPath];
 
+    if (cell==nil) {
+        cell = [[BNRCoursesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                              reuseIdentifier:@"BNRCoursesTableViewCell"];
+    }
     NSDictionary *course = self.courses[indexPath.row];
-    cell.textLabel.text = course[@"title"];
+    cell.course.text = course[@"title"];
     
+    NSMutableString *upcomingLabelText = [[NSMutableString alloc]initWithString:@"Upcoming: "];
+    
+    
+    if ([course[@"upcoming"] count] != 0)
+    {
+        // JSON serialized data. Used [0] because we are accessing an array, not dictionary
+        // in that particular level. Their types looks like this:
+        // NSDictionary[@"upcoming"] -> NSArray[0] -> NSDictionary[@"start_date"]
+        [upcomingLabelText appendString:course[@"upcoming"] [0] [@"start_date"]];
+        
+    } else
+    {
+        [upcomingLabelText appendString:@"--"];
+    }
+    cell.upcoming.text = upcomingLabelText;
     return cell;
 }
 
@@ -86,13 +106,21 @@ didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
     [self.navigationController pushViewController:self.webViewController
                                          animated:YES];
 }
+
+- (CGFloat)tableView:(nonnull UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    return 56.0;
+}
 #pragma mark - UI view
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self.tableView registerClass:[UITableViewCell class]
-           forCellReuseIdentifier:@"UITableViewCell"];
+    // Load the NIB file
+    UINib *nib = [UINib nibWithNibName:@"BNRCoursesTableViewCell" bundle:nil];
+    
+    [self.tableView registerNib:nib
+           forCellReuseIdentifier:@"BNRCoursesTableViewCell"];
 }
 
 #pragma mark - NSURLSessionDataDelegate
