@@ -12,5 +12,7 @@
 @property (nonatomic) NSURL *URL;
 @property(nonatomic,strong) UIWebView *webView;
 @property(nonatomic,strong) UIToolbar *toolBar;
+@property(nonatomic,strong) UIBarButtonItem *backButton;
+@property(nonatomic,strong) UIBarButtonItem *forwardButton;
 
 @end

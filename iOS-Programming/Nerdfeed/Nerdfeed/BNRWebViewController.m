@@ -7,8 +7,10 @@
 //
 
 #import "BNRWebViewController.h"
+@interface BNRWebViewController () <UIWebViewDelegate>
 
-@implementation BNRWebViewController 
+@end
+@implementation BNRWebViewController
 #pragma mark init
 - (instancetype) init
 {
@@ -19,34 +21,64 @@
 
 #pragma mark toolBar
 - (void)setUpToolBar
-{    
+{
     UIToolbar *toolBar = [[UIToolbar alloc] init];
     self.toolBar = toolBar;
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]init];
     backButton.title = @"back";
     backButton.action = @selector(goBack);
+    backButton.enabled = false;
+    self.backButton = backButton;
     
     UIBarButtonItem *forwardButton = [[UIBarButtonItem alloc]init];
     forwardButton.title = @"forward";
     forwardButton.action = @selector(goForward);
+    forwardButton.enabled = false;
+    self.forwardButton = forwardButton;
     
     [toolBar setItems:[[NSArray alloc] initWithObjects:backButton, forwardButton, nil]];
     
     [self.view addSubview:toolBar];
 }
+
+
 #pragma mark webview
 - (void)loadView
 {
     UIWebView *webView = [[UIWebView alloc] init];
     self.webView = webView;
     self.view = webView;
+    webView.delegate = self;
 
     
     webView.scalesPageToFit = YES;
     [self setUpToolBar];
 }
-
+- (void)goBack
+{
+    [[self webView] goBack];
+    [self updateBackForwardEnable];
+}
+- (void)goForward
+{
+    [[self webView] goForward];
+    [self updateBackForwardEnable];
+}
+- (void)updateBackForwardEnable
+{
+    self.backButton.enabled = [[self webView] canGoBack];
+    self.forwardButton.enabled = [[self webView] canGoForward];
+}
+- (void)webViewDidStartLoad:(nonnull UIWebView *)webView
+{
+    [self updateBackForwardEnable];
+}
 #pragma mark UIview
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.view = nil;
+    self.webView =nil;
+}
 - (void)viewDidLoad
 {
     NSDictionary *labels = @{
