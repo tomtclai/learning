@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "UIKit/UIKit.h"
 @interface BNRWebViewController : UIViewController
-- (void)deviceOrientationDidChange:(NSNotification *)nsn;
 @property (nonatomic) NSURL *URL;
 @property(nonatomic,strong) UIWebView *webView;
 @property(nonatomic,strong) UIToolbar *toolBar;

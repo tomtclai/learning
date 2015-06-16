@@ -19,15 +19,8 @@
 
 #pragma mark toolBar
 - (void)setUpToolBar
-{
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenWidth = screenRect.size.width;
-    CGFloat screenHeight = screenRect.size.height;
-    
-    
-    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:
-                          CGRectMake(0, screenHeight-36,
-                                     screenWidth, 36)];
+{    
+    UIToolbar *toolBar = [[UIToolbar alloc] init];
     self.toolBar = toolBar;
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]init];
     backButton.title = @"back";
