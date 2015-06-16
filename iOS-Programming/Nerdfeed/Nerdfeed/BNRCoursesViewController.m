@@ -36,6 +36,7 @@
     }
     return self;
 }
+
 - (void)fetchFeed
 {
     NSString *requestString = @"https://bookapi.bignerdranch.com/private/courses.json";
@@ -134,6 +135,4 @@ didReceiveChallenge:(nonnull NSURLAuthenticationChallenge *)challenge
                                                     persistence:NSURLCredentialPersistenceForSession];
     completionHandler(NSURLSessionAuthChallengeUseCredential, cred);
 }
-
-
 @end
