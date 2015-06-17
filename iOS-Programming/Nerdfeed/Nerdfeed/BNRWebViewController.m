@@ -49,7 +49,7 @@
     self.webView = webView;
     self.view = webView;
     webView.delegate = self;
-
+    self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
     
     webView.scalesPageToFit = YES;
     [self setUpToolBar];
@@ -111,27 +111,6 @@
     if (_URL) {
         NSURLRequest *req = [NSURLRequest requestWithURL:_URL];
         [(UIWebView *)self.view loadRequest:req]; //why doesn't this work?
-    }
-}
-#pragma mark - UISplitViewControllerDelegate
-- (void)splitViewController:(nonnull UISplitViewController *)svc
-     willHideViewController:(nonnull UIViewController *)aViewController
-          withBarButtonItem:(nonnull UIBarButtonItem *)barButtonItem
-       forPopoverController:(nonnull UIPopoverController *)pc
-{
-    // if this bar button item does not have a title. it will not appear at all
-    barButtonItem.title = @"Courses";
-    
-    // Take this bar button item and put it on the left side of the nav item
-    self.navigationItem.leftBarButtonItem = barButtonItem;
-}
-
-- (void)splitViewController:(nonnull UISplitViewController *)svc willShowViewController:(nonnull UIViewController *)aViewController invalidatingBarButtonItem:(nonnull UIBarButtonItem *)barButtonItem
-{
-    // Remove the bar button item from the naviation item
-    // Double check that it is the correct button
-    if (barButtonItem == self.navigationItem.leftBarButtonItem) {
-        self.navigationItem.leftBarButtonItem = nil;
     }
 }
 #pragma mark dealloc

@@ -14,5 +14,5 @@
 @property(nonatomic,strong) UIToolbar *toolBar;
 @property(nonatomic,strong) UIBarButtonItem *backButton;
 @property(nonatomic,strong) UIBarButtonItem *forwardButton;
-
+@property(nonatomic,strong) UIBarButtonItem *courseButton;
 @end
