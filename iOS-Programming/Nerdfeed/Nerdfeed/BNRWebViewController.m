@@ -76,9 +76,14 @@
 }
 - (void)webViewDidStartLoad:(nonnull UIWebView *)webView
 {
+    // this is not always called.. which is why back/forward is not
+    // updated sometimes. dunno why
+
     [self updateBackForwardEnable];
-    self.firstPageInHistory = NO;
+        self.firstPageInHistory = NO;
 }
+
+
 #pragma mark UIview
 - (void)viewWillDisappear:(BOOL)animated
 {
