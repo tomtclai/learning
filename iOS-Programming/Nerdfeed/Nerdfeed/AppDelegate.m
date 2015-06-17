@@ -28,8 +28,8 @@
     
     // Check to make sure we are running on ipad
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        // webViewContoller must be in navigation controller because...
-        // books says "you will see why later"
+        // webViewContoller must be in navigation controller because
+        // it makes using a bar button item with splitview much easier
         UINavigationController *detailNav = [[UINavigationController alloc] initWithRootViewController:wvc];
         UISplitViewController *svc = [[UISplitViewController alloc] init];
         // Set the delegate of the split view controller to the detail VC

@@ -7,8 +7,8 @@
 //
 
 #import "BNRWebViewController.h"
-@interface BNRWebViewController () <UIWebViewDelegate>
-
+@interface BNRWebViewController () <UIWebViewDelegate, UISplitViewControllerDelegate>
+@property (nonatomic) BOOL firstPageInHistory;
 @end
 @implementation BNRWebViewController
 #pragma mark init
@@ -66,12 +66,18 @@
 }
 - (void)updateBackForwardEnable
 {
-    self.backButton.enabled = [[self webView] canGoBack];
-    self.forwardButton.enabled = [[self webView] canGoForward];
+    if (self.firstPageInHistory) {
+        self.backButton.enabled = false;
+        self.forwardButton.enabled = false;
+    } else {
+        self.backButton.enabled = [[self webView] canGoBack];
+        self.forwardButton.enabled = [[self webView] canGoForward];
+    }
 }
 - (void)webViewDidStartLoad:(nonnull UIWebView *)webView
 {
     [self updateBackForwardEnable];
+    self.firstPageInHistory = NO;
 }
 #pragma mark UIview
 - (void)viewWillDisappear:(BOOL)animated
@@ -100,10 +106,32 @@
 }
 - (void)setURL:(NSURL *)URL
 {
+    self.firstPageInHistory = YES;
     _URL = URL;
     if (_URL) {
         NSURLRequest *req = [NSURLRequest requestWithURL:_URL];
         [(UIWebView *)self.view loadRequest:req]; //why doesn't this work?
+    }
+}
+#pragma mark - UISplitViewControllerDelegate
+- (void)splitViewController:(nonnull UISplitViewController *)svc
+     willHideViewController:(nonnull UIViewController *)aViewController
+          withBarButtonItem:(nonnull UIBarButtonItem *)barButtonItem
+       forPopoverController:(nonnull UIPopoverController *)pc
+{
+    // if this bar button item does not have a title. it will not appear at all
+    barButtonItem.title = @"Courses";
+    
+    // Take this bar button item and put it on the left side of the nav item
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+}
+
+- (void)splitViewController:(nonnull UISplitViewController *)svc willShowViewController:(nonnull UIViewController *)aViewController invalidatingBarButtonItem:(nonnull UIBarButtonItem *)barButtonItem
+{
+    // Remove the bar button item from the naviation item
+    // Double check that it is the correct button
+    if (barButtonItem == self.navigationItem.leftBarButtonItem) {
+        self.navigationItem.leftBarButtonItem = nil;
     }
 }
 #pragma mark dealloc
