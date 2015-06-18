@@ -260,17 +260,17 @@
     }
     // is this the first time the program is being run?
     if ([_allAssetTypes count] == 0) {
-        [self addEntityValue:@"Furniture"   forKey:@"label" toEntity:@"BNRAssetType"];
-        [self addEntityValue:@"Jewelry"     forKey:@"label" toEntity:@"BNRAssetType"];
-        [self addEntityValue:@"Electronics" forKey:@"label" toEntity:@"BNRAssetType"];
-        [self addEntityValue:@"Other"       forKey:@"label" toEntity:@"BNRAssetType"];
+        [self addValue:@"Furniture"     forKey:@"label" toEntity:@"BNRAssetType"];
+        [self addValue:@"Jewelry"       forKey:@"label" toEntity:@"BNRAssetType"];
+        [self addValue:@"Electronics"   forKey:@"label" toEntity:@"BNRAssetType"];
+        [self addValue:@"Other"         forKey:@"label" toEntity:@"BNRAssetType"];
     }
     return _allAssetTypes;
 }
 
-- (void)addEntityValue:(nonnull NSString *)value
-                forKey:(nonnull NSString *)key
-              toEntity:(nonnull NSString *)entity
+- (void)addValue:(nonnull NSString *)value
+                    forKey:(nonnull NSString *)key
+                  toEntity:(nonnull NSString *)entity
 {
     NSManagedObject *type;
     type = [NSEntityDescription insertNewObjectForEntityForName:entity
@@ -278,4 +278,13 @@
     [type setValue:value forKey:key];
     [_allAssetTypes addObject:type];
 }
+- (void)removeValue:(nonnull NSString *)value
+                       forKey:(nonnull NSString *)key
+                   fromEntity:(nonnull NSString *)entity
+{
+    NSManagedObject *type;
+   // need a ref to the managed object's context.. how to get it?
+}
+
+
 @end

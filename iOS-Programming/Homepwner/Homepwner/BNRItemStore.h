@@ -24,4 +24,10 @@
                 toIndex:(NSUInteger)toIndex;
 - (BOOL)saveChanges;
 - (NSArray*)allAssetTypes;
+- (void)removeValue:(nonnull NSString *)value
+             forKey:(nonnull NSString *)key
+         fromEntity:(nonnull NSString *)entity;
+- (void)addValue:(nonnull NSString *)value
+          forKey:(nonnull NSString *)key
+        toEntity:(nonnull NSString *)entity;
 @end

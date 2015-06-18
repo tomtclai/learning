@@ -11,15 +11,19 @@
 #import "BNRItem.h"
 #import "BNRDetailViewController.h"
 @import UIKit;
+@interface BNRAssetTypeViewController ()
+
+@end
 @implementation BNRAssetTypeViewController
 #pragma mark - init
 - (instancetype)init
 {
     self  = [super initWithStyle:UITableViewStylePlain];
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc]init];
-    editButton.style = UIBarButtonSystemItemEdit;
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(toggleEditingMode)];
     [self navigationItem].leftBarButtonItem = editButton;
-    editButton.enabled = YES;
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addEntityType)];
+    self.editButton=editButton;
+
     return self;
 }
 
@@ -68,20 +72,73 @@
 - (void)tableView:(nonnull UITableView *)tableView
 didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
+    for (UITableViewCell *cell in [tableView visibleCells])
+    {
+        cell.accessoryType = UITableViewStylePlain;
+    }
+    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    
+    [[self tableView]deselectRowAtIndexPath:indexPath animated:YES];
+    
     
     NSArray *allAssets = [[BNRItemStore sharedStore] allAssetTypes];
     
     NSManagedObject *assetType = allAssets[indexPath.row];
     self.item.assetType = assetType;
     [self.navigationController popViewControllerAnimated:YES];
-    
-    if (self.padPopover)
+}
+
+
+- (void)tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // If the table view is asking to commit a delete command ...
+    if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        [[self padPopover] dismissPopoverAnimated:YES];
-        [self.dvc setTypeLabel];
+        
+        UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        [[BNRItemStore sharedStore] removeValue:[cell textLabel].text
+                                         forKey:@"Label"
+                                     fromEntity:@"BNRAssetType"];
+        // Also remove that row from the table view with an animation
+        [tableView deleteRowsAtIndexPaths:@[indexPath]
+                         withRowAnimation:UITableViewRowAnimationFade];
+
+    }
+    if (editingStyle == UITableViewCellEditingStyleInsert)
+    {
+        UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        [[BNRItemStore sharedStore] addValue:[cell textLabel].text
+                                      forKey:@"Label"
+                                    toEntity:@"BNRAssetType"];
+        
+        
+        // Also add that row from the table view with an animation
+        [tableView insertRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil]
+                         withRowAnimation:UITableViewRowAnimationFade];
     }
 }
+
+- (void)toggleEditingMode
+{
+    if (self.editing)
+    {
+        [self setEditing:NO animated:YES];
+        [[self editButton] setTitle:@"Done"];
+        [[self editButton] setStyle:UIBarButtonItemStyleDone];
+    }
+    else
+    {
+        [self setEditing:YES animated:YES];
+        [[self editButton] setTitle:@"Edit"];
+        [[self editButton] setStyle:UIBarButtonItemStylePlain];
+    }
+}
+
 @end

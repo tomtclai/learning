@@ -159,7 +159,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         BNRItem *item = items[indexPath.row];
         [[BNRItemStore sharedStore] removeItem:item];
         
-        // Also remove that row form the table view with an animation
+        // Also remove that row from the table view with an animation
         
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil]
                          withRowAnimation:UITableViewRowAnimationFade];

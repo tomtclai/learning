@@ -13,6 +13,10 @@
 @interface BNRAssetTypeViewController : UITableViewController
 
 @property (nonatomic, strong) BNRItem *item;
-@property (nonatomic, weak) UIPopoverController* padPopover;
+@property (nonatomic, weak) UIPopoverController *padPopover;
 @property (nonatomic, weak) BNRDetailViewController *dvc;
+@property (nonatomic, strong) UIBarButtonItem *editButton;
+@property (nonatomic, strong) UIBarButtonItem *addButton;
+- (void) toggleEditingMode;
+- (void) addEntityType;
 @end
