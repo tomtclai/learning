@@ -338,9 +338,18 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     
     BNRAssetTypeViewController *avc = [[BNRAssetTypeViewController alloc] init];
     avc.item = self.item;
-    
+    if ([[UIDevice currentDevice]userInterfaceIdiom ]== UIUserInterfaceIdiomPad)
+    {
+        UIPopoverController * pc= [[UIPopoverController alloc]initWithContentViewController:avc];
+        [pc presentPopoverFromBarButtonItem:self.assetTypeButton
+                   permittedArrowDirections:UIPopoverArrowDirectionAny
+                                   animated:YES];
+        
+    } else
+    {
     [self.navigationController pushViewController:avc
                                          animated:YES];
+    }
 }
 
 #pragma mark - dealloc

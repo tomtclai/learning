@@ -181,7 +181,7 @@
     // Get the one document directory from that list
     NSString * documentDirectory = [documentDirectories firstObject];
     
-    return [documentDirectory stringByAppendingPathComponent:@"items.data"];
+    return [documentDirectory stringByAppendingPathComponent:@"store.data"];
 }
 
 + (instancetype) sharedStore
