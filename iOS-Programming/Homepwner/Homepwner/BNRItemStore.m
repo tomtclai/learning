@@ -283,7 +283,8 @@
                    fromEntity:(nonnull NSString *)entity
 {
     NSManagedObject *type;
-   // need a ref to the managed object's context.. how to get it?
+   // need a ref to the managed object.. how to get it?
+
 }
 
 
