@@ -9,9 +9,9 @@
 #import "BNRAssetTypeViewController.h"
 #import "BNRItemStore.h"
 #import "BNRItem.h"
+#import "BNRDetailViewController.h"
 @import UIKit;
 @implementation BNRAssetTypeViewController
-
 #pragma mark - init
 - (instancetype)init
 {
@@ -72,5 +72,11 @@ didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
     NSManagedObject *assetType = allAssets[indexPath.row];
     self.item.assetType = assetType;
     [self.navigationController popViewControllerAnimated:YES];
+    
+    if (self.padPopover)
+    {
+        [[self padPopover] dismissPopoverAnimated:YES];
+        [self.dvc setTypeLabel];
+    }
 }
 @end

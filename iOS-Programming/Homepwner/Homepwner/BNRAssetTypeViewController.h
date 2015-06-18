@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+@class BNRDetailViewController;
 @import UIKit;
 @class BNRItem;
 @interface BNRAssetTypeViewController : UITableViewController
 
 @property (nonatomic, strong) BNRItem *item;
+@property (nonatomic, weak) UIPopoverController* padPopover;
+@property (nonatomic, weak) BNRDetailViewController *dvc;
 @end

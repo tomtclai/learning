@@ -22,13 +22,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-@property (weak, nonatomic) IBOutlet UIToolbar *trash;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *trash;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
 @property (strong, nonatomic) UIPopoverController *imagePickerPopover;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *serialNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *assetTypeButton;
+@property (strong, nonatomic) UIPopoverController *assetTypeViewPopover;
 
 @end
 
@@ -37,7 +38,7 @@
 #pragma mark - init
 - (instancetype)initForNewItem:(BOOL)isNew
 {
-    self = [super initWithNibName:nil bundle:nil];
+    self = [super initWithNibName:@"BNRDetailViewController" bundle:nil];
     if (self) {
         if (isNew) {
             UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]
@@ -147,16 +148,21 @@
     // Use that image to put on screen in the image view
     self.imageView.image = imageToDisplay;
     
+    [self setTypeLabel];
+
     
+    // Call method to use the preferred Body style
+    [self updateFonts];
+}
+
+- (void) setTypeLabel
+{
     NSString *typeLabel = [self.item.assetType valueForKey:@"label"];
     if (!typeLabel) {
         typeLabel = @"None";
     }
     
     self.assetTypeButton.title = [NSString stringWithFormat:@"Type: %@", typeLabel];
-    
-    // Call method to use the preferred Body style
-    [self updateFonts];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -240,11 +246,18 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     self.serialNumberField.font = font;
     self.valueField.font = font;
 }
-
+#pragma mark - popover controller
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
     NSLog(@"User dismissed popover");
-    self.imagePickerPopover = nil;
+    if (popoverController == self.imagePickerPopover)
+    {
+        self.imagePickerPopover = nil;
+    }
+    else if (popoverController == self.assetTypeViewPopover)
+    {
+        [self setTypeLabel];
+    }
 }
 
 # pragma mark - text field delegate
@@ -271,11 +284,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 }
 
 - (IBAction)takePicture:(id)sender {
-    if ([self.imagePickerPopover isPopoverVisible]) {
+    if ([self.assetTypeViewPopover isPopoverVisible]) {
         // If the popover is already up, get rid of it
-        [self.imagePickerPopover dismissPopoverAnimated:YES];
-        self.imagePickerPopover = nil;
-        return;
+        [self.assetTypeViewPopover dismissPopoverAnimated:NO];
+        self.assetTypeViewPopover = nil;
     }
     UIImagePickerController *imagePicker =
     [[UIImagePickerController alloc] init];
@@ -336,6 +348,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 - (IBAction)showAssetTypePicker:(id)sender {
     [self.view endEditing:YES];
     
+    if ([self.imagePickerPopover isPopoverVisible]) {
+        // If the popover is already up, get rid of it
+        [self.imagePickerPopover dismissPopoverAnimated:NO];
+        self.imagePickerPopover = nil;
+    }
+    
     BNRAssetTypeViewController *avc = [[BNRAssetTypeViewController alloc] init];
     avc.item = self.item;
     if ([[UIDevice currentDevice]userInterfaceIdiom ]== UIUserInterfaceIdiomPad)
@@ -344,13 +362,18 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         [pc presentPopoverFromBarButtonItem:self.assetTypeButton
                    permittedArrowDirections:UIPopoverArrowDirectionAny
                                    animated:YES];
+        self.assetTypeViewPopover = pc;
+        pc.delegate = self;
+        avc.padPopover = pc;
+        avc.dvc = self;
         
     } else
     {
-    [self.navigationController pushViewController:avc
-                                         animated:YES];
+        [self.navigationController pushViewController:avc
+                                             animated:YES];
     }
 }
+
 
 #pragma mark - dealloc
 - (void)dealloc
