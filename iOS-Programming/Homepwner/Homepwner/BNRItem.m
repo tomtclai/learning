@@ -8,7 +8,14 @@
 
 #import "BNRItem.h"
 @implementation BNRItem
-@synthesize assetType, orderingValue, itemKey, thumbnail,itemName, serialNumber,valueInDollars, dateCreated, thumbnailData;
+@dynamic itemName;
+@dynamic serialNumber;
+@dynamic valueInDollars;
+@dynamic dateCreated;
+@dynamic itemKey;
+@dynamic thumbnail;
+@dynamic orderingValue;
+@dynamic assetType;
 
 #pragma mark - NSManaged Object
 - (void)awakeFromInsert
