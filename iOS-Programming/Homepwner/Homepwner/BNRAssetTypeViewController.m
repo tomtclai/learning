@@ -15,7 +15,12 @@
 #pragma mark - init
 - (instancetype)init
 {
-    return [super initWithStyle:UITableViewStylePlain];
+    self  = [super initWithStyle:UITableViewStylePlain];
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc]init];
+    editButton.style = UIBarButtonSystemItemEdit;
+    [self navigationItem].leftBarButtonItem = editButton;
+    editButton.enabled = YES;
+    return self;
 }
 
 - (instancetype) initWithStyle:(UITableViewStyle)style

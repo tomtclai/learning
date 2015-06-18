@@ -358,7 +358,13 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     avc.item = self.item;
     if ([[UIDevice currentDevice]userInterfaceIdiom ]== UIUserInterfaceIdiomPad)
     {
-        UIPopoverController * pc= [[UIPopoverController alloc]initWithContentViewController:avc];
+        
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:avc];
+        nc.delegate = self;
+        
+        UIPopoverController * pc= [[UIPopoverController alloc]initWithContentViewController:nc];
+        
+        
         [pc presentPopoverFromBarButtonItem:self.assetTypeButton
                    permittedArrowDirections:UIPopoverArrowDirectionAny
                                    animated:YES];
@@ -366,6 +372,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         pc.delegate = self;
         avc.padPopover = pc;
         avc.dvc = self;
+
         
     } else
     {
