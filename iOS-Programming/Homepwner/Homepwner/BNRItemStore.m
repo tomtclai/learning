@@ -76,7 +76,7 @@
                                          URL:storeURL
                                      options:nil
                                        error:&error]) {
-            @throw [NSException exceptionWithName:@"Open failure"
+            @throw [NSException exceptionWithName:@"OpenFailure"
                                            reason:[error localizedDescription]
                                          userInfo:nil];
         }
@@ -201,10 +201,14 @@
     // privateItems to the itemArchivePath. Yes, It is that simple.
     
     NSError *error;
+    NSLog(@"%d",[[self.context insertedObjects] count]);
     BOOL successful = [self.context save:&error];
+    NSLog(@"%d",[[self.context insertedObjects] count]);
     if (!successful) {
         NSLog(@"Error saving: %@", [error localizedDescription]);
     }
+    self.privateItems = nil;
+            [self loadAllItems];
     return successful;
 }
 
