@@ -1,30 +1,31 @@
 //
 //  BNRItem.h
-//  RandomPossessions
+//  Homepwner
 //
-//  Created by Tsz Chun Lai on 2/7/15.
-//  Copyright (c) 2015 Tsz Chun Lai. All rights reserved.
+//  Created by Tom Lai on 6/17/15.
+//  Copyright © 2015 Tsz Chun Lai. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "BNRImageStore.h"
-@interface BNRItem : NSObject <NSCoding>
+#import <CoreData/CoreData.h>
+#import <UIKit/UIKit.h>
+NS_ASSUME_NONNULL_BEGIN
 
-+ (id)randomItem;
+@interface BNRItem : NSManagedObject
 
-- (id)initWithItemName:(NSString *)name
-        valueInDollars:(int)value
-          serialNumber:(NSString *)sNumber;
-
-- (id)initWithItemName:(NSString *)name
-          serialNumber:(NSString *)sNumber;
-
-@property (nonatomic, copy) NSString *itemName;
-@property (nonatomic, copy) NSString *serialNumber;
+@property (nullable, nonatomic, retain) NSString *itemName;
+@property (nullable, nonatomic, retain) NSString *serialNumber;
 @property (nonatomic) int valueInDollars;
-@property (nonatomic, strong) NSDate *dateCreated;
-@property (nonatomic, readonly) NSString* itemKey;
-@property (nonatomic, copy) UIImage *thumbnail;
-
+@property (nullable, nonatomic, retain) NSDate *dateCreated;
+@property (nullable, nonatomic, retain) NSString *itemKey;
+@property (nullable, nonatomic, retain) UIImage *thumbnail;
+@property (nullable, nonatomic, retain) NSData *thumbnailData;
+@property (nullable, nonatomic, retain) NSManagedObject *assetType;
+@property (nonatomic) double orderingValue;
+// Insert code here to declare functionality of your managed object subclass
 - (void)setThumbnailFromImage:(UIImage *)image;
 @end
+
+NS_ASSUME_NONNULL_END
+
+#import "BNRItem+CoreDataProperties.h"

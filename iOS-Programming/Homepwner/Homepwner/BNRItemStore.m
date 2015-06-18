@@ -9,35 +9,20 @@
 #import "BNRItemStore.h"
 #import "BNRItem.h"
 #import "BNRImageStore.h"
-
+@import CoreData;
 @interface BNRItemStore ()
 
 @property (nonatomic) NSMutableArray* privateItems;
+@property (nonatomic, strong) NSMutableArray *allAssetTypes;
+@property (nonatomic, strong) NSManagedObjectContext *context;// who sets this?
+@property (nonatomic, strong) NSManagedObjectModel *model;
+
 @end
 
 @implementation BNRItemStore
-+ (instancetype) sharedStore
-{
-    static BNRItemStore *sharedStore = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedStore = [[self alloc] initPrivate];
-    });
-    
-    return sharedStore;
-}
-- (BOOL)saveChanges
-{
-    NSString *path = [self itemArchivePath];
-    
-    // Returns YES on success
-    return [NSKeyedArchiver archiveRootObject:self.privateItems
-                                       toFile:path];
-    // The archiveRootObject method takes care of saving every single BNRItem in
-    // privateItems to the itemArchivePath. Yes, It is that simple.
-}
 
+
+#pragma mark - init
 // If a programmer calls [[BNRItemStore alloc] init], let him
 // know the error of his ways
 - (instancetype)init
@@ -52,39 +37,61 @@
 {
     self = [super init];
     if (self) {
-        NSString *path = [self itemArchivePath];
-        _privateItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+//        // set up NSManagedObjectContext and NSPersistentStoreCoordinator
+//        // 1. NSPSC needs to know where the schema is and where to load
+//        //    and store data
+//        // 2. NSMOC specifies it use this NSPSC to save and load objects
+//        
+//        // Read in Homepwner.xcdatamodeld
+//        _model = [NSManagedObjectModel mergedModelFromBundles:nil]; // search for schema
+//        NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc]initWithManagedObjectModel:_model]; //init psc with schema
+//        
+//        // Where does the SQLite file go?
+//        NSString *path = [self itemArchivePath];
+//        NSURL *storeURL = [NSURL fileURLWithPath:path];
+//        
+//        NSError *error = nil;
+//        
+//        if (![psc addPersistentStoreWithType:NSSQLiteStoreType
+//                               configuration:nil
+//                                         URL:storeURL
+//                                     options:nil
+//                                       error:&error]){
+//            @throw [NSException exceptionWithName:@"OpenFailure"
+//                                           reason:[error localizedDescription]
+//                                         userInfo:nil];
         
-        // If the array hadn't been saved previously, create a new empty one
-        if (!_privateItems) {
-            _privateItems = [[NSMutableArray alloc] init];
+        // read in Homepwner.xcdatamodeld
+        _model = [NSManagedObjectModel mergedModelFromBundles:nil];
+        
+        NSPersistentStoreCoordinator *psc =
+        [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_model];
+        
+        NSString *path = self.itemArchivePath;
+        NSURL *storeURL = [NSURL fileURLWithPath:path];
+        
+        NSError *error = nil;
+        if (![psc addPersistentStoreWithType:NSSQLiteStoreType
+                               configuration:nil
+                                         URL:storeURL
+                                     options:nil
+                                       error:&error]) {
+            @throw [NSException exceptionWithName:@"Open failure"
+                                           reason:[error localizedDescription]
+                                         userInfo:nil];
         }
         
+        // Create the managed object context
+        _context = [[NSManagedObjectContext alloc] init];
+        _context.persistentStoreCoordinator = psc;
+        
+        [self loadAllItems];
     }
+    
     return self;
 }
 
-- (NSArray *)allItems
-{
-    return [self.privateItems copy];
-}
-
-- (BNRItem *)createItem
-{
-    BNRItem *item = [[BNRItem alloc] init];
-    
-    [self.privateItems addObject:item];
-
-    return item;
-}
-
-- (void)removeItem:(BNRItem *)item
-{
-    NSString *key = item.itemKey;
-    [[BNRImageStore sharedStore] deleteImageForKey:key];
-    [self.privateItems removeObjectIdenticalTo:item];
-}
-
+#pragma  mark - UI Collection view
 - (void)moveItemAtIndex:(NSUInteger)fromIndex
                 toIndex:(NSUInteger)toIndex
 {
@@ -99,8 +106,65 @@
     
     // Insert item in array at new location
     [self.privateItems insertObject:item atIndex:toIndex];
+    
+    // Comput a new order value for the moved object
+    double lowerBound = 0.0;
+    
+    // is there an object before it in the array?
+    if (toIndex != 0) {
+        lowerBound = [self.privateItems[(toIndex -1)] orderingValue];
+    } else {
+        lowerBound = [self.privateItems[1] orderingValue] -2.0;
+    }
+    
+    double upperBound =0.0;
+    // is ther an object after it in the array?
+    if (toIndex != [self.privateItems count]-1) {
+        upperBound = [self.privateItems[(toIndex +1)] orderingValue];
+    } else {
+        upperBound = [self.privateItems[(toIndex -1)] orderingValue] +2.0;//
+    }
+    
+    double newOrderValue = (lowerBound + upperBound) / 2.0;
+    
+    NSLog(@"moving to order %f", newOrderValue);
+    item.orderingValue = newOrderValue;
+}
+#pragma mark - other
+- (NSArray *)allItems
+{
+    return [self.privateItems copy];
 }
 
+- (BNRItem *)createItem
+{
+//    BNRItem *item = [[BNRItem alloc] init];
+    double order;
+    if ([self.allItems count] == 0)
+    {
+        order = 1.0;
+    } else {
+        order = [[self.privateItems lastObject] orderingValue] + 1.0;
+    }
+    
+    NSLog(@"Adding after %d items, order = %.2f", [self.privateItems count],order);
+    BNRItem *item =
+    [NSEntityDescription insertNewObjectForEntityForName:@"BNRItem"
+                                  inManagedObjectContext:self.context];
+    
+    item.orderingValue = order;
+    
+    [self.privateItems addObject:item];
+    
+    return item;
+}
+- (void)removeItem:(BNRItem *)item
+{
+    NSString *key = item.itemKey;
+    [[BNRImageStore sharedStore] deleteImageForKey:key];
+    [self.context deleteObject:item];
+    [self.privateItems removeObjectIdenticalTo:item];
+}
 - (NSString *)itemArchivePath
 {
     // Make sure that the first argument is NSDocumentDirectory
@@ -117,6 +181,97 @@
     // Get the one document directory from that list
     NSString * documentDirectory = [documentDirectories firstObject];
     
-    return [documentDirectory stringByAppendingPathComponent:@"items.archive"];
+    return [documentDirectory stringByAppendingPathComponent:@"items.data"];
+}
+
++ (instancetype) sharedStore
+{
+    static BNRItemStore *sharedStore = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedStore = [[self alloc] initPrivate];
+    });
+    
+    return sharedStore;
+}
+- (BOOL)saveChanges
+{
+    // The archiveRootObject method takes care of saving every single BNRItem in
+    // privateItems to the itemArchivePath. Yes, It is that simple.
+    
+    NSError *error;
+    BOOL successful = [self.context save:&error];
+    if (!successful) {
+        NSLog(@"Error saving: %@", [error localizedDescription]);
+    }
+    return successful;
+}
+
+- (void)loadAllItems
+{
+    if (!self.privateItems) {
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        
+        NSEntityDescription *e = [NSEntityDescription
+                                  entityForName:@"BNRItem"
+                                  inManagedObjectContext:self.context];
+        
+        request.entity = e;
+        
+        NSSortDescriptor *sd = [NSSortDescriptor
+                                sortDescriptorWithKey:@"orderingValue"
+                                ascending:YES];
+        
+        request.sortDescriptors = @[sd];
+        
+        NSError *error;
+        NSArray *result = [self.context executeFetchRequest:request
+                                                      error:&error];
+        if (!result) {
+            [NSException raise:@"Fetch"
+                        format:@"Reason: %@", [error localizedDescription]];
+        }
+        
+        self.privateItems = [[NSMutableArray alloc] initWithArray:result];
+    }
+}
+
+- (NSArray *)allAssetTypes
+{
+    if (!_allAssetTypes) {
+        NSEntityDescription *e = [NSEntityDescription entityForName:@"BNRAssetType"
+                                             inManagedObjectContext:self.context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        request.entity = e;
+        
+        NSError *error = nil;
+        NSArray *result = [self.context executeFetchRequest:request
+                                                      error:&error];
+        if (!result) {
+            [NSException raise:@"Fetch failed"
+                        format:@"Reason: %@", [error localizedDescription]];
+        }
+        _allAssetTypes = [result mutableCopy];
+    }
+    // is this the first time the program is being run?
+    if ([_allAssetTypes count] == 0) {
+        [self addEntityValue:@"Furniture"   forKey:@"label" toEntity:@"BNRAssetType"];
+        [self addEntityValue:@"Jewelry"     forKey:@"label" toEntity:@"BNRAssetType"];
+        [self addEntityValue:@"Electronics" forKey:@"label" toEntity:@"BNRAssetType"];
+        [self addEntityValue:@"Other"       forKey:@"label" toEntity:@"BNRAssetType"];
+    }
+    return _allAssetTypes;
+}
+
+- (void)addEntityValue:(nonnull NSString *)value
+                forKey:(nonnull NSString *)key
+              toEntity:(nonnull NSString *)entity
+{
+    NSManagedObject *type;
+    type = [NSEntityDescription insertNewObjectForEntityForName:entity
+                                         inManagedObjectContext:self.context];
+    [type setValue:value forKey:key];
+    [_allAssetTypes addObject:type];
 }
 @end

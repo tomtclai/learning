@@ -9,9 +9,10 @@
 #import "BNRDetailViewController.h"
 #import "BNRItem.h"
 #import "BNRItemStore.h"
+#import "BNRImageStore.h"
 #import "BNRPopoverBackgroundView.h"
 #import "BNRItemsViewController.h"
-
+#import "BNRAssetTypeViewController.h"
 @interface BNRDetailViewController () <UINavigationControllerDelegate,
     UIImagePickerControllerDelegate, UITextFieldDelegate,
     UIPopoverControllerDelegate>
@@ -27,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *serialNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *assetTypeButton;
 
 @end
 
@@ -144,6 +146,14 @@
     
     // Use that image to put on screen in the image view
     self.imageView.image = imageToDisplay;
+    
+    
+    NSString *typeLabel = [self.item.assetType valueForKey:@"label"];
+    if (!typeLabel) {
+        typeLabel = @"None";
+    }
+    
+    self.assetTypeButton.title = [NSString stringWithFormat:@"Type: %@", typeLabel];
     
     // Call method to use the preferred Body style
     [self updateFonts];
@@ -322,6 +332,17 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     _item = item;
     self.navigationItem.title = _item.itemName;
 }
+
+- (IBAction)showAssetTypePicker:(id)sender {
+    [self.view endEditing:YES];
+    
+    BNRAssetTypeViewController *avc = [[BNRAssetTypeViewController alloc] init];
+    avc.item = self.item;
+    
+    [self.navigationController pushViewController:avc
+                                         animated:YES];
+}
+
 #pragma mark - dealloc
 - (void)dealloc
 {
