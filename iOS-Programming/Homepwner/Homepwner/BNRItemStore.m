@@ -260,10 +260,22 @@
     }
     // is this the first time the program is being run?
     if ([_allAssetTypes count] == 0) {
-        [self addValue:@"Furniture"     forKey:@"label" toEntity:@"BNRAssetType"];
-        [self addValue:@"Jewelry"       forKey:@"label" toEntity:@"BNRAssetType"];
-        [self addValue:@"Electronics"   forKey:@"label" toEntity:@"BNRAssetType"];
-        [self addValue:@"Other"         forKey:@"label" toEntity:@"BNRAssetType"];
+        NSError *error;
+        NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"BNRAssetType"];
+        
+        
+        // Query for assetTypes
+        NSArray *array =
+        [[self context] executeFetchRequest:request
+                                      error:&error];
+        if (array.count != 0)
+        {
+            for ( NSManagedObject *type in array)
+            {
+                [_allAssetTypes addObject:type];
+            }
+        }
+
     }
     return _allAssetTypes;
 }
@@ -283,8 +295,25 @@
                    fromEntity:(nonnull NSString *)entity
 {
     NSManagedObject *type;
-   // need a ref to the managed object.. how to get it?
+   
+    // need a ref to the managed object..
+    NSPredicate *predicate =
+    [NSPredicate predicateWithFormat:@"%K = %@",key,value];
+    NSError *error;
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entity];
+    [request setPredicate:predicate];
 
+    
+    NSArray *array =
+    [[self context] executeFetchRequest:request
+                                  error:&error];
+    type = [array firstObject];
+    // have a ref to managed object, remove it
+    [_allAssetTypes removeObject:type]; //remove it from array
+    [[self context] deleteObject:type]; //remove it from context
+    NSLog(@"%d",[[[BNRItemStore sharedStore] allAssetTypes] count]);
+    
 }
 
 

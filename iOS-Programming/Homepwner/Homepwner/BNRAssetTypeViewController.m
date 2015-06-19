@@ -21,9 +21,11 @@
     self  = [super initWithStyle:UITableViewStylePlain];
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(toggleEditingMode)];
     [self navigationItem].leftBarButtonItem = editButton;
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addEntityType)];
     self.editButton=editButton;
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addEntityType)];
+    self.addButton = addButton;
 
+    [self navigationItem].rightBarButtonItem = addButton;
     return self;
 }
 
@@ -103,11 +105,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
         
         [[BNRItemStore sharedStore] removeValue:[cell textLabel].text
-                                         forKey:@"Label"
+                                         forKey:@"label"
                                      fromEntity:@"BNRAssetType"];
+        
         // Also remove that row from the table view with an animation
         [tableView deleteRowsAtIndexPaths:@[indexPath]
                          withRowAnimation:UITableViewRowAnimationFade];
+        
+        
 
     }
     if (editingStyle == UITableViewCellEditingStyleInsert)
@@ -115,7 +120,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
         
         [[BNRItemStore sharedStore] addValue:[cell textLabel].text
-                                      forKey:@"Label"
+                                      forKey:@"label"
                                     toEntity:@"BNRAssetType"];
         
         
@@ -140,5 +145,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         [[self editButton] setStyle:UIBarButtonItemStylePlain];
     }
 }
-
+- (void)addEntityType
+{
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter new type" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Add"];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert show];
+}
 @end
