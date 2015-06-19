@@ -30,4 +30,5 @@
 - (void)addValue:(nonnull NSString *)value
           forKey:(nonnull NSString *)key
         toEntity:(nonnull NSString *)entity;
+- (NSArray *)itemsForAssetType:(NSString*)typeName;
 @end

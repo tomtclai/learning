@@ -11,21 +11,34 @@
 #import "BNRItem.h"
 #import "BNRDetailViewController.h"
 @import UIKit;
-@interface BNRAssetTypeViewController ()
+@interface BNRAssetTypeViewController () <UIAlertViewDelegate>
 
 @end
 @implementation BNRAssetTypeViewController
+
 #pragma mark - init
 - (instancetype)init
 {
+    self.itemsOfSelectedType = [[NSArray alloc]init];
     self  = [super initWithStyle:UITableViewStylePlain];
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(toggleEditingMode)];
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc]init];
+    
+    [editButton setTarget:self];
+    [editButton setAction:@selector(toggleEditingMode)];
+    [editButton setTitle:@"Edit"];
     [self navigationItem].leftBarButtonItem = editButton;
-    self.editButton=editButton;
+    self.editButton = editButton;
+
+
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addEntityType)];
     self.addButton = addButton;
-
     [self navigationItem].rightBarButtonItem = addButton;
+
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone){
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
+        self.doneButton = doneButton;
+        [self navigationItem].rightBarButtonItem = doneButton;
+    }
     return self;
 }
 
@@ -37,7 +50,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:@"UITableViewCell"];
 }
@@ -46,7 +59,26 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    return [[[BNRItemStore sharedStore] allAssetTypes] count];
+    if (section==0)
+    {
+        return [[[BNRItemStore sharedStore] allAssetTypes] count];
+    }
+    else
+    {
+        return [[self itemsOfSelectedType] count];;
+    }
+}
+
+- (void)itemsOfTypeAtIndexPath:(NSIndexPath* ) indexpath
+{
+    if (indexpath.section == 1 )return;
+    NSManagedObject *assetType = [[self item]assetType];
+    if (assetType == nil) return;
+
+    NSString* typeName = [[[self tableView]cellForRowAtIndexPath:indexpath]textLabel].text;
+    
+    NSArray* items = [[BNRItemStore sharedStore]itemsForAssetType:typeName];
+    self.itemsOfSelectedType = items;
 }
 
 - (UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
@@ -54,19 +86,26 @@
     UITableViewCell *cell = [tableView
                              dequeueReusableCellWithIdentifier:@"UITableViewCell"
                              forIndexPath:indexPath];
-    
-    NSArray *allAssets = [[BNRItemStore sharedStore] allAssetTypes];
-    NSManagedObject *assetType = allAssets[indexPath.row];
-    
-    // Use key-value coding to get the asset type's label
-    NSString *assetLabel = [assetType valueForKey:@"label"];
-    cell.textLabel.text = assetLabel;
-    
-    // Checkmark the one that is currently selected
-    if (assetType == self.item.assetType) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
+
+    if (indexPath.section==0)
+    {
+        NSArray *allAssets = [[BNRItemStore sharedStore] allAssetTypes];
+        NSManagedObject *assetType = allAssets[indexPath.row];
+        
+        // Use key-value coding to get the asset type's label
+        NSString *assetLabel = [assetType valueForKey:@"label"];
+        cell.textLabel.text = assetLabel;
+        
+        // Checkmark the one that is currently selected
+        if (assetType == self.item.assetType) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+    }
+    else
+    {
+        cell.textLabel.text = [[[self itemsOfSelectedType]objectAtIndex:indexPath.row]itemName];
     }
     return cell;
 }
@@ -78,19 +117,22 @@ didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
     {
         cell.accessoryType = UITableViewStylePlain;
     }
-    
+
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
+
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    
-    [[self tableView]deselectRowAtIndexPath:indexPath animated:YES];
-    
-    
+
+
+
+
     NSArray *allAssets = [[BNRItemStore sharedStore] allAssetTypes];
-    
+
     NSManagedObject *assetType = allAssets[indexPath.row];
     self.item.assetType = assetType;
     [self.navigationController popViewControllerAnimated:YES];
+    [self itemsOfTypeAtIndexPath:indexPath];
+    [[self tableView] reloadData];
+    [[self tableView]deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
@@ -113,7 +155,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
                          withRowAnimation:UITableViewRowAnimationFade];
         
         
-
+        
     }
     if (editingStyle == UITableViewCellEditingStyleInsert)
     {
@@ -130,25 +172,60 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     }
 }
 
+- (NSInteger)numberOfSectionsInTableView:(nonnull UITableView *)tableView
+{
+    return 2;
+}
+
+- (BOOL)tableView:(nonnull UITableView *)tableView canEditRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    if (indexPath.section == 1) return NO;
+    return YES;
+}
+
+- (NSString *)tableView:(nonnull UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section== 0) return @"Asset Type";
+    else return @"Items of selected asset type";
+}
+#pragma mark - buttons
 - (void)toggleEditingMode
 {
     if (self.editing)
     {
         [self setEditing:NO animated:YES];
-        [[self editButton] setTitle:@"Done"];
-        [[self editButton] setStyle:UIBarButtonItemStyleDone];
+        [[self editButton] setTitle:@"Edit"];
+        [[self editButton] setStyle:UIBarButtonItemStylePlain];
+        [self navigationItem].rightBarButtonItem = self.doneButton;
+
     }
     else
     {
         [self setEditing:YES animated:YES];
-        [[self editButton] setTitle:@"Edit"];
-        [[self editButton] setStyle:UIBarButtonItemStylePlain];
+        [[self editButton] setTitle:@"Done"];
+        [[self editButton] setStyle:UIBarButtonItemStyleDone];
+        [self navigationItem].rightBarButtonItem = self.addButton;
     }
 }
 - (void)addEntityType
 {
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Enter new type" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Add"];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Add Asset Type" message:@"Enter new type" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Add", nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alert show];
+}
+
+- (void)done
+{
+    [[self navigationController]popViewControllerAnimated:YES];
+}
+#pragma mark - UIAlertView
+- (void)alertView:(nonnull UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        NSString *newValue = [alertView textFieldAtIndex:0].text;
+        [[BNRItemStore sharedStore]addValue:newValue forKey:@"label" toEntity:@"BNRAssetType"];
+        [[self tableView] reloadData];
+    }
 }
 @end

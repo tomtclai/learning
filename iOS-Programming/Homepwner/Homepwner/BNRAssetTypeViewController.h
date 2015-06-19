@@ -17,6 +17,8 @@
 @property (nonatomic, weak) BNRDetailViewController *dvc;
 @property (nonatomic, strong) UIBarButtonItem *editButton;
 @property (nonatomic, strong) UIBarButtonItem *addButton;
+@property (nonatomic, strong) UIBarButtonItem *doneButton;
+@property (nonatomic, strong) NSArray *itemsOfSelectedType;
 - (void) toggleEditingMode;
 - (void) addEntityType;
 @end

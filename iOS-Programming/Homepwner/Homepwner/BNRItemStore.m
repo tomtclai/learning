@@ -300,6 +300,7 @@
     NSPredicate *predicate =
     [NSPredicate predicateWithFormat:@"%K = %@",key,value];
     NSError *error;
+
     
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entity];
     [request setPredicate:predicate];
@@ -315,6 +316,23 @@
     NSLog(@"%d",[[[BNRItemStore sharedStore] allAssetTypes] count]);
     
 }
+- (NSArray *)itemsForAssetType:(NSString*)typeName
+{
+    NSError *error;
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"BNRAssetType"];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K= %@", @"label", typeName];
+    // forKey:@"label"
+    //fromEntity:@"BNRAssetType"];
+    [request setPredicate:predicate];
+    
+    NSArray* types =
+    [[self context] executeFetchRequest:request
+                                  error:&error];
 
+    
+    return [[types firstObject] items];
+}
 
 @end
