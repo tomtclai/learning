@@ -105,7 +105,7 @@
     }
     else
     {
-        cell.textLabel.text = [[[self itemsOfSelectedType]objectAtIndex:indexPath.row]itemName];
+        cell.textLabel.text = [[[self itemsOfSelectedType]objectAtIndex:indexPath.row]itemName];// this crashes
     }
     return cell;
 }
