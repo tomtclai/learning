@@ -19,7 +19,7 @@
 #pragma mark - init
 - (instancetype)init
 {
-    self.itemsOfSelectedType = [[NSArray alloc]init];
+    self.itemsOfSelectedType = [[NSMutableArray alloc]init];
     self  = [super initWithStyle:UITableViewStylePlain];
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc]init];
     
@@ -54,7 +54,22 @@
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:@"UITableViewCell"];
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    for (int i = 0 ; i < [self.tableView numberOfRowsInSection:0]; i++)
+    {
+        
+        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:i inSection:0];
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexpath];
+        if (cell.accessoryType == UITableViewCellAccessoryCheckmark)
+        {
+            [self itemsOfTypeAtIndexPath:indexpath];
+            [[self tableView] reloadData];
+            return;
+        }
+    }
 
+}
 #pragma mark - Table view
 - (NSInteger)tableView:(nonnull UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
@@ -77,8 +92,13 @@
 
     NSString* typeName = [[[self tableView]cellForRowAtIndexPath:indexpath]textLabel].text;
     
-    NSArray* items = [[BNRItemStore sharedStore]itemsForAssetType:typeName];
-    self.itemsOfSelectedType = items;
+    NSSet* items = [[BNRItemStore sharedStore]itemsForAssetType:typeName];
+    
+    [self.itemsOfSelectedType removeAllObjects];
+    for (BNRItem* i in items)
+    {
+        [self.itemsOfSelectedType addObject:i];
+    }
 }
 
 - (UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
@@ -105,14 +125,20 @@
     }
     else
     {
+        
         cell.textLabel.text = [[[self itemsOfSelectedType]objectAtIndex:indexPath.row]itemName];// this crashes
+        
     }
     return cell;
 }
-
 - (void)tableView:(nonnull UITableView *)tableView
 didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
+    if (indexPath.section == 1)
+    {
+        [[self tableView]deselectRowAtIndexPath:indexPath animated:YES];
+        return;
+    }
     for (UITableViewCell *cell in [tableView visibleCells])
     {
         cell.accessoryType = UITableViewStylePlain;
@@ -185,8 +211,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (NSString *)tableView:(nonnull UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section== 0) return @"Asset Type";
-    else return @"Items of selected asset type";
+    if (section== 0) return @"Asset Category";
+    else return @"Items in the current category";
 }
 #pragma mark - buttons
 - (void)toggleEditingMode

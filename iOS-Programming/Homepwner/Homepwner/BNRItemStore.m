@@ -316,7 +316,7 @@
     NSLog(@"%d",[[[BNRItemStore sharedStore] allAssetTypes] count]);
     
 }
-- (NSArray *)itemsForAssetType:(NSString*)typeName
+- (NSSet *)itemsForAssetType:(NSString*)typeName
 {
     NSError *error;
     
