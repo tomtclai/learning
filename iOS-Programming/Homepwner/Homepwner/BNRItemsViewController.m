@@ -14,7 +14,7 @@
 #import "BNRImageStore.h"
 #import "BNRImageViewController.h"
 
-@interface BNRItemsViewController() <UIPopoverControllerDelegate>
+@interface BNRItemsViewController() <UIPopoverControllerDelegate, UIDataSourceModelAssociation>
 @property (nonatomic, strong) UIPopoverController *imagePopover;
 @end
 
@@ -31,6 +31,11 @@
     if (self) {
         UINavigationItem *navItem = self.navigationItem;
         navItem.title = @"Homepwner";
+        
+        
+        // state restoration support
+        self.restorationIdentifier = NSStringFromClass([self class]);
+        self.restorationClass = [self class];
         
         // Create a new bar button that will send
         // addNewItem: to BNRItemsVIewController
@@ -208,6 +213,9 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
     // The table view simply stores the UINib instance in an NSDictionary
     // for the key "BNRItemCell". A UINib contains all of the data stored in its
     // XIB file
+    
+    
+    self.tableView.restorationIdentifier = @"BNRItemsViewControllerTableView";
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -236,6 +244,11 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
     // presented
     
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    // state restoration support
+    navController.restorationIdentifier = NSStringFromClass([navController class]);
+    navController.restorationClass = [navController class];
+    
     
     [self presentViewController:navController animated:YES completion:nil];
 }
@@ -287,4 +300,52 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
     [nc removeObserver:self];
 }
 
+#pragma mark - state restoration
++ (UIViewController *)viewControllerWithRestorationIdentifierPath:(nonnull NSArray *)paths coder:(nonnull NSCoder *)coder
+{
+    return [[self alloc]init];
+}
+
+- (void)encodeRestorableStateWithCoder:(nonnull NSCoder *)coder
+{
+    [coder encodeBool:self.isEditing forKey:@"TableViewIsEditing"];
+    [super encodeRestorableStateWithCoder:coder];
+}
+
+- (void)decodeRestorableStateWithCoder:(nonnull NSCoder *)coder
+{
+    self.editing = [coder decodeBoolForKey:@"TableViewIsEditing"];
+}
+
+#pragma mark - UIDataSourceModelAssociation
+- (NSString *)modelIdentifierForElementAtIndexPath:(nonnull NSIndexPath *)idx
+                                            inView:(nonnull UIView *)view
+{
+    NSString *identifier = nil;
+    
+    if (idx && view) {
+        // Return an identifier of the given NSIndexPath
+        // in case next time the data source changes
+        BNRItem *item = [[BNRItemStore sharedStore] allItems][idx.row];
+        identifier = item.itemKey;
+    }
+    
+    return identifier;
+}
+
+-(NSIndexPath *)indexPathForElementWithModelIdentifier:(nonnull NSString *)identifier inView:(nonnull UIView *)view
+{
+    NSIndexPath *indexPath = nil;
+    if (identifier && view) {
+        NSArray *items = [[BNRItemStore sharedStore] allItems];
+        for (BNRItem *item in items) {
+            if ([identifier isEqualToString:item.itemKey]){
+                int row = (int) [items indexOfObjectIdenticalTo:item];
+                indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+                break;
+            }
+        }
+    }
+    return indexPath;
+}
 @end

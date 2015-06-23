@@ -38,8 +38,14 @@
 #pragma mark - init
 - (instancetype)initForNewItem:(BOOL)isNew
 {
+    //what happens if i just call init?
     self = [super initWithNibName:@"BNRDetailViewController" bundle:nil];
     if (self) {
+        
+        // state restoration support
+        self.restorationIdentifier = NSStringFromClass([self class]);
+        self.restorationClass = [self class];
+        
         if (isNew) {
             UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]
                                          initWithBarButtonSystemItem:UIBarButtonSystemItemDone
@@ -389,5 +395,43 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [defaultCenter removeObserver:self];
 }
 
+#pragma mark - state restoration
++ (UIViewController *)viewControllerWithRestorationIdentifierPath:(nonnull NSArray *)path coder:(nonnull NSCoder *)coder
+{
+    BOOL isNew = NO;
+    if ([path count] == 3) {
+        isNew = YES;
+    }
+    
+    return [[self alloc]initForNewItem:isNew];
+}
 
+- (void)encodeRestorableStateWithCoder:(nonnull NSCoder *)coder
+{
+    [coder encodeObject:self.item.itemKey
+                 forKey:@"item.itemKey"];
+    
+    // Save changes into item
+    self.item.itemName = self.nameField.text;
+    self.item.serialNumber = self.serialNumberField.text;
+    self.item.valueInDollars = [self.valueField.text intValue];
+    
+    // Have store save changes to disk
+    [[BNRItemStore sharedStore] saveChanges];
+    
+    [super encodeRestorableStateWithCoder:coder];
+}
+
+- (void)decodeRestorableStateWithCoder:(nonnull NSCoder *)coder
+{
+    NSString *itemKey = [coder decodeObjectForKey:@"item.itemKey"];
+    
+    for (BNRItem *item in [[BNRItemStore sharedStore] allItems]) {
+        if ([itemKey isEqualToString:item.itemKey]) {
+            self.item = item;
+            break;
+        }
+    }
+    [super decodeRestorableStateWithCoder:coder];
+}
 @end

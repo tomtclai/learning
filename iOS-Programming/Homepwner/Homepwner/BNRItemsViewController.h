@@ -8,5 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BNRItemsViewController : UITableViewController
+@interface BNRItemsViewController : UITableViewController <UIViewControllerRestoration>
 @end
