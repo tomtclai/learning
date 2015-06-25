@@ -15,9 +15,6 @@
 
 @implementation BNRHypnosisView
 
-
-
-
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -110,6 +107,7 @@
         self.backgroundColor = [UIColor clearColor];
         self.circleColor = [UIColor lightGrayColor];
     }
+    self.restorationIdentifier = NSStringFromClass([self class]);
     return self;
 }
 
@@ -135,5 +133,23 @@
     _circleColor = circleColor;
     [self setNeedsDisplay];
 }
+#pragma mark - state restoration
 
+//+ (UIViewController *)viewControllerWithRestorationIdentifierPath:(nonnull NSArray *)
+//identifierComponents coder:(nonnull NSCoder *)coder
+//{
+//    NSBundle *appBundle = [NSBundle mainBundle];
+//    return [[self alloc]initWithNibName:@"BNRHypnosisView" bundle:appBundle];
+//}
+- (void)encodeRestorableStateWithCoder:(nonnull NSCoder *)coder
+{
+    [coder encodeObject:self.circleColor forKey:@"self.circleColor"];
+}
+- (void)decodeRestorableStateWithCoder:(nonnull NSCoder *)coder
+{
+    
+    self.circleColor = [coder decodeObjectForKey:@"self.circleColor"];
+}
 @end
+
+

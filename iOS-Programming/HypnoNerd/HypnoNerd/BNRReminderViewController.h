@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-@interface BNRReminderViewController : UIViewController
+@interface BNRReminderViewController : UIViewController <UIViewControllerRestoration>
 @property (nonatomic, weak) IBOutlet UIDatePicker *datePicker;
 - (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 @end

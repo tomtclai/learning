@@ -7,7 +7,7 @@
 //
 
 #import "BNRReminderViewController.h"
-
+#import "AppDelegate.h"
 @implementation BNRReminderViewController
 
 - (void)viewDidLoad {
@@ -47,8 +47,34 @@
         
         // Put that inmage on the tab bar item
         self.tabBarItem.image = i;
+        // State restoration support
+        self.restorationIdentifier = NSStringFromClass([self class]);
+        self.restorationClass = [self class];
+        
     }
     return self;
 }
+#pragma mark - state restoration
++ (UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents
+                                                            coder:(NSCoder *)coder
+{
+    UIViewController* rvc = [[self alloc]init];
+    AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+    UITabBarController *tbc = (UITabBarController *)appDelegate.window.rootViewController;
+    [tbc addChildViewController:rvc];
+    return rvc;
+}
 
+- (void)encodeRestorableStateWithCoder:(nonnull NSCoder *)coder
+{
+    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:self.datePicker];
+    [coder encodeObject:data forKey:@"datePicker"];
+    
+}
+
+- (void)decodeRestorableStateWithCoder:(nonnull NSCoder *)coder
+{
+    NSData* data = [coder decodeObjectForKey:@"datePicker"];
+    self.datePicker = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+}
 @end

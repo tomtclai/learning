@@ -8,23 +8,24 @@
 
 #import "BNRHypnosisViewController.h"
 #import "BNRHypnosisView.h"
-
+#import "AppDelegate.h"
 @interface BNRHypnosisViewController()
 <UITextFieldDelegate>
-
+@property (nonatomic, strong) NSMutableArray* labels;
 @end
 
 @implementation BNRHypnosisViewController
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    NSLog(@"BNRHypnosisViewController loaded its view");
-}
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+#pragma mark - init
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil
+                         bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        // State restoration support
+        self.restorationIdentifier = NSStringFromClass([self class]);
+        self.restorationClass = [self class];
+        
         // Set the tab bar item's title
         self.tabBarItem.title = @"Hypnotize";
         
@@ -34,10 +35,22 @@
         
         // Put that inmage on the tab bar item
         self.tabBarItem.image = i;
+        
+        if (!self.labels)
+        {
+            self.labels = [[NSMutableArray alloc]init];
+        }
     }
     return self;
 }
+#pragma mark - UI View
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    NSLog(@"BNRHypnosisViewController loaded its view");
+}
 
+#pragma mark - other
 - (void)loadView
 {
     CGRect frame = [UIScreen mainScreen].bounds;
@@ -105,7 +118,7 @@
         
         // Add the label to the hierarchy
         [self.view addSubview:messageLabel];
-        
+        [self.labels addObject:messageLabel];
         UIInterpolatingMotionEffect *motionEffect;
         motionEffect = [[UIInterpolatingMotionEffect alloc]
                         initWithKeyPath:@"center.x"
@@ -122,5 +135,34 @@
         [messageLabel addMotionEffect:motionEffect];
         
     }
+}
+#pragma mark - state restoration
++ (UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents
+                                                           coder:(NSCoder *)coder
+{
+    UIViewController* hvc = [[self alloc]init];
+    AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+    UITabBarController *tbc = (UITabBarController *)appDelegate.window.rootViewController;
+    [tbc addChildViewController:hvc];
+    
+    return hvc;
+}
+- (void)encodeRestorableStateWithCoder:(nonnull NSCoder *)coder
+{
+    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:self.labels];
+    [coder encodeObject:data forKey:@"hvc.labels"];
+    
+}
+- (void)decodeRestorableStateWithCoder:(nonnull NSCoder *)coder
+{
+    
+    NSError *err = nil;
+    [self.labels setArray:[NSKeyedUnarchiver unarchiveObjectWithData:[coder decodeObjectForKey:@"hvc.labels" error:&err]]];
+
+    for (UILabel* i in self.labels)
+    {
+        [self.view addSubview:i];
+    }
+    if (err) NSLog(@"%@",err);
 }
 @end

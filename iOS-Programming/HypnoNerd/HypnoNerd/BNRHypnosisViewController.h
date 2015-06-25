@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface BNRHypnosisViewController : UIViewController
-
+@interface BNRHypnosisViewController : UIViewController <UIViewControllerRestoration>
 
 
 @end

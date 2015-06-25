@@ -95,22 +95,22 @@
     return YES;
 }
 
-- (UIViewController *)application:(nonnull UIApplication *)application viewControllerWithRestorationIdentifierPath:(nonnull NSArray *)identifierComponents coder:(nonnull NSCoder *)coder
-{
-    // Create a new navigation controller
-    UIViewController *vc = [[UINavigationController alloc]init];
-    
-    // The last object in the path array is the restoration
-    // identifier for this view controller
-    vc.restorationIdentifier = [identifierComponents lastObject];
-    
-    // If there is only 1 identifier component, then
-    // this is the root view controller
-    if ([identifierComponents count] == 1)
-    {
-        self.window.rootViewController = vc;
-    }
-    
-    return vc;
-}
+//- (UIViewController *)application:(nonnull UIApplication *)application viewControllerWithRestorationIdentifierPath:(nonnull NSArray *)identifierComponents coder:(nonnull NSCoder *)coder
+//{
+//    // Create a new navigation controller
+//    UIViewController *vc = [[UINavigationController alloc]init];
+//    
+//    // The last object in the path array is the restoration
+//    // identifier for this view controller
+//    vc.restorationIdentifier = [identifierComponents lastObject];
+//    
+//    // If there is only 1 identifier component, then
+//    // this is the root view controller
+//    if ([identifierComponents count] == 1)
+//    {
+//        self.window.rootViewController = vc;
+//    }
+//    
+//    return vc;
+//}
 @end
