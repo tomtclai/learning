@@ -61,6 +61,9 @@
 		77B61F0B1B3CC4AE00385171 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77B61F0D1B3CC4B000385171 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77B61F0E1B3CC4B200385171 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		77B61F0F1B3CC53D00385171 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/BNRDetailViewController.strings"; sourceTree = "<group>"; };
+		77B61F101B3CC53D00385171 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/BNRDetailDateViewController.strings"; sourceTree = "<group>"; };
+		77B61F111B3CC53D00385171 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		77D57E651B2B94D700A1A194 /* BNRImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRImageViewController.h; sourceTree = "<group>"; };
 		77D57E661B2B94D700A1A194 /* BNRImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRImageViewController.m; sourceTree = "<group>"; };
 		79495FB51AA17A2200187E3E /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -313,6 +316,7 @@
 				Base,
 				en,
 				es,
+				"zh-Hans",
 			);
 			mainGroup = 79495FAC1AA17A2200187E3E;
 			productRefGroup = 79495FB61AA17A2200187E3E /* Products */;
@@ -394,6 +398,7 @@
 				77B61EF71B3CB87100385171 /* Base */,
 				77B61EFC1B3CBA0000385171 /* en */,
 				77B61F001B3CBA0F00385171 /* es */,
+				77B61F101B3CC53D00385171 /* zh-Hans */,
 			);
 			name = BNRDetailDateViewController.xib;
 			sourceTree = "<group>";
@@ -404,6 +409,7 @@
 				77B61F041B3CBB3800385171 /* Base */,
 				77B61F051B3CBB3D00385171 /* en */,
 				77B61F071B3CBB4000385171 /* es */,
+				77B61F0F1B3CC53D00385171 /* zh-Hans */,
 			);
 			name = BNRDetailViewController.xib;
 			sourceTree = "<group>";
@@ -414,6 +420,7 @@
 				77B61F0B1B3CC4AE00385171 /* Base */,
 				77B61F0D1B3CC4B000385171 /* en */,
 				77B61F0E1B3CC4B200385171 /* es */,
+				77B61F111B3CC53D00385171 /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -1,18 +1,18 @@
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "1vY-ri-zXc"; */
-"1vY-ri-zXc.text" = "Nombre";
+"1vY-ri-zXc.text" = "名";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "4X8-MI-5gS"; */
 "4X8-MI-5gS.text" = "Label";
 
 /* Class = "UILabel"; text = "Serial"; ObjectID = "8G9-Pj-ntS"; */
-"8G9-Pj-ntS.text" = "Numéro de serie";
+"8G9-Pj-ntS.text" = "编号";
 
 /* Class = "UILabel"; text = "Value"; ObjectID = "8fE-sD-7Kx"; */
-"8fE-sD-7Kx.text" = "Valor";
+"8fE-sD-7Kx.text" = "价值";
 
 /* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "hLI-zt-3cm"; */
-"hLI-zt-3cm.title" = "Item";
+"hLI-zt-3cm.title" = "项目";
 
 /* Class = "UIButton"; normalTitle = "Change"; ObjectID = "vHp-0Q-Ujq"; */
-"vHp-0Q-Ujq.normalTitle" = "Cambio";
+"vHp-0Q-Ujq.normalTitle" = "更改";
