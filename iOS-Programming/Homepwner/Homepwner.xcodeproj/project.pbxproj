@@ -15,7 +15,8 @@
 		776DB86D1B31F9040076C850 /* BNRItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 776DB86C1B31F9040076C850 /* BNRItemCell.xib */; };
 		77AE90671B04F51C00EA2C68 /* BNRPopoverBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AE90661B04F51C00EA2C68 /* BNRPopoverBackgroundView.m */; };
 		77B61EF51B3CB85F00385171 /* BNRDetailDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77B61EF11B3CB85F00385171 /* BNRDetailDateViewController.xib */; };
-		77B61EF61B3CB85F00385171 /* BNRDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77B61EF31B3CB85F00385171 /* BNRDetailViewController.xib */; };
+		77B61F031B3CBB2000385171 /* BNRDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77B61F011B3CBB2000385171 /* BNRDetailViewController.xib */; };
+		77B61F0A1B3CC4AE00385171 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77B61F0C1B3CC4AE00385171 /* Localizable.strings */; };
 		77D57E671B2B94D700A1A194 /* BNRImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D57E661B2B94D700A1A194 /* BNRImageViewController.m */; };
 		79495FBB1AA17A2200187E3E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79495FBA1AA17A2200187E3E /* main.m */; };
 		79495FC61AA17A2300187E3E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79495FC51AA17A2300187E3E /* Images.xcassets */; };
@@ -52,10 +53,14 @@
 		77AE90651B04F51C00EA2C68 /* BNRPopoverBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRPopoverBackgroundView.h; sourceTree = "<group>"; };
 		77AE90661B04F51C00EA2C68 /* BNRPopoverBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRPopoverBackgroundView.m; sourceTree = "<group>"; };
 		77B61EF71B3CB87100385171 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BNRDetailDateViewController.xib; sourceTree = "<group>"; };
-		77B61EF91B3CB8FB00385171 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/BNRDetailViewController.strings; sourceTree = "<group>"; };
-		77B61EFA1B3CB8FE00385171 /* en */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; name = en; path = en.lproj/BNRDetailViewController.strings; sourceTree = "<group>"; };
 		77B61EFC1B3CBA0000385171 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BNRDetailDateViewController.strings; sourceTree = "<group>"; };
 		77B61F001B3CBA0F00385171 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/BNRDetailDateViewController.strings; sourceTree = "<group>"; };
+		77B61F041B3CBB3800385171 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BNRDetailViewController.xib; sourceTree = "<group>"; };
+		77B61F051B3CBB3D00385171 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/BNRDetailViewController.strings; sourceTree = "<group>"; };
+		77B61F071B3CBB4000385171 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/BNRDetailViewController.strings; sourceTree = "<group>"; };
+		77B61F0B1B3CC4AE00385171 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		77B61F0D1B3CC4B000385171 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		77B61F0E1B3CC4B200385171 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77D57E651B2B94D700A1A194 /* BNRImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRImageViewController.h; sourceTree = "<group>"; };
 		77D57E661B2B94D700A1A194 /* BNRImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRImageViewController.m; sourceTree = "<group>"; };
 		79495FB51AA17A2200187E3E /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,7 +140,7 @@
 			children = (
 				79E33E961ABCC259003FD583 /* BNRDetailViewController.h */,
 				79E33E971ABCC259003FD583 /* BNRDetailViewController.m */,
-				77B61EF31B3CB85F00385171 /* BNRDetailViewController.xib */,
+				77B61F011B3CBB2000385171 /* BNRDetailViewController.xib */,
 			);
 			name = Detail;
 			sourceTree = "<group>";
@@ -171,6 +176,7 @@
 		77E62CFD1B2DE12D00039336 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				77B61F0C1B3CC4AE00385171 /* Localizable.strings */,
 				776DB8691B31F8FA0076C850 /* BNRItem.h */,
 				776DB86A1B31F8FA0076C850 /* BNRItem.m */,
 				776DB8571B31EBA00076C850 /* Homepwner.xcdatamodeld */,
@@ -324,10 +330,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77B61EF61B3CB85F00385171 /* BNRDetailViewController.xib in Resources */,
+				77B61F0A1B3CC4AE00385171 /* Localizable.strings in Resources */,
 				79495FC61AA17A2300187E3E /* Images.xcassets in Resources */,
 				77B61EF51B3CB85F00385171 /* BNRDetailDateViewController.xib in Resources */,
 				776DB86D1B31F9040076C850 /* BNRItemCell.xib in Resources */,
+				77B61F031B3CBB2000385171 /* BNRDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,13 +398,24 @@
 			name = BNRDetailDateViewController.xib;
 			sourceTree = "<group>";
 		};
-		77B61EF31B3CB85F00385171 /* BNRDetailViewController.xib */ = {
+		77B61F011B3CBB2000385171 /* BNRDetailViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				77B61EF91B3CB8FB00385171 /* es */,
-				77B61EFA1B3CB8FE00385171 /* en */,
+				77B61F041B3CBB3800385171 /* Base */,
+				77B61F051B3CBB3D00385171 /* en */,
+				77B61F071B3CBB4000385171 /* es */,
 			);
 			name = BNRDetailViewController.xib;
+			sourceTree = "<group>";
+		};
+		77B61F0C1B3CC4AE00385171 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77B61F0B1B3CC4AE00385171 /* Base */,
+				77B61F0D1B3CC4B000385171 /* en */,
+				77B61F0E1B3CC4B200385171 /* es */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

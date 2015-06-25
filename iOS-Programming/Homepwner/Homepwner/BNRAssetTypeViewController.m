@@ -19,6 +19,9 @@
 #pragma mark - init
 - (instancetype)init
 {
+    
+    self.navigationItem.title = NSLocalizedString(@"Asset Type", @"BNRAssetTypeViewController title");
+    
     self.itemsOfSelectedType = [[NSMutableArray alloc]init];
     self  = [super initWithStyle:UITableViewStylePlain];
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc]init];
