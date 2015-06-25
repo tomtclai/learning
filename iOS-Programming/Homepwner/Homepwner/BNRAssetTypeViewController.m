@@ -44,7 +44,7 @@
 
 - (instancetype) initWithStyle:(UITableViewStyle)style
 {
-    return [self init];
+    return [super initWithStyle:style];
 }
 
 - (void)viewDidLoad
