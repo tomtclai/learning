@@ -11,7 +11,8 @@
 #import "AppDelegate.h"
 @interface BNRHypnosisViewController()
 <UITextFieldDelegate>
-@property (nonatomic, strong) NSMutableArray* labels;
+@property (nonatomic, strong) NSMutableArray *labels;
+@property (nonatomic, weak) UITextField *textField;
 @end
 
 @implementation BNRHypnosisViewController
@@ -50,6 +51,21 @@
     NSLog(@"BNRHypnosisViewController loaded its view");
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [UIView animateWithDuration:2.0
+                          delay:0.0
+         usingSpringWithDamping:0.25
+          initialSpringVelocity:0.0
+                        options:0
+                     animations:^{
+                         CGRect frame = CGRectMake(40, 70, 240, 30);
+                         self.textField.frame = frame;
+                     }
+                     completion:NULL];
+}
 #pragma mark - other
 - (void)loadView
 {
@@ -58,7 +74,7 @@
     // Create a view
     BNRHypnosisView *backgroundView = [[BNRHypnosisView alloc] initWithFrame:frame];
     
-    CGRect textFieldRect = CGRectMake(60, 70, 240, 30);
+    CGRect textFieldRect = CGRectMake(40,0,240,30);
     
     UITextField *textField = [[UITextField alloc] initWithFrame:textFieldRect];
     
@@ -73,6 +89,7 @@
     
     [backgroundView addSubview:textField];
     
+    self.textField = textField;
     // Set it as *the* view of this view controller
     self.view = backgroundView;
 }
@@ -118,6 +135,41 @@
         
         // Add the label to the hierarchy
         [self.view addSubview:messageLabel];
+        
+        // Set the label's initial alpha
+        messageLabel.alpha = 0.0;
+        
+        // Animate the alpha to 1.0
+        [UIView animateWithDuration:0.1
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^ {
+                             messageLabel.alpha = 1.0;
+                         }
+                         completion:NULL];
+        [UIView animateKeyframesWithDuration:1.0
+                                       delay:0.0
+                                     options:0
+                                  animations:^{
+                                      [UIView addKeyframeWithRelativeStartTime:0
+                                                              relativeDuration:0.8
+                                                                    animations:^{
+                                                                        messageLabel.center = self.view.center;
+                                                                    }];
+                                      [UIView addKeyframeWithRelativeStartTime:0.8
+                                                              relativeDuration:0.2
+                                                                    animations:^{
+                                                                        int x = arc4random() % width;
+                                                                        int y = arc4random() % height;
+                                                                        messageLabel.center = CGPointMake(x,y);
+                                                                    }];
+                                  }
+                                  completion: ^(BOOL finished) {
+                                      NSLog(@"Animation finished");
+                                  }];
+        
+        
+        
         [self.labels addObject:messageLabel];
         UIInterpolatingMotionEffect *motionEffect;
         motionEffect = [[UIInterpolatingMotionEffect alloc]
