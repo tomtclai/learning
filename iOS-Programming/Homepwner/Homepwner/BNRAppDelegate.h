@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+extern NSString * const BNRNextItemValuePrefsKey;
+extern NSString * const BNRNextItemNamePrefsKey;
 @class ViewController;
 
 @interface BNRAppDelegate : UIResponder <UIApplicationDelegate>

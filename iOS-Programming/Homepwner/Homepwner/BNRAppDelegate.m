@@ -5,15 +5,21 @@
 //  Created by Tsz Chun Lai on 2/15/15.
 //  Copyright (c) 2015 Big Nerd Ranch. All rights reserved.
 //
-
 #import "BNRAppDelegate.h"
 #import "BNRItemStore.h"
 #import "BNRItemsViewController.h"
-@interface BNRAppDelegate ()
 
-@end
+NSString * const BNRNextItemValuePrefsKey = @"NextItemValue";
+NSString * const BNRNextItemNamePrefsKey = @"NextItemName";
 
 @implementation BNRAppDelegate
++ (void)initialize
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *factorySettings = @{BNRNextItemValuePrefsKey:@75,
+                                      BNRNextItemNamePrefsKey: @"Coffee Cup"};
+    [defaults registerDefaults:factorySettings];
+}
 
 - (BOOL)application:(nonnull UIApplication *)application willFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions
 {

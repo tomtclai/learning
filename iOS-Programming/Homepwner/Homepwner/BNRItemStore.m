@@ -9,6 +9,7 @@
 #import "BNRItemStore.h"
 #import "BNRItem.h"
 #import "BNRImageStore.h"
+#import "BNRAppDelegate.h"
 @import CoreData;
 @interface BNRItemStore ()
 
@@ -37,29 +38,6 @@
 {
     self = [super init];
     if (self) {
-//        // set up NSManagedObjectContext and NSPersistentStoreCoordinator
-//        // 1. NSPSC needs to know where the schema is and where to load
-//        //    and store data
-//        // 2. NSMOC specifies it use this NSPSC to save and load objects
-//        
-//        // Read in Homepwner.xcdatamodeld
-//        _model = [NSManagedObjectModel mergedModelFromBundles:nil]; // search for schema
-//        NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc]initWithManagedObjectModel:_model]; //init psc with schema
-//        
-//        // Where does the SQLite file go?
-//        NSString *path = [self itemArchivePath];
-//        NSURL *storeURL = [NSURL fileURLWithPath:path];
-//        
-//        NSError *error = nil;
-//        
-//        if (![psc addPersistentStoreWithType:NSSQLiteStoreType
-//                               configuration:nil
-//                                         URL:storeURL
-//                                     options:nil
-//                                       error:&error]){
-//            @throw [NSException exceptionWithName:@"OpenFailure"
-//                                           reason:[error localizedDescription]
-//                                         userInfo:nil];
         
         // read in Homepwner.xcdatamodeld
         _model = [NSManagedObjectModel mergedModelFromBundles:nil];
@@ -147,12 +125,19 @@
         order = [[self.privateItems lastObject] orderingValue] + 1.0;
     }
     
-    NSLog(@"Adding after %d items, order = %.2f", [self.privateItems count],order);
+    NSLog(@"Adding after %lu items, order = %.2f", (unsigned long)[self.privateItems count],order);
     BNRItem *item =
     [NSEntityDescription insertNewObjectForEntityForName:@"BNRItem"
                                   inManagedObjectContext:self.context];
     
     item.orderingValue = order;
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    item.valueInDollars = (int)[defaults integerForKey:BNRNextItemValuePrefsKey];
+    item.itemName = [defaults objectForKey:BNRNextItemNamePrefsKey];
+    
+    // just for fun list out all the defaults
+    NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);
     
     [self.privateItems addObject:item];
     

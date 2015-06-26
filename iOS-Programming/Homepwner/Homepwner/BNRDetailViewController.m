@@ -5,13 +5,14 @@
 //  Created by Tsz Chun Lai on 3/20/15.
 //  Copyright (c) 2015 Tsz Chun Lai. All rights reserved.
 //
-#import "BNRDetailDateViewController.h"
-#import "BNRDetailViewController.h"
 #import "BNRItem.h"
 #import "BNRItemStore.h"
 #import "BNRImageStore.h"
-#import "BNRPopoverBackgroundView.h"
+#import "BNRAppDelegate.h"
 #import "BNRItemsViewController.h"
+#import "BNRDetailViewController.h"
+#import "BNRPopoverBackgroundView.h"
+#import "BNRDetailDateViewController.h"
 #import "BNRAssetTypeViewController.h"
 @interface BNRDetailViewController () <UINavigationControllerDelegate,
     UIImagePickerControllerDelegate, UITextFieldDelegate,
@@ -19,16 +20,16 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *serialNumberField;
 @property (weak, nonatomic) IBOutlet UITextField *valueField;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *trash;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
-@property (strong, nonatomic) UIPopoverController *imagePickerPopover;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *serialNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *trash;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *assetTypeButton;
+@property (strong, nonatomic) UIPopoverController *imagePickerPopover;
 @property (strong, nonatomic) UIPopoverController *assetTypeViewPopover;
 
 @end
@@ -184,7 +185,19 @@
     BNRItem *item = self.item;
     item.itemName = self.nameField.text;
     item.serialNumber = self.serialNumberField.text;
-    item.valueInDollars = [self.valueField.text intValue];
+//    item.valueInDollars = [self.valueField.text intValue];
+    int newValue = [self.valueField.text intValue];
+    
+    // is it changed?
+    if (newValue != item.valueInDollars) {
+        // Put it in the item
+        item.valueInDollars = newValue;
+        
+        // Store it as the default value for the next item
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:newValue
+                      forKey:BNRNextItemValuePrefsKey];
+    }
 }
 
 

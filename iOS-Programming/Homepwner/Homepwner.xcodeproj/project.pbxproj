@@ -13,6 +13,7 @@
 		776DB85C1B31EDC50076C850 /* BNRImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 776DB85B1B31EDC50076C850 /* BNRImageTransformer.m */; };
 		776DB86B1B31F8FA0076C850 /* BNRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 776DB86A1B31F8FA0076C850 /* BNRItem.m */; };
 		776DB86D1B31F9040076C850 /* BNRItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 776DB86C1B31F9040076C850 /* BNRItemCell.xib */; };
+		77ACC8F21B3DD12D000CDFA0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 77ACC8F11B3DD12D000CDFA0 /* Settings.bundle */; };
 		77AE90671B04F51C00EA2C68 /* BNRPopoverBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AE90661B04F51C00EA2C68 /* BNRPopoverBackgroundView.m */; };
 		77B61EF51B3CB85F00385171 /* BNRDetailDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77B61EF11B3CB85F00385171 /* BNRDetailDateViewController.xib */; };
 		77B61F031B3CBB2000385171 /* BNRDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77B61F011B3CBB2000385171 /* BNRDetailViewController.xib */; };
@@ -50,6 +51,7 @@
 		776DB8691B31F8FA0076C850 /* BNRItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNRItem.h; path = "../../../../Public/iOS-Programming/Homepwner/Homepwner/BNRItem.h"; sourceTree = "<group>"; };
 		776DB86A1B31F8FA0076C850 /* BNRItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNRItem.m; path = "../../../../Public/iOS-Programming/Homepwner/Homepwner/BNRItem.m"; sourceTree = "<group>"; };
 		776DB86C1B31F9040076C850 /* BNRItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BNRItemCell.xib; path = "../../../../Public/iOS-Programming/Homepwner/Homepwner/BNRItemCell.xib"; sourceTree = "<group>"; };
+		77ACC8F11B3DD12D000CDFA0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		77AE90651B04F51C00EA2C68 /* BNRPopoverBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRPopoverBackgroundView.h; sourceTree = "<group>"; };
 		77AE90661B04F51C00EA2C68 /* BNRPopoverBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRPopoverBackgroundView.m; sourceTree = "<group>"; };
 		77B61EF71B3CB87100385171 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BNRDetailDateViewController.xib; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 		79495FAC1AA17A2200187E3E = {
 			isa = PBXGroup;
 			children = (
+				77ACC8F11B3DD12D000CDFA0 /* Settings.bundle */,
 				79495FB71AA17A2200187E3E /* Homepwner */,
 				79495FD11AA17A2500187E3E /* HomepwnerTests */,
 				79495FB61AA17A2200187E3E /* Products */,
@@ -338,6 +341,7 @@
 				79495FC61AA17A2300187E3E /* Images.xcassets in Resources */,
 				77B61EF51B3CB85F00385171 /* BNRDetailDateViewController.xib in Resources */,
 				776DB86D1B31F9040076C850 /* BNRItemCell.xib in Resources */,
+				77ACC8F21B3DD12D000CDFA0 /* Settings.bundle in Resources */,
 				77B61F031B3CBB2000385171 /* BNRDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
