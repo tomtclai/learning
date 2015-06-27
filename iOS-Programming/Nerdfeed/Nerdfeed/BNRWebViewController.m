@@ -41,7 +41,6 @@
     [self.view addSubview:toolBar];
 }
 
-
 #pragma mark webview
 - (void)loadView
 {

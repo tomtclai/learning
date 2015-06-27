@@ -9,7 +9,16 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property (nonatomic, assign) int currentQuestionIndex;
 
+// The model objects
+@property (nonatomic ,copy) NSMutableArray *questions;
+@property (nonatomic ,copy) NSMutableArray *answers;
+
+// The view objects - don't worry about IBOutlet -
+// we'll talk about it shortly
+@property (nonatomic ,weak) IBOutlet UILabel *questionLabel;
+@property (nonatomic ,weak) IBOutlet UILabel *answerLabel;
 @end
 
 @implementation ViewController
@@ -20,20 +29,20 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Create two arrays and make the pointers point to them
-        questions = [[NSMutableArray alloc] init];
-        answers = [[NSMutableArray alloc] init];
-        
-        // Add questions and answers to the arrays
-        [questions addObject:@"What is 7+7?"];
-        [answers addObject:@"14"];
-        
-        [questions addObject:@"What is the capital of Vermont"];
-        [answers addObject:@"Montpelier"];
-        
-        [questions addObject:@"From what is cognac made?"];
-        [answers addObject:@"Grapes"];
+        _questions = [[NSMutableArray alloc] init];
+        _answers = [[NSMutableArray alloc] init];
+
+        // Add _questions and _answers to the arrays
+        [_questions addObject:@"What is 7+7?"];
+        [_answers addObject:@"14"];
+
+        [_questions addObject:@"What is the capital of Vermont"];
+        [_answers addObject:@"Montpelier"];
+
+        [_questions addObject:@"From what is cognac made?"];
+        [_answers addObject:@"Grapes"];
     }
-    
+
     // Return the address of the new object
     return self;
 }
@@ -41,35 +50,74 @@
 - (IBAction)showQuestion:(id)sender
 {
     // Step to the next question
-    currentQuestionIndex++;
-    
+    _currentQuestionIndex++;
+
     // Am I pass the last question?
-    if ( currentQuestionIndex == [questions count])
+    if ( _currentQuestionIndex == [_questions count])
     {
         // Go back the the first question
-        currentQuestionIndex = 0;
+        _currentQuestionIndex = 0;
     }
-    
-    // Get the string at that index in the questions array
-    NSString* question = [questions objectAtIndex:currentQuestionIndex];
-    
+
+    // Get the string at that index in the _questions array
+    NSString* question = [_questions objectAtIndex:_currentQuestionIndex];
+
     // Log the string to the console
     NSLog(@"displaying question %@", question);
-    
+
+    [self flyLabel:_questionLabel];
+
     // Display the string in the question field
-    [quesionField setText:question];
-    
+    [_questionLabel setText:question];
+
     // Clear the answer field
-    [answerField setText:@"???"];
-    
+    [_answerLabel setText:@"???"];
+
+}
+- (void)flyLabelsAnimation
+{
+    [self flyLabel:self.answerLabel];
+    [self flyLabel:self.questionLabel];
 }
 
+- (void)flyLabel:(UILabel *)aLabel
+{
+    CGRect labelRectOrig = aLabel.frame;
+    
+    int viewWidth = self.view.frame.size.width;
+    int labelCenterY = aLabel.center.y;
+    
+    UILabel * oldLabel = [[UILabel alloc]initWithFrame:labelRectOrig];
+    oldLabel.text = [aLabel.text copy];
+    [oldLabel setTextAlignment:NSTextAlignmentCenter];
+
+
+    [[self view] addSubview:oldLabel];
+    // Fly-in-from-left starts here
+    aLabel.alpha = 0;
+    aLabel.center = CGPointMake(0, labelCenterY);
+
+
+    [UIView animateKeyframesWithDuration:.5
+                                   delay:0
+                                 options:0
+                              animations:^{
+                                  aLabel.frame = labelRectOrig;
+                                  aLabel.alpha = 1;
+
+                                  oldLabel.center = CGPointMake(viewWidth, labelCenterY);
+                                  oldLabel.alpha = 0;
+                              }
+                              completion:nil];
+
+}
 - (IBAction)showAnswer:(id)sender
 {
     // What is the answer to the current question?
-    NSString * answer = [answers objectAtIndex:currentQuestionIndex];
+    NSString * answer = [_answers objectAtIndex:_currentQuestionIndex];
     NSLog(@"displaying answer %@", answer);
+    [self flyLabel:_answerLabel];
     // Display it in the answer field
-    [answerField setText:answer];
+    [_answerLabel setText:answer];
 }
 @end

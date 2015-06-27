@@ -69,8 +69,54 @@
 
     // Reset the answer label
     self.answerLabel.text = @"???";
-}
 
+
+    [self flyLabelsAnimation];
+}
+- (void)flyLabelsAnimation
+{
+    CGRect questionRectOrig = self.questionLabel.frame;
+    CGRect questionRectLeft = self.questionLabel.frame;
+    CGRect questionRectRight = self.questionLabel.frame;
+    CGRect answerRectOrig = self.answerLabel.frame;
+    CGRect answerRectLeft = self.answerLabel.frame;
+    CGRect answerRectRight = self.answerLabel.frame;
+    
+    UILabel * oldQuestionLabel = [[UILabel alloc]initWithFrame:questionRectOrig];
+    oldQuestionLabel.text = self.questionLabel.text;
+    
+    UILabel * oldAnswerLabel = [[UILabel alloc]initWithFrame:answerRectOrig];
+    oldAnswerLabel.text = self.answerLabel.text;
+
+    questionRectLeft.origin.x = 0;
+    questionRectRight.origin.x *= 2;
+    answerRectLeft.origin.x = 0;
+    answerRectRight.origin.x *= 2;
+
+    
+    // Fly-in-from-left starts here
+    self.questionLabel.alpha = 0;
+    self.answerLabel.alpha = 0;
+    self.questionLabel.frame = answerRectLeft;
+    self.answerLabel.frame = questionRectLeft;
+    
+    [UIView animateKeyframesWithDuration:0.2
+                                   delay:0
+                                 options:0
+                              animations:^{
+                                  self.questionLabel.frame = questionRectOrig;
+                                  self.answerLabel.frame = answerRectOrig;
+                                  self.questionLabel.alpha = 1;
+                                  self.answerLabel.alpha = 1;
+                                  
+                                  oldQuestionLabel.frame = questionRectRight;
+                                  oldAnswerLabel.frame = answerRectRight;
+                                  oldQuestionLabel.alpha = 0;
+                                  oldAnswerLabel.alpha = 0;
+                              }
+                              completion:nil];
+    
+}
 - (IBAction)showAnswerButtonPressed:(UIButton *)sender
 {
     // What is the answer to the current question?
