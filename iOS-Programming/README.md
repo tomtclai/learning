@@ -2,4 +2,4 @@ Title  | iOS Programming: The Big Nerd Ranch Guide (4th Edition) (Big Nerd Ranch
 -------|-------------------
 Author | Joe Conway
 ISBN   | 9780321942050
-Chapter| `27` of 29
+Chapter| `28` of 29
