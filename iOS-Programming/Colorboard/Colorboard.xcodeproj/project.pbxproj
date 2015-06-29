@@ -14,6 +14,8 @@
 		776BA0141B3E23D000C2539B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 776BA0131B3E23D000C2539B /* Assets.xcassets */; };
 		776BA0171B3E23D000C2539B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776BA0151B3E23D000C2539B /* LaunchScreen.storyboard */; };
 		776BA0201B3F371800C2539B /* BNRColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BA01F1B3F371800C2539B /* BNRColorViewController.m */; };
+		776BA0251B41CA9F00C2539B /* BNRPaletteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BA0241B41CA9F00C2539B /* BNRPaletteViewController.m */; };
+		776BA0291B41CC4600C2539B /* BNRColorDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BA0281B41CC4600C2539B /* BNRColorDescription.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,10 @@
 		776BA0181B3E23D000C2539B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		776BA01E1B3F371800C2539B /* BNRColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRColorViewController.h; sourceTree = "<group>"; };
 		776BA01F1B3F371800C2539B /* BNRColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRColorViewController.m; sourceTree = "<group>"; };
+		776BA0231B41CA9F00C2539B /* BNRPaletteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRPaletteViewController.h; sourceTree = "<group>"; };
+		776BA0241B41CA9F00C2539B /* BNRPaletteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRPaletteViewController.m; sourceTree = "<group>"; };
+		776BA0271B41CC4600C2539B /* BNRColorDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRColorDescription.h; sourceTree = "<group>"; };
+		776BA0281B41CC4600C2539B /* BNRColorDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRColorDescription.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,7 @@
 				776BA00D1B3E23D000C2539B /* ViewController.h */,
 				776BA00E1B3E23D000C2539B /* ViewController.m */,
 				776BA0101B3E23D000C2539B /* Colorboard.storyboard */,
+				776BA0261B41CAA700C2539B /* Model */,
 				776BA0221B3F372800C2539B /* Controller */,
 				776BA0131B3E23D000C2539B /* Assets.xcassets */,
 				776BA0151B3E23D000C2539B /* LaunchScreen.storyboard */,
@@ -95,9 +102,28 @@
 		776BA0221B3F372800C2539B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				776BA02A1B41CF2400C2539B /* Palette */,
 				776BA0211B3F371E00C2539B /* Color View */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		776BA0261B41CAA700C2539B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				776BA0271B41CC4600C2539B /* BNRColorDescription.h */,
+				776BA0281B41CC4600C2539B /* BNRColorDescription.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		776BA02A1B41CF2400C2539B /* Palette */ = {
+			isa = PBXGroup;
+			children = (
+				776BA0231B41CA9F00C2539B /* BNRPaletteViewController.h */,
+				776BA0241B41CA9F00C2539B /* BNRPaletteViewController.m */,
+			);
+			name = Palette;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,8 +197,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				776BA00F1B3E23D000C2539B /* ViewController.m in Sources */,
+				776BA0291B41CC4600C2539B /* BNRColorDescription.m in Sources */,
 				776BA00C1B3E23D000C2539B /* AppDelegate.m in Sources */,
 				776BA0091B3E23D000C2539B /* main.m in Sources */,
+				776BA0251B41CA9F00C2539B /* BNRPaletteViewController.m in Sources */,
 				776BA0201B3F371800C2539B /* BNRColorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +348,7 @@
 				776BA01D1B3E23D000C2539B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
