@@ -79,5 +79,17 @@
     
     self.view.backgroundColor = newColor;
 }
-
++ (UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder
+{
+    BNRColorViewController *vc = nil;
+    UIStoryboard *storyboard = [coder decodeObjectForKey:UIStateRestorationViewControllerStoryboardKey];
+    
+    if (storyboard)
+    {
+        vc = (BNRColorViewController *)[storyboard instantiateViewControllerWithIdentifier:@"BNRColorViewController"];
+        vc.restorationIdentifier = [identifierComponents lastObject];
+        vc.restorationClass = [BNRColorViewController class];
+    }
+    return vc;
+}
 @end

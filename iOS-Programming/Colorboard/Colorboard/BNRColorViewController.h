@@ -10,7 +10,7 @@
 #import "BNRColorDescription.h"
 @import UIKit;
 
-@interface BNRColorViewController : UIViewController
+@interface BNRColorViewController : UIViewController <UIViewControllerRestoration>
 
 @property (nonatomic) BOOL existingColor;
 @property (nonatomic) BNRColorDescription *colorDescription;

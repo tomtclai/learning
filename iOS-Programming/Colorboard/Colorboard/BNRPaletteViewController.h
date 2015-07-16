@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 @import UIKit;
-@interface BNRPaletteViewController : UITableViewController
+@interface BNRPaletteViewController : UITableViewController <UIViewControllerRestoration>
 
 @end

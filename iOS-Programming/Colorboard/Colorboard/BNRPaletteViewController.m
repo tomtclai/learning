@@ -81,6 +81,18 @@
         cvc.existingColor = YES;
     }
 }
-
++ (UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder
+{
+    BNRPaletteViewController *vc = nil;
+    UIStoryboard *storyboard = [coder decodeObjectForKey:UIStateRestorationViewControllerStoryboardKey];
+    
+    if (storyboard)
+    {
+        vc = (BNRPaletteViewController *)[storyboard instantiateViewControllerWithIdentifier:@"BNRPaletteViewController"];
+        vc.restorationIdentifier = [identifierComponents lastObject];
+        vc.restorationClass = [BNRPaletteViewController class];
+    }
+    return vc;
+}
 
 @end

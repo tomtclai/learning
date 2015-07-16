@@ -12,7 +12,6 @@
 		776BA00F1B3E23D000C2539B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BA00E1B3E23D000C2539B /* ViewController.m */; };
 		776BA0121B3E23D000C2539B /* Colorboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776BA0101B3E23D000C2539B /* Colorboard.storyboard */; };
 		776BA0141B3E23D000C2539B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 776BA0131B3E23D000C2539B /* Assets.xcassets */; };
-		776BA0171B3E23D000C2539B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776BA0151B3E23D000C2539B /* LaunchScreen.storyboard */; };
 		776BA0201B3F371800C2539B /* BNRColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BA01F1B3F371800C2539B /* BNRColorViewController.m */; };
 		776BA0251B41CA9F00C2539B /* BNRPaletteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BA0241B41CA9F00C2539B /* BNRPaletteViewController.m */; };
 		776BA0291B41CC4600C2539B /* BNRColorDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BA0281B41CC4600C2539B /* BNRColorDescription.m */; };
@@ -27,7 +26,6 @@
 		776BA00E1B3E23D000C2539B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		776BA0111B3E23D000C2539B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Colorboard.storyboard; sourceTree = "<group>"; };
 		776BA0131B3E23D000C2539B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		776BA0161B3E23D000C2539B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		776BA0181B3E23D000C2539B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		776BA01E1B3F371800C2539B /* BNRColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRColorViewController.h; sourceTree = "<group>"; };
 		776BA01F1B3F371800C2539B /* BNRColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRColorViewController.m; sourceTree = "<group>"; };
@@ -75,7 +73,6 @@
 				776BA0261B41CAA700C2539B /* Model */,
 				776BA0221B3F372800C2539B /* Controller */,
 				776BA0131B3E23D000C2539B /* Assets.xcassets */,
-				776BA0151B3E23D000C2539B /* LaunchScreen.storyboard */,
 				776BA0181B3E23D000C2539B /* Info.plist */,
 				776BA0071B3E23D000C2539B /* Supporting Files */,
 			);
@@ -183,7 +180,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				776BA0171B3E23D000C2539B /* LaunchScreen.storyboard in Resources */,
 				776BA0141B3E23D000C2539B /* Assets.xcassets in Resources */,
 				776BA0121B3E23D000C2539B /* Colorboard.storyboard in Resources */,
 			);
@@ -214,14 +210,6 @@
 				776BA0111B3E23D000C2539B /* Base */,
 			);
 			name = Colorboard.storyboard;
-			sourceTree = "<group>";
-		};
-		776BA0151B3E23D000C2539B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				776BA0161B3E23D000C2539B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -312,6 +300,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Colorboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Tsz-Chun-Lai.Colorboard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -323,6 +312,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Colorboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Tsz-Chun-Lai.Colorboard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
