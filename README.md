@@ -7,3 +7,4 @@ This repository contains my work and/or practices while going through various te
 
 ###I'm working on
  - [Dart for Absolute Beginners](Dart-for-Absolute-Beginners/)
+ - [Inkscape: Guide to a Vector Drawing Program](Inkscape-Guide-to-a-Vector-Drawing-Program/)
