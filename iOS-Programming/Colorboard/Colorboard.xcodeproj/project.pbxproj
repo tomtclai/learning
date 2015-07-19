@@ -1,0 +1,346 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		776BA0091B3E23D000C2539B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BA0081B3E23D000C2539B /* main.m */; };
+		776BA00C1B3E23D000C2539B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BA00B1B3E23D000C2539B /* AppDelegate.m */; };
+		776BA00F1B3E23D000C2539B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BA00E1B3E23D000C2539B /* ViewController.m */; };
+		776BA0121B3E23D000C2539B /* Colorboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776BA0101B3E23D000C2539B /* Colorboard.storyboard */; };
+		776BA0141B3E23D000C2539B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 776BA0131B3E23D000C2539B /* Assets.xcassets */; };
+		776BA0201B3F371800C2539B /* BNRColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BA01F1B3F371800C2539B /* BNRColorViewController.m */; };
+		776BA0251B41CA9F00C2539B /* BNRPaletteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BA0241B41CA9F00C2539B /* BNRPaletteViewController.m */; };
+		776BA0291B41CC4600C2539B /* BNRColorDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 776BA0281B41CC4600C2539B /* BNRColorDescription.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		776BA0041B3E23D000C2539B /* Colorboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Colorboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		776BA0081B3E23D000C2539B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		776BA00A1B3E23D000C2539B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		776BA00B1B3E23D000C2539B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		776BA00D1B3E23D000C2539B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		776BA00E1B3E23D000C2539B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		776BA0111B3E23D000C2539B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Colorboard.storyboard; sourceTree = "<group>"; };
+		776BA0131B3E23D000C2539B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		776BA0181B3E23D000C2539B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		776BA01E1B3F371800C2539B /* BNRColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRColorViewController.h; sourceTree = "<group>"; };
+		776BA01F1B3F371800C2539B /* BNRColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRColorViewController.m; sourceTree = "<group>"; };
+		776BA0231B41CA9F00C2539B /* BNRPaletteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRPaletteViewController.h; sourceTree = "<group>"; };
+		776BA0241B41CA9F00C2539B /* BNRPaletteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRPaletteViewController.m; sourceTree = "<group>"; };
+		776BA0271B41CC4600C2539B /* BNRColorDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRColorDescription.h; sourceTree = "<group>"; };
+		776BA0281B41CC4600C2539B /* BNRColorDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRColorDescription.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		776BA0011B3E23D000C2539B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		776B9FFB1B3E23D000C2539B = {
+			isa = PBXGroup;
+			children = (
+				776BA0061B3E23D000C2539B /* Colorboard */,
+				776BA0051B3E23D000C2539B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		776BA0051B3E23D000C2539B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				776BA0041B3E23D000C2539B /* Colorboard.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		776BA0061B3E23D000C2539B /* Colorboard */ = {
+			isa = PBXGroup;
+			children = (
+				776BA00A1B3E23D000C2539B /* AppDelegate.h */,
+				776BA00B1B3E23D000C2539B /* AppDelegate.m */,
+				776BA00D1B3E23D000C2539B /* ViewController.h */,
+				776BA00E1B3E23D000C2539B /* ViewController.m */,
+				776BA0101B3E23D000C2539B /* Colorboard.storyboard */,
+				776BA0261B41CAA700C2539B /* Model */,
+				776BA0221B3F372800C2539B /* Controller */,
+				776BA0131B3E23D000C2539B /* Assets.xcassets */,
+				776BA0181B3E23D000C2539B /* Info.plist */,
+				776BA0071B3E23D000C2539B /* Supporting Files */,
+			);
+			path = Colorboard;
+			sourceTree = "<group>";
+		};
+		776BA0071B3E23D000C2539B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				776BA0081B3E23D000C2539B /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		776BA0211B3F371E00C2539B /* Color View */ = {
+			isa = PBXGroup;
+			children = (
+				776BA01E1B3F371800C2539B /* BNRColorViewController.h */,
+				776BA01F1B3F371800C2539B /* BNRColorViewController.m */,
+			);
+			name = "Color View";
+			sourceTree = "<group>";
+		};
+		776BA0221B3F372800C2539B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				776BA02A1B41CF2400C2539B /* Palette */,
+				776BA0211B3F371E00C2539B /* Color View */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		776BA0261B41CAA700C2539B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				776BA0271B41CC4600C2539B /* BNRColorDescription.h */,
+				776BA0281B41CC4600C2539B /* BNRColorDescription.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		776BA02A1B41CF2400C2539B /* Palette */ = {
+			isa = PBXGroup;
+			children = (
+				776BA0231B41CA9F00C2539B /* BNRPaletteViewController.h */,
+				776BA0241B41CA9F00C2539B /* BNRPaletteViewController.m */,
+			);
+			name = Palette;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		776BA0031B3E23D000C2539B /* Colorboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 776BA01B1B3E23D000C2539B /* Build configuration list for PBXNativeTarget "Colorboard" */;
+			buildPhases = (
+				776BA0001B3E23D000C2539B /* Sources */,
+				776BA0011B3E23D000C2539B /* Frameworks */,
+				776BA0021B3E23D000C2539B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Colorboard;
+			productName = Colorboard;
+			productReference = 776BA0041B3E23D000C2539B /* Colorboard.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		776B9FFC1B3E23D000C2539B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = Tom;
+				TargetAttributes = {
+					776BA0031B3E23D000C2539B = {
+						CreatedOnToolsVersion = 7.0;
+					};
+				};
+			};
+			buildConfigurationList = 776B9FFF1B3E23D000C2539B /* Build configuration list for PBXProject "Colorboard" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 776B9FFB1B3E23D000C2539B;
+			productRefGroup = 776BA0051B3E23D000C2539B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				776BA0031B3E23D000C2539B /* Colorboard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		776BA0021B3E23D000C2539B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				776BA0141B3E23D000C2539B /* Assets.xcassets in Resources */,
+				776BA0121B3E23D000C2539B /* Colorboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		776BA0001B3E23D000C2539B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				776BA00F1B3E23D000C2539B /* ViewController.m in Sources */,
+				776BA0291B41CC4600C2539B /* BNRColorDescription.m in Sources */,
+				776BA00C1B3E23D000C2539B /* AppDelegate.m in Sources */,
+				776BA0091B3E23D000C2539B /* main.m in Sources */,
+				776BA0251B41CA9F00C2539B /* BNRPaletteViewController.m in Sources */,
+				776BA0201B3F371800C2539B /* BNRColorViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		776BA0101B3E23D000C2539B /* Colorboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				776BA0111B3E23D000C2539B /* Base */,
+			);
+			name = Colorboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		776BA0191B3E23D000C2539B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		776BA01A1B3E23D000C2539B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		776BA01C1B3E23D000C2539B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Colorboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Tsz-Chun-Lai.Colorboard";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		776BA01D1B3E23D000C2539B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Colorboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Tsz-Chun-Lai.Colorboard";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		776B9FFF1B3E23D000C2539B /* Build configuration list for PBXProject "Colorboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				776BA0191B3E23D000C2539B /* Debug */,
+				776BA01A1B3E23D000C2539B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		776BA01B1B3E23D000C2539B /* Build configuration list for PBXNativeTarget "Colorboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				776BA01C1B3E23D000C2539B /* Debug */,
+				776BA01D1B3E23D000C2539B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 776B9FFC1B3E23D000C2539B /* Project object */;
+}
