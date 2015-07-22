@@ -20,7 +20,7 @@ removeNonUpperCase st = [ c | c <- st, c `elem` [ 'A'..'Z' ]]
 -- Factorial recursively
 factorial :: Integer -> Integer
 factorial 0 = 1
-factorial n = n * factorial (n - 1) 
+factorial n = n * factorial (n - 1)
 
 circumference :: Float -> Float
 circumference r = 2 * pi * r
@@ -43,8 +43,8 @@ sayMe x = "Not between 1 and 5"
 
 charName :: Char -> String
 charName 'a' = "Albert"
-charName 'b' = "Broseph" 
-charName 'c' = "Cecil" 
+charName 'b' = "Broseph"
+charName 'c' = "Cecil"
 
 addVectors :: (Num a) => (a, a) -> (a, a) -> (a, a)
 addVectors (x1, y1) (x2, y2) = ( x1 + x2, y1 + y2)
@@ -59,8 +59,18 @@ third :: (a, b, c) -> c
 third (_, _, z) = z
 
 head' :: [a]->a
-head' [] = error "empty list"
-head' (x:_) = x
+-- head' [] = error "empty list"
+-- head' (x:_) = x
+
+-- below does the same thing with case expressions
+--
+-- case expression of pattern -> result
+--                    pattern -> result
+--                    pattern -> result
+--                    ...
+head' xs = case xs of []    -> error "empty list"
+                      (x:_) -> x
+
 
 tell :: (Show a) => [a] -> String
 tell [] = "Empty"
@@ -81,4 +91,45 @@ sum' (x:xs) = x + sum' xs
 capital :: String -> String
 capital "" = "Empty string, whoops"
 capital all@(x:xs) = "The first letter of " ++ all ++ " is " ++ [x]
+
+bmiTell :: (RealFloat a) => a -> a -> String
+bmiTell weight height
+    | bmi <= skinny = "You're underweight"
+    | bmi <= normal = "You're normal"
+    | bmi <= fat    = "You're fat"
+    | otherwise     = "You're a whale"
+    where bmi = weight / height ^ 2
+          (skinny, normal, fat) = (18.5, 25.0, 30.0)
+
+max' :: (Ord a) => a -> a -> a
+max' a b
+    | a > b = a
+    | otherwise = b
+
+myCompare :: (Ord a) => a -> a -> Ordering
+a `myCompare` b
+    | a > b     = GT
+    | a == b    = EQ
+    | otherwise = LT
+
+initials :: String -> String -> String
+initials firstname lastname = [f] ++ ". "++ [l] ++ "."
+    where (f:_) = firstname
+          (l:_) = lastname
+
+calcBmis :: (RealFloat a) => [(a, a)] -> [a]
+calcBmis xs = [bmi | (w, h) <- xs, let bmi = w / h ^ 2]
+--we can make our function return only the BMIs of fat people
+--calcBmis xs = [bmi | (w, h) <- xs, let bmi = w / h ^ 2, bmi >= 25.0]
+
+cylinder :: (RealFloat a) => a -> a -> a
+cylinder r h =
+    let sideArea = 2 * pi * r * h
+        topArea = pi * r ^ 2
+    in  sideArea + 2 * topArea
+
+describeList :: [a] -> String
+describeList xs = "The list is " ++ case xs of []  -> "empty."
+                                               [x] -> "singleton list"
+                                               xs  -> "a list"
 
