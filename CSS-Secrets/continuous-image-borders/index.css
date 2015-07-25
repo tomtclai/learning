@@ -1,0 +1,52 @@
+@keyframes ants {to {background-position: 100% }}
+div.vintage-envelope {
+
+    
+    padding: 1em;
+    border: 1em solid transparent;
+    
+    /*
+    When using the shorthand property the order of the property values is:
+
+    background-color
+    background-image
+    background-repeat
+    background-attachment
+    background-position
+    */
+    background: linear-gradient(white,white) padding-box,
+        repeating-linear-gradient(-45deg, 
+            red 0, red 12.5%, 
+            transparent 0, transparent 25%,
+	        #58a 0, #58a 37.5%, 
+            transparent 0, transparent 50%) 0 / 5em 5em;
+	
+    
+}
+
+div.stone-art {
+    min-width: 100px;
+    min-height: 100px;
+    border: 1em solid transparent;
+	background: linear-gradient(white, white) padding-box, 
+        url(http://csssecrets.io/images/stone-art.jpg) border-box  0 / cover;
+}
+
+div.marching-ants {
+    padding: 1em;
+    border: 1px solid transparent;
+    background:
+        linear-gradient(white,white) padding-box,
+        repeating-linear-gradient(-45deg,
+                                    black 0, black 25%,
+                                    white 0, white 50%) 
+        0 / .6em .6em;
+    animation: ants 100s linear infinite;
+}
+
+div.footnote {
+    border-top: .2em solid transparent;
+    border-image: 100% 0 0 linear-gradient(90deg, currentColor 4em,
+        transparent 0);
+    padding-top: 1em;
+}
