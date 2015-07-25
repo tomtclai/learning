@@ -1,0 +1,30 @@
+div {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100px;
+    width: 100px;
+    
+    /*example */
+    /* hsla(hue, saturation, lightness,alpha*/
+    /*
+    Hue - Think of a color wheel. 
+        Around 0o and 360o are reds 
+        120o are greens, 
+        240o are blues. 
+        Use anything in between 0-360. 
+        Values above and below will be modulus 360.
+    Saturation - 
+        0% is completely denatured (grayscale). 
+        100% is fully saturated (full color).
+    Lightness - 
+        0% is completely dark (black). 
+        100% is completely light (white). 
+        50% is average lightness.
+    alpha - Opacity/Transparency value.  
+        0 is fully transparent. 
+        1 is fully opaque. 
+        0.5 is 50% transparent.
+    */
+    background: hsla(170,110%,45%,1);
+}

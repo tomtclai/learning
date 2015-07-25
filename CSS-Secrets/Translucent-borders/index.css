@@ -1,0 +1,19 @@
+body {
+    background-image: url("Beach.jpg");
+}
+div {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100px;
+    width: 100px;
+    
+    /*example */
+    border: 10px solid hsla(0,0%,100%,.5);
+    background: white;
+    background-clip: padding-box;
+}
+
+button.cancel {
+    
+}

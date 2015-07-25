@@ -1,0 +1,17 @@
+/**
+ * Flexible background positioning
+ * via extended background-position
+ */
+
+html {
+    background: #58a;
+    background-image: repeating-linear-gradient(60deg, 
+                            hsla(0,0%,100%,.1), 
+                            hsla(0,0%,100%,.1) 5px, 
+                            transparent 0, 
+                            transparent 10px);
+    height: 100%
+}
+div {
+
+}

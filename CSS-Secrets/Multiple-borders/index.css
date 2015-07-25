@@ -1,0 +1,19 @@
+/**
+ * Flexible background positioning
+ * via extended background-position
+ */
+
+div {
+    padding: 10px;
+	background: url(http://csssecrets.io/images/code-pirate.svg)
+                no-repeat #58a;
+    background-position: bottom right;
+    background-origin: content-box;
+    
+    max-width: 10em;
+    min-height: 5em;
+    padding: 10px;
+    color: white;
+    font: 100%/1 sans-serif;
+    
+}
