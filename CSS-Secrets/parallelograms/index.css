@@ -1,0 +1,9 @@
+div {
+    height: 1.5;
+    width: 300px;
+    background: #48a;
+}
+
+div.the-problem {
+    transform: skewX(-45deg);
+}

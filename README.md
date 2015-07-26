@@ -6,5 +6,4 @@ This repository contains my work and/or practices while going through various te
  - [IOS Programming: The Big Nerd Ranch Guide](iOS-Programming/)
 
 ###I'm working on
- - [Dart for Absolute Beginners](Dart-for-Absolute-Beginners/)
- - [Inkscape: Guide to a Vector Drawing Program](Inkscape-Guide-to-a-Vector-Drawing-Program/)
+ - [CSS Secrets](CSS-Secrets/)

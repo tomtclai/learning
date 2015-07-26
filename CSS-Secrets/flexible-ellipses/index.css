@@ -1,0 +1,26 @@
+div {
+    background: #fb3;
+    width: 400px;
+    height: 200px;
+}
+
+div.the-problem {
+    border-radius: 100px; /* >= half the side */
+}
+
+div.the-solution {
+    border-radius: 50%;
+}
+
+div.half-ellipse {
+    border-radius: 50% / 100% 100% 0 0 
+/*    border-radius: 50% / 0 0 100% 100%*/
+/*    border-radius: 100% 0 0 100% / 50%*/
+}
+
+
+
+div.quarter-ellipse {
+    border-radius: 100% 0 0 0;
+}
+    
