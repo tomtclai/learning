@@ -1,0 +1,27 @@
+.transform {
+    width: 400px;
+    height: 400px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    overflow: hidden;
+    margin: 106px;
+    
+}
+
+.transform > img {
+    max-width:100%;
+    -webkit-transform: rotate(-45deg) scale(1.42);
+    transform: rotate(-45deg) scale(1.42);
+    position: relative;
+}
+
+.clipping-path {
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    -webkit-clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    transition: .2s;
+}
+
+.clipping-path:hover {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
