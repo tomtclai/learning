@@ -1,9 +1,28 @@
-div {
-    height: 1.5;
-    width: 300px;
-    background: #48a;
+div.container {
+
 }
 
-div.the-problem {
-    transform: skewX(-45deg);
+.button {
+    position: relative;
+    /* text color, paddings, etc. */
+    display:inline-block;
+	padding: .5em 1em;
+	border: 0; margin: .5em;
+	background: transparent;
+	color: white;
+	text-transform: uppercase;
+	text-decoration: none;
+	font: bold 200%/1 sans-serif;
+    
 }
+/*psudo element*/
+.button::before {
+    content: '';
+    position: absolute;
+    top:0; right: 0; bottom:0; left:0;
+    z-index: -1;
+    background: #58a;
+    -webkit-transform: skew(45deg);
+    transform: skew(45deg);
+}
+
