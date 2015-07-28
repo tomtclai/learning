@@ -1,0 +1,50 @@
+.pie.transform {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: yellowgreen;
+    background-image: -webkit-linear-gradient(left, transparent 50%, currentColor 0);
+    background-image: linear-gradient(to right, transparent 50%, currentColor 0);
+    color: #655;
+}
+
+.pie.transform:before {
+    content: '';
+    display: block;
+    margin-left: 50%;
+    height: 100%;
+    border-radius: 0 100% 100% 0 / 50%;
+    
+    background-color: inherit;
+
+    -webkit-transform-origin: left;
+
+        -ms-transform-origin: left;
+
+            transform-origin: left;
+    
+    -webkit-animation: spin 3s linear infinite, 
+               bg 6s step-end infinite;
+    
+            animation: spin 3s linear infinite, 
+               bg 6s step-end infinite;
+    
+}
+
+
+@-webkit-keyframes bg {
+    50% {background: currentColor;}
+}
+
+
+@keyframes bg {
+    50% {background: currentColor;}
+}
+
+@-webkit-keyframes spin {
+    to {-webkit-transform: rotate(.5turn);transform: rotate(.5turn);}
+}
+
+@keyframes spin {
+    to {-webkit-transform: rotate(.5turn);transform: rotate(.5turn);}
+}
