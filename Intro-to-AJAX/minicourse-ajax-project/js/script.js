@@ -29,7 +29,6 @@ function loadData() {
     // NYTime AJAX request
     // KEY: ea341699db31ddf3ecac8b5f725b82d8:10:68976353
     var nyTimesURI = 'http://api.nytimes.com/svc/search/v2/articlesearch.json?q=' +$city +"&sort=newest&api-key=ea341699db31ddf3ecac8b5f725b82d8:10:68976353"
-    console.log(nyTimesURI);
     $.getJSON(nyTimesURI, function( data ) {
         var $nytimesArticles = $('#nytimes-articles')
         var articles = data.response.docs;
@@ -58,21 +57,30 @@ function loadData() {
     
     
     // Wikipedia 
-    // What is wrong with this???
-    // I will come back later
-    var remoteURLWithOrigin = 'https://en.wikipedia.org/w/api.php?action=query&titles=' + $city +
-        '&format=jsonp';
-    $.ajax( {
-        url: remoteURLWithOrigin,
+    
+    var wikiRequestTimeout = setTimeout(function(){
+        $wikiElem.text("Failed to reach wikipedia");
+    }, 8000);
+    
+    var remoteURLWithOrigin = 'https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=' + $city +
+        '&format=json&callback=wikiCallBack';
+    console.log (remoteURLWithOrigin);
+    $.ajax( remoteURLWithOrigin, {
         dataType: 'jsonp',
-        type: 'POST',
-        headers: {'Api-User-Agent':'IntroToAJAX/1.0 (tomtclai@gmail.com)'},
         success: (function( data ) {
-                
-                    })
-        
-        }
-    );
+            console.log(data.query.search);
+            var searchResults = data.query.search;
+            for( i in searchResults) {
+                var pageTitle = searchResults[i].title;
+                var pageURL = 'https://en.wikipedia.org/wiki/' + pageTitle;
+                $('#wikipedia-links').append(
+                    $('<li>').append(
+                        $('<a>').attr('href',pageURL).append(
+                            pageTitle
+                            )));
+            }
+            clearTimeout(wikiRequestTimeout);
+        })});
         return false;
 };
 
