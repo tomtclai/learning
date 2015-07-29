@@ -1,4 +1,6 @@
-var catNames = ["Tom", "Jerry"];
+var catNames = ["Tom", "Jerry", "Paul", "Mary", "Hillary Clinton"];
+
+
 var numOfCats = catNames.length;
 var count = [];
 
@@ -7,7 +9,7 @@ $(document).ready(function () {
     for (i in catNames) {
         $('#catContainer').append(
             '<div class="catBox" id="catBox' + i + '">\
-            <h1 class="catName" id="catName1">Cat ' + i + '</h1>\
+            <h1 class="catName" id="catName1">' + catNames[i] + '</h1>\
             <h1 class="count" id="count' + i + '">0</h1>\
             <img class="catPic" id="cat' + i + '" src="cat' + i + '.jpg">\
             </div>'

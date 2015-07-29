@@ -1,29 +1,25 @@
 body {
     text-align: center;
 }
-#catContainer{
+#catContainer {
     display: flex;
     flex-wrap: wrap;
 }
-
-
-.catBox{
+.catBox {
     width: 500px;
     padding: 10px;
 }
-.catPic{
+.catPic {
     clear: both;
     width: inherit;
 }
-
-.count, .catName{
+.count,
+.catName {
     font-family: sans-serif;
 }
-
 .count {
     float: right;
 }
-
 .catName {
-	float:left;
+    float: left;
 }
