@@ -1,21 +1,29 @@
 body {
     text-align: center;
+    font-family: sans-serif;
 }
-#catContainer {
-    display: flex;
-    flex-wrap: wrap;
+#catList {
+    display: block;
+    text-align: center;
+}
+#catList>li {
+    display: inline-block;
+    color: dodgerblue;
+    padding: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
+    cursor: pointer;
 }
 .catBox {
+    margin-left: auto;
+    margin-right: auto;
     width: 500px;
     padding: 10px;
 }
 .catPic {
     clear: both;
     width: inherit;
-}
-.count,
-.catName {
-    font-family: sans-serif;
+    cursor: pointer;
 }
 .count {
     float: right;
