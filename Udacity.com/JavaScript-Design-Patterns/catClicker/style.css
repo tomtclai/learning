@@ -14,20 +14,20 @@ body {
     padding-bottom: 0;
     cursor: pointer;
 }
-.catBox {
+#catBox {
     margin-left: auto;
     margin-right: auto;
     width: 500px;
     padding: 10px;
 }
-.catPic {
+#cat {
     clear: both;
     width: inherit;
     cursor: pointer;
 }
-.count {
+#count {
     float: right;
 }
-.catName {
+#catName {
     float: left;
 }

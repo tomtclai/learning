@@ -1,68 +1,125 @@
-var view;
-var model;
-$(function () {
+/*jslint browser:true */
 
+var model, controller, catView, catListView;
+model = {
+  cats: null,
+  currentCat: null,
+  Cat: function(name, img) {
+    this.name = name;
+    this.count = 0;
+    this.img = img;
+  },
+  init: function() {
+    model.cats = [new model.Cat('Tom', 'cat0.jpg'),
+      new model.Cat('Jerry', 'cat1.jpg'),
+      new model.Cat('Paul', 'cat2.jpg'),
+      new model.Cat('Mary', 'cat3.jpg'),
+      new model.Cat('Hillary Clinton', 'cat4.jpg')
+    ];
+  },
+};
 
-  model = {
-    cats: null,
-    currentCat: null,
-    Cat: function (name) {
-      this.name = name;
-      this.count = 0;
-    },
-    init: function () {
-      model.cats = [new model.Cat('Tom'),
-                    new model.Cat('Jerry'),
-                    new model.Cat('Paul'),
-                    new model.Cat('Mary'),
-                    new model.Cat('Hillary Clinton')];
-    },
+controller = {
+  init: function() {
+    model.init();
+    catListView.init();
+    catView.init();
+  },
 
-  };
+  getCurrentCat: function() {
+    return model.currentCat;
+  },
 
-  var controller = {
-      init: function () {
-        model.init();
-        view.init();
-      },
-      makeMainCat: function (i) {
-        return function () {
-          console.log('show cat ' + i);
-          var mainCat = model.cats[i];
-          $('#catContainer').html(
-            '<div class="catBox" id="catBox' + i + '">\
-          <h2 class="catName" id="catName1">' + mainCat.name + '</h2>\
-          <h2 class="count" id="count' + i + '">' + mainCat.count + '</h2>\
-          <img class="catPic" id="cat' + i + '" src="cat' + i + '.jpg">\
-          </div>'
-          );
+  getCats: function() {
+    return model.cats;
+  },
 
-          $('#cat' + i).click(controller.createCountIncrement(i));
-        };
-      },
-      createCountIncrement: function (i) {
-        return function countIncrement() {
-          console.log(i);
-          model.cats[i].count++;
-          $('#count' + i).text(model.cats[i].count);
-        };
-      }
-    };
-  view = {
-    init: function () {
-      this.catList = $('#catList');
-      this.currentCat = $('#catContainer');
-      view.render();
-    },
-    render: function () {
+  setCurrentCat: function(cat) {
+    model.currentCat = cat;
+  },
 
-      var i;
-      for (i = 0; i < model.cats.length; i++) {
-        this.catList.append(
-          $('<li class="button">').text(model.cats[i].name).click(controller.makeMainCat(i))
-        );
-      }
+  incrementCounter: function() {
+    model.currentCat.count++;
+    catView.render();
+  }
+};
+
+catView = {
+  init: function() {
+    this.cat = $('#catBox');
+    this.catName = $('#catName');
+    this.count = $('#count');
+    this.img = $('#cat');
+    this.cat.click(function() {
+      controller.incrementCounter();
+    });
+    this.render();
+  },
+  render: function() {
+    var currentCat = controller.getCurrentCat();
+    if (currentCat) {
+      this.count.text(currentCat.count);
+      this.catName.text(currentCat.name);
+      this.img.attr('src',currentCat.img);
     }
-  };
+
+  }
+};
+
+catListView = {
+  init: function() {
+    this.catList = $('#catList');
+    this.render();
+  },
+  render: function() {
+    var cat, elem, i;
+    var cats = controller.getCats();
+
+    this.catList.innerHTML = '';
+    /*
+  var elems = document.getElementsByClassName("myClass"), i;
+
+  for (i = 0; i < elems.length; i++) {
+    (function (iCopy) {
+      "use strict";
+      elems[i].addEventListener("click", function () {
+        this.innerHTML = iCopy;
+      });
+    }(i));
+  }
+  */
+    // function makeClickHandler(cat) {
+    //   return function() {
+    //     controller.setCurrentCat(cat);
+    //     console.log("hi" + cat);
+    //     catView.render();
+    //   };
+    // };
+    for (i = 0; i < cats.length; i++) {
+      cat = cats[i];
+
+      elem = document.createElement('li');
+      elem.textContent = cat.name;
+      // elem.click(function (catCopy) {
+      //     return function() {
+      //       controller.setCurrentCat(catCopy);
+      //       console.log("hi" + catCopy);
+      //       catView.render();
+      //     };
+      //   }(cat));
+      elem.addEventListener('click', (function(catCopy) {
+        return function() {
+            controller.setCurrentCat(catCopy);
+            console.log("hi" + catCopy);
+            catView.render();
+          };
+      })(cat));
+
+    this.catList.append(elem);
+  }
+}
+};
+
+$(document).ready(function() {
   controller.init();
 });
