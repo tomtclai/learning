@@ -41,12 +41,16 @@ controller = {
     incrementCounter: function() {
         model.currentCat.count++;
         catView.render();
+    },
+
+    adminButtonClicked: function() {
+        adminView.init();
     }
 };
 
 catView = {
     init: function() {
-        this.cat = $('#catBox');
+        this.catBox = $('#catBox');
         this.catName = $('#catName');
         this.count = $('#count');
         this.img = $('#cat');
@@ -61,7 +65,12 @@ catView = {
             this.count.text(currentCat.count);
             this.catName.text(currentCat.name);
             this.img.attr('src', currentCat.img);
+            $(catBox).append(
+                $('<button>').attr('id', 'admin').text('Admin').click(
+                    controller.adminButtonClicked
+                ));
         }
+
 
     }
 };
@@ -98,6 +107,18 @@ catListView = {
         }
     }
 };
+
+adminView = {
+    init: function() {
+        this.nameLabel = $('#changeName');
+        this.urlLabel = $('#changeURL');
+        this.numberLabel = $('#changeNumber');
+        this.render();
+    },
+    render: function() {
+        console.log('hi');
+    }
+}
 
 $(document).ready(function() {
     controller.init();
