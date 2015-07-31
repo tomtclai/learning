@@ -19,7 +19,7 @@ var winningLotteryNumbers: Set<Int>
 
 let number=42
 var countingUp = ["one", "two"]
-let nameBYParkingSpace = [13:"alice", 27:"bob"]
+let nameByParkingSpace = [13:"alice", 27:"bob"]
 
 let secondElement = countingUp[1]
 
@@ -62,7 +62,6 @@ if  let r1 = reading1,
         let errorString = "A reading was nil"
     }
 
-let nameByParkingSpace = [13:"Alice", 27: "Bob"]
 if let spaceAssignee = nameByParkingSpace[13] {
 
     ("Key 13 was in the dictionary with the value \"\(spaceAssignee)\"")
@@ -78,5 +77,42 @@ for i in range {
     let string = countingUp[i]
 }
 
+for string in countingUp {
+    string
+}
 
+for (i, string) in enumerate(countingUp) {
+    i
+    string
+}
+nameByParkingSpace
 
+for (space, name) in nameByParkingSpace {
+    let permit = "Space \(space): \(name)"
+}
+
+enum PieType: Int {
+    case Apple = 0
+    case Cherry
+    case Pecan
+}
+
+let favoritePie = PieType.Apple
+
+var piesToBake: [PieType] = []
+piesToBake.append(.Apple)
+
+let name: String
+switch favoritePie {
+case .Apple:
+    name = "Apple"
+case .Cherry:
+    name = "Cherry"
+case .Pecan:
+    name = "Pecan"
+}
+
+let pieRawValue = PieType.Pecan.rawValue
+if let pieType = PieType(rawValue: pieRawValue) {
+    pieType
+}
