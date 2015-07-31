@@ -62,4 +62,21 @@ if  let r1 = reading1,
         let errorString = "A reading was nil"
     }
 
-// at subscripting dictionaries
+let nameByParkingSpace = [13:"Alice", 27: "Bob"]
+if let spaceAssignee = nameByParkingSpace[13] {
+
+    ("Key 13 was in the dictionary with the value \"\(spaceAssignee)\"")
+    
+}
+
+for var i = 0; i < countingUp.count; i++ {
+    let string = countingUp[i]
+}
+
+let range = 0..<countingUp.count
+for i in range {
+    let string = countingUp[i]
+}
+
+
+
