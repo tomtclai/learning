@@ -7,6 +7,9 @@ var str = "Hello, playground"
 struct Vector {
     var x: Double
     var y: Double
+    var length: Double {
+            return sqrt(x*x + y*y)
+    }
     
     init() {
         x = 0
@@ -27,9 +30,7 @@ struct Vector {
         return Vector(x: x + (Double(numberOfTimes) * vector.x)
                     , y: y + (Double(numberOfTimes) * vector.y))
     }
-//    func length() -> Double {
-//        return sqrt(x*x, y*y)
-//    }
+
 }
 
 func +(left: Vector, right: Vector) -> Vector {
