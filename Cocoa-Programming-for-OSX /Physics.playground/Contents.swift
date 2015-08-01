@@ -27,6 +27,9 @@ struct Vector {
         return Vector(x: x + (Double(numberOfTimes) * vector.x)
                     , y: y + (Double(numberOfTimes) * vector.y))
     }
+//    func length() -> Double {
+//        return sqrt(x*x, y*y)
+//    }
 }
 
 func +(left: Vector, right: Vector) -> Vector {
@@ -83,7 +86,8 @@ class Simulation {
             particle.position.y
         }
         time += dt;
-        particles = particles.filter{ particles in
+        // this is a closure. more on this in Chapter 15
+        particles = particles.filter{ particle in
             let live = particle.position.y > 0.0
             if !live {
                 println("Particle terminated at time \(self.time)")
@@ -92,3 +96,44 @@ class Simulation {
         }
     }
 }
+
+let simulation = Simulation()
+
+class Rocket: Particle {
+    let thrust: Double
+    var thrustTimeRemaining: NSTimeInterval
+    let direction = Vector(x:0, y:1)
+    
+    convenience init(thrust: Double, thrustTime: NSTimeInterval) {
+        self.init(position: Vector(), thrust: thrust, thrustTime:thrustTime)
+    }
+    init(position: Vector, thrust: Double, thrustTime: NSTimeInterval) {
+        self.thrust = thrust
+        self.thrustTimeRemaining = thrustTime
+        super.init(position: position)
+    }
+    
+    override func tick(dt: NSTimeInterval) {
+        if thrustTimeRemaining > 0.0 {
+            let thrustTime = min(dt, thrustTimeRemaining)
+            let thrustToApply = thrust * thrustTime
+            let thrustForce = direction * thrustToApply
+            acceleration = acceleration + thrustForce
+            thrustTimeRemaining -= thrustTime
+        }
+        super.tick(dt)
+    }
+}
+
+
+let rocket = Rocket(thrust: 10.0, thrustTime:60)
+
+
+simulation.addParticle(rocket)
+
+while simulation.particles.count > 0 &&
+      simulation.time < 500 {
+        simulation.tick(1.0)
+}
+
+
