@@ -4,11 +4,19 @@ import Cocoa
 
 var str = "Hello, playground"
 
-struct Vector {
+struct Vector : Printable {
     var x: Double
     var y: Double
     var length: Double {
             return sqrt(x*x + y*y)
+    }
+    
+    var description: String {
+        return "(\(x), \(y))"
+    }
+    
+    var angle: Double {
+        return atan2(y, x)
     }
     
     init() {
@@ -45,7 +53,7 @@ func *(left: Vector, right: Double) -> Vector {
 let gravity = Vector(x: 0.0, y: -9.8)
 
 let twoGs = gravity*2
-
+println(gravity)
 let threeGs = gravity*3
 
 
@@ -66,6 +74,7 @@ class Particle {
     
     func tick(dt: NSTimeInterval) {
         velocity = velocity + (acceleration * dt)
+        velocity.y
         position = position + (velocity * dt)
         position.y = (max(0, position.y))
     }
@@ -85,6 +94,7 @@ class Simulation {
             particle.tick(dt)
             particle.acceleration = Vector()
             particle.position.y
+
         }
         time += dt;
         // this is a closure. more on this in Chapter 15
@@ -104,6 +114,7 @@ class Rocket: Particle {
     let thrust: Double
     var thrustTimeRemaining: NSTimeInterval
     let direction = Vector(x:0, y:1)
+    let parachuteDeceleration = 9.8
     
     convenience init(thrust: Double, thrustTime: NSTimeInterval) {
         self.init(position: Vector(), thrust: thrust, thrustTime:thrustTime)
@@ -120,7 +131,15 @@ class Rocket: Particle {
             let thrustToApply = thrust * thrustTime
             let thrustForce = direction * thrustToApply
             acceleration = acceleration + thrustForce
+            super.velocity.y
+
             thrustTimeRemaining -= thrustTime
+        } else {
+            // Safe landing
+            if (velocity.y < 0) && (position.y < 300)
+            {
+                velocity = velocity * 0.1
+            }
         }
         super.tick(dt)
     }
@@ -136,5 +155,6 @@ while simulation.particles.count > 0 &&
       simulation.time < 500 {
         simulation.tick(1.0)
 }
+
 
 
