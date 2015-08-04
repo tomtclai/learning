@@ -1,6 +1,6 @@
 /*jslint browser:true */
 
-var model, controller, catView, catListView;
+var model, controller, catView, catListView, adminView;
 model = {
     cats: null,
     currentCat: null,
@@ -24,27 +24,59 @@ controller = {
         model.init();
         catListView.init();
         catView.init();
+        adminView.init();
+        controller.hideAdminPane();
     },
 
     getCurrentCat: function() {
         return model.currentCat;
     },
-
+    getCurrentCatName: function() {
+        return model.currentCat.name;
+    },
+    getCurrentCatImgSrc: function() {
+        return model.currentCat.img;
+    },
+    getCurrentCatClickCount: function() {
+        return model.currentCat.count;
+    },
     getCats: function() {
         return model.cats;
     },
 
     setCurrentCat: function(cat) {
         model.currentCat = cat;
+        catView.render();
     },
-
+    setCurrentCatName: function(name) {
+        model.currentCat.name = name;
+        catView.render();
+        catListView.render();
+    },
+    setCurrentCatImgSrc: function(img) {
+        model.currentCat.img = img;
+        catView.render();
+    },
+    setCurrentCatClickCount: function(count) {
+        model.currentCat.count = count;
+        catView.render();
+    },
     incrementCounter: function() {
         model.currentCat.count++;
         catView.render();
     },
-
+    hideAdminPane: function() {
+        $(adminView.parentView).hide();
+    },
+    showAdminPane: function() {
+        $(adminView.parentView).show();
+    },
     adminButtonClicked: function() {
         adminView.init();
+        controller.showAdminPane();
+    },
+    renderAdmin: function() {
+        adminView.render();
     }
 };
 
@@ -57,6 +89,8 @@ catView = {
         this.img.click(function() {
             controller.incrementCounter();
         });
+        this.adminButton = $('#showAdminView');
+        $(this.adminButton).click(controller.adminButtonClicked);
         this.render();
     },
     render: function() {
@@ -65,12 +99,11 @@ catView = {
             this.count.text(currentCat.count);
             this.catName.text(currentCat.name);
             this.img.attr('src', currentCat.img);
-            $(catBox).append(
-                $('<button>').attr('id', 'admin').text('Admin').click(
-                    controller.adminButtonClicked
-                ));
+            $(this.adminButton).css('display', '');
+            // this.adminButton.value('Admin');
+            $()
         }
-
+        controller.renderAdmin();
 
     }
 };
@@ -84,7 +117,7 @@ catListView = {
         var cat, elem, i;
         var cats = controller.getCats();
 
-        this.catList.innerHTML = '';
+        $(this.catList).text('');
 
         for (i = 0; i < cats.length; i++) {
             cat = cats[i];
@@ -110,13 +143,39 @@ catListView = {
 
 adminView = {
     init: function() {
+        this.parentView = $('#adminForm');
+        $('#adminForm').hide();
         this.nameLabel = $('#changeName');
+        this.newName = $('#newName');
         this.urlLabel = $('#changeURL');
+        this.newURL = $('#newURL');
         this.numberLabel = $('#changeNumber');
+        this.newNumber = $('#newNumber');
         this.render();
+        console.log('adminview init');
+        $('#dismiss').click(controller.hideAdminPane);
+        $('#submit').click(adminView.saveButtonPressed);
+
     },
     render: function() {
-        console.log('hi');
+        // $('#adminForm').css('visibility', '');
+        if (controller.getCurrentCat) {
+            this.nameLabel.text('Cat Name');
+            $(this.newName).val(controller.getCurrentCatName);
+            this.urlLabel.text('Image Source');
+            $(this.newURL).val(controller.getCurrentCatImgSrc);
+            this.numberLabel.text('Click Count');
+            $(this.newNumber).val(controller.getCurrentCatClickCount);
+        }
+    },
+    saveButtonPressed: function() {
+        adminView.saveChanges();
+        $(this.parentView)
+    },
+    saveChanges: function() {
+        controller.setCurrentCatName($(adminView.newName).val());
+        controller.setCurrentCatImgSrc($(adminView.newURL).val());
+        controller.setCurrentCatClickCount($(adminView.newNumber).val());
     }
 }
 
