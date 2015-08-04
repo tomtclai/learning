@@ -11,3 +11,4 @@ This repository contains work and/or practices I typed going through various tec
  - [CSS Secrets](CSS-Secrets/)
  - [JavaScript Design Patterns](Udacity.com/JavaScript-Design-Patterns/)
  - [Cocoa Programing for OSX](Cocoa-Programming-for-OSX)
+ - [Effective Modern C++]
