@@ -49,17 +49,24 @@
 - (int)match:(NSArray *)otherCards
 {
     int score = 0;
-    if ([otherCards count]==1) {
-        id card = [otherCards firstObject];
-        // introspection makes casting safe
-        if ([card isKindOfClass:[PlayingCard class]]) {
-            PlayingCard *otherCard = [otherCards firstObject];
-            if ([self.suit isEqualToString:otherCard.suit]) {
-                score = 1;
-            } else if (self.rank == otherCard.rank) {
-                score = 4;
+    if ([otherCards count]!=0) {
+        for (Card *card in otherCards)
+        {
+            // introspection makes casting safe
+            if ([card isKindOfClass:[PlayingCard class]]) {
+                PlayingCard *otherCard = [otherCards firstObject];
+                if ([self.suit isEqualToString:otherCard.suit]) {
+                    score += 1;
+                } else if (self.rank == otherCard.rank) {
+                    score += 4;
+                }
+                if (!score) {
+                    otherCard.matched = YES;
+                    self.matched = YES;
+                }
             }
         }
+        
     }
     return score;
 }

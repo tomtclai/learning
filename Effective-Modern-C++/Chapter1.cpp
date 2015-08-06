@@ -81,3 +81,6 @@ constexpr std::size_t arraySize(T (&)[N]) noexcept
 {
     return N;
 }
+
+int keyVals[] = {1, 3, 7, 9, 11, 22, 35};
+std::array<int, arraySize(keyVals)> mappedVals; //

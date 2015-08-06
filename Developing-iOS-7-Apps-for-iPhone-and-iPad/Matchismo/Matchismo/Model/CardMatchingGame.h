@@ -12,6 +12,10 @@
 
 // desginated initializer
 - (instancetype)initWithCardCount:(NSUInteger)count
+                        usingDeck:(Deck *)deck
+                 numOfCardsToPick:(NSUInteger)numOfCardsToPick;
+
+- (instancetype)initWithCardCount:(NSUInteger)count
                         usingDeck:(Deck *)deck;
 
 - (void)chooseCardAtIndex:(NSUInteger)index;

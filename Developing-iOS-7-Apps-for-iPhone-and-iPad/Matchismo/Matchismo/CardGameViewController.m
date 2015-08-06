@@ -1,23 +1,24 @@
 //
-//  ViewController.m
+//  CardGameVIewController.m
 //  Matchismo
 //
 //  Created by Tom Lai on 8/5/15.
 //  Copyright (c) 2015 Lai. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "CardGameVIewController.h"
 #import "Deck.h"
-#import "PlayingCardDeck.h"
+//#import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
-@interface ViewController ()
+@interface CardGameVIewController ()
 @property (nonatomic, strong) Deck* deck;
 @property (nonatomic, strong) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *gameModeSwitch;
 @end
 
-@implementation ViewController
+@implementation CardGameVIewController
 
 - (CardMatchingGame *)game {
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
@@ -25,9 +26,9 @@
     return _game;
 }
 
-- (Deck *)createDeck
+- (Deck *)createDeck // abstract
 {
-    return [[PlayingCardDeck alloc]init];
+    return nil;
 }
 
 - (IBAction)touchCardButton:(UIButton *)sender
@@ -60,6 +61,10 @@
 - (UIImage *)backgroundImageForCard:(Card *)card
 {
     return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardback"];
+}
+- (IBAction)touchRestartButton {
+    self.game = nil;
+    [self updateUI];
 }
 
 @end
