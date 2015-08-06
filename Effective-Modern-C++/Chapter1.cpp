@@ -39,3 +39,45 @@ f(x);       // T: int&          param: int&
 f(cx);      // T: const int&    param: const int&
 f(rx);      // T: const int&    param: const int&
 f(27);      // T: int           param: int&&
+
+// Case 3: not pointer nor reference
+template<typename T>
+void f(T param);       // param is passed by value
+
+int x = 27;
+const int cx = x;
+const int& rx = x;
+
+f(x);       // T: int           param: int
+f(cx);      // T: int           param: int
+f(rx);      // T: int           param: int
+
+const char* const ptr = "const pointer to const object"
+f(ptr);     // char * const. ptr is copied so the
+            // constness of the ptr itself is ignored
+
+// Array arguments
+const char name[] = "J. P. Briggs"; // names type is
+                                    // const char[13]
+f(name); // name is array but deduced as const char*
+
+// there is no such thing as a function parameter that's an array
+// although the syntax is legal
+void myFunc(int param[]);
+// it is treated as a pointer declaration
+void myFunc(int * param);
+
+
+// But functions can declare paramters that are *references* to arays
+
+template<typename T>
+void f(T& param);
+
+f(name); // pass array to F, T is deduced to be const char [13]
+         // f's paramter is const char(&)[13]
+
+template<typename T, std::size_t N>
+constexpr std::size_t arraySize(T (&)[N]) noexcept
+{
+    return N;
+}
