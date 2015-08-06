@@ -60,9 +60,8 @@
                 } else if (self.rank == otherCard.rank) {
                     score += 4;
                 }
-                if (!score) {
+                if (score) {
                     otherCard.matched = YES;
-                    self.matched = YES;
                 }
             }
         }

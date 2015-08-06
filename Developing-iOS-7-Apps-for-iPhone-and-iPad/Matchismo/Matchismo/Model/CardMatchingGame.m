@@ -13,11 +13,17 @@
 // use readwrite to redeclare
 @property (nonatomic, readwrite) NSInteger score;
 @property (nonatomic, strong) NSMutableArray *cards; // of Card
-@property (nonatomic) NSUInteger numOfCardsToPick;
+@property (nonatomic) const NSUInteger numOfCardsToPick;
+@property (nonatomic, strong) NSMutableArray *currentlySelectedCards;
 @end
 
 @implementation CardMatchingGame
 
+-(NSMutableArray *)currentlySelectedCards
+{
+    if (!_currentlySelectedCards) _currentlySelectedCards = [[NSMutableArray alloc]init];
+    return _currentlySelectedCards;
+}
 
 -(NSMutableArray *)cards
 {
@@ -31,7 +37,7 @@
 {
     return [self initWithCardCount:count
                          usingDeck:deck
-                  numOfCardsToPick:2];
+                  numOfCardsToPick:3];
 }
 
 - (instancetype)initWithCardCount:(NSUInteger)count
@@ -65,31 +71,31 @@ static const int COST_TO_CHOOSE = 4;
 
 - (void)chooseCardAtIndex:(NSUInteger)index
 {
-    NSMutableArray* matchableCards = [NSMutableArray array];
-    Card *card = [self cardAtIndex:index];
-    if (!card.isMatched) {
-        if (card.isChosen) {
-            card.chosen = NO;
+    Card *thisCard = [self cardAtIndex:index];
+    if (!thisCard.isMatched) {
+        if (thisCard.isChosen) {
+            thisCard.chosen = NO;
+            [self.currentlySelectedCards removeObject:thisCard];
         } else {
-            card.chosen = YES;
+            thisCard.chosen = YES;
+            [self.currentlySelectedCards addObject:thisCard];
+            
             self.score -= COST_TO_CHOOSE;
-            for (Card *otherCard in self.cards) {
-                if (otherCard.isChosen && !otherCard.isMatched) {
-                    [matchableCards addObject:otherCard];
-                }
-            }
-            if ([matchableCards count]+1 == self.numOfCardsToPick)
+            if ([self.currentlySelectedCards count] >= self.numOfCardsToPick)
             {
-                int matchScore = [card match:matchableCards];
+                int matchScore = [thisCard match:self.currentlySelectedCards];
                 if (matchScore ) {
                     self.score += matchScore * MATCH_BONUS;
+                    [self.currentlySelectedCards removeAllObjects];
+                    
                 } else {
                     self.score -= MISMATCH_PENALTY;
+                    Card* cardToUnchose= [self.currentlySelectedCards objectAtIndex:0];
+                    cardToUnchose.chosen = NO;
+                    [self.currentlySelectedCards removeObjectAtIndex:0];
+                    
                 }
             }
-            
-            
-            
         }
     }
 }
