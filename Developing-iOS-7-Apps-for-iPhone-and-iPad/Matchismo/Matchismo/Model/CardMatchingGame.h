@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "Deck.h"
-@interface CardMatchingGame : NSObject
 
+@interface CardMatchingGame : NSObject
+extern const NSString * lastMoveWasProfitableKey;
+extern const NSString * lastSelectedCardsKey;
+extern const NSString * changeInScoreAbsKey;
+extern const NSString * winningComboKey;
 // desginated initializer
 - (instancetype)initWithCardCount:(NSUInteger)count
                         usingDeck:(Deck *)deck
@@ -22,4 +26,5 @@
 - (Card *)cardAtIndex:(NSUInteger)index;
 
 @property (nonatomic, readonly) NSInteger score;
+@property (nonatomic, readonly) NSDictionary *result;
 @end

@@ -54,14 +54,15 @@
         {
             // introspection makes casting safe
             if ([card isKindOfClass:[PlayingCard class]]) {
-                PlayingCard *otherCard = [otherCards firstObject];
+                PlayingCard *otherCard = (PlayingCard*) card;
+                if (otherCard == self) {
+                    continue;
+                }
                 if ([self.suit isEqualToString:otherCard.suit]) {
                     score += 1;
-                } else if (self.rank == otherCard.rank) {
-                    score += 4;
                 }
-                if (score) {
-                    otherCard.matched = YES;
+                if (self.rank == otherCard.rank) {
+                    score += 4;
                 }
             }
         }

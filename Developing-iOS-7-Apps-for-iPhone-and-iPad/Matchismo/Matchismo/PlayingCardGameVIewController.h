@@ -7,7 +7,11 @@
 //
 
 #import "CardGameVIewController.h"
-
+extern const NSString * lastMoveWasProfitableKey;
+extern const NSString * lastSelectedCardsKey;
+extern const NSString * changeInScoreAbsKey;
+extern const NSString * winningComboKey;
 @interface PlayingCardGameVIewController : CardGameVIewController
+
 
 @end

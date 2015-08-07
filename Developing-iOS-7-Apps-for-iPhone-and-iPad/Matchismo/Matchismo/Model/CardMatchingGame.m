@@ -14,15 +14,31 @@
 @property (nonatomic, readwrite) NSInteger score;
 @property (nonatomic, strong) NSMutableArray *cards; // of Card
 @property (nonatomic) const NSUInteger numOfCardsToPick;
-@property (nonatomic, strong) NSMutableArray *currentlySelectedCards;
+@property (nonatomic, strong) NSMutableArray *matchableCards;
+@property (nonatomic, strong, readwrite) NSMutableDictionary *resultStore;
 @end
 
 @implementation CardMatchingGame
+const NSString * lastMoveWasProfitableKey = @"lastMoveWasProfitable";
+const NSString * lastSelectedCardsKey = @"lastSelectedCards";
+const NSString * changeInScoreAbsKey = @"changeInScoreAbs";
+const NSString * winningComboKey = @"winningCombo";
 
--(NSMutableArray *)currentlySelectedCards
+-(NSMutableDictionary *)resultStore
 {
-    if (!_currentlySelectedCards) _currentlySelectedCards = [[NSMutableArray alloc]init];
-    return _currentlySelectedCards;
+    if (!_resultStore) _resultStore = [NSMutableDictionary dictionary];
+    return (NSMutableDictionary*) _resultStore;
+}
+
+-(NSMutableDictionary *)result
+{
+    return [_resultStore copy];
+}
+
+-(NSMutableArray *)matchableCards
+{
+    if (!_matchableCards) _matchableCards = [[NSMutableArray alloc]init];
+    return _matchableCards;
 }
 
 -(NSMutableArray *)cards
@@ -37,7 +53,7 @@
 {
     return [self initWithCardCount:count
                          usingDeck:deck
-                  numOfCardsToPick:3];
+                  numOfCardsToPick:2];
 }
 
 - (instancetype)initWithCardCount:(NSUInteger)count
@@ -65,39 +81,73 @@
 }
 
 
-static const int MISMATCH_PENALTY = 2;
-static const int MATCH_BONUS = 4;
-static const int COST_TO_CHOOSE = 4;
 
 - (void)chooseCardAtIndex:(NSUInteger)index
 {
+    static const int COST_TO_CHOOSE = 0;
     Card *thisCard = [self cardAtIndex:index];
     if (!thisCard.isMatched) {
         if (thisCard.isChosen) {
             thisCard.chosen = NO;
-            [self.currentlySelectedCards removeObject:thisCard];
+            [self.matchableCards removeObject:thisCard];
         } else {
             thisCard.chosen = YES;
-            [self.currentlySelectedCards addObject:thisCard];
-            
+            [self.matchableCards addObject:thisCard];
+
             self.score -= COST_TO_CHOOSE;
-            if ([self.currentlySelectedCards count] >= self.numOfCardsToPick)
+            if ([self.matchableCards count] == self.numOfCardsToPick)
             {
-                int matchScore = [thisCard match:self.currentlySelectedCards];
-                if (matchScore ) {
-                    self.score += matchScore * MATCH_BONUS;
-                    [self.currentlySelectedCards removeAllObjects];
-                    
-                } else {
-                    self.score -= MISMATCH_PENALTY;
-                    Card* cardToUnchose= [self.currentlySelectedCards objectAtIndex:0];
-                    cardToUnchose.chosen = NO;
-                    [self.currentlySelectedCards removeObjectAtIndex:0];
-                    
-                }
+                [self calculateScore];
             }
         }
     }
+}
+
+- (void)calculateScore
+{
+    static const int MISMATCH_PENALTY = 9;
+    int MATCH_BONUS = 5 / [self numOfCardsToPick] ;
+
+    int sumScore =0;
+    NSMutableArray *matched = [NSMutableArray array];
+    for (Card* card in self.matchableCards)
+    {
+        int matchScore = [card match:self.matchableCards];
+        if (matchScore ) {
+            sumScore += matchScore;
+            [matched addObject:card];
+        }
+    }
+    
+    self.resultStore[lastSelectedCardsKey]=[self.matchableCards copy];
+    self.resultStore[winningComboKey]=[matched copy];
+    if ([matched count]==0)
+    {
+        // 0 out of 3 match -> unchoose the last one. deselect
+        Card* card = self.matchableCards[0];
+        card.chosen = NO;
+        [self.matchableCards removeObjectAtIndex:0];
+        self.score -= MISMATCH_PENALTY;
+        
+        self.resultStore[lastMoveWasProfitableKey]=@NO;
+        self.resultStore[changeInScoreAbsKey]=@(MISMATCH_PENALTY);
+    }
+    else
+    {
+        // 2 out of 3 match -> set 2 as matched. deselect
+        // 3 out of 3 match -> set 3 as matched. deselect
+        int pointsEarned = sumScore + sumScore * MATCH_BONUS;
+        self.resultStore[lastMoveWasProfitableKey]=@YES;
+        self.resultStore[changeInScoreAbsKey]=@(pointsEarned);
+        self.score += pointsEarned;
+        for (Card* card in matched)
+        {
+            card.matched = YES;
+            [self.matchableCards removeObject:card];
+        }
+    }
+    
+
 }
 
 - (instancetype)init {
