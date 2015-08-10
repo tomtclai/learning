@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kLP-fi-XAg">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
+    </dependencies>
+    <scenes>
+        <!--Table View Controller-->
+        <scene sceneID="PTT-C4-SXF">
+            <objects>
+                <tableViewController id="G5u-H1-qn5" customClass="WTTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="s3C-Hw-fGA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WeatherCell" id="5cF-Kx-RpK">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5cF-Kx-RpK" id="RD9-pj-DZh">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="BTK-Yt-OMy" kind="push" identifier="WeatherDetailSegue" id="LCM-Wf-akh"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="G5u-H1-qn5" id="n6m-QN-S40"/>
+                            <outlet property="delegate" destination="G5u-H1-qn5" id="Sge-nD-963"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="JSON" id="JmA-Un-Ivm">
+                            <connections>
+                                <action selector="jsonTapped:" destination="G5u-H1-qn5" id="euR-c7-7Tw"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="PLIST" id="gVA-pI-Pfu">
+                            <connections>
+                                <action selector="plistTapped:" destination="G5u-H1-qn5" id="yeR-Tt-qnY"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="XML" id="6Rl-cl-TXK">
+                            <connections>
+                                <action selector="xmlTapped:" destination="G5u-H1-qn5" id="SFU-vD-Oug"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="74X-AA-jam"/>
+                        <barButtonItem title="Client" id="mCo-ZF-Xyb">
+                            <connections>
+                                <action selector="clientTapped:" destination="G5u-H1-qn5" id="ba8-y8-rJ4"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="xgV-Cx-oo1">
+                        <barButtonItem key="leftBarButtonItem" title="Clear" id="9FS-d5-0x0">
+                            <connections>
+                                <action selector="clear:" destination="G5u-H1-qn5" id="Kic-JM-Byi"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="API" id="UfK-kE-ihT">
+                            <connections>
+                                <action selector="apiTapped:" destination="G5u-H1-qn5" id="b6a-tr-ClE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RX4-Lf-grC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="369" y="209"/>
+        </scene>
+        <!--Weather Animation View Controller-->
+        <scene sceneID="eDT-B5-JtJ">
+            <objects>
+                <viewController id="BTK-Yt-OMy" customClass="WeatherAnimationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="T65-xu-yRG"/>
+                        <viewControllerLayoutGuide type="bottom" id="7Go-Am-2c8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="96D-aJ-kSt">
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cY9-Jv-pI8">
+                                <rect key="frame" x="0.0" y="1" width="320" height="459"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eui-Cg-FI5">
+                                <rect key="frame" x="20" y="399" width="280" height="41"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eui-Cg-FI5" firstAttribute="leading" secondItem="96D-aJ-kSt" secondAttribute="leading" constant="20" symbolic="YES" id="33J-Y1-jsY"/>
+                            <constraint firstItem="cY9-Jv-pI8" firstAttribute="trailing" secondItem="96D-aJ-kSt" secondAttribute="trailing" id="7Td-So-VsM"/>
+                            <constraint firstItem="cY9-Jv-pI8" firstAttribute="top" secondItem="96D-aJ-kSt" secondAttribute="top" constant="1" id="7hf-2L-poq"/>
+                            <constraint firstItem="eui-Cg-FI5" firstAttribute="top" secondItem="T65-xu-yRG" secondAttribute="bottom" constant="399" placeholder="YES" id="9X3-Qj-lAa"/>
+                            <constraint firstItem="eui-Cg-FI5" firstAttribute="centerX" secondItem="cY9-Jv-pI8" secondAttribute="centerX" id="UKh-35-yqA"/>
+                            <constraint firstItem="cY9-Jv-pI8" firstAttribute="leading" secondItem="96D-aJ-kSt" secondAttribute="leading" id="Y07-hA-M1P"/>
+                            <constraint firstItem="7Go-Am-2c8" firstAttribute="top" secondItem="eui-Cg-FI5" secondAttribute="bottom" constant="20" id="vNg-e5-pdi"/>
+                            <constraint firstItem="cY9-Jv-pI8" firstAttribute="bottom" secondItem="96D-aJ-kSt" secondAttribute="bottom" id="yDK-iN-5DV"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="aqd-Uf-x9x"/>
+                        <barButtonItem systemItem="trash" id="K50-XB-x2J">
+                            <connections>
+                                <action selector="deleteBackgroundImage:" destination="BTK-Yt-OMy" id="8CV-4b-YGr"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="pbT-EF-ELh">
+                        <barButtonItem key="rightBarButtonItem" title="Update Background" id="Lfp-WY-6lW">
+                            <connections>
+                                <action selector="updateBackgroundImage:" destination="BTK-Yt-OMy" id="XW3-49-4w7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="cY9-Jv-pI8" id="Vkv-82-HC9"/>
+                        <outlet property="temperatureLabel" destination="eui-Cg-FI5" id="7av-pc-kag"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Ht-Ba-J2g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="854" y="209"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YpG-al-jQh">
+            <objects>
+                <navigationController id="kLP-fi-XAg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Re0-Ms-UJF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="G5u-H1-qn5" kind="relationship" relationship="rootViewController" id="29K-yd-Uuw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G1H-gL-JNB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-157" y="209"/>
+        </scene>
+    </scenes>
+</document>

@@ -24,7 +24,6 @@
 //    _contents = contents;
 //}
 
-
 - (int)match:(NSArray *)cards
 {
     int score = 0;
