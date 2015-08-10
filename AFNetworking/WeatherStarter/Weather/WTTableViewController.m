@@ -14,7 +14,12 @@
 #import "NSDictionary+weather_package.h"
 static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/weather_sample/";
 @interface WTTableViewController ()
+@property(nonatomic, strong) NSMutableDictionary *currentDictionary;
+@property(nonatomic, strong) NSMutableDictionary *xmlWeather;
+@property(nonatomic, strong) NSString *elementName;
+@property(nonatomic, strong) NSMutableString *outstring;
 @property(strong) NSDictionary *weather;
+
 @end
 
 @implementation WTTableViewController
@@ -83,22 +88,51 @@ static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/wea
 
 - (IBAction)jsonTapped:(id)sender
 {
-    // 1
+    // You first create a string representing the full url from theb ase URL string.
+    // This is then used to create an NSURL object, which is used to make an NSURLRequest.
     NSString *string = [NSString stringWithFormat:@"%@weather.php?format=json", BaseURLString];
     NSURL *url = [NSURL URLWithString:string];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
-    // 2
+    // AFHTTPRequestOperation is an all-in-one class for handling HTTP transfers across the network.
+    // You tell it that the response should be read as JSON by setting the response Serializer property
+    // to the default JSON serializer. AFNetworking will then take care of parsing the JSON for you.
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        // 3
         self.weather = (NSDictionary *)responseObject;
         self.title = @"JSON Retrived";
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        // 4
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle: @"Error Retrieving Weather"
+                                                            message:[error localizedDescription]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }];
+    // you must explicitly tell the operation to start or nothing wil happen
+    [operation start];
+    
+}
+
+- (IBAction)plistTapped:(id)sender
+{
+    NSString *string = [NSString stringWithFormat:@"%@weather.php?format=plist", BaseURLString];
+    NSURL *url = [NSURL URLWithString:string];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    // Make sure to set the responseSerializer correctly
+    operation.responseSerializer = [AFPropertyListResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        self.weather = (NSDictionary *)responseObject;
+        self.title = @"PLIST Retrieved";
+        [self.tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
                                                             message:[error localizedDescription]
                                                            delegate:nil
                                                   cancelButtonTitle:@"Ok"
@@ -107,17 +141,34 @@ static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/wea
     }];
     
     [operation start];
-    
-}
-
-- (IBAction)plistTapped:(id)sender
-{
-    
 }
 
 - (IBAction)xmlTapped:(id)sender
 {
+    NSString *string = [NSString stringWithFormat:@"%@weather.php?format=xml", BaseURLString];
+    NSURL *url = [NSURL URLWithString:string];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    // Make sure to set the responseSerializer correctly
+    operation.responseSerializer = [AFXMLParserResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSXMLParser *XMLParser = (NSXMLParser *)responseObject;
+        XMLParser.shouldProcessNamespaces = YES;
+        // XMLparses.delegate = self;
+        // [XMLParsse parse];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
+                                                            message:[error localizedDescription]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }];
+    
+    [operation start];
 }
 
 - (IBAction)clientTapped:(id)sender
@@ -139,7 +190,19 @@ static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/wea
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    if (!self.weather)
+        return 0;
+    switch (section) {
+        case 0: {
+            return 1;
+        }
+        case 1: {
+            NSArray *upcomingWeather = [self.weather upcomingWeather];
+            return [upcomingWeather count];
+        }
+        default:
+            return 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -147,8 +210,23 @@ static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/wea
     static NSString *CellIdentifier = @"WeatherCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    NSDictionary *daysWeather = nil;
     
+    switch (indexPath.section) {
+        case 0: {
+            daysWeather = [self.weather currentCondition];
+            break;
+        }
+        case 1: {
+            NSArray *upcomingWeather = [self.weather upcomingWeather];
+            daysWeather = upcomingWeather[indexPath.row];
+            break;
+        }
+        default:
+            break;
+    }
+    
+    cell.textLabel.text = [daysWeather weatherDescription];
     
     return cell;
 }
