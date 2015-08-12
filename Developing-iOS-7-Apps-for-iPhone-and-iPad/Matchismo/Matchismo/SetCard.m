@@ -126,10 +126,11 @@ typedef enum matchResult : NSUInteger
     } else {
         score = 0;
     }
-    
-    
+
+    //TODO: go look at http://cs193p.m2m.at/cs193p-assignment-3-task-2-fall-2013-14/
     return score;
 }
+
 - (matchResult)matchHelper:(NSArray *)attrStrings
 {
     matchResult res = 0;

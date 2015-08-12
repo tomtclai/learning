@@ -12,8 +12,8 @@
 
 @property(strong, nonatomic) NSString *shape;
 @property(strong, nonatomic) NSString *color;
-@property(nonatomic) NSUInteger number;
 @property(strong, nonatomic) NSString *shading;
+@property(nonatomic) NSUInteger number;
 
 + (NSArray *)validShapes;
 + (NSArray *)validColors;
