@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Lai. All rights reserved.
 //
 
-#import "CardGameVIewController.h"
+#import "CardGameViewController.h"
 #import "Deck.h"
 //#import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
-@interface CardGameVIewController ()
+@interface CardGameViewController ()
 @property (nonatomic, strong) Deck* deck;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation CardGameVIewController
+@implementation CardGameViewController
 
 - (CardMatchingGame *)game {
     int howManyCard = self.gameModeSwitch.on? 3 : 2;
@@ -60,13 +60,13 @@
 
 - (NSString *)titleForCard:(Card *)card
 {
-    return card.isChosen ? card.contents : @"";
+    return card.isChosen ? card.contents : [[NSString alloc]init];
 //    return card.contents; //for debug
 }
 
 - (UIImage *)backgroundImageForCard:(Card *)card
 {
-    return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardback"];
+    return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardfront"];
 }
 
 - (IBAction)changeGameMode:(UISwitch *)sender {

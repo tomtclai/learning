@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Lai. All rights reserved.
 //
 
-#import "PlayingCardGameVIewController.h"
+#import "PlayingCardGameViewController.h"
 #import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
-@interface PlayingCardGameVIewController ()
+@interface PlayingCardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *statusTextLabel;
 @end
-@implementation PlayingCardGameVIewController
+@implementation PlayingCardGameViewController
 
 - (Deck *)createDeck
 {

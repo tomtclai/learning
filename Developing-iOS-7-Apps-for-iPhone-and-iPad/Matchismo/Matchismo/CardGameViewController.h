@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "Deck.h"
 @class CardMatchingGame;
-@interface CardGameVIewController : UIViewController
+@interface CardGameViewController : UIViewController
 // protected
 // for subclasses
 - (Deck *)createDeck; // abstract

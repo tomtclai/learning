@@ -38,6 +38,6 @@
 
 - (NSString *)description
 {
-    return self.contents;
+    return [NSString stringWithFormat:@"%@",self.contents];
 }
 @end

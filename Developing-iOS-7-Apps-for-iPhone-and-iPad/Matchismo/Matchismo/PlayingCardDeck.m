@@ -20,7 +20,7 @@
                 PlayingCard *card = [[PlayingCard alloc]init];
                 card.rank = rank;
                 card.suit = suit;
-                [self addCard:card]; // think this is the homework
+                [self addCard:card];
             }
         }
     }
