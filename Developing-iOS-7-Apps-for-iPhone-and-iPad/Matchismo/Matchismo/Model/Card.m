@@ -40,4 +40,10 @@
 {
     return [NSString stringWithFormat:@"%@",self.contents];
 }
+
+- (NSUInteger)numberOfMatchingCards
+{
+    if (!_numberOfMatchingCards) _numberOfMatchingCards = 2;
+    return _numberOfMatchingCards;
+}
 @end

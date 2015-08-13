@@ -35,6 +35,32 @@
 - (void)updateUI
 {
     [super updateUI];
+    [self displayCards];
+    CardMatchingGame* game =  self.game;
+    if (game.result[changeInScoreAbsKey] !=0)
+    {
+        NSNumber* profit = game.result[lastMoveWasProfitableKey];
+        NSArray *cards = game.result[lastSelectedCardsKey];
+        NSString *cardsStr = [cards componentsJoinedByString:@" "];
+        NSArray *winningCombo = game.result[winningComboKey];
+        NSString *winningCardsStr = [winningCombo componentsJoinedByString:@" "];
+        NSNumber* scoreChange = game.result[changeInScoreAbsKey];
+        
+        if ([profit boolValue])
+        {
+            self.statusTextLabel.text =
+            [NSString stringWithFormat:@"Matched %@ for %@ points",winningCardsStr,scoreChange];
+            
+        } else
+        {
+            
+            self.statusTextLabel.text =
+            [NSString stringWithFormat:@"%@ don't match: \n%@ point penalty",cardsStr, scoreChange];
+        }
+    }
+}
+
+- (void) displayCards {
     const NSDictionary *shapes = @{@"ovals":@"●",
                                    @"squiggles":@"▲",
                                    @"diamonds":@"■"};
@@ -62,7 +88,7 @@
         [result addAttribute:NSForegroundColorAttributeName
                        value:colors[card.color]
                        range:NSMakeRange(0, [result length])];
-
+        
         
         // Shading
         if ([card.shading isEqualToString:@"outlined"]) {

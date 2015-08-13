@@ -105,7 +105,7 @@ const NSString * winningComboKey = @"winningCombo";
 
 - (void)calculateScore
 {
-    static const int MISMATCH_PENALTY = 0;
+    static const int MISMATCH_PENALTY = 1;
     int MATCH_BONUS = 5 / [self numOfCardsToPick] ;
 
     int sumScore =0;
