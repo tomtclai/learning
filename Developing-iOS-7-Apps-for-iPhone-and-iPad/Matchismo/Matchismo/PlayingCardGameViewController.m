@@ -9,6 +9,7 @@
 #import "PlayingCardGameViewController.h"
 #import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
+#import "HistoryViewController.h"
 @interface PlayingCardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *statusTextLabel;
 @end
@@ -33,14 +34,26 @@
         
         if ([profit boolValue])
         {
-            self.statusTextLabel.text =
-            [NSString stringWithFormat:@"Matched %@ for %@ points",winningCardsStr,scoreChange];
-
+            NSString *labelText = [NSString stringWithFormat:@"Matched %@ for %@ points",winningCardsStr,scoreChange];
+            self.statusTextLabel.text = labelText;
+            [[self log]appendString:labelText];
+            [[self log]appendString:@"\n"];
         } else
         {
-            
-            self.statusTextLabel.text =
-            [NSString stringWithFormat:@"%@ don't match: \n%@ point penalty",cardsStr, scoreChange];
+            NSString *labelText = [NSString stringWithFormat:@"%@ don't match: %@ point penalty",cardsStr, scoreChange];
+            self.statusTextLabel.text = labelText;
+            [[self log]appendString:labelText];
+            [[self log]appendString:@"\n"];
+        }
+    }
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showPlayCardHistory"]) {
+        
+        if ([segue.destinationViewController isKindOfClass:[HistoryViewController class]]) {
+            HistoryViewController* hvc = segue.destinationViewController;
+            hvc.history = [self log];
         }
     }
 }

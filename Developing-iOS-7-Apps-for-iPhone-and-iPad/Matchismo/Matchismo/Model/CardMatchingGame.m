@@ -15,24 +15,25 @@
 @property (nonatomic, strong) NSMutableArray *cards; // of Card
 @property (nonatomic) const NSUInteger numOfCardsToPick;
 @property (nonatomic, strong) NSMutableArray *matchableCards;
-@property (nonatomic, strong, readwrite) NSMutableDictionary *resultStore;
+@property (nonatomic, strong, readwrite) NSMutableDictionary *mutableResult;
 @end
 
 @implementation CardMatchingGame
-const NSString * lastMoveWasProfitableKey = @"lastMoveWasProfitable";
-const NSString * lastSelectedCardsKey = @"lastSelectedCards";
-const NSString * changeInScoreAbsKey = @"changeInScoreAbs";
-const NSString * winningComboKey = @"winningCombo";
+NSString * lastMoveWasProfitableKey = @"lastMoveWasProfitable";
+NSString * lastSelectedCardsKey = @"lastSelectedCards";
+NSString * changeInScoreAbsKey = @"changeInScoreAbs";
+NSString * winningComboKey = @"winningCombo";
 
--(NSMutableDictionary *)resultStore
+
+-(NSMutableDictionary *)mutableResult
 {
-    if (!_resultStore) _resultStore = [NSMutableDictionary dictionary];
-    return (NSMutableDictionary*) _resultStore;
+    if (!_mutableResult) _mutableResult = [NSMutableDictionary dictionary];
+    return (NSMutableDictionary*) _mutableResult;
 }
 
 -(NSMutableDictionary *)result
 {
-    return [_resultStore copy];
+    return [_mutableResult copy];
 }
 
 -(NSMutableArray *)matchableCards
@@ -99,6 +100,10 @@ const NSString * winningComboKey = @"winningCombo";
             {
                 [self calculateScore];
             }
+            else
+            {
+                [self.mutableResult setValue:0 forKey:changeInScoreAbsKey];
+            }
         }
     }
 }
@@ -119,8 +124,8 @@ const NSString * winningComboKey = @"winningCombo";
         }
     }
     
-    self.resultStore[lastSelectedCardsKey]=[self.matchableCards copy];
-    self.resultStore[winningComboKey]=[matched copy];
+    self.mutableResult[lastSelectedCardsKey]=[self.matchableCards copy];
+    self.mutableResult[winningComboKey]=[matched copy];
     if ([matched count]==0)
     {
         // 0 out of 3 match -> unchoose the last one. deselect
@@ -129,16 +134,16 @@ const NSString * winningComboKey = @"winningCombo";
         [self.matchableCards removeObjectAtIndex:0];
         self.score -= MISMATCH_PENALTY;
         
-        self.resultStore[lastMoveWasProfitableKey]=@NO;
-        self.resultStore[changeInScoreAbsKey]=@(MISMATCH_PENALTY);
+        self.mutableResult[lastMoveWasProfitableKey]=@NO;
+        self.mutableResult[changeInScoreAbsKey]=@(MISMATCH_PENALTY);
     }
     else
     {
         // 2 out of 3 match -> set 2 as matched. deselect
         // 3 out of 3 match -> set 3 as matched. deselect
         int pointsEarned = sumScore + sumScore * MATCH_BONUS;
-        self.resultStore[lastMoveWasProfitableKey]=@YES;
-        self.resultStore[changeInScoreAbsKey]=@(pointsEarned);
+        self.mutableResult[lastMoveWasProfitableKey]=@YES;
+        self.mutableResult[changeInScoreAbsKey]=@(pointsEarned);
         self.score += pointsEarned;
         for (Card* card in matched)
         {

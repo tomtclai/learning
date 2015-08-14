@@ -9,6 +9,7 @@
 #import "CardGameViewController.h"
 #import "Deck.h"
 //#import "PlayingCardDeck.h"
+
 #import "CardMatchingGame.h"
 @interface CardGameViewController ()
 @property (nonatomic, strong) Deck* deck;
@@ -20,7 +21,13 @@
 @end
 
 @implementation CardGameViewController
-
+- (History *) log
+{
+    if (!_log) {
+        _log = [[History alloc]init];
+    }
+    return _log;
+}
 - (CardMatchingGame *)game {
     int howManyCard = self.gameModeSwitch.on? 3 : 2;
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
@@ -66,7 +73,7 @@
 
 - (UIImage *)backgroundImageForCard:(Card *)card
 {
-    return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardfront"];
+    return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardback"];
 }
 
 - (IBAction)changeGameMode:(UISwitch *)sender {
@@ -77,6 +84,7 @@
 - (IBAction)touchRestartButton {
     self.gameModeSwitch.enabled = YES;
     self.game = nil;
+    self.log = nil;
     [self updateUI];
 }
 
