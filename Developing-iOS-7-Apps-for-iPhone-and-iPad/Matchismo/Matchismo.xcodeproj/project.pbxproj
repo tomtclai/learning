@@ -25,6 +25,7 @@
 		774197611B7BDF8B004A86E4 /* SetCardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774197601B7BDF8B004A86E4 /* SetCardGameViewController.m */; };
 		774572011B7D01FD003AD14E /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774572001B7D01FD003AD14E /* HistoryViewController.m */; };
 		774572041B7D020B003AD14E /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = 774572031B7D020B003AD14E /* History.m */; };
+		7746D2BC1B83972000E9D877 /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = 7746D2BB1B83972000E9D877 /* Grid.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,8 @@
 		774572001B7D01FD003AD14E /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		774572021B7D020B003AD14E /* History.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = History.h; sourceTree = "<group>"; };
 		774572031B7D020B003AD14E /* History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = History.m; sourceTree = "<group>"; };
+		7746D2BA1B83972000E9D877 /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Grid.h; path = "../../../../../Downloads/Grid 2/Grid.h"; sourceTree = "<group>"; };
+		7746D2BB1B83972000E9D877 /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Grid.m; path = "../../../../../Downloads/Grid 2/Grid.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +165,8 @@
 		770BA9301B72CCC1004DBFEF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7746D2BA1B83972000E9D877 /* Grid.h */,
+				7746D2BB1B83972000E9D877 /* Grid.m */,
 				770BA93D1B72E62A004DBFEF /* CardMatchingGame.h */,
 				770BA93E1B72E62A004DBFEF /* CardMatchingGame.m */,
 				770BA9341B72CF73004DBFEF /* PlayingCardDeck.m */,
@@ -293,6 +298,7 @@
 				770FB99A1B79148A002E9093 /* SetCard.m in Sources */,
 				770BA90D1B72C435004DBFEF /* AppDelegate.m in Sources */,
 				770BA93F1B72E62A004DBFEF /* CardMatchingGame.m in Sources */,
+				7746D2BC1B83972000E9D877 /* Grid.m in Sources */,
 				770BA90A1B72C435004DBFEF /* main.m in Sources */,
 				770BA93C1B72DE29004DBFEF /* PlayingCard.m in Sources */,
 				774572041B7D020B003AD14E /* History.m in Sources */,

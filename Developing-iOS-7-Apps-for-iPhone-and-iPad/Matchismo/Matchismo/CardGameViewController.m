@@ -8,20 +8,70 @@
 
 #import "CardGameViewController.h"
 #import "Deck.h"
-//#import "PlayingCardDeck.h"
-
+#import "Grid.h"
 #import "CardMatchingGame.h"
 @interface CardGameViewController ()
 @property (nonatomic, strong) Deck* deck;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *gameModeSwitch;
-
+@property (weak, nonatomic) IBOutlet UIView *cardView;
+@property (nonatomic, strong) Grid* grid;
 
 @end
 
 @implementation CardGameViewController
-- (History *) log
+#pragma mark - view controller life cycle
+const CGFloat elementAspectRatio = 52.0/77.0;
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    UIDevice *device = [UIDevice currentDevice];
+    [device beginGeneratingDeviceOrientationNotifications];
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    
+    [nc addObserver:self
+           selector:@selector(orientationChanged:)
+               name:UIDeviceOrientationDidChangeNotification
+             object:device];
+    
+    self.grid.size = self.cardView.bounds.size;
+    self.grid.cellAspectRatio = elementAspectRatio;
+    self.grid.minimumNumberOfCells = self.numCards = 30;
+}
+- (void)viewDidLayoutSubviews {
+    [self layoutButtons];
+}
+- (void)orientationChanged:(NSNotification *)note {
+    
+    self.grid.size = self.cardView.bounds.size;
+    [self layoutButtons];
+}
+
+- (void)dealloc {
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+}
+#pragma mark - instantiations
+- (Grid *)grid {
+    if (!_grid)
+    {
+        _grid = [[Grid alloc] init];
+    }
+    return _grid;
+}
+- (NSArray *)cardButtons
+{
+    if (!_cardButtons) {
+        NSMutableArray *tmp = [NSMutableArray array];
+        for (int i = 0 ; i < self.numCards; i++) {
+            UIButton *cardButton = [[UIButton alloc]init];
+            [tmp addObject:cardButton];
+        }
+        _cardButtons = tmp;
+    }
+    return _cardButtons;
+}
+- (History *)log
 {
     if (!_log) {
         _log = [[History alloc]init];
@@ -29,10 +79,9 @@
     return _log;
 }
 - (CardMatchingGame *)game {
-    int howManyCard = self.gameModeSwitch.on? 3 : 2;
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                           usingDeck:[self createDeck]
-                                                   numOfCardsToPick:howManyCard];
+                                                   numOfCardsToPick:self.gameModeSwitch.on? 3 : 2];
     return _game;
 }
 
@@ -40,7 +89,7 @@
 {
     return nil;
 }
-
+#pragma mark - buttons
 - (IBAction)touchCardButton:(UIButton *)sender
 {
     
@@ -86,6 +135,34 @@
     self.game = nil;
     self.log = nil;
     [self updateUI];
+}
+
+- (void)layoutButtons {
+    if (self.grid.inputsAreValid) {
+        NSUInteger row = self.grid.rowCount;
+        NSUInteger col = self.grid.columnCount;
+        
+        for (NSUInteger y = 0 ; y < row; y ++)
+        {
+            for (NSUInteger x = 0; x < col; x ++)
+            {
+                if (x+y > self.cardButtons.count) return;
+                
+                UIButton * buttonI = (UIButton *) self.cardButtons[x+y];
+                
+                [buttonI setFrame:[self.grid frameOfCellAtRow:y
+                                                     inColumn:x]];
+                buttonI.backgroundColor = [UIColor redColor];
+                NSLog(@"%f,%f", [self.grid frameOfCellAtRow:y
+                                                inColumn:x].origin.x,
+                      [self.grid frameOfCellAtRow:y
+                                         inColumn:x].origin.y);
+                
+                [self.cardView addSubview:buttonI];
+                //TODO: animate this
+            }
+        }
+    }
 }
 
 @end

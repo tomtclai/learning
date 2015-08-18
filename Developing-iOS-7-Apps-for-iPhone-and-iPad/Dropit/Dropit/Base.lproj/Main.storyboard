@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pjf-O8-Y9R" customClass="BezierPathView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="kEC-IP-hz3" appends="YES" id="vzg-zr-CI4"/>
+                                    <outletCollection property="gestureRecognizers" destination="v3D-fS-WIa" appends="YES" id="s1A-VN-v77"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" secondItem="pjf-O8-Y9R" secondAttribute="height" id="HHe-qv-Aky"/>
+                            <constraint firstAttribute="centerX" secondItem="pjf-O8-Y9R" secondAttribute="centerX" id="Jm1-VH-IDc"/>
+                            <constraint firstAttribute="centerY" secondItem="pjf-O8-Y9R" secondAttribute="centerY" id="YzA-GH-tG5"/>
+                            <constraint firstAttribute="width" secondItem="pjf-O8-Y9R" secondAttribute="width" id="pI7-Px-JGj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="gameView" destination="pjf-O8-Y9R" id="Uti-Ky-pAW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="kEC-IP-hz3">
+                    <connections>
+                        <action selector="tap:" destination="vXZ-lx-hvc" id="nB0-XJ-o6V"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="v3D-fS-WIa">
+                    <connections>
+                        <action selector="pan:" destination="vXZ-lx-hvc" id="f1z-zZ-rYv"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+        </scene>
+    </scenes>
+</document>

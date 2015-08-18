@@ -169,12 +169,13 @@
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"showSetCardHistory"]) {
+    if ([segue.identifier isEqualToString:@"showSetCardHistory"] &&
+        [segue.destinationViewController isKindOfClass:[HistoryViewController class]]) {
         
-        if ([segue.destinationViewController isKindOfClass:[HistoryViewController class]]) {
-            HistoryViewController* hvc = segue.destinationViewController;
-            hvc.history = [self log];
-        }
+        HistoryViewController* hvc = segue.destinationViewController;
+        hvc.history = [self log];
     }
+
 }
+
 @end

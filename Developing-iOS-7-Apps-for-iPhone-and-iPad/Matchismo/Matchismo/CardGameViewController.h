@@ -19,5 +19,6 @@
 - (Deck *)createDeck; // abstract
 - (void)updateUI;
 - (History *) log;
+@property (nonatomic) NSUInteger numCards;//must be set in subclass
 @end
 
