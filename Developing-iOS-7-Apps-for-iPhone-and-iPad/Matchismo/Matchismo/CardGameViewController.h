@@ -20,5 +20,6 @@
 - (void)updateUI;
 - (History *) log;
 @property (nonatomic) NSUInteger numCards;//must be set in subclass
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons; // maybe accessed in subclass
 @end
 

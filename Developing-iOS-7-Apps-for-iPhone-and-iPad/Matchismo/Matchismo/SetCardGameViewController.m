@@ -13,7 +13,7 @@
 #import "History.h"
 #import "HistoryViewController.h"
 @interface SetCardGameViewController ()
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray*cardButtons;
+//@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray*cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *statusTextLabel;
 
 
@@ -26,7 +26,7 @@
 }
 - (CardMatchingGame *)game
 {
-    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:20
                                                           usingDeck:[self createDeck]
                                                    numOfCardsToPick:3];
     return _game;
@@ -41,8 +41,6 @@
 // override
 - (void)updateUI
 {
-    
-
     [super updateUI];
     [self displayCards];
     CardMatchingGame* game =  self.game;

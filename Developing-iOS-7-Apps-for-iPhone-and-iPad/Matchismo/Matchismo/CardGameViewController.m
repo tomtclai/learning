@@ -12,7 +12,7 @@
 #import "CardMatchingGame.h"
 @interface CardGameViewController ()
 @property (nonatomic, strong) Deck* deck;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *gameModeSwitch;
 @property (weak, nonatomic) IBOutlet UIView *cardView;
@@ -37,7 +37,8 @@ const CGFloat elementAspectRatio = 52.0/77.0;
     
     self.grid.size = self.cardView.bounds.size;
     self.grid.cellAspectRatio = elementAspectRatio;
-    self.grid.minimumNumberOfCells = self.numCards = 30;
+    self.grid.minimumNumberOfCells = 30;
+    self.numCards = 30;
 }
 - (void)viewDidLayoutSubviews {
     [self layoutButtons];
@@ -146,25 +147,24 @@ const CGFloat elementAspectRatio = 52.0/77.0;
         {
             for (NSUInteger x = 0; x < col; x ++)
             {
-                if (cardI++ > 6) return;
-                NSLog(@"cardI = %d", cardI);
+                if (cardI >= self.numCards) return;
                 
-                UIButton * buttonI = (UIButton *) self.cardButtons[x+y];
-                buttonI.titleLabel.text = [NSString stringWithFormat:@"%d",cardI];
+                UIButton * buttonI = (UIButton *) self.cardButtons[cardI];
+
                 [buttonI setFrame:[self.grid frameOfCellAtRow:y
                                                      inColumn:x]];
-                buttonI.backgroundColor = [UIColor redColor];
-//                NSLog(@"%f,%f", [self.grid frameOfCellAtRow:y
-//                                                inColumn:x].origin.x,
-//                      [self.grid frameOfCellAtRow:y
-//                                         inColumn:x].origin.y);
                 
                 [buttonI addTarget:self
                             action:@selector(touchCardButton:)
                   forControlEvents:UIControlEventTouchUpInside];
-                [self.cardView setNeedsDisplay];
+                
+                [buttonI setTitleColor:[UIColor blackColor]
+                              forState:UIControlStateNormal];
+                
+                [self updateUI];
                 [self.cardView addSubview:buttonI];
                 //TODO: animate this
+                cardI++;
             }
         }
     }
