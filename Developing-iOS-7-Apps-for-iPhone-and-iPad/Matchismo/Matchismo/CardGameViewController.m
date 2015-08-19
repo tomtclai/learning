@@ -141,23 +141,28 @@ const CGFloat elementAspectRatio = 52.0/77.0;
     if (self.grid.inputsAreValid) {
         NSUInteger row = self.grid.rowCount;
         NSUInteger col = self.grid.columnCount;
-        
+        int cardI = 0;
         for (NSUInteger y = 0 ; y < row; y ++)
         {
             for (NSUInteger x = 0; x < col; x ++)
             {
-                if (x+y > self.cardButtons.count) return;
+                if (cardI++ > 6) return;
+                NSLog(@"cardI = %d", cardI);
                 
                 UIButton * buttonI = (UIButton *) self.cardButtons[x+y];
-                
+                buttonI.titleLabel.text = [NSString stringWithFormat:@"%d",cardI];
                 [buttonI setFrame:[self.grid frameOfCellAtRow:y
                                                      inColumn:x]];
                 buttonI.backgroundColor = [UIColor redColor];
-                NSLog(@"%f,%f", [self.grid frameOfCellAtRow:y
-                                                inColumn:x].origin.x,
-                      [self.grid frameOfCellAtRow:y
-                                         inColumn:x].origin.y);
+//                NSLog(@"%f,%f", [self.grid frameOfCellAtRow:y
+//                                                inColumn:x].origin.x,
+//                      [self.grid frameOfCellAtRow:y
+//                                         inColumn:x].origin.y);
                 
+                [buttonI addTarget:self
+                            action:@selector(touchCardButton:)
+                  forControlEvents:UIControlEventTouchUpInside];
+                [self.cardView setNeedsDisplay];
                 [self.cardView addSubview:buttonI];
                 //TODO: animate this
             }
