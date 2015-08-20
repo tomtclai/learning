@@ -25,7 +25,6 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w52-gy-CNr">
                                 <rect key="frame" x="16" y="72" width="343" height="501"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgL-rb-xQc">
                                 <rect key="frame" x="16" y="581" width="343" height="0.0"/>
@@ -223,6 +222,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="cardView" destination="2rO-1T-sPL" id="toh-My-1ke"/>
+                        <outlet property="scoreLabel" destination="IP6-dg-tHP" id="NrK-Xw-Xbo"/>
                         <outlet property="statusTextLabel" destination="cH6-jg-Efs" id="9bR-pX-ZsY"/>
                     </connections>
                 </viewController>

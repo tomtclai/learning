@@ -25,29 +25,17 @@
 const CGFloat elementAspectRatio = 52.0/77.0;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UIDevice *device = [UIDevice currentDevice];
-    [device beginGeneratingDeviceOrientationNotifications];
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    
-    [nc addObserver:self
-           selector:@selector(orientationChanged:)
-               name:UIDeviceOrientationDidChangeNotification
-             object:device];
     self.grid.size = self.cardView.bounds.size;
     self.grid.cellAspectRatio = elementAspectRatio;
     self.grid.minimumNumberOfCells = self.numCards;
 }
-- (void)viewWillAppear:(BOOL)animated
+
+- (void)viewWillLayoutSubviews
 {
+    self.grid.size = self.cardView.bounds.size;
     [self layoutButtons];
-    NSLog(@"viewWillAppear");
 }
-- (void)orientationChanged:(NSNotification *)note {
-    
-    [self layoutButtons];
-    NSLog(@"orientationChanged");
-}
+
 
 - (void)dealloc {
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
@@ -143,7 +131,7 @@ const CGFloat elementAspectRatio = 52.0/77.0;
 }
 
 - (void)layoutButtons {
-    self.grid.size = self.cardView.bounds.size;
+
     if (self.grid.inputsAreValid) {
         NSUInteger row = self.grid.rowCount;
         NSUInteger col = self.grid.columnCount;
@@ -158,7 +146,6 @@ const CGFloat elementAspectRatio = 52.0/77.0;
 
                 [buttonI setFrame:[self.grid frameOfCellAtRow:y
                                                      inColumn:x]];
-//                
                 [buttonI addTarget:self
                             action:@selector(touchCardButton:)
                   forControlEvents:UIControlEventTouchUpInside];
