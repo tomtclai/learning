@@ -26,6 +26,7 @@
 		774572011B7D01FD003AD14E /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774572001B7D01FD003AD14E /* HistoryViewController.m */; };
 		774572041B7D020B003AD14E /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = 774572031B7D020B003AD14E /* History.m */; };
 		77847FE01B851EE7004D5914 /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = 77847FDF1B851EE7004D5914 /* Grid.m */; };
+		77C848F11B867691008DC370 /* PlayingCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C848F01B867691008DC370 /* PlayingCardView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,8 @@
 		774572031B7D020B003AD14E /* History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = History.m; sourceTree = "<group>"; };
 		77847FDE1B851EE7004D5914 /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
 		77847FDF1B851EE7004D5914 /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
+		77C848EF1B867691008DC370 /* PlayingCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardView.h; sourceTree = "<group>"; };
+		77C848F01B867691008DC370 /* PlayingCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,7 @@
 				770BA9111B72C435004DBFEF /* Main.storyboard */,
 				774571FF1B7D01FD003AD14E /* HistoryViewController.h */,
 				774572001B7D01FD003AD14E /* HistoryViewController.m */,
+				77C848F21B86769B008DC370 /* View */,
 				770BA9301B72CCC1004DBFEF /* Model */,
 				770BA9141B72C435004DBFEF /* Images.xcassets */,
 				770BA9161B72C435004DBFEF /* LaunchScreen.xib */,
@@ -185,6 +189,15 @@
 				774572031B7D020B003AD14E /* History.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		77C848F21B86769B008DC370 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				77C848EF1B867691008DC370 /* PlayingCardView.h */,
+				77C848F01B867691008DC370 /* PlayingCardView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +306,7 @@
 				770BA9391B72CF73004DBFEF /* Deck.m in Sources */,
 				770BA9741B73DD07004DBFEF /* PlayingCardGameViewController.m in Sources */,
 				7741975E1B7BC62D004A86E4 /* SetCardDeck.m in Sources */,
+				77C848F11B867691008DC370 /* PlayingCardView.m in Sources */,
 				770BA9381B72CF73004DBFEF /* PlayingCardDeck.m in Sources */,
 				774572011B7D01FD003AD14E /* HistoryViewController.m in Sources */,
 				77847FE01B851EE7004D5914 /* Grid.m in Sources */,

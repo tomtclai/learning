@@ -55,9 +55,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="Restart">
+                                        <fragment content="Redeal">
                                             <attributes>
                                                 <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
@@ -205,7 +206,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ksf-ze-xQU">
                                 <rect key="frame" x="-23" y="-15" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Restart">
+                                <state key="normal" title="Redeal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -294,6 +295,6 @@
         <image name="setcard" width="44" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Q1w-ni-BCw"/>
+        <segue reference="bG4-hV-AYg"/>
     </inferredMetricsTieBreakers>
 </document>

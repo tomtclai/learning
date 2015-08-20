@@ -8,19 +8,34 @@
 
 #import "PlayingCardGameViewController.h"
 #import "PlayingCardDeck.h"
+#import "PlayingCard.h"
 #import "CardMatchingGame.h"
 #import "HistoryViewController.h"
+#import "PlayingCardView.h"
 @interface PlayingCardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *statusTextLabel;
 @end
 @implementation PlayingCardGameViewController
+- (void)viewDidLoad {
+    self.buttonClass = NSStringFromClass([PlayingCardView class]);
+    [super viewDidLoad];
+}
+
 - (NSUInteger) numCards {
     if (super.numCards == 0) {
         super.numCards = 30;
     }
     return super.numCards;
 }
-
+- (IBAction)touchCardButton:(UIButton *)sender
+{
+    [super touchCardButton:sender];
+    if ([sender isKindOfClass:[PlayingCardView class]]) {
+        PlayingCardView *btn = (PlayingCardView *)sender;
+        btn.faceUp = !btn.faceUp;
+        
+    }
+}
 - (Deck *)createDeck
 {
     return [[PlayingCardDeck alloc] init];
@@ -28,6 +43,7 @@
 - (void)updateUI
 {
     [super updateUI];
+    [self displayCards];
     CardMatchingGame* game = super.game;
     if (game.result[changeInScoreAbsKey] !=0)
     {
@@ -53,6 +69,16 @@
         }
     }
 }
+- (void) displayCards {
+    
+    
+    for (int i = 0 ; i < [self.cardButtons count]; i++) {
+        PlayingCardView *cardButton = self.cardButtons[i];
+        PlayingCard *playingCard = (PlayingCard*) [self.game cardAtIndex:i];
+        cardButton.rank = playingCard.rank;
+        cardButton.suit = playingCard.suit;
+    }
+}
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showPlayCardHistory"]) {
@@ -63,4 +89,6 @@
         }
     }
 }
+
+
 @end

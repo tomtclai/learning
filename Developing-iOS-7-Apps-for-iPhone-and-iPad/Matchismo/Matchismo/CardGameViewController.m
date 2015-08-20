@@ -41,6 +41,13 @@ const CGFloat elementAspectRatio = 52.0/77.0;
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
 }
 #pragma mark - instantiations
+- (NSString *)buttonClass {
+    if (!_buttonClass)
+    {
+        _buttonClass = @"UIButton";
+    }
+    return _buttonClass;
+}
 - (Grid *)grid {
     if (!_grid)
     {
@@ -51,9 +58,11 @@ const CGFloat elementAspectRatio = 52.0/77.0;
 - (NSArray *)cardButtons
 {
     if (!_cardButtons) {
+        Class var = NSClassFromString(self.buttonClass);
+        
         NSMutableArray *tmp = [NSMutableArray array];
         for (int i = 0 ; i < self.numCards; i++) {
-            UIButton *cardButton = [UIButton buttonWithType:UIButtonTypeSystem];
+            UIButton *cardButton = [var buttonWithType:UIButtonTypeSystem];
             [tmp addObject:cardButton];
         }
         _cardButtons = tmp;
@@ -93,8 +102,8 @@ const CGFloat elementAspectRatio = 52.0/77.0;
     for (UIButton *cardButton in self.cardButtons) {
         int cardIndex = (int) [self.cardButtons indexOfObject:cardButton];
         Card *card = [self.game cardAtIndex:cardIndex];
-        [cardButton setTitle:[self titleForCard:card]
-                    forState:UIControlStateNormal];
+//        [cardButton setTitle:[self titleForCard:card]
+//                    forState:UIControlStateNormal];
         [cardButton setBackgroundImage:[self backgroundImageForCard:card]
                               forState:UIControlStateNormal];
         [cardButton setEnabled:!card.isMatched];
@@ -150,13 +159,9 @@ const CGFloat elementAspectRatio = 52.0/77.0;
                             action:@selector(touchCardButton:)
                   forControlEvents:UIControlEventTouchUpInside];
                 
-                [buttonI setTitleColor:[UIColor blackColor]
-                              forState:UIControlStateNormal];
-                
-
 
                 [self.cardView addSubview:buttonI];
-                //TODO: animate this
+
                 cardI++;
             }
         }
