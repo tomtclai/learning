@@ -14,6 +14,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusTextLabel;
 @end
 @implementation PlayingCardGameViewController
+- (NSUInteger) numCards {
+    if (super.numCards == 0) {
+        super.numCards = 30;
+    }
+    return super.numCards;
+}
 
 - (Deck *)createDeck
 {

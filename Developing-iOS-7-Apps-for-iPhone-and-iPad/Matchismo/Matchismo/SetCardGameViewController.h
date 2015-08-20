@@ -8,6 +8,6 @@
 
 #import "PlayingCardGameViewController.h"
 
-@interface SetCardGameViewController : PlayingCardGameViewController
+@interface SetCardGameViewController : CardGameViewController
 
 @end

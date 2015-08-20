@@ -81,14 +81,13 @@ NSString * winningComboKey = @"winningCombo";
     return (index < [self.cards count])? [self.cards objectAtIndex:index] : nil;
 }
 
-
-
 - (void)chooseCardAtIndex:(NSUInteger)index
 {
     static const int COST_TO_CHOOSE = 0;
     Card *thisCard = [self cardAtIndex:index];
     if (!thisCard.isMatched) {
         if (thisCard.isChosen) {
+
             thisCard.chosen = NO;
             [self.matchableCards removeObject:thisCard];
         } else {

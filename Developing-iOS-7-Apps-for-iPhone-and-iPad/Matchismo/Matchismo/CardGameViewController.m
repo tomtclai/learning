@@ -34,19 +34,19 @@ const CGFloat elementAspectRatio = 52.0/77.0;
            selector:@selector(orientationChanged:)
                name:UIDeviceOrientationDidChangeNotification
              object:device];
-    
     self.grid.size = self.cardView.bounds.size;
     self.grid.cellAspectRatio = elementAspectRatio;
-    self.grid.minimumNumberOfCells = 30;
-    self.numCards = 30;
+    self.grid.minimumNumberOfCells = self.numCards;
 }
-- (void)viewDidLayoutSubviews {
+- (void)viewWillAppear:(BOOL)animated
+{
     [self layoutButtons];
+    NSLog(@"viewWillAppear");
 }
 - (void)orientationChanged:(NSNotification *)note {
     
-    self.grid.size = self.cardView.bounds.size;
     [self layoutButtons];
+    NSLog(@"orientationChanged");
 }
 
 - (void)dealloc {
@@ -65,7 +65,7 @@ const CGFloat elementAspectRatio = 52.0/77.0;
     if (!_cardButtons) {
         NSMutableArray *tmp = [NSMutableArray array];
         for (int i = 0 ; i < self.numCards; i++) {
-            UIButton *cardButton = [[UIButton alloc]init];
+            UIButton *cardButton = [UIButton buttonWithType:UIButtonTypeSystem];
             [tmp addObject:cardButton];
         }
         _cardButtons = tmp;
@@ -109,7 +109,11 @@ const CGFloat elementAspectRatio = 52.0/77.0;
                     forState:UIControlStateNormal];
         [cardButton setBackgroundImage:[self backgroundImageForCard:card]
                               forState:UIControlStateNormal];
-        cardButton.enabled = !card.isMatched;
+        [cardButton setEnabled:!card.isMatched];
+        if (card.isMatched) {
+            cardButton.alpha = 0.5;
+        }
+
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %@", [@(self.game.score) stringValue]];
     
@@ -139,6 +143,7 @@ const CGFloat elementAspectRatio = 52.0/77.0;
 }
 
 - (void)layoutButtons {
+    self.grid.size = self.cardView.bounds.size;
     if (self.grid.inputsAreValid) {
         NSUInteger row = self.grid.rowCount;
         NSUInteger col = self.grid.columnCount;
@@ -153,7 +158,7 @@ const CGFloat elementAspectRatio = 52.0/77.0;
 
                 [buttonI setFrame:[self.grid frameOfCellAtRow:y
                                                      inColumn:x]];
-                
+//                
                 [buttonI addTarget:self
                             action:@selector(touchCardButton:)
                   forControlEvents:UIControlEventTouchUpInside];
@@ -161,12 +166,14 @@ const CGFloat elementAspectRatio = 52.0/77.0;
                 [buttonI setTitleColor:[UIColor blackColor]
                               forState:UIControlStateNormal];
                 
-                [self updateUI];
+
+
                 [self.cardView addSubview:buttonI];
                 //TODO: animate this
                 cardI++;
             }
         }
+        [self updateUI];
     }
 }
 

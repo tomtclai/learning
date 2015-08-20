@@ -20,13 +20,20 @@
 @end
 @implementation SetCardGameViewController
 @synthesize game=_game;
-- (void) viewWillAppear:(BOOL)animated
+- (void) viewDidAppear:(BOOL)animated
 {
     [self updateUI];
 }
+
+- (NSUInteger) numCards {
+    if (super.numCards == 0) {
+        super.numCards = 20;
+    }
+    return super.numCards;
+}
 - (CardMatchingGame *)game
 {
-    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:20
+    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:self.numCards
                                                           usingDeck:[self createDeck]
                                                    numOfCardsToPick:3];
     return _game;
