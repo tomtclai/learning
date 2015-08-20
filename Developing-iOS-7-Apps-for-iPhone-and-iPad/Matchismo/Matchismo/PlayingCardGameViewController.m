@@ -16,26 +16,35 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusTextLabel;
 @end
 @implementation PlayingCardGameViewController
+@synthesize cardButtons = _cardButtons, numCards = _numCards;
 - (void)viewDidLoad {
-    self.buttonClass = NSStringFromClass([PlayingCardView class]);
     [super viewDidLoad];
 }
 
+- (NSMutableArray*)cardButtons {
+    if (!_cardButtons) {
+        _cardButtons = [[NSMutableArray alloc] init];
+        for (NSUInteger i = 0 ; i < self.numCards; i++) {
+            [_cardButtons addObject:[[PlayingCardView alloc]initWithFrame:CGRectZero]];
+        }
+    }
+    return _cardButtons;
+}
+
 - (NSUInteger) numCards {
-    if (super.numCards == 0) {
-        super.numCards = 30;
+    if (_numCards == 0) {
+        _numCards = 30;
     }
-    return super.numCards;
+    return _numCards;
 }
-- (IBAction)touchCardButton:(UIButton *)sender
-{
-    [super touchCardButton:sender];
-    if ([sender isKindOfClass:[PlayingCardView class]]) {
-        PlayingCardView *btn = (PlayingCardView *)sender;
-        btn.faceUp = !btn.faceUp;
-        
-    }
-}
+//- (IBAction)touchCardButton:(UIButton *)sender
+//{
+//    [super touchCardButton:sender];
+////    if ([sender isKindOfClass:[PlayingCardView class]]) {
+////        PlayingCardView *btn = (PlayingCardView *)sender;
+////        
+////    }
+//}
 - (Deck *)createDeck
 {
     return [[PlayingCardDeck alloc] init];
@@ -77,6 +86,8 @@
         PlayingCard *playingCard = (PlayingCard*) [self.game cardAtIndex:i];
         cardButton.rank = playingCard.rank;
         cardButton.suit = playingCard.suit;
+        cardButton.faceUp = [playingCard isChosen];
+        [cardButton setTitle:@"" forState:UIControlStateNormal];
     }
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

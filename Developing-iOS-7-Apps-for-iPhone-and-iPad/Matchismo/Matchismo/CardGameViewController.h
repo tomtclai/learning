@@ -14,14 +14,14 @@
 @interface CardGameViewController : UIViewController
 @property (nonatomic, strong) CardMatchingGame *game;
 @property (strong, nonatomic) History * log;
-@property (strong, nonatomic) NSString * buttonClass;
 // protected
 // for subclasses
 - (Deck *)createDeck; // abstract
 - (void)updateUI;
 - (History *) log;
 - (IBAction)touchCardButton:(UIButton *)sender;
-@property (nonatomic) NSUInteger numCards;//must be set in subclass
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons; // maybe accessed in subclass
+@property (nonatomic) NSUInteger numCards;// must be set in subclass
+@property (strong, nonatomic) NSMutableArray *cardButtons; // must be set in subclass
+
 @end
 

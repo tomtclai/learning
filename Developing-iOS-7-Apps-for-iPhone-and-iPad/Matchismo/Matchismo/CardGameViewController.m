@@ -17,10 +17,10 @@
 @property (weak, nonatomic) IBOutlet UISwitch *gameModeSwitch;
 @property (weak, nonatomic) IBOutlet UIView *cardView;
 @property (nonatomic, strong) Grid* grid;
-
 @end
 
 @implementation CardGameViewController
+@dynamic cardButtons, numCards;
 #pragma mark - view controller life cycle
 const CGFloat elementAspectRatio = 52.0/77.0;
 - (void)viewDidLoad {
@@ -41,33 +41,12 @@ const CGFloat elementAspectRatio = 52.0/77.0;
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
 }
 #pragma mark - instantiations
-- (NSString *)buttonClass {
-    if (!_buttonClass)
-    {
-        _buttonClass = @"UIButton";
-    }
-    return _buttonClass;
-}
 - (Grid *)grid {
     if (!_grid)
     {
         _grid = [[Grid alloc] init];
     }
     return _grid;
-}
-- (NSArray *)cardButtons
-{
-    if (!_cardButtons) {
-        Class var = NSClassFromString(self.buttonClass);
-        
-        NSMutableArray *tmp = [NSMutableArray array];
-        for (int i = 0 ; i < self.numCards; i++) {
-            UIButton *cardButton = [var buttonWithType:UIButtonTypeSystem];
-            [tmp addObject:cardButton];
-        }
-        _cardButtons = tmp;
-    }
-    return _cardButtons;
 }
 - (History *)log
 {
@@ -102,10 +81,10 @@ const CGFloat elementAspectRatio = 52.0/77.0;
     for (UIButton *cardButton in self.cardButtons) {
         int cardIndex = (int) [self.cardButtons indexOfObject:cardButton];
         Card *card = [self.game cardAtIndex:cardIndex];
-//        [cardButton setTitle:[self titleForCard:card]
-//                    forState:UIControlStateNormal];
-        [cardButton setBackgroundImage:[self backgroundImageForCard:card]
-                              forState:UIControlStateNormal];
+        [cardButton setTitle:[self titleForCard:card]
+                    forState:UIControlStateNormal];
+//        [cardButton setBackgroundImage:[self backgroundImageForCard:card]
+//                              forState:UIControlStateNormal];
         [cardButton setEnabled:!card.isMatched];
         if (card.isMatched) {
             cardButton.alpha = 0.5;
