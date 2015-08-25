@@ -20,7 +20,8 @@
 - (void)updateUI;
 - (History *) log;
 - (IBAction)touchCardButton:(UIButton *)sender;
-@property (nonatomic) NSUInteger numCards;// must be set in subclass
+@property (nonatomic) NSUInteger numberOfStartingCards;// must be set in subclass
+@property (nonatomic) CGFloat elementAspectRatio;
 @property (strong, nonatomic) NSMutableArray *cardButtons; // must be set in subclass
 
 @end

@@ -49,24 +49,20 @@
                     </view>
                     <navigationItem key="navigationItem" id="5uI-J3-7fa">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" style="done" id="IdP-HR-NTu">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="aZE-Mb-Lae">
+                        <barButtonItem key="leftBarButtonItem" style="done" id="lfy-qC-7kv">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5jJ-ha-OZh">
                                 <rect key="frame" x="-23" y="-15" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Redeal">
-                                            <attributes>
-                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                                <state key="normal" title="Redeal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchRestartButton" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4ib-wi-TvD"/>
+                                    <action selector="touchRestartButton" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7LJ-Rg-jcn"/>
                                 </connections>
                             </button>
+                            <connections>
+                                <action selector="touchRestartButton" destination="vXZ-lx-hvc" id="qym-na-Yl2"/>
+                            </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="DlI-uw-t3H">
                             <rect key="frame" x="115" y="6" width="146" height="33"/>
@@ -202,6 +198,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lj5-AP-OK2">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" style="done" id="ZvC-qS-ptA">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ksf-ze-xQU">
                                 <rect key="frame" x="-23" y="-15" width="83" height="30"/>
@@ -213,7 +210,20 @@
                                     <action selector="touchRestartButton" destination="BqM-1S-EW5" eventType="touchUpInside" id="Mjd-mk-Art"/>
                                 </connections>
                             </button>
+                            <connections>
+                                <action selector="touchRestartButton:" destination="BqM-1S-EW5" id="OdG-a6-O6u"/>
+                            </connections>
                         </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2Qp-CO-XFT">
+                            <rect key="frame" x="113" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="+3">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="deal3MoreCards:" destination="BqM-1S-EW5" eventType="touchUpInside" id="JQv-cp-HtI"/>
+                            </connections>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" title="History" id="JjD-4S-L5Q">
                             <connections>
                                 <segue destination="A7z-gq-Q7F" kind="show" identifier="showSetCardHistory" id="Q1w-ni-BCw"/>
@@ -295,6 +305,6 @@
         <image name="setcard" width="44" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bG4-hV-AYg"/>
+        <segue reference="Q1w-ni-BCw"/>
     </inferredMetricsTieBreakers>
 </document>

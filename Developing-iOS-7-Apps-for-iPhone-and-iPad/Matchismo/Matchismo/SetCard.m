@@ -13,7 +13,7 @@
 #pragma mark class method
 + (NSArray *)validShapes
 {
-    return @[@"ovals", @"squiggles",@"diamonds"];
+    return @[@"oval", @"squiggle",@"diamond"];
 }
 
 + (NSArray *)validColors
@@ -28,15 +28,15 @@
 
 + (NSArray *)validShadings
 {
-    return @[@"solid",@"striped",@"outlined"];
+    return @[@"solid",@"striped",@"open"];
 }
 #pragma mark - instance method
 #pragma content
 - (NSString *)contents
 {
-    const NSDictionary *shapes = @{@"ovals":@"●",
-                                   @"squiggles":@"▲",
-                                   @"diamonds":@"■"};
+    const NSDictionary *shapes = @{@"oval":@"●",
+                                   @"squiggle":@"▲",
+                                   @"diamond":@"■"};
 
     NSMutableString* result = [[NSMutableString alloc]init];
     

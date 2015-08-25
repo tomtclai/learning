@@ -6,25 +6,12 @@
 //  Copyright (c) 2015 Lai. All rights reserved.
 //
 
-#import "PlayingCardView.h"
-@interface PlayingCardView ()
+#import "PlayingCardButton.h"
+@interface PlayingCardButton ()
 @property (nonatomic) CGFloat faceCardScaleFactor;
 @end
-@implementation PlayingCardView
+@implementation PlayingCardButton
 #pragma mark - Properties
-@synthesize faceCardScaleFactor = _faceCardScaleFactor;
-#define DEFAULT_FACE_CARD_SCALE_FACTOR 0.90
-- (CGFloat)faceCardScaleFactor
-{
-    if (!_faceCardScaleFactor) _faceCardScaleFactor = DEFAULT_FACE_CARD_SCALE_FACTOR;
-    return _faceCardScaleFactor;
-}
-
-- (void)setFaceCardScaleFactor:(CGFloat)faceCardScaleFactor
-{
-    _faceCardScaleFactor = faceCardScaleFactor;
-    [self setNeedsDisplay];
-}
 - (void)setSuit:(NSString *)suit
 {
     _suit = suit;
@@ -43,36 +30,10 @@
         [self setNeedsDisplay];
 }
 #pragma mark - Drawing
-#define CORNER_FONT_STANDARD_HEIGHT 180.0
-#define CORNER_RADIUS 12.0
-
-- (CGFloat)cornerScaleFactor { return self.bounds.size.height / CORNER_FONT_STANDARD_HEIGHT;}
-- (CGFloat)cornerRadius { return CORNER_RADIUS * [self cornerScaleFactor];}
-- (CGFloat)cornerOffset { return [self cornerRadius] /  3.0;}
-
-
-- (void)pinch:(UIPinchGestureRecognizer *)gesture
-{
-    if ((gesture.state == UIGestureRecognizerStateChanged) ||
-        (gesture.state == UIGestureRecognizerStateEnded)) {
-        self.faceCardScaleFactor *= gesture.scale;
-        gesture.scale = 1.0;
-    }
-}
 -(void)drawRect:(CGRect)rect
 {
-
-    UIBezierPath *roundedRect= [UIBezierPath bezierPathWithRoundedRect:self.bounds
-                                                          cornerRadius:[self cornerRadius]];
+    [super drawRect:rect];
     
-    [roundedRect addClip];
-    
-    [[UIColor whiteColor] setFill];
-    
-    UIRectFill(self.bounds);
-    
-    [[UIColor blackColor]setStroke];
-    [roundedRect stroke];
     if (self.faceUp){
     UIImage *faceImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", [self rankAsString], self.suit]];
     if (faceImage) {
@@ -89,7 +50,15 @@
         [[UIImage imageNamed:@"cardback"] drawInRect:self.bounds];
     }
 }
-
+#pragma mark gesture
+- (void)pinch:(UIPinchGestureRecognizer *)gesture
+{
+    if ((gesture.state == UIGestureRecognizerStateChanged) ||
+        (gesture.state == UIGestureRecognizerStateEnded)) {
+        self.faceCardScaleFactor *= gesture.scale;
+        gesture.scale = 1.0;
+    }
+}
 #pragma mark - Pips
 #define PIP_HOFFSET_PERCENTAGE 0.165
 #define PIP_VOFFSET1_PERCENTAGE 0.090
@@ -176,17 +145,6 @@
               @"Q",@"K"][self.rank];
 }
 
-- (void)pushContextAndRotateUpsideDown
-{
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(context);
-    CGContextTranslateCTM(context, self.bounds.size.width, self.bounds.size.height);
-    CGContextRotateCTM(context, M_PI);
-}
-- (void)popContext
-{
-    CGContextRestoreGState(UIGraphicsGetCurrentContext());
-}
 
 - (void) drawCorners
 {
@@ -212,18 +170,6 @@
     
     [cornerText drawInRect:textBounds];
     
-}
-#pragma mark - Initialization
-- (void) setup
-{
-    self.backgroundColor = nil;
-    self.opaque = NO;
-    self.contentMode = UIViewContentModeRedraw;
-}
-
-- (void)awakeFromNib
-{
-    [self setup];
 }
 
 @end

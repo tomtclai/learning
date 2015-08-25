@@ -25,8 +25,11 @@
 		774197611B7BDF8B004A86E4 /* SetCardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774197601B7BDF8B004A86E4 /* SetCardGameViewController.m */; };
 		774572011B7D01FD003AD14E /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774572001B7D01FD003AD14E /* HistoryViewController.m */; };
 		774572041B7D020B003AD14E /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = 774572031B7D020B003AD14E /* History.m */; };
+		776B3D341B8BAB720003719C /* SetCardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 776B3D2F1B8BAB720003719C /* SetCardButton.m */; };
+		776B3D351B8BAB720003719C /* PlayingCardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 776B3D311B8BAB720003719C /* PlayingCardButton.m */; };
+		776B3D361B8BAB720003719C /* CardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 776B3D331B8BAB720003719C /* CardButton.m */; };
 		77847FE01B851EE7004D5914 /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = 77847FDF1B851EE7004D5914 /* Grid.m */; };
-		77C848F11B867691008DC370 /* PlayingCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C848F01B867691008DC370 /* PlayingCardView.m */; };
+		77E265EA1B87732100EEE75A /* _clang-format in Resources */ = {isa = PBXBuildFile; fileRef = 77E265E91B87732100EEE75A /* _clang-format */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,10 +78,15 @@
 		774572001B7D01FD003AD14E /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		774572021B7D020B003AD14E /* History.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = History.h; sourceTree = "<group>"; };
 		774572031B7D020B003AD14E /* History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = History.m; sourceTree = "<group>"; };
+		776B3D2E1B8BAB720003719C /* SetCardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCardButton.h; sourceTree = "<group>"; };
+		776B3D2F1B8BAB720003719C /* SetCardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCardButton.m; sourceTree = "<group>"; };
+		776B3D301B8BAB720003719C /* PlayingCardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardButton.h; sourceTree = "<group>"; };
+		776B3D311B8BAB720003719C /* PlayingCardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardButton.m; sourceTree = "<group>"; };
+		776B3D321B8BAB720003719C /* CardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardButton.h; sourceTree = "<group>"; };
+		776B3D331B8BAB720003719C /* CardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardButton.m; sourceTree = "<group>"; };
 		77847FDE1B851EE7004D5914 /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
 		77847FDF1B851EE7004D5914 /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
-		77C848EF1B867691008DC370 /* PlayingCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardView.h; sourceTree = "<group>"; };
-		77C848F01B867691008DC370 /* PlayingCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardView.m; sourceTree = "<group>"; };
+		77E265E91B87732100EEE75A /* _clang-format */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "_clang-format"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +128,7 @@
 		770BA9061B72C435004DBFEF /* Matchismo */ = {
 			isa = PBXGroup;
 			children = (
+				77E265E91B87732100EEE75A /* _clang-format */,
 				770BA90E1B72C435004DBFEF /* CardGameViewController.h */,
 				770BA90F1B72C435004DBFEF /* CardGameViewController.m */,
 				770BA9721B73DD07004DBFEF /* PlayingCardGameViewController.h */,
@@ -194,8 +203,12 @@
 		77C848F21B86769B008DC370 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				77C848EF1B867691008DC370 /* PlayingCardView.h */,
-				77C848F01B867691008DC370 /* PlayingCardView.m */,
+				776B3D2E1B8BAB720003719C /* SetCardButton.h */,
+				776B3D2F1B8BAB720003719C /* SetCardButton.m */,
+				776B3D301B8BAB720003719C /* PlayingCardButton.h */,
+				776B3D311B8BAB720003719C /* PlayingCardButton.m */,
+				776B3D321B8BAB720003719C /* CardButton.h */,
+				776B3D331B8BAB720003719C /* CardButton.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -284,6 +297,7 @@
 				770BA9131B72C435004DBFEF /* Main.storyboard in Resources */,
 				770BA9181B72C435004DBFEF /* LaunchScreen.xib in Resources */,
 				770BA9151B72C435004DBFEF /* Images.xcassets in Resources */,
+				77E265EA1B87732100EEE75A /* _clang-format in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,18 +318,20 @@
 				770BA9101B72C435004DBFEF /* CardGameViewController.m in Sources */,
 				774197611B7BDF8B004A86E4 /* SetCardGameViewController.m in Sources */,
 				770BA9391B72CF73004DBFEF /* Deck.m in Sources */,
+				776B3D361B8BAB720003719C /* CardButton.m in Sources */,
 				770BA9741B73DD07004DBFEF /* PlayingCardGameViewController.m in Sources */,
 				7741975E1B7BC62D004A86E4 /* SetCardDeck.m in Sources */,
-				77C848F11B867691008DC370 /* PlayingCardView.m in Sources */,
 				770BA9381B72CF73004DBFEF /* PlayingCardDeck.m in Sources */,
 				774572011B7D01FD003AD14E /* HistoryViewController.m in Sources */,
 				77847FE01B851EE7004D5914 /* Grid.m in Sources */,
 				770FB99A1B79148A002E9093 /* SetCard.m in Sources */,
 				770BA90D1B72C435004DBFEF /* AppDelegate.m in Sources */,
 				770BA93F1B72E62A004DBFEF /* CardMatchingGame.m in Sources */,
+				776B3D341B8BAB720003719C /* SetCardButton.m in Sources */,
 				770BA90A1B72C435004DBFEF /* main.m in Sources */,
 				770BA93C1B72DE29004DBFEF /* PlayingCard.m in Sources */,
 				774572041B7D020B003AD14E /* History.m in Sources */,
+				776B3D351B8BAB720003719C /* PlayingCardButton.m in Sources */,
 				770BA92F1B72CCB4004DBFEF /* Card.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

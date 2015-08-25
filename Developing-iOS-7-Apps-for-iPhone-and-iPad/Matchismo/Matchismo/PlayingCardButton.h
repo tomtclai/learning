@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CardButton.h"
+@interface PlayingCardButton : CardButton
 
-@interface PlayingCardView : UIButton
 
-
-@property (nonatomic) NSUInteger rank;
 @property (strong, nonatomic) NSString *suit;
+@property (nonatomic) NSUInteger rank;
 @property (nonatomic) BOOL faceUp;
 - (void)pinch:(UIPinchGestureRecognizer *)gesture;
 

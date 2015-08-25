@@ -9,6 +9,7 @@
 #import "SetCardGameViewController.h"
 #import "SetCardDeck.h"
 #import "SetCard.h"
+#import "SetCardButton.h"
 #import "CardMatchingGame.h"
 #import "History.h"
 #import "HistoryViewController.h"
@@ -19,21 +20,32 @@
 
 @end
 @implementation SetCardGameViewController
-@synthesize game=_game;
+@synthesize cardButtons = _cardButtons, numberOfStartingCards = _numCards, game=_game;
+- (void) viewDidLoad
+{
+    self.elementAspectRatio = 77.0/52.0;
+    self.numberOfStartingCards = 12;
+    [super viewDidLoad];
+}
+
 - (void) viewDidAppear:(BOOL)animated
 {
     [self updateUI];
 }
 
-- (NSUInteger) numCards {
-    if (super.numCards == 0) {
-        super.numCards = 20;
+- (NSMutableArray*)cardButtons {
+    if (!_cardButtons) {
+        _cardButtons = [[NSMutableArray alloc] init];
+        for (NSUInteger i = 0 ; i < self.numberOfStartingCards; i++) {
+            [_cardButtons addObject:[[SetCardButton alloc]initWithFrame:CGRectZero]];
+        }
     }
-    return super.numCards;
+    return _cardButtons;
 }
+
 - (CardMatchingGame *)game
 {
-    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:self.numCards
+    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:self.numberOfStartingCards
                                                           usingDeck:[self createDeck]
                                                    numOfCardsToPick:3];
     return _game;
@@ -92,23 +104,46 @@
 
 - (void) displayCards {
 
-    
-    for (UIButton *cardButton in self.cardButtons) {
-        int cardIndex = (int) [self.cardButtons indexOfObject:cardButton];
+    for (int i = 0 ;i < [self.cardButtons count]; i++) {
+        SetCardButton* cardButton = (SetCardButton *) self.cardButtons[i];
         
-        SetCard *card = (SetCard*) [self.game cardAtIndex:cardIndex];
+        SetCard *card = (SetCard*) [self.game cardAtIndex:i];
 
-        NSMutableAttributedString* result = [self attributedStringForCard:card];
+//        NSMutableAttributedString* result = [self attributedStringForCard:card];
         
-        [cardButton setAttributedTitle:result forState:UIControlStateNormal];
-
+//        [cardButton setAttributedTitle:result forState:UIControlStateNormal];
+        [cardButton setTitle:@"" forState:UIControlStateNormal];
+        cardButton.shading = card.shading;
+        cardButton.symbol = card.shape;
+        cardButton.number = card.number;
+        cardButton.chosen = card.chosen;
+        cardButton.color = card.color;
+        
+        [UIView animateWithDuration:.2f animations:^{
+            if (cardButton.chosen) {
+                cardButton.alpha = 0.6;
+            } else {
+                cardButton.alpha = 1.0;
+            }
+        }];
+        
+        if (card.isMatched) {
+            [UIView animateWithDuration:0.2f animations:^{
+                cardButton.alpha = 0;
+            } completion:^(BOOL finished) {
+                if (finished) {
+                    [self.cardButtons removeObject:cardButton];
+                    [cardButton removeFromSuperview];
+                }
+            }];
+        }
     }
 }
 - (NSMutableAttributedString *)attributedStringForCard: (SetCard *) card
 {
-    const NSDictionary *shapesDict = @{@"ovals":@"●",
-                                   @"squiggles":@"▲",
-                                   @"diamonds":@"■"};
+    const NSDictionary *shapesDict = @{@"oval":@"●",
+                                   @"squiggle":@"▲",
+                                   @"diamond":@"■"};
     const NSDictionary *colorsDict = @{@"red":[UIColor redColor],
                                    @"purple":[UIColor purpleColor],
                                    @"green":[UIColor greenColor]};
@@ -181,6 +216,10 @@
         hvc.history = [self log];
     }
 
+}
+- (IBAction)touchRestartButton:(UIButton *)sender {
+    self.cardButtons = nil;
+    [self cardButtons];
 }
 
 @end

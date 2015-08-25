@@ -11,44 +11,33 @@
 #import "PlayingCard.h"
 #import "CardMatchingGame.h"
 #import "HistoryViewController.h"
-#import "PlayingCardView.h"
+#import "PlayingCardButton.h"
 @interface PlayingCardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *statusTextLabel;
 @end
 @implementation PlayingCardGameViewController
-@synthesize cardButtons = _cardButtons, numCards = _numCards;
+@synthesize cardButtons = _cardButtons, numberOfStartingCards = _numCards;
 - (void)viewDidLoad {
+    self.elementAspectRatio = 52.0/77.0;
+    self.numberOfStartingCards = 30;
     [super viewDidLoad];
 }
 
 - (NSMutableArray*)cardButtons {
     if (!_cardButtons) {
         _cardButtons = [[NSMutableArray alloc] init];
-        for (NSUInteger i = 0 ; i < self.numCards; i++) {
-            [_cardButtons addObject:[[PlayingCardView alloc]initWithFrame:CGRectZero]];
+        for (NSUInteger i = 0 ; i < self.numberOfStartingCards; i++) {
+            [_cardButtons addObject:[[PlayingCardButton alloc]initWithFrame:CGRectZero]];
         }
     }
     return _cardButtons;
 }
 
-- (NSUInteger) numCards {
-    if (_numCards == 0) {
-        _numCards = 30;
-    }
-    return _numCards;
-}
-//- (IBAction)touchCardButton:(UIButton *)sender
-//{
-//    [super touchCardButton:sender];
-////    if ([sender isKindOfClass:[PlayingCardView class]]) {
-////        PlayingCardView *btn = (PlayingCardView *)sender;
-////        
-////    }
-//}
 - (Deck *)createDeck
 {
     return [[PlayingCardDeck alloc] init];
 }
+
 - (void)updateUI
 {
     [super updateUI];
@@ -82,7 +71,7 @@
     
     
     for (int i = 0 ; i < [self.cardButtons count]; i++) {
-        PlayingCardView *cardButton = self.cardButtons[i];
+        PlayingCardButton *cardButton = self.cardButtons[i];
         PlayingCard *playingCard = (PlayingCard*) [self.game cardAtIndex:i];
         cardButton.rank = playingCard.rank;
         cardButton.suit = playingCard.suit;

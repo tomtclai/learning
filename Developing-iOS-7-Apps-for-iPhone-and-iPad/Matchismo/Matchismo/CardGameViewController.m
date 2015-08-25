@@ -20,14 +20,14 @@
 @end
 
 @implementation CardGameViewController
-@dynamic cardButtons, numCards;
+@dynamic cardButtons, numberOfStartingCards;
 #pragma mark - view controller life cycle
-const CGFloat elementAspectRatio = 52.0/77.0;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.grid.size = self.cardView.bounds.size;
-    self.grid.cellAspectRatio = elementAspectRatio;
-    self.grid.minimumNumberOfCells = self.numCards;
+    self.grid.cellAspectRatio = self.elementAspectRatio;
+    self.grid.minimumNumberOfCells = self.numberOfStartingCards;
 }
 
 - (void)viewWillLayoutSubviews
@@ -75,7 +75,10 @@ const CGFloat elementAspectRatio = 52.0/77.0;
     [self.game chooseCardAtIndex: cardIndex];
     [self updateUI];
 }
-
+- (IBAction)deal3MoreCards:(id)sender {
+    
+}
+#define CARDSPACINGINPERCENT 0.08
 - (void)updateUI
 {
     for (UIButton *cardButton in self.cardButtons) {
@@ -87,7 +90,7 @@ const CGFloat elementAspectRatio = 52.0/77.0;
 //                              forState:UIControlStateNormal];
         [cardButton setEnabled:!card.isMatched];
         if (card.isMatched) {
-            cardButton.alpha = 0.5;
+            cardButton.alpha = 0.6;
         }
 
     }
@@ -117,33 +120,28 @@ const CGFloat elementAspectRatio = 52.0/77.0;
     self.log = nil;
     [self updateUI];
 }
-
 - (void)layoutButtons {
 
     if (self.grid.inputsAreValid) {
-        NSUInteger row = self.grid.rowCount;
         NSUInteger col = self.grid.columnCount;
-        int cardI = 0;
-        for (NSUInteger y = 0 ; y < row; y ++)
+        
+        for (NSUInteger i = 0 ; i < [self.cardButtons count]; i++)
         {
-            for (NSUInteger x = 0; x < col; x ++)
-            {
-                if (cardI >= self.numCards) return;
-                
-                UIButton * buttonI = (UIButton *) self.cardButtons[cardI];
-
-                [buttonI setFrame:[self.grid frameOfCellAtRow:y
-                                                     inColumn:x]];
-                [buttonI addTarget:self
-                            action:@selector(touchCardButton:)
-                  forControlEvents:UIControlEventTouchUpInside];
-                
-
-                [self.cardView addSubview:buttonI];
-
-                cardI++;
-            }
+            UIButton * buttonI = (UIButton *) self.cardButtons[i];
+            
+            CGRect frame = [self.grid frameOfCellAtRow:i / col
+                                              inColumn:i % col];
+            frame = CGRectInset(frame, frame.size.width * CARDSPACINGINPERCENT,
+                                frame.size.height * CARDSPACINGINPERCENT);
+            [buttonI setFrame:frame];
+            [buttonI addTarget:self
+                        action:@selector(touchCardButton:)
+              forControlEvents:UIControlEventTouchUpInside];
+            
+            
+            [self.cardView addSubview:buttonI];
         }
+        
         [self updateUI];
     }
 }
