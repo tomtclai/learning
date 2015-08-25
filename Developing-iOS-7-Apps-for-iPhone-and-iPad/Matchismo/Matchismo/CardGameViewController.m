@@ -125,8 +125,39 @@
     if (self.grid.inputsAreValid) {
         NSUInteger col = self.grid.columnCount;
         
-        for (NSUInteger i = 0 ; i < [self.cardButtons count]; i++)
+        for (NSUInteger i = 0 ; i < self.game.numOfCards; i++)
         {
+            Card *card = [self.game cardAtIndex:i];
+            
+            NSUInteger btnIndex = [self.cardButtons indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+                if ([obj isKindOfClass:[UIView class]] && (((UIView *)obj).tag == i))
+                    return  YES;
+                else
+                    return NO;
+            }];
+            
+            UIButton *cardButton;
+            
+            if (btnIndex == NSNotFound) {
+                if (!card.matched) {
+                    cardButton = [self createButtonForCard:card];
+                    cardButton.tag = i;
+                    [cardButton targetForAction:@selector(touchCardButton:) withSender:nil];
+                    
+                    [self.cardButtons addObject:cardButton];
+                    btnIndex = [self.cardButtons indexOfObject:cardButton];
+                    [self.cardView addSubview:cardButton];
+                }
+            } else {
+                cardButton = self.cardButtons[btnIndex];
+                if (!card.isMatched) {
+                    [self updateButton:cardButton forCard:card];
+                } else {
+                    [cardButton removeFromSuperview];
+                    [self.cardButtons removeObject:cardButton];
+                }
+            }
+            
             UIButton * buttonI = (UIButton *) self.cardButtons[i];
             
             CGRect frame = [self.grid frameOfCellAtRow:i / col
@@ -144,6 +175,17 @@
         
         [self updateUI];
     }
+}
+
+- (UIButton *)createButtonForCard:(Card *)card
+{
+    UIButton *btn = [[UIButton alloc] init];
+    [self updateButton:btn forCard:card];
+    return btn;
+}
+- (void)updateButton:(UIButton *)btn forCard:(Card *)card
+{
+    btn.backgroundColor = [UIColor blueColor];
 }
 
 @end
