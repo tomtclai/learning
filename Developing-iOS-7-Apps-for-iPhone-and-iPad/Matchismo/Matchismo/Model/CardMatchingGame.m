@@ -153,7 +153,9 @@ NSString * winningComboKey = @"winningCombo";
     
 
 }
-
+- (NSUInteger)numOfCards {
+    return self.cards.count;
+}
 - (instancetype)init {
     return nil;
 }

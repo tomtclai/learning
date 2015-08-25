@@ -24,6 +24,7 @@ extern const NSString * winningComboKey;
 
 - (void)chooseCardAtIndex:(NSUInteger)index;
 - (Card *)cardAtIndex:(NSUInteger)index;
+- (NSUInteger)numOfCards;
 
 @property (nonatomic, readonly) NSInteger score;
 @property (nonatomic, readonly) NSDictionary *result;
