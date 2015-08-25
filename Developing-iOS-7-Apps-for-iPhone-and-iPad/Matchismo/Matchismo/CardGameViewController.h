@@ -1,29 +1,27 @@
 //
-//  CardGameVIewController.h
+//  CardGameViewController.h
 //  Matchismo
 //
-//  Created by Tom Lai on 8/5/15.
-//  Copyright (c) 2015 Lai. All rights reserved.
+//  Created by Martin Mandl on 02.11.13.
+//  Copyright (c) 2013 m2m server software gmbh. All rights reserved.
 //
-//  Abstract class. Must implement methods as described below
+// Abstract class. Must implement methods as described below.
 
 #import <UIKit/UIKit.h>
 #import "Deck.h"
-#import "History.h"
-@class CardMatchingGame;
+
 @interface CardGameViewController : UIViewController
-@property (nonatomic, strong) CardMatchingGame *game;
-@property (strong, nonatomic) History * log;
+
 // protected
 // for subclasses
 - (Deck *)createDeck; // abstract
+- (UIView *)createViewForCard:(Card *)card;
+- (void)updateView:(UIView *)view forCard:(Card *)card;
+
 - (void)updateUI;
-- (History *) log;
-- (IBAction)touchCardButton:(UIButton *)sender;
+
 @property (strong, nonatomic) NSString *gameType;
-@property (nonatomic) NSUInteger numberOfStartingCards;// must be set in subclass
-@property (nonatomic) CGFloat elementAspectRatio;
-@property (strong, nonatomic) NSMutableArray *cardButtons; // must be set in subclass
+@property (nonatomic) NSUInteger numberOfStartingCards;
+@property (nonatomic) CGSize maxCardSize;
 
 @end
-

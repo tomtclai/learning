@@ -2,11 +2,11 @@
 //  SetCardGameViewController.h
 //  Matchismo
 //
-//  Created by Tom Lai on 8/12/15.
-//  Copyright (c) 2015 Lai. All rights reserved.
+//  Created by Martin Mandl on 13.11.13.
+//  Copyright (c) 2013 m2m server software gmbh. All rights reserved.
 //
 
-#import "PlayingCardGameViewController.h"
+#import "CardGameViewController.h"
 
 @interface SetCardGameViewController : CardGameViewController
 

@@ -1,17 +1,20 @@
 //
 //  SetCardView.h
-//  SuperCard
+//  Matchismo
 //
-//  Created by Tom Lai on 8/21/15.
-//  Copyright (c) 2015 Lai. All rights reserved.
+//  Created by Martin Mandl on 29.11.13.
+//  Copyright (c) 2013 m2m server software gmbh. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "CardButton.h"
-@interface SetCardButton : CardButton
-@property (strong, nonatomic) NSString *symbol;
+
+@interface SetCardView : UIView
+
 @property (strong, nonatomic) NSString *color;
+@property (strong, nonatomic) NSString *symbol;
 @property (strong, nonatomic) NSString *shading;
 @property (nonatomic) NSUInteger number;
+
 @property (nonatomic) BOOL chosen;
+
 @end

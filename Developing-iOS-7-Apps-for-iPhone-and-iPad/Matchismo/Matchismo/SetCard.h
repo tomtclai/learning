@@ -2,20 +2,24 @@
 //  SetCard.h
 //  Matchismo
 //
-//  Created by Tom Lai on 8/10/15.
-//  Copyright (c) 2015 Lai. All rights reserved.
+//  Created by Martin Mandl on 13.11.13.
+//  Copyright (c) 2013 m2m server software gmbh. All rights reserved.
 //
 
 #import "Card.h"
 
 @interface SetCard : Card
 
-@property(strong, nonatomic) NSString *shape;
-@property(strong, nonatomic) NSString *color;
-@property(strong, nonatomic) NSString *shading;
-@property(nonatomic) NSUInteger number;
-+ (NSArray *)validShapes;
+@property (strong, nonatomic) NSString *color;
+@property (strong, nonatomic) NSString *symbol;
+@property (strong, nonatomic) NSString *shading;
+@property (nonatomic) NSUInteger number;
+
 + (NSArray *)validColors;
-+ (int)maxNumber;
++ (NSArray *)validSymbols;
 + (NSArray *)validShadings;
++ (NSUInteger)maxNumber;
+
++ (NSArray *)cardsFromText:(NSString *)text;
+
 @end

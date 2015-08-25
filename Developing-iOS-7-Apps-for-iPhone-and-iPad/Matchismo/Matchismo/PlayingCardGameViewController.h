@@ -1,18 +1,13 @@
 //
-//  PlayingCardGameVIewController.h
+//  PlayingCardGameViewController.h
 //  Matchismo
 //
-//  Created by Tom Lai on 8/6/15.
-//  Copyright (c) 2015 Lai. All rights reserved.
+//  Created by Martin Mandl on 09.11.13.
+//  Copyright (c) 2013 m2m server software gmbh. All rights reserved.
 //
 
-#import "CardGameVIewController.h"
-extern const NSString * lastMoveWasProfitableKey;
-extern const NSString * lastSelectedCardsKey;
-extern const NSString * changeInScoreAbsKey;
-extern const NSString * winningComboKey;
+#import "CardGameViewController.h"
 
 @interface PlayingCardGameViewController : CardGameViewController
-
 
 @end

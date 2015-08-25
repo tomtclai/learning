@@ -1,93 +1,54 @@
 //
-//  PlayingCardGameVIewController.m
+//  PlayingCardGameViewController.m
 //  Matchismo
 //
-//  Created by Tom Lai on 8/6/15.
-//  Copyright (c) 2015 Lai. All rights reserved.
+//  Created by Martin Mandl on 09.11.13.
+//  Copyright (c) 2013 m2m server software gmbh. All rights reserved.
 //
 
 #import "PlayingCardGameViewController.h"
 #import "PlayingCardDeck.h"
+#import "PlayingCardView.h"
 #import "PlayingCard.h"
-#import "CardMatchingGame.h"
-#import "HistoryViewController.h"
-#import "PlayingCardButton.h"
-@interface PlayingCardGameViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *statusTextLabel;
-@end
-@implementation PlayingCardGameViewController
-@synthesize cardButtons = _cardButtons, numberOfStartingCards = _numCards;
-- (void)viewDidLoad {
-    self.elementAspectRatio = 52.0/77.0;
-    self.numberOfStartingCards = 30;
-    [super viewDidLoad];
-}
 
-- (NSMutableArray*)cardButtons {
-    if (!_cardButtons) {
-        _cardButtons = [[NSMutableArray alloc] init];
-        for (NSUInteger i = 0 ; i < self.numberOfStartingCards; i++) {
-            [_cardButtons addObject:[[PlayingCardButton alloc]initWithFrame:CGRectZero]];
-        }
-    }
-    return _cardButtons;
-}
+@interface PlayingCardGameViewController ()
+
+@end
+
+@implementation PlayingCardGameViewController
 
 - (Deck *)createDeck
 {
+    self.gameType = @"Playing Cards";
     return [[PlayingCardDeck alloc] init];
 }
 
-- (void)updateUI
+- (UIView *)createViewForCard:(Card *)card
 {
-    [super updateUI];
-    [self displayCards];
-    CardMatchingGame* game = super.game;
-    if (game.result[changeInScoreAbsKey] !=0)
-    {
-        NSNumber* profit = game.result[lastMoveWasProfitableKey];
-        NSArray *cards = game.result[lastSelectedCardsKey];
-        NSString *cardsStr = [cards componentsJoinedByString:@" "];
-        NSArray *winningCombo = game.result[winningComboKey];
-        NSString *winningCardsStr = [winningCombo componentsJoinedByString:@" "];
-        NSNumber* scoreChange = game.result[changeInScoreAbsKey];
-        
-        if ([profit boolValue])
-        {
-            NSString *labelText = [NSString stringWithFormat:@"Matched %@ for %@ points",winningCardsStr,scoreChange];
-            self.statusTextLabel.text = labelText;
-            [[self log]appendString:labelText];
-            [[self log]appendString:@"\n"];
-        } else
-        {
-            NSString *labelText = [NSString stringWithFormat:@"%@ don't match: %@ point penalty",cardsStr, scoreChange];
-            self.statusTextLabel.text = labelText;
-            [[self log]appendString:labelText];
-            [[self log]appendString:@"\n"];
-        }
-    }
+    PlayingCardView *view = [[PlayingCardView alloc] init];
+    [self updateView:view forCard:card];
+    return view;
 }
-- (void) displayCards {
-    
-    
-    for (int i = 0 ; i < [self.cardButtons count]; i++) {
-        PlayingCardButton *cardButton = self.cardButtons[i];
-        PlayingCard *playingCard = (PlayingCard*) [self.game cardAtIndex:i];
-        cardButton.rank = playingCard.rank;
-        cardButton.suit = playingCard.suit;
-        cardButton.faceUp = [playingCard isChosen];
-        [cardButton setTitle:@"" forState:UIControlStateNormal];
-    }
-}
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+
+- (void)updateView:(UIView *)view forCard:(Card *)card
 {
-    if ([segue.identifier isEqualToString:@"showPlayCardHistory"]) {
-        
-        if ([segue.destinationViewController isKindOfClass:[HistoryViewController class]]) {
-            HistoryViewController* hvc = segue.destinationViewController;
-            hvc.history = [self log];
-        }
-    }
+    if (![card isKindOfClass:[PlayingCard class]]) return;
+    if (![view isKindOfClass:[PlayingCardView class]]) return;
+    
+    PlayingCard *playingCard = (PlayingCard *)card;
+    PlayingCardView *playingCardView = (PlayingCardView *)view;
+    playingCardView.rank = playingCard.rank;
+    playingCardView.suit = playingCard.suit;
+    playingCardView.faceUp = playingCard.chosen;
+    
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.numberOfStartingCards = 35;
+    self.maxCardSize = CGSizeMake(80.0, 120.0);
+    [self updateUI];
 }
 
 
