@@ -110,7 +110,7 @@
 {
     for (NSUInteger cardIndex = 0;
          cardIndex < self.game.numberOfDealtCards;
-         cardIndex++) {
+         cardIndex++) { 
         Card *card = [self.game cardAtIndex:cardIndex];
         
         NSUInteger viewIndex = [self.cardViews indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
