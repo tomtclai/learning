@@ -36,6 +36,17 @@
     return _cardViews;
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+        self.grid.size = self.gridView.bounds.size;
+        [self updateUI];
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        
+    }];
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+}
 
 - (Grid *)grid
 {
@@ -82,15 +93,28 @@
 
 // Make sure there are no old card view on screen
 - (IBAction)touchDealButton:(UIButton *)sender {
+    NSUInteger changedViews = 0;
+    for (UIView *subView in self.cardViews) {
+        [UIView animateWithDuration:0.2
+                              delay:self.animationDelayBetweenCards * changedViews++ / [self.cardViews count]
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             subView.frame = CGRectMake(0.0,
+                                                        self.gridView.frame.size.height,
+                                                        self.grid.cellSize.width * 3,
+                                                        self.grid.cellSize.height * 3);
+                             subView.alpha = 0.0;
+                         } completion:^(BOOL finished) {
+                             [subView removeFromSuperview];
+                         }];
+    }
     self.game = nil;
     self.gameResult = nil;
-    for (UIView *subView in self.cardViews) {
-        [subView removeFromSuperview];
-    }
     self.cardViews = nil;
     self.grid = nil;
     self.addCardsButton.enabled = YES;
     self.addCardsButton.alpha = 1.0;
+
     [self updateUI];
 }
 // When the button is touched add 3 cards to the game (in the tag)
@@ -210,7 +234,7 @@
             UIView *cardView = (UIView *)self.cardViews[viewIndex];
             if (![self frame:frame equalToFrame:cardView.frame]) {
                 [UIView animateWithDuration:0.2
-                                      delay:1.5 * changedViews++ / [self.cardViews count]
+                                      delay:self.animationDelayBetweenCards * changedViews++ / [self.cardViews count]
                                     options:UIViewAnimationOptionCurveEaseInOut
                                  animations:^{
                                      cardView.frame = frame;
@@ -239,6 +263,7 @@
     self.game.matchBonus = self.gameSettings.matchBonus;
     self.game.mismatchPenalty = self.gameSettings.mismatchPenalty;
     self.game.flipCost = self.gameSettings.flipCost;
-}
 
+    self.grid.size = self.gridView.bounds.size;
+}
 @end

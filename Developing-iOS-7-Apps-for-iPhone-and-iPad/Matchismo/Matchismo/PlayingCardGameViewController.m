@@ -16,7 +16,6 @@
 @end
 
 @implementation PlayingCardGameViewController
-
 - (Deck *)createDeck
 {
     self.gameType = @"Playing Cards";
@@ -46,13 +45,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
     self.numberOfStartingCards = 30;
     self.maxCardSize = CGSizeMake(80.0, 120.0);
+    self.animationDelayBetweenCards = 1.5;
     [self updateUI];
 }
 

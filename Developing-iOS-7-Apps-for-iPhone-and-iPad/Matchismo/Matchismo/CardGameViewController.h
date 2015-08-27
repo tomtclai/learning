@@ -24,5 +24,5 @@
 @property (nonatomic) NSUInteger numberOfStartingCards;
 @property (nonatomic) CGSize maxCardSize;
 @property (nonatomic) BOOL removeMatchingCards;
-
+@property (assign) CGFloat animationDelayBetweenCards;
 @end
