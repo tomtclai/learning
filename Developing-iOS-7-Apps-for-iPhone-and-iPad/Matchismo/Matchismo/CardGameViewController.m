@@ -24,6 +24,8 @@
 @property (strong, nonatomic) NSMutableArray *cardViews;
 @property (weak, nonatomic) IBOutlet UIView *gridView;
 
+@property (weak, nonatomic) IBOutlet UIButton *addCardsButton;
+
 @end
 
 @implementation CardGameViewController
@@ -33,6 +35,7 @@
     if (!_cardViews) _cardViews = [NSMutableArray arrayWithCapacity:self.numberOfStartingCards];
     return _cardViews;
 }
+
 
 - (Grid *)grid
 {
@@ -77,13 +80,33 @@
     return nil;
 }
 
+// Make sure there are no old card view on screen
 - (IBAction)touchDealButton:(UIButton *)sender {
     self.game = nil;
     self.gameResult = nil;
+    for (UIView *subView in self.cardViews) {
+        [subView removeFromSuperview];
+    }
     self.cardViews = nil;
+    self.grid = nil;
+    self.addCardsButton.enabled = YES;
+    self.addCardsButton.alpha = 1.0;
     [self updateUI];
 }
-
+// When the button is touched add 3 cards to the game (in the tag)
+// if the deck is empty afterwards, disable the button
+- (IBAction)touchAddCardsButton:(UIButton *)sender {
+    for (int i = 0; i < sender.tag; i++) {
+        [self.game drawNewCard];
+    }
+    
+    if (self.game.deckIsEmpty) {
+        sender.enabled = NO;
+        sender.alpha = 0.5;
+    }
+    
+    [self updateUI];
+}
 - (UIView *)createViewForCard:(Card *)card
 {
     UIView *view = [[UIView alloc] init];
@@ -101,6 +124,21 @@
     if (gesture.state == UIGestureRecognizerStateEnded) {
         [self.game chooseCardAtIndex:gesture.view.tag];
         [self updateUI];
+        Card *card = [self.game cardAtIndex:gesture.view.tag];
+        if (!card.matched)
+        {
+            [UIView transitionWithView:gesture.view
+                          duration:0.2
+                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                        animations:^{
+                            card.chosen = !card.chosen;
+                            [self.game chooseCardAtIndex:gesture.view.tag];
+                        } completion:^(BOOL finished) {
+                            card.chosen = !card.chosen;
+                            [self.game chooseCardAtIndex:gesture.view.tag];
+                            [self updateUI];
+                        }];
+        }
     }
 }
 
@@ -110,7 +148,7 @@
 {
     for (NSUInteger cardIndex = 0;
          cardIndex < self.game.numberOfDealtCards;
-         cardIndex++) { 
+         cardIndex++) {
         Card *card = [self.game cardAtIndex:cardIndex];
         
         NSUInteger viewIndex = [self.cardViews indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
@@ -125,10 +163,14 @@
                 cardView = [self createViewForCard:card];
                 cardView.tag = cardIndex;
                 
+                cardView.frame = CGRectMake(self.gridView.bounds.size.width,
+                                            self.gridView.bounds.size.height,
+                                            self.grid.cellSize.width,
+                                            self.grid.cellSize.height);
+                cardView.alpha = 0.0;
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                       action:@selector(touchCard:)];
                 [cardView addGestureRecognizer:tap];
-                
                 [self.cardViews addObject:cardView];
                 viewIndex = [self.cardViews indexOfObject:cardView];
                 [self.gridView addSubview:cardView];
@@ -138,24 +180,62 @@
             if (!card.matched) {
                 [self updateView:cardView forCard:card];
             } else {
-                [cardView removeFromSuperview];
-                [self.cardViews removeObject:cardView];
+                if (self.removeMatchingCards) {
+                    [self.cardViews removeObject:cardView];
+                    [UIView animateWithDuration:1.0
+                                     animations:^{
+                                         cardView.frame = CGRectMake(0.0,
+                                                                     self.gridView.bounds.size.height,
+                                                                     self.grid.cellSize.width,
+                                                                     self.grid.cellSize.height);
+                                         cardView.alpha = 0.0;
+                                     } completion:^(BOOL finished) {
+                                         [cardView removeFromSuperview];
+                                     }];
+                } else {
+                    cardView.alpha = card.matched? 0.6 : 1.0;
+                }
             }
         }
-        CGRect frame = [self.grid frameOfCellAtRow:viewIndex / self.grid.columnCount
-                                          inColumn:viewIndex % self.grid.columnCount];
-        frame = CGRectInset(frame, frame.size.width * CARDSPACINGINPERCENT, frame.size.height * CARDSPACINGINPERCENT);
-        cardView.frame = frame;
     }
+    self.grid.minimumNumberOfCells = [self.cardViews count];
     
+        NSUInteger changedViews = 0;
+        for (NSUInteger viewIndex = 0; viewIndex < [self.cardViews count]; viewIndex++)
+        {
+            CGRect frame = [self.grid frameOfCellAtRow:viewIndex / self.grid.columnCount
+                                              inColumn:viewIndex % self.grid.columnCount];
+            frame = CGRectInset(frame, frame.size.width * CARDSPACINGINPERCENT, frame.size.height * CARDSPACINGINPERCENT);
+            
+            UIView *cardView = (UIView *)self.cardViews[viewIndex];
+            if (![self frame:frame equalToFrame:cardView.frame]) {
+                [UIView animateWithDuration:0.2
+                                      delay:1.5 * changedViews++ / [self.cardViews count]
+                                    options:UIViewAnimationOptionCurveEaseInOut
+                                 animations:^{
+                                     cardView.frame = frame;
+                                     cardView.alpha = 1.0;
+                                 } completion: NULL];
+            }
+        }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.game.score];
     self.gameResult.score = self.game.score;
+}
+
+#define FRAMEROUNDINGERROR 0.01
+
+- (BOOL)frame:(CGRect)frame1 equalToFrame:(CGRect)frame2
+{
+    if (fabs(frame1.size.width - frame2.size.width) > FRAMEROUNDINGERROR) return NO;
+    if (fabs(frame1.size.height - frame2.size.height) > FRAMEROUNDINGERROR) return NO;
+    if (fabs(frame1.origin.x - frame2.origin.x) > FRAMEROUNDINGERROR) return NO;
+    if (fabs(frame1.origin.y - frame2.origin.y) > FRAMEROUNDINGERROR) return NO;
+    return YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     self.game.matchBonus = self.gameSettings.matchBonus;
     self.game.mismatchPenalty = self.gameSettings.mismatchPenalty;
     self.game.flipCost = self.gameSettings.flipCost;

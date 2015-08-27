@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FMl-Up-dE7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="FMl-Up-dE7">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Playing Cards-->
@@ -13,17 +15,17 @@
                         <viewControllerLayoutGuide type="bottom" id="xtQ-mt-HIp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0d6-Ws-Dtn">
-                                <rect key="frame" x="20" y="393" width="222" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0d6-Ws-Dtn">
+                                <rect key="frame" x="24" y="513" width="513" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFO-91-pya">
-                                <rect key="frame" x="250" y="389" width="50" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFO-91-pya">
+                                <rect key="frame" x="545" y="513" width="31" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Deal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -37,12 +39,25 @@
                                     <action selector="touchDealButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xlD-RG-j2m"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tWz-12-414">
-                                <rect key="frame" x="0.0" y="20" width="320" height="361"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tWz-12-414">
+                                <rect key="frame" x="24" y="28" width="552" height="477"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.25098040699958801" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="0d6-Ws-Dtn" firstAttribute="top" secondItem="tWz-12-414" secondAttribute="bottom" constant="8" symbolic="YES" id="7rX-th-oYc"/>
+                            <constraint firstItem="tWz-12-414" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="8" id="Ey8-sP-Hd3"/>
+                            <constraint firstItem="fFO-91-pya" firstAttribute="top" secondItem="tWz-12-414" secondAttribute="bottom" constant="8" symbolic="YES" id="IQL-Na-ft7"/>
+                            <constraint firstItem="fFO-91-pya" firstAttribute="top" secondItem="tWz-12-414" secondAttribute="bottom" constant="8" symbolic="YES" id="LdO-1X-PCw"/>
+                            <constraint firstItem="fFO-91-pya" firstAttribute="leading" secondItem="0d6-Ws-Dtn" secondAttribute="trailing" constant="8" id="UG2-j9-jI9"/>
+                            <constraint firstItem="xtQ-mt-HIp" firstAttribute="top" secondItem="fFO-91-pya" secondAttribute="bottom" constant="8" symbolic="YES" id="WW6-wp-hR5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tWz-12-414" secondAttribute="trailing" constant="8" id="dHf-pk-ewI"/>
+                            <constraint firstItem="tWz-12-414" firstAttribute="top" secondItem="N59-Lp-bhX" secondAttribute="bottom" constant="8" symbolic="YES" id="giQ-tQ-R6S"/>
+                            <constraint firstItem="xtQ-mt-HIp" firstAttribute="top" secondItem="0d6-Ws-Dtn" secondAttribute="bottom" constant="8" symbolic="YES" id="iyx-G4-reL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fFO-91-pya" secondAttribute="trailing" constant="8" id="jz2-au-Act"/>
+                            <constraint firstItem="0d6-Ws-Dtn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="8" id="wlJ-LC-JOi"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Playing Cards" image="playingcards" id="HdP-xf-cLw"/>
                     <toolbarItems/>
@@ -53,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="574" y="71"/>
+            <point key="canvasLocation" x="1076.25" y="88.75"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="bjH-Ks-E8a">
@@ -76,7 +91,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZH-jk-mZZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9" y="985"/>
+            <point key="canvasLocation" x="-16.875" y="1231.25"/>
         </scene>
         <!--Set-->
         <scene sceneID="h1t-hf-UZX">
@@ -87,17 +102,17 @@
                         <viewControllerLayoutGuide type="bottom" id="DiV-k2-7Ii"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="rlL-7B-jNR">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="J0W-OC-vF6">
-                                <rect key="frame" x="20" y="393" width="222" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="243" verticalHuggingPriority="246" horizontalCompressionResistancePriority="753" verticalCompressionResistancePriority="753" text="Score: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="J0W-OC-vF6">
+                                <rect key="frame" x="24" y="513" width="491" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnh-9S-DwG">
-                                <rect key="frame" x="250" y="389" width="50" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnh-9S-DwG">
+                                <rect key="frame" x="561" y="513" width="31" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Deal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -111,14 +126,10 @@
                                     <action selector="touchDealButton:" destination="qym-hW-87s" eventType="touchUpInside" id="qEb-Hy-VKS"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rR6-uw-oZ9">
-                                <rect key="frame" x="0.0" y="20" width="320" height="361"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnl-TW-lNv">
-                                <rect key="frame" x="179" y="389" width="50" height="30"/>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="256" verticalHuggingPriority="255" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7TK-fe-ZSF">
+                                <rect key="frame" x="523" y="513" width="30" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Deal">
+                                <state key="normal" title="+3">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -127,21 +138,41 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="touchDealButton:" destination="qym-hW-87s" eventType="touchUpInside" id="xuc-Wb-Qgs"/>
+                                    <action selector="touchAddCardsButton:" destination="qym-hW-87s" eventType="touchUpInside" id="UjD-Cy-bp7"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rR6-uw-oZ9">
+                                <rect key="frame" x="24" y="28" width="552" height="477"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="rR6-uw-oZ9" firstAttribute="top" secondItem="tRh-dL-bZh" secondAttribute="bottom" constant="8" symbolic="YES" id="26w-Mo-VE9"/>
+                            <constraint firstItem="rR6-uw-oZ9" firstAttribute="leading" secondItem="rlL-7B-jNR" secondAttribute="leadingMargin" constant="8" id="AIR-2h-DYD"/>
+                            <constraint firstItem="J0W-OC-vF6" firstAttribute="leading" secondItem="rlL-7B-jNR" secondAttribute="leadingMargin" constant="8" id="FYG-sU-WzD"/>
+                            <constraint firstItem="J0W-OC-vF6" firstAttribute="top" secondItem="rR6-uw-oZ9" secondAttribute="bottom" constant="8" symbolic="YES" id="QlA-l5-4qq"/>
+                            <constraint firstItem="gnh-9S-DwG" firstAttribute="leading" secondItem="7TK-fe-ZSF" secondAttribute="trailing" constant="8" id="V1q-M0-OPf"/>
+                            <constraint firstItem="gnh-9S-DwG" firstAttribute="trailing" secondItem="rlL-7B-jNR" secondAttribute="trailingMargin" constant="8" id="Vto-TS-XNA"/>
+                            <constraint firstItem="gnh-9S-DwG" firstAttribute="top" secondItem="rR6-uw-oZ9" secondAttribute="bottom" constant="8" symbolic="YES" id="ecL-gi-2Mn"/>
+                            <constraint firstItem="DiV-k2-7Ii" firstAttribute="top" secondItem="7TK-fe-ZSF" secondAttribute="bottom" constant="8" symbolic="YES" id="kGh-Bc-2fO"/>
+                            <constraint firstItem="DiV-k2-7Ii" firstAttribute="top" secondItem="gnh-9S-DwG" secondAttribute="bottom" constant="8" symbolic="YES" id="lxs-jh-pMc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rR6-uw-oZ9" secondAttribute="trailing" constant="8" id="oGT-hN-bko"/>
+                            <constraint firstItem="7TK-fe-ZSF" firstAttribute="top" secondItem="rR6-uw-oZ9" secondAttribute="bottom" constant="8" symbolic="YES" id="q5f-O2-0Ez"/>
+                            <constraint firstItem="DiV-k2-7Ii" firstAttribute="top" secondItem="J0W-OC-vF6" secondAttribute="bottom" constant="8" symbolic="YES" id="sKt-rz-vUN"/>
+                            <constraint firstItem="7TK-fe-ZSF" firstAttribute="leading" secondItem="J0W-OC-vF6" secondAttribute="trailing" constant="8" id="tE3-Rr-HbR"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Set" image="setcards" id="5Ov-Bs-xG3"/>
                     <connections>
+                        <outlet property="addCardsButton" destination="7TK-fe-ZSF" id="0gH-r6-N0l"/>
                         <outlet property="gridView" destination="rR6-uw-oZ9" id="UoH-gh-ctB"/>
                         <outlet property="scoreLabel" destination="J0W-OC-vF6" id="0T7-se-uFv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w73-W4-aTF" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="574" y="671"/>
+            <point key="canvasLocation" x="1076" y="838"/>
         </scene>
         <!--Scores-->
         <scene sceneID="Hln-K4-rKJ">
@@ -152,7 +183,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Bkg-7H-p2W"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="R7l-0c-zt2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ksZ-GO-hCf">
@@ -199,7 +230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z6u-F3-Ku5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="574" y="1256"/>
+            <point key="canvasLocation" x="1076.25" y="1570"/>
         </scene>
         <!--Settings-->
         <scene sceneID="bzr-Hu-LDB">
@@ -210,7 +241,7 @@
                         <viewControllerLayoutGuide type="bottom" id="y1s-sr-LZm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UYu-3V-G1m">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Match Bonus:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6NG-lb-62D">
@@ -250,19 +281,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="4" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="LRv-oE-Y1g">
-                                <rect key="frame" x="18" y="69" width="284" height="34"/>
+                                <rect key="frame" x="18" y="69" width="284" height="31"/>
                                 <connections>
                                     <action selector="matchBonusSliderChanged:" destination="7Ag-nq-VYc" eventType="valueChanged" id="JmU-SG-uYM"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="EsB-PE-MWC">
-                                <rect key="frame" x="18" y="159" width="284" height="34"/>
+                                <rect key="frame" x="18" y="159" width="284" height="31"/>
                                 <connections>
                                     <action selector="mismatchPenaltySliderChanged:" destination="7Ag-nq-VYc" eventType="valueChanged" id="6rF-pP-1pI"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="igM-nt-7zN">
-                                <rect key="frame" x="18" y="249" width="284" height="34"/>
+                                <rect key="frame" x="18" y="249" width="284" height="31"/>
                                 <connections>
                                     <action selector="flipCostSliderChanged:" destination="7Ag-nq-VYc" eventType="valueChanged" id="7V6-oo-N1S"/>
                                 </connections>
@@ -282,7 +313,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KO9-7a-MwD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="574" y="1857"/>
+            <point key="canvasLocation" x="1076.25" y="2321.25"/>
         </scene>
     </scenes>
     <resources>
@@ -291,10 +322,5 @@
         <image name="setcards" width="30" height="30"/>
         <image name="settings" width="30" height="30"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
-    </simulatedMetricsContainer>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

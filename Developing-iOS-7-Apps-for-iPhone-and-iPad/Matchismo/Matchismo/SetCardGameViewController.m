@@ -43,16 +43,18 @@
     setCardView.symbol = setCard.symbol;
     setCardView.shading = setCard.shading;
     setCardView.number = setCard.number;
-    setCardView.chosen = setCard.chosen;
+    setCardView.chosen = setCard.chosen;    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.numberOfStartingCards = 12;
+    self.removeMatchingCards = YES;
     self.maxCardSize = CGSizeMake(120.0, 120.0);
     [self updateUI];
 }
+
 
 
 @end

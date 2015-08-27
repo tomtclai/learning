@@ -44,22 +44,22 @@
 
 #pragma mark - Drawing
 
-#define CORNER_RADIUS 12.0
+#define CORNER_RADIUS 0.1
 - (void)drawRect:(CGRect)rect
 {
     UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:self.bounds
-                                                           cornerRadius:CORNER_RADIUS];
+                                                           cornerRadius:self.bounds.size.width * CORNER_RADIUS];
     [roundedRect addClip];
-    
+
     [[UIColor whiteColor] setFill];
     UIRectFill(self.bounds);
     
     if (self.chosen) {
-        [[UIColor blueColor] setStroke];
-        roundedRect.lineWidth *= 2.0;
+        [[UIColor grayColor] setFill];
+        UIRectFill(self.bounds);
     } else {
         [[UIColor colorWithWhite:0.8 alpha:1.0] setStroke];
-        roundedRect.lineWidth /= 2.0;
+//        roundedRect.lineWidth /= 2.0;
     }
     [roundedRect stroke];
     

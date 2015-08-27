@@ -1,9 +1,9 @@
 //
 //  PlayingCard.h
-//  Card
+//  Matchismo
 //
-//  Created by Tom Lai on 8/5/15.
-//  Copyright (c) 2015 Tom Lai. All rights reserved.
+//  Created by Martin Mandl on 03.11.13.
+//  Copyright (c) 2013 m2m server software gmbh. All rights reserved.
 //
 
 #import "Card.h"
@@ -16,5 +16,5 @@
 + (NSArray *)validSuits;
 + (NSArray *)rankStrings;
 + (NSUInteger)maxRank;
-@end
 
+@end

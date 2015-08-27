@@ -46,7 +46,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.numberOfStartingCards = 35;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.numberOfStartingCards = 30;
     self.maxCardSize = CGSizeMake(80.0, 120.0);
     [self updateUI];
 }
