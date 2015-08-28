@@ -14,6 +14,10 @@
 		779F8BB71B90CFBD00328E85 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 779F8BB61B90CFBD00328E85 /* Images.xcassets */; };
 		779F8BBA1B90CFBD00328E85 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 779F8BB81B90CFBD00328E85 /* LaunchScreen.xib */; };
 		779F8BC61B90CFBD00328E85 /* ShutterbugTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 779F8BC51B90CFBD00328E85 /* ShutterbugTests.m */; };
+		779F8BD11B90D00D00328E85 /* FlickerPhotosTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779F8BD01B90D00D00328E85 /* FlickerPhotosTableViewController.m */; };
+		779F8BD41B90D09D00328E85 /* JustPostedFlickerPhotosTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779F8BD31B90D09D00328E85 /* JustPostedFlickerPhotosTableViewController.m */; };
+		779F8BDA1B90D1E200328E85 /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 779F8BD91B90D1E200328E85 /* FlickrFetcher.m */; };
+		779F8BDD1B90DA8100328E85 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779F8BDC1B90DA8100328E85 /* ImageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,15 @@
 		779F8BBF1B90CFBD00328E85 /* ShutterbugTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShutterbugTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		779F8BC41B90CFBD00328E85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		779F8BC51B90CFBD00328E85 /* ShutterbugTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShutterbugTests.m; sourceTree = "<group>"; };
+		779F8BCF1B90D00D00328E85 /* FlickerPhotosTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickerPhotosTableViewController.h; sourceTree = "<group>"; };
+		779F8BD01B90D00D00328E85 /* FlickerPhotosTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickerPhotosTableViewController.m; sourceTree = "<group>"; };
+		779F8BD21B90D09D00328E85 /* JustPostedFlickerPhotosTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JustPostedFlickerPhotosTableViewController.h; sourceTree = "<group>"; };
+		779F8BD31B90D09D00328E85 /* JustPostedFlickerPhotosTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JustPostedFlickerPhotosTableViewController.m; sourceTree = "<group>"; };
+		779F8BD71B90D1E200328E85 /* FlickrAPIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlickrAPIKey.h; path = "Flickr Fetcher/FlickrAPIKey.h"; sourceTree = "<group>"; };
+		779F8BD81B90D1E200328E85 /* FlickrFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlickrFetcher.h; path = "Flickr Fetcher/FlickrFetcher.h"; sourceTree = "<group>"; };
+		779F8BD91B90D1E200328E85 /* FlickrFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlickrFetcher.m; path = "Flickr Fetcher/FlickrFetcher.m"; sourceTree = "<group>"; };
+		779F8BDB1B90DA8100328E85 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
+		779F8BDC1B90DA8100328E85 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +99,15 @@
 				779F8BB01B90CFBD00328E85 /* ViewController.h */,
 				779F8BB11B90CFBD00328E85 /* ViewController.m */,
 				779F8BB31B90CFBD00328E85 /* Main.storyboard */,
+				779F8BCF1B90D00D00328E85 /* FlickerPhotosTableViewController.h */,
+				779F8BD01B90D00D00328E85 /* FlickerPhotosTableViewController.m */,
+				779F8BD21B90D09D00328E85 /* JustPostedFlickerPhotosTableViewController.h */,
+				779F8BD31B90D09D00328E85 /* JustPostedFlickerPhotosTableViewController.m */,
+				779F8BD71B90D1E200328E85 /* FlickrAPIKey.h */,
+				779F8BD81B90D1E200328E85 /* FlickrFetcher.h */,
+				779F8BD91B90D1E200328E85 /* FlickrFetcher.m */,
+				779F8BDB1B90DA8100328E85 /* ImageViewController.h */,
+				779F8BDC1B90DA8100328E85 /* ImageViewController.m */,
 				779F8BB61B90CFBD00328E85 /* Images.xcassets */,
 				779F8BB81B90CFBD00328E85 /* LaunchScreen.xib */,
 				779F8BA91B90CFBD00328E85 /* Supporting Files */,
@@ -220,7 +242,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				779F8BB21B90CFBD00328E85 /* ViewController.m in Sources */,
+				779F8BD11B90D00D00328E85 /* FlickerPhotosTableViewController.m in Sources */,
+				779F8BD41B90D09D00328E85 /* JustPostedFlickerPhotosTableViewController.m in Sources */,
 				779F8BAF1B90CFBD00328E85 /* AppDelegate.m in Sources */,
+				779F8BDA1B90D1E200328E85 /* FlickrFetcher.m in Sources */,
+				779F8BDD1B90DA8100328E85 /* ImageViewController.m in Sources */,
 				779F8BAC1B90CFBD00328E85 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
