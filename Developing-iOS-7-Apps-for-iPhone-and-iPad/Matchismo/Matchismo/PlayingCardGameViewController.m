@@ -47,7 +47,7 @@
     [super viewDidLoad];
     self.numberOfStartingCards = 30;
     self.maxCardSize = CGSizeMake(80.0, 120.0);
-    self.animationDelayBetweenCards = 1.5;
+    self.animationDelayBetweenCards = 0;
     [self updateUI];
 }
 

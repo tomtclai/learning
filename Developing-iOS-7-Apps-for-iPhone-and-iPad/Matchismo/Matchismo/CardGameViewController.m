@@ -25,21 +25,23 @@
 @property (weak, nonatomic) IBOutlet UIView *gridView;
 
 @property (weak, nonatomic) IBOutlet UIButton *addCardsButton;
-
+@property (strong, nonatomic) UIDynamicAnimator *pileAnimator;
 @end
 
 @implementation CardGameViewController
-
+#define ANIMATION_SPEED 0.3
 - (NSMutableArray *)cardViews
 {
     if (!_cardViews) _cardViews = [NSMutableArray arrayWithCapacity:self.numberOfStartingCards];
     return _cardViews;
 }
 
+
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
         UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+        self.pileAnimator = nil;
         self.grid.size = self.gridView.bounds.size;
         [self updateUI];
     } completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
@@ -93,17 +95,17 @@
 
 // Make sure there are no old card view on screen
 - (IBAction)touchDealButton:(UIButton *)sender {
+    self.pileAnimator = nil;
     NSUInteger changedViews = 0;
     for (UIView *subView in self.cardViews) {
-        [UIView animateWithDuration:0.2
+        [UIView animateWithDuration: ANIMATION_SPEED
                               delay:self.animationDelayBetweenCards * changedViews++ / [self.cardViews count]
                             options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
-                             subView.frame = CGRectMake(0.0,
-                                                        self.gridView.frame.size.height,
-                                                        self.grid.cellSize.width * 3,
-                                                        self.grid.cellSize.height * 3);
-                             subView.alpha = 0.0;
+                             subView.frame = CGRectMake(subView.frame.origin.x,
+                                                        self.gridView.frame.size.height + self.grid.cellSize.height,
+                                                        self.grid.cellSize.width * 1,
+                                                        self.grid.cellSize.height * 1);
                          } completion:^(BOOL finished) {
                              [subView removeFromSuperview];
                          }];
@@ -120,6 +122,7 @@
 // When the button is touched add 3 cards to the game (in the tag)
 // if the deck is empty afterwards, disable the button
 - (IBAction)touchAddCardsButton:(UIButton *)sender {
+    self.pileAnimator = nil;
     for (int i = 0; i < sender.tag; i++) {
         [self.game drawNewCard];
     }
@@ -146,10 +149,10 @@
 - (void)touchCard:(UITapGestureRecognizer *)gesture
 {
     if (gesture.state == UIGestureRecognizerStateEnded) {
-        [self.game chooseCardAtIndex:gesture.view.tag];
         [self updateUI];
+        [self.game chooseCardAtIndex:gesture.view.tag];
         Card *card = [self.game cardAtIndex:gesture.view.tag];
-        if (!card.matched)
+        if (!card.matched && !self.pileAnimator)
         {
             [UIView transitionWithView:gesture.view
                           duration:0.2
@@ -162,10 +165,68 @@
                             [self.game chooseCardAtIndex:gesture.view.tag];
                             [self updateUI];
                         }];
+        } else {
+            self.pileAnimator = nil;
+            [[self.game cardAtIndex:gesture.view.tag] setChosen:NO];
         }
     }
 }
 
+#define RESISTANCE_TO_PILING 40.0
+
+- (IBAction)gatherCardsIntoPile:(UIPinchGestureRecognizer *)gesture {
+    if ((gesture.state == UIGestureRecognizerStateChanged) ||
+        (gesture.state == UIGestureRecognizerStateEnded)) {
+        CGPoint center = [gesture locationInView:self.gridView];
+    
+    
+        if (!self.pileAnimator) {
+            self.pileAnimator = [[UIDynamicAnimator alloc]initWithReferenceView:self.gridView];
+            UIDynamicItemBehavior *item = [[UIDynamicItemBehavior alloc] initWithItems:self.cardViews];
+            
+            item.resistance = RESISTANCE_TO_PILING;
+            [self.pileAnimator addBehavior:item];
+            
+            for (UIView *cardView in self.cardViews) {
+                UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:cardView snapToPoint:center];
+                [self.pileAnimator addBehavior:snap];
+            }
+        }
+    }
+}
+
+- (IBAction)panPile:(UIPanGestureRecognizer *)gesture {
+    if (self.pileAnimator) {
+        CGPoint gesturePoint = [gesture locationInView:self.gridView];
+        if (gesture.state == UIGestureRecognizerStateBegan) {
+            for (UIView *cardView in self.cardViews) {
+                UIAttachmentBehavior *attachment = [[UIAttachmentBehavior alloc] initWithItem:cardView attachedToAnchor:gesturePoint];
+                [self.pileAnimator addBehavior:attachment];
+            }
+            for (UIDynamicBehavior *behavior in self.pileAnimator.behaviors) {
+                if ([behavior isKindOfClass:[UISnapBehavior class]]) {
+                    [self.pileAnimator removeBehavior:behavior];
+                }
+            }
+        } else if (gesture.state == UIGestureRecognizerStateChanged) {
+            for (UIDynamicBehavior *behavior in self.pileAnimator.behaviors) {
+                if ([behavior isKindOfClass:[UIAttachmentBehavior class]]) {
+                    ((UIAttachmentBehavior *)behavior).anchorPoint = gesturePoint;
+                }
+            }
+        } else if (gesture.state == UIGestureRecognizerStateEnded) {
+            for (UIDynamicBehavior *behavior in self.pileAnimator.behaviors) {
+                if ([behavior isKindOfClass:[UIAttachmentBehavior class]]) {
+                    [self.pileAnimator removeBehavior:behavior];
+                }
+            }
+            for (UIView *cardView in self.cardViews) {
+                UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:cardView snapToPoint:gesturePoint];
+                [self.pileAnimator addBehavior:snap];
+            }
+        }
+    }
+}
 #define CARDSPACINGINPERCENT 0.08
 
 - (void)updateUI
@@ -187,11 +248,11 @@
                 cardView = [self createViewForCard:card];
                 cardView.tag = cardIndex;
                 
-                cardView.frame = CGRectMake(self.gridView.bounds.size.width,
-                                            self.gridView.bounds.size.height,
-                                            self.grid.cellSize.width,
-                                            self.grid.cellSize.height);
-                cardView.alpha = 0.0;
+                cardView.frame = CGRectMake((self.gridView.bounds.size.width /2.0 - self.grid.cellSize.width) ,
+                                            (self.gridView.bounds.size.height - self.grid.cellSize.height),
+                                            self.grid.cellSize.width* 2.0,
+                                            self.grid.cellSize.height* 2.0);
+
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                       action:@selector(touchCard:)];
                 [cardView addGestureRecognizer:tap];
@@ -206,7 +267,7 @@
             } else {
                 if (self.removeMatchingCards) {
                     [self.cardViews removeObject:cardView];
-                    [UIView animateWithDuration:1.0
+                    [UIView animateWithDuration:ANIMATION_SPEED
                                      animations:^{
                                          cardView.frame = CGRectMake(0.0,
                                                                      self.gridView.bounds.size.height,
@@ -233,7 +294,7 @@
             
             UIView *cardView = (UIView *)self.cardViews[viewIndex];
             if (![self frame:frame equalToFrame:cardView.frame]) {
-                [UIView animateWithDuration:0.2
+                [UIView animateWithDuration:ANIMATION_SPEED
                                       delay:self.animationDelayBetweenCards * changedViews++ / [self.cardViews count]
                                     options:UIViewAnimationOptionCurveEaseInOut
                                  animations:^{
@@ -263,7 +324,12 @@
     self.game.matchBonus = self.gameSettings.matchBonus;
     self.game.mismatchPenalty = self.gameSettings.mismatchPenalty;
     self.game.flipCost = self.gameSettings.flipCost;
-
-    self.grid.size = self.gridView.bounds.size;
 }
+
+- (void)viewWillLayoutSubviews
+{
+    self.grid.size = self.gridView.bounds.size;
+    [self updateUI];
+}
+
 @end
