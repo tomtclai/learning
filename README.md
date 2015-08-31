@@ -8,8 +8,10 @@ This repository contains work and/or practices I typed going through various tec
  - [IOS Programming: The Big Nerd Ranch Guide](iOS-Programming/)
 
 ###I'm working on
- - [CSS Secrets](CSS-Secrets/)
+ - [iTunes U: Developing iOS 7 Apps for iPhone and iPad](Developing-iOS-7-Apps-for-iPhone-and-iPad/)
+
+<!-- - [CSS Secrets](CSS-Secrets/)
  - [JavaScript Design Patterns](Udacity.com/JavaScript-Design-Patterns/)
  - [Cocoa Programing for OSX](Cocoa-Programming-for-OSX)
  - [Effective Modern C++](Effective-Modern-C++)
- - [Developing iOS 7 Apps for iPhone and iPad](Developing-iOS-7-Apps-for-iPhone-and-iPad)
+ - [Developing iOS 7 Apps for iPhone and iPad](Developing-iOS-7-Apps-for-iPhone-and-iPad)-->
