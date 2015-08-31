@@ -23,6 +23,7 @@
 
 #pragma mark - UITableViewDelegate
 
+// for ipad
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id detail = self.splitViewController.viewControllers[1];
@@ -63,6 +64,7 @@
     ivc.title = [photo valueForKeyPath:FLICKR_PHOTO_TITLE];
 }
 
+// For iphone
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([sender isKindOfClass:[UITableViewCell class]]) {

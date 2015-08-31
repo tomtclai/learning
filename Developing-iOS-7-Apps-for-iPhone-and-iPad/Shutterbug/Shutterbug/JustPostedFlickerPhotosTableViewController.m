@@ -23,7 +23,7 @@
 {
     [self.refreshControl beginRefreshing];
     NSURL *url = [FlickrFetcher URLforRecentGeoreferencedPhotos];
-    dispatch_queue_t fetchQ = dispatch_queue_create("flcikr fetcher", NULL);
+    dispatch_queue_t fetchQ = dispatch_queue_create("flickr photo fetcher", NULL);
     dispatch_async(fetchQ, ^{
         NSData *jsonResults = [NSData dataWithContentsOfURL:url];
         NSDictionary *propertyListResults = [NSJSONSerialization JSONObjectWithData:jsonResults
@@ -35,9 +35,11 @@
             self.photos = photos;
             [self.refreshControl endRefreshing];
         });
+        
     });
-#warning Block Main Thread
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

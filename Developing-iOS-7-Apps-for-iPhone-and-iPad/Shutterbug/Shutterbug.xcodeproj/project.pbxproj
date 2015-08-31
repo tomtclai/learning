@@ -19,6 +19,9 @@
 		779F8BD41B90D09D00328E85 /* JustPostedFlickerPhotosTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779F8BD31B90D09D00328E85 /* JustPostedFlickerPhotosTableViewController.m */; };
 		779F8BDA1B90D1E200328E85 /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 779F8BD91B90D1E200328E85 /* FlickrFetcher.m */; };
 		779F8BDD1B90DA8100328E85 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779F8BDC1B90DA8100328E85 /* ImageViewController.m */; };
+		77FB52381B94E0D400050E18 /* TopPlacesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB52371B94E0D400050E18 /* TopPlacesTableViewController.m */; };
+		77FB523E1B94E83700050E18 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB523D1B94E83700050E18 /* City.m */; };
+		77FB52411B94F09900050E18 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77FB523F1B94F09900050E18 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,11 @@
 		779F8BD91B90D1E200328E85 /* FlickrFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlickrFetcher.m; path = "Flickr Fetcher/FlickrFetcher.m"; sourceTree = "<group>"; };
 		779F8BDB1B90DA8100328E85 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		779F8BDC1B90DA8100328E85 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
+		77FB52361B94E0D400050E18 /* TopPlacesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopPlacesTableViewController.h; sourceTree = "<group>"; };
+		77FB52371B94E0D400050E18 /* TopPlacesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopPlacesTableViewController.m; sourceTree = "<group>"; };
+		77FB523C1B94E83700050E18 /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = City.h; path = Shutterbug.xcodeproj/../City.h; sourceTree = SOURCE_ROOT; };
+		77FB523D1B94E83700050E18 /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = City.m; path = Shutterbug.xcodeproj/../City.m; sourceTree = SOURCE_ROOT; };
+		77FB52401B94F09900050E18 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,7 @@
 		779F8B9D1B90CFBD00328E85 = {
 			isa = PBXGroup;
 			children = (
+				77FB523F1B94F09900050E18 /* Model.xcdatamodeld */,
 				779F8BA81B90CFBD00328E85 /* Shutterbug */,
 				779F8BC21B90CFBD00328E85 /* ShutterbugTests */,
 				779F8BA71B90CFBD00328E85 /* Products */,
@@ -102,6 +111,10 @@
 				779F8BB11B90CFBD00328E85 /* ViewController.m */,
 				779F8BB31B90CFBD00328E85 /* iPad.storyboard */,
 				7729D2A81B923CC300058872 /* iPhone.storyboard */,
+				77FB52361B94E0D400050E18 /* TopPlacesTableViewController.h */,
+				77FB52371B94E0D400050E18 /* TopPlacesTableViewController.m */,
+				77FB523C1B94E83700050E18 /* City.h */,
+				77FB523D1B94E83700050E18 /* City.m */,
 				779F8BCF1B90D00D00328E85 /* FlickerPhotosTableViewController.h */,
 				779F8BD01B90D00D00328E85 /* FlickerPhotosTableViewController.m */,
 				779F8BD21B90D09D00328E85 /* JustPostedFlickerPhotosTableViewController.h */,
@@ -248,10 +261,13 @@
 				779F8BB21B90CFBD00328E85 /* ViewController.m in Sources */,
 				779F8BD11B90D00D00328E85 /* FlickerPhotosTableViewController.m in Sources */,
 				779F8BD41B90D09D00328E85 /* JustPostedFlickerPhotosTableViewController.m in Sources */,
+				77FB52381B94E0D400050E18 /* TopPlacesTableViewController.m in Sources */,
 				779F8BAF1B90CFBD00328E85 /* AppDelegate.m in Sources */,
 				779F8BDA1B90D1E200328E85 /* FlickrFetcher.m in Sources */,
 				779F8BDD1B90DA8100328E85 /* ImageViewController.m in Sources */,
+				77FB52411B94F09900050E18 /* Model.xcdatamodeld in Sources */,
 				779F8BAC1B90CFBD00328E85 /* main.m in Sources */,
+				77FB523E1B94E83700050E18 /* City.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +476,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		77FB523F1B94F09900050E18 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				77FB52401B94F09900050E18 /* Model.xcdatamodel */,
+			);
+			currentVersion = 77FB52401B94F09900050E18 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 779F8B9E1B90CFBD00328E85 /* Project object */;
 }

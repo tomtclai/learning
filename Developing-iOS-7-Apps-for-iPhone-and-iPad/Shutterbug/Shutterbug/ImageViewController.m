@@ -35,7 +35,8 @@
 - (void)setImageURL:(NSURL *)imageURL
 {
     _imageURL = imageURL;
-//    self.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
+    if (self.splitViewController)
+        [self.spinner startAnimating];
     [self startDownloadingImage];
 }
 
@@ -46,11 +47,13 @@
         NSURLRequest *request = [NSURLRequest requestWithURL:self.imageURL];
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
         NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+        [self.spinner startAnimating];
         NSURLSessionDownloadTask *task =
         [session downloadTaskWithRequest:request
                        completionHandler:^(NSURL *localFile, NSURLResponse *response, NSError *error) {
                            if (!error) {
                                if ([request.URL isEqual:self.imageURL]) {
+                                   
                                    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:localFile]];
                                    dispatch_async(dispatch_get_main_queue(), ^{
                                        self.image = image;
@@ -79,15 +82,33 @@
     self.imageView.image = image;
     [self.imageView sizeToFit];
     self.imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-    [self.spinner stopAnimating];
     self.scrollView.contentSize = self.image? self.image.size : CGSizeZero;
+    [self configureZoomScale];
+    [self.spinner stopAnimating];
+}
+
+- (void)configureZoomScale
+{
+    if (self.imageView.bounds.size.width != 0 && self.imageView.bounds.size.height != 0)
+    {
+        CGFloat x = self.scrollView.bounds.size.width / self.imageView.bounds.size.width;
+        CGFloat y = self.scrollView.bounds.size.height / self.imageView.bounds.size.height;
+        
+        CGFloat minZoomScale = MIN(x,y);
+        CGFloat maxZoomScale = MAX(x,y);
+        
+        self.scrollView.minimumZoomScale = minZoomScale;
+        self.scrollView.maximumZoomScale = maxZoomScale;
+        self.scrollView.zoomScale = minZoomScale;
+    }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.spinner startAnimating];
     [self.scrollView addSubview:self.imageView];
+    if (!self.splitViewController)
+        [self.spinner startAnimating];
 }
 
 #pragma mark - UISplitViewControllerDelegate
