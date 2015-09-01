@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface City : NSObject
-@property (nonatomic, strong) NSString* name;
-@property (nonatomic, strong) NSString* flickrPlaceId;
-@property (nonatomic, strong) NSString* countryName;
-@property (nonatomic, strong) NSString* restOfAddress;
-- (NSString*) description;
+@class Country;
+
+@interface City : NSManagedObject
+
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * restOfAddress;
+@property (nonatomic, retain) NSString * flickrPlaceId;
+@property (nonatomic, retain) Country *country;
+
 @end

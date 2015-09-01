@@ -6,7 +6,7 @@
         <attribute name="restOfAddress" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="country" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Country" inverseName="city" inverseEntity="Country" syncable="YES"/>
     </entity>
-    <entity name="Country" syncable="YES">
+    <entity name="Country" representedClassName="Country" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="city" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="City" inverseName="country" inverseEntity="City" syncable="YES"/>
     </entity>

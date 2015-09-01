@@ -7,9 +7,14 @@
 //
 
 #import "City.h"
+#import "Country.h"
+
 
 @implementation City
-- (NSString*) description {
-    return [NSString stringWithFormat:@"%@, %@, %@, %@", self.name, self.restOfAddress, self.countryName, self.flickrPlaceId];
-}
+
+@dynamic name;
+@dynamic restOfAddress;
+@dynamic flickrPlaceId;
+@dynamic country;
+
 @end
