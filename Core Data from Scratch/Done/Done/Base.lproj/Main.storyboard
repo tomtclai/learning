@@ -33,8 +33,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B9t-Bx-ZBA">
-                                                    <rect key="frame" x="546" y="7" width="46" height="30"/>
-                                                    <state key="normal" title="Button">
+                                                    <rect key="frame" x="562" y="7" width="30" height="30"/>
+                                                    <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
@@ -49,6 +49,7 @@
                                         <connections>
                                             <outlet property="doneButton" destination="B9t-Bx-ZBA" id="b1I-es-Rz8"/>
                                             <outlet property="nameLabel" destination="dLH-iQ-UMb" id="Us1-aa-DmX"/>
+                                            <segue destination="Xbc-7u-xFy" kind="show" identifier="updateToDoViewController" id="q01-WJ-ogd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -161,6 +162,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gk7-Di-m36" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2527" y="632"/>
+        </scene>
+        <!--Update To Do View Controller-->
+        <scene sceneID="n3X-uF-rRd">
+            <objects>
+                <viewController id="Xbc-7u-xFy" customClass="TSPUpdateToDoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ltt-1V-QYH"/>
+                        <viewControllerLayoutGuide type="bottom" id="lVs-yc-bru"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="atx-tW-hAA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gHF-pr-0oa">
+                                <rect key="frame" x="16" y="72" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gHF-pr-0oa" firstAttribute="leading" secondItem="atx-tW-hAA" secondAttribute="leadingMargin" id="Wx6-Xa-K2E"/>
+                            <constraint firstItem="gHF-pr-0oa" firstAttribute="top" secondItem="ltt-1V-QYH" secondAttribute="bottom" constant="8" id="Z3y-oO-cQG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gHF-pr-0oa" secondAttribute="trailing" id="va8-gu-KBZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="qlE-NT-5es">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="JFO-7p-d8E">
+                            <connections>
+                                <action selector="cancel:" destination="Xbc-7u-xFy" id="SSX-JK-TeN"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="lmN-jE-81k">
+                            <connections>
+                                <action selector="save:" destination="Xbc-7u-xFy" id="X5t-JS-mUD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textField" destination="gHF-pr-0oa" id="nhE-F9-O5P"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R2j-8V-GFF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3287" y="1360"/>
         </scene>
     </scenes>
 </document>

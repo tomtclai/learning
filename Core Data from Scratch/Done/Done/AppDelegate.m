@@ -49,6 +49,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [self saveManagedObjectContext];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -61,6 +62,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self saveManagedObjectContext];
 }
 #pragma mark - Core Data stack
 
@@ -104,11 +106,97 @@
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+    
+    NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption : @(YES),
+                               NSInferMappingModelAutomaticallyOption : @(YES) };
+    
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
+        NSFileManager *fm = [NSFileManager defaultManager];
+        
+        // Move incompatible Store
+        if ([fm fileExistsAtPath:[storeURL path]]) {
+            NSURL *corruptURL = [[self applicationIncompatibleStoresDirectory] URLByAppendingPathComponent:[self nameForIncompatibleStore]];
+            
+            // Move Corrupt Store
+            NSError *errorMoveStore = nil;
+            [fm moveItemAtURL:storeURL toURL:corruptURL error:&errorMoveStore];
+            
+            
+            // Add store
+            NSError *errorAddingStore = nil;
+            if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&errorAddingStore]) {
+                NSLog(@"Unable to create persistent store after recovery. %@, %@", errorAddingStore, errorAddingStore.localizedDescription);
+            }
+            NSString *title = @"Warning";
+            NSString *applicationName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+            applicationName = applicationName? applicationName : @"Done";
+            NSString *message = [NSString stringWithFormat:@"A serious application occurred while %@ tried to read your data. Please conctact support.", applicationName];
+            
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            
+            [alertView show];
+        }
     }
     
     return _persistentStoreCoordinator;
+}
+
+#pragma mark - Helper Methods
+- (void)saveManagedObjectContext {
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        if (error) {
+            NSLog(@"Unable to save changes.");
+            NSLog(@"%@, %@", error, error.localizedDescription);
+        }
+    }
+}
+
+- (NSURL *)applicationStoresDirectory {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSURL *applicationApplicationSupportDirectory = [[fm URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask] lastObject];
+    NSURL *URL = [applicationApplicationSupportDirectory URLByAppendingPathComponent:@"Stores"];
+    
+    if (![fm fileExistsAtPath:[URL path]]) {
+        NSError *error = nil;
+        [fm createDirectoryAtURL:URL withIntermediateDirectories:YES attributes:nil error:&error];
+        
+        if (error) {
+            NSLog(@"Unable to create directory for data stores");
+            
+            return nil;
+        }
+    }
+    
+    return URL;
+}
+
+- (NSURL *)applicationIncompatibleStoresDirectory {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSURL *URL = [[self applicationStoresDirectory] URLByAppendingPathComponent:@"Incompatible"];
+    
+    if (![fm fileExistsAtPath:[URL path]]) {
+        NSError *error = nil;
+        [fm createDirectoryAtURL:URL withIntermediateDirectories:YES attributes:nil error:&error];
+        
+        if (error) {
+            NSLog(@"Unable to create directory for corrupt data stores");
+            
+            return nil;
+        }
+    }
+    
+    return URL;
+}
+
+- (NSString *)nameForIncompatibleStore {
+    // Initialize Date Formatter
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    // Configure Date Formatter
+    [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
+    
+    return [NSString stringWithFormat:@"%@.sqlite", [dateFormatter stringFromDate:[NSDate date]]];
 }
 @end

@@ -9,11 +9,14 @@
 #import "ViewController.h"
 #import "TSPToDoCell.h"
 #import "TSPAddToDoViewController.h"
+#import "TSPUpdateToDoViewController.h"
 @import CoreData;
 
 @interface ViewController () <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+
+@property (strong, nonatomic) NSIndexPath *selection;
 
 @end
 
@@ -75,7 +78,7 @@
             break;
         }
         case NSFetchedResultsChangeDelete: {
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                                   withRowAnimation:UITableViewRowAnimationFade];
             break;
         }
@@ -103,9 +106,16 @@
     
     [cell.nameLabel setText: [record valueForKey: @"name"]];
     [cell.doneButton setSelected:[[record valueForKey:@"done"] boolValue]];
+    
+    [cell setDidTapButtonBlock:^{
+        BOOL isDone = [[record valueForKey:@"done"] boolValue];
+        
+        // Update Record
+        [record setValue:@(!isDone) forKey:@"done"];
+    }];
 }
 
-#pragma mark - tabale view data source
+#pragma mark - Table View Data Source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.fetchedResultsController.sections.count;
@@ -128,6 +138,34 @@
     return cell;
 }
 
+#pragma mark - Table View Delegate
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Store selection for use in prepareForSegue:sender:
+    [self setSelection:indexPath];
+    return  indexPath;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSManagedObject *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        if (record) {
+            [self.fetchedResultsController.managedObjectContext deleteObject:record];
+        }
+    }
+}
+
 #pragma mark - segueing
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"addToDoViewController"]) {
@@ -137,6 +175,25 @@
         
         // Configure View Controller
         [vc setManagedObjectContext:self.managedObjectContext];
+    } else if ([segue.identifier isEqualToString:@"updateToDoViewController"]) {
+        // Obtain Reference to View Controller
+        TSPUpdateToDoViewController *vc = (TSPUpdateToDoViewController *)[segue destinationViewController];
+        
+        // Configure View Controller
+        [vc setManaggedObjectContext:self.managedObjectContext];
+        
+        // To prevent any unexpected behavior, we only perform this step if selection isn't nill
+        if (self.selection) {
+            // Fetch record
+            NSManagedObject *record = [self.fetchedResultsController objectAtIndexPath:self.selection];
+            
+            if (record) {
+                [vc setRecord:record];
+            }
+            
+            // Reset Selection
+            [self setSelection:nil];
+        }
     }
 }
 

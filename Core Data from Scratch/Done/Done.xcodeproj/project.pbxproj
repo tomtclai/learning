@@ -17,6 +17,7 @@
 		77FB527F1B951FBC00050E18 /* Done.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77FB527D1B951FBC00050E18 /* Done.xcdatamodeld */; };
 		77FB52821B9609E000050E18 /* TSPToDoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB52811B9609E000050E18 /* TSPToDoCell.m */; };
 		77FB52851B960D6C00050E18 /* TSPAddToDoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB52841B960D6C00050E18 /* TSPAddToDoViewController.m */; };
+		77FB52881B9669D000050E18 /* TSPUpdateToDoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB52871B9669D000050E18 /* TSPUpdateToDoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		773BD2641B9785AF008C0028 /* Done 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Done 2.xcdatamodel"; sourceTree = "<group>"; };
 		77FB52541B951EBE00050E18 /* Done.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Done.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77FB52581B951EBE00050E18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77FB52591B951EBE00050E18 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -48,6 +50,8 @@
 		77FB52811B9609E000050E18 /* TSPToDoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPToDoCell.m; sourceTree = "<group>"; };
 		77FB52831B960D6C00050E18 /* TSPAddToDoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPAddToDoViewController.h; sourceTree = "<group>"; };
 		77FB52841B960D6C00050E18 /* TSPAddToDoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPAddToDoViewController.m; sourceTree = "<group>"; };
+		77FB52861B9669D000050E18 /* TSPUpdateToDoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPUpdateToDoViewController.h; sourceTree = "<group>"; };
+		77FB52871B9669D000050E18 /* TSPUpdateToDoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPUpdateToDoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,8 @@
 				77FB52611B951EBE00050E18 /* Main.storyboard */,
 				77FB52831B960D6C00050E18 /* TSPAddToDoViewController.h */,
 				77FB52841B960D6C00050E18 /* TSPAddToDoViewController.m */,
+				77FB52861B9669D000050E18 /* TSPUpdateToDoViewController.h */,
+				77FB52871B9669D000050E18 /* TSPUpdateToDoViewController.m */,
 				77FB52641B951EBE00050E18 /* Images.xcassets */,
 				77FB52661B951EBE00050E18 /* LaunchScreen.xib */,
 				77FB52571B951EBE00050E18 /* Supporting Files */,
@@ -234,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77FB52601B951EBE00050E18 /* ViewController.m in Sources */,
+				77FB52881B9669D000050E18 /* TSPUpdateToDoViewController.m in Sources */,
 				77FB525D1B951EBE00050E18 /* AppDelegate.m in Sources */,
 				77FB525A1B951EBE00050E18 /* main.m in Sources */,
 				77FB527F1B951FBC00050E18 /* Done.xcdatamodeld in Sources */,
@@ -433,6 +440,7 @@
 				77FB52791B951EBE00050E18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		77FB527A1B951EBE00050E18 /* Build configuration list for PBXNativeTarget "DoneTests" */ = {
 			isa = XCConfigurationList;
@@ -441,6 +449,7 @@
 				77FB527C1B951EBE00050E18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
@@ -448,9 +457,10 @@
 		77FB527D1B951FBC00050E18 /* Done.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				773BD2641B9785AF008C0028 /* Done 2.xcdatamodel */,
 				77FB527E1B951FBC00050E18 /* Done.xcdatamodel */,
 			);
-			currentVersion = 77FB527E1B951FBC00050E18 /* Done.xcdatamodel */;
+			currentVersion = 773BD2641B9785AF008C0028 /* Done 2.xcdatamodel */;
 			path = Done.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
