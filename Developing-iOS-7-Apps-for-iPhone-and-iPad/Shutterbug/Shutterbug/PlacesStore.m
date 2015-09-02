@@ -15,6 +15,6 @@
 @implementation PlacesStore
 - (NSArray *)allCities
 {
-    return [self.privateCities copy]
+    return [self.privateCities copy];
 }
 @end

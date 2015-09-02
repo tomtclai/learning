@@ -11,16 +11,24 @@
 #import "City.h"
 @interface TopPlacesTableViewController ()
 @property (nonatomic, strong) NSArray * topPlaces;
-@property (nonatomic, strong) NSMutableArray * topPlacesDataSource;
+@property (nonatomic, strong) NSMutableArray * fetchedCities;
+@property (nonatomic, strong) NSMutableDictionary * citiesByCountry;
 @end
 
 @implementation TopPlacesTableViewController
-- (NSMutableArray*) topPlacesDataSource {
-    if (!_topPlacesDataSource)
+- (NSMutableDictionary *)citiesByCountry {
+    if (!_citiesByCountry)
     {
-        _topPlacesDataSource = [NSMutableArray array];
+        _citiesByCountry = [NSMutableDictionary dictionary];
     }
-    return _topPlacesDataSource;
+    return _citiesByCountry;
+}
+- (NSMutableArray*) fetchedCities {
+    if (!_fetchedCities)
+    {
+        _fetchedCities = [NSMutableArray array];
+    }
+    return _fetchedCities;
 }
 
 - (NSArray*) topPlaces {
@@ -49,15 +57,15 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
     return 0;
+    return self.citiesByCountry.allKeys.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
     return 0;
+    NSString *key = self.citiesByCountry.allKeys[section];
+    NSArray *cities = self.citiesByCountry[key];
+    return cities.count;
 }
 - (void)fetchURLforTopPlaces
 {
@@ -70,7 +78,6 @@
                                                                               error:NULL];
         
         self.topPlaces = [propertyListResults valueForKeyPath:FLICKR_RESULTS_PLACES];
-//        NSLog(@"%@",self.topPlaces);
 
         dispatch_async(dispatch_get_main_queue(), ^{
             for (NSDictionary *place in self.topPlaces) {
@@ -89,16 +96,30 @@
                 City *city = [[City alloc]init];
                 city.flickrPlaceId = placeId;
                 city.name = cityName;
-                city.countryName = countryName;
+                city.country = countryName;
                 city.restOfAddress = restOftheAddress;
                 
-                [self.topPlacesDataSource addObject:city];
+                [self.fetchedCities addObject:city];
             }
-            NSLog(@"%@",self.topPlacesDataSource);
+            
+            [self groupCitiesByCountry];
         });
     });
-    
-   
+}
+
+- (void)groupCitiesByCountry {
+    self.citiesByCountry = nil;
+    for (City *city in self.fetchedCities) {
+        if (self.citiesByCountry[city.country] == nil)
+        {
+            NSMutableArray *cities = [NSMutableArray arrayWithObject:city];
+            self.citiesByCountry[city.country] = cities;
+        } else {
+            
+            [self.citiesByCountry[city.country] addObject:city];
+        }
+    }
+    NSLog(@"%@",self.citiesByCountry);
 }
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

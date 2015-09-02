@@ -20,10 +20,7 @@
 		779F8BDA1B90D1E200328E85 /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 779F8BD91B90D1E200328E85 /* FlickrFetcher.m */; };
 		779F8BDD1B90DA8100328E85 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779F8BDC1B90DA8100328E85 /* ImageViewController.m */; };
 		77FB52381B94E0D400050E18 /* TopPlacesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB52371B94E0D400050E18 /* TopPlacesTableViewController.m */; };
-		77FB52411B94F09900050E18 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77FB523F1B94F09900050E18 /* Model.xcdatamodeld */; };
-		77FB52441B94F77800050E18 /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB52431B94F77800050E18 /* Country.m */; };
 		77FB52471B94F92700050E18 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB52461B94F92700050E18 /* City.m */; };
-		77FB524A1B951C1B00050E18 /* PlacesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB52491B951C1B00050E18 /* PlacesStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,13 +59,8 @@
 		779F8BDC1B90DA8100328E85 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		77FB52361B94E0D400050E18 /* TopPlacesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopPlacesTableViewController.h; sourceTree = "<group>"; };
 		77FB52371B94E0D400050E18 /* TopPlacesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopPlacesTableViewController.m; sourceTree = "<group>"; };
-		77FB52401B94F09900050E18 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		77FB52421B94F77800050E18 /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
-		77FB52431B94F77800050E18 /* Country.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
 		77FB52451B94F92700050E18 /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
 		77FB52461B94F92700050E18 /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
-		77FB52481B951C1B00050E18 /* PlacesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesStore.h; sourceTree = "<group>"; };
-		77FB52491B951C1B00050E18 /* PlacesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +84,6 @@
 		779F8B9D1B90CFBD00328E85 = {
 			isa = PBXGroup;
 			children = (
-				77FB523F1B94F09900050E18 /* Model.xcdatamodeld */,
 				779F8BA81B90CFBD00328E85 /* Shutterbug */,
 				779F8BC21B90CFBD00328E85 /* ShutterbugTests */,
 				779F8BA71B90CFBD00328E85 /* Products */,
@@ -121,10 +112,6 @@
 				77FB52371B94E0D400050E18 /* TopPlacesTableViewController.m */,
 				77FB52451B94F92700050E18 /* City.h */,
 				77FB52461B94F92700050E18 /* City.m */,
-				77FB52421B94F77800050E18 /* Country.h */,
-				77FB52431B94F77800050E18 /* Country.m */,
-				77FB52481B951C1B00050E18 /* PlacesStore.h */,
-				77FB52491B951C1B00050E18 /* PlacesStore.m */,
 				779F8BCF1B90D00D00328E85 /* FlickerPhotosTableViewController.h */,
 				779F8BD01B90D00D00328E85 /* FlickerPhotosTableViewController.m */,
 				779F8BD21B90D09D00328E85 /* JustPostedFlickerPhotosTableViewController.h */,
@@ -276,9 +263,6 @@
 				77FB52471B94F92700050E18 /* City.m in Sources */,
 				779F8BDA1B90D1E200328E85 /* FlickrFetcher.m in Sources */,
 				779F8BDD1B90DA8100328E85 /* ImageViewController.m in Sources */,
-				77FB52411B94F09900050E18 /* Model.xcdatamodeld in Sources */,
-				77FB524A1B951C1B00050E18 /* PlacesStore.m in Sources */,
-				77FB52441B94F77800050E18 /* Country.m in Sources */,
 				779F8BAC1B90CFBD00328E85 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,19 +472,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		77FB523F1B94F09900050E18 /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				77FB52401B94F09900050E18 /* Model.xcdatamodel */,
-			);
-			currentVersion = 77FB52401B94F09900050E18 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 779F8B9E1B90CFBD00328E85 /* Project object */;
 }
