@@ -9,10 +9,12 @@
 #import "TopPlacesTableViewController.h"
 #import "FlickrFetcher.h"
 #import "City.h"
+#import "TopPhotosFromPlaceViewController.h"
 @interface TopPlacesTableViewController ()
-@property (nonatomic, strong) NSArray * topPlaces;
-@property (nonatomic, strong) NSMutableArray * fetchedCities;
-@property (nonatomic, strong) NSMutableDictionary * citiesByCountry;
+@property (nonatomic, strong) NSArray * placesData; // from JSON
+@property (nonatomic, strong) NSMutableArray * fetchedCities; // array of citiess
+@property (nonatomic, strong) NSMutableDictionary * citiesByCountry; // NSString : Array of cities
+@property (nonatomic, strong) NSIndexPath * selectedIndexPath;
 @end
 
 @implementation TopPlacesTableViewController
@@ -31,12 +33,12 @@
     return _fetchedCities;
 }
 
-- (NSArray*) topPlaces {
-    if (!_topPlaces)
+- (NSArray*) placesData {
+    if (!_placesData)
     {
-        _topPlaces = [NSArray array];
+        _placesData = [NSArray array];
     }
-    return _topPlaces;
+    return _placesData;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,18 +59,39 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
     return self.citiesByCountry.allKeys.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
     NSString *key = self.citiesByCountry.allKeys[section];
     NSArray *cities = self.citiesByCountry[key];
     return cities.count;
 }
-- (void)fetchURLforTopPlaces
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    return self.citiesByCountry.allKeys[section];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *key = self.citiesByCountry.allKeys[indexPath.section];
+    NSArray *cities = self.citiesByCountry[key];
+    City *city =  cities[indexPath.row];
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"mostViewPlaces"];
+    cell.textLabel.text = city.name;
+    cell.detailTextLabel.text = city.restOfAddress;
+    return cell;
+}
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.selectedIndexPath = indexPath;
+    return indexPath;
+}
+- (IBAction)fetchURLforTopPlaces
+{
+    [self.refreshControl beginRefreshing];
+    self.fetchedCities = nil;
     NSURL *url = [FlickrFetcher URLforTopPlaces];
     dispatch_queue_t fetchQ = dispatch_queue_create("flickr top places fetcher", NULL);
     dispatch_async(fetchQ, ^{
@@ -77,10 +100,10 @@
                                                                             options:0
                                                                               error:NULL];
         
-        self.topPlaces = [propertyListResults valueForKeyPath:FLICKR_RESULTS_PLACES];
+        self.placesData = [propertyListResults valueForKeyPath:FLICKR_RESULTS_PLACES];
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            for (NSDictionary *place in self.topPlaces) {
+            for (NSDictionary *place in self.placesData) {
                 NSString *address = place[@"_content"];
                 NSArray *addressComponents = [address componentsSeparatedByString:@", "];
                 
@@ -120,6 +143,8 @@
         }
     }
     NSLog(@"%@",self.citiesByCountry);
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
 }
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -165,14 +190,24 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString: @"topPhotosFromPlace"])
+    {
+        TopPhotosFromPlaceViewController* tpfpvc = segue.destinationViewController;
+        NSString *key = self.citiesByCountry.allKeys[self.selectedIndexPath.section];
+        NSArray *cities = self.citiesByCountry[key];
+        City *city =  cities[self.selectedIndexPath.row];
+        tpfpvc.flickrID = city.flickrPlaceId;
+        tpfpvc.navigationItem.title = city.name;
+        self.selectedIndexPath = nil;
+    }
 }
-*/
+
 
 @end

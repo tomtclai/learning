@@ -4,16 +4,16 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Most View Places-->
+        <!--Top Regions-->
         <scene sceneID="DQc-lJ-sc5">
             <objects>
-                <tableViewController id="lxj-4r-yVJ" customClass="TopPlacesTableViewController" sceneMemberID="viewController">
+                <tableViewController id="lxj-4r-yVJ" customClass="TopRegionsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dOO-le-b1E">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="dpr-1m-RyA" detailTextLabel="QsD-M0-dhS" style="IBUITableViewCellStyleSubtitle" id="tQ1-s6-dt7">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mostViewPlaces" textLabel="dpr-1m-RyA" detailTextLabel="QsD-M0-dhS" style="IBUITableViewCellStyleSubtitle" id="tQ1-s6-dt7">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tQ1-s6-dt7" id="3yR-RD-iex">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -33,7 +33,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="hXL-lC-viA" kind="show" identifier="TopPlaces" id="qDQ-gW-z7E"/>
+                                    <segue destination="qtS-vz-FDE" kind="show" identifier="topPhotosFromPlace" id="lb4-Sl-1mO"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -42,16 +42,22 @@
                             <outlet property="delegate" destination="lxj-4r-yVJ" id="nV1-7H-uk0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Most View Places" id="GwU-n2-FCs"/>
+                    <navigationItem key="navigationItem" title="Top Regions" id="GwU-n2-FCs"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="a1k-Iu-mc3">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="fetchURLforTopPlaces" destination="lxj-4r-yVJ" eventType="valueChanged" id="FLy-2f-u8m"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jbr-mn-GTA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4668" y="-1856"/>
+            <point key="canvasLocation" x="4498" y="-1856"/>
         </scene>
-        <!--Shutterbug-->
+        <!--History-->
         <scene sceneID="wkm-sV-l7H">
             <objects>
-                <tableViewController id="hXL-lC-viA" customClass="JustPostedFlickerPhotosTableViewController" sceneMemberID="viewController">
+                <tableViewController title="History" id="hXL-lC-viA" customClass="HistoryTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="B0v-zv-78J">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -93,7 +99,13 @@
                             <outlet property="delegate" destination="hXL-lC-viA" id="Qs6-fU-HgF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Shutterbug" id="F8L-gV-Fs6"/>
+                    <navigationItem key="navigationItem" title="History" id="F8L-gV-Fs6">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="1e7-eq-gQ9">
+                            <connections>
+                                <action selector="clearHistory:" destination="hXL-lC-viA" id="9XS-N9-PfU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="dSp-s7-pKc">
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
@@ -103,7 +115,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Zh-QH-QjL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4668" y="-1107"/>
+            <point key="canvasLocation" x="5460" y="-1107"/>
         </scene>
         <!--Image View Controller-->
         <scene sceneID="Gy1-UK-NLa">
@@ -117,8 +129,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aRi-Ua-O4U">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRi-Ua-O4U">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                             </scrollView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="sXQ-Jy-5Us">
                                 <rect key="frame" x="281" y="282" width="37" height="37"/>
@@ -148,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rSw-5k-se7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5869" y="-1545"/>
+            <point key="canvasLocation" x="6407" y="-1469"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6rM-Lo-B9T">
@@ -207,8 +219,65 @@
             </objects>
             <point key="canvasLocation" x="2652" y="-1485"/>
         </scene>
+        <!--CIty-->
+        <scene sceneID="gFz-tD-elT">
+            <objects>
+                <tableViewController title="CIty" id="qtS-vz-FDE" customClass="TopPhotosFromPlaceViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pVZ-iK-nna">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Flickr Photo Cell" textLabel="cLN-kO-6Z3" detailTextLabel="Xxl-7A-mnO" style="IBUITableViewCellStyleSubtitle" id="1vY-cS-u3F">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1vY-cS-u3F" id="sKq-QI-KpR">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cLN-kO-6Z3">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="widthClass=compact">
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xxl-7A-mnO">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="widthClass=compact">
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            </variation>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="pJx-vg-Wq0" kind="show" identifier="Display Photo" id="g8o-bU-yBu"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="qtS-vz-FDE" id="1Pa-O9-ntA"/>
+                            <outlet property="delegate" destination="qtS-vz-FDE" id="mdE-Au-nrx"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="City Name" id="DcQ-yK-lpl"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="duM-W3-XZt">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="fetchPhotos" destination="qtS-vz-FDE" eventType="valueChanged" id="doi-bc-Zs4"/>
+                        </connections>
+                    </refreshControl>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Wc-bv-mIx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5460" y="-1856"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qDQ-gW-z7E"/>
+        <segue reference="shG-Gg-43I"/>
     </inferredMetricsTieBreakers>
 </document>

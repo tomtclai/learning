@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataTableViewController.h"
 
-@interface FlickerPhotosTableViewController : UITableViewController  
+@interface FlickrPhotosTableViewController : CoreDataTableViewController
 @property (nonatomic, strong) NSArray *photos; // of Flcikr photo NSDictionary
 @end

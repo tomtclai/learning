@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Tom Lai. All rights reserved.
 //
 
-#import "JustPostedFlickerPhotosTableViewController.h"
+#import "JustPostedFlickrPhotosTableViewController.h"
 #import "FlickrFetcher.h"
-@interface JustPostedFlickerPhotosTableViewController ()
+@interface JustPostedFlickrPhotosTableViewController ()
 
 @end
 
-@implementation JustPostedFlickerPhotosTableViewController
+@implementation JustPostedFlickrPhotosTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

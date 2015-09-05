@@ -4,10 +4,10 @@
 //
 //  This code comes from the Xcode template for Master-Detail application.
 
-#import "PhotomaniaAppDelegate+MOC.h"
+#import "AppDelegate+MOC.h"
 #import <CoreData/CoreData.h>
 
-@implementation PhotomaniaAppDelegate (MOC)
+@implementation AppDelegate (MOC)
 
 #pragma mark - Core Data
 

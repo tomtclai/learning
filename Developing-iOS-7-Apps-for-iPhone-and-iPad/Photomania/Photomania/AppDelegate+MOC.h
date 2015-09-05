@@ -5,9 +5,9 @@
 //  This code comes from the Xcode template for Master-Detail application.
 //
 
-#import "PhotomaniaAppDelegate.h"
+#import "AppDelegate.h"
 
-@interface PhotomaniaAppDelegate (MOC)
+@interface AppDelegate (MOC)
 
 - (void)saveContext:(NSManagedObjectContext *)managedObjectContext;
 

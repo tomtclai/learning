@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Tom Lai. All rights reserved.
 //
 
-#import "FlickerPhotosTableViewController.h"
+#import "FlickrPhotosTableViewController.h"
 
-@interface JustPostedFlickerPhotosTableViewController : FlickerPhotosTableViewController
+@interface JustPostedFlickrPhotosTableViewController : FlickrPhotosTableViewController
 @end

@@ -96,10 +96,11 @@
         
         CGFloat minZoomScale = MIN(x,y);
         CGFloat maxZoomScale = MAX(x,y);
+        CGFloat defaultZoomScale = maxZoomScale;
         
         self.scrollView.minimumZoomScale = minZoomScale;
         self.scrollView.maximumZoomScale = maxZoomScale;
-        self.scrollView.zoomScale = minZoomScale;
+        self.scrollView.zoomScale = defaultZoomScale;
     }
 }
 

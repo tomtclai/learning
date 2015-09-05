@@ -1,3 +1,4 @@
+
 //
 //  PhotoDatabaseAvailability.h
 //  Photomania
@@ -8,6 +9,7 @@
 
 #ifndef Photomania_PhotoDatabaseAvailability_h
 #define Photomania_PhotoDatabaseAvailability_h
-
+#define PhotoDatabaseAvailabilityNotification @"PhotoDatabaseAvailabilityNotification"
+#define PhotoDatabaseAvailabilityContext @"PhotoDatabaseAvailabilityContext"
 
 #endif

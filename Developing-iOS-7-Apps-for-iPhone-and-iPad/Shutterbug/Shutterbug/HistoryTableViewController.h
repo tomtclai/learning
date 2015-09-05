@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface HistoryTableViewController : FlickerPhotosTableViewController
+#import "FlickrPhotosTableViewController.h"
+@interface HistoryTableViewController : FlickrPhotosTableViewController
 
 @end

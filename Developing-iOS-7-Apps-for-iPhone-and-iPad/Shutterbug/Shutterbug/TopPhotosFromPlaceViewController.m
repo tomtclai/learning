@@ -7,6 +7,7 @@
 //
 
 #import "TopPhotosFromPlaceViewController.h"
+#import "FlickrFetcher.h"
 
 @interface TopPhotosFromPlaceViewController ()
 
@@ -16,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self fetchPhotos];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,6 +25,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (IBAction)fetchPhotos
+{
+    [self.refreshControl beginRefreshing];
+    NSURL *url = [FlickrFetcher URLforPhotosInPlace:self.flickrID maxResults:50];
+    dispatch_queue_t fetchQ = dispatch_queue_create("flickr photo fetcher", NULL);
+    dispatch_async(fetchQ, ^{
+        NSData *jsonResults = [NSData dataWithContentsOfURL:url];
+        NSDictionary *propertyListResults = [NSJSONSerialization JSONObjectWithData:jsonResults
+                                                                            options:0
+                                                                              error:NULL];
+        NSArray *photos = [propertyListResults valueForKeyPath:FLICKR_RESULTS_PHOTOS];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"%@", propertyListResults);
+            self.photos = photos;
+            [self.refreshControl endRefreshing];
+        });
+    });
+}
 /*
 #pragma mark - Navigation
 

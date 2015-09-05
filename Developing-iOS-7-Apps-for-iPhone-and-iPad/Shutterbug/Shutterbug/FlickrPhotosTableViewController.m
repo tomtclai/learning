@@ -6,14 +6,15 @@
 //  Copyright (c) 2015 Tom Lai. All rights reserved.
 //
 
-#import "FlickerPhotosTableViewController.h"
+#import "FlickrPhotosTableViewController.h"
 #import "FlickrFetcher.h"
 #import "ImageViewController.h"
-@interface FlickerPhotosTableViewController ()
+#import "AppDelegate.h"
+@interface FlickrPhotosTableViewController ()
 
 @end
 
-@implementation FlickerPhotosTableViewController
+@implementation FlickrPhotosTableViewController
 
 - (void)setPhotos:(NSArray *)photos
 {
@@ -57,11 +58,11 @@
     
     return cell;
 }
-
 - (void)prepareForImageViewController:(ImageViewController *)ivc toDisplayPhoto:(NSDictionary *)photo
 {
     ivc.imageURL = [FlickrFetcher URLforPhoto:photo format:FlickrPhotoFormatLarge];
     ivc.title = [photo valueForKeyPath:FLICKR_PHOTO_TITLE];
+    [self saveToHistory:photo];
 }
 
 // For iphone
@@ -82,4 +83,11 @@
     }
 }
 
+- (void)saveToHistory:(NSDictionary*) photo
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithArray:[defaults arrayForKey:historyKey]];
+    [mutableArray insertObject:photo atIndex:0];
+    [defaults setObject:mutableArray forKey:historyKey];
+}
 @end

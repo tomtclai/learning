@@ -6,8 +6,7 @@
 //  Copyright (c) 2015 Lai. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
-@interface PhotographersCDTVC : CoreDataTableVIewController
-
+#import "CoreDataTableViewController.h"
+@interface PhotographersCDTVC : CoreDataTableViewController
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @end

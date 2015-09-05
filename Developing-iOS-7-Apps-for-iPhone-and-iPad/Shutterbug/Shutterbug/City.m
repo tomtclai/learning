@@ -12,5 +12,8 @@
 
 @implementation City
 
+- (NSString*) description {
+    return [NSString stringWithFormat:@"%@, %@, %@, FlickrID: %@", self.name, self.restOfAddress, self.country, self.flickrPlaceId];
+}
 
 @end
