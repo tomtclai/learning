@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		771963EB1B9F8E7400C097F7 /* Photo+Flickr.m in Sources */ = {isa = PBXBuildFile; fileRef = 771963EA1B9F8E7400C097F7 /* Photo+Flickr.m */; };
+		771963F71B9F92E900C097F7 /* Photographer+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 771963F61B9F92E900C097F7 /* Photographer+Create.m */; };
+		771963FA1B9F933000C097F7 /* Photographer.m in Sources */ = {isa = PBXBuildFile; fileRef = 771963F91B9F933000C097F7 /* Photographer.m */; };
+		771963FD1B9F952E00C097F7 /* Region+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 771963FC1B9F952E00C097F7 /* Region+Create.m */; };
 		7729D2A91B923CC300058872 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7729D2A81B923CC300058872 /* iPhone.storyboard */; };
 		779129351B98BADA000CC108 /* TopPhotosFromPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779129341B98BADA000CC108 /* TopPhotosFromPlaceViewController.m */; };
 		779129391B98CC66000CC108 /* HistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779129381B98CC66000CC108 /* HistoryTableViewController.m */; };
@@ -25,7 +29,6 @@
 		77AD821F1B9A3EB50089FA2F /* TopRegionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD821E1B9A3EB50089FA2F /* TopRegionsTableViewController.m */; };
 		77AD82261B9A3FF60089FA2F /* Shutterbug.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77AD82241B9A3FF60089FA2F /* Shutterbug.xcdatamodeld */; };
 		77AD822C1B9B64AB0089FA2F /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD822B1B9B64AB0089FA2F /* Region.m */; };
-		77AD822F1B9B64EF0089FA2F /* Photographer.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD822E1B9B64EF0089FA2F /* Photographer.m */; };
 		77AD82351B9B65990089FA2F /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AD82341B9B65990089FA2F /* Photo.m */; };
 		77FB52381B94E0D400050E18 /* TopPlacesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB52371B94E0D400050E18 /* TopPlacesTableViewController.m */; };
 		77FB52471B94F92700050E18 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB52461B94F92700050E18 /* City.m */; };
@@ -42,6 +45,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		771963E51B9F783300C097F7 /* ShutterbugDatabaseAvailability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShutterbugDatabaseAvailability.h; sourceTree = "<group>"; };
+		771963E91B9F8E7400C097F7 /* Photo+Flickr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+Flickr.h"; sourceTree = "<group>"; };
+		771963EA1B9F8E7400C097F7 /* Photo+Flickr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+Flickr.m"; sourceTree = "<group>"; };
+		771963F51B9F92E900C097F7 /* Photographer+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photographer+Create.h"; sourceTree = "<group>"; };
+		771963F61B9F92E900C097F7 /* Photographer+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photographer+Create.m"; sourceTree = "<group>"; };
+		771963F81B9F933000C097F7 /* Photographer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photographer.h; sourceTree = "<group>"; };
+		771963F91B9F933000C097F7 /* Photographer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photographer.m; sourceTree = "<group>"; };
+		771963FB1B9F952E00C097F7 /* Region+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Region+Create.h"; sourceTree = "<group>"; };
+		771963FC1B9F952E00C097F7 /* Region+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Region+Create.m"; sourceTree = "<group>"; };
 		7729D2A81B923CC300058872 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		779129331B98BADA000CC108 /* TopPhotosFromPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopPhotosFromPlaceViewController.h; sourceTree = "<group>"; };
 		779129341B98BADA000CC108 /* TopPhotosFromPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopPhotosFromPlaceViewController.m; sourceTree = "<group>"; };
@@ -76,8 +88,6 @@
 		77AD82251B9A3FF60089FA2F /* Shutterbug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shutterbug.xcdatamodel; sourceTree = "<group>"; };
 		77AD822A1B9B64AB0089FA2F /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
 		77AD822B1B9B64AB0089FA2F /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
-		77AD822D1B9B64EF0089FA2F /* Photographer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photographer.h; sourceTree = "<group>"; };
-		77AD822E1B9B64EF0089FA2F /* Photographer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photographer.m; sourceTree = "<group>"; };
 		77AD82331B9B65990089FA2F /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		77AD82341B9B65990089FA2F /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		77FB52361B94E0D400050E18 /* TopPlacesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopPlacesTableViewController.h; sourceTree = "<group>"; };
@@ -140,11 +150,18 @@
 		779F8BA81B90CFBD00328E85 /* Shutterbug */ = {
 			isa = PBXGroup;
 			children = (
+				771963F81B9F933000C097F7 /* Photographer.h */,
+				771963F91B9F933000C097F7 /* Photographer.m */,
+				771963E91B9F8E7400C097F7 /* Photo+Flickr.h */,
+				771963EA1B9F8E7400C097F7 /* Photo+Flickr.m */,
+				771963F51B9F92E900C097F7 /* Photographer+Create.h */,
+				771963F61B9F92E900C097F7 /* Photographer+Create.m */,
+				771963E51B9F783300C097F7 /* ShutterbugDatabaseAvailability.h */,
 				77AD82331B9B65990089FA2F /* Photo.h */,
 				77AD82341B9B65990089FA2F /* Photo.m */,
-				77AD822D1B9B64EF0089FA2F /* Photographer.h */,
-				77AD822E1B9B64EF0089FA2F /* Photographer.m */,
 				77AD822A1B9B64AB0089FA2F /* Region.h */,
+				771963FB1B9F952E00C097F7 /* Region+Create.h */,
+				771963FC1B9F952E00C097F7 /* Region+Create.m */,
 				77AD822B1B9B64AB0089FA2F /* Region.m */,
 				779F8BAD1B90CFBD00328E85 /* AppDelegate.h */,
 				779F8BAE1B90CFBD00328E85 /* AppDelegate.m */,
@@ -311,19 +328,22 @@
 			files = (
 				779F8BB21B90CFBD00328E85 /* ViewController.m in Sources */,
 				779129391B98CC66000CC108 /* HistoryTableViewController.m in Sources */,
+				771963FA1B9F933000C097F7 /* Photographer.m in Sources */,
 				77AD821F1B9A3EB50089FA2F /* TopRegionsTableViewController.m in Sources */,
 				77AD82191B9A31540089FA2F /* CoreDataTableViewController.m in Sources */,
+				771963FD1B9F952E00C097F7 /* Region+Create.m in Sources */,
 				779129351B98BADA000CC108 /* TopPhotosFromPlaceViewController.m in Sources */,
 				779F8BD11B90D00D00328E85 /* FlickrPhotosTableViewController.m in Sources */,
 				77AD82261B9A3FF60089FA2F /* Shutterbug.xcdatamodeld in Sources */,
 				779F8BD41B90D09D00328E85 /* JustPostedFlickrPhotosTableViewController.m in Sources */,
 				77FB52381B94E0D400050E18 /* TopPlacesTableViewController.m in Sources */,
 				77AD82351B9B65990089FA2F /* Photo.m in Sources */,
+				771963F71B9F92E900C097F7 /* Photographer+Create.m in Sources */,
 				779F8BAF1B90CFBD00328E85 /* AppDelegate.m in Sources */,
 				77FB52471B94F92700050E18 /* City.m in Sources */,
 				779F8BDA1B90D1E200328E85 /* FlickrFetcher.m in Sources */,
-				77AD822F1B9B64EF0089FA2F /* Photographer.m in Sources */,
 				77AD822C1B9B64AB0089FA2F /* Region.m in Sources */,
+				771963EB1B9F8E7400C097F7 /* Photo+Flickr.m in Sources */,
 				779F8BDD1B90DA8100328E85 /* ImageViewController.m in Sources */,
 				779F8BAC1B90CFBD00328E85 /* main.m in Sources */,
 			);

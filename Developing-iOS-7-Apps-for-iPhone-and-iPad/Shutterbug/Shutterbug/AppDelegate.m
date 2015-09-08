@@ -7,25 +7,64 @@
 //
 
 #import "AppDelegate.h"
-
+#import "ShutterbugDatabaseAvailability.h"
 NSString * const historyKey = @"ShutterbugHistoryKey";
 // https://stackoverflow.com/questions/26974975/where-to-use-and-initialize-uimanageddocument
 // If you want to hear from Paul, he talks about it in Lecture 12 (Fall 2013-14) at 14 minutes and 25 seconds (UIManagedContext) and at 14:50 he starts talking about the two ways to get the UIManagedContext -- being UIManagedDocument or the "Use Core Data" checkbox.
-typedef  void (^OnDocumentReady) (UIManagedDocument *document);
+//Create a UImanagedDocument and ask for its managedObjectContext
 @interface AppDelegate ()
 
 @property (strong, nonatomic) UIManagedDocument *document;
+@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @end
 
 @implementation AppDelegate
-// Returns the URL to the application's Documents directory.
-- (NSURL *)applicationDocumentsDirectory
+
+- (void)createUIManagedDocument
 {
-    NSLog(@"%@",[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory  inDomains:NSUserDomainMask] lastObject]);
-    
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *documentsDirectory = [[fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject];
+    NSString *documentName = @"Shutterbug";
+    // this creates the UIManagedDocument instance, but does not open nor create the underlying file
+    NSURL *url = [documentsDirectory URLByAppendingPathComponent:documentName];
+    UIManagedDocument *document = [[UIManagedDocument alloc] initWithFileURL:url];
+
+    // Open / create the underlying file
+    self.document = document;
+    if ([[NSFileManager defaultManager]fileExistsAtPath:[url path]]) {
+        [document openWithCompletionHandler:^(BOOL success) {
+            if (success) [self documentIsReady];
+        }];
+    } else {
+        [document saveToURL:url
+           forSaveOperation:UIDocumentSaveForCreating
+          completionHandler:^(BOOL success) {
+              if (success) [self documentIsReady];
+          }];
+    }
 }
 
+- (void)documentIsReady
+{
+    if (self.document.documentState == UIDocumentStateNormal) {
+        self.managedObjectContext = self.document.managedObjectContext;
+        
+        NSDictionary *userInfo = self.managedObjectContext? @{ShutterbugDataBaseAvailabilityContext : self.managedObjectContext} : nil;
+        [[NSNotificationCenter defaultCenter] postNotificationName:ShutterbugDataBaseAvailabilityNotification
+                                                            object:self
+                                                          userInfo:userInfo];
+        
+    }
+}
+
+//- (void)contextChanged:(NSNotification *)notification
+//{
+//    // notifications.userInfo is a dict with these keys
+//    // NSinsertedObjectsKey
+//    // NSUpdatedObjectsKey
+//    // NSDeletedObjectsKey
+//}
 + (void)initialize
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -34,10 +73,17 @@ typedef  void (^OnDocumentReady) (UIManagedDocument *document);
     [defaults registerDefaults:factorySettings];
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    NSURL * docDir = [self applicationDocumentsDirectory];
-    UIManagedDocument * managedDocument = [[UIManagedDocument alloc]initWithFileURL:docDir];
+- (NSManagedObjectContext *)createManagedObjectContext
+{
+    if (!self.document)
+        [self createUIManagedDocument];
+    return self.document.managedObjectContext;
+}
+
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.managedObjectContext = [self createManagedObjectContext];
     return YES;
 }
 

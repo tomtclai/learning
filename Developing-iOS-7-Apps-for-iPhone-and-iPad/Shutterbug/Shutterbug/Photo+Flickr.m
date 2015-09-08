@@ -1,9 +1,9 @@
 //
 //  Photo+Flickr.m
-//  Photomania
+//  Shutterbug
 //
-//  Created by Tom Lai on 9/3/15.
-//  Copyright (c) 2015 Lai. All rights reserved.
+//  Created by Tom Lai on 9/8/15.
+//  Copyright (c) 2015 Tom Lai. All rights reserved.
 //
 
 #import "Photo+Flickr.h"
@@ -39,6 +39,9 @@
         
         photo.whoTook = [Photographer photographerWithName:photographerName
                                     inManagedObjectContext:context];
+        
+        
+        photo.
     }
     return photo;
 }

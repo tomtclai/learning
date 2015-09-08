@@ -11,6 +11,7 @@
     </entity>
     <entity name="Photographer" representedClassName="Photographer" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numberOfPhotos" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="hasTakenPhotosIn" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Region" inverseName="hasPhotosTakenBy" inverseEntity="Region" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Photo" inverseName="whoTook" inverseEntity="Photo" syncable="YES"/>
     </entity>
@@ -21,7 +22,7 @@
     </entity>
     <elements>
         <element name="Photo" positionX="252" positionY="9" width="128" height="148"/>
-        <element name="Photographer" positionX="9" positionY="54" width="128" height="88"/>
+        <element name="Photographer" positionX="9" positionY="54" width="128" height="103"/>
         <element name="Region" positionX="-29" positionY="-153" width="128" height="88"/>
     </elements>
 </model>

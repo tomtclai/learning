@@ -138,7 +138,7 @@
                     completionHandler();
                 }
             }
-        }
+        }];
     }
 }
 @end

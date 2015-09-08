@@ -2,7 +2,7 @@
 //  Photographer.m
 //  Shutterbug
 //
-//  Created by Tom Lai on 9/5/15.
+//  Created by Tom Lai on 9/8/15.
 //  Copyright (c) 2015 Tom Lai. All rights reserved.
 //
 
@@ -13,8 +13,9 @@
 
 @implementation Photographer
 
+@dynamic numberOfPhotos;
 @dynamic name;
-@dynamic photos;
 @dynamic hasTakenPhotosIn;
+@dynamic photos;
 
 @end

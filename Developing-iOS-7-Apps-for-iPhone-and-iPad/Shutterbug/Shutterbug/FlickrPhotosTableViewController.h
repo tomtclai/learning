@@ -10,5 +10,6 @@
 #import "CoreDataTableViewController.h"
 
 @interface FlickrPhotosTableViewController : CoreDataTableViewController
-@property (nonatomic, strong) NSArray *photos; // of Flcikr photo NSDictionary
+
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @end

@@ -10,17 +10,41 @@
 #import "FlickrFetcher.h"
 #import "ImageViewController.h"
 #import "AppDelegate.h"
+#import "ShutterbugDatabaseAvailability.h"
+#import "Photo.h"
 @interface FlickrPhotosTableViewController ()
 
 @end
 
 @implementation FlickrPhotosTableViewController
-
-- (void)setPhotos:(NSArray *)photos
+- (void)awakeFromNib
 {
-    _photos = photos;
-    [self.tableView reloadData];
+    [[NSNotificationCenter defaultCenter] addObserverForName:ShutterbugDataBaseAvailabilityNotification
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note) {
+                                                      self.managedObjectContext = note.userInfo[ShutterbugDataBaseAvailabilityContext];
+                                                      
+                                                      
+                                                      NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:@"Photo"];
+                                                      
+                                                      NSFetchedResultsController * controller = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                                                                                    managedObjectContext:self.managedObjectContext
+                                                                                                                                      sectionNameKeyPath:nil
+                                                                                                                                               cacheName:@"Photo"];
+                                                      self.fetchedResultsController = controller;
+                                                      self.debug = YES;
+
+                                                  }];
 }
+//- (void)setPhotos:(NSArray *)photos
+//{
+//    NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:@"Photo"];
+//    NSError *error ;
+//    _photos = [self.managedObjectContext executeFetchRequest:request
+//                                                       error:&error];
+//    [self.tableView reloadData];
+//}
 
 #pragma mark - UITableViewDelegate
 
@@ -32,7 +56,7 @@
         detail = [((UINavigationController *)detail).viewControllers firstObject];
     }
     if ([detail isKindOfClass:[ImageViewController class]]) {
-        [self prepareForImageViewController:detail toDisplayPhoto:self.photos[indexPath.row]];
+        [self prepareForImageViewController:detail toDisplayPhoto:[self.fetchedResultsController objectAtIndexPath:indexPath]];
     }
 }
 
@@ -44,7 +68,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.photos count];
+    return self.fetchedResultsController.fetchedObjects.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -52,16 +76,16 @@
     static NSString *CellIdentifier = @"Flickr Photo Cell";
     UITableViewCell *cell =  [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSDictionary *photo = self.photos[indexPath.row];
-    cell.textLabel.text = [photo valueForKeyPath:FLICKR_PHOTO_TITLE];
-    cell.detailTextLabel.text = [photo valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
+    Photo *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = photo.title;
+    cell.detailTextLabel.text = photo.subtitle;
     
     return cell;
 }
-- (void)prepareForImageViewController:(ImageViewController *)ivc toDisplayPhoto:(NSDictionary *)photo
+- (void)prepareForImageViewController:(ImageViewController *)ivc toDisplayPhoto:(Photo *)photo
 {
-    ivc.imageURL = [FlickrFetcher URLforPhoto:photo format:FlickrPhotoFormatLarge];
-    ivc.title = [photo valueForKeyPath:FLICKR_PHOTO_TITLE];
+    ivc.imageURL = [[NSURL alloc] initWithString:photo.imageURL];
+    ivc.title = photo.title;
     [self saveToHistory:photo];
 }
 
@@ -74,7 +98,7 @@
             if ([segue.identifier isEqualToString:@"Display Photo"]) {
                 if ([segue.destinationViewController isKindOfClass:[ImageViewController class]]) {
                     [self prepareForImageViewController:segue.destinationViewController
-                                         toDisplayPhoto:self.photos[indexPath.row]];
+                                         toDisplayPhoto:[self.fetchedResultsController objectAtIndexPath:indexPath]];
                 }
             }
         }
@@ -83,7 +107,7 @@
     }
 }
 
-- (void)saveToHistory:(NSDictionary*) photo
+- (void)saveToHistory:(Photo*) photo
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithArray:[defaults arrayForKey:historyKey]];
