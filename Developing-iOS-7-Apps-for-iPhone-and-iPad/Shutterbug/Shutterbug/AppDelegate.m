@@ -9,8 +9,9 @@
 #import "AppDelegate.h"
 
 NSString * const historyKey = @"ShutterbugHistoryKey";
+// https://stackoverflow.com/questions/26974975/where-to-use-and-initialize-uimanageddocument
+// If you want to hear from Paul, he talks about it in Lecture 12 (Fall 2013-14) at 14 minutes and 25 seconds (UIManagedContext) and at 14:50 he starts talking about the two ways to get the UIManagedContext -- being UIManagedDocument or the "Use Core Data" checkbox.
 typedef  void (^OnDocumentReady) (UIManagedDocument *document);
-
 @interface AppDelegate ()
 
 @property (strong, nonatomic) UIManagedDocument *document;
