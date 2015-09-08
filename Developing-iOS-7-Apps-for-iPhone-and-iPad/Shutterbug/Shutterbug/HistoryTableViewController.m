@@ -31,14 +31,14 @@
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 - (void)loadPhotosFromNSDefault {
-    self.photos = [self.defaults objectForKey: historyKey];
+//    self.photos = [self.defaults objectForKey: historyKey];
 }
 
 - (IBAction)clearHistory:(id)sender {
-    [self.defaults setObject:[NSArray array] forKey:historyKey];
-    [self loadPhotosFromNSDefault];
-    
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+//    [self.defaults setObject:[NSArray array] forKey:historyKey];
+//    [self loadPhotosFromNSDefault];
+//    
+//    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 @end

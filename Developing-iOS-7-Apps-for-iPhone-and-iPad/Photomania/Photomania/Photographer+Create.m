@@ -23,12 +23,12 @@
         
         if (!matches || ([matches count] > 1)) {
             // handle error
-        } else if (![matches count]) {
+        } else if ([matches count]) {
+            photographer = [matches lastObject];
+        } else { // count == 0
             photographer = [NSEntityDescription insertNewObjectForEntityForName:@"Photographer"
                                                          inManagedObjectContext:context];
             photographer.name = name;
-        } else {
-            photographer = [matches lastObject];
         }
     }
     return photographer;

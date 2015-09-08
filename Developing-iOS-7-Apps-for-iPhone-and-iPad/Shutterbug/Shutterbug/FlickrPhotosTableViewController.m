@@ -24,18 +24,22 @@
                                                        queue:nil
                                                   usingBlock:^(NSNotification *note) {
                                                       self.managedObjectContext = note.userInfo[ShutterbugDataBaseAvailabilityContext];
-                                                      
-                                                      
-                                                      NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:@"Photo"];
-                                                      
-                                                      NSFetchedResultsController * controller = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                                                                                                    managedObjectContext:self.managedObjectContext
-                                                                                                                                      sectionNameKeyPath:nil
-                                                                                                                                               cacheName:@"Photo"];
-                                                      self.fetchedResultsController = controller;
-                                                      self.debug = YES;
 
                                                   }];
+}
+
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    
+    NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    request.predicate = nil;
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedStandardCompare:)]];
+    
+    self.fetchedResultsController  = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                         managedObjectContext:managedObjectContext
+                                                                           sectionNameKeyPath:nil
+                                                                                    cacheName:nil];
+    self.debug = YES;
 }
 //- (void)setPhotos:(NSArray *)photos
 //{

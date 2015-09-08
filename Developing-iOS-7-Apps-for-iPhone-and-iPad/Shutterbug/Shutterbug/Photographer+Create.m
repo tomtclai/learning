@@ -7,7 +7,7 @@
 //
 
 #import "Photographer+Create.h"
-
+#import "Region+Create.h"
 @implementation Photographer (Create)
 + (Photographer *)photographerWithName:(NSString *)name
                 inManagedObjectContext:(NSManagedObjectContext *)context
@@ -23,12 +23,16 @@
         
         if (!matches || ([matches count] > 1)) {
             // handle error
-        } else if (![matches count]) {
+        } else if ([matches count]) {
+            photographer = [matches lastObject];
+        } else { // count == 0
             photographer = [NSEntityDescription insertNewObjectForEntityForName:@"Photographer"
                                                          inManagedObjectContext:context];
             photographer.name = name;
-        } else {
-            photographer = [matches lastObject];
+            
+            
+//            [photographer addHasTakenPhotosIn: [Region regionWithName:regionName
+//                                               inManagedObjectContext:context]];
         }
     }
     return photographer;

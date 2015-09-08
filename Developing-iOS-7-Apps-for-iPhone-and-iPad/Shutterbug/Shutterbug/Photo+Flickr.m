@@ -41,7 +41,6 @@
                                     inManagedObjectContext:context];
         
         
-        photo.
     }
     return photo;
 }

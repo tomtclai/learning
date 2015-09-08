@@ -16,6 +16,7 @@
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Photo" inverseName="whoTook" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <entity name="Region" representedClassName="Region" syncable="YES">
+        <attribute name="flickrPlaceID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photographerCount" optional="YES" attributeType="Integer 64" minValueString="0" defaultValueString="0" syncable="YES"/>
         <relationship name="hasPhotosTakenBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photographer" inverseName="hasTakenPhotosIn" inverseEntity="Photographer" syncable="YES"/>
@@ -23,6 +24,6 @@
     <elements>
         <element name="Photo" positionX="252" positionY="9" width="128" height="148"/>
         <element name="Photographer" positionX="9" positionY="54" width="128" height="103"/>
-        <element name="Region" positionX="-29" positionY="-153" width="128" height="88"/>
+        <element name="Region" positionX="-29" positionY="-153" width="128" height="103"/>
     </elements>
 </model>
