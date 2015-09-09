@@ -2,7 +2,7 @@ This repository contains work and/or practices I typed going through various tec
 
 **Disclaimer:** May contain downloaded examples and/or images.
 
-###I'm done reading
+###Completed
  - [Head First Javascript Programming](Head-First-JavaScript-Programming/)
  - [Objective-C Programming: The Big Nerd Ranch Guide](Objective-C-by-Aaron-Hillegass/)
  - [IOS Programming: The Big Nerd Ranch Guide](iOS-Programming/)
