@@ -5,7 +5,7 @@ This repository contains work and/or practices I typed going through various tec
 ###Completed
  - [Head First Javascript Programming](Head-First-JavaScript-Programming/)
  - [Objective-C Programming: The Big Nerd Ranch Guide](Objective-C-by-Aaron-Hillegass/)
- - [IOS Programming: The Big Nerd Ranch Guide](iOS-Programming/)
+ - [iOS Programming: The Big Nerd Ranch Guide](iOS-Programming/)
 
 ###Working on
  - [iTunes U: Developing iOS 7 Apps for iPhone and iPad](Developing-iOS-7-Apps-for-iPhone-and-iPad/)
