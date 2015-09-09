@@ -9,13 +9,13 @@
 #import "Region+Create.h"
 
 @implementation Region (Create)
-+ (Region *)regionWIthName:(NSString *)name
++ (Region *)regionWithFlickrInfo:(NSDictionary *)regionDictionary
     inManagedObjectContext:(NSManagedObjectContext *)context
 {
     Region *region = nil;
-    if ([name length]) {
+    if (regionDictionary) {
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Region"];
-        request.predicate = [NSPredicate predicateWithFormat:@"name = %@", name];
+        request.predicate = [NSPredicate predicateWithFormat:@"flickrPlaceID = %@", regionDictionary[FLICKR_PLACE_ID]];
         
         NSError *error;
         NSArray *matches = [context executeFetchRequest:request error:&error];
@@ -23,14 +23,24 @@
         if (!matches || ([matches count] > 1 )) {
             // handle error
         } else if (![matches count]) {
+            // no match
             region = [NSEntityDescription insertNewObjectForEntityForName:@"Photographer"
                                                    inManagedObjectContext:context];
             
-            region.name = name;
+            region.flickrPlaceID = regionDictionary[FLICKR_PLACE_ID];
+            region.name = regionDictionary[FLICKR_PLACE_NAME];
         } else {
             region = [matches lastObject];
         }
     }
     return region;
+}
+
++ (void)loadRegionFromFlickrArray:(NSArray *)regions
+         intoManagedObjectContext:(NSManagedObjectContext *)context
+{
+    for (NSDictionary *regionDict in regions) {
+        [self regionWithFlickrInfo:regionDict inManagedObjectContext:context];
+    }
 }
 @end

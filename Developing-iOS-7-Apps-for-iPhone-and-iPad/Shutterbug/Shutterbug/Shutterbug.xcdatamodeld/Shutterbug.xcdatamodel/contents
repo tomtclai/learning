@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14F27" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Photo" representedClassName="Photo" syncable="YES">
+        <attribute name="datePosted" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastViewed" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
@@ -22,7 +23,7 @@
         <relationship name="hasPhotosTakenBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photographer" inverseName="hasTakenPhotosIn" inverseEntity="Photographer" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Photo" positionX="252" positionY="9" width="128" height="148"/>
+        <element name="Photo" positionX="252" positionY="9" width="128" height="163"/>
         <element name="Photographer" positionX="9" positionY="54" width="128" height="103"/>
         <element name="Region" positionX="-29" positionY="-153" width="128" height="103"/>
     </elements>

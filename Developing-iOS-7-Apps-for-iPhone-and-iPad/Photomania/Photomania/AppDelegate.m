@@ -13,7 +13,7 @@
 #import "PhotoDatabaseAvailability.h"
 @interface AppDelegate () <NSURLSessionDownloadDelegate>
 
-@property (copy, nonatomic) void (^flickerDOwnloadBackgroundURLSessionCompletionHandler)();
+@property (copy, nonatomic) void (^flickerDownloadBackgroundURLSessionCompletionHandler)();
 @property (strong, nonatomic) NSURLSession *flickrDownloadSession;
 @property (strong, nonatomic) NSTimer *flickrForeGroundFetchTimer;
 @property (strong, nonatomic) NSManagedObjectContext *photoDatabaseContext;
@@ -46,7 +46,7 @@
 {
     // empty implementation to enable the delegate methods
     // need to wait until fetch completes
-    self.flickerDOwnloadBackgroundURLSessionCompletionHandler = completionHandler;
+    self.flickerDownloadBackgroundURLSessionCompletionHandler = completionHandler;
 }
 - (void)setPhotoDatabaseContext:(NSManagedObjectContext *)photoDatabaseContext
 {
@@ -129,11 +129,11 @@
 
 - (void)flickrDownloadTasksMightBeComplete
 {
-    if (self.flickerDOwnloadBackgroundURLSessionCompletionHandler) {
+    if (self.flickerDownloadBackgroundURLSessionCompletionHandler) {
         [self.flickrDownloadSession getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
             if (![downloadTasks count]) {
-                void (^completionHandler)() = self.flickerDOwnloadBackgroundURLSessionCompletionHandler;
-                self.flickerDOwnloadBackgroundURLSessionCompletionHandler  = nil;
+                void (^completionHandler)() = self.flickerDownloadBackgroundURLSessionCompletionHandler;
+                self.flickerDownloadBackgroundURLSessionCompletionHandler  = nil;
                 if (completionHandler) {
                     completionHandler();
                 }

@@ -7,31 +7,40 @@
 //
 
 #import "TopRegionsTableViewController.h"
-
+#import "Region+Create.h"
 @interface TopRegionsTableViewController ()
 
 @end
 
 @implementation TopRegionsTableViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:@"Region"];
+    request.fetchLimit = 50;
+    request.fetchBatchSize = 20;
+    request.sortDescriptors  = @[
+                                 [NSSortDescriptor sortDescriptorWithKey:@"photographerCount"
+                                                               ascending:NO
+                                                                selector:@selector(localizedStandardCompare:)],
+                                 [NSSortDescriptor sortDescriptorWithKey:@"name"
+                                                               ascending:YES
+                                                                selector:@selector(localizedStandardCompare:)]];
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc]
+                                     initWithFetchRequest:request
+                                     managedObjectContext:managedObjectContext
+                                     sectionNameKeyPath:nil
+                                     cacheName:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell * tableViewCell = [tableView dequeueReusableCellWithIdentifier:@"mostViewPlaces"];
+    Region *city = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    tableViewCell.textLabel.text = city.name;
+    return tableViewCell;
 }
-*/
 
 @end

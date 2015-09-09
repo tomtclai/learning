@@ -6,8 +6,7 @@
 //
 //
 
-#import "CoreDataTableViewController.h"
-
-@interface TopRegionsTableViewController : CoreDataTableViewController
+#import "FlickrCDTVC.h"
+@interface TopRegionsTableViewController : FlickrCDTVC
 
 @end

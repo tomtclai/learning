@@ -8,15 +8,28 @@
 
 #import "AppDelegate.h"
 #import "ShutterbugDatabaseAvailability.h"
+#import "FlickrFetcher.h"
+#import "Photo+Flickr.h"
+#import "Region+Create.h"
 NSString * const historyKey = @"ShutterbugHistoryKey";
 // https://stackoverflow.com/questions/26974975/where-to-use-and-initialize-uimanageddocument
 // If you want to hear from Paul, he talks about it in Lecture 12 (Fall 2013-14) at 14 minutes and 25 seconds (UIManagedContext) and at 14:50 he starts talking about the two ways to get the UIManagedContext -- being UIManagedDocument or the "Use Core Data" checkbox.
 //Create a UImanagedDocument and ask for its managedObjectContext
-@interface AppDelegate ()
-
+@interface AppDelegate () <NSURLSessionDownloadDelegate>
+@property (copy, nonatomic) void (^flickerDownloadBackgroundURLSessionCompletionHandler)();
 @property (strong, nonatomic) UIManagedDocument *document;
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
+@property (strong, nonatomic) NSURLSession *flickrDownloadSession;
+@property (strong, nonatomic) NSTimer *flickrForeFroundFetchTimer;
+
 @end
+
+
+// name of the Flickr fetching background download session
+#define FLICKR_FETCH @"Flickr Just Uploaded Fetch"
+
+// how often (in seconds) we fetch new photos if we are in the foreground
+#define FOREGROUND_FLICKR_FETCH_INTERVAL (20*60)
 
 @implementation AppDelegate
 
@@ -84,29 +97,108 @@ NSString * const historyKey = @"ShutterbugHistoryKey";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.managedObjectContext = [self createManagedObjectContext];
+    [self startFlickrFetch];
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+- (void)startFlickrFetch: (NSTimer *)timer
+{
+    [self startFlickrFetch];
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+- (void)startFlickrFetch
+{
+    [self.flickrDownloadSession getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
+        if (![downloadTasks count]) {
+            NSURLSessionDownloadTask *task = [self.flickrDownloadSession downloadTaskWithURL:[FlickrFetcher URLforRecentGeoreferencedPhotos]];
+            task.taskDescription = FLICKR_FETCH;
+            [task resume];
+        } else {
+            for (NSURLSessionDownloadTask * task in downloadTasks){
+                [task resume];
+            }
+        }
+    }];
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+- (NSArray *)flickrPhotosAtURL:(NSURL *)url
+{
+    NSData *flickrJSONData = [NSData dataWithContentsOfURL:url];
+    NSDictionary *flickrPropertyList = [NSJSONSerialization JSONObjectWithData:flickrJSONData
+                                                                       options:0
+                                                                         error:NULL];
+    return [flickrPropertyList valueForKeyPath:FLICKR_RESULTS_PHOTOS];
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
+
+- (NSArray *)flickrPlacesAtURL:(NSURL *)url
+{
+    NSData *flickrJSONData = [NSData dataWithContentsOfURL:url];
+    NSDictionary *flickrPropertyList = [NSJSONSerialization JSONObjectWithData:flickrJSONData
+                                                                       options:0
+                                                                         error:NULL];
+    return [flickrPropertyList valueForKeyPath:FLICKR_RESULTS_PLACES];
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+
+- (NSURLSession *)flickrDownloadSession
+{
+    if (!_flickrDownloadSession) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            NSURLSessionConfiguration *urlSessionConfig = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:FLICKR_FETCH];
+            urlSessionConfig.allowsCellularAccess = NO;// for example
+            _flickrDownloadSession = [NSURLSession sessionWithConfiguration:urlSessionConfig
+                                                                   delegate:self
+                                                              delegateQueue:nil];
+        });
+    }
+    return _flickrDownloadSession;
 }
 
+#pragma mark - NSURLSessionDownloadDelegate
+// required by the protocol
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
+{
+    if ([downloadTask.taskDescription isEqualToString:FLICKR_FETCH]) {
+        NSManagedObjectContext *context = [self createManagedObjectContext];
+        if (context) {
+            NSArray *photos = [self flickrPhotosAtURL:location];
+            [context performBlock:^{
+                [Photo loadPhotosFromFlickrArray:photos intoManagedObjectContext:context];
+            }];
+            
+            NSArray *places = [self flickrPlacesAtURL:location];
+            [context performBlock:^{
+                [Region loadRegionFromFlickrArray:places intoManagedObjectContext:context];
+            }];
+            
+        } else {
+            [self flickrDownloadTasksMightBeComplete];
+        }
+    }
+}
+
+// required by the protocol
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
+{
+    
+}
+
+
+- (void)flickrDownloadTasksMightBeComplete
+{
+    if (self.flickerDownloadBackgroundURLSessionCompletionHandler) {
+        [self.flickrDownloadSession getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
+            if (![downloadTasks count]) {
+                void (^completionHandler)() = self.flickerDownloadBackgroundURLSessionCompletionHandler;
+                self.flickerDownloadBackgroundURLSessionCompletionHandler  = nil;
+                if (completionHandler) {
+                    completionHandler();
+                }
+            }
+        }];
+    }
+}
 @end

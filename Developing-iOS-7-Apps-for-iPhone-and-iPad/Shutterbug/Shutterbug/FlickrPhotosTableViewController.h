@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CoreDataTableViewController.h"
+#import "FlickrCDTVC.h"
+@interface FlickrPhotosTableViewController : FlickrCDTVC
 
-@interface FlickrPhotosTableViewController : CoreDataTableViewController
-
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @end

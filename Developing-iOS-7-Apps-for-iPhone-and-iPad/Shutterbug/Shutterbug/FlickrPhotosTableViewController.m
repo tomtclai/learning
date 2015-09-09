@@ -17,16 +17,6 @@
 @end
 
 @implementation FlickrPhotosTableViewController
-- (void)awakeFromNib
-{
-    [[NSNotificationCenter defaultCenter] addObserverForName:ShutterbugDataBaseAvailabilityNotification
-                                                      object:nil
-                                                       queue:nil
-                                                  usingBlock:^(NSNotification *note) {
-                                                      self.managedObjectContext = note.userInfo[ShutterbugDataBaseAvailabilityContext];
-
-                                                  }];
-}
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {

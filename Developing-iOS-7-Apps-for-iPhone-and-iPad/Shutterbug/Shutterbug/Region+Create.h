@@ -7,7 +7,10 @@
 //
 
 #import "Region.h"
-
+#import "FlickrFetcher.h"
 @interface Region (Create)
-
++ (Region *)regionWithFlickrInfo:(NSDictionary *)regionDictionary
+          inManagedObjectContext:(NSManagedObjectContext *)context;
++ (void)loadRegionFromFlickrArray:(NSArray *)regions
+         intoManagedObjectContext:(NSManagedObjectContext *)context;
 @end

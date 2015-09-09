@@ -8,7 +8,7 @@
 
 #import "TopPlacesTableViewController.h"
 #import "FlickrFetcher.h"
-#import "City.h"
+#import "Region+Create.h"
 #import "TopPhotosFromPlaceViewController.h"
 @interface TopPlacesTableViewController ()
 @property (nonatomic, strong) NSArray * placesData; // from JSON
@@ -77,10 +77,11 @@
 {
     NSString *key = self.citiesByCountry.allKeys[indexPath.section];
     NSArray *cities = self.citiesByCountry[key];
-    City *city =  cities[indexPath.row];
+    
+//    Region *city =  
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"mostViewPlaces"];
-    cell.textLabel.text = city.name;
-    cell.detailTextLabel.text = city.restOfAddress;
+//    cell.textLabel.text = city.name;
+//    cell.detailTextLabel.text = city.restOfAddress;
     return cell;
 }
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,13 +117,13 @@
                     [restOftheAddress appendFormat:@", %@", addressComponents[i]];
                 }
                 
-                City *city = [[City alloc]init];
-                city.flickrPlaceId = placeId;
-                city.name = cityName;
-                city.country = countryName;
-                city.restOfAddress = restOftheAddress;
-                
-                [self.fetchedCities addObject:city];
+//                City *city = [[City alloc]init];
+//                city.flickrPlaceId = placeId;
+//                city.name = cityName;
+//                city.country = countryName;
+//                city.restOfAddress = restOftheAddress;
+//                
+//                [self.fetchedCities addObject:city];
             }
             
             [self groupCitiesByCountry];
@@ -132,16 +133,16 @@
 
 - (void)groupCitiesByCountry {
     self.citiesByCountry = nil;
-    for (City *city in self.fetchedCities) {
-        if (self.citiesByCountry[city.country] == nil)
-        {
-            NSMutableArray *cities = [NSMutableArray arrayWithObject:city];
-            self.citiesByCountry[city.country] = cities;
-        } else {
-            
-            [self.citiesByCountry[city.country] addObject:city];
-        }
-    }
+//    for (City *city in self.fetchedCities) {
+//        if (self.citiesByCountry[city.country] == nil)
+//        {
+//            NSMutableArray *cities = [NSMutableArray arrayWithObject:city];
+//            self.citiesByCountry[city.country] = cities;
+//        } else {
+//            
+//            [self.citiesByCountry[city.country] addObject:city];
+//        }
+//    }
     NSLog(@"%@",self.citiesByCountry);
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
@@ -202,9 +203,9 @@
         TopPhotosFromPlaceViewController* tpfpvc = segue.destinationViewController;
         NSString *key = self.citiesByCountry.allKeys[self.selectedIndexPath.section];
         NSArray *cities = self.citiesByCountry[key];
-        City *city =  cities[self.selectedIndexPath.row];
-        tpfpvc.flickrID = city.flickrPlaceId;
-        tpfpvc.navigationItem.title = city.name;
+//        City *city =  cities[self.selectedIndexPath.row];
+//        tpfpvc.flickrID = city.flickrPlaceId;
+//        tpfpvc.navigationItem.title = city.name;
         self.selectedIndexPath = nil;
     }
 }
