@@ -112,6 +112,8 @@
 				77AD81F51B98F1060089FA2F /* Photo.h */,
 				77AD81F81B98F1D00089FA2F /* Photo+Flickr.h */,
 				77AD81F91B98F1D00089FA2F /* Photo+Flickr.m */,
+				77AD81FF1B98F4010089FA2F /* Photographer+Create.h */,
+				77AD82001B98F4010089FA2F /* Photographer+Create.m */,
 				77AD81F61B98F1060089FA2F /* Photo.m */,
 				77AD81F21B98F0F20089FA2F /* Photographer.h */,
 				77AD81F31B98F0F20089FA2F /* Photographer.m */,
@@ -124,8 +126,6 @@
 				77AD81CD1B98EF630089FA2F /* Main.storyboard */,
 				77AD82061B98F6390089FA2F /* PhotographersCDTVC.h */,
 				77AD82071B98F6390089FA2F /* PhotographersCDTVC.m */,
-				77AD81FF1B98F4010089FA2F /* Photographer+Create.h */,
-				77AD82001B98F4010089FA2F /* Photographer+Create.m */,
 				77AD820C1B98F92E0089FA2F /* AppDelegate+MOC.h */,
 				77AD820D1B98F92E0089FA2F /* AppDelegate+MOC.m */,
 				77AD820F1B98FC0D0089FA2F /* FlickrAPIKey.h */,
@@ -479,6 +479,7 @@
 				77AD81E51B98EF630089FA2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		77AD81E61B98EF630089FA2F /* Build configuration list for PBXNativeTarget "PhotomaniaTests" */ = {
 			isa = XCConfigurationList;
@@ -487,6 +488,7 @@
 				77AD81E81B98EF630089FA2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

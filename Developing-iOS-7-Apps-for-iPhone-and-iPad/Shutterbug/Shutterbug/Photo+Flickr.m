@@ -39,8 +39,16 @@
         
         photo.whoTook = [Photographer photographerWithName:photographerName
                                     inManagedObjectContext:context];
-        
-        
+                         
+        // I think i need to use URLforInformationAboutPlace here
+        // to get the name of the place with the place ID
+        if (!photo.whoTook.hasTakenPhotosIn)
+        {
+            NSDictionary *regionDict = @{
+                                         FLICKR_PLACE_ID: photo
+                                         };
+            photo.whoTook.hasTakenPhotosIn = [NSSet setWithObject:]
+        }
     }
     return photo;
 }

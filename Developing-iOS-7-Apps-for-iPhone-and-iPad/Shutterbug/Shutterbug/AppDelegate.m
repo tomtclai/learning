@@ -101,6 +101,18 @@ NSString * const historyKey = @"ShutterbugHistoryKey";
     return YES;
 }
 
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    //background fetch
+}
+
+- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)())completionHandler
+{
+    // empty implementation to enable the delegate methods
+    // need to wait until fetch completes
+    self.flickerDownloadBackgroundURLSessionCompletionHandler = completionHandler;
+}
+
 - (void)startFlickrFetch: (NSTimer *)timer
 {
     [self startFlickrFetch];
@@ -131,7 +143,6 @@ NSString * const historyKey = @"ShutterbugHistoryKey";
 }
 
 
-
 - (NSArray *)flickrPlacesAtURL:(NSURL *)url
 {
     NSData *flickrJSONData = [NSData dataWithContentsOfURL:url];
@@ -140,8 +151,7 @@ NSString * const historyKey = @"ShutterbugHistoryKey";
                                                                          error:NULL];
     return [flickrPropertyList valueForKeyPath:FLICKR_RESULTS_PLACES];
 }
-
-
+#pragma mark getters & setters
 - (NSURLSession *)flickrDownloadSession
 {
     if (!_flickrDownloadSession) {
@@ -155,6 +165,21 @@ NSString * const historyKey = @"ShutterbugHistoryKey";
         });
     }
     return _flickrDownloadSession;
+}
+
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    _managedObjectContext = managedObjectContext;
+    [NSTimer scheduledTimerWithTimeInterval:20*60
+                                     target:self
+                                   selector:@selector(startFlickrFetch:) userInfo:nil
+                                    repeats:YES];
+    
+    NSDictionary *userInfo = self.managedObjectContext? @{ShutterbugDataBaseAvailabilityContext : self.managedObjectContext} : nil;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:ShutterbugDataBaseAvailabilityNotification
+                                                        object:self
+                                                      userInfo:userInfo];
 }
 
 #pragma mark - NSURLSessionDownloadDelegate

@@ -34,7 +34,6 @@
                                      cacheName:nil];
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell * tableViewCell = [tableView dequeueReusableCellWithIdentifier:@"mostViewPlaces"];
