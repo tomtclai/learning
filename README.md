@@ -7,7 +7,7 @@ This repository contains work and/or practices I typed going through various tec
  - [Objective-C Programming: The Big Nerd Ranch Guide](Objective-C-by-Aaron-Hillegass/)
  - [IOS Programming: The Big Nerd Ranch Guide](iOS-Programming/)
 
-###I'm working on
+###Working on
  - [iTunes U: Developing iOS 7 Apps for iPhone and iPad](Developing-iOS-7-Apps-for-iPhone-and-iPad/)
 
 <!-- - [CSS Secrets](CSS-Secrets/)
