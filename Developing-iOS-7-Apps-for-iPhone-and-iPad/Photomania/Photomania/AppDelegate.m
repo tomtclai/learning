@@ -130,7 +130,7 @@
 - (void)flickrDownloadTasksMightBeComplete
 {
     if (self.flickerDownloadBackgroundURLSessionCompletionHandler) {
-        [self.flickrDownloadSession getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
+        [self.flickrDownloadSession getTasksWithCompletionHandler:^(NSArray  *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
             if (![downloadTasks count]) {
                 void (^completionHandler)() = self.flickerDownloadBackgroundURLSessionCompletionHandler;
                 self.flickerDownloadBackgroundURLSessionCompletionHandler  = nil;

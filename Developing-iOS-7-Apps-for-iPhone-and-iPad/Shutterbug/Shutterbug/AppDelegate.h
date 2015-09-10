@@ -13,6 +13,6 @@ extern NSString * const historyKey;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+- (void)startPlaceFetch:(NSString *)placeID;
 @end
 

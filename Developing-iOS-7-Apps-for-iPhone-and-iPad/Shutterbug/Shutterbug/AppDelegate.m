@@ -26,7 +26,8 @@ NSString * const historyKey = @"ShutterbugHistoryKey";
 
 
 // name of the Flickr fetching background download session
-#define FLICKR_FETCH @"Flickr Just Uploaded Fetch"
+#define FLICKR_GROREFERENCED_FETCH @"Flickr Just Uploaded Fetch"
+#define FLICKR_PLACES_FETCH @"Flickr Places Fetch"
 
 // how often (in seconds) we fetch new photos if we are in the foreground
 #define FOREGROUND_FLICKR_FETCH_INTERVAL (20*60)
@@ -122,9 +123,9 @@ NSString * const historyKey = @"ShutterbugHistoryKey";
 {
     [self.flickrDownloadSession getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
         if (![downloadTasks count]) {
-            NSURLSessionDownloadTask *task = [self.flickrDownloadSession downloadTaskWithURL:[FlickrFetcher URLforRecentGeoreferencedPhotos]];
-            task.taskDescription = FLICKR_FETCH;
-            [task resume];
+            NSURLSessionDownloadTask *georeferencedPhotosTask = [self.flickrDownloadSession downloadTaskWithURL:[FlickrFetcher URLforRecentGeoreferencedPhotos]];
+            georeferencedPhotosTask.taskDescription = FLICKR_GROREFERENCED_FETCH;
+            [georeferencedPhotosTask resume];
         } else {
             for (NSURLSessionDownloadTask * task in downloadTasks){
                 [task resume];
@@ -132,7 +133,22 @@ NSString * const historyKey = @"ShutterbugHistoryKey";
         }
     }];
 }
-
+- (void)startPlaceFetch:(NSString *)placeID
+{
+ 
+    [self.flickrDownloadSession getTasksWithCompletionHandler:^(NSArray<NSURLSessionDataTask *> * _Nonnull dataTasks, NSArray<NSURLSessionUploadTask *> * _Nonnull uploadTasks, NSArray<NSURLSessionDownloadTask *> * _Nonnull downloadTasks) {
+        if (![downloadTasks count]) {
+            NSURL* urlForPlace = [FlickrFetcher URLforInformationAboutPlace:placeID];
+            NSURLSessionDownloadTask *placeTask = [self.flickrDownloadSession downloadTaskWithURL:urlForPlace];
+            placeTask.taskDescription = FLICKR_PLACES_FETCH;
+            [placeTask resume];
+        } else {
+            for (NSURLSessionDownloadTask *task in downloadTasks) {
+                [task resume];
+            }
+        }
+    }];
+}
 - (NSArray *)flickrPhotosAtURL:(NSURL *)url
 {
     NSData *flickrJSONData = [NSData dataWithContentsOfURL:url];
@@ -157,7 +173,7 @@ NSString * const historyKey = @"ShutterbugHistoryKey";
     if (!_flickrDownloadSession) {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            NSURLSessionConfiguration *urlSessionConfig = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:FLICKR_FETCH];
+            NSURLSessionConfiguration *urlSessionConfig = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:FLICKR_GROREFERENCED_FETCH];
             urlSessionConfig.allowsCellularAccess = NO;// for example
             _flickrDownloadSession = [NSURLSession sessionWithConfiguration:urlSessionConfig
                                                                    delegate:self
@@ -184,20 +200,21 @@ NSString * const historyKey = @"ShutterbugHistoryKey";
 
 #pragma mark - NSURLSessionDownloadDelegate
 // required by the protocol
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)diskLocation
 {
-    if ([downloadTask.taskDescription isEqualToString:FLICKR_FETCH]) {
+    if ([downloadTask.taskDescription isEqualToString:FLICKR_GROREFERENCED_FETCH]) {
         NSManagedObjectContext *context = [self createManagedObjectContext];
         if (context) {
-            NSArray *photos = [self flickrPhotosAtURL:location];
+            NSArray *photos = [self flickrPhotosAtURL:diskLocation];
             [context performBlock:^{
                 [Photo loadPhotosFromFlickrArray:photos intoManagedObjectContext:context];
             }];
-            
-            NSArray *places = [self flickrPlacesAtURL:location];
-            [context performBlock:^{
-                [Region loadRegionFromFlickrArray:places intoManagedObjectContext:context];
-            }];
+
+//            
+//            NSArray *places = [self flickrPlacesAtURL:diskLocation];
+//            [context performBlock:^{
+//                [Region loadRegionFromFlickrArray:places intoManagedObjectContext:context];
+//            }];
             
         } else {
             [self flickrDownloadTasksMightBeComplete];

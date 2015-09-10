@@ -9,6 +9,7 @@
 #import "Photo+Flickr.h"
 #import "FlickrFetcher.h"
 #import "Photographer+Create.h"
+#import "Region+Create.h"
 @implementation Photo (Flickr)
 + (Photo *)photoWithFlickrInfo:(NSDictionary *)photoDictionary
         inManagedObjectContext:(NSManagedObjectContext *)context
@@ -24,31 +25,57 @@
     
     if (!matches || error || ([matches count] > 1)) {
         //handle error
-    } else if ([matches count]) {
-        photo =  [matches firstObject];
-    } else {
+    } else if (![matches count]) {
+        // no match
         photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo"
                                               inManagedObjectContext:context];
         
         photo.unique = unique;
-        photo.title = [photoDictionary valueForKeyPath:FLICKR_PHOTO_TITLE];
-        photo.subtitle = [photoDictionary valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
+        photo.title = photoDictionary[FLICKR_PHOTO_TITLE];
+        photo.subtitle = photoDictionary[FLICKR_PHOTO_DESCRIPTION];
         photo.imageURL = [[FlickrFetcher URLforPhoto:photoDictionary format:FlickrPhotoFormatLarge] absoluteString
                           ];
         NSString *photographerName = [photoDictionary valueForKeyPath:FLICKR_PHOTO_OWNER];
         
         photo.whoTook = [Photographer photographerWithName:photographerName
                                     inManagedObjectContext:context];
-                         
-        // I think i need to use URLforInformationAboutPlace here
-        // to get the name of the place with the place ID
-        if (!photo.whoTook.hasTakenPhotosIn)
-        {
-            NSDictionary *regionDict = @{
-                                         FLICKR_PLACE_ID: photo
-                                         };
-            photo.whoTook.hasTakenPhotosIn = [NSSet setWithObject:]
-        }
+        
+        
+        //how to go from place id to dictionary?
+        NSString* placeID = photoDictionary[FLICKR_PHOTO_PLACE_ID];
+        NSURL* urlForPlace = [FlickrFetcher URLforInformationAboutPlace:placeID];
+        dispatch_queue_t fetchQ = dispatch_queue_create("Flickr place fetcher", NULL);
+        dispatch_async(fetchQ, ^{
+            NSData *flickrJSONData = [NSData dataWithContentsOfURL:urlForPlace];
+            NSDictionary *flickrJSONDictionary = [NSJSONSerialization JSONObjectWithData:flickrJSONData
+                                                                                 options:0
+                                                                                   error:NULL];
+            NSString* nameOfRegion = [FlickrFetcher extractRegionNameFromPlaceInformation:flickrJSONDictionary];
+            Region *region = [Region regionWithFlickrPlaceID:placeID
+                                                        name:nameOfRegion
+                                      inManagedObjectContext:context];
+
+            [Region addPhotographerWithName:photo.whoTook.name
+                        toRegionWithPlaceID:placeID
+                     inManagedObjectContext:context];
+            
+            if (!photo.whoTook.hasTakenPhotosIn) // if set is empty
+            {
+                photo.whoTook.hasTakenPhotosIn = [NSSet setWithObject:region];
+            }
+            else
+            {
+                NSMutableSet* tempSet = [NSMutableSet setWithSet:photo.whoTook.hasTakenPhotosIn];
+                [tempSet addObject:region];
+                photo.whoTook.hasTakenPhotosIn = tempSet;
+            }
+            
+            photo.whoTook.numberOfPhotos = @(photo.whoTook.numberOfPhotos.intValue + 1);
+
+        });
+    } else {
+        photo =  [matches firstObject];
+//        Region * region = [Region regionWithFlickrInfo: inManagedObjectContext:context];
     }
     return photo;
 }

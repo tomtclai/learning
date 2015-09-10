@@ -11,6 +11,12 @@
 @interface Region (Create)
 + (Region *)regionWithFlickrInfo:(NSDictionary *)regionDictionary
           inManagedObjectContext:(NSManagedObjectContext *)context;
++ (Region *)regionWithFlickrPlaceID:(NSString*)flickrPlaceID
+                               name:(NSString*)name
+             inManagedObjectContext:(NSManagedObjectContext *)context;
++ (Region*)addPhotographerWithName:(NSString*)photographerName
+                  toRegionWithPlaceID:(NSString*)flickrPlaceID
+    inManagedObjectContext:(NSManagedObjectContext *)context;
 + (void)loadRegionFromFlickrArray:(NSArray *)regions
          intoManagedObjectContext:(NSManagedObjectContext *)context;
 @end
