@@ -32,6 +32,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.photoDatabaseContext = [self createMainQueueManagedObjectContext]; // in HW, set from UI manage document
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:(NSTimeInterval)FOREGROUND_FLICKR_FETCH_INTERVAL];
     [self startFlickrFetch];
     
     return YES;
