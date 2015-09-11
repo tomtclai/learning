@@ -12,6 +12,7 @@
 
 + (Photo *)photoWithFlickrInfo:(NSDictionary *)photoDictionary
         inManagedObjectContext:(NSManagedObjectContext *)context;
+
 + (void)loadPhotosFromFlickrArray:(NSArray *)photos // of Flickr NSDictionary
          intoManagedObjectContext:(NSManagedObjectContext *)context;
 @end

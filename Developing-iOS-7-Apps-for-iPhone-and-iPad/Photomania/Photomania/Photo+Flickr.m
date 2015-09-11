@@ -16,6 +16,8 @@
     Photo *photo = nil;
     
     NSString *unique = photoDictionary[FLICKR_PHOTO_ID];
+
+    // Ask the database if it has the photo
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
     request.predicate = [NSPredicate predicateWithFormat:@"unique =%@", unique];
     

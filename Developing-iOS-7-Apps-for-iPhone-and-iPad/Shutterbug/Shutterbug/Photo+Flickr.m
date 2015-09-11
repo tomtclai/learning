@@ -44,33 +44,22 @@
         //how to go from place id to dictionary?
         NSString* placeID = photoDictionary[FLICKR_PHOTO_PLACE_ID];
         NSURL* urlForPlace = [FlickrFetcher URLforInformationAboutPlace:placeID];
-        dispatch_queue_t fetchQ = dispatch_queue_create("Flickr place fetcher", NULL);
+        dispatch_queue_t fetchQ = dispatch_queue_create("Flickr wqewqe fetcher", NULL);
         dispatch_async(fetchQ, ^{
             NSData *flickrJSONData = [NSData dataWithContentsOfURL:urlForPlace];
             NSDictionary *flickrJSONDictionary = [NSJSONSerialization JSONObjectWithData:flickrJSONData
                                                                                  options:0
                                                                                    error:NULL];
+            dispatch_async(dispatch_get_main_queue(), ^{
             NSString* nameOfRegion = [FlickrFetcher extractRegionNameFromPlaceInformation:flickrJSONDictionary];
-            Region *region = [Region regionWithFlickrPlaceID:placeID
+                Region *region = [Region regionWithFlickrPlaceID:placeID
                                                         name:nameOfRegion
                                       inManagedObjectContext:context];
 
-            [Region addPhotographerWithName:photo.whoTook.name
-                        toRegionWithPlaceID:placeID
-                     inManagedObjectContext:context];
-            
-            if (!photo.whoTook.hasTakenPhotosIn) // if set is empty
-            {
-                photo.whoTook.hasTakenPhotosIn = [NSSet setWithObject:region];
-            }
-            else
-            {
-                NSMutableSet* tempSet = [NSMutableSet setWithSet:photo.whoTook.hasTakenPhotosIn];
-                [tempSet addObject:region];
-                photo.whoTook.hasTakenPhotosIn = tempSet;
-            }
-            
-            photo.whoTook.numberOfPhotos = @(photo.whoTook.numberOfPhotos.intValue + 1);
+                [region addHasPhotosTakenByObject:photo.whoTook];
+                region.photographerCount = @(region.photographerCount.intValue + 1);
+                photo.whoTook.numberOfPhotos = @(photo.whoTook.numberOfPhotos.intValue + 1);
+            });
 
         });
     } else {

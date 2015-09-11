@@ -7,6 +7,7 @@
 //
 
 #import "Photographer+Create.h"
+#import "FlickrFetcher.h"
 #import "Region+Create.h"
 @implementation Photographer (Create)
 + (Photographer *)photographerWithName:(NSString *)name
@@ -15,6 +16,7 @@
     Photographer *photographer = nil;
     
     if ([name length]) {
+        // ask database if photographer already exist
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photographer"];
         request.predicate = [NSPredicate predicateWithFormat:@"name = %@", name];
         

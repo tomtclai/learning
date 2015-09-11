@@ -56,9 +56,6 @@
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="a1k-Iu-mc3">
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
-                        <connections>
-                            <action selector="fetchURLforTopPlaces" destination="lxj-4r-yVJ" eventType="valueChanged" id="FLy-2f-u8m"/>
-                        </connections>
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jbr-mn-GTA" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -17,7 +17,6 @@
                                                        queue:nil
                                                   usingBlock:^(NSNotification *note) {
                                                       self.managedObjectContext = note.userInfo[ShutterbugDataBaseAvailabilityContext];
-                                                      NSLog(@"ShutterbugDataBaseAvailabilityContext is working");
                                                   }];
 }
 @end

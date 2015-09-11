@@ -133,29 +133,36 @@ NSString * const historyKey = @"ShutterbugHistoryKey";
         }
     }];
 }
-- (void)startPlaceFetch:(NSString *)placeID
-{
- 
-    [self.flickrDownloadSession getTasksWithCompletionHandler:^(NSArray<NSURLSessionDataTask *> * _Nonnull dataTasks, NSArray<NSURLSessionUploadTask *> * _Nonnull uploadTasks, NSArray<NSURLSessionDownloadTask *> * _Nonnull downloadTasks) {
-        if (![downloadTasks count]) {
-            NSURL* urlForPlace = [FlickrFetcher URLforInformationAboutPlace:placeID];
-            NSURLSessionDownloadTask *placeTask = [self.flickrDownloadSession downloadTaskWithURL:urlForPlace];
-            placeTask.taskDescription = FLICKR_PLACES_FETCH;
-            [placeTask resume];
-        } else {
-            for (NSURLSessionDownloadTask *task in downloadTasks) {
-                [task resume];
-            }
-        }
-    }];
-}
+//- (void)startPlaceFetch:(NSString *)placeID
+//{
+// 
+//    [self.flickrDownloadSession getTasksWithCompletionHandler:^(NSArray<NSURLSessionDataTask *> * _Nonnull dataTasks, NSArray<NSURLSessionUploadTask *> * _Nonnull uploadTasks, NSArray<NSURLSessionDownloadTask *> * _Nonnull downloadTasks) {
+//        if (![downloadTasks count]) {
+//            NSURL* urlForPlace = [FlickrFetcher URLforInformationAboutPlace:placeID];
+//            NSURLSessionDownloadTask *placeTask = [self.flickrDownloadSession downloadTaskWithURL:urlForPlace];
+//            placeTask.taskDescription = FLICKR_PLACES_FETCH;
+//            [placeTask resume];
+//        } else {
+//            for (NSURLSessionDownloadTask *task in downloadTasks) {
+//                [task resume];
+//            }
+//        }
+//    }];
+//}
 - (NSArray *)flickrPhotosAtURL:(NSURL *)url
 {
     NSData *flickrJSONData = [NSData dataWithContentsOfURL:url];
+    if (flickrJSONData)
+    {
     NSDictionary *flickrPropertyList = [NSJSONSerialization JSONObjectWithData:flickrJSONData
                                                                        options:0
                                                                          error:NULL];
     return [flickrPropertyList valueForKeyPath:FLICKR_RESULTS_PHOTOS];
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 
@@ -186,7 +193,7 @@ NSString * const historyKey = @"ShutterbugHistoryKey";
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     _managedObjectContext = managedObjectContext;
-    [NSTimer scheduledTimerWithTimeInterval:20*60
+    [NSTimer scheduledTimerWithTimeInterval:5
                                      target:self
                                    selector:@selector(startFlickrFetch:) userInfo:nil
                                     repeats:YES];
