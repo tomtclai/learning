@@ -9,13 +9,13 @@
         <attribute name="thumbnail" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="unique" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="whoTook" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Photographer" inverseName="photos" inverseEntity="Photographer" syncable="YES"/>
+        <relationship name="whoTook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photographer" inverseName="photos" inverseEntity="Photographer" syncable="YES"/>
     </entity>
     <entity name="Photographer" representedClassName="Photographer" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numberOfPhotos" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="hasTakenPhotosIn" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Region" inverseName="hasPhotosTakenBy" inverseEntity="Region" syncable="YES"/>
-        <relationship name="photos" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Photo" inverseName="whoTook" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="whoTook" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <entity name="Region" representedClassName="Region" syncable="YES">
         <attribute name="flickrPlaceID" optional="YES" attributeType="String" syncable="YES"/>
@@ -24,8 +24,8 @@
         <relationship name="hasPhotosTakenBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photographer" inverseName="hasTakenPhotosIn" inverseEntity="Photographer" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Photo" positionX="252" positionY="9" width="128" height="178"/>
-        <element name="Photographer" positionX="9" positionY="54" width="128" height="103"/>
+        <element name="Photo" positionX="252" positionY="9" width="128" height="180"/>
+        <element name="Photographer" positionX="9" positionY="54" width="128" height="105"/>
         <element name="Region" positionX="-29" positionY="-153" width="128" height="103"/>
     </elements>
 </model>

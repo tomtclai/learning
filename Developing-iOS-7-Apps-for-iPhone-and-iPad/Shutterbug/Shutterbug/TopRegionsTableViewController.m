@@ -17,8 +17,8 @@
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:@"Region"];
-    request.fetchLimit = 5;
-//    request.fetchBatchSize = 20;
+    request.fetchLimit = 50;
+    request.fetchBatchSize = 5;
     request.sortDescriptors  = @[
                                  [NSSortDescriptor sortDescriptorWithKey:@"photographerCount"
                                                                ascending:NO],

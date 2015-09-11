@@ -13,6 +13,7 @@
 		771963FD1B9F952E00C097F7 /* Region+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 771963FC1B9F952E00C097F7 /* Region+Create.m */; };
 		771964001BA0815800C097F7 /* FlickrCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 771963FF1BA0815800C097F7 /* FlickrCDTVC.m */; };
 		771964041BA0CCD700C097F7 /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 771964031BA0CCD700C097F7 /* Region.m */; };
+		771EE3BD1BA3518F00762F5B /* FlickrHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 771EE3BC1BA3518F00762F5B /* FlickrHelper.m */; settings = {ASSET_TAGS = (); }; };
 		7729D2A91B923CC300058872 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7729D2A81B923CC300058872 /* iPhone.storyboard */; };
 		779129351B98BADA000CC108 /* TopPhotosFromPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779129341B98BADA000CC108 /* TopPhotosFromPlaceViewController.m */; };
 		779129391B98CC66000CC108 /* HistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779129381B98CC66000CC108 /* HistoryTableViewController.m */; };
@@ -58,6 +59,8 @@
 		771963FF1BA0815800C097F7 /* FlickrCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrCDTVC.m; sourceTree = "<group>"; };
 		771964021BA0CCD700C097F7 /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
 		771964031BA0CCD700C097F7 /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
+		771EE3BB1BA3518F00762F5B /* FlickrHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrHelper.h; sourceTree = "<group>"; };
+		771EE3BC1BA3518F00762F5B /* FlickrHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrHelper.m; sourceTree = "<group>"; };
 		7729D2A81B923CC300058872 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		779129331B98BADA000CC108 /* TopPhotosFromPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopPhotosFromPlaceViewController.h; sourceTree = "<group>"; };
 		779129341B98BADA000CC108 /* TopPhotosFromPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopPhotosFromPlaceViewController.m; sourceTree = "<group>"; };
@@ -187,6 +190,8 @@
 				77AD82201B9A3EEE0089FA2F /* CoreDataTableViewController */,
 				779F8BD71B90D1E200328E85 /* FlickrAPIKey.h */,
 				779F8BD81B90D1E200328E85 /* FlickrFetcher.h */,
+				771EE3BB1BA3518F00762F5B /* FlickrHelper.h */,
+				771EE3BC1BA3518F00762F5B /* FlickrHelper.m */,
 				779F8BD91B90D1E200328E85 /* FlickrFetcher.m */,
 				779F8BDB1B90DA8100328E85 /* ImageViewController.h */,
 				779F8BDC1B90DA8100328E85 /* ImageViewController.m */,
@@ -277,7 +282,7 @@
 		779F8B9E1B90CFBD00328E85 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Tom Lai";
 				TargetAttributes = {
 					779F8BA51B90CFBD00328E85 = {
@@ -355,6 +360,7 @@
 				771963F71B9F92E900C097F7 /* Photographer+Create.m in Sources */,
 				779F8BAF1B90CFBD00328E85 /* AppDelegate.m in Sources */,
 				779F8BDA1B90D1E200328E85 /* FlickrFetcher.m in Sources */,
+				771EE3BD1BA3518F00762F5B /* FlickrHelper.m in Sources */,
 				771963EB1B9F8E7400C097F7 /* Photo+Flickr.m in Sources */,
 				779F8BDD1B90DA8100328E85 /* ImageViewController.m in Sources */,
 				779F8BAC1B90CFBD00328E85 /* main.m in Sources */,
@@ -421,6 +427,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -488,6 +495,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Shutterbug/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "t.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -498,6 +506,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Shutterbug/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "t.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -516,6 +525,7 @@
 				);
 				INFOPLIST_FILE = ShutterbugTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "t.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shutterbug.app/Shutterbug";
 			};
@@ -531,6 +541,7 @@
 				);
 				INFOPLIST_FILE = ShutterbugTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "t.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shutterbug.app/Shutterbug";
 			};
