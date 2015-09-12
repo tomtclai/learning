@@ -1,22 +1,29 @@
 //
-//  Photo.h
+//  Photo+CoreDataProperties.h
 //  Photomania
 //
-//  Created by CS193p Instructor.
-//  Copyright (c) 2013 Stanford University. All rights reserved.
+//  Created by Tom Lai on 9/11/15.
+//  Copyright © 2015 Stanford University. All rights reserved.
+//
+//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
+//  to delete and recreate this implementation file for your updated model.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "Photographer.h"
 
-@class Photographer;
+NS_ASSUME_NONNULL_BEGIN
 
 @interface Photo : NSManagedObject
 
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSString * subtitle;
-@property (nonatomic, retain) NSString * imageURL;
-@property (nonatomic, retain) NSString * unique;
-@property (nonatomic, retain) Photographer *whoTook;
+@property (nullable, nonatomic, retain) NSString *imageURL;
+@property (nullable, nonatomic, retain) NSString *subtitle;
+@property (nullable, nonatomic, retain) NSString *title;
+@property (nullable, nonatomic, retain) NSString *unique;
+@property (nullable, nonatomic, retain) NSNumber *latitude;
+@property (nullable, nonatomic, retain) NSNumber *longitude;
+@property (nullable, nonatomic, retain) NSString *thumbnailURL;
+@property (nullable, nonatomic, retain) Photographer *whoTook;
 
 @end
+
+NS_ASSUME_NONNULL_END

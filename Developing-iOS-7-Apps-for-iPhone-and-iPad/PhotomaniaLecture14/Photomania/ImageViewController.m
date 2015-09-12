@@ -139,6 +139,8 @@
         if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
             UIStoryboardPopoverSegue *popoverSegue = (UIStoryboardPopoverSegue *)segue;
             self.urlPopoverController = popoverSegue.popoverController;
+        }
+        if ([segue isKindOfClass:[UIStoryboardSegue class]]) {
             urlvc.url = self.imageURL;
         }
     }
