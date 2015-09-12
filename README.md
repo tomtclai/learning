@@ -1,8 +1,8 @@
-This repository contains work and/or practices I typed going through various technical books.
+This repository contains work and/or practices I typed going through various materials.
 
-**Disclaimer:** May contain downloaded examples and/or images.
+**Disclaimer:** May contain downloaded examples and/or images. 
 
-###Completed
+###Done with
  - [Head First Javascript Programming](Head-First-JavaScript-Programming/)
  - [Objective-C Programming: The Big Nerd Ranch Guide](Objective-C-by-Aaron-Hillegass/)
  - [iOS Programming: The Big Nerd Ranch Guide](iOS-Programming/)
