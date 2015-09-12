@@ -1,4 +1,4 @@
-//
+ //
 //  Photographer+Create.m
 //  Photomania
 //
@@ -9,6 +9,17 @@
 #import "Photographer+Create.h"
 
 @implementation Photographer (Create)
+
++ (Photographer *)userInManagedObjectContext:(NSManagedObjectContext *)context
+{
+    // really cheap, should make this an attribute
+    return [self photographerWithName:@" My Photos" inManagedObjectContext:context];
+}
+
+- (BOOL)isUser
+{
+    return self == [[self class] userInManagedObjectContext:self.managedObjectContext];
+}
 
 + (Photographer *)photographerWithName:(NSString *)name
                 inManagedObjectContext:(NSManagedObjectContext *)context

@@ -10,6 +10,7 @@
 #import "PhotomaniaAppDelegate+MOC.h"
 #import "FlickrFetcher.h"
 #import "Photo+Flickr.h"
+#import "Photographer+Create.h"
 #import "PhotoDatabaseAvailability.h"
 
 // THIS FILE WANTS TO BE VERY WIDE BECAUSE IT HAS A LOT OF COMMENTS THAT ARE ATTACHED ONTO THE END OF LINES--MAKE THIS COMMENT FIT ON ONE LINE
@@ -118,6 +119,9 @@
 - (void)setPhotoDatabaseContext:(NSManagedObjectContext *)photoDatabaseContext
 {
     _photoDatabaseContext = photoDatabaseContext;
+    
+    // make sure "the user" Photographer exists at all times
+    if (photoDatabaseContext) [Photographer userInManagedObjectContext:photoDatabaseContext];
     
     // every time the context changes, we'll restart our timer
     // so kill (invalidate) the current one
