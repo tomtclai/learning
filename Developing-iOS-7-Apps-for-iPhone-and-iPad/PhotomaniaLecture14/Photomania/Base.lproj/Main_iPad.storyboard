@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Split View Controller-->
@@ -19,23 +20,34 @@
             </objects>
             <point key="canvasLocation" x="-1288" y="-447"/>
         </scene>
-        <!--Image View Controller-->
+        <!--Photos By Photographer Image View Controller-->
         <scene sceneID="i4o-tq-SuA">
             <objects>
-                <viewController id="pnO-Ek-rkZ" customClass="ImageViewController" sceneMemberID="viewController">
+                <viewController id="pnO-Ek-rkZ" customClass="PhotosByPhotographerImageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EiD-mH-6sQ"/>
                         <viewControllerLayoutGuide type="bottom" id="JUR-HY-OON"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fsH-K9-Pqd">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OtP-lw-cTW">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OtP-lw-cTW">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <animations/>
                             </scrollView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="duz-Zg-7ci">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tFy-UU-Icd">
+                                <rect key="frame" x="340" y="8" width="400" height="200"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="DBd-sE-Y7T"/>
+                                    <constraint firstAttribute="width" constant="400" id="Kcg-Fv-Tfd"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="Zod-Ym-Do7" kind="embed" identifier="embedMap" id="ToP-fi-l4q"/>
+                                </connections>
+                            </containerView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="duz-Zg-7ci">
                                 <rect key="frame" x="366" y="494" width="37" height="37"/>
                                 <animations/>
                                 <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -44,14 +56,11 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="OtP-lw-cTW" firstAttribute="leading" secondItem="fsH-K9-Pqd" secondAttribute="leading" id="2P7-hz-ScA"/>
-                            <constraint firstItem="OtP-lw-cTW" firstAttribute="top" secondItem="fsH-K9-Pqd" secondAttribute="top" id="DiW-oM-DVy"/>
-                            <constraint firstAttribute="trailing" secondItem="OtP-lw-cTW" secondAttribute="trailing" id="GnT-vc-weO"/>
-                            <constraint firstAttribute="bottom" secondItem="OtP-lw-cTW" secondAttribute="bottom" id="h6h-Kd-RUX"/>
-                            <constraint firstAttribute="centerX" secondItem="duz-Zg-7ci" secondAttribute="centerX" id="s1O-Pm-eSX"/>
-                            <constraint firstAttribute="centerY" secondItem="duz-Zg-7ci" secondAttribute="centerY" id="t6g-Qv-sqm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tFy-UU-Icd" secondAttribute="trailing" constant="8" id="KiC-rA-RjZ"/>
+                            <constraint firstItem="tFy-UU-Icd" firstAttribute="top" secondItem="EiD-mH-6sQ" secondAttribute="bottom" constant="8" id="XZR-04-9LA"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="7WW-rX-Tq4">
                         <barButtonItem key="rightBarButtonItem" title="URL" id="K9q-3q-sN1">
                             <connections>
@@ -68,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ktC-k4-phv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="798" y="167"/>
+            <point key="canvasLocation" x="776" y="185"/>
         </scene>
         <!--URL View Controller-->
         <scene sceneID="4g7-r4-GaH">
@@ -154,11 +163,11 @@
                         <viewControllerLayoutGuide type="bottom" id="L2l-Do-pCU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="aHT-6N-sOo" customClass="photos">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="15i-yA-7rt">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="1024"/>
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="200"/>
                                 <animations/>
                             </mapView>
                         </subviews>
@@ -178,7 +187,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdx-6O-PxO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1270" y="-973"/>
+            <point key="canvasLocation" x="1575" y="-779"/>
         </scene>
         <!--PhotographersCDTVC-->
         <scene sceneID="Pdb-e0-MXv">
@@ -217,9 +226,6 @@
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
-                                <connections>
-                                    <segue destination="Zod-Ym-Do7" kind="push" identifier="Show Photos By Photographer" id="FO5-3F-9RE"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

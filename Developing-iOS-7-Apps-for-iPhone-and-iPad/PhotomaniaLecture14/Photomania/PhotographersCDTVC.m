@@ -11,6 +11,7 @@
 #import "PhotoDatabaseAvailability.h"
 #import "PhotosByPhotographerCDTVC.h"
 #import "PhotosByPhotographerMapViewController.h"
+#import "PhotosByPhotographerImageViewController.h"
 @implementation PhotographersCDTVC
 
 - (void)awakeFromNib
@@ -69,6 +70,10 @@
             PhotosByPhotographerMapViewController * pbpmvc = (PhotosByPhotographerMapViewController *)vc;
             pbpmvc.photographer = photographer;
         }
+    }
+    if ([vc isKindOfClass:[PhotosByPhotographerImageViewController class]]) {
+        PhotosByPhotographerImageViewController * pbpmvc = (PhotosByPhotographerImageViewController *)vc;
+        pbpmvc.photographer = photographer;
     }
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
