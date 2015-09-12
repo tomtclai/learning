@@ -1,0 +1,15 @@
+
+/* Class = "UIBarButtonItem"; title = "URL"; ObjectID = "K9q-3q-sN1"; */
+"K9q-3q-sN1.title" = "URL";
+
+/* Class = "UINavigationController"; title = "Photographers"; ObjectID = "P0x-Dg-l7L"; */
+"P0x-Dg-l7L.title" = "Photographers";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "sUX-ZS-dRX"; */
+"sUX-ZS-dRX.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "wvh-Zw-p6a"; */
+"wvh-Zw-p6a.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "zjU-0N-50K"; */
+"zjU-0N-50K.text" = "Title";

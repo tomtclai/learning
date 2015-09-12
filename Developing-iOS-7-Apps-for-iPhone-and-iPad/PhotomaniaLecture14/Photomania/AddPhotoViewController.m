@@ -28,7 +28,11 @@
 @implementation AddPhotoViewController
 
 #pragma mark - Capabilitites
-
+// Do this for all the strings that shows up in UI
+// And then you can run genstring to genereate a .string file
+// On the .string files go look in the inspector and clikc on localize, Xcode will
+// ask what lanauge you use for Base
+#define ALERT_CANT_ADD_PHOTO NSLocalizedStringFromTable(@"ALERT_CANT_ADD_PHOTO", @"Message given to user if the user treis to add a photo but there is a unrecoverable problem", @"AddPhotoViewController")
 + (BOOL)canAddPhoto
 {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -50,7 +54,7 @@
         NSLog(@"Location services enabled");
     }
     if (![[self class] canAddPhoto]) {
-        [self fatalAlert:@"Sorry, this device cannot add a photo"];
+        [self fatalAlert:ALERT_CANT_ADD_PHOTO]; // @"Sorry, this device cannot add a photo"
     } else {
         [self.locationManager startUpdatingLocation];
     }

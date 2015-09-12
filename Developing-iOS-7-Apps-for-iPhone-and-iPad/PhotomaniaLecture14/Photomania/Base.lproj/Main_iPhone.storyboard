@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Photos By Photographer Map View Controller-->
@@ -279,7 +280,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aB-Nu-sb2">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="763" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SbJ-US-Kwd">
+                                <rect key="frame" x="15" y="28" width="48" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancel" destination="Kt4-31-bL0" eventType="touchUpInside" id="dHY-Qf-aYp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aB-Nu-sb2">
                                 <rect key="frame" x="263" y="28" width="38" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -288,34 +297,29 @@
                                     <segue destination="5w1-OF-xgi" kind="unwind" identifier="Do Add Photo" unwindAction="addedPhoto:" id="bc1-Fn-8s0"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="clB-zb-9IP">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="clB-zb-9IP">
                                 <rect key="frame" x="19" y="239" width="282" height="221"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="221" id="7GI-LH-aDC"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5V5-WQ-AXI">
-                                <rect key="frame" x="39" y="68" width="34" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5V5-WQ-AXI">
+                                <rect key="frame" x="24" y="68" width="59" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofg-xj-dU0">
-                                <rect key="frame" x="122" y="201" width="77" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Take Photo"/>
-                                <connections>
-                                    <action selector="takePhoto" destination="Kt4-31-bL0" eventType="touchUpInside" id="wDY-jB-UFR"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4a-Nu-Ffr">
-                                <rect key="frame" x="14" y="107" width="59" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4a-Nu-Ffr">
+                                <rect key="frame" x="24" y="108" width="59" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lPV-Ks-VFJ">
-                                <rect key="frame" x="86" y="65" width="215" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lPV-Ks-VFJ">
+                                <rect key="frame" x="91" y="66" width="213" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -323,8 +327,8 @@
                                     <outlet property="delegate" destination="Kt4-31-bL0" id="5wT-qD-LqS"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VNj-Wj-ayP">
-                                <rect key="frame" x="86" y="103" width="215" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VNj-Wj-ayP">
+                                <rect key="frame" x="91" y="104" width="213" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -332,17 +336,40 @@
                                     <outlet property="delegate" destination="Kt4-31-bL0" id="4Ir-qj-1fJ"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SbJ-US-Kwd">
-                                <rect key="frame" x="19" y="28" width="48" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofg-xj-dU0">
+                                <rect key="frame" x="122" y="201" width="77" height="30"/>
                                 <animations/>
-                                <state key="normal" title="Cancel"/>
+                                <state key="normal" title="Take Photo"/>
                                 <connections>
-                                    <action selector="cancel" destination="Kt4-31-bL0" eventType="touchUpInside" id="dHY-Qf-aYp"/>
+                                    <action selector="takePhoto" destination="Kt4-31-bL0" eventType="touchUpInside" id="wDY-jB-UFR"/>
                                 </connections>
                             </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VNj-Wj-ayP" firstAttribute="leading" secondItem="lPV-Ks-VFJ" secondAttribute="leading" id="4Vd-Mb-W91"/>
+                            <constraint firstItem="VNj-Wj-ayP" firstAttribute="top" secondItem="lPV-Ks-VFJ" secondAttribute="bottom" constant="8" id="6fo-ZS-ODJ"/>
+                            <constraint firstItem="lPV-Ks-VFJ" firstAttribute="leading" secondItem="5V5-WQ-AXI" secondAttribute="trailing" constant="8" id="ESc-XO-Enx"/>
+                            <constraint firstItem="VNj-Wj-ayP" firstAttribute="centerY" secondItem="g4a-Nu-Ffr" secondAttribute="centerY" id="Ggi-L1-4oa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lPV-Ks-VFJ" secondAttribute="trailing" id="Muh-C1-dcP"/>
+                            <constraint firstItem="lPV-Ks-VFJ" firstAttribute="top" secondItem="8aB-Nu-sb2" secondAttribute="bottom" constant="8" id="Nrd-hB-say"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="clB-zb-9IP" secondAttribute="trailing" constant="-1" id="T4V-l7-qPq"/>
+                            <constraint firstItem="8aB-Nu-sb2" firstAttribute="top" secondItem="w6w-km-nAT" secondAttribute="bottom" constant="8" id="Tjo-Fb-mIR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8aB-Nu-sb2" secondAttribute="trailing" id="Up9-nE-JhX"/>
+                            <constraint firstItem="VNj-Wj-ayP" firstAttribute="leading" secondItem="g4a-Nu-Ffr" secondAttribute="trailing" constant="8" id="Xhp-Ph-nJl"/>
+                            <constraint firstItem="5V5-WQ-AXI" firstAttribute="top" secondItem="SbJ-US-Kwd" secondAttribute="bottom" constant="10" id="YS9-yv-P5N"/>
+                            <constraint firstItem="g4a-Nu-Ffr" firstAttribute="leading" secondItem="qGC-7l-4Hh" secondAttribute="leadingMargin" constant="8" id="atS-H8-r4r"/>
+                            <constraint firstItem="5V5-WQ-AXI" firstAttribute="leading" secondItem="qGC-7l-4Hh" secondAttribute="leadingMargin" constant="8" id="bnp-Tw-c68"/>
+                            <constraint firstItem="clB-zb-9IP" firstAttribute="leading" secondItem="qGC-7l-4Hh" secondAttribute="leadingMargin" constant="-1" id="dcO-Og-XII"/>
+                            <constraint firstItem="clB-zb-9IP" firstAttribute="top" secondItem="ofg-xj-dU0" secondAttribute="bottom" constant="8" id="fLJ-gC-7cC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VNj-Wj-ayP" secondAttribute="trailing" id="g9y-Da-eBg"/>
+                            <constraint firstItem="g4a-Nu-Ffr" firstAttribute="leading" secondItem="5V5-WQ-AXI" secondAttribute="leading" id="jeR-PI-VeF"/>
+                            <constraint firstItem="SbJ-US-Kwd" firstAttribute="top" secondItem="w6w-km-nAT" secondAttribute="bottom" constant="8" id="jj6-yt-j4h"/>
+                            <constraint firstItem="vkB-d3-L7s" firstAttribute="top" secondItem="clB-zb-9IP" secondAttribute="bottom" constant="20" id="lBm-2f-Vjg"/>
+                            <constraint firstItem="ofg-xj-dU0" firstAttribute="centerX" secondItem="qGC-7l-4Hh" secondAttribute="centerX" id="mO7-R2-n2e"/>
+                            <constraint firstItem="SbJ-US-Kwd" firstAttribute="leading" secondItem="qGC-7l-4Hh" secondAttribute="leadingMargin" constant="-1" id="xyd-Cz-Lke"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="clB-zb-9IP" id="DyO-hW-5Wb"/>

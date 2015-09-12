@@ -1,0 +1,39 @@
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "0YN-jh-Njc"; */
+"0YN-jh-Njc.text" = "Title";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "5V5-WQ-AXI"; */
+"5V5-WQ-AXI.text" = "Title";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "8aB-Nu-sb2"; */
+"8aB-Nu-sb2.normalTitle" = "Done";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "Dyq-pl-PLr"; */
+"Dyq-pl-PLr.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "KDY-Ju-krt"; */
+"KDY-Ju-krt.text" = "Subtitle";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "SbJ-US-Kwd"; */
+"SbJ-US-Kwd.normalTitle" = "Cancel";
+
+/* Class = "UINavigationItem"; title = "Shutterbug"; ObjectID = "Vej-9F-8Xo"; */
+"Vej-9F-8Xo.title" = "Shutterbug";
+
+/* Class = "UINavigationController"; title = "Photographers"; ObjectID = "f6q-2I-dxa"; */
+"f6q-2I-dxa.title" = "Photographers";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "g4a-Nu-Ffr"; */
+"g4a-Nu-Ffr.text" = "Subtitle";
+
+/* Class = "UIButton"; normalTitle = "Take Photo"; ObjectID = "ofg-xj-dU0"; */
+"ofg-xj-dU0.normalTitle" = "Take Photo";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "pHO-j2-s5b"; */
+"pHO-j2-s5b.text" = "Title";
+
+/* Class = "UIBarButtonItem"; title = "URL"; ObjectID = "phd-Ex-mzP"; */
+"phd-Ex-mzP.title" = "URL";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "vAX-8u-GpY"; */
+"vAX-8u-GpY.text" = "Subtitle";
