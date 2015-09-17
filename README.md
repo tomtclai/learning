@@ -10,8 +10,8 @@ This repository contains work and/or practices I typed going through various mat
 
 
 ###Working on
+ - [Core Data by Tutorials](Core-Data-by-Tutorials)
  - [Developing iOS 8 Apps with Swift](Developing-iOS-8-Apps-with-Swift)
-
  
 <!-- - [CSS Secrets](CSS-Secrets/)
  - [JavaScript Design Patterns](Udacity.com/JavaScript-Design-Patterns/)
