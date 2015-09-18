@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77A590AA1BAB83DB00D08E4F /* Bowtie+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A590A81BAB83DB00D08E4F /* Bowtie+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		77A590AB1BAB83DB00D08E4F /* Bowtie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A590A91BAB83DB00D08E4F /* Bowtie.swift */; settings = {ASSET_TAGS = (); }; };
 		FEC9FF5C195B66BA00FC7178 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC9FF5B195B66BA00FC7178 /* AppDelegate.swift */; };
 		FEC9FF5F195B66BA00FC7178 /* Bow_Ties.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FEC9FF5D195B66BA00FC7178 /* Bow_Ties.xcdatamodeld */; };
 		FEC9FF61195B66BA00FC7178 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC9FF60195B66BA00FC7178 /* ViewController.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		77A590A81BAB83DB00D08E4F /* Bowtie+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bowtie+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		77A590A91BAB83DB00D08E4F /* Bowtie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bowtie.swift; sourceTree = "<group>"; };
 		FEC9FF56195B66BA00FC7178 /* Bow Ties.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bow Ties.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEC9FF5A195B66BA00FC7178 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FEC9FF5B195B66BA00FC7178 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 		FEC9FF58195B66BA00FC7178 /* Bow Ties */ = {
 			isa = PBXGroup;
 			children = (
+				77A590A81BAB83DB00D08E4F /* Bowtie+CoreDataProperties.swift */,
+				77A590A91BAB83DB00D08E4F /* Bowtie.swift */,
 				FEC9FF5B195B66BA00FC7178 /* AppDelegate.swift */,
 				FEC9FF60195B66BA00FC7178 /* ViewController.swift */,
 				FEC9FF5A195B66BA00FC7178 /* Info.plist */,
@@ -159,7 +165,9 @@
 		FEC9FF4E195B66BA00FC7178 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Razeware;
 				TargetAttributes = {
 					FEC9FF55195B66BA00FC7178 = {
@@ -218,6 +226,8 @@
 				FEC9FF61195B66BA00FC7178 /* ViewController.swift in Sources */,
 				FEC9FF5C195B66BA00FC7178 /* AppDelegate.swift in Sources */,
 				FEC9FF5F195B66BA00FC7178 /* Bow_Ties.xcdatamodeld in Sources */,
+				77A590AB1BAB83DB00D08E4F /* Bowtie.swift in Sources */,
+				77A590AA1BAB83DB00D08E4F /* Bowtie+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +281,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -335,6 +346,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "Bow Ties/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -346,6 +358,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "Bow Ties/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -365,6 +378,7 @@
 				INFOPLIST_FILE = "Bow TiesTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
@@ -381,6 +395,7 @@
 				INFOPLIST_FILE = "Bow TiesTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
