@@ -71,6 +71,7 @@ class CalculatorBrain
                 }
             case .Constant(_, let operand):
                 pushOperand(operand)
+                return evaluate(remainingOps)
 //                return (nil, ops) something is wrong here
             }
         }
@@ -90,7 +91,8 @@ class CalculatorBrain
     
     func performOperation(symbol: String) -> Double? {
         if let operation = knownOps[symbol] { // look up might be not be successful
-            opStack.append(operation)
+
+            opStack.append(operation)// don't append if operation is pi
         }
         return evaluate()
     }
