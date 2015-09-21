@@ -1,0 +1,365 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		77764FCB1BAF94F50055E4C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764FCA1BAF94F50055E4C7 /* main.m */; };
+		77764FCE1BAF94F50055E4C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764FCD1BAF94F50055E4C7 /* AppDelegate.m */; };
+		77764FD11BAF94F50055E4C7 /* photoKeepr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77764FCF1BAF94F50055E4C7 /* photoKeepr.xcdatamodeld */; };
+		77764FD41BAF94F50055E4C7 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764FD31BAF94F50055E4C7 /* MasterViewController.m */; };
+		77764FD71BAF94F50055E4C7 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764FD61BAF94F50055E4C7 /* DetailViewController.m */; };
+		77764FDA1BAF94F50055E4C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77764FD81BAF94F50055E4C7 /* Main.storyboard */; };
+		77764FDC1BAF94F50055E4C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77764FDB1BAF94F50055E4C7 /* Assets.xcassets */; };
+		77764FDF1BAF94F50055E4C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77764FDD1BAF94F50055E4C7 /* LaunchScreen.storyboard */; };
+		77764FE81BAF94FF0055E4C7 /* NSDate+FormattedStrings in Resources */ = {isa = PBXBuildFile; fileRef = 77764FE61BAF94FF0055E4C7 /* NSDate+FormattedStrings */; settings = {ASSET_TAGS = (); }; };
+		77764FE91BAF94FF0055E4C7 /* UIImageExtras in Resources */ = {isa = PBXBuildFile; fileRef = 77764FE71BAF94FF0055E4C7 /* UIImageExtras */; settings = {ASSET_TAGS = (); }; };
+		77764FEC1BAF95BA0055E4C7 /* PTKData.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764FEB1BAF95BA0055E4C7 /* PTKData.m */; settings = {ASSET_TAGS = (); }; };
+		77764FEF1BAF98120055E4C7 /* PTKMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764FEE1BAF98120055E4C7 /* PTKMetadata.m */; settings = {ASSET_TAGS = (); }; };
+		77764FF31BAF9AB30055E4C7 /* PTKDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764FF21BAF9AB30055E4C7 /* PTKDocument.m */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		77764FC61BAF94F50055E4C7 /* photoKeepr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photoKeepr.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		77764FCA1BAF94F50055E4C7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		77764FCC1BAF94F50055E4C7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		77764FCD1BAF94F50055E4C7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		77764FD01BAF94F50055E4C7 /* photoKeepr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = photoKeepr.xcdatamodel; sourceTree = "<group>"; };
+		77764FD21BAF94F50055E4C7 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		77764FD31BAF94F50055E4C7 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		77764FD51BAF94F50055E4C7 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		77764FD61BAF94F50055E4C7 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		77764FD91BAF94F50055E4C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		77764FDB1BAF94F50055E4C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		77764FDE1BAF94F50055E4C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		77764FE01BAF94F50055E4C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77764FE61BAF94FF0055E4C7 /* NSDate+FormattedStrings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "NSDate+FormattedStrings"; sourceTree = "<group>"; };
+		77764FE71BAF94FF0055E4C7 /* UIImageExtras */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UIImageExtras; sourceTree = "<group>"; };
+		77764FEA1BAF95BA0055E4C7 /* PTKData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKData.h; sourceTree = "<group>"; };
+		77764FEB1BAF95BA0055E4C7 /* PTKData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKData.m; sourceTree = "<group>"; };
+		77764FED1BAF98120055E4C7 /* PTKMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKMetadata.h; sourceTree = "<group>"; };
+		77764FEE1BAF98120055E4C7 /* PTKMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKMetadata.m; sourceTree = "<group>"; };
+		77764FF11BAF9AB30055E4C7 /* PTKDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKDocument.h; sourceTree = "<group>"; };
+		77764FF21BAF9AB30055E4C7 /* PTKDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKDocument.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		77764FC31BAF94F50055E4C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		77764FBD1BAF94F50055E4C7 = {
+			isa = PBXGroup;
+			children = (
+				77764FC81BAF94F50055E4C7 /* photoKeepr */,
+				77764FC71BAF94F50055E4C7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		77764FC71BAF94F50055E4C7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				77764FC61BAF94F50055E4C7 /* photoKeepr.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		77764FC81BAF94F50055E4C7 /* photoKeepr */ = {
+			isa = PBXGroup;
+			children = (
+				77764FF11BAF9AB30055E4C7 /* PTKDocument.h */,
+				77764FF21BAF9AB30055E4C7 /* PTKDocument.m */,
+				77764FCC1BAF94F50055E4C7 /* AppDelegate.h */,
+				77764FCD1BAF94F50055E4C7 /* AppDelegate.m */,
+				77764FD21BAF94F50055E4C7 /* MasterViewController.h */,
+				77764FD31BAF94F50055E4C7 /* MasterViewController.m */,
+				77764FD51BAF94F50055E4C7 /* DetailViewController.h */,
+				77764FD61BAF94F50055E4C7 /* DetailViewController.m */,
+				77764FE61BAF94FF0055E4C7 /* NSDate+FormattedStrings */,
+				77764FE71BAF94FF0055E4C7 /* UIImageExtras */,
+				77764FD81BAF94F50055E4C7 /* Main.storyboard */,
+				77764FF01BAF997A0055E4C7 /* Model */,
+				77764FDB1BAF94F50055E4C7 /* Assets.xcassets */,
+				77764FDD1BAF94F50055E4C7 /* LaunchScreen.storyboard */,
+				77764FE01BAF94F50055E4C7 /* Info.plist */,
+				77764FCF1BAF94F50055E4C7 /* photoKeepr.xcdatamodeld */,
+				77764FC91BAF94F50055E4C7 /* Supporting Files */,
+			);
+			path = photoKeepr;
+			sourceTree = "<group>";
+		};
+		77764FC91BAF94F50055E4C7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				77764FCA1BAF94F50055E4C7 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		77764FF01BAF997A0055E4C7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				77764FEA1BAF95BA0055E4C7 /* PTKData.h */,
+				77764FEB1BAF95BA0055E4C7 /* PTKData.m */,
+				77764FED1BAF98120055E4C7 /* PTKMetadata.h */,
+				77764FEE1BAF98120055E4C7 /* PTKMetadata.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		77764FC51BAF94F50055E4C7 /* photoKeepr */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77764FE31BAF94F50055E4C7 /* Build configuration list for PBXNativeTarget "photoKeepr" */;
+			buildPhases = (
+				77764FC21BAF94F50055E4C7 /* Sources */,
+				77764FC31BAF94F50055E4C7 /* Frameworks */,
+				77764FC41BAF94F50055E4C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = photoKeepr;
+			productName = photoKeepr;
+			productReference = 77764FC61BAF94F50055E4C7 /* photoKeepr.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		77764FBE1BAF94F50055E4C7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = Lai;
+				TargetAttributes = {
+					77764FC51BAF94F50055E4C7 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+				};
+			};
+			buildConfigurationList = 77764FC11BAF94F50055E4C7 /* Build configuration list for PBXProject "photoKeepr" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 77764FBD1BAF94F50055E4C7;
+			productRefGroup = 77764FC71BAF94F50055E4C7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				77764FC51BAF94F50055E4C7 /* photoKeepr */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		77764FC41BAF94F50055E4C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77764FDF1BAF94F50055E4C7 /* LaunchScreen.storyboard in Resources */,
+				77764FE81BAF94FF0055E4C7 /* NSDate+FormattedStrings in Resources */,
+				77764FDC1BAF94F50055E4C7 /* Assets.xcassets in Resources */,
+				77764FDA1BAF94F50055E4C7 /* Main.storyboard in Resources */,
+				77764FE91BAF94FF0055E4C7 /* UIImageExtras in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		77764FC21BAF94F50055E4C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77764FD71BAF94F50055E4C7 /* DetailViewController.m in Sources */,
+				77764FEC1BAF95BA0055E4C7 /* PTKData.m in Sources */,
+				77764FD41BAF94F50055E4C7 /* MasterViewController.m in Sources */,
+				77764FD11BAF94F50055E4C7 /* photoKeepr.xcdatamodeld in Sources */,
+				77764FEF1BAF98120055E4C7 /* PTKMetadata.m in Sources */,
+				77764FCE1BAF94F50055E4C7 /* AppDelegate.m in Sources */,
+				77764FF31BAF9AB30055E4C7 /* PTKDocument.m in Sources */,
+				77764FCB1BAF94F50055E4C7 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		77764FD81BAF94F50055E4C7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77764FD91BAF94F50055E4C7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		77764FDD1BAF94F50055E4C7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77764FDE1BAF94F50055E4C7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		77764FE11BAF94F50055E4C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		77764FE21BAF94F50055E4C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		77764FE41BAF94F50055E4C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = photoKeepr/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Tsz-Chun-Lai.photoKeepr";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		77764FE51BAF94F50055E4C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = photoKeepr/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Tsz-Chun-Lai.photoKeepr";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		77764FC11BAF94F50055E4C7 /* Build configuration list for PBXProject "photoKeepr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77764FE11BAF94F50055E4C7 /* Debug */,
+				77764FE21BAF94F50055E4C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		77764FE31BAF94F50055E4C7 /* Build configuration list for PBXNativeTarget "photoKeepr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77764FE41BAF94F50055E4C7 /* Debug */,
+				77764FE51BAF94F50055E4C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		77764FCF1BAF94F50055E4C7 /* photoKeepr.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				77764FD01BAF94F50055E4C7 /* photoKeepr.xcdatamodel */,
+			);
+			currentVersion = 77764FD01BAF94F50055E4C7 /* photoKeepr.xcdatamodel */;
+			path = photoKeepr.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 77764FBE1BAF94F50055E4C7 /* Project object */;
+}
