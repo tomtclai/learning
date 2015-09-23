@@ -13,9 +13,11 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
-    @IBOutlet weak var recordingLabel: UILabel!
+    @IBOutlet weak var microphoneLabel: UILabel!
     var audioRecorder:AVAudioRecorder!
     var recordedAudio:RecordedAudio!
+    let micBusyMessage = "Recording"
+    let micIdleMessage = "Tap to record"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +31,11 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 
     override func viewWillAppear(animated: Bool) {
         stopButton.hidden = true
+        microphoneLabel.text = micIdleMessage
     }
 
     @IBAction func recordAudio(sender: UIButton) {
-        recordingLabel.hidden = false
+        microphoneLabel.text = micBusyMessage
         stopButton.hidden = false
         recordButton.enabled = false
         
@@ -56,11 +59,9 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
         if(flag){
         // Save recorded audio
-        recordedAudio = RecordedAudio()
-        recordedAudio.filePathUrl = recorder.url
-        recordedAudio.title = recorder.url.lastPathComponent
-        
-        self.performSegueWithIdentifier("stopRecording", sender: recordedAudio)
+            recordedAudio = RecordedAudio(title: recorder.url.lastPathComponent!, filePathUrl: recorder.url)
+            self.performSegueWithIdentifier("stopRecording", sender: recordedAudio)
+            
         } else {
             print ("Recording was not sucessful")
             recordButton.enabled = true
@@ -76,7 +77,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     @IBAction func stopRecording(sender: UIButton) {
-        recordingLabel.hidden = true
+        microphoneLabel.text = micIdleMessage
         recordButton.enabled = true
         stopButton.hidden = true
         audioRecorder.stop()
