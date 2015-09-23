@@ -101,6 +101,10 @@
 }
 
 #pragma mark Accessors
+
+- (UIImage *)photo {
+    return self.data.photo;
+}
 - (void)setPhoto:(UIImage *)photo {
     if ([self.data.photo isEqual:photo]) return;
     UIImage * oldPhoto = self.data.photo;
@@ -109,5 +113,8 @@
     
     [self.undoManager setActionName:@"Image Change"];
     [self.undoManager registerUndoWithTarget:self selector:@selector(setPhoto:) object:oldPhoto]; // WOW.
+    // By doing this, the UIDocument knows the document has been modified and it will auto save in the background
 }
+
+
 @end

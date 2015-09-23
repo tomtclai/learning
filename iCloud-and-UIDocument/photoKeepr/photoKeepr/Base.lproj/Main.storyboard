@@ -2,6 +2,9 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -32,32 +35,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Detail view content goes here" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
-                                <rect key="frame" x="20" y="292" width="560" height="17"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9jU-uz-aBK">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" size="system"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" id="Tsc-yG-G1q"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="centerY" secondItem="svH-Pt-448" secondAttribute="centerY" id="jWN-iV-94e"/>
-                            <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="20" symbolic="YES" id="tHV-ZD-HQj"/>
+                            <constraint firstItem="9jU-uz-aBK" firstAttribute="centerY" secondItem="svH-Pt-448" secondAttribute="centerYWithinMargins" id="c4h-ih-GeL"/>
+                            <constraint firstItem="9jU-uz-aBK" firstAttribute="height" secondItem="svH-Pt-448" secondAttribute="height" id="eKZ-Q7-oYN"/>
+                            <constraint firstItem="9jU-uz-aBK" firstAttribute="width" secondItem="svH-Pt-448" secondAttribute="width" id="het-cs-ElY"/>
+                            <constraint firstItem="9jU-uz-aBK" firstAttribute="centerX" secondItem="svH-Pt-448" secondAttribute="centerXWithinMargins" id="lUi-iC-7FY"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
-                        <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
+                        <outlet property="imageView" destination="9jU-uz-aBK" id="92y-OB-I7G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="709" y="129"/>
+            <point key="canvasLocation" x="667" y="129"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
@@ -83,28 +83,54 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Arm-wq-HPj" style="IBUITableViewCellStyleDefault" id="WCw-Qf-5nD">
-                                <rect key="frame" x="0.0" y="86" width="600" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" editingAccessoryType="disclosureIndicator" rowHeight="80" id="WCw-Qf-5nD" customClass="PTKEntryCell">
+                                <rect key="frame" x="0.0" y="86" width="600" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Arm-wq-HPj">
-                                            <rect key="frame" x="15" y="0.0" width="570" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ihz-c7-4q5">
+                                            <rect key="frame" x="8" y="8" width="63" height="63"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="ihz-c7-4q5" secondAttribute="height" multiplier="1:1" id="7MF-5a-Vam"/>
+                                            </constraints>
+                                        </imageView>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Textfield" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dJN-ft-apk">
+                                            <rect key="frame" x="79" y="8" width="505" height="34"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHa-mn-Iad">
+                                            <rect key="frame" x="79" y="50" width="505" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <animations/>
+                                    <constraints>
+                                        <constraint firstItem="dJN-ft-apk" firstAttribute="leading" secondItem="ihz-c7-4q5" secondAttribute="trailing" constant="8" id="1cp-22-UYS"/>
+                                        <constraint firstItem="dJN-ft-apk" firstAttribute="top" secondItem="37f-cq-3Eg" secondAttribute="topMargin" id="GWu-86-8cL"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ihz-c7-4q5" secondAttribute="bottom" id="GnS-dN-XX6"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="LHa-mn-Iad" secondAttribute="trailing" constant="8" id="Gxh-4c-IFQ"/>
+                                        <constraint firstItem="LHa-mn-Iad" firstAttribute="bottom" secondItem="37f-cq-3Eg" secondAttribute="bottomMargin" id="TjY-oV-cgc"/>
+                                        <constraint firstItem="ihz-c7-4q5" firstAttribute="leading" secondItem="37f-cq-3Eg" secondAttribute="leadingMargin" id="YRO-cf-kfo"/>
+                                        <constraint firstItem="LHa-mn-Iad" firstAttribute="leading" secondItem="ihz-c7-4q5" secondAttribute="trailing" constant="8" id="gOo-5W-EGf"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="dJN-ft-apk" secondAttribute="trailing" constant="8" id="hs3-Y3-XBv"/>
+                                        <constraint firstItem="ihz-c7-4q5" firstAttribute="top" secondItem="37f-cq-3Eg" secondAttribute="topMargin" id="oje-5g-aQP"/>
+                                        <constraint firstItem="LHa-mn-Iad" firstAttribute="top" secondItem="dJN-ft-apk" secondAttribute="bottom" constant="8" id="rXB-AE-Wn4"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="6S0-TO-JiA"/>
+                                    <outlet property="photoImageView" destination="ihz-c7-4q5" id="TwF-I7-PfQ"/>
+                                    <outlet property="subtitleLabel" destination="LHa-mn-Iad" id="p0c-fJ-pzg"/>
+                                    <outlet property="titleTextField" destination="dJN-ft-apk" id="z69-Gk-9dw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -114,9 +140,10 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="fvn-0S-Mpt"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
+                    <connections>
+                        <segue destination="vC3-pB-5Vb" kind="show" identifier="showDetail" id="haq-rn-R5O"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
@@ -140,6 +167,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6S0-TO-JiA"/>
+        <segue reference="haq-rn-R5O"/>
     </inferredMetricsTieBreakers>
 </document>

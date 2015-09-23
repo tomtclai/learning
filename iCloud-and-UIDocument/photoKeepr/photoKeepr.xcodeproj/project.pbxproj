@@ -15,11 +15,13 @@
 		77764FDA1BAF94F50055E4C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77764FD81BAF94F50055E4C7 /* Main.storyboard */; };
 		77764FDC1BAF94F50055E4C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77764FDB1BAF94F50055E4C7 /* Assets.xcassets */; };
 		77764FDF1BAF94F50055E4C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77764FDD1BAF94F50055E4C7 /* LaunchScreen.storyboard */; };
-		77764FE81BAF94FF0055E4C7 /* NSDate+FormattedStrings in Resources */ = {isa = PBXBuildFile; fileRef = 77764FE61BAF94FF0055E4C7 /* NSDate+FormattedStrings */; settings = {ASSET_TAGS = (); }; };
-		77764FE91BAF94FF0055E4C7 /* UIImageExtras in Resources */ = {isa = PBXBuildFile; fileRef = 77764FE71BAF94FF0055E4C7 /* UIImageExtras */; settings = {ASSET_TAGS = (); }; };
 		77764FEC1BAF95BA0055E4C7 /* PTKData.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764FEB1BAF95BA0055E4C7 /* PTKData.m */; settings = {ASSET_TAGS = (); }; };
 		77764FEF1BAF98120055E4C7 /* PTKMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764FEE1BAF98120055E4C7 /* PTKMetadata.m */; settings = {ASSET_TAGS = (); }; };
 		77764FF31BAF9AB30055E4C7 /* PTKDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764FF21BAF9AB30055E4C7 /* PTKDocument.m */; settings = {ASSET_TAGS = (); }; };
+		77764FF61BB0B3050055E4C7 /* PTKEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764FF51BB0B3050055E4C7 /* PTKEntry.m */; settings = {ASSET_TAGS = (); }; };
+		77764FFC1BB1B8A30055E4C7 /* NSDate+FormattedStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764FFB1BB1B8A30055E4C7 /* NSDate+FormattedStrings.m */; settings = {ASSET_TAGS = (); }; };
+		777650001BB1B8BE0055E4C7 /* UIImageExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 77764FFF1BB1B8BE0055E4C7 /* UIImageExtras.m */; settings = {ASSET_TAGS = (); }; };
+		777650041BB1CE250055E4C7 /* PTKEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777650031BB1CE250055E4C7 /* PTKEntryCell.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,14 +38,20 @@
 		77764FDB1BAF94F50055E4C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77764FDE1BAF94F50055E4C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		77764FE01BAF94F50055E4C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		77764FE61BAF94FF0055E4C7 /* NSDate+FormattedStrings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "NSDate+FormattedStrings"; sourceTree = "<group>"; };
-		77764FE71BAF94FF0055E4C7 /* UIImageExtras */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UIImageExtras; sourceTree = "<group>"; };
 		77764FEA1BAF95BA0055E4C7 /* PTKData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKData.h; sourceTree = "<group>"; };
 		77764FEB1BAF95BA0055E4C7 /* PTKData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKData.m; sourceTree = "<group>"; };
 		77764FED1BAF98120055E4C7 /* PTKMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKMetadata.h; sourceTree = "<group>"; };
 		77764FEE1BAF98120055E4C7 /* PTKMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKMetadata.m; sourceTree = "<group>"; };
 		77764FF11BAF9AB30055E4C7 /* PTKDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKDocument.h; sourceTree = "<group>"; };
 		77764FF21BAF9AB30055E4C7 /* PTKDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKDocument.m; sourceTree = "<group>"; };
+		77764FF41BB0B3050055E4C7 /* PTKEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKEntry.h; sourceTree = "<group>"; };
+		77764FF51BB0B3050055E4C7 /* PTKEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKEntry.m; sourceTree = "<group>"; };
+		77764FFA1BB1B8A30055E4C7 /* NSDate+FormattedStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+FormattedStrings.h"; sourceTree = "<group>"; };
+		77764FFB1BB1B8A30055E4C7 /* NSDate+FormattedStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+FormattedStrings.m"; sourceTree = "<group>"; };
+		77764FFE1BB1B8BE0055E4C7 /* UIImageExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIImageExtras.h; path = UIImageExtras/UIImageExtras.h; sourceTree = "<group>"; };
+		77764FFF1BB1B8BE0055E4C7 /* UIImageExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIImageExtras.m; path = UIImageExtras/UIImageExtras.m; sourceTree = "<group>"; };
+		777650021BB1CE250055E4C7 /* PTKEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKEntryCell.h; sourceTree = "<group>"; };
+		777650031BB1CE250055E4C7 /* PTKEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKEntryCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,9 +92,11 @@
 				77764FD31BAF94F50055E4C7 /* MasterViewController.m */,
 				77764FD51BAF94F50055E4C7 /* DetailViewController.h */,
 				77764FD61BAF94F50055E4C7 /* DetailViewController.m */,
-				77764FE61BAF94FF0055E4C7 /* NSDate+FormattedStrings */,
-				77764FE71BAF94FF0055E4C7 /* UIImageExtras */,
+				77764FFD1BB1B8AE0055E4C7 /* NSDate+FormattedStrings */,
+				777650011BB1B8C50055E4C7 /* UIImageExtras */,
 				77764FD81BAF94F50055E4C7 /* Main.storyboard */,
+				777650021BB1CE250055E4C7 /* PTKEntryCell.h */,
+				777650031BB1CE250055E4C7 /* PTKEntryCell.m */,
 				77764FF01BAF997A0055E4C7 /* Model */,
 				77764FDB1BAF94F50055E4C7 /* Assets.xcassets */,
 				77764FDD1BAF94F50055E4C7 /* LaunchScreen.storyboard */,
@@ -112,8 +122,28 @@
 				77764FEB1BAF95BA0055E4C7 /* PTKData.m */,
 				77764FED1BAF98120055E4C7 /* PTKMetadata.h */,
 				77764FEE1BAF98120055E4C7 /* PTKMetadata.m */,
+				77764FF41BB0B3050055E4C7 /* PTKEntry.h */,
+				77764FF51BB0B3050055E4C7 /* PTKEntry.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		77764FFD1BB1B8AE0055E4C7 /* NSDate+FormattedStrings */ = {
+			isa = PBXGroup;
+			children = (
+				77764FFA1BB1B8A30055E4C7 /* NSDate+FormattedStrings.h */,
+				77764FFB1BB1B8A30055E4C7 /* NSDate+FormattedStrings.m */,
+			);
+			name = "NSDate+FormattedStrings";
+			sourceTree = "<group>";
+		};
+		777650011BB1B8C50055E4C7 /* UIImageExtras */ = {
+			isa = PBXGroup;
+			children = (
+				77764FFE1BB1B8BE0055E4C7 /* UIImageExtras.h */,
+				77764FFF1BB1B8BE0055E4C7 /* UIImageExtras.m */,
+			);
+			name = UIImageExtras;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,10 +204,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				77764FDF1BAF94F50055E4C7 /* LaunchScreen.storyboard in Resources */,
-				77764FE81BAF94FF0055E4C7 /* NSDate+FormattedStrings in Resources */,
 				77764FDC1BAF94F50055E4C7 /* Assets.xcassets in Resources */,
 				77764FDA1BAF94F50055E4C7 /* Main.storyboard in Resources */,
-				77764FE91BAF94FF0055E4C7 /* UIImageExtras in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +217,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				77764FD71BAF94F50055E4C7 /* DetailViewController.m in Sources */,
+				77764FFC1BB1B8A30055E4C7 /* NSDate+FormattedStrings.m in Sources */,
+				777650041BB1CE250055E4C7 /* PTKEntryCell.m in Sources */,
 				77764FEC1BAF95BA0055E4C7 /* PTKData.m in Sources */,
+				77764FF61BB0B3050055E4C7 /* PTKEntry.m in Sources */,
+				777650001BB1B8BE0055E4C7 /* UIImageExtras.m in Sources */,
 				77764FD41BAF94F50055E4C7 /* MasterViewController.m in Sources */,
 				77764FD11BAF94F50055E4C7 /* photoKeepr.xcdatamodeld in Sources */,
 				77764FEF1BAF98120055E4C7 /* PTKMetadata.m in Sources */,

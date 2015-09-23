@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@import UIKit;
 
 @interface UIImage (Extras)
 
