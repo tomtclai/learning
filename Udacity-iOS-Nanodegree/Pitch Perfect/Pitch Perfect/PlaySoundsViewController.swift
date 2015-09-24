@@ -26,7 +26,6 @@ class PlaySoundsViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func playSlowAudio(sender: UIButton) {
@@ -40,24 +39,39 @@ class PlaySoundsViewController: UIViewController {
     @IBAction func playChipmunkAudio(sender: UIButton) {
         playWithPitch(1000)
     }
+    
     @IBAction func playDarthvaderAudio(sender: UIButton) {
         playWithPitch(-1000)
     }
     
+    @IBAction func playReverbEffect(sender: UIButton) {
+        let reverbEffect = AVAudioUnitReverb()
+        
+        reverbEffect.loadFactoryPreset(.MediumHall)
+        reverbEffect.wetDryMix = 50.0
+        
+        playWithAudioNode(reverbEffect)
+        
+    }
+    
     func playWithPitch(pitch: Float) {
-        audioPlayer?.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        let changePitchEffect = AVAudioUnitTimePitch()
+        
+        changePitchEffect.pitch = pitch
+        
+        playWithAudioNode(changePitchEffect)
+    }
+    
+    func playWithAudioNode(node: AVAudioNode) {
+        stopAllAudio()
         
         let audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
         
-        let changePitchEffect = AVAudioUnitTimePitch()
-        changePitchEffect.pitch = pitch
-        audioEngine.attachNode(changePitchEffect)
+        audioEngine.attachNode(node)
         
-        audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
-        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
+        audioEngine.connect(audioPlayerNode, to: node, format: nil)
+        audioEngine.connect(node, to: audioEngine.outputNode, format: nil)
         
         
         audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
@@ -66,25 +80,19 @@ class PlaySoundsViewController: UIViewController {
         audioPlayerNode.play()
     }
     func playWithRate(rate: Float) {
-        audioPlayer?.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopAllAudio()
         audioPlayer?.rate = rate
         audioPlayer?.currentTime = 0.0
         audioPlayer?.play()
     }
 
-    @IBAction func stopAudio(sender: UIButton) {
+    func stopAllAudio() {
         audioPlayer?.stop()
+        audioEngine.stop()
+        audioEngine.reset()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func stopAudio(sender: UIButton) {
+        stopAllAudio()
     }
-    */
 
 }
