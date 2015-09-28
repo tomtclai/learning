@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QU0-fM-67u">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="OUh-cA-MIB">
+            <objects>
+                <viewController id="JPO-Uv-CIW" customClass="ViewController" customModule="Adventure" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="umJ-w4-Ky7"/>
+                        <viewControllerLayoutGuide type="bottom" id="lcG-Bc-7l8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HLP-oj-0nk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hdD-Yo-CB5">
+                                <rect key="frame" x="20" y="72" width="560" height="260"/>
+                                <animations/>
+                                <string key="text">An immense tiger wakes in an empty room.
+A door opens into a hallway...
+What should she do?</string>
+                                <color key="textColor" red="0.20784313725490197" green="0.20784313725490197" blue="0.20784313725490197" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUr-De-O1X">
+                                <rect key="frame" x="20" y="340" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Leap through the door and roar!"/>
+                                <connections>
+                                    <segue destination="bKS-TP-3XR" kind="show" id="yrI-Vd-fAn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="963-EO-iCF">
+                                <rect key="frame" x="20" y="470" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Stalk to the door, peek down the hallway"/>
+                                <connections>
+                                    <segue destination="eIg-Ec-xRl" kind="show" id="Nmn-58-uhF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hdD-Yo-CB5" firstAttribute="leading" secondItem="HLP-oj-0nk" secondAttribute="leadingMargin" id="0nA-Z6-tfG"/>
+                            <constraint firstItem="lcG-Bc-7l8" firstAttribute="top" secondItem="963-EO-iCF" secondAttribute="bottom" constant="100" id="1t9-n6-sEh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hdD-Yo-CB5" secondAttribute="trailing" id="3bw-Ux-YxE"/>
+                            <constraint firstItem="963-EO-iCF" firstAttribute="trailing" secondItem="HLP-oj-0nk" secondAttribute="trailingMargin" id="4yC-ln-i7V"/>
+                            <constraint firstItem="963-EO-iCF" firstAttribute="leading" secondItem="HLP-oj-0nk" secondAttribute="leadingMargin" id="8rI-Qm-XpR"/>
+                            <constraint firstItem="SUr-De-O1X" firstAttribute="leading" secondItem="HLP-oj-0nk" secondAttribute="leadingMargin" id="9Tm-cq-ikN"/>
+                            <constraint firstItem="hdD-Yo-CB5" firstAttribute="top" secondItem="umJ-w4-Ky7" secondAttribute="bottom" constant="8" id="FwB-jh-Ulu"/>
+                            <constraint firstItem="hdD-Yo-CB5" firstAttribute="leading" secondItem="HLP-oj-0nk" secondAttribute="leadingMargin" id="HfZ-fI-19H"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hdD-Yo-CB5" secondAttribute="trailing" id="ON9-my-Ycl"/>
+                            <constraint firstItem="SUr-De-O1X" firstAttribute="top" secondItem="hdD-Yo-CB5" secondAttribute="bottom" constant="8" id="Qzq-l5-OJn"/>
+                            <constraint firstItem="963-EO-iCF" firstAttribute="top" secondItem="SUr-De-O1X" secondAttribute="bottom" constant="100" id="SoQ-y4-eYX"/>
+                            <constraint firstItem="hdD-Yo-CB5" firstAttribute="centerX" secondItem="HLP-oj-0nk" secondAttribute="centerX" id="hFu-g9-WPK"/>
+                            <constraint firstItem="SUr-De-O1X" firstAttribute="trailing" secondItem="HLP-oj-0nk" secondAttribute="trailingMargin" id="khW-Qb-HQq"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="RxG-81-u9a">
+                        <barButtonItem key="rightBarButtonItem" title="Start over" style="done" id="hed-2q-nVo"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zYj-lE-YLT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="614" y="560"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5mV-8k-EOw">
+            <objects>
+                <navigationController id="QU0-fM-67u" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5eT-Rn-7Zf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="JPO-Uv-CIW" kind="relationship" relationship="rootViewController" id="SyP-up-ikQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gJm-wx-Fdo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-69" y="560"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bSz-70-U2V">
+            <objects>
+                <viewController id="elh-Ne-fwz" customClass="ViewController" customModule="Adventure" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kMM-9a-vKS"/>
+                        <viewControllerLayoutGuide type="bottom" id="SYL-rH-hhv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sXz-Mi-zGO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PmX-dA-4EI">
+                                <rect key="frame" x="0.0" y="72" width="600" height="482"/>
+                                <animations/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">The EMT showed up, took her vitals and asked her the date a bunch of times, then they left. No ambulance ride or anything. That cost her $20,352 because she's got no insurance and this is America. Poor tiger. What should she do now? Oh nevermind, she just died.</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.20784313725490197" green="0.20784313725490197" blue="0.20784313725490197" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="24" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="1" defaultTabInterval="28" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNb-OZ-Hsn">
+                                <rect key="frame" x="20" y="562" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Start over"/>
+                                <connections>
+                                    <action selector="startOver" destination="elh-Ne-fwz" eventType="touchUpInside" id="otw-JL-KIQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SYL-rH-hhv" firstAttribute="top" secondItem="gNb-OZ-Hsn" secondAttribute="bottom" constant="8" symbolic="YES" id="1Dd-BH-qiS"/>
+                            <constraint firstItem="gNb-OZ-Hsn" firstAttribute="leading" secondItem="sXz-Mi-zGO" secondAttribute="leadingMargin" id="C9Z-Xw-NLf"/>
+                            <constraint firstItem="PmX-dA-4EI" firstAttribute="leading" secondItem="sXz-Mi-zGO" secondAttribute="leadingMargin" constant="160" id="R48-BT-r75"/>
+                            <constraint firstItem="gNb-OZ-Hsn" firstAttribute="centerX" secondItem="sXz-Mi-zGO" secondAttribute="centerX" id="S30-jU-dmI"/>
+                            <constraint firstItem="PmX-dA-4EI" firstAttribute="width" secondItem="sXz-Mi-zGO" secondAttribute="width" id="UIb-sa-tnB"/>
+                            <constraint firstItem="gNb-OZ-Hsn" firstAttribute="top" secondItem="PmX-dA-4EI" secondAttribute="bottom" constant="8" symbolic="YES" id="iW7-GQ-rC2"/>
+                            <constraint firstItem="PmX-dA-4EI" firstAttribute="centerX" secondItem="sXz-Mi-zGO" secondAttribute="centerX" id="kIU-ht-7Aw"/>
+                            <constraint firstItem="gNb-OZ-Hsn" firstAttribute="top" secondItem="PmX-dA-4EI" secondAttribute="bottom" constant="8" symbolic="YES" id="q09-pt-5y5"/>
+                            <constraint firstItem="PmX-dA-4EI" firstAttribute="top" secondItem="kMM-9a-vKS" secondAttribute="bottom" constant="8" id="qLP-G7-zXC"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="R48-BT-r75"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="8Hh-u6-omH">
+                        <barButtonItem key="rightBarButtonItem" image="start over" style="done" id="VqM-TU-Y4K"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TgQ-wh-9gM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2635" y="-117"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="A1g-dd-F1j">
+            <objects>
+                <viewController id="syJ-V1-L94" customClass="ViewController" customModule="Adventure" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KfA-8t-V2K"/>
+                        <viewControllerLayoutGuide type="bottom" id="oKU-yF-Qrw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QAF-qP-QI8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kdF-aS-lfx">
+                                <rect key="frame" x="0.0" y="72" width="600" height="482"/>
+                                <animations/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Well apparently She was not an astronaut and this is all just some crazy experiment some scientist invented to see how a tiger would behave if it thought it was human. And as the scientists attempted to bring it back to reality, it died.</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.20784313725490197" green="0.20784313725490197" blue="0.20784313725490197" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="24" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="1" defaultTabInterval="28" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FmR-cG-ZEJ">
+                                <rect key="frame" x="20" y="562" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Start over"/>
+                                <connections>
+                                    <action selector="startOver" destination="syJ-V1-L94" eventType="touchUpInside" id="Vhg-xV-ZJ8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kdF-aS-lfx" firstAttribute="top" secondItem="KfA-8t-V2K" secondAttribute="bottom" constant="8" id="3kr-z8-yGB"/>
+                            <constraint firstItem="kdF-aS-lfx" firstAttribute="centerX" secondItem="QAF-qP-QI8" secondAttribute="centerX" id="81X-of-Jda"/>
+                            <constraint firstItem="FmR-cG-ZEJ" firstAttribute="centerX" secondItem="QAF-qP-QI8" secondAttribute="centerX" id="8MY-aL-Kg5"/>
+                            <constraint firstItem="oKU-yF-Qrw" firstAttribute="top" secondItem="FmR-cG-ZEJ" secondAttribute="bottom" constant="8" symbolic="YES" id="CZC-iE-nOX"/>
+                            <constraint firstItem="kdF-aS-lfx" firstAttribute="width" secondItem="QAF-qP-QI8" secondAttribute="width" id="DPQ-fF-22f"/>
+                            <constraint firstItem="FmR-cG-ZEJ" firstAttribute="top" secondItem="kdF-aS-lfx" secondAttribute="bottom" constant="8" symbolic="YES" id="Fsl-pF-fuf"/>
+                            <constraint firstItem="FmR-cG-ZEJ" firstAttribute="leading" secondItem="QAF-qP-QI8" secondAttribute="leadingMargin" id="GMt-U2-GAZ"/>
+                            <constraint firstItem="FmR-cG-ZEJ" firstAttribute="top" secondItem="kdF-aS-lfx" secondAttribute="bottom" constant="8" symbolic="YES" id="Ub7-es-NQt"/>
+                            <constraint firstItem="kdF-aS-lfx" firstAttribute="leading" secondItem="QAF-qP-QI8" secondAttribute="leadingMargin" constant="160" id="Vjo-uR-PFd"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Vjo-uR-PFd"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="DNs-Ja-Zpu">
+                        <barButtonItem key="rightBarButtonItem" image="start over" style="done" id="DQ9-XG-vUR"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="isw-G6-2A8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4000" y="138"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="emd-RE-xZG">
+            <objects>
+                <viewController id="SG6-5t-J4W" customClass="ViewController" customModule="Adventure" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0EB-P6-ZlB"/>
+                        <viewControllerLayoutGuide type="bottom" id="zCq-KW-dv6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uzi-RU-tmv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KTL-fQ-bjV">
+                                <rect key="frame" x="0.0" y="72" width="600" height="482"/>
+                                <animations/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Well she's actually a tiger and while the attempt to get her HIV was a success, it was caught on tape so the crew knew not to have sex with her again. She died of HIV. </string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.20784313725490197" green="0.20784313725490197" blue="0.20784313725490197" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="24" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="1" defaultTabInterval="28" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62W-Hk-TNa">
+                                <rect key="frame" x="20" y="562" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Start over"/>
+                                <connections>
+                                    <action selector="startOver" destination="SG6-5t-J4W" eventType="touchUpInside" id="OON-Z6-1Q9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KTL-fQ-bjV" firstAttribute="leading" secondItem="uzi-RU-tmv" secondAttribute="leadingMargin" constant="160" id="3Hk-ss-9OA"/>
+                            <constraint firstItem="KTL-fQ-bjV" firstAttribute="width" secondItem="uzi-RU-tmv" secondAttribute="width" id="EO5-oh-jzI"/>
+                            <constraint firstItem="KTL-fQ-bjV" firstAttribute="top" secondItem="0EB-P6-ZlB" secondAttribute="bottom" constant="8" id="Rl7-am-yEK"/>
+                            <constraint firstItem="62W-Hk-TNa" firstAttribute="top" secondItem="KTL-fQ-bjV" secondAttribute="bottom" constant="8" symbolic="YES" id="XFn-at-trh"/>
+                            <constraint firstItem="zCq-KW-dv6" firstAttribute="top" secondItem="62W-Hk-TNa" secondAttribute="bottom" constant="8" symbolic="YES" id="Z6f-0F-1dt"/>
+                            <constraint firstItem="62W-Hk-TNa" firstAttribute="centerX" secondItem="uzi-RU-tmv" secondAttribute="centerX" id="Zf4-Wh-SNJ"/>
+                            <constraint firstItem="62W-Hk-TNa" firstAttribute="top" secondItem="KTL-fQ-bjV" secondAttribute="bottom" constant="8" symbolic="YES" id="a8H-ZP-ebh"/>
+                            <constraint firstItem="62W-Hk-TNa" firstAttribute="leading" secondItem="uzi-RU-tmv" secondAttribute="leadingMargin" id="iBv-rg-69l"/>
+                            <constraint firstItem="KTL-fQ-bjV" firstAttribute="centerX" secondItem="uzi-RU-tmv" secondAttribute="centerX" id="mSg-Ph-zOw"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3Hk-ss-9OA"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="qze-No-3dL">
+                        <barButtonItem key="rightBarButtonItem" image="start over" style="done" id="Buk-1N-VyU"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="poM-J7-pUu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4000" y="890"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="syU-Fw-yA9">
+            <objects>
+                <viewController id="bKS-TP-3XR" customClass="ViewController" customModule="Adventure" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="my1-SS-afh"/>
+                        <viewControllerLayoutGuide type="bottom" id="xrL-74-PR7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VmQ-TW-JsH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="She saw a pig. She ate the pig raw. Ew. What should she do next?" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KBW-N7-1b0">
+                                <rect key="frame" x="20" y="72" width="560" height="260"/>
+                                <animations/>
+                                <color key="textColor" red="0.20784313730000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="YXm-8e-Uc0">
+                                <rect key="frame" x="20" y="340" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Bury the pig and Mourn her loss because the pig was a dear friend of hers"/>
+                                <connections>
+                                    <segue destination="odK-2a-SIl" kind="show" id="XkL-nd-jl8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="zbS-id-9EO">
+                                <rect key="frame" x="20" y="470" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="go back"/>
+                                <connections>
+                                    <action selector="startOver" destination="bKS-TP-3XR" eventType="touchUpInside" id="YVY-be-a7J"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zbS-id-9EO" firstAttribute="leading" secondItem="VmQ-TW-JsH" secondAttribute="leadingMargin" id="88P-M2-0VJ"/>
+                            <constraint firstItem="KBW-N7-1b0" firstAttribute="top" secondItem="my1-SS-afh" secondAttribute="bottom" constant="8" id="B4p-3Z-2QN"/>
+                            <constraint firstItem="zbS-id-9EO" firstAttribute="top" secondItem="YXm-8e-Uc0" secondAttribute="bottom" constant="100" id="CwP-FT-pAe"/>
+                            <constraint firstItem="KBW-N7-1b0" firstAttribute="centerX" secondItem="VmQ-TW-JsH" secondAttribute="centerX" id="JOs-JC-8wT"/>
+                            <constraint firstItem="KBW-N7-1b0" firstAttribute="leading" secondItem="VmQ-TW-JsH" secondAttribute="leadingMargin" id="OeC-iR-mj0"/>
+                            <constraint firstItem="xrL-74-PR7" firstAttribute="top" secondItem="zbS-id-9EO" secondAttribute="bottom" constant="100" id="SCh-Te-GgT"/>
+                            <constraint firstItem="KBW-N7-1b0" firstAttribute="leading" secondItem="VmQ-TW-JsH" secondAttribute="leadingMargin" id="VE5-PE-Uct"/>
+                            <constraint firstItem="YXm-8e-Uc0" firstAttribute="top" secondItem="KBW-N7-1b0" secondAttribute="bottom" constant="8" id="Vbg-IR-Yjz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KBW-N7-1b0" secondAttribute="trailing" id="VvB-rG-qcV"/>
+                            <constraint firstItem="YXm-8e-Uc0" firstAttribute="leading" secondItem="VmQ-TW-JsH" secondAttribute="leadingMargin" id="aMn-xe-MFr"/>
+                            <constraint firstItem="zbS-id-9EO" firstAttribute="trailing" secondItem="VmQ-TW-JsH" secondAttribute="trailingMargin" id="eoq-bo-HU6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KBW-N7-1b0" secondAttribute="trailing" id="gda-5r-fCc"/>
+                            <constraint firstItem="YXm-8e-Uc0" firstAttribute="trailing" secondItem="VmQ-TW-JsH" secondAttribute="trailingMargin" id="yBQ-p4-yFg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="KuI-NG-OVe">
+                        <barButtonItem key="rightBarButtonItem" title="Start over" style="done" id="ROL-9f-G6d"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m1O-cW-GKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1299" y="222"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="eZF-nP-sKL">
+            <objects>
+                <viewController id="odK-2a-SIl" customClass="ViewController" customModule="Adventure" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cOz-0y-uZ1"/>
+                        <viewControllerLayoutGuide type="bottom" id="vWd-dY-3Jr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="07d-rr-ymy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="She got food poisoning from the pig, poor tiger. What should she do now?" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hgP-9d-U7a">
+                                <rect key="frame" x="20" y="72" width="560" height="260"/>
+                                <animations/>
+                                <color key="textColor" red="0.20784313730000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="uvk-oM-vMx">
+                                <rect key="frame" x="20" y="340" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Call an ambulance and wait for rescue"/>
+                                <connections>
+                                    <segue destination="elh-Ne-fwz" kind="show" id="gTj-Y9-6ma"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Ipx-Ps-SZD">
+                                <rect key="frame" x="20" y="470" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Blame it on the pig, because the pig totally had it coming, wander to the next room ahead"/>
+                                <connections>
+                                    <segue destination="wS4-jZ-TFJ" kind="show" id="EyN-1U-MIH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uvk-oM-vMx" firstAttribute="trailing" secondItem="07d-rr-ymy" secondAttribute="trailingMargin" id="1aA-Mf-L4d"/>
+                            <constraint firstItem="vWd-dY-3Jr" firstAttribute="top" secondItem="Ipx-Ps-SZD" secondAttribute="bottom" constant="100" id="1cB-Sf-Zue"/>
+                            <constraint firstItem="uvk-oM-vMx" firstAttribute="leading" secondItem="07d-rr-ymy" secondAttribute="leadingMargin" id="5Od-Qg-93r"/>
+                            <constraint firstItem="Ipx-Ps-SZD" firstAttribute="top" secondItem="uvk-oM-vMx" secondAttribute="bottom" constant="100" id="Gft-Ll-h3f"/>
+                            <constraint firstItem="hgP-9d-U7a" firstAttribute="leading" secondItem="07d-rr-ymy" secondAttribute="leadingMargin" id="MfI-sQ-0m2"/>
+                            <constraint firstItem="hgP-9d-U7a" firstAttribute="centerX" secondItem="07d-rr-ymy" secondAttribute="centerX" id="VNw-Q6-l9A"/>
+                            <constraint firstItem="Ipx-Ps-SZD" firstAttribute="trailing" secondItem="07d-rr-ymy" secondAttribute="trailingMargin" id="aQp-XX-1qO"/>
+                            <constraint firstItem="hgP-9d-U7a" firstAttribute="top" secondItem="cOz-0y-uZ1" secondAttribute="bottom" constant="8" id="dQa-l7-Czz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hgP-9d-U7a" secondAttribute="trailing" id="e3T-ZT-L1N"/>
+                            <constraint firstItem="Ipx-Ps-SZD" firstAttribute="leading" secondItem="07d-rr-ymy" secondAttribute="leadingMargin" id="e59-up-BHV"/>
+                            <constraint firstItem="hgP-9d-U7a" firstAttribute="leading" secondItem="07d-rr-ymy" secondAttribute="leadingMargin" id="euN-2I-NIP"/>
+                            <constraint firstItem="uvk-oM-vMx" firstAttribute="top" secondItem="hgP-9d-U7a" secondAttribute="bottom" constant="8" id="fLy-bn-zFA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hgP-9d-U7a" secondAttribute="trailing" id="obe-ag-sjL"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="phF-up-HDu">
+                        <barButtonItem key="rightBarButtonItem" title="Start over" style="done" id="20h-lq-wiv"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KTq-tL-7Om" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1958" y="222"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="t1E-1I-CqE">
+            <objects>
+                <viewController id="wS4-jZ-TFJ" customClass="ViewController" customModule="Adventure" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LwW-R6-uac"/>
+                        <viewControllerLayoutGuide type="bottom" id="LNg-tG-4h2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6BS-ww-L5N">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Boom. She becomes an astronaut. What should she do as an astronaut?" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="B4S-F3-Ybo">
+                                <rect key="frame" x="20" y="72" width="560" height="260"/>
+                                <animations/>
+                                <color key="textColor" red="0.20784313730000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Qik-zt-3dV">
+                                <rect key="frame" x="20" y="340" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Do sciencie-y stuff and help advance technology by doing research under microgravity"/>
+                                <connections>
+                                    <segue destination="b93-Lk-cfk" kind="show" id="olK-Pq-4az"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="oNa-eT-EhV">
+                                <rect key="frame" x="20" y="470" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal">
+                                    <string key="title">Scream "Damn it, I am a tiger" while beating her chest. Open the door on the ISS and fly out to the space and die, which by the way, kills everyone on board.</string>
+                                </state>
+                                <connections>
+                                    <action selector="startOver" destination="wS4-jZ-TFJ" eventType="touchUpInside" id="Hvm-ow-zi6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="B4S-F3-Ybo" firstAttribute="top" secondItem="LwW-R6-uac" secondAttribute="bottom" constant="8" id="0v0-MI-PvP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="B4S-F3-Ybo" secondAttribute="trailing" id="7fj-a8-AxG"/>
+                            <constraint firstItem="oNa-eT-EhV" firstAttribute="trailing" secondItem="6BS-ww-L5N" secondAttribute="trailingMargin" id="H6r-0Z-DRa"/>
+                            <constraint firstItem="B4S-F3-Ybo" firstAttribute="leading" secondItem="6BS-ww-L5N" secondAttribute="leadingMargin" id="IAu-a5-VWK"/>
+                            <constraint firstItem="Qik-zt-3dV" firstAttribute="top" secondItem="B4S-F3-Ybo" secondAttribute="bottom" constant="8" id="LY6-cD-0DU"/>
+                            <constraint firstItem="LNg-tG-4h2" firstAttribute="top" secondItem="oNa-eT-EhV" secondAttribute="bottom" constant="100" id="ZNe-dC-e6S"/>
+                            <constraint firstItem="Qik-zt-3dV" firstAttribute="leading" secondItem="6BS-ww-L5N" secondAttribute="leadingMargin" id="ZQv-Wu-rag"/>
+                            <constraint firstItem="oNa-eT-EhV" firstAttribute="top" secondItem="Qik-zt-3dV" secondAttribute="bottom" constant="100" id="kI4-XV-ggi"/>
+                            <constraint firstItem="B4S-F3-Ybo" firstAttribute="leading" secondItem="6BS-ww-L5N" secondAttribute="leadingMargin" id="loo-kD-h0d"/>
+                            <constraint firstItem="B4S-F3-Ybo" firstAttribute="centerX" secondItem="6BS-ww-L5N" secondAttribute="centerX" id="s9S-Nt-u4x"/>
+                            <constraint firstItem="oNa-eT-EhV" firstAttribute="leading" secondItem="6BS-ww-L5N" secondAttribute="leadingMargin" id="wKr-bV-oP4"/>
+                            <constraint firstItem="Qik-zt-3dV" firstAttribute="trailing" secondItem="6BS-ww-L5N" secondAttribute="trailingMargin" id="wbr-VG-bkR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="B4S-F3-Ybo" secondAttribute="trailing" id="zGb-Cl-WSd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ymc-QP-dOf">
+                        <barButtonItem key="rightBarButtonItem" title="Start over" style="done" id="3yu-av-lgO"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h3x-nt-XfA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2635" y="649"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="CQq-7a-lta">
+            <objects>
+                <viewController id="b93-Lk-cfk" customClass="ViewController" customModule="Adventure" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xMU-ME-Lm1"/>
+                        <viewControllerLayoutGuide type="bottom" id="uRx-Te-kV8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="n4b-l1-KdI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="CQw-Fh-YP2">
+                                <rect key="frame" x="20" y="72" width="560" height="260"/>
+                                <animations/>
+                                <string key="text">She gets sexually harassed on the ISS. "Holy Shit, " she thought, "I studied so hard to get out of the hands of my abusive father who molested me, and all I get is this? It ain't fair." What should she do?</string>
+                                <color key="textColor" red="0.20784313730000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VC4-i6-XG6">
+                                <rect key="frame" x="20" y="340" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Report the sex offender to earth and pretend everything is ok to her colleagues on board while hoping to go back to earth"/>
+                                <connections>
+                                    <segue destination="syJ-V1-L94" kind="show" id="9Hq-b6-jBI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="6gY-zt-XCD">
+                                <rect key="frame" x="20" y="470" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="try to contract herself with HIV because she had some needles for that and then have sex with the offender again"/>
+                                <connections>
+                                    <segue destination="SG6-5t-J4W" kind="show" id="RGx-H8-80y"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6gY-zt-XCD" firstAttribute="top" secondItem="VC4-i6-XG6" secondAttribute="bottom" constant="100" id="6sk-Fu-gI6"/>
+                            <constraint firstItem="VC4-i6-XG6" firstAttribute="trailing" secondItem="n4b-l1-KdI" secondAttribute="trailingMargin" id="86b-9X-ShB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CQw-Fh-YP2" secondAttribute="trailing" id="9pR-ob-rHB"/>
+                            <constraint firstItem="VC4-i6-XG6" firstAttribute="leading" secondItem="n4b-l1-KdI" secondAttribute="leadingMargin" id="Jpd-ch-T9A"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CQw-Fh-YP2" secondAttribute="trailing" id="PP0-Uq-Z7R"/>
+                            <constraint firstItem="CQw-Fh-YP2" firstAttribute="leading" secondItem="n4b-l1-KdI" secondAttribute="leadingMargin" id="Rha-WT-Z7q"/>
+                            <constraint firstItem="6gY-zt-XCD" firstAttribute="leading" secondItem="n4b-l1-KdI" secondAttribute="leadingMargin" id="Rtc-ZZ-G2P"/>
+                            <constraint firstItem="6gY-zt-XCD" firstAttribute="trailing" secondItem="n4b-l1-KdI" secondAttribute="trailingMargin" id="UeP-5A-hBG"/>
+                            <constraint firstItem="CQw-Fh-YP2" firstAttribute="top" secondItem="xMU-ME-Lm1" secondAttribute="bottom" constant="8" id="Xp1-M7-eWD"/>
+                            <constraint firstItem="VC4-i6-XG6" firstAttribute="top" secondItem="CQw-Fh-YP2" secondAttribute="bottom" constant="8" id="aMx-xR-RJb"/>
+                            <constraint firstItem="CQw-Fh-YP2" firstAttribute="centerX" secondItem="n4b-l1-KdI" secondAttribute="centerX" id="grR-tF-Jiy"/>
+                            <constraint firstItem="uRx-Te-kV8" firstAttribute="top" secondItem="6gY-zt-XCD" secondAttribute="bottom" constant="100" id="jVV-kd-Kuk"/>
+                            <constraint firstItem="CQw-Fh-YP2" firstAttribute="leading" secondItem="n4b-l1-KdI" secondAttribute="leadingMargin" id="vQH-sU-H0g"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gBf-eZ-05v">
+                        <barButtonItem key="rightBarButtonItem" title="Start over" style="done" id="vEd-1r-MuE"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0jc-NC-OGq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3311" y="657"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="AyV-EU-ZGs">
+            <objects>
+                <viewController id="eIg-Ec-xRl" customClass="ViewController" customModule="Adventure" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0DV-n3-jzY"/>
+                        <viewControllerLayoutGuide type="bottom" id="W6X-TI-ieR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="slX-Fo-kfj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="She dies and reincarnate as a human baby, What should she do now? Oh and by the way she's a baby boy " textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="s7o-OC-fKo">
+                                <rect key="frame" x="20" y="72" width="560" height="260"/>
+                                <animations/>
+                                <color key="textColor" red="0.20784313730000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="yc6-8q-Eaw">
+                                <rect key="frame" x="20" y="340" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Spent most of her life hating herself because she had a male body, until she could afford a sex reassignment surgery"/>
+                                <connections>
+                                    <segue destination="WGP-sl-swA" kind="show" id="OrL-MR-8C9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="fJb-9B-has">
+                                <rect key="frame" x="20" y="470" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Win many pageants as a child and grow up to be the first female astronaut in her country"/>
+                                <connections>
+                                    <segue destination="wS4-jZ-TFJ" kind="show" id="2nh-oj-b9W"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="W6X-TI-ieR" firstAttribute="top" secondItem="fJb-9B-has" secondAttribute="bottom" constant="100" id="4aK-55-oMu"/>
+                            <constraint firstItem="s7o-OC-fKo" firstAttribute="top" secondItem="0DV-n3-jzY" secondAttribute="bottom" constant="8" id="5rg-ui-hLW"/>
+                            <constraint firstItem="yc6-8q-Eaw" firstAttribute="trailing" secondItem="slX-Fo-kfj" secondAttribute="trailingMargin" id="FAP-ne-7ju"/>
+                            <constraint firstItem="yc6-8q-Eaw" firstAttribute="top" secondItem="s7o-OC-fKo" secondAttribute="bottom" constant="8" id="Kyr-gC-ygn"/>
+                            <constraint firstItem="s7o-OC-fKo" firstAttribute="centerX" secondItem="slX-Fo-kfj" secondAttribute="centerX" id="OjJ-Dk-67T"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="s7o-OC-fKo" secondAttribute="trailing" id="Sbj-OK-nRt"/>
+                            <constraint firstItem="fJb-9B-has" firstAttribute="top" secondItem="yc6-8q-Eaw" secondAttribute="bottom" constant="100" id="Wid-Qb-nhN"/>
+                            <constraint firstItem="s7o-OC-fKo" firstAttribute="leading" secondItem="slX-Fo-kfj" secondAttribute="leadingMargin" id="fL4-dN-isi"/>
+                            <constraint firstItem="fJb-9B-has" firstAttribute="leading" secondItem="slX-Fo-kfj" secondAttribute="leadingMargin" id="g58-YE-1OJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="s7o-OC-fKo" secondAttribute="trailing" id="gr3-yd-RKV"/>
+                            <constraint firstItem="yc6-8q-Eaw" firstAttribute="leading" secondItem="slX-Fo-kfj" secondAttribute="leadingMargin" id="h9z-1o-bBE"/>
+                            <constraint firstItem="s7o-OC-fKo" firstAttribute="leading" secondItem="slX-Fo-kfj" secondAttribute="leadingMargin" id="nYr-RW-GA9"/>
+                            <constraint firstItem="fJb-9B-has" firstAttribute="trailing" secondItem="slX-Fo-kfj" secondAttribute="trailingMargin" id="ryp-YK-ly0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="q1F-5t-zsF">
+                        <barButtonItem key="rightBarButtonItem" title="Start over" style="done" id="QpR-Rj-TKA"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="518-n8-UCg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1279" y="914"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="MpN-Px-SqQ">
+            <objects>
+                <viewController id="WGP-sl-swA" customClass="ViewController" customModule="Adventure" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="teu-6Z-sOe"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mp3-Ip-fpf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mZE-1F-QPM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ykf-Xd-UNq">
+                                <rect key="frame" x="0.0" y="72" width="600" height="482"/>
+                                <animations/>
+                                <attributedString key="attributedText">
+                                    <fragment content="She died during the surgery because the doctor was too busy trying to fuck her. Too bad. ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.20784313725490197" green="0.20784313725490197" blue="0.20784313725490197" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="24" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="1" defaultTabInterval="28" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfT-1K-AbM">
+                                <rect key="frame" x="20" y="562" width="560" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Start over"/>
+                                <connections>
+                                    <action selector="startOver" destination="WGP-sl-swA" eventType="touchUpInside" id="2E6-IP-tV1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bfT-1K-AbM" firstAttribute="top" secondItem="ykf-Xd-UNq" secondAttribute="bottom" constant="8" symbolic="YES" id="2nw-xL-wUl"/>
+                            <constraint firstItem="ykf-Xd-UNq" firstAttribute="leading" secondItem="mZE-1F-QPM" secondAttribute="leadingMargin" constant="160" id="6ua-89-tkO"/>
+                            <constraint firstItem="bfT-1K-AbM" firstAttribute="centerX" secondItem="mZE-1F-QPM" secondAttribute="centerX" id="7sC-86-Suy"/>
+                            <constraint firstItem="ykf-Xd-UNq" firstAttribute="top" secondItem="teu-6Z-sOe" secondAttribute="bottom" constant="8" id="CtX-IT-bbJ"/>
+                            <constraint firstItem="bfT-1K-AbM" firstAttribute="leading" secondItem="mZE-1F-QPM" secondAttribute="leadingMargin" id="J2B-sc-qEK"/>
+                            <constraint firstItem="bfT-1K-AbM" firstAttribute="top" secondItem="ykf-Xd-UNq" secondAttribute="bottom" constant="8" symbolic="YES" id="lTX-A8-BMn"/>
+                            <constraint firstItem="ykf-Xd-UNq" firstAttribute="centerX" secondItem="mZE-1F-QPM" secondAttribute="centerX" id="nr6-Ni-lvp"/>
+                            <constraint firstItem="Mp3-Ip-fpf" firstAttribute="top" secondItem="bfT-1K-AbM" secondAttribute="bottom" constant="8" symbolic="YES" id="sFe-2H-W1J"/>
+                            <constraint firstItem="ykf-Xd-UNq" firstAttribute="width" secondItem="mZE-1F-QPM" secondAttribute="width" id="yMK-sm-QFk"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6ua-89-tkO"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="61E-3E-VvZ">
+                        <barButtonItem key="rightBarButtonItem" image="start over" style="done" id="94c-gy-K4t"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XIe-fr-Zt9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1967" y="1286"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="start over" width="20" height="20"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="EyN-1U-MIH"/>
+    </inferredMetricsTieBreakers>
+</document>
