@@ -2,11 +2,12 @@ This repository contains work and/or practices I typed going through various mat
 
 **Disclaimer:** May contain downloaded examples and/or images. 
 
-###Done with
+###Finished
  - [Head First Javascript Programming](Head-First-JavaScript-Programming/)
  - [Objective-C Programming: The Big Nerd Ranch Guide](Objective-C-by-Aaron-Hillegass/)
  - [iOS Programming: The Big Nerd Ranch Guide](iOS-Programming/)
- - [iTunes U: Developing iOS 7 Apps for iPhone and iPad](Developing-iOS-7-Apps-for-iPhone-and-iPad/)
+
+<!-- - [iTunes U: Developing iOS 7 Apps for iPhone and iPad](Developing-iOS-7-Apps-for-iPhone-and-iPad/)-->
 
 
 ###Working on

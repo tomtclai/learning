@@ -32,12 +32,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         set(image) {
             imagePickerView.image = image
             imageBackgroundView.image = imagePickerView.image
-            currentMeme.originalImage = image
             shareButton.enabled = true
         }
     }
     
-    var currentMeme = Meme()
+    var savedMeme : Meme?
     
     
     // Mark: - View Controller Life Cycle
@@ -68,10 +67,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func share(sender: AnyObject) {
         // generate a memed image
         let memedImage = generateMemedImage()
-        currentMeme.memedImage = memedImage
         // define an instance of the ActivityViewController
         // pass the ActivityViewController a memedImage as an activity item
         let avc = UIActivityViewController(activityItems: [memedImage], applicationActivities:nil)
+        avc.completionWithItemsHandler = { (activityType : String?, completed : Bool , returnedItems: Array<AnyObject>? , activityError : NSError?)in
+            let meme = Meme(topText: self.topTextField.text, bottomText: self.bottomTextField.text, originalImage: self.imagePickerView.image, memedImage: memedImage)
+            self.savedMeme = meme
+        }
         // present the ActivityViewController
         presentViewController(avc, animated: true, completion: nil)
     }
@@ -86,8 +88,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     //MARK: - UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let image = info[UIImagePickerControllerOriginalImage] {
-            self.image = image as? UIImage
+        if let anImage = info[UIImagePickerControllerOriginalImage] {
+            image = anImage as? UIImage
             dismissViewControllerAnimated(true, completion: nil)
         }
     }
@@ -108,14 +110,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func keyboardWillShow(notification: NSNotification) {
         if (bottomTextField.isFirstResponder()) {
-            self.view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
-    
-    
-    
+
     func keyboardWillHide(notification: NSNotification) {
-        self.view.frame.origin.y = 0.0
+        view.frame.origin.y = 0.0
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
@@ -172,8 +172,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         toolbar.hidden = true
         
         // Render view to an image
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        view.drawViewHierarchyInRect(self.view.frame,
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawViewHierarchyInRect(view.frame,
             afterScreenUpdates: true)
         let memedImage : UIImage =
         UIGraphicsGetImageFromCurrentImageContext()

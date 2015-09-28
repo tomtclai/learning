@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Meme: NSObject {
+struct Meme{
 
     var topText : String?
     var bottomText : String?
@@ -21,10 +21,5 @@ class Meme: NSObject {
         self.bottomText = bottomText
         self.originalImage = originalImage
         self.memedImage = memedImage
-        super.init()
-    }
-    
-    override convenience init() {
-        self.init(topText: nil, bottomText: nil, originalImage: nil, memedImage: nil)
     }
 }
