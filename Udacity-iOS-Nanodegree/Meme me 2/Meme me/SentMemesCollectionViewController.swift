@@ -15,7 +15,10 @@ class SentMemesCollectionViewController: UICollectionViewController {
     private let reuseIdentifier = "SentMemesCollectionViewCell"
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
-    var memes: [Meme?]  = (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+    var memes: [Meme?] {
+        return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+    }
+    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewWillAppear(animated: Bool) {
         collectionView?.reloadData()

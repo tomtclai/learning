@@ -34,6 +34,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             imagePickerView.image = image
             imageBackgroundView.image = imagePickerView.image
             shareButton.enabled = true
+            positionTextFields()
         }
     }
     
@@ -77,7 +78,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         // pass the ActivityViewController a memedImage as an activity item
         let avc = UIActivityViewController(activityItems: [memedImage], applicationActivities:nil)
         avc.completionWithItemsHandler = { (activityType : String?, completed : Bool , returnedItems: Array<AnyObject>? , activityError : NSError?)in
-            self.save(memedImage)
+            if completed {
+                self.save(memedImage)
+            }
             self.dismissViewControllerAnimated(true, completion: nil)
         }
         // present the ActivityViewController
@@ -174,6 +177,25 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         topTextField.attributedPlaceholder = NSAttributedString(string: "TOP", attributes: memeTextArrtibutes)
         bottomTextField.attributedPlaceholder = NSAttributedString(string: "BOTTOM", attributes: memeTextArrtibutes)
         
+    }
+    
+    func positionTextFields() {
+        positionTopTextField()
+        positionBottomTextField()
+    }
+    
+    func positionTopTextField() {
+        let newY = imagePickerView.frame.origin.y
+        var newFrame = topTextField.frame
+        newFrame.origin.y = newY
+        topTextField.frame = newFrame
+    }
+    
+    func positionBottomTextField() {
+        let newY = imagePickerView.frame.origin.y + imagePickerView.frame.height - bottomTextField.frame.height
+        var newFrame = bottomTextField.frame
+        newFrame.origin.y = newY
+        bottomTextField.frame = newFrame
     }
     
     // MARK: On share

@@ -12,10 +12,18 @@ class SentMemesTableViewController: UITableViewController {
     
     private let rowHeight : CGFloat = 88.0
     
-    var memes: [Meme?]  = (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+    var memes: [Meme?] {
+        return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+    }
+    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
@@ -48,10 +56,11 @@ class SentMemesTableViewController: UITableViewController {
         return rowHeight
     }
 
+    // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            memes.removeAtIndex(indexPath.row)
+            appDelegate.memes.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }

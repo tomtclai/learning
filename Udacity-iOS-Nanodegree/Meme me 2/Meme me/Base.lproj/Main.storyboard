@@ -79,6 +79,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="hhs-Em-o8v">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="fiv-16-eOu"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Uy5-xr-TP0">
                             <connections>
                                 <segue destination="XiX-ev-a2H" kind="presentation" id="hiU-BW-wwT"/>
@@ -145,6 +146,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="QB3-8H-69K">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="GOg-Nj-shI"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="VGH-qb-63s">
                             <connections>
                                 <segue destination="XiX-ev-a2H" kind="presentation" id="6Sb-3g-a3A"/>
@@ -418,6 +420,6 @@
         <image name="table" width="49" height="49"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6Sb-3g-a3A"/>
+        <segue reference="hiU-BW-wwT"/>
     </inferredMetricsTieBreakers>
 </document>
