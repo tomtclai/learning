@@ -17,16 +17,21 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
-    var meme : Meme?
     
-    let memeTextArrtibutes = [
+    var memeIndex: Int?
+    
+    private var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    private let memeTextArrtibutes = [
         NSStrokeColorAttributeName : UIColor.blackColor(),
         NSForegroundColorAttributeName : UIColor.whiteColor(),
         NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSStrokeWidthAttributeName : NSNumber(int: -5)
     ]
     
-    var image : UIImage? {
+    private var meme : Meme?
+    
+    private var image : UIImage? {
         get {
             return self.image
         }
@@ -38,7 +43,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         }
     }
     
-    var savedMeme : Meme?
+    private var savedMeme : Meme?
     
     
     // Mark: - View Controller Life Cycle
@@ -48,10 +53,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         imagePickerView.contentMode = .ScaleAspectFit
         imageBackgroundView.contentMode = .ScaleAspectFill
         imageBackgroundView.clipsToBounds = false
-        if let meme = meme {
-            image = meme.originalImage
-            topTextField.text = meme.topText
-            bottomTextField.text = meme.bottomText
+        
+        if let memeIndex = memeIndex {
+            self.memeIndex = memeIndex
+            meme = appDelegate.memes[memeIndex]
+            self.image = meme?.originalImage
+            topTextField.text = meme?.topText
+            bottomTextField.text = meme?.bottomText
         }
         setUpMemeTextFields()
     }
@@ -70,6 +78,21 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     // Mark: - IB Actions
+    @IBAction func cancel(sender: UIBarButtonItem) {
+        dismissAndPopAnimated(true)
+    }
+    
+    func dismissAndPopAnimated(animated: Bool) {
+        if let navigationController = navigationController {
+            if navigationController.viewControllers.count > 1 {
+                navigationController.popViewControllerAnimated(animated)
+            } else {
+                dismissViewControllerAnimated(animated, completion: nil)
+            }
+        } else {
+        dismissViewControllerAnimated(animated, completion: nil)
+        }
+    }
     
     @IBAction func share(sender: AnyObject) {
         // generate a memed image
@@ -80,8 +103,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         avc.completionWithItemsHandler = { (activityType : String?, completed : Bool , returnedItems: Array<AnyObject>? , activityError : NSError?)in
             if completed {
                 self.save(memedImage)
+                self.dismissAndPopAnimated(true)
             }
-            self.dismissViewControllerAnimated(true, completion: nil)
         }
         // present the ActivityViewController
         presentViewController(avc, animated: true, completion: nil)
