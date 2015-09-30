@@ -44,11 +44,21 @@ class ViewController: UIViewController {
  
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var photoTitle: UILabel!
+    @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var latitudeField: UITextField!
+    @IBOutlet weak var longitudeField: UITextField!
     
     @IBAction func touchGrabNewImageButton(sender: AnyObject) {
         getImageFromFlickr()
     }
 
+    @IBAction func search(sender: AnyObject) {
+    }
+    
+    @IBAction func searchLongLat(sender: AnyObject) {
+    }
+    
+    
     func getImageFromFlickr() {
         
         /* 2 - API method arguments */
