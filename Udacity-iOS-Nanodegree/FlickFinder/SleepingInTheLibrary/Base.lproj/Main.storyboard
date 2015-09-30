@@ -36,35 +36,35 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="253" translatesAutoresizingMaskIntoConstraints="NO" id="lhv-rs-Unv">
-                                <rect key="frame" x="20" y="384" width="490" height="137"/>
+                                <rect key="frame" x="20" y="384" width="512" height="137"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="256" verticalHuggingPriority="254" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oQE-LI-d72">
-                                        <rect key="frame" x="20" y="20" width="450" height="30"/>
+                                        <rect key="frame" x="20" y="20" width="472" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="256" verticalHuggingPriority="254" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1dh-0K-l3y">
-                                        <rect key="frame" x="20" y="58" width="221" height="30"/>
+                                        <rect key="frame" x="20" y="58" width="232" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="256" verticalHuggingPriority="254" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LiN-sC-Ddm">
-                                        <rect key="frame" x="249" y="58" width="221" height="30"/>
+                                        <rect key="frame" x="260" y="58" width="232" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fB5-wZ-yJX">
-                                        <rect key="frame" x="20" y="96" width="221" height="21"/>
+                                        <rect key="frame" x="20" y="96" width="232" height="21"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0x-u7-epz">
-                                        <rect key="frame" x="249" y="96" width="221" height="21"/>
+                                        <rect key="frame" x="260" y="96" width="232" height="21"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -109,22 +109,20 @@
                                     <constraint firstAttribute="width" secondItem="L4V-Qi-5QH" secondAttribute="height" multiplier="560:297" id="Tfz-1b-Rbp"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="268" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTK-s7-YYz">
-                                <rect key="frame" x="518" y="403" width="54" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="268" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTK-s7-YYz">
+                                <rect key="frame" x="540" y="403" width="32" height="32"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
-                                <state key="normal" title="Search">
+                                <state key="normal" image="search-icon-32.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="search:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5pg-R5-okw"/>
+                                    <action selector="searchByPhrase:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vG4-Dg-UIw"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="268" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zKq-hQ-qQT">
-                                <rect key="frame" x="518" y="441" width="54" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="268" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zKq-hQ-qQT">
+                                <rect key="frame" x="540" y="441" width="32" height="32"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
-                                <state key="normal" title="Search">
+                                <state key="normal" image="search-icon-32.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -140,7 +138,7 @@
                             <constraint firstItem="H3s-e1-jlh" firstAttribute="top" secondItem="L4V-Qi-5QH" secondAttribute="bottom" constant="10" id="6lH-ui-fZm"/>
                             <constraint firstItem="lhv-rs-Unv" firstAttribute="top" secondItem="L4V-Qi-5QH" secondAttribute="bottom" constant="8" id="E7y-By-1w1"/>
                             <constraint firstItem="H3s-e1-jlh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Fh0-pP-02c"/>
-                            <constraint firstItem="zKq-hQ-qQT" firstAttribute="baseline" secondItem="LiN-sC-Ddm" secondAttribute="baseline" id="HOj-FN-KLR"/>
+                            <constraint firstItem="zKq-hQ-qQT" firstAttribute="centerY" secondItem="LiN-sC-Ddm" secondAttribute="centerY" id="HOj-FN-KLR"/>
                             <constraint firstItem="H3s-e1-jlh" firstAttribute="top" secondItem="lhv-rs-Unv" secondAttribute="bottom" constant="8" id="NM6-ju-N2Q"/>
                             <constraint firstItem="eTK-s7-YYz" firstAttribute="leading" secondItem="lhv-rs-Unv" secondAttribute="trailing" constant="8" id="NSu-7s-RXc"/>
                             <constraint firstItem="lhv-rs-Unv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="O6A-GG-md6"/>
@@ -150,7 +148,7 @@
                             <constraint firstItem="bvt-Hd-qS2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="Yui-ko-GZS"/>
                             <constraint firstItem="zKq-hQ-qQT" firstAttribute="leading" secondItem="lhv-rs-Unv" secondAttribute="trailing" constant="8" id="a8f-jm-Ibd"/>
                             <constraint firstItem="L4V-Qi-5QH" firstAttribute="top" secondItem="bvt-Hd-qS2" secondAttribute="bottom" constant="8" id="hDq-zd-a9g"/>
-                            <constraint firstItem="eTK-s7-YYz" firstAttribute="baseline" secondItem="oQE-LI-d72" secondAttribute="baseline" id="lGY-BH-Yj6"/>
+                            <constraint firstItem="eTK-s7-YYz" firstAttribute="centerY" secondItem="oQE-LI-d72" secondAttribute="centerY" id="lGY-BH-Yj6"/>
                             <constraint firstItem="eTK-s7-YYz" firstAttribute="leading" secondItem="lhv-rs-Unv" secondAttribute="trailing" constant="8" id="me6-HF-6ri"/>
                             <constraint firstItem="H3s-e1-jlh" firstAttribute="top" secondItem="lhv-rs-Unv" secondAttribute="bottom" constant="8" id="oPC-Kb-ix3"/>
                             <constraint firstItem="H3s-e1-jlh" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="ueW-v6-tMO"/>
@@ -176,4 +174,7 @@
             <point key="canvasLocation" x="340" y="369"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="search-icon-32.png" width="32" height="32"/>
+    </resources>
 </document>

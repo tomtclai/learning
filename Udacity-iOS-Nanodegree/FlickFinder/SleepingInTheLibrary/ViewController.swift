@@ -27,12 +27,20 @@
 // Client update UI to display the Photo
 
 
+// NSURLsession carries a NSURLRequest. 
+// NSURLDataTask is the task the NSURLSession take on. 
+
+// Think a person, a messenger.
+// The messenger is the NSURLSession.
+// The envelope of a letter is the NSURLRequest
+// The messenger's job is NSURLDataTask (Bring back the data the client asked for)
+
 
 import UIKit
 
 /* 1 - Define constants */
 let BASE_URL = "https://api.flickr.com/services/rest/"
-let METHOD_NAME = "flickr.galleries.getPhotos"
+let METHOD_NAME = "flickr.photos.search"
 //let API_KEY = ""
 let API_KEY = "fbb0f7411bc2751b84e6d44d7b806c4f"
 let GALLERY_ID = "5704-72157622566655097"
@@ -52,8 +60,106 @@ class ViewController: UIViewController {
         getImageFromFlickr()
     }
 
-    @IBAction func search(sender: AnyObject) {
+    @IBAction func searchByPhrase(sender: AnyObject) {
+        let urlString = urlForPhraseSearch("baby asian elephant")
+        
+        let session = NSURLSession.sharedSession()
+        
+        let request = NSURLRequest(URL: NSURL(string: urlString)!)
+        
+        let datatask = session.dataTaskWithRequest(request) { (data, response, error)  in
+            
+            guard (error == nil) else {
+                print(error)
+                return
+            }
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                if let response = response as? NSHTTPURLResponse {
+                    print("invalid response #\(response)")
+                } else if let response = response {
+                    print("invalid response #\(response)")
+                } else {
+                    print("invalid response")
+                }
+                return
+            }
+
+            let parsedResult: AnyObject!
+            do {
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+                
+            } catch {
+                parsedResult = nil
+                print("parse error")
+                return
+            }
+            
+            
+            guard let stat = parsedResult["stat"] as? String where stat == "ok" else {
+                print("stat is not 'ok'")
+                return
+            }
+            
+            guard let _ = parsedResult["photos"] as? NSDictionary else {
+                print("'photos' key not found in \(parsedResult)")
+                return
+            }
+            
+            let photoDictionary = parsedResult.valueForKey("photos") as? NSDictionary
+            let photoArrary = photoDictionary?.valueForKey("photo") as? Array<NSDictionary>
+            guard photoArrary != nil && photoArrary?.count > 0 else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.photoTitle.text = "No Photo found"
+                })
+                return
+            }
+            if let photoArr = photoArrary {
+                let index = arc4random_uniform(UInt32(photoArr.count))
+                let photo = photoArr[Int(index)]
+                let imageUrlString = photo["url_m"]
+                
+                //need to download image first
+                
+                
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                    photoImageView.image =
+                    
+                })
+            }
+            
+        }
+        
+        datatask.resume()
     }
+    
+    func urlForPhraseSearch(phrase: String) -> String {
+        
+        let keys = ["method", "api_key", "text", "extras", "format", "nojsoncallback"]
+        
+        let keyValuePairs = [
+            "method": METHOD_NAME,
+            "api_key": API_KEY,
+            "text": "baby asian elephant",
+            "extras": EXTRAS,
+            "format": DATA_FORMAT,
+            "nojsoncallback": NO_JSON_CALLBACK
+        ]
+        
+        var urlString = BASE_URL
+        for (index, key) in keys.enumerate() {
+            if index == 0 {
+                urlString += "?"
+            } else {
+                urlString += "&"
+            }
+            
+            urlString += key + "=" + keyValuePairs[key]!
+        }
+        
+        return urlString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+    }
+    
     
     @IBAction func searchLongLat(sender: AnyObject) {
     }
