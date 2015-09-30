@@ -73,6 +73,7 @@ class ViewController: UIViewController {
                 print(error)
                 return
             }
+            
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 if let response = response as? NSHTTPURLResponse {
                     print("invalid response #\(response)")
@@ -99,35 +100,51 @@ class ViewController: UIViewController {
                 print("stat is not 'ok'")
                 return
             }
-            
-            guard let _ = parsedResult["photos"] as? NSDictionary else {
-                print("'photos' key not found in \(parsedResult)")
+        
+            // Get the photos dictionary
+            guard let photosDictionary = parsedResult.valueForKey("photos") as? NSDictionary else {
+                print ("Cannot find key 'photos' in \(parsedResult)")
                 return
             }
             
-            let photoDictionary = parsedResult.valueForKey("photos") as? NSDictionary
-            let photoArrary = photoDictionary?.valueForKey("photo") as? Array<NSDictionary>
-            guard photoArrary != nil && photoArrary?.count > 0 else {
+            guard let photoArray = photosDictionary.valueForKey("photo") as? Array<NSDictionary> else {
+                print ("no value for key 'photo'")
+                return
+            }
+            
+            guard let totalPhotos = (photosDictionary["total"] as? NSString)?.integerValue else {
+                print("Cannot find key 'total' in \(photosDictionary)")
+                return
+            }
+            
+            // Get The array of photos
+            guard totalPhotos > 0 else {
                 dispatch_async(dispatch_get_main_queue(), {
                     self.photoTitle.text = "No Photo found"
+                    self.photoImageView.image = nil
                 })
                 return
             }
-            if let photoArr = photoArrary {
-                let index = arc4random_uniform(UInt32(photoArr.count))
-                let photo = photoArr[Int(index)]
-                let imageUrlString = photo["url_m"]
-                
-                //need to download image first
-                
-                
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                    photoImageView.image =
-                    
-                })
-            }
             
+            
+            let randomPhotoIndex = arc4random_uniform(UInt32(photoArray.count))
+            let photoDictionary = photoArray[Int(randomPhotoIndex)]
+
+            let photoTitle = photoDictionary["title"] as? String
+            
+            guard let imageUrlString = photoDictionary["url_m"] as? String else {
+                print("No url_m in \(photoDictionary)")
+                return
+            }
+            let imageURL = NSURL(string: imageUrlString)
+            
+            if let imageData = NSData(contentsOfURL: imageURL!) {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.photoTitle.text = photoTitle
+                    self.photoImageView.image = UIImage(data: imageData)
+                })
+                
+            }
         }
         
         datatask.resume()
