@@ -7,30 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE0F4D981B6D74E0005ABA07 /* Team+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0F4D961B6D74E0005ABA07 /* Team+CoreDataProperties.swift */; };
+		FE0F4D991B6D74E0005ABA07 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0F4D971B6D74E0005ABA07 /* Team.swift */; };
+		FE0F4D9B1B6D752C005ABA07 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE0F4D9A1B6D752C005ABA07 /* Launch Screen.storyboard */; };
 		FE10CD9B198D913700ACA4CE /* attribution.txt in Resources */ = {isa = PBXBuildFile; fileRef = FE10CD9A198D913700ACA4CE /* attribution.txt */; };
 		FEDBB46C198D4D0E00837C8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDBB46B198D4D0E00837C8F /* AppDelegate.swift */; };
 		FEDBB46E198D4D0E00837C8F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDBB46D198D4D0E00837C8F /* ViewController.swift */; };
 		FEDBB471198D4D0E00837C8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEDBB46F198D4D0E00837C8F /* Main.storyboard */; };
 		FEDBB473198D4D0E00837C8F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDBB472198D4D0E00837C8F /* Images.xcassets */; };
-		FEDBB47F198D4D0E00837C8F /* WorldCupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDBB47E198D4D0E00837C8F /* WorldCupTests.swift */; };
 		FEDBB489198D5E9B00837C8F /* seed.json in Resources */ = {isa = PBXBuildFile; fileRef = FEDBB488198D5E9B00837C8F /* seed.json */; };
 		FEDBB48C198D5EC100837C8F /* WorldCup.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FEDBB48A198D5EC100837C8F /* WorldCup.xcdatamodeld */; };
-		FEDBB48E198D5F2B00837C8F /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDBB48D198D5F2B00837C8F /* Team.swift */; };
 		FEDBB490198D607C00837C8F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDBB48F198D607C00837C8F /* CoreDataStack.swift */; };
 		FEDBB496198D652100837C8F /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDBB495198D652100837C8F /* TeamCell.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		FEDBB479198D4D0E00837C8F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FEDBB45E198D4D0E00837C8F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FEDBB465198D4D0E00837C8F;
-			remoteInfo = WorldCup;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		FE0F4D961B6D74E0005ABA07 /* Team+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Team+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FE0F4D971B6D74E0005ABA07 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		FE0F4D9A1B6D752C005ABA07 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FE10CD9A198D913700ACA4CE /* attribution.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = attribution.txt; sourceTree = "<group>"; };
 		FEDBB466198D4D0E00837C8F /* WorldCup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorldCup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEDBB46A198D4D0E00837C8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -38,25 +32,14 @@
 		FEDBB46D198D4D0E00837C8F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FEDBB470198D4D0E00837C8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FEDBB472198D4D0E00837C8F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		FEDBB478198D4D0E00837C8F /* WorldCupTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorldCupTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FEDBB47D198D4D0E00837C8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FEDBB47E198D4D0E00837C8F /* WorldCupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldCupTests.swift; sourceTree = "<group>"; };
 		FEDBB488198D5E9B00837C8F /* seed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = seed.json; sourceTree = "<group>"; };
 		FEDBB48B198D5EC100837C8F /* WorldCup.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorldCup.xcdatamodel; sourceTree = "<group>"; };
-		FEDBB48D198D5F2B00837C8F /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		FEDBB48F198D607C00837C8F /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		FEDBB495198D652100837C8F /* TeamCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FEDBB463198D4D0E00837C8F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FEDBB475198D4D0E00837C8F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -70,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				FEDBB468198D4D0E00837C8F /* WorldCup */,
-				FEDBB47B198D4D0E00837C8F /* WorldCupTests */,
 				FEDBB467198D4D0E00837C8F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,7 +61,6 @@
 			isa = PBXGroup;
 			children = (
 				FEDBB466198D4D0E00837C8F /* WorldCup.app */,
-				FEDBB478198D4D0E00837C8F /* WorldCupTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,8 +72,10 @@
 				FEDBB48F198D607C00837C8F /* CoreDataStack.swift */,
 				FEDBB46D198D4D0E00837C8F /* ViewController.swift */,
 				FEDBB495198D652100837C8F /* TeamCell.swift */,
-				FEDBB48D198D5F2B00837C8F /* Team.swift */,
+				FE0F4D961B6D74E0005ABA07 /* Team+CoreDataProperties.swift */,
+				FE0F4D971B6D74E0005ABA07 /* Team.swift */,
 				FEDBB46F198D4D0E00837C8F /* Main.storyboard */,
+				FE0F4D9A1B6D752C005ABA07 /* Launch Screen.storyboard */,
 				FEDBB48A198D5EC100837C8F /* WorldCup.xcdatamodeld */,
 				FEDBB472198D4D0E00837C8F /* Images.xcassets */,
 				FE10CD9A198D913700ACA4CE /* attribution.txt */,
@@ -106,23 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				FEDBB46A198D4D0E00837C8F /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		FEDBB47B198D4D0E00837C8F /* WorldCupTests */ = {
-			isa = PBXGroup;
-			children = (
-				FEDBB47E198D4D0E00837C8F /* WorldCupTests.swift */,
-				FEDBB47C198D4D0E00837C8F /* Supporting Files */,
-			);
-			path = WorldCupTests;
-			sourceTree = "<group>";
-		};
-		FEDBB47C198D4D0E00837C8F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				FEDBB47D198D4D0E00837C8F /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -147,39 +113,18 @@
 			productReference = FEDBB466198D4D0E00837C8F /* WorldCup.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FEDBB477198D4D0E00837C8F /* WorldCupTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FEDBB485198D4D0E00837C8F /* Build configuration list for PBXNativeTarget "WorldCupTests" */;
-			buildPhases = (
-				FEDBB474198D4D0E00837C8F /* Sources */,
-				FEDBB475198D4D0E00837C8F /* Frameworks */,
-				FEDBB476198D4D0E00837C8F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FEDBB47A198D4D0E00837C8F /* PBXTargetDependency */,
-			);
-			name = WorldCupTests;
-			productName = WorldCupTests;
-			productReference = FEDBB478198D4D0E00837C8F /* WorldCupTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		FEDBB45E198D4D0E00837C8F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Razeware;
 				TargetAttributes = {
 					FEDBB465198D4D0E00837C8F = {
 						CreatedOnToolsVersion = 6.0;
-					};
-					FEDBB477198D4D0E00837C8F = {
-						CreatedOnToolsVersion = 6.0;
-						TestTargetID = FEDBB465198D4D0E00837C8F;
 					};
 				};
 			};
@@ -197,7 +142,6 @@
 			projectRoot = "";
 			targets = (
 				FEDBB465198D4D0E00837C8F /* WorldCup */,
-				FEDBB477198D4D0E00837C8F /* WorldCupTests */,
 			);
 		};
 /* End PBXProject section */
@@ -210,14 +154,8 @@
 				FEDBB471198D4D0E00837C8F /* Main.storyboard in Resources */,
 				FEDBB489198D5E9B00837C8F /* seed.json in Resources */,
 				FE10CD9B198D913700ACA4CE /* attribution.txt in Resources */,
+				FE0F4D9B1B6D752C005ABA07 /* Launch Screen.storyboard in Resources */,
 				FEDBB473198D4D0E00837C8F /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FEDBB476198D4D0E00837C8F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,8 +166,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE0F4D981B6D74E0005ABA07 /* Team+CoreDataProperties.swift in Sources */,
 				FEDBB490198D607C00837C8F /* CoreDataStack.swift in Sources */,
-				FEDBB48E198D5F2B00837C8F /* Team.swift in Sources */,
+				FE0F4D991B6D74E0005ABA07 /* Team.swift in Sources */,
 				FEDBB496198D652100837C8F /* TeamCell.swift in Sources */,
 				FEDBB46E198D4D0E00837C8F /* ViewController.swift in Sources */,
 				FEDBB48C198D5EC100837C8F /* WorldCup.xcdatamodeld in Sources */,
@@ -237,23 +176,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FEDBB474198D4D0E00837C8F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FEDBB47F198D4D0E00837C8F /* WorldCupTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		FEDBB47A198D4D0E00837C8F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FEDBB465198D4D0E00837C8F /* WorldCup */;
-			targetProxy = FEDBB479198D4D0E00837C8F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FEDBB46F198D4D0E00837C8F /* Main.storyboard */ = {
@@ -287,6 +210,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -301,7 +225,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -337,7 +261,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -348,9 +272,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = WorldCup/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.worldcup.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -360,45 +284,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = WorldCup/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.worldcup.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		FEDBB486198D4D0E00837C8F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WorldCup.app/WorldCup";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = WorldCupTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-			};
-			name = Debug;
-		};
-		FEDBB487198D4D0E00837C8F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WorldCup.app/WorldCup";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = WorldCupTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;
 		};
@@ -419,15 +309,6 @@
 			buildConfigurations = (
 				FEDBB483198D4D0E00837C8F /* Debug */,
 				FEDBB484198D4D0E00837C8F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FEDBB485198D4D0E00837C8F /* Build configuration list for PBXNativeTarget "WorldCupTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FEDBB486198D4D0E00837C8F /* Debug */,
-				FEDBB487198D4D0E00837C8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

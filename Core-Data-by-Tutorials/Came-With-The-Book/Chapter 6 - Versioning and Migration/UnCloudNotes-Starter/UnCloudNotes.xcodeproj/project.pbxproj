@@ -181,6 +181,8 @@
 		C77E1E6F1947D6D700762492 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Ray Wenderlich";
 				TargetAttributes = {

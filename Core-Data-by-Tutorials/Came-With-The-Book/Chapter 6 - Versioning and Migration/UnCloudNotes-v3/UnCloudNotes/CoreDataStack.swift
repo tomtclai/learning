@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class CoreDataStack: Printable {
+class CoreDataStack: CustomStringConvertible {
   var modelName : String
   var storeName : String
   var options: NSDictionary?
@@ -36,13 +36,17 @@ class CoreDataStack: Printable {
   }
 
   var storeURL : NSURL {
-    var storePaths = NSSearchPathForDirectoriesInDomains(.ApplicationSupportDirectory, .UserDomainMask, true) as! [NSString]
-      let storePath = String(storePaths[0])
-      let fileManager = NSFileManager.defaultManager()
-
-      fileManager.createDirectoryAtPath(storePath, withIntermediateDirectories:
-        true, attributes: nil, error: nil)
-      return NSURL.fileURLWithPath(storePath.stringByAppendingPathComponent(storeName + ".sqlite"))!
+    var storePaths = NSSearchPathForDirectoriesInDomains(.ApplicationSupportDirectory, .UserDomainMask, true) as [String]
+    let storePath = String(storePaths[0]) as NSString
+    let fileManager = NSFileManager.defaultManager()
+    
+    do {
+      try fileManager.createDirectoryAtPath(storePath as String, withIntermediateDirectories: true, attributes: nil)
+    } catch let error as NSError {
+      print("Error creating storePath \(storePath): \(error)")
+    }
+    let sqliteFilePath = storePath.stringByAppendingPathComponent(storeName + ".sqlite")
+    return NSURL(fileURLWithPath: sqliteFilePath)
   }
 
   lazy var model : NSManagedObjectModel = NSManagedObjectModel(contentsOfURL: self.modelURL)!
@@ -51,13 +55,15 @@ class CoreDataStack: Printable {
 
   lazy var coordinator : NSPersistentStoreCoordinator = {
     let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.model)
-    var storeError : NSError?
-    self.store = coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil,
-      URL: self.storeURL,
-      options: nil,
-      error: &storeError)
-    if storeError != nil {
-      println("store error \(storeError!)")
+    do {
+      self.store = try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil,
+        URL: self.storeURL,
+        options: nil)
+    } catch var error as NSError {
+      print("Store Error: \(error)")
+      self.store = nil
+    } catch {
+      fatalError()
     }
     return coordinator
   }()
@@ -65,7 +71,6 @@ class CoreDataStack: Printable {
   lazy var context : NSManagedObjectContext = {
     let context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
     context.persistentStoreCoordinator = self.coordinator
-    println(self)
     return context
   }()
 

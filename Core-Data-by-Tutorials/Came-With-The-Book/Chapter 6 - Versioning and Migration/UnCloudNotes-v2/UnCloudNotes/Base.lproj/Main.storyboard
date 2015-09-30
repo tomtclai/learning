@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="nzh-cS-c40">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8152.3" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="nzh-cS-c40">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8124.4"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -66,9 +67,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell" rowHeight="80" id="Ugt-Nb-pbe" customClass="NoteTableViewCell" customModule="UnCloudNotes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="600" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ugt-Nb-pbe" id="dyi-Hr-oYM">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLV-Jz-XBv">
@@ -106,9 +108,10 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCellImage" rowHeight="80" id="o7t-1p-Lxg" customClass="NoteTableViewCell" customModule="UnCloudNotes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="44"/>
+                                <rect key="frame" x="0.0" y="166" width="600" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o7t-1p-Lxg" id="TEd-Xa-aZn">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28X-6R-oxK">
@@ -152,7 +155,6 @@
                                     <outlet property="noteCreateDate" destination="qF3-It-NzW" id="DRs-g7-cXA"/>
                                     <outlet property="noteImage" destination="moU-sc-IAN" id="5kV-xc-xrU"/>
                                     <outlet property="noteTitle" destination="28X-6R-oxK" id="8xr-Ts-2iB"/>
-                                    <segue destination="t4y-WJ-gN4" kind="showDetail" identifier="showNoteDetail" id="8gn-MZ-79L"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -178,7 +180,7 @@
         <!--Create Note-->
         <scene sceneID="SJm-tj-7cb">
             <objects>
-                <viewController title="Create Note" automaticallyAdjustsScrollViewInsets="NO" id="pog-s1-UOr" customClass="CreateNoteViewController" customModule="UnCloudNotes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateNote" title="Create Note" automaticallyAdjustsScrollViewInsets="NO" id="pog-s1-UOr" customClass="CreateNoteViewController" customModule="UnCloudNotes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Hh-cx-kOk"/>
                         <viewControllerLayoutGuide type="bottom" id="UQV-JL-b2F"/>
@@ -187,7 +189,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Note Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Z9-1E-Sdq">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Note Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Z9-1E-Sdq">
                                 <rect key="frame" x="20" y="72" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -195,7 +197,7 @@
                                     <outlet property="delegate" destination="pog-s1-UOr" id="ZXh-nk-obM"/>
                                 </connections>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TOh-Jr-wDZ">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TOh-Jr-wDZ">
                                 <rect key="frame" x="20" y="110" width="560" height="482"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -208,8 +210,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="UQV-JL-b2F" firstAttribute="top" secondItem="TOh-Jr-wDZ" secondAttribute="bottom" constant="20" symbolic="YES" id="5XT-x8-QbC"/>
-                            <constraint firstItem="2Z9-1E-Sdq" firstAttribute="top" secondItem="7Hh-cx-kOk" secondAttribute="bottom" constant="20" symbolic="YES" id="8Bv-84-B8s"/>
+                            <constraint firstItem="UQV-JL-b2F" firstAttribute="top" secondItem="TOh-Jr-wDZ" secondAttribute="bottom" constant="8" symbolic="YES" id="5XT-x8-QbC"/>
+                            <constraint firstItem="2Z9-1E-Sdq" firstAttribute="top" secondItem="7Hh-cx-kOk" secondAttribute="bottom" constant="52" id="8Bv-84-B8s"/>
                             <constraint firstItem="2Z9-1E-Sdq" firstAttribute="leading" secondItem="TOh-Jr-wDZ" secondAttribute="leading" id="DIR-f7-b6i"/>
                             <constraint firstItem="TOh-Jr-wDZ" firstAttribute="top" secondItem="2Z9-1E-Sdq" secondAttribute="bottom" constant="8" symbolic="YES" id="QpL-cl-t2z"/>
                             <constraint firstAttribute="trailing" secondItem="2Z9-1E-Sdq" secondAttribute="trailing" constant="20" symbolic="YES" id="SaO-QE-tnK"/>
@@ -298,7 +300,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Note Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9tp-18-cTI">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Note Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9tp-18-cTI">
                                 <rect key="frame" x="20" y="28" width="461" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -306,7 +308,7 @@
                                     <outlet property="delegate" destination="L3i-JB-7eb" id="5rK-f1-QKx"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bol-hc-1SW">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bol-hc-1SW">
                                 <rect key="frame" x="489" y="28" width="91" height="30"/>
                                 <state key="normal" title="Attach Image">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -315,7 +317,7 @@
                                     <segue destination="lE2-SZ-zxE" kind="show" identifier="AttachPhoto" id="WL6-tZ-hg0"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mo0-Yc-72u">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mo0-Yc-72u">
                                 <rect key="frame" x="20" y="66" width="560" height="259"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -325,7 +327,7 @@
                                     <outlet property="delegate" destination="L3i-JB-7eb" id="D53-FG-mV1"/>
                                 </connections>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qQe-Le-DXU">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qQe-Le-DXU">
                                 <rect key="frame" x="20" y="333" width="560" height="259"/>
                             </imageView>
                         </subviews>
@@ -335,15 +337,15 @@
                             <constraint firstItem="qQe-Le-DXU" firstAttribute="height" secondItem="mo0-Yc-72u" secondAttribute="height" id="4Is-9x-hOQ"/>
                             <constraint firstAttribute="trailing" secondItem="qQe-Le-DXU" secondAttribute="trailing" constant="20" symbolic="YES" id="56Z-hB-87L"/>
                             <constraint firstItem="9tp-18-cTI" firstAttribute="centerY" secondItem="Bol-hc-1SW" secondAttribute="centerY" id="AFo-Gi-a75"/>
-                            <constraint firstAttribute="trailing" secondItem="Bol-hc-1SW" secondAttribute="trailing" constant="20" symbolic="YES" id="Lfa-f6-sif"/>
+                            <constraint firstAttribute="trailing" secondItem="Bol-hc-1SW" secondAttribute="trailing" constant="20" id="Lfa-f6-sif"/>
                             <constraint firstAttribute="trailing" secondItem="mo0-Yc-72u" secondAttribute="trailing" constant="20" id="MnI-wE-sCm"/>
                             <constraint firstItem="Bol-hc-1SW" firstAttribute="leading" secondItem="9tp-18-cTI" secondAttribute="trailing" constant="8" symbolic="YES" id="TQq-x0-RHE"/>
                             <constraint firstItem="mo0-Yc-72u" firstAttribute="leading" secondItem="Ia1-xW-9J7" secondAttribute="leading" constant="20" id="VXQ-C6-dbX"/>
                             <constraint firstItem="mo0-Yc-72u" firstAttribute="top" secondItem="9tp-18-cTI" secondAttribute="bottom" constant="8" symbolic="YES" id="aqB-oT-Ydz"/>
                             <constraint firstItem="9tp-18-cTI" firstAttribute="leading" secondItem="Ia1-xW-9J7" secondAttribute="leading" constant="20" symbolic="YES" id="c7z-Dc-ga4"/>
                             <constraint firstItem="qQe-Le-DXU" firstAttribute="top" secondItem="mo0-Yc-72u" secondAttribute="bottom" constant="8" symbolic="YES" id="o2E-bf-4Rs"/>
-                            <constraint firstItem="9tp-18-cTI" firstAttribute="top" secondItem="yll-u4-49p" secondAttribute="bottom" constant="20" symbolic="YES" id="pM8-Is-gqi"/>
-                            <constraint firstItem="Zwn-xl-PUm" firstAttribute="top" secondItem="qQe-Le-DXU" secondAttribute="bottom" constant="20" symbolic="YES" id="sna-gw-PBY"/>
+                            <constraint firstItem="9tp-18-cTI" firstAttribute="top" secondItem="yll-u4-49p" secondAttribute="bottom" constant="-36" id="pM8-Is-gqi"/>
+                            <constraint firstItem="Zwn-xl-PUm" firstAttribute="top" secondItem="qQe-Le-DXU" secondAttribute="bottom" constant="8" symbolic="YES" id="sna-gw-PBY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xwx-wH-QEX">
@@ -390,6 +392,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8gn-MZ-79L"/>
+        <segue reference="GCZ-pB-Bnh"/>
     </inferredMetricsTieBreakers>
 </document>

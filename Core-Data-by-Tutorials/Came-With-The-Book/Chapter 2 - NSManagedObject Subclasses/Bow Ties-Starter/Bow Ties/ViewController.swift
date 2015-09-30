@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  Bow Ties
 //
-//  Created by Pietro Rea on 6/25/14.
-//  Copyright (c) 2014 Razeware. All rights reserved.
+//  Created by Pietro Rea on 7/12/15.
+//  Copyright © 2015 Razeware. All rights reserved.
 //
 
 import UIKit
@@ -17,7 +17,7 @@ class ViewController: UIViewController {
   @IBOutlet weak var timesWornLabel: UILabel!
   @IBOutlet weak var lastWornLabel: UILabel!
   @IBOutlet weak var favoriteLabel: UILabel!
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
@@ -27,7 +27,7 @@ class ViewController: UIViewController {
   @IBAction func segmentedControl(control: UISegmentedControl) {
     
   }
-
+  
   @IBAction func wear(sender: AnyObject) {
     
   }

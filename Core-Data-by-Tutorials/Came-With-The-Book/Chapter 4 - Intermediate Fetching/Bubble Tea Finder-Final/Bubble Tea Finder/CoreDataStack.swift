@@ -1,73 +1,70 @@
 //
 //  CoreDataStack.swift
-//  WorldCup
+//  Dog Walk
 //
-//  Created by Pietro Rea on 8/2/14.
-//  Copyright (c) 2014 Razeware. All rights reserved.
+//  Created by Pietro Rea on 7/18/15.
+//  Copyright © 2015 Razeware. All rights reserved.
 //
 
-import Foundation
 import CoreData
 
 class CoreDataStack {
   
-  var context:NSManagedObjectContext
-  var psc:NSPersistentStoreCoordinator
-  var model:NSManagedObjectModel
-  var store:NSPersistentStore?
+  let modelName = "Bubble_Tea_Finder"
   
-  init() {
+  lazy var context: NSManagedObjectContext = {
     
-    let bundle = NSBundle.mainBundle()
-    let modelURL =
-    bundle.URLForResource("Model", withExtension:"momd")
-    model = NSManagedObjectModel(contentsOfURL: modelURL!)!
+    var managedObjectContext = NSManagedObjectContext(
+      concurrencyType: .MainQueueConcurrencyType)
     
-    psc = NSPersistentStoreCoordinator(managedObjectModel:model)
+    managedObjectContext.persistentStoreCoordinator = self.psc
+    return managedObjectContext
+    }()
+  
+  private lazy var psc: NSPersistentStoreCoordinator = {
     
-    context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-    context.persistentStoreCoordinator = psc
+    let coordinator = NSPersistentStoreCoordinator(
+      managedObjectModel: self.managedObjectModel)
     
-    let documentsURL =
-    CoreDataStack.applicationDocumentsDirectory()
+    let url = self.applicationDocumentsDirectory
+      .URLByAppendingPathComponent(self.modelName)
     
-    let storeURL =
-    documentsURL.URLByAppendingPathComponent("Bubble_Tea_Finder")
-    
-    let options =
-    [NSMigratePersistentStoresAutomaticallyOption: true]
-    
-    var error: NSError? = nil
-    store = psc.addPersistentStoreWithType(NSSQLiteStoreType,
-      configuration: nil,
-      URL: storeURL,
-      options: options,
-      error:&error)
-    
-    if store == nil {
-      println("Error adding persistent store: \(error)")
-      abort()
+    do {
+      let options =
+      [NSMigratePersistentStoresAutomaticallyOption : true]
+      
+      try coordinator.addPersistentStoreWithType(
+        NSSQLiteStoreType, configuration: nil, URL: url,
+        options: options)
+    } catch  {
+      print("Error adding persistent store.")
     }
     
-  }
+    return coordinator
+    }()
   
-  func saveContext() {
+  private lazy var managedObjectModel: NSManagedObjectModel = {
     
-    var error: NSError? = nil
-    if context.hasChanges && !context.save(&error) {
-      println("Could not save: \(error), \(error?.userInfo)")
+    let modelURL = NSBundle.mainBundle()
+      .URLForResource(self.modelName,
+        withExtension: "momd")!
+    return NSManagedObjectModel(contentsOfURL: modelURL)!
+    }()
+  
+  private lazy var applicationDocumentsDirectory: NSURL = {
+    let urls = NSFileManager.defaultManager().URLsForDirectory(
+      .DocumentDirectory, inDomains: .UserDomainMask)
+    return urls[urls.count-1]
+    }()
+  
+  func saveContext () {
+    if context.hasChanges {
+      do {
+        try context.save()
+      } catch let error as NSError {
+        print("Error: \(error.localizedDescription)")
+        abort()
+      }
     }
-    
   }
-  
-  class func applicationDocumentsDirectory() -> NSURL {
-    
-    let fileManager = NSFileManager.defaultManager()
-    
-    let urls = fileManager.URLsForDirectory(.DocumentDirectory,
-      inDomains: .UserDomainMask) as! Array<NSURL>
-    
-    return urls[0]
-  }
-  
 }

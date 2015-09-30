@@ -20,7 +20,7 @@ class CampSiteServiceTests: XCTestCase {
     
     coreDataStack = TestCoreDataStack()
     campSiteService = CampSiteService(managedObjectContext:
-      coreDataStack.mainContext!, coreDataStack:
+      coreDataStack.mainContext, coreDataStack:
       coreDataStack)
   }
   
@@ -33,17 +33,14 @@ class CampSiteServiceTests: XCTestCase {
   
   func testRootContextIsSavedAfterAddingCampsite(){
     
-    let expectRoot = self.expectationForNotification(
-      NSManagedObjectContextDidSaveNotification, object:
-      coreDataStack.rootContext){
+    expectationForNotification(NSManagedObjectContextDidSaveNotification, object: coreDataStack.rootContext) {
         notification in
         return true
     }
     
-    var campSite = campSiteService.addCampSite(1, electricity:
-      true, water: true)
+    campSiteService.addCampSite(1, electricity: true, water: true)
     
-    self.waitForExpectationsWithTimeout(2.0){
+    waitForExpectationsWithTimeout(2.0){
       error in
       XCTAssertNil(error, "Save did not occur")
     }
@@ -56,12 +53,12 @@ class CampSiteServiceTests: XCTestCase {
       true, water: true)
     
     XCTAssertTrue(campSite.siteNumber == 1, "Site number should be 1")
-    XCTAssertTrue(campSite.electricity.boolValue, "Site should have electricity")
-    XCTAssertTrue(campSite.water.boolValue, "Site should have water")
+    XCTAssertTrue(campSite.electricity!.boolValue, "Site should have electricity")
+    XCTAssertTrue(campSite.water!.boolValue, "Site should have water")
   }
   
   func testGetCampSiteNoSites() {
-    var campSite = campSiteService?.getCampSite(1)
+    let campSite = campSiteService?.getCampSite(1)
     
     XCTAssertNil(campSite, "No campsite should be returned")
   }
@@ -95,7 +92,7 @@ class CampSiteServiceTests: XCTestCase {
     
     campSiteService.addCampSite(1, electricity: true, water: true)
     
-    let sites = campSiteService.getCampSites();
+    let sites = campSiteService.getCampSites()
     
     XCTAssertTrue(sites.count == 1, "There should be one site.")
   }
@@ -105,14 +102,14 @@ class CampSiteServiceTests: XCTestCase {
     campSiteService.addCampSite(1, electricity: true, water: true)
     campSiteService.addCampSite(2, electricity: true, water: true)
     
-    let sites = campSiteService?.getCampSites();
+    let sites = campSiteService?.getCampSites()
     
     XCTAssertTrue(sites?.count == 2, "There should be two sites.")
   }
   
   func testDeleteCampSite() {
     
-    var campSite = campSiteService.addCampSite(1, electricity: true, water: true)
+    campSiteService.addCampSite(1, electricity: true, water: true)
     
     var fetchedCampSite = campSiteService.getCampSite(1)
     

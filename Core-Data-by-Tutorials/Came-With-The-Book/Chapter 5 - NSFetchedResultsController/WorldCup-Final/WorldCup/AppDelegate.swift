@@ -35,26 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func importJSONSeedDataIfNeeded() {
     
     let fetchRequest = NSFetchRequest(entityName: "Team")
-    var error: NSError? = nil
+    var error:NSError? = nil
     
-    let results =
-      coreDataStack.context.countForFetchRequest(fetchRequest,
-        error: &error)
+    let count = coreDataStack.context
+      .countForFetchRequest(fetchRequest, error: &error)
     
-    if (results == 0) {
-      
-      var fetchError: NSError? = nil
-      
-      if let results =
-        coreDataStack.context.executeFetchRequest(fetchRequest,
-          error: &fetchError) {
-            for object in results {
-              let team = object as! Team
-              coreDataStack.context.deleteObject(team)
-            }
-      }
-
-      coreDataStack.saveContext()
+    if count == 0 {
       importJSONSeedData()
     }
   }
@@ -63,28 +49,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let jsonURL = NSBundle.mainBundle().URLForResource("seed", withExtension: "json")
     let jsonData = NSData(contentsOfURL: jsonURL!)
     
-    var error: NSError? = nil
-    let jsonArray = NSJSONSerialization.JSONObjectWithData(jsonData!, options: nil, error: &error) as! NSArray
-    
-    let entity = NSEntityDescription.entityForName("Team", inManagedObjectContext: coreDataStack.context)
-    
-    for jsonDictionary in jsonArray {
+    do {
+      let jsonArray = try NSJSONSerialization.JSONObjectWithData(jsonData!, options: .AllowFragments) as! NSArray
+      let entity = NSEntityDescription.entityForName("Team", inManagedObjectContext: coreDataStack.context)
       
-      let teamName = jsonDictionary["teamName"] as! String
-      let zone = jsonDictionary["qualifyingZone"] as! String
-      let imageName = jsonDictionary["imageName"] as! String
-      let wins = jsonDictionary["wins"] as! NSNumber
+      for jsonDictionary in jsonArray {
+        let teamName = jsonDictionary["teamName"] as! String
+        let zone = jsonDictionary["qualifyingZone"] as! String
+        let imageName = jsonDictionary["imageName"] as! String
+        let wins = jsonDictionary["wins"] as! NSNumber
+        
+        let team = Team(entity: entity!,
+          insertIntoManagedObjectContext: coreDataStack.context)
+        team.teamName = teamName
+        team.imageName = imageName
+        team.qualifyingZone = zone
+        team.wins = wins
+      }
       
-      let team = Team(entity: entity!,
-        insertIntoManagedObjectContext: coreDataStack.context)
-      team.teamName = teamName
-      team.imageName = imageName
-      team.qualifyingZone = zone
-      team.wins = wins
+      coreDataStack.saveContext()
+      print("Imported \(jsonArray.count) teams")
+      
+    } catch let error as NSError {
+      print("Error importing teams: \(error)")
     }
-    
-    coreDataStack.saveContext()
-    println("Imported \(jsonArray.count) teams")
   }
 }
 

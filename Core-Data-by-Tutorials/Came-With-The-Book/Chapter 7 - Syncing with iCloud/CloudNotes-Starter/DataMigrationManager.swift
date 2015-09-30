@@ -30,12 +30,11 @@ class DataMigrationManager {
 
   lazy var storeURL : NSURL = {
     var storePaths = NSSearchPathForDirectoriesInDomains(
-      .ApplicationSupportDirectory, .UserDomainMask, true) as! [NSString]
-    let storePath = storePaths.first as? String
-    if let filePath = storePath?.stringByAppendingPathComponent(self.storeName + ".sqlite") {
-        return NSURL(fileURLWithPath: filePath)!
-    }
-    return NSURL()
+      .ApplicationSupportDirectory, .UserDomainMask, true)
+    let storePath = String(storePaths.first) as NSString
+    let filePath = storePath.stringByAppendingPathComponent(self.storeName + ".sqlite")
+
+    return NSURL(fileURLWithPath: filePath)
   }()
 
 
@@ -43,12 +42,12 @@ class DataMigrationManager {
     for model in NSManagedObjectModel
       .modelVersionsForName(self.modelName) {
         if self.storeIsCompatibleWith(Model:model) {
-          println("Store \(self.storeURL) is compatible with model \(model.versionIdentifiers)")
+          print("Store \(self.storeURL) is compatible with model \(model.versionIdentifiers)")
           return model
         }
     }
 
-    println("Unable to determine storeModel")
+    print("Unable to determine storeModel")
     return nil
   }
 
@@ -130,49 +129,53 @@ class DataMigrationManager {
     fromModel from:NSManagedObjectModel,
     toModel to:NSManagedObjectModel,
     mappingModel:NSMappingModel? = nil) {
-
-    let migrationManager = NSMigrationManager(sourceModel:from, destinationModel:to)
-
-    var migrationMappingModel : NSMappingModel
-    if let mappingModel = mappingModel {
-      migrationMappingModel = mappingModel
-    } else {
-      var error : NSError?
-      migrationMappingModel = NSMappingModel
-        .inferredMappingModelForSourceModel(
-        from, destinationModel: to, error: &error)!
-    }
-
-    let destinationURL = storeURL.URLByDeletingLastPathComponent
-    let destinationName = storeURL.lastPathComponent! + "~" + "1"
-    let destination = destinationURL!.URLByAppendingPathComponent(destinationName)
-
-    println("From Model: \(from.versionIdentifiers)")
-    println("To Model: \(to.versionIdentifiers)")
-    println("Migrating store \(storeURL) to \(destination)")
-    println("Mapping model: \(mappingModel)")
-
-    var error : NSError?
-    let success =
-    migrationManager.migrateStoreFromURL(storeURL,
-      type:NSSQLiteStoreType,
-      options:nil,
-      withMappingModel:mappingModel,
-      toDestinationURL:destination,
-      destinationType:NSSQLiteStoreType,
-      destinationOptions:nil,
-      error:&error)
-
-    if success {
-      println("Migration Completed Successfully")
-
-      var error : NSError?
-      let fileManager = NSFileManager.defaultManager()
-      fileManager.removeItemAtURL(storeURL, error: &error)
-      fileManager.moveItemAtURL(destination, toURL: storeURL, error:&error)
-    } else {
-      NSLog("Error migrating \(error)")
-    }
+      
+      let migrationManager = NSMigrationManager(sourceModel:from, destinationModel:to)
+      
+      var migrationMappingModel : NSMappingModel
+      if let mappingModel = mappingModel {
+        migrationMappingModel = mappingModel
+      } else {
+        migrationMappingModel = try! NSMappingModel
+          .inferredMappingModelForSourceModel(
+            from, destinationModel: to)
+      }
+      
+      let destinationURL = storeURL.URLByDeletingLastPathComponent
+      let destinationName = (storeURL.lastPathComponent ?? "") + "~" + "1"
+      let destination = destinationURL!.URLByAppendingPathComponent(destinationName)
+      
+      print("From Model: \(from.versionIdentifiers)")
+      print("To Model: \(to.versionIdentifiers)")
+      print("Migrating store \(storeURL) to \(destination)")
+      print("Mapping model: \(mappingModel)")
+      
+      let success: Bool
+      do {
+        try migrationManager.migrateStoreFromURL(storeURL,
+          type:NSSQLiteStoreType,
+          options:nil,
+          withMappingModel:migrationMappingModel,
+          toDestinationURL:destination,
+          destinationType:NSSQLiteStoreType,
+          destinationOptions:nil)
+        success = true
+      } catch let error as NSError {
+        success = false
+        NSLog("Migration failed: \(error)")
+      }
+      
+      if success {
+        print("Migration Completed Successfully")
+        
+        let fileManager = NSFileManager.defaultManager()
+        do {
+          try fileManager.removeItemAtURL(storeURL)
+          try fileManager.moveItemAtURL(destination, toURL: storeURL)
+        } catch let error as NSError {
+          NSLog("Error migrating \(error)")
+        }
+      }
   }
 
   func storeIsCompatibleWith(Model model:NSManagedObjectModel)
@@ -183,12 +186,14 @@ class DataMigrationManager {
             compatibleWithStoreMetadata:storeMetadata)
   }
 
-  func metadataForStoreAtURL(storeURL:NSURL) -> [NSObject: AnyObject] {
-    var error : NSError?
-    let metadata = NSPersistentStoreCoordinator.metadataForPersistentStoreOfType(
-      NSSQLiteStoreType, URL: storeURL, error: &error)
-    if metadata == nil {
-      println(error)
+  func metadataForStoreAtURL(storeURL:NSURL) -> [String: AnyObject] {
+    let metadata: [String: AnyObject]?
+    do {
+      metadata = try NSPersistentStoreCoordinator.metadataForPersistentStoreOfType(
+        NSSQLiteStoreType, URL: storeURL)
+    } catch let error as NSError {
+      metadata = nil
+      print("Error retrieving metadata for store at URL: \(storeURL): \(error)")
     }
     return metadata ?? [:]
   }
@@ -200,7 +205,7 @@ extension NSManagedObjectModel {
         -> [NSManagedObjectModel] {
     let urls = NSBundle.mainBundle()
         .URLsForResourcesWithExtension("mom",
-            subdirectory:"\(name).momd") as! [NSURL]
+            subdirectory:"\(name).momd") ?? []
     return urls
         .map { NSManagedObjectModel(contentsOfURL:$0) }
         .filter { $0 != nil }

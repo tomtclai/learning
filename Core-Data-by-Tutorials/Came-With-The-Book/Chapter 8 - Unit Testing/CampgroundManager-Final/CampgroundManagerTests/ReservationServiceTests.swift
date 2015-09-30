@@ -21,13 +21,13 @@ class ReservationServiceTests: XCTestCase {
     super.setUp()
     coreDataStack = TestCoreDataStack()
     camperService = CamperService(managedObjectContext:
-      coreDataStack.mainContext!, coreDataStack:
+      coreDataStack.mainContext, coreDataStack:
       coreDataStack)
     campSiteService = CampSiteService(managedObjectContext:
-      coreDataStack.mainContext!, coreDataStack:
+      coreDataStack.mainContext, coreDataStack:
       coreDataStack)
     reservationService = ReservationService(
-      managedObjectContext: coreDataStack.mainContext!,
+      managedObjectContext: coreDataStack.mainContext,
       coreDataStack: coreDataStack)
   }
   
@@ -66,7 +66,7 @@ class ReservationServiceTests: XCTestCase {
     
     XCTAssertNotNil(result.reservation, "Reservation should not be nil")
     XCTAssertNotNil(result.error, "No error should be present")
-    XCTAssertTrue(result.error?.userInfo?["Problem"] as? NSString
+    XCTAssertTrue(result.error?.userInfo["Problem"] as? NSString
       == "Invalid number of days", "Error problem should be present")
     XCTAssertTrue(result.reservation?.status == "Invalid", "Status should be Invalid")
   }

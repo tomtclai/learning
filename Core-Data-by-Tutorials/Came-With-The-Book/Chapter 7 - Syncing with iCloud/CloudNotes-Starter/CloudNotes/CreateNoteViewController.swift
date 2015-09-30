@@ -49,12 +49,16 @@ class CreateNoteViewController : UIViewController, UITextFieldDelegate, UITextVi
   
   @IBAction func saveNote()
   {
-    note?.title = titleField.text
+    note?.title = titleField?.text ?? ""
     note?.body = bodyField.text
-    var error : NSErrorPointer = nil
-    if managedObjectContext?.save(error) == false
-    {
-      print("Error saving \(error)")
+
+    if let managedObjectContext = managedObjectContext {
+      do {
+        try  managedObjectContext.save()
+      }
+      catch let error as NSError {
+        print("Error saving \(error)", terminator: "")
+      }
     }
     performSegueWithIdentifier("unwindToNotesList", sender: self)
   }

@@ -2,17 +2,16 @@
 //  Category.swift
 //  Bubble Tea Finder
 //
-//  Created by Pietro Rea on 8/24/14.
-//  Copyright (c) 2014 Pietro Rea. All rights reserved.
+//  Created by Pietro Rea on 7/30/15.
+//  Copyright © 2015 Pietro Rea. All rights reserved.
 //
 
 import Foundation
 import CoreData
 
+@objc(Category)
 class Category: NSManagedObject {
 
-    @NSManaged var name: String
-    @NSManaged var categoryID: String
-    @NSManaged var venue: Venue
+// Insert code here to add functionality to your managed object subclass
 
 }

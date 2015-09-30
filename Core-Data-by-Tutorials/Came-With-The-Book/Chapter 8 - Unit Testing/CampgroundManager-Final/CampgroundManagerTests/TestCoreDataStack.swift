@@ -6,21 +6,18 @@ class TestCoreDataStack: CoreDataStack {
   override init() {
     super.init()
     self.persistentStoreCoordinator = {
-      var psc: NSPersistentStoreCoordinator? =
-      NSPersistentStoreCoordinator(managedObjectModel:
-        self.managedObjectModel)
-      var error: NSError? = nil
+      let psc = NSPersistentStoreCoordinator(
+        managedObjectModel: self.managedObjectModel)
       
-      var ps = psc!.addPersistentStoreWithType(
-        NSInMemoryStoreType, configuration: nil,
-        URL: nil, options: nil, error: &error)
-      
-      if (ps == nil) {
-        abort()
+      do {
+        try psc.addPersistentStoreWithType(
+          NSInMemoryStoreType, configuration: nil,
+          URL: nil, options: nil)
+      } catch {
+        fatalError()
       }
       
       return psc
       }()
-    
   }
 }

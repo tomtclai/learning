@@ -26,15 +26,13 @@ import CoreData
 class CreateNoteViewController : UIViewController, UITextFieldDelegate, UITextViewDelegate
 {
   var managedObjectContext : NSManagedObjectContext?
-  var _note : Note?
-  var note : Note
-  {
-  if _note == nil
-  {
-    _note = NSEntityDescription.insertNewObjectForEntityForName("Note", inManagedObjectContext: self.managedObjectContext!) as? Note
+  lazy var note: Note? = {
+    if let context = self.managedObjectContext
+    {
+      return NSEntityDescription.insertNewObjectForEntityForName("Note", inManagedObjectContext: context) as? Note
     }
-    return _note!
-  }
+    return .None
+  }()
   
   @IBOutlet var titleField : UITextField!
   @IBOutlet var bodyField : UITextView!
@@ -43,7 +41,7 @@ class CreateNoteViewController : UIViewController, UITextFieldDelegate, UITextVi
   
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
-    if let image = _note?.image {
+    if let image = note?.image {
       attachedPhoto.image = image
       view.endEditing(true)
     } else {
@@ -54,12 +52,16 @@ class CreateNoteViewController : UIViewController, UITextFieldDelegate, UITextVi
   
   @IBAction func saveNote()
   {
-    note.title = titleField.text
-    note.body = bodyField.text
-    var error : NSErrorPointer = nil
-    if managedObjectContext!.save(error) == false
-    {
-      print("Error saving \(error)")
+    note?.title = titleField?.text ?? ""
+    note?.body = bodyField.text
+    
+    if let managedObjectContext = managedObjectContext {
+      do {
+        try  managedObjectContext.save()
+      }
+      catch let error as NSError {
+        print("Error saving \(error)", terminator: "")
+      }
     }
     performSegueWithIdentifier("unwindToNotesList", sender: self)
   }

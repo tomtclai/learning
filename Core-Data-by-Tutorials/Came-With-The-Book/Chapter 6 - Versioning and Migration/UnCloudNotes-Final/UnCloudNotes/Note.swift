@@ -34,10 +34,9 @@ class Note : NSManagedObject {
 
   func latestAttachment() -> ImageAttachment? {
     
-    let attachmentsToSort = map(attachments.allObjects) { $0 as? ImageAttachment }
+    let attachmentsToSort = attachments.allObjects.map { $0 as? ImageAttachment }
         .filter { $0 != nil }
-        .map { $0! }
-        .sorted {
+        .map { $0! }.sort {
           let date1 = $0.dateCreated.timeIntervalSinceReferenceDate
           let date2 = $1.dateCreated.timeIntervalSinceReferenceDate
           return date1 > date2

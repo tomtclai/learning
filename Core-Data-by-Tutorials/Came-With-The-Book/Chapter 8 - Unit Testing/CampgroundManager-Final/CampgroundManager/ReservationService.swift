@@ -10,40 +10,40 @@ import Foundation
 import CoreData
 
 public class ReservationService {
-    let managedObjectContext: NSManagedObjectContext
-    let coreDataStack: CoreDataStack
+  let managedObjectContext: NSManagedObjectContext
+  let coreDataStack: CoreDataStack
+  
+  public init(managedObjectContext: NSManagedObjectContext, coreDataStack: CoreDataStack) {
+    self.managedObjectContext = managedObjectContext
+    self.coreDataStack = coreDataStack
+  }
+  
+  public func reserveCampSite(campSite: CampSite, camper: Camper, date: NSDate, numberOfNights: Int) -> (reservation: Reservation?, error: NSError?)  {
+    let reservation = NSEntityDescription.insertNewObjectForEntityForName("Reservation", inManagedObjectContext: managedObjectContext) as! Reservation
+    reservation.camper = camper
+    reservation.campSite = campSite
+    reservation.dateFrom = date
     
-    public init(managedObjectContext: NSManagedObjectContext, coreDataStack: CoreDataStack) {
-        self.managedObjectContext = managedObjectContext
-        self.coreDataStack = coreDataStack
+    let dateComponents = NSDateComponents()
+    dateComponents.day = numberOfNights
+    
+    let calendar = NSCalendar.currentCalendar()
+    let toDate = calendar.dateByAddingComponents(dateComponents, toDate: date, options: [])
+    reservation.dateTo = toDate!
+    
+    // Some complex logic here to determine if reservation is valid or if there are conflicts
+    var registrationError: NSError?
+    
+    if numberOfNights <= 0 {
+      reservation.status = "Invalid"
+      registrationError = NSError(domain: "CampingManager", code: 5, userInfo: ["Problem" : "Invalid number of days"])
+    } else {
+      reservation.status = "Reserved"
     }
     
-    public func reserveCampSite(campSite: CampSite, camper: Camper, date: NSDate, numberOfNights: Int) -> (reservation: Reservation?, error: NSError?)  {
-        let reservation = NSEntityDescription.insertNewObjectForEntityForName("Reservation", inManagedObjectContext: managedObjectContext) as! Reservation
-        reservation.camper = camper
-        reservation.campSite = campSite
-        reservation.dateFrom = date
-        
-        let dateComponents = NSDateComponents()
-        dateComponents.day = numberOfNights
-        
-        let calendar = NSCalendar.currentCalendar()
-        let toDate = calendar.dateByAddingComponents(dateComponents, toDate: date, options: nil)
-        reservation.dateTo = toDate!
-        
-        // Some complex logic here to determine if reservation is valid or if there are conflicts
-      var registrationError: NSError?
-      
-      if numberOfNights <= 0 {
-        reservation.status = "Invalid"
-        registrationError = NSError(domain: "CampingManager", code: 5, userInfo: ["Problem" : "Invalid number of days"])
-      } else {
-        reservation.status = "Reserved"
-      }
-
-        coreDataStack.saveContext(managedObjectContext)
-        
-        // Error here would be a custom error to explain a failed reservation possibly
-        return (reservation, registrationError)
-    }
+    coreDataStack.saveContext(managedObjectContext)
+    
+    // Error here would be a custom error to explain a failed reservation possibly
+    return (reservation, registrationError)
+  }
 }

@@ -24,27 +24,19 @@ class Note : NSManagedObject {
   }
 
   var image: UIImage? {
-    if let attachment = self.latestAttachment() {
-      if attachment.image != nil {
-        return attachment.image
-      }
-      }
-      return nil
+    return latestAttachment?.image
   }
 
-  func latestAttachment() -> Attachment? {
-    let attachmentsToSort = attachments.allObjects as? [Attachment]
-    if attachmentsToSort?.count == 0 {
-      return nil
+  var latestAttachment: Attachment? {
+    let attachmentsToSort = attachments.allObjects.map { $0 as? Attachment }
+      .filter { $0 != nil }
+      .map { $0! }.sort {
+        let date1 = $0.dateCreated.timeIntervalSinceReferenceDate
+        let date2 = $1.dateCreated.timeIntervalSinceReferenceDate
+        return date1 > date2
     }
-
-    attachmentsToSort?.sorted {
-      let date1 = $0.dateCreated.timeIntervalSinceReferenceDate
-      let date2 = $1.dateCreated.timeIntervalSinceReferenceDate
-      return date1 > date2
-    }
-
-    return attachmentsToSort?[0]
+    
+    return attachmentsToSort.first
   }
 
 }

@@ -28,12 +28,16 @@ class NotesListViewController: UITableViewController, NSFetchedResultsController
   
   override func viewWillAppear(animated: Bool){
     super.viewWillAppear(animated)
-    notes.performFetch(nil)
+    do {
+      try notes.performFetch()
+    } catch let error as NSError {
+      print("Error fetching data \(error)")
+    }
     tableView.reloadData()
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    var objects = notes.fetchedObjects
+    let objects = notes.fetchedObjects
     return objects?.count ?? 0
   }
   
@@ -41,13 +45,14 @@ class NotesListViewController: UITableViewController, NSFetchedResultsController
     let note = notes.fetchedObjects![indexPath.row] as? Note
     let identifier = note?.image == nil ? "NoteCell" : "NoteCellImage"
     
-    var cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? NoteTableViewCell
-    cell?.note = notes.fetchedObjects![indexPath.row] as? Note
-    return cell!
+    if let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? NoteTableViewCell {
+      cell.note = notes.fetchedObjects![indexPath.row] as? Note
+      return cell
+    }
+    return UITableViewCell()
   }
   
   func controllerWillChangeContent(controller: NSFetchedResultsController) {
-    
   }
   
   func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
@@ -70,18 +75,18 @@ class NotesListViewController: UITableViewController, NSFetchedResultsController
   }
   
   func controllerDidChangeContent(controller: NSFetchedResultsController) {
-    
   }
   
   @IBAction
   func unwindToNotesList(segue:UIStoryboardSegue) {
     NSLog("Unwinding to Notes List")
-    var error : NSErrorPointer = nil
+
     if stack.context.hasChanges
     {
-      if stack.context.save(error) == false
-      {
-        print("Error saving \(error)")
+      do {
+        try stack.context.save()
+      } catch let error as NSError {
+        print("Error saving context: \(error)")
       }
     }
   }
@@ -91,16 +96,19 @@ class NotesListViewController: UITableViewController, NSFetchedResultsController
     {
       let context = NSManagedObjectContext(concurrencyType: .ConfinementConcurrencyType)
       context.parentContext = stack.context
-      let navController = segue.destinationViewController as! UINavigationController
-      let nextViewController = navController.topViewController as! CreateNoteViewController
-      nextViewController.managedObjectContext = context
+      if let navController = segue.destinationViewController as? UINavigationController {
+        if let nextViewController = navController.topViewController as? CreateNoteViewController {
+          nextViewController.managedObjectContext = context
+        }
+      }
     }
     if segue.identifier == "showNoteDetail" {
-      let detailView = segue.destinationViewController as! NoteDetailViewController
-        if let selectedIndex = tableView.indexPathForSelectedRow() {
+      if let detailView = segue.destinationViewController as? NoteDetailViewController {
+        if let selectedIndex = tableView.indexPathForSelectedRow {
           if let objects = notes.fetchedObjects {
             detailView.note = objects[selectedIndex.row] as? Note
           }
+        }
       }
     }
   }

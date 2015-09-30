@@ -10,21 +10,21 @@ import Foundation
 import CoreData
 
 public class CamperService {
-    let managedObjectContext: NSManagedObjectContext
-    let coreDataStack: CoreDataStack
+  let managedObjectContext: NSManagedObjectContext
+  let coreDataStack: CoreDataStack
+  
+  public init(managedObjectContext: NSManagedObjectContext, coreDataStack: CoreDataStack) {
+    self.managedObjectContext = managedObjectContext
+    self.coreDataStack = coreDataStack
+  }
+  
+  public func addCamper(name: String, phoneNumber: String) -> Camper? {
+    let camper = NSEntityDescription.insertNewObjectForEntityForName("Camper", inManagedObjectContext: managedObjectContext) as! Camper
+    camper.fullName = name
+    camper.phoneNumber = phoneNumber
     
-    public init(managedObjectContext: NSManagedObjectContext, coreDataStack: CoreDataStack) {
-        self.managedObjectContext = managedObjectContext
-        self.coreDataStack = coreDataStack
-    }
+    coreDataStack.saveContext(managedObjectContext)
     
-    public func addCamper(name: String, phoneNumber: String) -> Camper? {
-        var camper = NSEntityDescription.insertNewObjectForEntityForName("Camper", inManagedObjectContext: self.managedObjectContext) as! Camper
-        camper.fullName = name
-        camper.phoneNumber = phoneNumber
-
-        self.coreDataStack.saveContext(self.managedObjectContext)
-
-        return camper
-    }
+    return camper
+  }
 }

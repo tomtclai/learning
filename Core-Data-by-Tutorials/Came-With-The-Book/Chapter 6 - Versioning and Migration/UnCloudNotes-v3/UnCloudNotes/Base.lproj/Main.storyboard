@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="nzh-cS-c40">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8152.3" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="nzh-cS-c40">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8124.4"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -66,9 +67,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell" rowHeight="80" id="Ugt-Nb-pbe" customClass="NoteTableViewCell" customModule="UnCloudNotes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="600" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ugt-Nb-pbe" id="dyi-Hr-oYM">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLV-Jz-XBv">
@@ -106,9 +108,10 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCellImage" rowHeight="80" id="o7t-1p-Lxg" customClass="NoteTableViewCell" customModule="UnCloudNotes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="44"/>
+                                <rect key="frame" x="0.0" y="166" width="600" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o7t-1p-Lxg" id="TEd-Xa-aZn">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28X-6R-oxK">
@@ -152,7 +155,6 @@
                                     <outlet property="noteCreateDate" destination="qF3-It-NzW" id="DRs-g7-cXA"/>
                                     <outlet property="noteImage" destination="moU-sc-IAN" id="5kV-xc-xrU"/>
                                     <outlet property="noteTitle" destination="28X-6R-oxK" id="8xr-Ts-2iB"/>
-                                    <segue destination="t4y-WJ-gN4" kind="showDetail" identifier="showNoteDetail" id="8gn-MZ-79L"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -178,7 +180,7 @@
         <!--Create Note-->
         <scene sceneID="SJm-tj-7cb">
             <objects>
-                <viewController title="Create Note" automaticallyAdjustsScrollViewInsets="NO" id="pog-s1-UOr" customClass="CreateNoteViewController" customModule="UnCloudNotes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateNote" title="Create Note" automaticallyAdjustsScrollViewInsets="NO" id="pog-s1-UOr" customClass="CreateNoteViewController" customModule="UnCloudNotes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Hh-cx-kOk"/>
                         <viewControllerLayoutGuide type="bottom" id="UQV-JL-b2F"/>
@@ -390,6 +392,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8gn-MZ-79L"/>
+        <segue reference="Puh-5n-idn"/>
     </inferredMetricsTieBreakers>
 </document>

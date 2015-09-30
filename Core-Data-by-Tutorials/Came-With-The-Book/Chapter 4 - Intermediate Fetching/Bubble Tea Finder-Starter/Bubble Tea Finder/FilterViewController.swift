@@ -44,5 +44,4 @@ class FilterViewController: UITableViewController {
     
     dismissViewControllerAnimated(true, completion:nil)
   }
-  
 }

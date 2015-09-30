@@ -2,18 +2,16 @@
 //  CampSite.swift
 //  CampgroundManager
 //
-//  Created by Aaron Douglas on 8/17/14.
-//  Copyright (c) 2014 Razeware. All rights reserved.
+//  Created by Aaron Douglas on 6/26/15.
+//  Copyright © 2015 Razeware. All rights reserved.
 //
 
 import Foundation
 import CoreData
 
+@objc(CampSite)
 public class CampSite: NSManagedObject {
 
-    @NSManaged public var siteNumber: NSNumber
-    @NSManaged public var electricity: NSNumber
-    @NSManaged public var water: NSNumber
-    @NSManaged public var reservations: Reservation
+// Insert code here to add functionality to your managed object subclass
 
 }

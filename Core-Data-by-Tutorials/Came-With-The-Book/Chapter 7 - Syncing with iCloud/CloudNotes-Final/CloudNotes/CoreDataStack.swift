@@ -23,7 +23,7 @@
 import Foundation
 import CoreData
 
-@objc class CoreDataStack: Printable {
+class CoreDataStack: CustomStringConvertible {
   var modelName : String
   var storeName : String
   var options: NSDictionary?
@@ -35,6 +35,15 @@ import CoreData
     didSet {
       oldValue?.removeObserver(self, name: NSPersistentStoreDidImportUbiquitousContentChangesNotification, object: coordinator)
       ubiquitousChangesObserver?.addObserver(self, selector: "persistentStoreDidImportUbiquitousContentChanges:", name: NSPersistentStoreDidImportUbiquitousContentChangesNotification, object:coordinator)
+      
+      oldValue?.removeObserver(self,
+        name:NSPersistentStoreCoordinatorStoresWillChangeNotification,
+        object: coordinator)
+      
+      ubiquitousChangesObserver?.addObserver(self,
+        selector: "persistentStoreCoordinatorWillChangeStores:",
+        name:NSPersistentStoreCoordinatorStoresWillChangeNotification,
+        object: coordinator)
     }
   }
 
@@ -51,12 +60,24 @@ import CoreData
       self.context.mergeChangesFromContextDidSaveNotification(notification)
     }
   }
+  
+  func persistentStoreCoordinatorWillChangeStores(notification: NSNotification) {
+    if context.hasChanges {
+      do {
+        try context.save()
+      } catch let error as NSError {
+        print("Error saving \(error)", terminator: "")
+      }
+    }
+    context.reset()
+  }
 
   func save() {
-    var error : NSError?
     if context.hasChanges {
-      if context.save(&error) == false {
-        println("Error saving \(error)")
+      do {
+        try context.save()
+      } catch let error as NSError {
+        print("Error saving \(error)")
       }
     }
   }
@@ -76,16 +97,17 @@ import CoreData
   }
 
   var storeURL : NSURL {
-    var storePaths = NSSearchPathForDirectoriesInDomains(.ApplicationSupportDirectory, .UserDomainMask, true) as! [NSString]
-    let storePath = storePaths.first as? String
+    let storePaths = NSSearchPathForDirectoriesInDomains(.ApplicationSupportDirectory, .UserDomainMask, true)
+    let storePath = String(storePaths.first) as NSString
     let fileManager = NSFileManager.defaultManager()
-
-    if let storePath = storePath {
-      fileManager.createDirectoryAtPath(storePath, withIntermediateDirectories:
-        true, attributes: nil, error: nil)
-      return NSURL.fileURLWithPath(storePath.stringByAppendingPathComponent(storeName + ".sqlite"))!
+    
+    do {
+      try fileManager.createDirectoryAtPath(storePath as String, withIntermediateDirectories: true, attributes: nil)
+    } catch let error as NSError {
+      print("Error creating storePath \(storePath): \(error)")
     }
-    return NSURL()
+    let sqliteFilePath = storePath.stringByAppendingPathComponent(storeName + ".sqlite")
+    return NSURL(fileURLWithPath: sqliteFilePath)
   }
 
   lazy var model : NSManagedObjectModel = NSManagedObjectModel(contentsOfURL: self.modelURL)!
@@ -95,12 +117,18 @@ import CoreData
   lazy var coordinator : NSPersistentStoreCoordinator = {
     let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.model)
     var storeError : NSError?
-    self.store = coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil,
-      URL: self.storeURL,
-      options: nil,
-      error: &storeError)
+    do {
+      self.store = try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil,
+        URL: self.storeURL,
+        options: nil)
+    } catch var error as NSError {
+      storeError = error
+      self.store = nil
+    } catch {
+      fatalError()
+    }
     if storeError != nil {
-      println("store error \(storeError!)")
+      print("store error \(storeError!)")
     }
     return coordinator
   }()
@@ -108,7 +136,7 @@ import CoreData
   lazy var context : NSManagedObjectContext = {
     let context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
     context.persistentStoreCoordinator = self.coordinator
-    println(self)
+    print(self)
     return context
   }()
 

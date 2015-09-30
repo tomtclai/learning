@@ -7,34 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE0F4D891B6A44F0005ABA07 /* Stats+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0F4D7F1B6A44F0005ABA07 /* Stats+CoreDataProperties.swift */; };
+		FE0F4D8A1B6A44F0005ABA07 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0F4D801B6A44F0005ABA07 /* Stats.swift */; };
+		FE0F4D8B1B6A44F0005ABA07 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0F4D811B6A44F0005ABA07 /* Location+CoreDataProperties.swift */; };
+		FE0F4D8C1B6A44F0005ABA07 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0F4D821B6A44F0005ABA07 /* Location.swift */; };
+		FE0F4D8D1B6A44F0005ABA07 /* Venue+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0F4D831B6A44F0005ABA07 /* Venue+CoreDataProperties.swift */; };
+		FE0F4D8E1B6A44F0005ABA07 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0F4D841B6A44F0005ABA07 /* Venue.swift */; };
+		FE0F4D8F1B6A44F0005ABA07 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0F4D851B6A44F0005ABA07 /* Category+CoreDataProperties.swift */; };
+		FE0F4D901B6A44F0005ABA07 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0F4D861B6A44F0005ABA07 /* Category.swift */; };
+		FE0F4D911B6A44F0005ABA07 /* PriceInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0F4D871B6A44F0005ABA07 /* PriceInfo+CoreDataProperties.swift */; };
+		FE0F4D921B6A44F0005ABA07 /* PriceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0F4D881B6A44F0005ABA07 /* PriceInfo.swift */; };
+		FE0F4D951B6A494C005ABA07 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE0F4D941B6A494C005ABA07 /* Launch Screen.storyboard */; };
 		FE67C77E19AED2F500682323 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE67C77D19AED2F500682323 /* FilterViewController.swift */; };
 		FE74E09919AA868F00F39627 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE74E09819AA868F00F39627 /* AppDelegate.swift */; };
 		FE74E09B19AA868F00F39627 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE74E09A19AA868F00F39627 /* ViewController.swift */; };
 		FE74E09E19AA868F00F39627 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE74E09C19AA868F00F39627 /* Main.storyboard */; };
 		FE74E0A019AA868F00F39627 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE74E09F19AA868F00F39627 /* Images.xcassets */; };
-		FE74E0AC19AA868F00F39627 /* Bubble_Tea_FinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE74E0AB19AA868F00F39627 /* Bubble_Tea_FinderTests.swift */; };
 		FE8E30D319AA9AFC004AD40B /* attribution.txt in Resources */ = {isa = PBXBuildFile; fileRef = FE8E30D219AA9AFC004AD40B /* attribution.txt */; };
-		FE8E30D619AAA6EA004AD40B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FE8E30D419AAA6EA004AD40B /* Model.xcdatamodeld */; };
-		FE8E30DD19AAC0C5004AD40B /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8E30DC19AAC0C5004AD40B /* Category.swift */; };
-		FE8E30DF19AAC0C5004AD40B /* PriceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8E30DE19AAC0C5004AD40B /* PriceInfo.swift */; };
-		FE8E30E119AAC0C5004AD40B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8E30E019AAC0C5004AD40B /* Location.swift */; };
-		FE8E30E319AAC15A004AD40B /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8E30E219AAC15A004AD40B /* Venue.swift */; };
-		FE8E30E519AAC15A004AD40B /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8E30E419AAC15A004AD40B /* Stats.swift */; };
+		FE8E30D619AAA6EA004AD40B /* Bubble_Tea_Finder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FE8E30D419AAA6EA004AD40B /* Bubble_Tea_Finder.xcdatamodeld */; };
 		FE8E30E719AAC2D8004AD40B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8E30E619AAC2D8004AD40B /* CoreDataStack.swift */; };
 		FE9C62C319AA94ED0083EFDE /* seed.json in Resources */ = {isa = PBXBuildFile; fileRef = FE9C62C219AA94ED0083EFDE /* seed.json */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		FE74E0A619AA868F00F39627 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FE74E08B19AA868F00F39627 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE74E09219AA868F00F39627;
-			remoteInfo = "Bubble Tea Finder";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		FE0F4D7F1B6A44F0005ABA07 /* Stats+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Stats+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FE0F4D801B6A44F0005ABA07 /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
+		FE0F4D811B6A44F0005ABA07 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FE0F4D821B6A44F0005ABA07 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		FE0F4D831B6A44F0005ABA07 /* Venue+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Venue+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FE0F4D841B6A44F0005ABA07 /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
+		FE0F4D851B6A44F0005ABA07 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FE0F4D861B6A44F0005ABA07 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		FE0F4D871B6A44F0005ABA07 /* PriceInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PriceInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FE0F4D881B6A44F0005ABA07 /* PriceInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceInfo.swift; sourceTree = "<group>"; };
+		FE0F4D941B6A494C005ABA07 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FE67C77D19AED2F500682323 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		FE74E09319AA868F00F39627 /* Bubble Tea Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bubble Tea Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE74E09719AA868F00F39627 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -42,17 +48,9 @@
 		FE74E09A19AA868F00F39627 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FE74E09D19AA868F00F39627 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FE74E09F19AA868F00F39627 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		FE74E0A519AA868F00F39627 /* Bubble Tea FinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bubble Tea FinderTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE74E0AA19AA868F00F39627 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FE74E0AB19AA868F00F39627 /* Bubble_Tea_FinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bubble_Tea_FinderTests.swift; sourceTree = "<group>"; };
 		FE8E30D219AA9AFC004AD40B /* attribution.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = attribution.txt; sourceTree = "<group>"; };
-		FE8E30D519AAA6EA004AD40B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		FE8E30D519AAA6EA004AD40B /* Bubble_Tea_Finder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bubble_Tea_Finder.xcdatamodel; sourceTree = "<group>"; };
 		FE8E30D719AAC06C004AD40B /* Bubble Tea Finder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bubble Tea Finder-Bridging-Header.h"; sourceTree = "<group>"; };
-		FE8E30DC19AAC0C5004AD40B /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		FE8E30DE19AAC0C5004AD40B /* PriceInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceInfo.swift; sourceTree = "<group>"; };
-		FE8E30E019AAC0C5004AD40B /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		FE8E30E219AAC15A004AD40B /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
-		FE8E30E419AAC15A004AD40B /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		FE8E30E619AAC2D8004AD40B /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		FE9C62C219AA94ED0083EFDE /* seed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = seed.json; path = ../seed.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,21 +63,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FE74E0A219AA868F00F39627 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FE0F4D931B6A44F9005ABA07 /* NSManagedObject */ = {
+			isa = PBXGroup;
+			children = (
+				FE0F4D7F1B6A44F0005ABA07 /* Stats+CoreDataProperties.swift */,
+				FE0F4D801B6A44F0005ABA07 /* Stats.swift */,
+				FE0F4D811B6A44F0005ABA07 /* Location+CoreDataProperties.swift */,
+				FE0F4D821B6A44F0005ABA07 /* Location.swift */,
+				FE0F4D831B6A44F0005ABA07 /* Venue+CoreDataProperties.swift */,
+				FE0F4D841B6A44F0005ABA07 /* Venue.swift */,
+				FE0F4D851B6A44F0005ABA07 /* Category+CoreDataProperties.swift */,
+				FE0F4D861B6A44F0005ABA07 /* Category.swift */,
+				FE0F4D871B6A44F0005ABA07 /* PriceInfo+CoreDataProperties.swift */,
+				FE0F4D881B6A44F0005ABA07 /* PriceInfo.swift */,
+			);
+			name = NSManagedObject;
+			sourceTree = "<group>";
+		};
 		FE74E08A19AA868F00F39627 = {
 			isa = PBXGroup;
 			children = (
 				FE74E09519AA868F00F39627 /* Bubble Tea Finder */,
-				FE74E0A819AA868F00F39627 /* Bubble Tea FinderTests */,
 				FE74E09419AA868F00F39627 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,7 +95,6 @@
 			isa = PBXGroup;
 			children = (
 				FE74E09319AA868F00F39627 /* Bubble Tea Finder.app */,
-				FE74E0A519AA868F00F39627 /* Bubble Tea FinderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,14 +106,11 @@
 				FE74E09819AA868F00F39627 /* AppDelegate.swift */,
 				FE74E09A19AA868F00F39627 /* ViewController.swift */,
 				FE67C77D19AED2F500682323 /* FilterViewController.swift */,
+				FE0F4D931B6A44F9005ABA07 /* NSManagedObject */,
 				FE74E09C19AA868F00F39627 /* Main.storyboard */,
-				FE8E30D419AAA6EA004AD40B /* Model.xcdatamodeld */,
+				FE0F4D941B6A494C005ABA07 /* Launch Screen.storyboard */,
+				FE8E30D419AAA6EA004AD40B /* Bubble_Tea_Finder.xcdatamodeld */,
 				FE74E09F19AA868F00F39627 /* Images.xcassets */,
-				FE8E30E419AAC15A004AD40B /* Stats.swift */,
-				FE8E30E219AAC15A004AD40B /* Venue.swift */,
-				FE8E30E019AAC0C5004AD40B /* Location.swift */,
-				FE8E30DE19AAC0C5004AD40B /* PriceInfo.swift */,
-				FE8E30DC19AAC0C5004AD40B /* Category.swift */,
 				FE9C62C219AA94ED0083EFDE /* seed.json */,
 				FE8E30D219AA9AFC004AD40B /* attribution.txt */,
 				FE74E09619AA868F00F39627 /* Supporting Files */,
@@ -120,23 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				FE74E09719AA868F00F39627 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		FE74E0A819AA868F00F39627 /* Bubble Tea FinderTests */ = {
-			isa = PBXGroup;
-			children = (
-				FE74E0AB19AA868F00F39627 /* Bubble_Tea_FinderTests.swift */,
-				FE74E0A919AA868F00F39627 /* Supporting Files */,
-			);
-			path = "Bubble Tea FinderTests";
-			sourceTree = "<group>";
-		};
-		FE74E0A919AA868F00F39627 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				FE74E0AA19AA868F00F39627 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -161,39 +147,18 @@
 			productReference = FE74E09319AA868F00F39627 /* Bubble Tea Finder.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FE74E0A419AA868F00F39627 /* Bubble Tea FinderTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FE74E0B219AA868F00F39627 /* Build configuration list for PBXNativeTarget "Bubble Tea FinderTests" */;
-			buildPhases = (
-				FE74E0A119AA868F00F39627 /* Sources */,
-				FE74E0A219AA868F00F39627 /* Frameworks */,
-				FE74E0A319AA868F00F39627 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FE74E0A719AA868F00F39627 /* PBXTargetDependency */,
-			);
-			name = "Bubble Tea FinderTests";
-			productName = "Bubble Tea FinderTests";
-			productReference = FE74E0A519AA868F00F39627 /* Bubble Tea FinderTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		FE74E08B19AA868F00F39627 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Pietro Rea";
 				TargetAttributes = {
 					FE74E09219AA868F00F39627 = {
 						CreatedOnToolsVersion = 6.0;
-					};
-					FE74E0A419AA868F00F39627 = {
-						CreatedOnToolsVersion = 6.0;
-						TestTargetID = FE74E09219AA868F00F39627;
 					};
 				};
 			};
@@ -211,7 +176,6 @@
 			projectRoot = "";
 			targets = (
 				FE74E09219AA868F00F39627 /* Bubble Tea Finder */,
-				FE74E0A419AA868F00F39627 /* Bubble Tea FinderTests */,
 			);
 		};
 /* End PBXProject section */
@@ -224,14 +188,8 @@
 				FE74E09E19AA868F00F39627 /* Main.storyboard in Resources */,
 				FE9C62C319AA94ED0083EFDE /* seed.json in Resources */,
 				FE8E30D319AA9AFC004AD40B /* attribution.txt in Resources */,
+				FE0F4D951B6A494C005ABA07 /* Launch Screen.storyboard in Resources */,
 				FE74E0A019AA868F00F39627 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FE74E0A319AA868F00F39627 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,36 +200,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE0F4D8B1B6A44F0005ABA07 /* Location+CoreDataProperties.swift in Sources */,
+				FE0F4D8D1B6A44F0005ABA07 /* Venue+CoreDataProperties.swift in Sources */,
 				FE74E09B19AA868F00F39627 /* ViewController.swift in Sources */,
-				FE8E30E119AAC0C5004AD40B /* Location.swift in Sources */,
 				FE74E09919AA868F00F39627 /* AppDelegate.swift in Sources */,
-				FE8E30E319AAC15A004AD40B /* Venue.swift in Sources */,
+				FE0F4D8E1B6A44F0005ABA07 /* Venue.swift in Sources */,
+				FE0F4D921B6A44F0005ABA07 /* PriceInfo.swift in Sources */,
 				FE67C77E19AED2F500682323 /* FilterViewController.swift in Sources */,
-				FE8E30D619AAA6EA004AD40B /* Model.xcdatamodeld in Sources */,
-				FE8E30E519AAC15A004AD40B /* Stats.swift in Sources */,
-				FE8E30DD19AAC0C5004AD40B /* Category.swift in Sources */,
+				FE0F4D8C1B6A44F0005ABA07 /* Location.swift in Sources */,
+				FE0F4D8F1B6A44F0005ABA07 /* Category+CoreDataProperties.swift in Sources */,
+				FE0F4D8A1B6A44F0005ABA07 /* Stats.swift in Sources */,
+				FE0F4D901B6A44F0005ABA07 /* Category.swift in Sources */,
+				FE0F4D891B6A44F0005ABA07 /* Stats+CoreDataProperties.swift in Sources */,
+				FE8E30D619AAA6EA004AD40B /* Bubble_Tea_Finder.xcdatamodeld in Sources */,
 				FE8E30E719AAC2D8004AD40B /* CoreDataStack.swift in Sources */,
-				FE8E30DF19AAC0C5004AD40B /* PriceInfo.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FE74E0A119AA868F00F39627 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FE74E0AC19AA868F00F39627 /* Bubble_Tea_FinderTests.swift in Sources */,
+				FE0F4D911B6A44F0005ABA07 /* PriceInfo+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		FE74E0A719AA868F00F39627 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FE74E09219AA868F00F39627 /* Bubble Tea Finder */;
-			targetProxy = FE74E0A619AA868F00F39627 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FE74E09C19AA868F00F39627 /* Main.storyboard */ = {
@@ -305,6 +252,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -319,7 +267,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -355,7 +303,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -366,10 +314,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Bubble Tea Finder/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bubble Tea Finder/Bubble Tea Finder-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -380,46 +328,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Bubble Tea Finder/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bubble Tea Finder/Bubble Tea Finder-Bridging-Header.h";
-			};
-			name = Release;
-		};
-		FE74E0B319AA868F00F39627 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Bubble Tea FinderTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bubble Tea Finder.app/Bubble Tea Finder";
-			};
-			name = Debug;
-		};
-		FE74E0B419AA868F00F39627 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Bubble Tea FinderTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bubble Tea Finder.app/Bubble Tea Finder";
 			};
 			name = Release;
 		};
@@ -444,25 +358,16 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FE74E0B219AA868F00F39627 /* Build configuration list for PBXNativeTarget "Bubble Tea FinderTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FE74E0B319AA868F00F39627 /* Debug */,
-				FE74E0B419AA868F00F39627 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		FE8E30D419AAA6EA004AD40B /* Model.xcdatamodeld */ = {
+		FE8E30D419AAA6EA004AD40B /* Bubble_Tea_Finder.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				FE8E30D519AAA6EA004AD40B /* Model.xcdatamodel */,
+				FE8E30D519AAA6EA004AD40B /* Bubble_Tea_Finder.xcdatamodel */,
 			);
-			currentVersion = FE8E30D519AAA6EA004AD40B /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			currentVersion = FE8E30D519AAA6EA004AD40B /* Bubble_Tea_Finder.xcdatamodel */;
+			path = Bubble_Tea_Finder.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

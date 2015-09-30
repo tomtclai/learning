@@ -19,7 +19,7 @@ class Note : NSManagedObject
 
     override func awakeFromInsert()
     {
-        super.awakeFromInsert()
-        dateCreated = NSDate()
+      super.awakeFromInsert()
+      dateCreated = NSDate()
     }
 }

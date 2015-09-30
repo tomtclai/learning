@@ -138,7 +138,6 @@
 				7862591219CD3E8B006A2B53 /* Attachment.swift */,
 				7862592019CDFEDD006A2B53 /* ImageAttachment.swift */,
 			);
-			name = CloudNotes;
 			path = CloudNotes;
 			sourceTree = "<group>";
 		};
@@ -156,7 +155,6 @@
 				C77E1E8F1947D6D700762492 /* CloudNotesTests.swift */,
 				C77E1E8D1947D6D700762492 /* Supporting Files */,
 			);
-			name = CloudNotesTests;
 			path = CloudNotesTests;
 			sourceTree = "<group>";
 		};
@@ -212,6 +210,8 @@
 		C77E1E6F1947D6D700762492 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Razeware LLC";
 				TargetAttributes = {

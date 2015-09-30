@@ -9,8 +9,12 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "218px-Flag_of_Uruguay.svg.png"
+      "filename" : "218px-Flag_of_Uruguay.svg.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

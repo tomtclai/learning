@@ -2,68 +2,69 @@
 //  CoreDataStack.swift
 //  Dog Walk
 //
-//  Created by Pietro Rea on 4/20/15.
-//  Copyright (c) 2015 Razeware. All rights reserved.
+//  Created by Pietro Rea on 7/18/15.
+//  Copyright © 2015 Razeware. All rights reserved.
 //
 
 import CoreData
 
 class CoreDataStack {
-  let context:NSManagedObjectContext
-  let psc:NSPersistentStoreCoordinator
-  let model:NSManagedObjectModel
-  let store:NSPersistentStore?
   
-  init() {
-    //1
-    let bundle = NSBundle.mainBundle()
-    let modelURL =
-    bundle.URLForResource("Dog Walk", withExtension:"momd")
-    model = NSManagedObjectModel(contentsOfURL: modelURL!)!
-    
-    //2
-    psc = NSPersistentStoreCoordinator(managedObjectModel:model)
-    
-    //3
-    context = NSManagedObjectContext()
-    context.persistentStoreCoordinator = psc
-    
-    //4
-    let documentsURL =
-    CoreDataStack.applicationDocumentsDirectory()
-    
-    let storeURL =
-    documentsURL.URLByAppendingPathComponent("Dog Walk")
-    
-    let options =
-    [NSMigratePersistentStoresAutomaticallyOption: true]
-    
-    var error: NSError? = nil
-    store = psc.addPersistentStoreWithType(NSSQLiteStoreType,
-      configuration: nil,
-      URL: storeURL,
-      options: options,
-      error:&error)
-    
-    if store == nil {
-      println("Error adding persistent store: \(error)")
-      abort()
-    }
-  }
+  let modelName = "Dog Walk"
   
-  func saveContext() {
-    var error: NSError? = nil
-    if context.hasChanges && !context.save(&error) {
-    println("Could not save: \(error), \(error?.userInfo)")
+  lazy var context: NSManagedObjectContext = {
+    
+    var managedObjectContext = NSManagedObjectContext(
+      concurrencyType: .MainQueueConcurrencyType)
+    
+    managedObjectContext.persistentStoreCoordinator = self.psc
+    return managedObjectContext
+    }()
+  
+  private lazy var psc: NSPersistentStoreCoordinator = {
+    
+    let coordinator = NSPersistentStoreCoordinator(
+      managedObjectModel: self.managedObjectModel)
+    
+    let url = self.applicationDocumentsDirectory
+      .URLByAppendingPathComponent(self.modelName)
+    
+    do {
+      let options =
+      [NSMigratePersistentStoresAutomaticallyOption : true]
+      
+      try coordinator.addPersistentStoreWithType(
+        NSSQLiteStoreType, configuration: nil, URL: url,
+        options: options)
+    } catch  {
+      print("Error adding persistent store.")
     }
-  }
-
-  class func applicationDocumentsDirectory() -> NSURL {
-    let fileManager = NSFileManager.defaultManager()
     
-    let urls = fileManager.URLsForDirectory(.DocumentDirectory,
-      inDomains: .UserDomainMask) as! [NSURL]
+    return coordinator
+    }()
+  
+  private lazy var managedObjectModel: NSManagedObjectModel = {
     
-    return urls[0]
+    let modelURL = NSBundle.mainBundle()
+      .URLForResource(self.modelName,
+        withExtension: "momd")!
+    return NSManagedObjectModel(contentsOfURL: modelURL)!
+    }()
+  
+  private lazy var applicationDocumentsDirectory: NSURL = {
+    let urls = NSFileManager.defaultManager().URLsForDirectory(
+      .DocumentDirectory, inDomains: .UserDomainMask)
+    return urls[urls.count-1]
+    }()
+  
+  func saveContext () {
+    if context.hasChanges {
+      do {
+        try context.save()
+      } catch let error as NSError {
+        print("Error: \(error.localizedDescription)")
+        abort()
+      }
+    }
   }
 }

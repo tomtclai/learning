@@ -30,7 +30,7 @@ class AttachPhotoViewController: UIViewController, UIImagePickerControllerDelega
     imagePicker.view.frame = view.bounds
   }
 
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+  func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
     if let note = note {
       note.image = info[UIImagePickerControllerOriginalImage] as? UIImage
     }

@@ -9,32 +9,40 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController, FilterViewControllerDelegate {
+let filterViewControllerSegueIdentifier = "toFilterViewController"
+let venueCellIdentifier = "VenueCell"
+
+class ViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
-  var coreDataStack: CoreDataStack!
   var asyncFetchRequest: NSAsynchronousFetchRequest!
+  var coreDataStack: CoreDataStack!
   var fetchRequest: NSFetchRequest!
   var venues: [Venue]! = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let batchUpdate = NSBatchUpdateRequest(entityName: "Venue")
-    batchUpdate.propertiesToUpdate
-      = ["favorite" : NSNumber(bool: true)]
-    batchUpdate.affectedStores = coreDataStack.psc.persistentStores
+    let batchUpdate =
+    NSBatchUpdateRequest(entityName: "Venue")
+    
+    batchUpdate.propertiesToUpdate =
+      ["favorite" : NSNumber(bool: true)]
+    
+    batchUpdate.affectedStores =
+      coreDataStack.context
+        .persistentStoreCoordinator!.persistentStores
+    
     batchUpdate.resultType = .UpdatedObjectsCountResultType
     
-    var batchError: NSError?
-    let batchResult =
-    coreDataStack.context.executeRequest(batchUpdate,
-      error: &batchError) as! NSBatchUpdateResult?
-    
-    if let result = batchResult {
-      println("Records updated \(result.result!)")
-    } else {
-      println("Could not update \(batchError), \(batchError!.userInfo)")
+    do {
+      let batchResult =
+      try coreDataStack.context
+        .executeRequest(batchUpdate) as! NSBatchUpdateResult
+      
+      print("Records updated \(batchResult.result!)")
+    } catch let error as NSError {
+        print("Could not update \(error), \(error.userInfo)")
     }
     
     //1
@@ -43,56 +51,31 @@ class ViewController: UIViewController, FilterViewControllerDelegate {
     //2
     asyncFetchRequest =
       NSAsynchronousFetchRequest(fetchRequest: fetchRequest)
-        { [unowned self] (result: NSAsynchronousFetchResult! )
-          -> Void in
-          
-          self.venues = result.finalResult as! [Venue]
-          self.tableView.reloadData()
+      { [unowned self] (result: NSAsynchronousFetchResult! )
+      -> Void in
+      self.venues = result.finalResult as! [Venue]
+      self.tableView.reloadData()
     }
     
     //3
-    var error: NSError?
-    let results =
-    coreDataStack.context.executeRequest(asyncFetchRequest,
-      error: &error)
-    
-    if let persistentStoreResults = results {
+    do {
+      try coreDataStack.context.executeRequest(asyncFetchRequest)
       //Returns immediately, cancel here if you want
-    } else {
-      println("Could not fetch \(error), \(error!.userInfo)")
+    } catch let error as NSError {
+        print("Could not fetch \(error), \(error.userInfo)")
     }
   }
   
-  func tableView(tableView: UITableView?,
-    numberOfRowsInSection section: Int) -> Int {
-      return venues.count
-  }
-  
-  func tableView(tableView: UITableView!,
-    cellForRowAtIndexPath
-    indexPath: NSIndexPath!) -> UITableViewCell! {
+  override func prepareForSegue(segue: UIStoryboardSegue,
+    sender: AnyObject?) {
     
-    var cell =
-    tableView.dequeueReusableCellWithIdentifier("VenueCell")
-    as! UITableViewCell
-    
-    let venue = venues[indexPath.row]
-    cell.textLabel!.text = venue.name
-    cell.detailTextLabel!.text = venue.priceInfo.priceCategory
-    
-    return cell
-  }
-
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    
-    if segue.identifier == "toFilterViewController" {
-      
+    if segue.identifier == filterViewControllerSegueIdentifier {
       let navController =
       segue.destinationViewController as! UINavigationController
       
       let filterVC =
       navController.topViewController as! FilterViewController
-    
+      
       filterVC.coreDataStack = coreDataStack
       filterVC.delegate = self
     }
@@ -102,44 +85,64 @@ class ViewController: UIViewController, FilterViewControllerDelegate {
     
   }
   
-  //MARK - FilterViewControllerDelegate methods
+  //MARK: - Helper methods
   
-  func filterViewController(filter: FilterViewController,
-    didSelectPredicate predicate:NSPredicate?,
-    sortDescriptor:NSSortDescriptor?) {
-      
-      fetchRequest.predicate = nil
-      fetchRequest.sortDescriptors = nil
-      
-      if let fetchPredicate = predicate {
-        fetchRequest.predicate = fetchPredicate
-      }
-      
-      if let sr = sortDescriptor {
-        fetchRequest.sortDescriptors = [sr]
-      }
-      
-      fetchAndReload()
-  }
-  
-  //MARK - Helper methods
-  
-  func fetchAndReload(){
+  func fetchAndReload() {
     
-    var error: NSError?
-    
-    let results =
-    coreDataStack.context.executeFetchRequest(fetchRequest,
-      error: &error) as! [Venue]?
-    
-    if let fetchedResults = results {
-      venues = fetchedResults
-    } else {
-      println("Could not fetch \(error), \(error!.userInfo)")
-    }
-    
+    do {
+    venues =
+      try coreDataStack.context
+      .executeFetchRequest(fetchRequest) as! [Venue]
     tableView.reloadData()
+    
+  } catch let error as NSError {
+      print("Could not fetch \(error), \(error.userInfo)")
+    }
   }
-  
 }
 
+extension ViewController: UITableViewDataSource {
+  
+  func tableView(tableView: UITableView,
+  numberOfRowsInSection section: Int) -> Int {
+    return venues.count
+  }
+  
+  func tableView(tableView: UITableView,
+    cellForRowAtIndexPath indexPath: NSIndexPath)
+    -> UITableViewCell {
+    
+    let cell =
+    tableView
+      .dequeueReusableCellWithIdentifier(venueCellIdentifier)!
+    
+    let venue =  venues[indexPath.row]
+    cell.textLabel!.text = venue.name
+    cell.detailTextLabel!.text = venue.priceInfo?.priceCategory
+    
+    return cell
+  }
+}
+
+//MARK: FilterViewControllerDelegate methods
+
+extension ViewController: FilterViewControllerDelegate {
+  
+  func filterViewController(filter: FilterViewController,
+  didSelectPredicate predicate:NSPredicate?,
+  sortDescriptor:NSSortDescriptor?) {
+    
+    fetchRequest.predicate = nil
+    fetchRequest.sortDescriptors = nil
+    
+    if let fetchPredicate = predicate {
+      fetchRequest.predicate = fetchPredicate
+    }
+    
+    if let sr = sortDescriptor {
+      fetchRequest.sortDescriptors = [sr]
+    }
+    
+    fetchAndReload()
+  }
+}

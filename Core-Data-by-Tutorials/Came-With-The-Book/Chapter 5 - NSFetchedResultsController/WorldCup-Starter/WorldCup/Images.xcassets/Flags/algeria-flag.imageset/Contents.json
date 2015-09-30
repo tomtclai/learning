@@ -9,8 +9,12 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "640px-Flag_of_Algeria.svg.png"
+      "filename" : "640px-Flag_of_Algeria.svg.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

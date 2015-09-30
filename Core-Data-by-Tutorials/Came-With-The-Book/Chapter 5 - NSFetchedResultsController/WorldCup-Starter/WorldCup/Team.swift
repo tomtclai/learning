@@ -2,18 +2,16 @@
 //  Team.swift
 //  WorldCup
 //
-//  Created by Pietro Rea on 8/2/14.
-//  Copyright (c) 2014 Razeware. All rights reserved.
+//  Created by Pietro Rea on 8/1/15.
+//  Copyright © 2015 Razeware. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import CoreData
 
+@objc(Team)
 class Team: NSManagedObject {
-  
-  @NSManaged var teamName: String
-  @NSManaged var qualifyingZone: String
-  @NSManaged var imageName: String
-  @NSManaged var wins: NSNumber
-  
+
+// Insert code here to add functionality to your managed object subclass
+
 }

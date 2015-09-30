@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9367E2F71B3DBF9E00229081 /* Camper+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9367E2F41B3DBF9E00229081 /* Camper+CoreDataProperties.swift */; };
+		9367E2F81B3DBF9E00229081 /* CampSite+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9367E2F51B3DBF9E00229081 /* CampSite+CoreDataProperties.swift */; };
+		9367E2F91B3DBF9E00229081 /* Reservation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9367E2F61B3DBF9E00229081 /* Reservation+CoreDataProperties.swift */; };
+		9367E2FB1B3DBFAE00229081 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9367E2FA1B3DBFAE00229081 /* LaunchScreen.storyboard */; };
 		938C96F419AAEE9D0009D5EB /* CamperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C96F319AAEE9D0009D5EB /* CamperService.swift */; };
 		93CAF0D919AA98660028DCCE /* ReservationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CAF0D819AA98660028DCCE /* ReservationService.swift */; };
 		93CF1D7219A17A42003FBB14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CF1D7119A17A42003FBB14 /* AppDelegate.swift */; };
@@ -33,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9367E2F41B3DBF9E00229081 /* Camper+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Camper+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9367E2F51B3DBF9E00229081 /* CampSite+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CampSite+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9367E2F61B3DBF9E00229081 /* Reservation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reservation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9367E2FA1B3DBFAE00229081 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		938C96F319AAEE9D0009D5EB /* CamperService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CamperService.swift; sourceTree = "<group>"; };
 		93CAF0D819AA98660028DCCE /* ReservationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationService.swift; sourceTree = "<group>"; };
 		93CF1D6C19A17A42003FBB14 /* CampgroundManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampgroundManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +93,9 @@
 				93CF1D8619A17A42003FBB14 /* CampgroundManagerTests */,
 				93CF1D6D19A17A42003FBB14 /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		93CF1D6D19A17A42003FBB14 /* Products */ = {
 			isa = PBXGroup;
@@ -104,6 +114,7 @@
 				93CF1D7119A17A42003FBB14 /* AppDelegate.swift */,
 				93CF1D7619A17A42003FBB14 /* MasterViewController.swift */,
 				93CF1D7819A17A42003FBB14 /* DetailViewController.swift */,
+				9367E2FA1B3DBFAE00229081 /* LaunchScreen.storyboard */,
 				93CF1D7A19A17A42003FBB14 /* Main.storyboard */,
 				93CF1D7D19A17A42003FBB14 /* Images.xcassets */,
 				93CF1D7319A17A42003FBB14 /* CampgroundManager.xcdatamodeld */,
@@ -141,9 +152,12 @@
 		93CF1D9319A17EF6003FBB14 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				93CF1D9919A17F27003FBB14 /* CampSite.swift */,
 				93CF1D9719A17F27003FBB14 /* Camper.swift */,
+				9367E2F41B3DBF9E00229081 /* Camper+CoreDataProperties.swift */,
+				93CF1D9919A17F27003FBB14 /* CampSite.swift */,
+				9367E2F51B3DBF9E00229081 /* CampSite+CoreDataProperties.swift */,
 				93CF1D9519A17F26003FBB14 /* Reservation.swift */,
+				9367E2F61B3DBF9E00229081 /* Reservation+CoreDataProperties.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -203,7 +217,8 @@
 		93CF1D6419A17A42003FBB14 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Razeware;
 				TargetAttributes = {
 					93CF1D6B19A17A42003FBB14 = {
@@ -239,6 +254,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9367E2FB1B3DBFAE00229081 /* LaunchScreen.storyboard in Resources */,
 				93CF1D7C19A17A42003FBB14 /* Main.storyboard in Resources */,
 				93CF1D7E19A17A42003FBB14 /* Images.xcassets in Resources */,
 			);
@@ -263,8 +279,11 @@
 				93CAF0D919AA98660028DCCE /* ReservationService.swift in Sources */,
 				93CF1D9819A17F27003FBB14 /* Camper.swift in Sources */,
 				93DC421B19A6D4E900D015A8 /* CoreDataStack.swift in Sources */,
+				9367E2F71B3DBF9E00229081 /* Camper+CoreDataProperties.swift in Sources */,
+				9367E2F91B3DBF9E00229081 /* Reservation+CoreDataProperties.swift in Sources */,
 				93CF1D7519A17A42003FBB14 /* CampgroundManager.xcdatamodeld in Sources */,
 				93CF1D9619A17F26003FBB14 /* Reservation.swift in Sources */,
+				9367E2F81B3DBF9E00229081 /* CampSite+CoreDataProperties.swift in Sources */,
 				93CF1D7719A17A42003FBB14 /* MasterViewController.swift in Sources */,
 				938C96F419AAEE9D0009D5EB /* CamperService.swift in Sources */,
 				93CF1D7919A17A42003FBB14 /* DetailViewController.swift in Sources */,
@@ -320,22 +339,24 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -366,13 +387,14 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -388,6 +410,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CampgroundManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CampgroundManager/CampgroundManager-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -402,6 +425,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CampgroundManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CampgroundManager/CampgroundManager-Bridging-Header.h";
 			};
@@ -411,17 +435,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = CampgroundManagerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CampgroundManager.app/CampgroundManager";
 			};
 			name = Debug;
@@ -430,12 +453,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CampgroundManagerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CampgroundManager.app/CampgroundManager";
 			};

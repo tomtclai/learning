@@ -8,6 +8,9 @@
 
 import UIKit
 
+let filterViewControllerSegueIdentifier = "toFilterViewController"
+let venueCellIdentifier = "VenueCell"
+
 class ViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
@@ -18,28 +21,10 @@ class ViewController: UIViewController {
 
   }
   
-  func tableView(tableView: UITableView?,
-    numberOfRowsInSection section: Int) -> Int {
-      return 10
-  }
-  
-  func tableView(tableView: UITableView!,
-    cellForRowAtIndexPath
-    indexPath: NSIndexPath!) -> UITableViewCell! {
-      
-      var cell = tableView.dequeueReusableCellWithIdentifier("VenueCell") as! UITableViewCell
-      cell.textLabel!.text = "Bubble Tea Venue"
-      cell.detailTextLabel!.text = "Price Info"
-      
-      return cell
-  }
-  
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     
-    if segue.identifier == "toFilterViewController" {
-      
-      let navController = segue.destinationViewController as! UINavigationController
-      let filterVC = navController.topViewController as! FilterViewController
+    if segue.identifier == filterViewControllerSegueIdentifier {
+    
     }
   }
   
@@ -48,3 +33,19 @@ class ViewController: UIViewController {
   }
 }
 
+extension ViewController: UITableViewDataSource {
+  
+  func tableView(tableView: UITableView,
+    numberOfRowsInSection section: Int) -> Int {
+    return 10
+  }
+
+  
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier(venueCellIdentifier)!
+    cell.textLabel!.text = "Bubble Tea Venue"
+    cell.detailTextLabel!.text = "Price Info"
+    
+    return cell
+  }
+}

@@ -2,17 +2,16 @@
 //  Camper.swift
 //  CampgroundManager
 //
-//  Created by Aaron Douglas on 8/17/14.
-//  Copyright (c) 2014 Razeware. All rights reserved.
+//  Created by Aaron Douglas on 6/26/15.
+//  Copyright © 2015 Razeware. All rights reserved.
 //
 
 import Foundation
 import CoreData
 
+@objc(Camper)
 public class Camper: NSManagedObject {
 
-    @NSManaged public var fullName: String
-    @NSManaged public var phoneNumber: String
-    @NSManaged var reservations: Reservation
+// Insert code here to add functionality to your managed object subclass
 
 }

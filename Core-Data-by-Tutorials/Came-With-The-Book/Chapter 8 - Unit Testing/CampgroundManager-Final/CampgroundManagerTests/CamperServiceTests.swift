@@ -22,7 +22,7 @@ class CamperServiceTests: XCTestCase {
     
     coreDataStack = TestCoreDataStack()
     camperService = CamperService(
-      managedObjectContext: coreDataStack.mainContext!,
+      managedObjectContext: coreDataStack.mainContext,
       coreDataStack: coreDataStack)
   }
   
@@ -36,8 +36,7 @@ class CamperServiceTests: XCTestCase {
   func testRootContextIsSavedAfterAddingCamper() {
     
     //1
-    let expectRoot =
-    self.expectationForNotification(
+    expectationForNotification(
       NSManagedObjectContextDidSaveNotification, object:
       coreDataStack.rootContext){
         notification in
@@ -45,11 +44,10 @@ class CamperServiceTests: XCTestCase {
     }
     
     //2
-    let camper = camperService.addCamper("Bacon Lover",
-      phoneNumber: "910-543-9000")
+    camperService.addCamper("Bacon Lover", phoneNumber: "910-543-9000")
     
     //3
-    self.waitForExpectationsWithTimeout(2.0){
+    waitForExpectationsWithTimeout(2.0){
       error in
       XCTAssertNil(error, "Save did not occur")
     }

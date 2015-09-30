@@ -25,24 +25,26 @@ import UIKit
 
 class ImageTransformer : NSValueTransformer {
     
-    override class func transformedValueClass() -> AnyClass {
-        return NSData.self
+  override class func transformedValueClass() -> AnyClass {
+    return NSData.self
+  }
+  
+  override class func allowsReverseTransformation() -> Bool {
+    return true
+  }
+  
+  override func reverseTransformedValue(value: AnyObject?) -> AnyObject? {
+    if let data = value as? NSData {
+      return UIImage(data: data)
     }
-    
-    override class func allowsReverseTransformation() -> Bool {
-        return  true
+    return nil
+  }
+  
+  override func transformedValue(value: AnyObject?) -> AnyObject? {
+    if let image = value as? UIImage {
+      return UIImagePNGRepresentation(image)
     }
-    
-    override func reverseTransformedValue(value: AnyObject?) -> AnyObject? {
-        if (value == nil) {
-            return nil
-        }
-        
-        return UIImage(data: value as! NSData)
-    }
-    
-    override func transformedValue(value: AnyObject?) -> AnyObject? {
-        return UIImagePNGRepresentation(value as? UIImage)
-    }
+    return nil
+  }
         
 }

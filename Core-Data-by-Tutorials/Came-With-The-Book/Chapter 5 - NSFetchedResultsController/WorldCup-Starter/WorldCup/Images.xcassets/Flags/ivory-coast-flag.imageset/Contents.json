@@ -9,8 +9,12 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "218px-Flag_of_Côte_d'Ivoire.svg.png"
+      "filename" : "218px-Flag_of_Côte_d'Ivoire.svg.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

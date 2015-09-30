@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     return true
   }
   
-  func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController!, ontoPrimaryViewController primaryViewController:UIViewController!) -> Bool {
+  func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController, ontoPrimaryViewController primaryViewController:UIViewController) -> Bool {
     if let secondaryAsNoteDetail = secondaryViewController as? NoteDetailViewController {
       if secondaryAsNoteDetail.note == nil {
         // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.

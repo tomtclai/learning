@@ -18,39 +18,44 @@ class NotesListViewController: UITableViewController, NSFetchedResultsController
     
       let notes = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.stack.context, sectionNameKeyPath: nil, cacheName: nil)
       notes.delegate = self
-        return notes
+      return notes
   }()
   
   override func viewWillAppear(animated: Bool){
     super.viewWillAppear(animated)
-    notes.performFetch(nil)
+    do {
+      try notes.performFetch()
+    } catch let error as NSError {
+      print("Error fetching data \(error)")
+    }
     tableView.reloadData()
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    var objects = notes.fetchedObjects
+    let objects = notes.fetchedObjects
     return objects?.count ?? 0
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = tableView.dequeueReusableCellWithIdentifier("NoteCell", forIndexPath: indexPath) as! NoteTableViewCell
-    if let objects = notes.fetchedObjects
-    {
-        cell.note = objects[indexPath.row] as? Note
+    if let cell = tableView.dequeueReusableCellWithIdentifier("NoteCell", forIndexPath: indexPath) as? NoteTableViewCell {
+        if let objects = notes.fetchedObjects
+        {
+          cell.note = objects[indexPath.row] as? Note
+        }
+        return cell
     }
-    return cell
+    return UITableViewCell()
   }
   
   func controllerWillChangeContent(controller: NSFetchedResultsController) {
-    
   }
   
   func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
     let indexPathsFromOptionals: (NSIndexPath?) -> [NSIndexPath] = { indexPath in
-        if let indexPath = indexPath {
-            return [indexPath]
-        }
-        return []
+      if let indexPath = indexPath {
+        return [indexPath]
+      }
+      return []
     }
     
     switch type
@@ -65,18 +70,18 @@ class NotesListViewController: UITableViewController, NSFetchedResultsController
   }
   
   func controllerDidChangeContent(controller: NSFetchedResultsController) {
-    
   }
   
   @IBAction
   func unwindToNotesList(segue:UIStoryboardSegue) {
     NSLog("Unwinding to Notes List")
-    var error : NSErrorPointer = nil
+
     if stack.context.hasChanges
     {
-      if stack.context.save(error) == false
-      {
-        print("Error saving \(error)")
+      do {
+        try stack.context.save()
+      } catch let error as NSError {
+        print("Error saving context: \(error)")
       }
     }
   }
@@ -86,16 +91,19 @@ class NotesListViewController: UITableViewController, NSFetchedResultsController
     {
       let context = NSManagedObjectContext(concurrencyType: .ConfinementConcurrencyType)
       context.parentContext = stack.context
-      let navController = segue.destinationViewController as! UINavigationController
-      let nextViewController = navController.topViewController as! CreateNoteViewController
-      nextViewController.managedObjectContext = context
+      if let navController = segue.destinationViewController as? UINavigationController {
+        if let nextViewController = navController.topViewController as? CreateNoteViewController {
+          nextViewController.managedObjectContext = context
+        }
+      }
     }
     if segue.identifier == "showNoteDetail" {
-      let detailView = segue.destinationViewController as! NoteDetailViewController
-        if let selectedIndex = tableView.indexPathForSelectedRow() {
+      if let detailView = segue.destinationViewController as? NoteDetailViewController {
+        if let selectedIndex = tableView.indexPathForSelectedRow {
           if let objects = notes.fetchedObjects {
             detailView.note = objects[selectedIndex.row] as? Note
           }
+        }
       }
     }
   }

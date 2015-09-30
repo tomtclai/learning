@@ -9,13 +9,15 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController, NSFetchedResultsControllerDelegate {
+private let teamCellIdentifier = "teamCellReuseIdentifier"
+
+class ViewController: UIViewController {
   
   var coreDataStack: CoreDataStack!
+  var fetchedResultsController: NSFetchedResultsController!
   
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var addButton: UIBarButtonItem!
-  var fetchedResultsController : NSFetchedResultsController!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -25,10 +27,8 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     let zoneSort =
     NSSortDescriptor(key: "qualifyingZone", ascending: true)
-    
     let scoreSort =
     NSSortDescriptor(key: "wins", ascending: false)
-    
     let nameSort =
     NSSortDescriptor(key: "teamName", ascending: true)
     
@@ -44,49 +44,11 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate {
     fetchedResultsController.delegate = self
     
     //3
-    var error: NSError? =  nil
-    if (!fetchedResultsController.performFetch(&error)) {
-      println("Error: \(error?.localizedDescription)")
+    do {
+      try fetchedResultsController.performFetch()
+    } catch let error as NSError {
+      print("Error: \(error.localizedDescription)")
     }
-  }
-  
-  func numberOfSectionsInTableView
-    (tableView: UITableView) -> Int {
-      
-      return fetchedResultsController.sections!.count
-  }
-  
-  func tableView(tableView: UITableView,
-    titleForHeaderInSection section: Int) -> String? {
-      let sectionInfo = fetchedResultsController.sections![section]
-        as! NSFetchedResultsSectionInfo
-      
-      return sectionInfo.name
-  }
-  
-  func tableView(tableView: UITableView,
-    numberOfRowsInSection section: Int) -> Int {
-      
-      let sectionInfo = fetchedResultsController.sections![section]
-        as! NSFetchedResultsSectionInfo
-      
-      return sectionInfo.numberOfObjects
-  }
-  
-  func tableView(tableView: UITableView,
-    cellForRowAtIndexPath indexPath: NSIndexPath)
-    -> UITableViewCell {
-      
-      let resuseIdentifier = "teamCellReuseIdentifier"
-      
-      var cell =
-      tableView.dequeueReusableCellWithIdentifier(
-        resuseIdentifier, forIndexPath: indexPath)
-        as! TeamCell
-      
-      configureCell(cell, indexPath: indexPath)
-      
-      return cell
   }
   
   func configureCell(cell: TeamCell, indexPath: NSIndexPath) {
@@ -94,24 +56,115 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate {
     fetchedResultsController.objectAtIndexPath(indexPath)
       as! Team
     
-    cell.flagImageView.image = UIImage(named: team.imageName)
+    cell.flagImageView.image = UIImage(named: team.imageName!)
     cell.teamLabel.text = team.teamName
-    cell.scoreLabel.text = "Wins: \(team.wins)"
+    cell.scoreLabel.text = "Wins: \(team.wins!)"
+  }
+}
+
+extension ViewController: UITableViewDataSource {
+  
+  func numberOfSectionsInTableView
+    (tableView: UITableView) -> Int {
+      return fetchedResultsController.sections!.count
   }
   
+  func tableView(tableView: UITableView,
+    titleForHeaderInSection section: Int) -> String? {
+      let sectionInfo =
+      fetchedResultsController.sections![section]
+      return sectionInfo.name
+  }
+  
+  func tableView(tableView: UITableView,
+    numberOfRowsInSection section: Int) -> Int {
+      let sectionInfo =
+      fetchedResultsController.sections![section]
+      return sectionInfo.numberOfObjects
+  }
+  
+  func tableView(tableView: UITableView,
+    cellForRowAtIndexPath indexPath: NSIndexPath)
+    -> UITableViewCell {
+      
+      let cell =
+      tableView.dequeueReusableCellWithIdentifier(
+        teamCellIdentifier, forIndexPath: indexPath)
+        as! TeamCell
+      
+      configureCell(cell, indexPath: indexPath)
+      
+      return cell
+  }
+  
+  override func motionEnded(motion: UIEventSubtype,
+    withEvent event: UIEvent?) {
+      
+      if motion == .MotionShake {
+        addButton.enabled = true
+      }
+      
+  }
+  
+  @IBAction func addTeam(sender: AnyObject) {
+    let alert = UIAlertController(title: "Secret Team",
+      message: "Add a new team",
+      preferredStyle: UIAlertControllerStyle.Alert)
+    
+    alert.addTextFieldWithConfigurationHandler {
+      (textField: UITextField!) in
+      textField.placeholder = "Team Name"
+    }
+    alert.addTextFieldWithConfigurationHandler {
+      (textField: UITextField!) in
+      textField.placeholder = "Qualifying Zone"
+    }
+    
+    alert.addAction(UIAlertAction(title: "Save",
+      style: .Default, handler: { (action: UIAlertAction!) in
+        print("Saved")
+        
+        let nameTextField = alert.textFields!.first
+        let zoneTextField = alert.textFields![1]
+        
+        let team =
+        NSEntityDescription.insertNewObjectForEntityForName("Team",
+          inManagedObjectContext: self.coreDataStack.context)
+          as! Team
+        
+        team.teamName = nameTextField!.text
+        team.qualifyingZone = zoneTextField.text
+        team.imageName = "wenderland-flag"
+        
+        self.coreDataStack.saveContext()
+    }))
+    
+    alert.addAction(UIAlertAction(title: "Cancel",
+      style: .Default, handler: { (action: UIAlertAction!) in
+        print("Cancel")
+    }))
+    
+    presentViewController(alert, animated: true,
+      completion: nil)
+  }
+}
+
+extension ViewController: UITableViewDelegate {
   
   func tableView(tableView: UITableView,
     didSelectRowAtIndexPath indexPath: NSIndexPath) {
-      tableView.deselectRowAtIndexPath(indexPath, animated: true)
       
       let team =
       fetchedResultsController.objectAtIndexPath(indexPath)
         as! Team
       
-      let wins = team.wins.integerValue
+      let wins = team.wins!.integerValue
       team.wins = NSNumber(integer: wins + 1)
       coreDataStack.saveContext()
   }
+}
+
+extension ViewController: NSFetchedResultsControllerDelegate {
   
   func controllerWillChangeContent(controller:
     NSFetchedResultsController) {
@@ -140,8 +193,6 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate {
           withRowAnimation: .Automatic)
         tableView.insertRowsAtIndexPaths([newIndexPath!],
           withRowAnimation: .Automatic)
-      default:
-        break
       }
   }
   
@@ -169,54 +220,4 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate {
       }
   }
   
-  override func motionEnded(motion: UIEventSubtype,
-    withEvent event: UIEvent) {
-    
-    if motion == .MotionShake {
-    addButton.enabled = true
-    }
-  }
-  
-  @IBAction func addTeam(sender: AnyObject) {
-      var alert = UIAlertController(title: "Secret Team",
-      message: "Add a new team",
-      preferredStyle: UIAlertControllerStyle.Alert)
-      
-      alert.addTextFieldWithConfigurationHandler {
-    (textField: UITextField!) in
-    textField.placeholder = "Team Name"
-      }
-      alert.addTextFieldWithConfigurationHandler {
-        (textField: UITextField!) in
-        textField.placeholder = "Qualifying Zone"
-      }
-      
-      alert.addAction(UIAlertAction(title: "Save",
-        style: .Default, handler: { (action: UIAlertAction!) in
-        println("Saved")
-        
-        let nameTextField = alert.textFields![0] as! UITextField
-        let zoneTextField = alert.textFields![1] as! UITextField
-        
-        let team =
-        NSEntityDescription.insertNewObjectForEntityForName("Team",
-          inManagedObjectContext: self.coreDataStack.context)
-          as! Team
-        
-        team.teamName = nameTextField.text
-        team.qualifyingZone = zoneTextField.text
-        team.imageName = "wenderland-flag"
-        
-        self.coreDataStack.saveContext()
-        }))
-      
-      alert.addAction(UIAlertAction(title: "Cancel",
-          style: .Default, handler: { (action: UIAlertAction!) in
-          println("Cancel")
-          }))
-      
-      presentViewController(alert, animated: true,
-        completion: nil)
-  }
 }
-
