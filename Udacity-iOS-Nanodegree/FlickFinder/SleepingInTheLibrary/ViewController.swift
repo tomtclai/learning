@@ -48,236 +48,154 @@ let EXTRAS = "url_m"
 let DATA_FORMAT = "json"
 let NO_JSON_CALLBACK = "1"
 
-class ViewController: UIViewController {
+// TODO: textfield delegate to handle return key
+class ViewController: UIViewController, UITextFieldDelegate {
  
+    // MARK: Properties
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var photoTitle: UILabel!
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var latitudeField: UITextField!
     @IBOutlet weak var longitudeField: UITextField!
     
-    @IBAction func touchGrabNewImageButton(sender: AnyObject) {
-        getImageFromFlickr()
-    }
-
-    @IBAction func searchByPhrase(sender: AnyObject) {
-        let urlString = urlForPhraseSearch("baby asian elephant")
-        
-        let session = NSURLSession.sharedSession()
-        
-        let request = NSURLRequest(URL: NSURL(string: urlString)!)
-        
-        let datatask = session.dataTaskWithRequest(request) { (data, response, error)  in
-            
-            guard (error == nil) else {
-                print(error)
-                return
-            }
-            
-            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                if let response = response as? NSHTTPURLResponse {
-                    print("invalid response #\(response)")
-                } else if let response = response {
-                    print("invalid response #\(response)")
-                } else {
-                    print("invalid response")
-                }
-                return
-            }
-
-            let parsedResult: AnyObject!
-            do {
-                parsedResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-                
-            } catch {
-                parsedResult = nil
-                print("parse error")
-                return
-            }
-            
-            
-            guard let stat = parsedResult["stat"] as? String where stat == "ok" else {
-                print("stat is not 'ok'")
-                return
-            }
-        
-            // Get the photos dictionary
-            guard let photosDictionary = parsedResult.valueForKey("photos") as? NSDictionary else {
-                print ("Cannot find key 'photos' in \(parsedResult)")
-                return
-            }
-            
-            guard let photoArray = photosDictionary.valueForKey("photo") as? Array<NSDictionary> else {
-                print ("no value for key 'photo'")
-                return
-            }
-            
-            guard let totalPhotos = (photosDictionary["total"] as? NSString)?.integerValue else {
-                print("Cannot find key 'total' in \(photosDictionary)")
-                return
-            }
-            
-            // Get The array of photos
-            guard totalPhotos > 0 else {
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.photoTitle.text = "No Photo found"
-                    self.photoImageView.image = nil
-                })
-                return
-            }
-            
-            
-            let randomPhotoIndex = arc4random_uniform(UInt32(photoArray.count))
-            let photoDictionary = photoArray[Int(randomPhotoIndex)]
-
-            let photoTitle = photoDictionary["title"] as? String
-            
-            guard let imageUrlString = photoDictionary["url_m"] as? String else {
-                print("No url_m in \(photoDictionary)")
-                return
-            }
-            let imageURL = NSURL(string: imageUrlString)
-            
-            if let imageData = NSData(contentsOfURL: imageURL!) {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.photoTitle.text = photoTitle
-                    self.photoImageView.image = UIImage(data: imageData)
-                })
-                
-            }
-        }
-        
-        datatask.resume()
+    
+    private var tapGesture : UITapGestureRecognizer?
+    
+    // MARK: Life Cycle
+    override func viewWillAppear(animated: Bool) {
+        addKeyboardDismissRecognizer()
+        subscribeToKeyboardNotifications()
     }
     
-    func urlForPhraseSearch(phrase: String) -> String {
-        
-        let keys = ["method", "api_key", "text", "extras", "format", "nojsoncallback"]
+    override func viewWillDisappear(animated: Bool) {
+        removeKeyboardDismissRecognizer()
+        unsubscribeToKeyboardNotifications()
+    }
+    
+    // MARK: Actions
+
+    @IBAction func searchByPhrase(sender: AnyObject) {
+        guard let searchPhrase = searchField.text where searchField.text != "" else {
+            photoTitle.text = "Search field must not be empty"
+            return
+        }
         
         let keyValuePairs = [
             "method": METHOD_NAME,
             "api_key": API_KEY,
-            "text": "baby asian elephant",
+            "text": searchPhrase,
             "extras": EXTRAS,
             "format": DATA_FORMAT,
             "nojsoncallback": NO_JSON_CALLBACK
         ]
         
-        var urlString = BASE_URL
-        for (index, key) in keys.enumerate() {
-            if index == 0 {
-                urlString += "?"
-            } else {
-                urlString += "&"
-            }
-            
-            urlString += key + "=" + keyValuePairs[key]!
+        downloadPhotoFromFlickr(keyValuePairs)
+    }
+    
+    @IBAction func searchLongLat(sender: UIButton) {
+        guard let latString = latitudeField.text where latitudeField.text != "" else {
+            photoTitle.text = "Latitude field must not be empty"
+            return
+        }
+        guard let longString = longitudeField.text where longitudeField.text != "" else {
+            photoTitle.text = "Longitude field must not be empty"
+            return
+        }
+        guard let lat = Float(latString) else {
+            photoTitle.text = "Latitude must be a ±90 floating point number"
+            return
+        }
+        guard let long = Float(longString) else {
+            photoTitle.text = "Longitude must be a ±180 floating point number"
+            return
+        }
+        guard lat > -90.0 && lat < 90.0 else {
+            photoTitle.text = "Latitude must fall within ±90"
+            return
+        }
+        guard long > -180.0 && long < 180.0 else {
+            photoTitle.text = "Longitude must fall within ±180"
+            return
         }
         
-        return urlString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-    }
-    
-    
-    @IBAction func searchLongLat(sender: AnyObject) {
-    }
-    
-    
-    func getImageFromFlickr() {
+        let minLat = lat - 1, maxLat = lat + 1
+        let minLong = long - 1, maxLong = long + 1
         
-        /* 2 - API method arguments */
-        let methodArguments = [
+        let bbox = "\(minLong),\(minLat),\(maxLong),\(maxLat)"
+        
+        
+        let keyValuePairs = [
             "method": METHOD_NAME,
             "api_key": API_KEY,
-            "gallery_id": GALLERY_ID,
+            "bbox": bbox,
             "extras": EXTRAS,
             "format": DATA_FORMAT,
             "nojsoncallback": NO_JSON_CALLBACK
         ]
         
-        /* 3 - Initialize session and url */
-        let session = NSURLSession.sharedSession()
-        let urlString = BASE_URL + escapedParameters(methodArguments)
-        let url = NSURL(string: urlString)!
-        let request = NSURLRequest(URL: url)
-        
-        /* 4 - Initialize task for getting data */
-        let task = session.dataTaskWithRequest(request) { (data, response, error) in
-            
-            /* 5 - Check for a successful response */
-            /* GUARD: Was there an error? */
-            guard (error == nil) else {
-                print("There was an error with your request: \(error)")
-                return
-            }
-            
-            /* GUARD: Did we get a successful 2XX response? */
-            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                if let response = response as? NSHTTPURLResponse {
-                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
-                } else if let response = response {
-                    print("Your request returned an invalid response! Response: \(response)!")
-                } else {
-                    print("Your request returned an invalid response!")
-                }
-                return
-            }
-
-            /* GUARD: Was there any data returned? */
-            guard let data = data else {
-                print("No data was returned by the request!")
-                return
-            }
-            
-            /* 6 - Parse the data (i.e. convert the data to JSON and look for values!) */
-            let parsedResult: AnyObject!
-            do {
-                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-            } catch {
-                parsedResult = nil
-                print("Could not parse the data as JSON: '\(data)'")
-                return
-            }
-            
-            /* GUARD: Did Flickr return an error (stat != ok)? */
-            guard let stat = parsedResult["stat"] as? String where stat == "ok" else {
-                print("Flickr API returned an error. See error code and message in \(parsedResult)")
-                return
-            }
-            
-            /* GUARD: Are the "photos" and "photo" keys in our result? */
-            guard let photosDictionary = parsedResult["photos"] as? NSDictionary,
-                photoArray = photosDictionary["photo"] as? [[String: AnyObject]] else {
-                print("Cannot find keys 'photos' and 'photo' in \(parsedResult)")
-                return
-            }
-            
-            /* 7 - Generate a random number, then select a random photo */
-            let randomPhotoIndex = Int(arc4random_uniform(UInt32(photoArray.count)))
-            let photoDictionary = photoArray[randomPhotoIndex] as [String: AnyObject]
-            let photoTitle = photoDictionary["title"] as? String /* non-fatal */
-            
-            /* GUARD: Does our photo have a key for 'url_m'? */
-            guard let imageUrlString = photoDictionary["url_m"] as? String else {
-                print("Cannot find key 'url_m' in \(photoDictionary)")
-                return
-            }
-            
-            /* 8 - If an image exists at the url, set the image and title */
-            let imageURL = NSURL(string: imageUrlString)
-            if let imageData = NSData(contentsOfURL: imageURL!) {
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.photoImageView.image = UIImage(data: imageData)
-                    self.photoTitle.text = photoTitle ?? "(Untitled)"
-                })
-            } else {
-                print("Image does not exist at \(imageURL)")
-            }
-        }
-        
-        /* 9 - Resume (execute) the task */
-        task.resume()
+        downloadPhotoFromFlickr(keyValuePairs)
     }
 
+
+    
+    // MARK: Show/Hide Keyboard
+    
+    func addKeyboardDismissRecognizer() {
+        tapGesture = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
+        view.addGestureRecognizer(tapGesture!)
+    }
+    
+    func removeKeyboardDismissRecognizer() {
+        if let tapGesture = tapGesture {
+            view.removeGestureRecognizer(tapGesture)
+        }
+    }
+    
+    func handleSingleTap(recognizer: UITapGestureRecognizer) {
+        resignFirstResponder()
+    }
+    
+    override func resignFirstResponder() -> Bool {
+        searchField.resignFirstResponder()
+        latitudeField.resignFirstResponder()
+        longitudeField.resignFirstResponder()
+        return super.resignFirstResponder()
+    }
+    
+    func subscribeToKeyboardNotifications() {
+        subscribeSelfToNotifications(UIKeyboardWillShowNotification, selector: "keyboardWillShow:")
+        subscribeSelfToNotifications(UIKeyboardWillHideNotification, selector: "keyboardWillHide:")
+    }
+    
+    func subscribeSelfToNotifications(name : String, selector: Selector) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: selector, name: name, object: nil)
+    }
+    
+    func unsubscribeToKeyboardNotifications() {
+        unsubscribeSelfFromNotifications(UIKeyboardWillShowNotification)
+        unsubscribeSelfFromNotifications(UIKeyboardWillHideNotification)
+    }
+    
+    func unsubscribeSelfFromNotifications(name : String) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: name, object: self)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        view.frame.origin.y = -getKeyboardHeight(notification)
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        view.frame.origin.y = 0
+    }
+    
+    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+        let dict = notification.userInfo as Dictionary!
+        let frame = dict[UIKeyboardFrameEndUserInfoKey] as! NSValue
+        let rect = NSValue.CGRectValue(frame)
+        return rect().height
+    }
+    
+   
     /* Helper function: Given a dictionary of parameters, convert to a string for a url */
     func escapedParameters(parameters: [String : AnyObject]) -> String {
         
@@ -298,4 +216,155 @@ class ViewController: UIViewController {
         
         return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
     }
+    
+    func downloadPhotoFromFlickr(methodArguments: [String : AnyObject]) {
+        let session = NSURLSession.sharedSession()
+        let urlString = BASE_URL + escapedParameters(methodArguments)
+        let request = NSURLRequest(URL: NSURL(string: urlString)!)
+        let datatask = session.dataTaskWithRequest(request) { (data, response, error)  in
+            
+            guard (error == nil) else {
+                print(error)
+                return
+            }
+            
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                if let response = response as? NSHTTPURLResponse {
+                    print("invalid response #\(response)")
+                } else if let response = response {
+                    print("invalid response #\(response)")
+                } else {
+                    print("invalid response")
+                }
+                return
+            }
+            
+            let parsedResult: AnyObject!
+            do {
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+                
+            } catch {
+                parsedResult = nil
+                print("parse error")
+                return
+            }
+            
+            
+            guard let stat = parsedResult["stat"] as? String where stat == "ok" else {
+                print("stat is not 'ok'")
+                return
+            }
+            
+            // Get the photos dictionary
+            guard let photosDictionary = parsedResult.valueForKey("photos") as? NSDictionary else {
+                print ("Cannot find key 'photos' in \(parsedResult)")
+                return
+            }
+            
+            guard let totalPages = photosDictionary["pages"] as? Int else {
+                print("Cannot find key 'pages' in \(parsedResult)")
+                return
+            }
+            
+            // Flickr says it will return at most 4000 images and default no of images per page is 100
+            // So the last page at most would be 40
+            let lastPage = min(totalPages, 40)
+            let randomPage = Int(arc4random_uniform(UInt32(lastPage)) + 1)
+            self.downloadPhotoFromFlickr(methodArguments, page: randomPage)
+            
+        }
+        
+        datatask.resume()
+    }
+    
+    func downloadPhotoFromFlickr(methodArguments: [String: AnyObject], page: Int) {
+        
+        var methodArgumentsWithPage = methodArguments
+        methodArgumentsWithPage["page"] = page
+        
+        let session = NSURLSession.sharedSession()
+        let urlString = BASE_URL + escapedParameters(methodArgumentsWithPage)
+        let url = NSURL(string: urlString)!
+        let request = NSURLRequest(URL: url)
+        
+        let task = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+            guard error==nil else {
+                print(error)
+                return
+            }
+            
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                if let response = response as? NSHTTPURLResponse {
+                    print("Your request returned an invalid response \(response.statusCode)")
+                } else if let response = response {
+                    print("Your request returned an invalid response \(response)")
+                } else {
+                    print("Your request returned an invalid response")
+                }
+                return
+            }
+            
+            guard let data = data else {
+                print("No data was returned by the request")
+                return
+            }
+            
+            let parsedResult: AnyObject!
+            do {
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+            } catch {
+                parsedResult = nil
+                print("Could not parse the data as JSON '\(data)'")
+                return
+            }
+            
+            guard let stat = parsedResult["stat"] as? String where stat == "ok" else {
+                print("stat is not 'ok'")
+                return
+            }
+            
+            guard let photosDictionary = parsedResult["photos"] as? NSDictionary else {
+                print("Cannot find key 'total' in \(parsedResult)")
+                return
+            }
+            
+            guard let totalPhotosVal = (photosDictionary["total"] as? NSString)?.integerValue else {
+                print("Cannot find key 'total' in \(photosDictionary)")
+                return
+            }
+            
+            if totalPhotosVal > 0 {
+                guard let photosArray = photosDictionary.valueForKey("photo") as? Array<NSDictionary> else {
+                    print ("no value for key 'photo'")
+                    return
+                }
+                
+                
+                let randomPhotoIndex = arc4random_uniform(UInt32(photosArray.count))
+                let photoDictionary = photosArray[Int(randomPhotoIndex)]
+                
+                let photoTitle = photoDictionary["title"] as? String
+                
+                guard let imageUrlString = photoDictionary["url_m"] as? String else {
+                    print("No url_m in \(photoDictionary)")
+                    return
+                }
+                let imageURL = NSURL(string: imageUrlString)
+                
+                if let imageData = NSData(contentsOfURL: imageURL!) {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.photoTitle.text = photoTitle
+                        self.photoImageView.image = UIImage(data: imageData)
+                    })
+                    
+                }
+                
+            }
+            
+            
+        }
+        
+        task.resume()
+    }
+
 }

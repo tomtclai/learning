@@ -42,19 +42,19 @@
                                         <rect key="frame" x="20" y="20" width="472" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="256" verticalHuggingPriority="254" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1dh-0K-l3y">
                                         <rect key="frame" x="20" y="58" width="232" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="256" verticalHuggingPriority="254" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LiN-sC-Ddm">
                                         <rect key="frame" x="260" y="58" width="232" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="search"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fB5-wZ-yJX">
                                         <rect key="frame" x="20" y="96" width="232" height="21"/>
@@ -76,6 +76,7 @@
                                 <constraints>
                                     <constraint firstItem="oQE-LI-d72" firstAttribute="leading" secondItem="lhv-rs-Unv" secondAttribute="leading" constant="20" symbolic="YES" id="1tX-g3-Y7z"/>
                                     <constraint firstItem="LiN-sC-Ddm" firstAttribute="width" secondItem="1dh-0K-l3y" secondAttribute="width" id="4CE-RI-81p"/>
+                                    <constraint firstAttribute="height" constant="137" id="55Y-T3-hke"/>
                                     <constraint firstItem="a0x-u7-epz" firstAttribute="leading" secondItem="fB5-wZ-yJX" secondAttribute="trailing" constant="8" symbolic="YES" id="EKF-jf-JbQ"/>
                                     <constraint firstAttribute="trailing" secondItem="oQE-LI-d72" secondAttribute="trailing" constant="20" symbolic="YES" id="F0C-4q-KhB"/>
                                     <constraint firstItem="oQE-LI-d72" firstAttribute="trailing" secondItem="LiN-sC-Ddm" secondAttribute="trailing" id="JW0-6d-yi2"/>
