@@ -131,10 +131,11 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="PasswordField" destination="e91-Wa-Zzz" id="iJU-7B-v8j"/>
                         <outlet property="emailField" destination="6Kv-aS-HmA" id="Be1-Mq-RtH"/>
                         <outlet property="facebookLoginButton" destination="jXu-lP-Hq0" id="IBN-pQ-rbZ"/>
                         <outlet property="loginButton" destination="GYH-6E-8Db" id="zUG-5r-Pga"/>
+                        <outlet property="passwordField" destination="e91-Wa-Zzz" id="mjL-xa-Xsh"/>
+                        <outlet property="signUpButton" destination="7K3-FI-lLg" id="iPk-wB-Dbp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

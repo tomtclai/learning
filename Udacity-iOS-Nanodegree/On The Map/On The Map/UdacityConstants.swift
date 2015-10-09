@@ -14,16 +14,25 @@ extension UdacityClient {
     struct Constants {
         // MARK: API Key
         // MARK: URLs
-        let BaseURL = "https://www.udacity.com/api/"
+        static let BaseURL = "https://www.udacity.com/api/"
     }
     
     // MARK: Methods
     struct Methods {
-        let Session = "session"
+        static let Session = "session"
     }
     
     // MARK: URL Keys
     // MARK: Parameter Keys
     // MARK: JSON Body Keys
+    struct JSONBodyKeys {
+        static let Username = "username"
+        static let Password = "password"
+    }
     // MARK: JSON Response Keys
+    struct JSONResponseKeyPaths {
+        static let SessionId = "id"
+        static let SessionExpiration = "expiration"
+    }
+    
 }
