@@ -55,16 +55,28 @@ class LoginViewController: UIViewController{
         guard (username != nil && password != nil &&
                !username!.isEmpty && !password!.isEmpty) else {
                 print("Login button tapped but username/password empty")
-                shakeView(loginButton)
+                wiggleView(loginButton)
             return
         }
         UdacityClient.sharedInstance().postSessionWithUsername(username!, password: password!) { (sessionID, accountID, error) -> Void in
             if let error = error {
                 print(error)
-                self.shakeView(self.loginButton)
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.wiggleView(self.loginButton)
+                })
+                return
             }
-            UdacityClient.sharedInstance().sessionID = sessionID
-            UdacityClient.sharedInstance().userAccount = accountID
+            
+            guard sessionID != nil && accountID != nil else {
+                print("sessionID and/or AccountID is nil")
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.wiggleView(self.loginButton)
+                })
+
+                return
+            }
+            UdacityClient.sharedInstance().sessionID = sessionID!
+            UdacityClient.sharedInstance().userAccount = accountID!
             print("session \(sessionID) account \(accountID)")
             if let loggedInVC = self.storyboard?.instantiateViewControllerWithIdentifier("TabBarController")
             {
@@ -120,7 +132,7 @@ class LoginViewController: UIViewController{
         field.font = font
     }
 
-    func shakeView(view: UIView) {
+    func wiggleView(view: UIView) {
         
         let animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.05
