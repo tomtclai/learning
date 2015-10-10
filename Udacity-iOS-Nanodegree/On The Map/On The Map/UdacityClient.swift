@@ -63,6 +63,60 @@ class UdacityClient: NSObject {
         
         return task
     }
+    
+    func taskForDeleteMethod(method: String, parameters: [String : AnyObject]?, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+        
+        
+        /* Build the URL and configure the request */
+        let urlString = Constants.BaseURL + method + UdacityClient.escapedParameters(parameters)
+        let url = NSURL(string: urlString)!
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "DELETE"
+        
+        var xsrfCookie: NSHTTPCookie? = nil
+        let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XFRF-TOKEN" { xsrfCookie = cookie }
+        }
+        
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        
+        /* Make Request */
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            
+            guard (error == nil) else {
+                print("There was an error with your request: \(error)")
+                return
+            }
+            
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                if let response = response as? NSHTTPURLResponse {
+                    print("Your request returned an invalid response #\(response.statusCode)")
+                } else if let response = response {
+                    print("Your request returned an invalid response \(response)")
+                } else {
+                    print("Your request returned an invalid response")
+                }
+                return completionHandler(result: nil, error: NSError(domain: "taskForDeleteMethod", code: 2, userInfo: nil))
+            }
+            
+            guard let data = data else {
+                print("No data was returned by the request")
+                return
+            }
+            
+            UdacityClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
+            
+        }
+        
+        task.resume()
+        
+        return task
+    }
+
     /* Helpers */
     class func escapedParameters(parameters: [String : AnyObject]?) -> String {
         

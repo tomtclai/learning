@@ -37,6 +37,11 @@ class LoginViewController: UIViewController{
         loginButton.titleLabel?.text = "Login"
     }
     
+    override func viewDidAppear(animated: Bool) {
+        emailField.text = ""
+        passwordField.text = ""
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -61,6 +66,14 @@ class LoginViewController: UIViewController{
             UdacityClient.sharedInstance().sessionID = sessionID
             UdacityClient.sharedInstance().userAccount = accountID
             print("session \(sessionID) account \(accountID)")
+            if let loggedInVC = self.storyboard?.instantiateViewControllerWithIdentifier("TabBarController")
+            {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.presentViewController(loggedInVC, animated: true, completion: nil)
+                })
+            } else {
+                print("viewcontroller with identifier \"TabBarController\" not found in IB")
+            }
         }
     }
 
@@ -131,5 +144,11 @@ extension LoginViewController: UITextFieldDelegate {
             loginButtonTapped(self)
         }
         return true
+    }
+    @IBAction func userDidTap(sender: UITapGestureRecognizer) {
+        if sender.state == UIGestureRecognizerState.Ended {
+            passwordField.resignFirstResponder()
+            emailField.resignFirstResponder()
+        }
     }
 }

@@ -39,4 +39,19 @@ extension UdacityClient {
             }
         }
     }
+    
+    func deleteSession(completionHandler: (sessionID:String?, error: NSError?) -> Void) {
+        taskForDeleteMethod(Methods.Session, parameters: nil) { (result, error) -> Void in
+            if let error = error {
+                completionHandler(sessionID: nil, error: error)
+            } else {
+                guard let sessionID = result.valueForKeyPath(JSONResponseKeyPaths.SessionId) as? String else {
+                    print("\(JSONResponseKeyPaths.SessionId) not found in \(result)")
+                    return completionHandler(sessionID: nil, error: NSError(domain: "deleteSession", code: 1, userInfo: nil))
+                }
+                
+                completionHandler(sessionID: sessionID, error: nil)
+            }
+        }
+    }
 }

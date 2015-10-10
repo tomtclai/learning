@@ -21,6 +21,10 @@
 		77E4CA701BC7334F00FF39DB /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E4CA6F1BC7334F00FF39DB /* UdacityConstants.swift */; settings = {ASSET_TAGS = (); }; };
 		77E4CA741BC7336300FF39DB /* UdacityStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E4CA731BC7336300FF39DB /* UdacityStudent.swift */; settings = {ASSET_TAGS = (); }; };
 		77E4CA761BC7336E00FF39DB /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E4CA751BC7336E00FF39DB /* UdacityConvenience.swift */; settings = {ASSET_TAGS = (); }; };
+		77E4CA801BC9D32E00FF39DB /* ListViewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E4CA7F1BC9D32E00FF39DB /* ListViewTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		77E4CA821BC9D34400FF39DB /* MapViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E4CA811BC9D34400FF39DB /* MapViewViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		77E4CA841BC9D36000FF39DB /* OnTheMap+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E4CA831BC9D36000FF39DB /* OnTheMap+UIViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		77E4CA861BC9D66E00FF39DB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E4CA851BC9D66E00FF39DB /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +65,10 @@
 		77E4CA6F1BC7334F00FF39DB /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
 		77E4CA731BC7336300FF39DB /* UdacityStudent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityStudent.swift; sourceTree = "<group>"; };
 		77E4CA751BC7336E00FF39DB /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
+		77E4CA7F1BC9D32E00FF39DB /* ListViewTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewTableViewController.swift; sourceTree = "<group>"; };
+		77E4CA811BC9D34400FF39DB /* MapViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewViewController.swift; sourceTree = "<group>"; };
+		77E4CA831BC9D36000FF39DB /* OnTheMap+UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OnTheMap+UIViewController.swift"; sourceTree = "<group>"; };
+		77E4CA851BC9D66E00FF39DB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77E4CA861BC9D66E00FF39DB /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +110,7 @@
 		77E4CA251BC725DD00FF39DB = {
 			isa = PBXGroup;
 			children = (
+				77E4CA851BC9D66E00FF39DB /* MapKit.framework */,
 				77E4CA301BC725DE00FF39DB /* On The Map */,
 				77E4CA451BC725DE00FF39DB /* On The MapTests */,
 				77E4CA501BC725DE00FF39DB /* On The MapUITests */,
@@ -154,6 +164,9 @@
 		77E4CA6A1BC732CE00FF39DB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				77E4CA811BC9D34400FF39DB /* MapViewViewController.swift */,
+				77E4CA831BC9D36000FF39DB /* OnTheMap+UIViewController.swift */,
+				77E4CA7F1BC9D32E00FF39DB /* ListViewTableViewController.swift */,
 				77E4CA5F1BC7260C00FF39DB /* LoginViewController.swift */,
 			);
 			name = Controller;
@@ -317,6 +330,9 @@
 				77E4CA761BC7336E00FF39DB /* UdacityConvenience.swift in Sources */,
 				77E4CA601BC7260C00FF39DB /* LoginViewController.swift in Sources */,
 				77E4CA321BC725DE00FF39DB /* AppDelegate.swift in Sources */,
+				77E4CA821BC9D34400FF39DB /* MapViewViewController.swift in Sources */,
+				77E4CA841BC9D36000FF39DB /* OnTheMap+UIViewController.swift in Sources */,
+				77E4CA801BC9D32E00FF39DB /* ListViewTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
