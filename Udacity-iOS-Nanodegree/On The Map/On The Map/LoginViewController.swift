@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController{
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -45,7 +45,23 @@ class LoginViewController: UIViewController {
     // MARK: Actions
     
     @IBAction func loginButtonTapped(sender: AnyObject) {
-        UdacityClient.sharedInstance()
+        let username = emailField.text
+        let password = passwordField.text
+        guard (username != nil && password != nil &&
+               !username!.isEmpty && !password!.isEmpty) else {
+                print("Login button tapped but username/password empty")
+                shakeView(loginButton)
+            return
+        }
+        UdacityClient.sharedInstance().postSessionWithUsername(username!, password: password!) { (sessionID, accountID, error) -> Void in
+            if let error = error {
+                print(error)
+                self.shakeView(self.loginButton)
+            }
+            UdacityClient.sharedInstance().sessionID = sessionID
+            UdacityClient.sharedInstance().userAccount = accountID
+            print("session \(sessionID) account \(accountID)")
+        }
     }
 
     @IBAction func dontHaveAnAccountTapped(sender: AnyObject) {
@@ -91,5 +107,29 @@ class LoginViewController: UIViewController {
         field.font = font
     }
 
+    func shakeView(view: UIView) {
+        
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.05
+        animation.repeatCount = 2
+        animation.autoreverses = true
+        animation.fromValue = NSValue(CGPoint: CGPointMake(view.center.x - 10, view.center.y))
+        animation.toValue = NSValue(CGPoint: CGPointMake(view.center.x + 10, view.center.y))
+        view.layer.addAnimation(animation, forKey: "position")
+    }
+    
 
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == emailField {
+            passwordField.becomeFirstResponder()
+        }
+        if textField == passwordField {
+            passwordField.resignFirstResponder()
+            loginButtonTapped(self)
+        }
+        return true
+    }
 }

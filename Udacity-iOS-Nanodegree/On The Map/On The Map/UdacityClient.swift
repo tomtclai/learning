@@ -12,6 +12,10 @@ class UdacityClient: NSObject {
     
     var session = NSURLSession.sharedSession()
     
+    
+    var sessionID : String? = nil
+    var userAccount : String? = nil
+    
     func taskForPostMethod(method: String, parameters: [String : AnyObject]?, jsonBody: [String: AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         
@@ -43,7 +47,7 @@ class UdacityClient: NSObject {
                 } else {
                     print("Your request returned an invalid response")
                 }
-                return
+                return completionHandler(result: nil, error: NSError(domain: "taskForPostMethod", code: 2, userInfo: nil))
             }
             
             guard let data = data else {

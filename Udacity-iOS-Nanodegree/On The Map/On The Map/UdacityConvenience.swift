@@ -9,24 +9,33 @@
 import Foundation
 
 extension UdacityClient {
-    func postSessionWithUsername(username: String, password: String, completionHandler: (sessionID: String?, error: NSError?) -> Void ) {
+    func postSessionWithUsername(username: String, password: String, completionHandler: (sessionID: String?, accountID:String?, error: NSError?) -> Void ) {
         
-        let jsonBody : [String:AnyObject] = [
+        let udacityValues : [String:AnyObject] = [
             JSONBodyKeys.Username : username,
             JSONBodyKeys.Password : password
         ]
+        
+        let jsonBody = [JSONBodyKeys.Udacity : udacityValues]
         
         taskForPostMethod(Methods.Session, parameters: nil, jsonBody: jsonBody) { (result, error) -> Void in
             
             
             if let error = error {
-                completionHandler(sessionID:nil, error: error)
+                completionHandler(sessionID:nil, accountID:nil, error: error)
             } else {
                 
-                if let sessionID = result.valueForKeyPath(JSONSessionKeysPaths.SessionId) {
-                    
+                guard let sessionID = result.valueForKeyPath(JSONResponseKeyPaths.SessionId) as? String else {
+                    print("\(JSONResponseKeyPaths.SessionId) not found in \(result)")
+                    return completionHandler(sessionID: nil, accountID: nil, error: NSError(domain: "postSessionWithUsername", code: 1, userInfo: nil))
                 }
-//                completionHandler(sessionID: <#T##String?#>, error: <#T##NSError?#>)
+                
+                guard let userID = result.valueForKeyPath(JSONResponseKeyPaths.UserID) as? String else {
+                        print("\(JSONResponseKeyPaths.UserID) not found in\(result)")
+                        return completionHandler(sessionID: nil, accountID: nil, error: NSError(domain: "postSessionWithUsername", code: 1, userInfo: nil))
+                }
+                
+                completionHandler(sessionID: sessionID, accountID: userID, error: nil)
             }
         }
     }

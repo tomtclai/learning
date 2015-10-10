@@ -26,13 +26,16 @@ extension UdacityClient {
     // MARK: Parameter Keys
     // MARK: JSON Body Keys
     struct JSONBodyKeys {
+        static let Udacity = "udacity"
         static let Username = "username"
         static let Password = "password"
     }
     // MARK: JSON Response Keys
     struct JSONResponseKeyPaths {
-        static let SessionId = "id"
-        static let SessionExpiration = "expiration"
+        static let SessionId = "session.id"
+        static let SessionExpiration = "session.expiration"
+        static let UserID = "account.key"
+        static let UserRegistered = "account.registered"
     }
     
 }
