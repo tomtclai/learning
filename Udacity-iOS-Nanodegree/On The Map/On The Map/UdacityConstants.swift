@@ -12,8 +12,6 @@ extension UdacityClient {
 
     // MARK: Constants
     struct Constants {
-        // MARK: API Key
-        static let UdacityFacebookAppID = "365362206864879"
         // MARK: URLs
         static let BaseURL = "https://www.udacity.com/api/"
     }
