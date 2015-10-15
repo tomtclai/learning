@@ -13,6 +13,7 @@
 		7787A67C1BC9E84500558D5D /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7787A67B1BC9E84500558D5D /* ParseConstants.swift */; settings = {ASSET_TAGS = (); }; };
 		7787A67E1BC9E85A00558D5D /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7787A67D1BC9E85A00558D5D /* ParseClient.swift */; settings = {ASSET_TAGS = (); }; };
 		7787A6811BC9E8A100558D5D /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7787A6801BC9E8A100558D5D /* ParseConvenience.swift */; settings = {ASSET_TAGS = (); }; };
+		7787A6861BD0049D00558D5D /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7787A6851BD0049D00558D5D /* HTTPClient.swift */; settings = {ASSET_TAGS = (); }; };
 		77E4CA321BC725DE00FF39DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E4CA311BC725DE00FF39DB /* AppDelegate.swift */; };
 		77E4CA371BC725DE00FF39DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77E4CA351BC725DE00FF39DB /* Main.storyboard */; };
 		77E4CA391BC725DE00FF39DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77E4CA381BC725DE00FF39DB /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 		7787A67B1BC9E84500558D5D /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		7787A67D1BC9E85A00558D5D /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		7787A6801BC9E8A100558D5D /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
+		7787A6851BD0049D00558D5D /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		77E4CA2E1BC725DD00FF39DB /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77E4CA311BC725DE00FF39DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77E4CA361BC725DE00FF39DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 		77E4CA6E1BC7333500FF39DB /* Clients */ = {
 			isa = PBXGroup;
 			children = (
+				7787A6851BD0049D00558D5D /* HTTPClient.swift */,
 				7787A6821BC9E8B700558D5D /* Parse */,
 				7787A67F1BC9E88800558D5D /* Udacity */,
 				77E4CA731BC7336300FF39DB /* UdacityStudent.swift */,
@@ -358,6 +361,7 @@
 				77E4CA601BC7260C00FF39DB /* LoginViewController.swift in Sources */,
 				77E4CA321BC725DE00FF39DB /* AppDelegate.swift in Sources */,
 				77E4CA821BC9D34400FF39DB /* MapViewViewController.swift in Sources */,
+				7787A6861BD0049D00558D5D /* HTTPClient.swift in Sources */,
 				77E4CA841BC9D36000FF39DB /* OnTheMap+UIViewController.swift in Sources */,
 				77E4CA801BC9D32E00FF39DB /* ListViewTableViewController.swift in Sources */,
 				7787A67E1BC9E85A00558D5D /* ParseClient.swift in Sources */,
