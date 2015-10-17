@@ -189,6 +189,9 @@
                             <barButtonItem image="pin" id="4GZ-eM-xGz"/>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="MMy-Ys-Dbd" id="zKL-n0-CT2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q7X-nl-Z9n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -197,19 +200,29 @@
         <!--On The Map-->
         <scene sceneID="KNX-5p-JtJ">
             <objects>
-                <tableViewController id="E2V-Yp-HJ2" sceneMemberID="viewController">
+                <tableViewController id="E2V-Yp-HJ2" customClass="ListViewTableViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nPq-zt-gQl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="DYD-EB-XvO">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OTMCell" textLabel="u8Z-S9-79p" style="IBUITableViewCellStyleDefault" id="DYD-EB-XvO">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DYD-EB-XvO" id="gNS-2a-OhP">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="u8Z-S9-79p">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
@@ -227,7 +240,11 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="R5x-Bu-8CU"/>
+                            <barButtonItem systemItem="refresh" id="R5x-Bu-8CU">
+                                <connections>
+                                    <action selector="refresh:" destination="E2V-Yp-HJ2" id="0fs-XB-IVi"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem image="pin" id="8y7-r3-Qbs"/>
                         </rightBarButtonItems>
                     </navigationItem>

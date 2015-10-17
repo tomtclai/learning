@@ -24,4 +24,16 @@ extension UIViewController {
             })
         }
     }
+    
+    func refreshListOfStudent(forced: Bool, completionHandler:( [OTMStudent] -> Void) ) {
+        if forced || OTMStudent.ListOfStudent==nil {
+            ParseClient.sharedInstance().getStudentLocations { (result, error) -> Void in
+                let result = OTMStudent.studentsFromResults(result as! [[String : AnyObject]])
+                OTMStudent.ListOfStudent = result
+                completionHandler(result)
+            }
+        } else {
+            completionHandler(OTMStudent.ListOfStudent!)
+        }
+    }
 }

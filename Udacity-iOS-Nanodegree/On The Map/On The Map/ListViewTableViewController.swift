@@ -10,16 +10,23 @@ import UIKit
 
 class ListViewTableViewController: UITableViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    override func viewDidAppear(animated: Bool) {
+        refreshAndReload(false)
     }
 
+    @IBAction func refresh(sender: UIBarButtonItem) {
+        refreshAndReload(true)
+    }
+    
+    func refreshAndReload(forced: Bool) {
+        refreshListOfStudent(forced) { students -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tableView.reloadData()
+            })
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -29,23 +36,29 @@ class ListViewTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        if OTMStudent.ListOfStudent == nil {
+            return 0
+        }
+        return OTMStudent.ListOfStudent!.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("OTMCell", forIndexPath: indexPath)
 
-        // Configure the cell...
+        let name = String(OTMStudent.ListOfStudent![indexPath.row].firstName + " " + OTMStudent.ListOfStudent![indexPath.row].lastName)
+        cell.textLabel!.text = name
 
+        cell.imageView?.image = UIImage(named: "pin")
+        
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.

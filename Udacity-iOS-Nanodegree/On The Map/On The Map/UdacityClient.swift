@@ -8,7 +8,7 @@
 // Reference: https://docs.google.com/document/d/1MECZgeASBDYrbBg7RlRu9zBBLGd3_kfzsN-0FtURqn0/pub?embedded=true
 import UIKit
 
-class UdacityClient: NSObject {
+class UdacityClient: HTTPClient {
     
     var session = NSURLSession.sharedSession()
     
@@ -117,28 +117,6 @@ class UdacityClient: NSObject {
         return task
     }
 
-    /* Helpers */
-    class func escapedParameters(parameters: [String : AnyObject]?) -> String {
-        
-        if let parameters = parameters {
-            var urlVars = [String]()
-            
-            for (key, value) in parameters {
-                /* Make sure that it is a string value */
-                let stringValue = "\(value)"
-                
-                /* Escape it*/
-                let escapedValue = stringValue.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-                
-                urlVars += [key + "=" + "\(escapedValue!)"]
-            }
-            
-            return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
-        }
-        else {
-            return ""
-        }
-    }
     
     class func parseJSONWithCompletionHandler(data: NSData, completionHandler : (result: AnyObject!, error: NSError?) -> Void) {
         // Udacity use the first 5 characters for security purposes and should be skipped

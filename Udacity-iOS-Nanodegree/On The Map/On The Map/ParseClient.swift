@@ -9,11 +9,14 @@
 
 import UIKit
 
-class ParseClient: NSObject {
+class ParseClient: HTTPClient {
 
-    func getStudentLocations(parameters: [String: AnyObject]?, completionHandler: (result: AnyObject!, error: NSError?) -> Void) ->NSURLSessionDataTask {
+    func getStudentLocations(completionHandler: (result: AnyObject!, error: NSError?) -> Void) ->NSURLSessionDataTask {
         let session = NSURLSession.sharedSession()
-        let url = NSURL(string: Constants.BaseURL)!
+        let optionalParameters : [String:AnyObject] = [ParameterKeys.Limit : 100,
+            ParameterKeys.Order : JSONResponseKeyPaths.UpdatedAt]
+        let urlString = Constants.BaseURL + self.dynamicType.escapedParameters(optionalParameters)
+        let url = NSURL(string: urlString)!
         let task = session.dataTaskWithRequest(starterURLRequest(url)) { data, response, error in
             guard (error == nil) else {
                 print("There was an error with your request: \(error)")
@@ -37,15 +40,12 @@ class ParseClient: NSObject {
             }
             
             ParseClient.parseJSONWithCompletionHandler(data, completionHandler: { (result, error) -> Void in
-                if let error = error {
-                    completionHandler(result: nil, error: error)
-                } else {
-//                    guard let students (read into array of Studetn OBJECTS)
-                }
+                completionHandler(result: result[JSONResponseKeyPaths.StudentLocations], error: error)
             })
             
         }
         task.resume()
+        return task
     }
     
     func starterURLRequest(url: NSURL) -> NSMutableURLRequest {
@@ -65,4 +65,15 @@ class ParseClient: NSObject {
         }
         completionHandler(result: parsedResult, error: nil)
     }
+    
+    // MARK: Shared Instance
+    class func sharedInstance() -> ParseClient {
+        
+        struct Singleton {
+            static var sharedInstance = ParseClient()
+        }
+        
+        return Singleton.sharedInstance
+    }
+    
 }
