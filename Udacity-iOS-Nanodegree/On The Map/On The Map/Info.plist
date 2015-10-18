@@ -81,17 +81,19 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb690054951094334</string>
+				<string>fb365362206864879onthemap</string>
 			</array>
 		</dict>
 	</array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fbauth2</string>
+    </array>
 	<key>FacebookAppID</key>
-	<string>690054951094334</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbauth2</string>
-	</array>
+	<string>365362206864879</string>
+    <key>FacebookUrlSchemeSuffix</key>
+    <string>onthemap</string>
 	<key>FacebookDisplayName</key>
-	<string>On The Map</string>
+	<string>Udacity</string>
 </dict>
 </plist>

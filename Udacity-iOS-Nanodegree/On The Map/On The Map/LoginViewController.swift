@@ -15,6 +15,7 @@ class LoginViewController: UIViewController{
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
+    var facebookButton: FBSDKLoginButton!
     
     let udacityDeepOrange = UIColor(red: 255/255, green: 97/255, blue: 0/255, alpha: 1.0)
     let transparent = UIColor.clearColor()
@@ -92,6 +93,7 @@ class LoginViewController: UIViewController{
     }
     
     @IBAction func signInWithFacebookTapped(sender: AnyObject) {
+        
     }
     
     /*
@@ -110,21 +112,29 @@ class LoginViewController: UIViewController{
         themeButton(signUpButton, color: transparent)
         themeTextField(emailField)
         themeTextField(passwordField)
-        addFacebookLoginButton()
+        facebookButton = facebookLoginButton()
+        themeButton(facebookButton, color: nil)
 
     }
     
-    func addFacebookLoginButton() {
+    func facebookLoginButton() -> FBSDKLoginButton {
         let btn = FBSDKLoginButton()
 
         view.addSubview(btn)
+        btn.translatesAutoresizingMaskIntoConstraints = false
 
-        btn.frame.origin.x = view.frame.size.width / 2.0 - btn.frame.width / 2.0
-        btn.frame.origin.y = view.frame.size.height - 20.0 - btn.frame.height
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[btn(44)]-15-|", options: NSLayoutFormatOptions.AlignAllBottom, metrics: nil, views: ["btn":btn]))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[btn]-|", options: NSLayoutFormatOptions.AlignAllCenterX, metrics: nil, views: ["btn":btn]))
+        
+        btn.titleLabel?.text = "Login with Facebook"
+        btn.delegate = self
+        return btn
     }
     
-    func themeButton(button: UIButton, color: UIColor) {
-        button.backgroundColor = color
+    func themeButton(button: UIButton, color: UIColor?) {
+        if let color = color {
+            button.backgroundColor = color
+        }
         button.layer.cornerRadius = buttonRadius
         
         let font = UIFont(name: "Roboto-Regular", size: 17.0)
@@ -152,7 +162,59 @@ class LoginViewController: UIViewController{
     
 
 }
-
+extension LoginViewController: FBSDKLoginButtonDelegate {
+    /*!
+    @abstract Sent to the delegate when the button was used to login.
+    @param loginButton the sender
+    @param result The results of the login
+    @param error The error (if any) from the login
+    */
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        if let error = error {
+            print(error)
+            self.wiggleView(self.facebookButton)
+        } else {
+            let token = result.token.tokenString
+            UdacityClient.sharedInstance().postSessionWithFacebook(token) { (sessionID, accountID, error) -> Void in
+                if let error = error {
+                    print(error)
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.wiggleView(self.facebookButton)
+                    })
+                    return
+                }
+                
+                guard sessionID != nil && accountID != nil else {
+                    print("sessionID and/or AccountID is nil")
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.wiggleView(self.facebookButton)
+                    })
+                    
+                    return
+                }
+                UdacityClient.sharedInstance().sessionID = sessionID!
+                UdacityClient.sharedInstance().userAccount = accountID!
+                print("session \(sessionID) account \(accountID)")
+                if let loggedInVC = self.storyboard?.instantiateViewControllerWithIdentifier("TabBarController")
+                {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.presentViewController(loggedInVC, animated: true, completion: nil)
+                    })
+                } else {
+                    print("viewcontroller with identifier \"TabBarController\" not found in IB")
+                }
+            }
+        }
+    }
+    
+    /*!
+    @abstract Sent to the delegate when the button was used to logout.
+    @param loginButton The button that was clicked.
+    */
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        
+    }
+}
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == emailField {

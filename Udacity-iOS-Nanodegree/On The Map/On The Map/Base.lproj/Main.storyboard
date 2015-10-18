@@ -290,7 +290,6 @@
         <!--List-->
         <scene sceneID="nht-p3-Ctq">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yzF-o3-e3X" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PW4-Bf-o1G" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="List" image="list" selectedImage="list" id="fpd-7S-cbg"/>
                     <toolbarItems/>
@@ -304,6 +303,7 @@
                         <segue destination="E2V-Yp-HJ2" kind="relationship" relationship="rootViewController" id="a34-7p-cc3"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yzF-o3-e3X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1775" y="1179"/>
         </scene>

@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import FBSDKCoreKit
+import FBSDKLoginKit
 extension UIViewController {
 
     @IBAction func logoutTapped(sender: UIBarButtonItem) {
@@ -23,6 +24,8 @@ extension UIViewController {
                 self.dismissViewControllerAnimated(true, completion: nil)
             })
         }
+        
+        FBSDKAccessToken.setCurrentAccessToken(nil)
     }
     
     func refreshListOfStudent(forced: Bool, completionHandler:( [OTMStudent] -> Void) ) {
