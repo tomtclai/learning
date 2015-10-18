@@ -10,9 +10,9 @@ import UIKit
 
 class ListViewTableViewController: UITableViewController {
 
-
     override func viewDidAppear(animated: Bool) {
         refreshAndReload(false)
+        super.viewDidAppear(animated)
     }
 
     @IBAction func refresh(sender: UIBarButtonItem) {
@@ -53,9 +53,7 @@ class ListViewTableViewController: UITableViewController {
 
         let name = String(OTMStudent.ListOfStudent![indexPath.row].firstName + " " + OTMStudent.ListOfStudent![indexPath.row].lastName)
         cell.textLabel!.text = name
-
         cell.imageView?.image = UIImage(named: "pin")
-        
         return cell
     }
 

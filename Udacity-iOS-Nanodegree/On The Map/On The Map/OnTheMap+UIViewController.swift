@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIViewController {
- 
+
     @IBAction func logoutTapped(sender: UIBarButtonItem) {
         UdacityClient.sharedInstance().deleteSession { (sessionID, error) -> Void in
             if let error = error {

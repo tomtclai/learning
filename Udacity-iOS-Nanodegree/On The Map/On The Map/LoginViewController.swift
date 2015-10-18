@@ -7,17 +7,16 @@
 //
 
 import UIKit
-
+import FBSDKCoreKit
+import FBSDKLoginKit
 class LoginViewController: UIViewController{
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var facebookLoginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     
     let udacityDeepOrange = UIColor(red: 255/255, green: 97/255, blue: 0/255, alpha: 1.0)
-    let facebookBlue = UIColor(red: 59/255, green: 89/255, blue: 152/255, alpha: 1.0)
     let transparent = UIColor.clearColor()
     let buttonRadius:CGFloat = 4.0
     
@@ -108,12 +107,20 @@ class LoginViewController: UIViewController{
     // MARK: Helper functions
     func configureUI() {
         themeButton(loginButton, color: udacityDeepOrange)
-        themeButton(facebookLoginButton, color: facebookBlue)
         themeButton(signUpButton, color: transparent)
         themeTextField(emailField)
         themeTextField(passwordField)
-        
+        addFacebookLoginButton()
 
+    }
+    
+    func addFacebookLoginButton() {
+        let btn = FBSDKLoginButton()
+
+        view.addSubview(btn)
+
+        btn.frame.origin.x = view.frame.size.width / 2.0 - btn.frame.width / 2.0
+        btn.frame.origin.y = view.frame.size.height - 20.0 - btn.frame.height
     }
     
     func themeButton(button: UIButton, color: UIColor) {
