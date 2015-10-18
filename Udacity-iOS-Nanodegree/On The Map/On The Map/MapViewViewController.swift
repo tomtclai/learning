@@ -43,7 +43,13 @@ class MapViewViewController: UIViewController, MKMapViewDelegate {
     // There is no prototype in storyboard, dequeue might return nil and you will need to creat one
     //https://www.dropbox.com/s/dfrwwsydlwa8swd/Screenshot%202015-10-17%2014.31.19.png?dl=0
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        <#code#>
+        let identifier = "OTMAnnotation"
+        var view = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
+        if view == nil {
+            view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view?.canShowCallout = true
+        }
+        
     }
 
     /*
