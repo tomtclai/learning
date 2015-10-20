@@ -33,6 +33,7 @@
 		77E4CA821BC9D34400FF39DB /* MapViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E4CA811BC9D34400FF39DB /* MapViewViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		77E4CA841BC9D36000FF39DB /* OnTheMap+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E4CA831BC9D36000FF39DB /* OnTheMap+UIViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		77E4CA861BC9D66E00FF39DB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E4CA851BC9D66E00FF39DB /* MapKit.framework */; };
+		77E4CA9D1BD58D2D00FF39DB /* WhereAreYouStudyingTodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E4CA9C1BD58D2D00FF39DB /* WhereAreYouStudyingTodayViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		77E4CA811BC9D34400FF39DB /* MapViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewViewController.swift; sourceTree = "<group>"; };
 		77E4CA831BC9D36000FF39DB /* OnTheMap+UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OnTheMap+UIViewController.swift"; sourceTree = "<group>"; };
 		77E4CA851BC9D66E00FF39DB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		77E4CA9C1BD58D2D00FF39DB /* WhereAreYouStudyingTodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhereAreYouStudyingTodayViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +217,7 @@
 		77E4CA6A1BC732CE00FF39DB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				77E4CA9C1BD58D2D00FF39DB /* WhereAreYouStudyingTodayViewController.swift */,
 				77E4CA811BC9D34400FF39DB /* MapViewViewController.swift */,
 				77E4CA7F1BC9D32E00FF39DB /* ListViewTableViewController.swift */,
 				77E4CA5F1BC7260C00FF39DB /* LoginViewController.swift */,
@@ -381,6 +384,7 @@
 				77E4CA741BC7336300FF39DB /* OTMStudent.swift in Sources */,
 				77E4CA701BC7334F00FF39DB /* UdacityConstants.swift in Sources */,
 				777FF0651BD2F55600846EB2 /* OTMAnnotation.swift in Sources */,
+				77E4CA9D1BD58D2D00FF39DB /* WhereAreYouStudyingTodayViewController.swift in Sources */,
 				7787A67C1BC9E84500558D5D /* ParseConstants.swift in Sources */,
 				77E4CA761BC7336E00FF39DB /* UdacityConvenience.swift in Sources */,
 				77E4CA601BC7260C00FF39DB /* LoginViewController.swift in Sources */,
