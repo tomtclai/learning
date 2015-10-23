@@ -12,7 +12,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
     
     private var enterPanGesture: UIScreenEdgePanGestureRecognizer!
     private var exitPanGesture: UIPanGestureRecognizer!
-    private var statusBarBackground: UIView!
+//    private var statusBarBackground: UIView!
     private var interactive = false
     
     var presenting = true
@@ -23,22 +23,18 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
             self.enterPanGesture.addTarget(self, action: "handleOnstagePan:")
             self.enterPanGesture.edges = UIRectEdge.Left
             self.sourceViewController.view.addGestureRecognizer(self.enterPanGesture)
-            
-            self.statusBarBackground = UIView()
-            self.statusBarBackground.frame = CGRect(x: 0, y: 0, width: self.sourceViewController.view.frame.width, height: 20)
-            self.statusBarBackground.backgroundColor = self.sourceViewController.view.backgroundColor
-            
-            UIApplication.sharedApplication().keyWindow?.addSubview(self.statusBarBackground)
-
+            self.sourceViewController.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "dismissMenu:"))
             
         }
     }
     
     var menuViewController: MenuViewController! {
         didSet {
+            menuViewController.view.frame.size = CGSizeMake(sourceViewController.view.frame.size.width * 0.85, menuViewController.view.frame.size.height)
             self.exitPanGesture = UIPanGestureRecognizer()
             self.exitPanGesture.addTarget(self, action: "handleExitPan:")
-            self.menuViewController.view.addGestureRecognizer(exitPanGesture)
+            UIApplication.sharedApplication().windows.first?.addGestureRecognizer(exitPanGesture)
+            
         }
     }
     
@@ -47,10 +43,10 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
     
     func handleOnstagePan(pan: UIPanGestureRecognizer) {
         presenting = true
+        
         let translation = pan.translationInView(pan.view!) // pan.view is sourceView
         
         let d = translation.x / CGRectGetWidth(pan.view!.bounds) * 0.5
-        
         switch (pan.state) {
         case .Began:
             self.interactive = true
@@ -58,25 +54,35 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
         case .Changed:
             self.updateInteractiveTransition(d)
         default:
-            self.interactive = false
+            self.interactive = true
             if (d > 0.2) {
                 self.finishInteractiveTransition()
             } else {
                 self.cancelInteractiveTransition()
-                
+
             }
+            self.interactive = false
+        }
+    }
+    
+    func dismissMenu(tap: UITapGestureRecognizer) {
+        presenting = false
+        if menuViewController != nil {
+            self.menuViewController.dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
     func handleExitPan(pan: UIPanGestureRecognizer) {
-        let velocity = pan.velocityInView(pan.view!)
+        let translation = pan.translationInView(pan.view!)
         presenting = false
-        if (velocity.x < 0) { // right to left
-            let percentComplete =  abs(pan.translationInView(pan.view).x) / CGRectGetWidth(pan.view!.bounds) * 0.5
+
+            let percentComplete =  -translation.x / CGRectGetWidth(pan.view!.bounds) * 0.5
             switch (pan.state) {
             case .Began:
-                self.interactive = true
-                self.menuViewController.performSegueWithIdentifier("unwindToMainView", sender: self)
+                if (translation.x < 0) { // right to left
+                    self.interactive = true
+                    self.menuViewController.performSegueWithIdentifier("unwindToMainView", sender: self)
+                }
             case .Changed:
                 self.updateInteractiveTransition(percentComplete)
             default:
@@ -87,7 +93,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
                     self.cancelInteractiveTransition()
                 }
             }
-        }
+        
     }
     //MARK: UIViewCOntrollerAnimatedTransitioning
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
@@ -119,7 +125,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
         }
         container!.addSubview(bottomView)
         container!.addSubview(menuView)
-        container!.addSubview(self.statusBarBackground)
+//        container!.addSubview(self.statusBarBackground)
         
         let duration = self.transitionDuration(transitionContext)
         
@@ -143,12 +149,13 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
                     transitionContext.completeTransition(false)
                     // bug: we have to manually add our 'to view' back http://openradar.appspot.com/radar?id=5320103646199808
                     UIApplication.sharedApplication().keyWindow!.addSubview(screens.from.view)
-                    UIApplication.sharedApplication().keyWindow!.addSubview(self.statusBarBackground)
+//                    UIApplication.sharedApplication().keyWindow!.addSubview(self.statusBarBackground)
+                    
                 } else {
                     transitionContext.completeTransition(true)
                     // bug: we have to manually add our 'to view' back http://openradar.appspot.com/radar?id=5320103646199808
                     UIApplication.sharedApplication().keyWindow!.addSubview(screens.to.view)
-                    UIApplication.sharedApplication().keyWindow!.addSubview(self.statusBarBackground)
+//                    UIApplication.sharedApplication().keyWindow!.addSubview(self.statusBarBackground)
                 }
                 
                 
@@ -162,48 +169,18 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
     }
     
     func offStageMenuController(menuViewController : MenuViewController) {
-        menuViewController.view.alpha = 0
+//        menuViewController.view.alpha = 0
         
-        let topRowOffset  :CGFloat = 50
-        let middleRowOffset :CGFloat = 150
-        let bottomRowOffset  :CGFloat = 300
-        
-
-        
-        menuViewController.textPostIcon.transform = self.offStage(-topRowOffset)
-        menuViewController.textPostLabel.transform = self.offStage(-topRowOffset)
-        
-        menuViewController.quotePostIcon.transform = self.offStage(-middleRowOffset)
-        menuViewController.quotePostLabel.transform = self.offStage(-middleRowOffset)
-        
-        menuViewController.chatPostIcon.transform = self.offStage(-bottomRowOffset)
-        menuViewController.chatPostLabel.transform = self.offStage(-bottomRowOffset)
-        
-        menuViewController.photoPostIcon.transform = self.offStage(topRowOffset)
-        menuViewController.photoPostLabel.transform = self.offStage(topRowOffset)
-        
-        menuViewController.linkPostIcon.transform = self.offStage(middleRowOffset)
-        menuViewController.linkPostLabel.transform = self.offStage(middleRowOffset)
-        
-        menuViewController.audioPostIcon.transform = self.offStage(bottomRowOffset)
-        menuViewController.audioPostLabel.transform = self.offStage(bottomRowOffset)
-
+        let offset : CGFloat = -CGRectGetWidth(sourceViewController.view.frame)
+//
+        menuViewController.view.transform = self.offStage(offset)
     }
     
     func onStageMenuController(menuViewController : MenuViewController) {
-        menuViewController.textPostIcon.transform = CGAffineTransformIdentity
-        menuViewController.textPostLabel.transform = CGAffineTransformIdentity
-        menuViewController.quotePostIcon.transform = CGAffineTransformIdentity
-        menuViewController.quotePostLabel.transform = CGAffineTransformIdentity
-        menuViewController.chatPostIcon.transform = CGAffineTransformIdentity
-        menuViewController.chatPostLabel.transform = CGAffineTransformIdentity
-        
-        menuViewController.photoPostIcon.transform = CGAffineTransformIdentity
-        menuViewController.photoPostLabel.transform = CGAffineTransformIdentity
-        menuViewController.linkPostIcon.transform = CGAffineTransformIdentity
-        menuViewController.linkPostLabel.transform = CGAffineTransformIdentity
-        menuViewController.audioPostIcon.transform = CGAffineTransformIdentity
-        menuViewController.audioPostLabel.transform = CGAffineTransformIdentity
+
+        menuViewController.view.transform = CGAffineTransformIdentity
+
+
     }
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.5
