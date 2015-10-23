@@ -8,9 +8,87 @@
 
 import UIKit
 
-class TransitionManager: NSObject, UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate {
+class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate {
+    
+    private var enterPanGesture: UIScreenEdgePanGestureRecognizer!
+    private var exitPanGesture: UIPanGestureRecognizer!
+    private var statusBarBackground: UIView!
+    private var interactive = false
+    
     var presenting = true
+    
+    var sourceViewController: UIViewController! {
+        didSet {
+            self.enterPanGesture = UIScreenEdgePanGestureRecognizer()
+            self.enterPanGesture.addTarget(self, action: "handleOnstagePan:")
+            self.enterPanGesture.edges = UIRectEdge.Left
+            self.sourceViewController.view.addGestureRecognizer(self.enterPanGesture)
+            
+            self.statusBarBackground = UIView()
+            self.statusBarBackground.frame = CGRect(x: 0, y: 0, width: self.sourceViewController.view.frame.width, height: 20)
+            self.statusBarBackground.backgroundColor = self.sourceViewController.view.backgroundColor
+            
+            UIApplication.sharedApplication().keyWindow?.addSubview(self.statusBarBackground)
 
+            
+        }
+    }
+    
+    var menuViewController: MenuViewController! {
+        didSet {
+            self.exitPanGesture = UIPanGestureRecognizer()
+            self.exitPanGesture.addTarget(self, action: "handleExitPan:")
+            self.menuViewController.view.addGestureRecognizer(exitPanGesture)
+        }
+    }
+    
+
+    
+    
+    func handleOnstagePan(pan: UIPanGestureRecognizer) {
+        presenting = true
+        let translation = pan.translationInView(pan.view!) // pan.view is sourceView
+        
+        let d = translation.x / CGRectGetWidth(pan.view!.bounds) * 0.5
+        
+        switch (pan.state) {
+        case .Began:
+            self.interactive = true
+            self.sourceViewController.performSegueWithIdentifier("presentMenu", sender: self)
+        case .Changed:
+            self.updateInteractiveTransition(d)
+        default:
+            self.interactive = false
+            if (d > 0.2) {
+                self.finishInteractiveTransition()
+            } else {
+                self.cancelInteractiveTransition()
+                
+            }
+        }
+    }
+    
+    func handleExitPan(pan: UIPanGestureRecognizer) {
+        let velocity = pan.velocityInView(pan.view!)
+        presenting = false
+        if (velocity.x < 0) { // right to left
+            let percentComplete =  abs(pan.translationInView(pan.view).x) / CGRectGetWidth(pan.view!.bounds) * 0.5
+            switch (pan.state) {
+            case .Began:
+                self.interactive = true
+                self.menuViewController.performSegueWithIdentifier("unwindToMainView", sender: self)
+            case .Changed:
+                self.updateInteractiveTransition(percentComplete)
+            default:
+                self.interactive = false
+                if percentComplete > 0.2 {
+                    self.finishInteractiveTransition()
+                } else {
+                    self.cancelInteractiveTransition()
+                }
+            }
+        }
+    }
     //MARK: UIViewCOntrollerAnimatedTransitioning
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
@@ -22,7 +100,6 @@ class TransitionManager: NSObject, UIViewControllerAnimatedTransitioning, UIView
         
         // assign references to our menu view controller and the 'bottom' view controller from the tuple
         // remember that our menuViewController will alternate between the from and to view controller depending if we're presenting or dismissing
-        var menuViewController: MenuViewController
         var bottomViewController: UIViewController!
         
         if presenting { // from main to menu
@@ -42,7 +119,7 @@ class TransitionManager: NSObject, UIViewControllerAnimatedTransitioning, UIView
         }
         container!.addSubview(bottomView)
         container!.addSubview(menuView)
-        
+        container!.addSubview(self.statusBarBackground)
         
         let duration = self.transitionDuration(transitionContext)
         
@@ -54,18 +131,27 @@ class TransitionManager: NSObject, UIViewControllerAnimatedTransitioning, UIView
             if self.presenting { // fade in
                 menuView.alpha = 1
                 
-                self.onStageMenuController(menuViewController)
+                self.onStageMenuController(self.menuViewController)
             } else { // fade out
                 menuView.alpha = 0
-                self.offStageMenuController(menuViewController)
+                self.offStageMenuController(self.menuViewController)
             }
             
             }, completion: { finished in
                 
-                transitionContext.completeTransition(true)
+                if (transitionContext.transitionWasCancelled()) {
+                    transitionContext.completeTransition(false)
+                    // bug: we have to manually add our 'to view' back http://openradar.appspot.com/radar?id=5320103646199808
+                    UIApplication.sharedApplication().keyWindow!.addSubview(screens.from.view)
+                    UIApplication.sharedApplication().keyWindow!.addSubview(self.statusBarBackground)
+                } else {
+                    transitionContext.completeTransition(true)
+                    // bug: we have to manually add our 'to view' back http://openradar.appspot.com/radar?id=5320103646199808
+                    UIApplication.sharedApplication().keyWindow!.addSubview(screens.to.view)
+                    UIApplication.sharedApplication().keyWindow!.addSubview(self.statusBarBackground)
+                }
                 
-                // bug: we have to manually add our 'to view' back http://openradar.appspot.com/radar?id=5320103646199808
-                UIApplication.sharedApplication().keyWindow!.addSubview(screens.to.view)
+                
             }
         )
     }
@@ -134,7 +220,15 @@ class TransitionManager: NSObject, UIViewControllerAnimatedTransitioning, UIView
     
     // return the animator used when dismissing from a viewcontroller
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        self.presenting = false
+        presenting = false
         return self
+    }
+    
+    func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactive ? self : nil
+    }
+    
+    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactive ? self : nil
     }
 }

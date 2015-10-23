@@ -9,7 +9,6 @@
 import UIKit
 
 class MenuViewController: UIViewController {
-    let transitionManager = TransitionManager()
     @IBOutlet weak var textPostIcon: UIImageView!
     @IBOutlet weak var textPostLabel: UILabel!
     
@@ -31,7 +30,6 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.transitioningDelegate = self.transitionManager
     }
     
     override func didReceiveMemoryWarning() {
