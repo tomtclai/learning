@@ -19,6 +19,9 @@ extension UdacityClient {
     // MARK: Methods
     struct Methods {
         static let Session = "session"
+        static func User(userID:String!) -> String {
+            return "users/\(userID)"
+        }
     }
     
     // MARK: URL Keys
@@ -37,6 +40,8 @@ extension UdacityClient {
         static let SessionExpiration = "session.expiration"
         static let UserID = "account.key"
         static let UserRegistered = "account.registered"
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
     }
     
 }

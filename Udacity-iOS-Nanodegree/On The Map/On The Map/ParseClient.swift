@@ -11,6 +11,7 @@ import UIKit
 
 class ParseClient: HTTPClient {
 
+    var locationObjectID : String? = nil
     func getStudentLocations(completionHandler: (result: AnyObject!, error: NSError?) -> Void) ->NSURLSessionDataTask {
         let session = NSURLSession.sharedSession()
         let optionalParameters : [String:AnyObject] = [ParameterKeys.Limit : 100,
@@ -48,6 +49,33 @@ class ParseClient: HTTPClient {
         return task
     }
     
+    func postStudentLocation(mapString: String!, mediaURL: String!, latitude: Double!, longitude: Double!) -> Void {
+        UdacityClient.sharedInstance().getStudentData { (userID, firstname, lastname, error) -> Void in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let firstname = firstname else {
+                print("firstname is nil")
+                return
+            }
+            guard let lastname = lastname else {
+                print("lastname is nil")
+                return
+            }
+            let session = NSURLSession.sharedSession()
+            let url = NSURL(string: Constants.BaseURL)
+            let urlRequest = starterURLRequest(url!)
+            
+            let jsonBody : [String: AnyObject] = [
+            urlRequest.HTTPBody
+//            let task = session.dataTaskWithRequest(, completionHandler: { (data, response, error) -> Void in
+//                <#code#>
+//            })
+        }
+    }
+    
+    
     func starterURLRequest(url: NSURL) -> NSMutableURLRequest {
         let request = NSMutableURLRequest(URL: url)
         request.addValue(Constants.ApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
@@ -65,6 +93,7 @@ class ParseClient: HTTPClient {
         }
         completionHandler(result: parsedResult, error: nil)
     }
+    
     
     // MARK: Shared Instance
     class func sharedInstance() -> ParseClient {

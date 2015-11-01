@@ -77,6 +77,7 @@
                                 </state>
                                 <connections>
                                     <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PxX-r0-mv7"/>
+                                    <action selector="startLoading:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5mR-qr-6b7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -84,6 +85,7 @@
                         <color key="backgroundColor" red="1" green="0.53034665869999997" blue="0.0004047529727" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="e91-Wa-Zzz" secondAttribute="leading" id="1N8-Jy-u6S"/>
                             <constraint firstItem="6Kv-aS-HmA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="4TK-3i-pJP"/>
                             <constraint firstItem="FDo-dI-CAS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="9VM-61-Ajw"/>
                             <constraint firstItem="GYH-6E-8Db" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BTd-TV-Qv6"/>
@@ -191,7 +193,7 @@
                                 <rect key="frame" x="0.0" y="229" width="600" height="200"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mountain View, CA" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SuQ-Zh-XdU">
-                                        <rect key="frame" x="0.0" y="8" width="600" height="28"/>
+                                        <rect key="frame" x="0.0" y="86" width="600" height="28"/>
                                         <animations/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
@@ -202,11 +204,17 @@
                                 <color key="backgroundColor" red="0.32156862749999998" green="0.53725490200000003" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="SuQ-Zh-XdU" firstAttribute="centerY" secondItem="kWa-Wi-QBW" secondAttribute="centerY" id="6l4-ci-grh"/>
                                     <constraint firstItem="SuQ-Zh-XdU" firstAttribute="width" secondItem="kWa-Wi-QBW" secondAttribute="width" id="9Wo-N9-mbE"/>
                                     <constraint firstAttribute="height" constant="200" id="bAG-Hl-0ro"/>
                                     <constraint firstItem="SuQ-Zh-XdU" firstAttribute="centerX" secondItem="kWa-Wi-QBW" secondAttribute="centerX" id="iZO-XM-IOl"/>
                                     <constraint firstItem="SuQ-Zh-XdU" firstAttribute="top" secondItem="kWa-Wi-QBW" secondAttribute="top" constant="8" id="k3f-W3-2Xy"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="k3f-W3-2Xy"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dL3-Gw-gcj">
                                 <rect key="frame" x="245" y="493" width="111" height="30"/>
@@ -221,9 +229,11 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LP2-3t-TpI">
                                 <rect key="frame" x="532" y="20" width="48" height="30"/>
                                 <animations/>
-                                <state key="normal" title="Cancel"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.32156862749999998" green="0.53725490200000003" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
-                                    <action selector="cancelTapped:" destination="idC-sy-57A" eventType="touchUpInside" id="xKr-Iw-3rz"/>
+                                    <action selector="cancelTapped:" destination="idC-sy-57A" eventType="touchUpInside" id="oZL-wb-R3p"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -453,14 +463,14 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7E4-KG-Yhn">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7E4-KG-Yhn">
                                         <rect key="frame" x="532" y="20" width="48" height="30"/>
                                         <animations/>
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="nzH-Oh-Pus" kind="unwind" unwindAction="prepareForUnwind:" id="HMC-SJ-Ssf"/>
+                                            <action selector="cancelTapped:" destination="bO0-zb-6cU" eventType="touchUpInside" id="2Rf-SV-X1V"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -469,6 +479,8 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="PEy-E2-Bb2" secondAttribute="trailing" id="1wb-2S-YKV"/>
+                                    <constraint firstAttribute="trailing" secondItem="7E4-KG-Yhn" secondAttribute="trailing" constant="20" id="8t0-0l-wTj"/>
+                                    <constraint firstItem="7E4-KG-Yhn" firstAttribute="top" secondItem="R4N-hO-Mtk" secondAttribute="top" constant="20" id="Lpl-dH-zRR"/>
                                     <constraint firstItem="PEy-E2-Bb2" firstAttribute="leading" secondItem="R4N-hO-Mtk" secondAttribute="leading" id="Yx8-Bw-EHl"/>
                                     <constraint firstItem="PEy-E2-Bb2" firstAttribute="top" secondItem="R4N-hO-Mtk" secondAttribute="top" id="frt-MK-KW3"/>
                                     <constraint firstAttribute="height" constant="200" id="oKv-qf-Hb4"/>
@@ -491,6 +503,10 @@
                                         <rect key="frame" x="276" y="49" width="49" height="30"/>
                                         <animations/>
                                         <state key="normal" title="Submit"/>
+                                        <connections>
+                                            <action selector="submitTapped:" destination="bO0-zb-6cU" eventType="touchUpInside" id="XJR-Dz-fIB"/>
+                                            <segue destination="nzH-Oh-Pus" kind="unwind" unwindAction="prepareForUnwind:" id="Lge-Sn-6rM"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <animations/>
@@ -524,6 +540,7 @@
                     </view>
                     <connections>
                         <outlet property="mapview" destination="RaR-Kn-SHe" id="PWl-9z-W2F"/>
+                        <outlet property="urlField" destination="PEy-E2-Bb2" id="L1a-Iu-T5b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HCC-3p-efr" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -174,34 +174,35 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
             print(error)
             self.wiggleView(self.facebookButton)
         } else {
-            let token = result.token.tokenString
-            UdacityClient.sharedInstance().postSessionWithFacebook(token) { (sessionID, accountID, error) -> Void in
-                if let error = error {
-                    print(error)
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.wiggleView(self.facebookButton)
-                    })
-                    return
-                }
-                
-                guard sessionID != nil && accountID != nil else {
-                    print("sessionID and/or AccountID is nil")
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.wiggleView(self.facebookButton)
-                    })
+            if let token = result.token?.tokenString {
+                UdacityClient.sharedInstance().postSessionWithFacebook(token) { (sessionID, accountID, error) -> Void in
+                    if let error = error {
+                        print(error)
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.wiggleView(self.facebookButton)
+                        })
+                        return
+                    }
                     
-                    return
-                }
-                UdacityClient.sharedInstance().sessionID = sessionID!
-                UdacityClient.sharedInstance().userAccount = accountID!
-                print("session \(sessionID) account \(accountID)")
-                if let loggedInVC = self.storyboard?.instantiateViewControllerWithIdentifier("TabBarController")
-                {
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.presentViewController(loggedInVC, animated: true, completion: nil)
-                    })
-                } else {
-                    print("viewcontroller with identifier \"TabBarController\" not found in IB")
+                    guard sessionID != nil && accountID != nil else {
+                        print("sessionID and/or AccountID is nil")
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.wiggleView(self.facebookButton)
+                        })
+                        
+                        return
+                    }
+                    UdacityClient.sharedInstance().sessionID = sessionID!
+                    UdacityClient.sharedInstance().userAccount = accountID!
+                    print("session \(sessionID) account \(accountID)")
+                    if let loggedInVC = self.storyboard?.instantiateViewControllerWithIdentifier("TabBarController")
+                    {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.presentViewController(loggedInVC, animated: true, completion: nil)
+                        })
+                    } else {
+                        print("viewcontroller with identifier \"TabBarController\" not found in IB")
+                    }
                 }
             }
         }

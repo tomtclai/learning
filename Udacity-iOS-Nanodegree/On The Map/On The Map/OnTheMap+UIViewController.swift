@@ -25,7 +25,8 @@ extension UIViewController {
             })
         }
         
-        FBSDKAccessToken.setCurrentAccessToken(nil)
+        FBSDKLoginManager().logOut()
+        
     }
     
     func refreshListOfStudent(forced: Bool, completionHandler:( [OTMStudent] -> Void) ) {

@@ -14,11 +14,12 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
     private var exitPanGesture: UIPanGestureRecognizer!
 //    private var statusBarBackground: UIView!
     private var interactive = false
-    
+    private var menuWidth : CGFloat!
     var presenting = true
     
     var sourceViewController: UIViewController! {
         didSet {
+            menuWidth = UIScreen.mainScreen().bounds.size.width * 0.8
             self.enterPanGesture = UIScreenEdgePanGestureRecognizer()
             self.enterPanGesture.addTarget(self, action: "handleOnstagePan:")
             self.enterPanGesture.edges = UIRectEdge.Left
@@ -28,9 +29,10 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
         }
     }
     
+    
     var menuViewController: MenuViewController! {
         didSet {
-            menuViewController.view.frame.size = CGSizeMake(sourceViewController.view.frame.size.width * 0.85, menuViewController.view.frame.size.height)
+            menuViewController.view.frame.size = CGSizeMake(menuWidth, menuViewController.view.frame.size.height)
             self.exitPanGesture = UIPanGestureRecognizer()
             self.exitPanGesture.addTarget(self, action: "handleExitPan:")
             UIApplication.sharedApplication().windows.first?.addGestureRecognizer(exitPanGesture)
@@ -46,7 +48,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
         
         let translation = pan.translationInView(pan.view!) // pan.view is sourceView
         
-        let d = translation.x / CGRectGetWidth(pan.view!.bounds) * 0.5
+        let d = translation.x / menuWidth
         switch (pan.state) {
         case .Began:
             self.interactive = true
@@ -55,7 +57,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
             self.updateInteractiveTransition(d)
         default:
             self.interactive = true
-            if (d > 0.2) {
+            if (d > 0.1) {
                 self.finishInteractiveTransition()
             } else {
                 self.cancelInteractiveTransition()
@@ -76,7 +78,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
         let translation = pan.translationInView(pan.view!)
         presenting = false
 
-            let percentComplete =  -translation.x / CGRectGetWidth(pan.view!.bounds) * 0.5
+            let percentComplete =  -translation.x / menuWidth
             switch (pan.state) {
             case .Began:
                 if (translation.x < 0) { // right to left
@@ -87,7 +89,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
                 self.updateInteractiveTransition(percentComplete)
             default:
                 self.interactive = false
-                if percentComplete > 0.2 {
+                if percentComplete > 0.1 {
                     self.finishInteractiveTransition()
                 } else {
                     self.cancelInteractiveTransition()
@@ -129,17 +131,17 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
         
         let duration = self.transitionDuration(transitionContext)
         
-        
-        UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: UIViewAnimationOptions(rawValue: 0), animations: {
+
+        UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.0, initialSpringVelocity: 0.0, options: UIViewAnimationOptions(rawValue: 0), animations: {
             
             menuView.alpha = self.presenting ? 1 : 0
             
             if self.presenting { // fade in
-                menuView.alpha = 1
+//                menuView.alpha = 1
                 
                 self.onStageMenuController(self.menuViewController)
             } else { // fade out
-                menuView.alpha = 0
+//                menuView.alpha = 0
                 self.offStageMenuController(self.menuViewController)
             }
             

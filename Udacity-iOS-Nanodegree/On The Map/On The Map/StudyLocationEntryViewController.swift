@@ -55,11 +55,10 @@ class StudyLocationEntryViewController: UIViewController {
             })
         }
     }
-
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
-        
+    
+    @IBAction func cancelTapped(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
-
    
 }
 

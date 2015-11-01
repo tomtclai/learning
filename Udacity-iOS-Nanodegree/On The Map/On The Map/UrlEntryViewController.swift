@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 class UrlEntryViewController: UIViewController {
     
+    @IBOutlet weak var urlField: UITextField!
     var location : CLLocationCoordinate2D! {
         didSet {
             let span = MKCoordinateSpanMake(0.20, 0.20)
@@ -41,4 +42,11 @@ class UrlEntryViewController: UIViewController {
     }
     */
     
+    @IBAction func cancelTapped(sender: AnyObject) {
+        parentViewController?.dismissViewControllerAnimated(true, completion: nil);
+    }
+    
+    @IBAction func submitTapped(sender: AnyObject) {
+        
+    }
 }
