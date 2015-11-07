@@ -40,8 +40,8 @@ extension UdacityClient {
         static let SessionExpiration = "session.expiration"
         static let UserID = "account.key"
         static let UserRegistered = "account.registered"
-        static let FirstName = "firstName"
-        static let LastName = "lastName"
+        static let FirstName = "user.first_name"
+        static let LastName = "user.last_name"
     }
     
 }

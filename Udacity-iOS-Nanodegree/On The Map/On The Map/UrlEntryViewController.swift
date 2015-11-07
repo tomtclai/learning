@@ -23,38 +23,32 @@ class UrlEntryViewController: UIViewController {
     @IBOutlet weak var mapview: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        urlField.delegate = self
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func cancelTapped(sender: AnyObject) {
-        parentViewController?.dismissViewControllerAnimated(true, completion: nil);
+        self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func submitTapped(sender: AnyObject) {
         ParseClient.sharedInstance().postStudentLocation(locationString, mediaURL: urlField.text, latitude: location.latitude, longitude: location.longitude) { (result, error) -> Void in
-            if let objectID = result[ParseClient.JSONResponseKeyPaths.ObjectId] as? String {
-                ParseClient.sharedInstance().locationObjectID = objectID
-                print("ObjectID: \(ParseClient.JSONResponseKeyPaths.ObjectId)")
-            } else {
-                print("No \(ParseClient.JSONResponseKeyPaths.ObjectId) in \(result)")
+            guard error == nil else {
+                print(error)
+                return
+            }
+            ParseClient.sharedInstance().locationObjectID = result
+            print("ObjectID: \(result)")
+            dispatch_async(dispatch_get_main_queue()) {
+                self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
             }
         }
+    }
+}
+
+extension UrlEntryViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

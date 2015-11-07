@@ -14,8 +14,10 @@ class ParseClient: HTTPClient {
     var locationObjectID : String? = nil
     func getStudentLocations(completionHandler: (result: AnyObject!, error: NSError?) -> Void) ->NSURLSessionDataTask {
         let session = NSURLSession.sharedSession()
-        let optionalParameters : [String:AnyObject] = [ParameterKeys.Limit : 100,
-            ParameterKeys.Order : JSONResponseKeyPaths.UpdatedAt]
+        let optionalParameters : [String:AnyObject] = [
+            ParameterKeys.Limit : 100,
+            ParameterKeys.Order : "-" + JSONResponseKeyPaths.UpdatedAt
+        ]
         let urlString = Constants.BaseURL + self.dynamicType.escapedParameters(optionalParameters)
         let url = NSURL(string: urlString)!
         let task = session.dataTaskWithRequest(starterURLRequest(url)) { data, response, error in
@@ -49,8 +51,7 @@ class ParseClient: HTTPClient {
         return task
     }
     
-    func postStudentLocation(mapString: String!, mediaURL: String!, latitude: Double!, longitude: Double!, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-        var task : NSURLSessionDataTask!
+    func postStudentLocation(mapString: String!, mediaURL: String!, latitude: Double!, longitude: Double!, completionHandler: (result: String?, error: NSError?) -> Void) -> Void {
         UdacityClient.sharedInstance().getStudentData { (userID, firstname, lastname, error) -> Void in
             if let error = error {
                 print(error)
@@ -82,16 +83,17 @@ class ParseClient: HTTPClient {
                 JSONBodyKeys.Longitude : longitude
             ]
             
+            urlRequest.HTTPMethod = "POST"
             do {
-            urlRequest.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
+                urlRequest.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
             }
-
-            task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) -> Void in
+            
+            let task = session.dataTaskWithRequest(urlRequest) { (data, response, error) in
+                
                 guard (error == nil) else {
                     print("There was an error with your request: \(error)")
-                    return completionHandler(result: nil, error: error)
+                    return
                 }
-                
                 guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                     if let response = response as? NSHTTPURLResponse {
                         print("Your request returned an invalid response #\(response.statusCode)")
@@ -102,17 +104,23 @@ class ParseClient: HTTPClient {
                     }
                     return completionHandler(result: nil, error: NSError(domain: "postStudentLocation", code: 1, userInfo: nil))
                 }
-                
+
                 guard let data = data else {
                     print("No data was returned by the request")
                     return completionHandler(result: nil, error: NSError(domain: "postStudentLocation", code: 1, userInfo: nil))
                 }
+                ParseClient.parseJSONWithCompletionHandler(data, completionHandler: { (result, error) -> Void in
+                    if let objectID = result[JSONResponseKeyPaths.ObjectId] as? String? {
+                        completionHandler(result: objectID, error: nil)
+                    } else {
+                        print("no \(JSONResponseKeyPaths.ObjectId) in \(result)")
+                    }
+                    
+                })
 
-                completionHandler(result: data, error: nil)
-            })
+            }
             task.resume()
         }
-        return task
     }
     
     
