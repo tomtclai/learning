@@ -11,6 +11,7 @@ import MapKit
 class UrlEntryViewController: UIViewController {
     
     @IBOutlet weak var urlField: UITextField!
+    var locationString : String!
     var location : CLLocationCoordinate2D! {
         didSet {
             let span = MKCoordinateSpanMake(0.20, 0.20)
@@ -47,6 +48,13 @@ class UrlEntryViewController: UIViewController {
     }
     
     @IBAction func submitTapped(sender: AnyObject) {
-        
+        ParseClient.sharedInstance().postStudentLocation(locationString, mediaURL: urlField.text, latitude: location.latitude, longitude: location.longitude) { (result, error) -> Void in
+            if let objectID = result[ParseClient.JSONResponseKeyPaths.ObjectId] as? String {
+                ParseClient.sharedInstance().locationObjectID = objectID
+                print("ObjectID: \(ParseClient.JSONResponseKeyPaths.ObjectId)")
+            } else {
+                print("No \(ParseClient.JSONResponseKeyPaths.ObjectId) in \(result)")
+            }
+        }
     }
 }

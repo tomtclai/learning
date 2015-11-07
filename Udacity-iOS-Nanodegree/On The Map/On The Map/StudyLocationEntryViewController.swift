@@ -50,6 +50,7 @@ class StudyLocationEntryViewController: UIViewController {
             geocoder.geocodeAddressString(locationString, completionHandler: { (placemark, error) in
                 if let location = placemark?.first?.location {
                     uev.location = location.coordinate
+                    uev.locationString = self.locationString
                 }
                 
             })
