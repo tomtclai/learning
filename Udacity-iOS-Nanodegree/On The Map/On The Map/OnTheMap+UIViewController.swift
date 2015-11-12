@@ -40,4 +40,11 @@ extension UIViewController {
             completionHandler(OTMStudent.ListOfStudent!)
         }
     }
+
+    
+    func showOKAlert(title: String, subtitle:String) {
+        let alert = UIAlertController(title: title, message: subtitle, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        presentViewController(alert, animated: true, completion: nil)
+    }
 }

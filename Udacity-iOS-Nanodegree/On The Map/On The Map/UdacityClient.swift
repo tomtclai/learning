@@ -36,7 +36,7 @@ class UdacityClient: HTTPClient {
             
             guard (error == nil) else {
                 print("There was an error with your request: \(error)")
-                return
+                return completionHandler(result: nil, error: error)
             }
             
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
@@ -52,7 +52,7 @@ class UdacityClient: HTTPClient {
             
             guard let data = data else {
                 print("No data was returned by the request")
-                return
+                return completionHandler(result: nil, error: error)
             }
             
             UdacityClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
@@ -89,7 +89,7 @@ class UdacityClient: HTTPClient {
             
             guard (error == nil) else {
                 print("There was an error with your request: \(error)")
-                return
+                return completionHandler(result: nil, error: error)
             }
             
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
@@ -105,7 +105,7 @@ class UdacityClient: HTTPClient {
             
             guard let data = data else {
                 print("No data was returned by the request")
-                return
+                return completionHandler(result: nil, error: error)
             }
             
             UdacityClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
@@ -128,7 +128,7 @@ class UdacityClient: HTTPClient {
             
             guard (error == nil) else {
                 print("There was an error with your request: \(error)")
-                return
+                return completionHandler(result: nil, error: error)
             }
             
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
@@ -144,7 +144,7 @@ class UdacityClient: HTTPClient {
             
             guard let data = data else {
                 print("No data was returned by the request")
-                return
+                return completionHandler(result: nil, error: error)
             }
             
             UdacityClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)

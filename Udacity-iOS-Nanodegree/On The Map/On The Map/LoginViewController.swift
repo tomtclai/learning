@@ -31,6 +31,7 @@ class LoginViewController: UIViewController{
         
         /* Configure UI */
         configureUI()
+
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -50,6 +51,7 @@ class LoginViewController: UIViewController{
     // MARK: Actions
     
     @IBAction func loginButtonTapped(sender: AnyObject) {
+        UIActivityIndicatorViewController.sharedInstance.start()
         let username = emailField.text
         let password = passwordField.text
         guard (username != nil && password != nil &&
@@ -59,6 +61,7 @@ class LoginViewController: UIViewController{
             return
         }
         UdacityClient.sharedInstance().postSessionWithUsername(username!, password: password!) { (sessionID, accountID, error) -> Void in
+            UIActivityIndicatorViewController.sharedInstance.stop()
             if let error = error {
                 print(error)
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in

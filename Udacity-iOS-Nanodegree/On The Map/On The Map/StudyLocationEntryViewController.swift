@@ -29,9 +29,7 @@ class StudyLocationEntryViewController: UIViewController {
                 self.locationString = locationField.text
                 return true
             } else {
-                let alert = UIAlertController(title: "No Address provided", message: "Please type an address", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                presentViewController(alert, animated: true, completion: nil)
+                showOKAlert("No Address provided", subtitle: "Please type an address")
                 return false
             }
         }
@@ -44,10 +42,15 @@ class StudyLocationEntryViewController: UIViewController {
             let uev = segue.destinationViewController as! UrlEntryViewController
             geocoder.geocodeAddressString(locationString, completionHandler: { (placemark, error) in
                 if let location = placemark?.first?.location {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    })
                     uev.location = location.coordinate
                     uev.locationString = self.locationString
                 }
-                
+                // TODO: show alert if geocode failed
+                if let error = error {
+                    self.showOKAlert("Geocode Failed", subtitle: error.localizedDescription)
+                }
             })
         }
     }

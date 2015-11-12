@@ -39,6 +39,7 @@ extension ParseClient {
         static let MediaURL = "mediaURL"
         static let Latitude = "latitude"
         static let Longitude = "longitude"
+        static let ReverseUpdatedAt = "-updatedAt"
     }
     // MARK: JSON Response Keys
     struct JSONResponseKeyPaths {

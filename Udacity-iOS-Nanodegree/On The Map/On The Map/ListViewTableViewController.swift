@@ -45,11 +45,39 @@ class ListViewTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("OTMCell", forIndexPath: indexPath)
-
+        
         let name = String(OTMStudent.ListOfStudent![indexPath.row].firstName + " " + OTMStudent.ListOfStudent![indexPath.row].lastName)
         cell.textLabel!.text = name
         cell.imageView?.image = UIImage(named: "pin")
+    
+        if canOpenURLAtIndexPath(indexPath){
+            cell.accessoryType = .DetailButton
+        }
+        
         return cell
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if canOpenURLAtIndexPath(indexPath) {
+            openURLAtIndexPath(indexPath)
+        }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+        openURLAtIndexPath(indexPath)
+    }
+    
+    func canOpenURLAtIndexPath(indexPath: NSIndexPath) -> Bool {
+        let urlString = OTMStudent.ListOfStudent![indexPath.row].mediaURL
+        let url = NSURL(string: urlString)!
+        return UIApplication.sharedApplication().canOpenURL(url)
+    }
+    
+    func openURLAtIndexPath(indexPath: NSIndexPath) {
+        let urlString = OTMStudent.ListOfStudent![indexPath.row].mediaURL
+        let url = NSURL(string: urlString)!
+        UIApplication.sharedApplication().openURL(url)
     }
 
 }

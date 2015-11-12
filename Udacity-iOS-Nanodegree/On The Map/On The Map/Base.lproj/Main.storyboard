@@ -77,7 +77,6 @@
                                 </state>
                                 <connections>
                                     <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PxX-r0-mv7"/>
-                                    <action selector="startLoading:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5mR-qr-6b7"/>
                                 </connections>
                             </button>
                         </subviews>

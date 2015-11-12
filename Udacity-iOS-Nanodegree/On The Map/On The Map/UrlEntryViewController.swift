@@ -24,6 +24,7 @@ class UrlEntryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         urlField.delegate = self
+
     }
     
     
@@ -32,9 +33,14 @@ class UrlEntryViewController: UIViewController {
     }
     
     @IBAction func submitTapped(sender: AnyObject) {
+        UIActivityIndicatorViewController.sharedInstance.start()
+        
         ParseClient.sharedInstance().postStudentLocation(locationString, mediaURL: urlField.text, latitude: location.latitude, longitude: location.longitude) { (result, error) -> Void in
+            UIActivityIndicatorViewController.sharedInstance.stop()
             guard error == nil else {
                 print(error)
+                UIActivityIndicatorViewController.sharedInstance.stop()
+                self.showOKAlert("Error Posting", subtitle: error!.localizedDescription)
                 return
             }
             ParseClient.sharedInstance().locationObjectID = result

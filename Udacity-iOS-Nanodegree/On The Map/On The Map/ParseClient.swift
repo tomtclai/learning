@@ -16,14 +16,14 @@ class ParseClient: HTTPClient {
         let session = NSURLSession.sharedSession()
         let optionalParameters : [String:AnyObject] = [
             ParameterKeys.Limit : 100,
-            ParameterKeys.Order : "-" + JSONResponseKeyPaths.UpdatedAt
+            ParameterKeys.Order : JSONBodyKeys.ReverseUpdatedAt
         ]
         let urlString = Constants.BaseURL + self.dynamicType.escapedParameters(optionalParameters)
         let url = NSURL(string: urlString)!
         let task = session.dataTaskWithRequest(starterURLRequest(url)) { data, response, error in
             guard (error == nil) else {
                 print("There was an error with your request: \(error)")
-                return
+                return completionHandler(result: nil, error: error)
             }
             
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
@@ -39,7 +39,7 @@ class ParseClient: HTTPClient {
             
             guard let data = data else {
                 print("No data was returned by the request")
-                return
+                return completionHandler(result: nil, error: error)
             }
             
             ParseClient.parseJSONWithCompletionHandler(data, completionHandler: { (result, error) -> Void in
@@ -55,19 +55,19 @@ class ParseClient: HTTPClient {
         UdacityClient.sharedInstance().getStudentData { (userID, firstname, lastname, error) -> Void in
             if let error = error {
                 print(error)
-                return
+                return completionHandler(result: nil, error: error)
             }
             guard let firstname = firstname else {
                 print("firstname is nil")
-                return
+                return completionHandler(result: nil, error: error)
             }
             guard let lastname = lastname else {
                 print("lastname is nil")
-                return
+                return completionHandler(result: nil, error: error)
             }
             guard let userID = userID else {
                 print("userID is nil")
-                return
+                return completionHandler(result: nil, error: error)
             }
             let session = NSURLSession.sharedSession()
             let url = NSURL(string: Constants.BaseURL)
@@ -92,7 +92,7 @@ class ParseClient: HTTPClient {
                 
                 guard (error == nil) else {
                     print("There was an error with your request: \(error)")
-                    return
+                    return completionHandler(result: nil, error: error)
                 }
                 guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                     if let response = response as? NSHTTPURLResponse {
