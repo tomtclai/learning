@@ -12,18 +12,15 @@ class UrlEntryViewController: UIViewController {
     
     @IBOutlet weak var urlField: UITextField!
     var locationString : String!
-    var location : CLLocationCoordinate2D! {
-        didSet {
-            let span = MKCoordinateSpanMake(0.20, 0.20)
-            let region = MKCoordinateRegion(center: location, span: span)
-            mapview.setRegion(region, animated: true)
-        }
-    }
+    var location : CLLocationCoordinate2D! 
     
     @IBOutlet weak var mapview: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
         urlField.delegate = self
+        let span = MKCoordinateSpanMake(0.20, 0.20)
+        let region = MKCoordinateRegion(center: location, span: span)
+        mapview.setRegion(region, animated: true)
 
     }
     
@@ -37,10 +34,9 @@ class UrlEntryViewController: UIViewController {
         
         ParseClient.sharedInstance().postStudentLocation(locationString, mediaURL: urlField.text, latitude: location.latitude, longitude: location.longitude) { (result, error) -> Void in
             UIActivityIndicatorViewController.sharedInstance.stop()
-            guard error == nil else {
+            if let error = error {
                 print(error)
-                UIActivityIndicatorViewController.sharedInstance.stop()
-                self.showOKAlert("Error Posting", subtitle: error!.localizedDescription)
+                self.showOKAlert("Error", subtitle: error.localizedDescription)
                 return
             }
             ParseClient.sharedInstance().locationObjectID = result

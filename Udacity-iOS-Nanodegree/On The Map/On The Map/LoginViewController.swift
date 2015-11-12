@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 import FBSDKCoreKit
 import FBSDKLoginKit
 class LoginViewController: UIViewController{
@@ -34,12 +35,7 @@ class LoginViewController: UIViewController{
 
     }
 
-    override func viewWillAppear(animated: Bool) {
-        loginButton.titleLabel?.text = "Login"
-    }
-    
     override func viewDidAppear(animated: Bool) {
-        emailField.text = ""
         passwordField.text = ""
     }
     
@@ -56,8 +52,11 @@ class LoginViewController: UIViewController{
         let password = passwordField.text
         guard (username != nil && password != nil &&
                !username!.isEmpty && !password!.isEmpty) else {
-                print("Login button tapped but username/password empty")
-                wiggleView(loginButton)
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.wiggleView(self.loginButton)
+                    UIActivityIndicatorViewController.sharedInstance.stop()
+                })
+                UIActivityIndicatorViewController.sharedInstance.stop()
             return
         }
         UdacityClient.sharedInstance().postSessionWithUsername(username!, password: password!) { (sessionID, accountID, error) -> Void in
@@ -74,8 +73,8 @@ class LoginViewController: UIViewController{
                 print("sessionID and/or AccountID is nil")
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.wiggleView(self.loginButton)
+                    UIActivityIndicatorViewController.sharedInstance.stop()
                 })
-
                 return
             }
             UdacityClient.sharedInstance().sessionID = sessionID!
@@ -93,6 +92,8 @@ class LoginViewController: UIViewController{
     }
 
     @IBAction func dontHaveAnAccountTapped(sender: AnyObject) {
+        let svc = SFSafariViewController(URL: NSURL(string: "https://www.udacity.com/account/auth#!/signup")!)
+        presentViewController(svc, animated: true, completion: nil)
     }
     
     @IBAction func signInWithFacebookTapped(sender: AnyObject) {

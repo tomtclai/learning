@@ -11,9 +11,10 @@ import CoreLocation
 class StudyLocationEntryViewController: UIViewController {
 
     @IBOutlet weak var locationField: UITextField!
-    var geocoder = CLGeocoder()
-    var locationString : String!
-
+    private var locationString : String!
+    private var geocoder = CLGeocoder()
+    private var location : CLLocationCoordinate2D?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,35 +24,32 @@ class StudyLocationEntryViewController: UIViewController {
     
     // MARK: - Navigation
 
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        if identifier == "showUrlEntryView" {
-            if !locationField.text!.isEmpty {
-                self.locationString = locationField.text
-                return true
-            } else {
-                showOKAlert("No Address provided", subtitle: "Please type an address")
-                return false
-            }
+    @IBAction func findOnTheMapTapped(sender: AnyObject) {
+        if locationField.text!.isEmpty {
+            showOKAlert("Error", subtitle: "Please type an address")
+        } else {
+            UIActivityIndicatorViewController.sharedInstance.start()
+            self.locationString = locationField.text
+            geocoder.geocodeAddressString(locationString, completionHandler: { (placemark, error) in
+                UIActivityIndicatorViewController.sharedInstance.stop()
+                if let location = placemark?.first?.location {
+                    self.location = location.coordinate
+                    self.performSegueWithIdentifier("showUrlEntryView", sender: sender)
+                }
+                if let error = error {
+                    self.showOKAlert("Cannot geocode", subtitle: error.localizedDescription)
+                }
+            })
+            
         }
-        return true
     }
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showUrlEntryView" {
-            // TODO: do an interactive animation here, slide up to present
             let uev = segue.destinationViewController as! UrlEntryViewController
-            geocoder.geocodeAddressString(locationString, completionHandler: { (placemark, error) in
-                if let location = placemark?.first?.location {
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    })
-                    uev.location = location.coordinate
-                    uev.locationString = self.locationString
-                }
-                // TODO: show alert if geocode failed
-                if let error = error {
-                    self.showOKAlert("Geocode Failed", subtitle: error.localizedDescription)
-                }
-            })
+            uev.locationString = self.locationString
+            uev.location = self.location
         }
     }
     

@@ -68,6 +68,12 @@ class ListViewTableViewController: UITableViewController {
         openURLAtIndexPath(indexPath)
     }
     
+    @IBAction func pullToRefresh(sender: UIRefreshControl) {
+        refreshAndReload(true)
+        sender.endRefreshing()
+    }
+
+    
     func canOpenURLAtIndexPath(indexPath: NSIndexPath) -> Bool {
         let urlString = OTMStudent.ListOfStudent![indexPath.row].mediaURL
         let url = NSURL(string: urlString)!

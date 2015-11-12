@@ -28,6 +28,8 @@ class UIActivityIndicatorViewController: NSObject {
     
     func stop() {
         spinner.stopAnimating()
-        spinner.removeFromSuperview()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.spinner.removeFromSuperview()
+        }
     }
 }
