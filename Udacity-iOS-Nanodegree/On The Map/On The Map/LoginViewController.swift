@@ -63,9 +63,15 @@ class LoginViewController: UIViewController{
             UIActivityIndicatorViewController.sharedInstance.stop()
             if let error = error {
                 print(error)
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.wiggleView(self.loginButton)
-                })
+
+                if error.code == 2 { // Bad credential
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.showOKAlert("Error", subtitle: "Bad Credential")
+                        self.wiggleView(self.loginButton)
+                    })
+                } else {
+                    self.showOKAlert("Error", subtitle: error.localizedDescription)
+                }
                 return
             }
             

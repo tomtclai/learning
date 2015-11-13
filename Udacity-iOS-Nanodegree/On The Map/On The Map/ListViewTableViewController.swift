@@ -48,6 +48,7 @@ class ListViewTableViewController: UITableViewController {
         
         let name = String(OTMStudent.ListOfStudent![indexPath.row].firstName + " " + OTMStudent.ListOfStudent![indexPath.row].lastName)
         cell.textLabel!.text = name
+
         cell.imageView?.image = UIImage(named: "pin")
     
         if canOpenURLAtIndexPath(indexPath){
@@ -76,8 +77,11 @@ class ListViewTableViewController: UITableViewController {
     
     func canOpenURLAtIndexPath(indexPath: NSIndexPath) -> Bool {
         let urlString = OTMStudent.ListOfStudent![indexPath.row].mediaURL
-        let url = NSURL(string: urlString)!
-        return UIApplication.sharedApplication().canOpenURL(url)
+        if let url = NSURL(string: urlString) {
+            return UIApplication.sharedApplication().canOpenURL(url)
+        } else {
+            return false
+        }
     }
     
     func openURLAtIndexPath(indexPath: NSIndexPath) {

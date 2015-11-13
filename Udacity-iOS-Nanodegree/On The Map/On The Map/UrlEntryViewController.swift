@@ -12,8 +12,8 @@ class UrlEntryViewController: UIViewController {
     
     @IBOutlet weak var urlField: UITextField!
     var locationString : String!
-    var location : CLLocationCoordinate2D! 
-    
+    var location : CLLocationCoordinate2D!
+    private var annotation : OTMAnnotation!
     @IBOutlet weak var mapview: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,9 @@ class UrlEntryViewController: UIViewController {
         let span = MKCoordinateSpanMake(0.20, 0.20)
         let region = MKCoordinateRegion(center: location, span: span)
         mapview.setRegion(region, animated: true)
-
+        annotation = OTMAnnotation(title: "You", subtitle: "", coor: location)
+        mapview.addAnnotation(annotation)
+        mapview.selectAnnotation(annotation, animated: true)
     }
     
     
@@ -51,6 +53,10 @@ class UrlEntryViewController: UIViewController {
 extension UrlEntryViewController: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        annotation.subtitle = textField.text
+        mapview.deselectAnnotation(annotation, animated: true)
+        mapview.selectAnnotation(annotation, animated: true)
         return true
     }
+
 }

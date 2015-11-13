@@ -42,6 +42,7 @@ extension UdacityClient {
         static let UserRegistered = "account.registered"
         static let FirstName = "user.first_name"
         static let LastName = "user.last_name"
+        static let ImageUrl = "user._image_url"
     }
     
 }
