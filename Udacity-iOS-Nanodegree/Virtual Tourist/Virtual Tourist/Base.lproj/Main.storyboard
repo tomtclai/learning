@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rsY-fQ-LbW">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Travel Locations Map View Controller-->
+        <scene sceneID="WDa-ip-kw8">
+            <objects>
+                <viewController id="rsY-fQ-LbW" customClass="TravelLocationsMapViewController" customModule="Virtual_Tourist" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xoH-Hp-kCz"/>
+                        <viewControllerLayoutGuide type="bottom" id="mqW-1t-EoP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5DQ-7v-uvS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ukb-5Z-8QF">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="4Gs-gx-xcY" appends="YES" id="h4v-v7-u4Q"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Ukb-5Z-8QF" firstAttribute="height" secondItem="5DQ-7v-uvS" secondAttribute="height" id="drh-nt-7Fo"/>
+                            <constraint firstItem="Ukb-5Z-8QF" firstAttribute="centerX" secondItem="5DQ-7v-uvS" secondAttribute="centerX" id="l9x-Jg-Bvw"/>
+                            <constraint firstItem="Ukb-5Z-8QF" firstAttribute="centerY" secondItem="5DQ-7v-uvS" secondAttribute="centerY" id="oj6-U2-4ts"/>
+                            <constraint firstItem="Ukb-5Z-8QF" firstAttribute="width" secondItem="5DQ-7v-uvS" secondAttribute="width" id="zuR-k5-McG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="Ukb-5Z-8QF" id="6Wl-m2-Gn6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xzv-hL-eit" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="4Gs-gx-xcY">
+                    <connections>
+                        <action selector="handleLongPress:" destination="rsY-fQ-LbW" id="de0-M5-RZ8"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="459" y="414"/>
+        </scene>
+    </scenes>
+</document>
