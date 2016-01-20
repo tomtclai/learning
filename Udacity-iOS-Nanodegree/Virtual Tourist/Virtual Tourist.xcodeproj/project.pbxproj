@@ -14,6 +14,9 @@
 		7735751B1C4DF39C00752585 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 773575191C4DF39C00752585 /* LaunchScreen.storyboard */; };
 		773575231C4DF51100752585 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 773575221C4DF51100752585 /* MapKit.framework */; };
 		775C9E2E1C4EBFCC00D45730 /* VTAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C9E2D1C4EBFCC00D45730 /* VTAnnotation.swift */; };
+		775C9E311C4F19DA00D45730 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 775C9E2F1C4F19DA00D45730 /* Model.xcdatamodeld */; };
+		775C9E371C4F1B4000D45730 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C9E351C4F1B4000D45730 /* Location.swift */; };
+		775C9E511C4F492A00D45730 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C9E501C4F492A00D45730 /* CoreDataStackManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		7735751C1C4DF39C00752585 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		773575221C4DF51100752585 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		775C9E2D1C4EBFCC00D45730 /* VTAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTAnnotation.swift; sourceTree = "<group>"; };
+		775C9E301C4F19DA00D45730 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		775C9E351C4F1B4000D45730 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		775C9E501C4F492A00D45730 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +67,8 @@
 			isa = PBXGroup;
 			children = (
 				773575101C4DF39C00752585 /* AppDelegate.swift */,
+				775C9E501C4F492A00D45730 /* CoreDataStackManager.swift */,
+				775C9E381C4F1B5100D45730 /* Model */,
 				773575121C4DF39C00752585 /* TravelLocationsMapViewController.swift */,
 				773575141C4DF39C00752585 /* Main.storyboard */,
 				775C9E2D1C4EBFCC00D45730 /* VTAnnotation.swift */,
@@ -69,6 +77,15 @@
 				7735751C1C4DF39C00752585 /* Info.plist */,
 			);
 			path = "Virtual Tourist";
+			sourceTree = "<group>";
+		};
+		775C9E381C4F1B5100D45730 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				775C9E2F1C4F19DA00D45730 /* Model.xcdatamodeld */,
+				775C9E351C4F1B4000D45730 /* Location.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +167,9 @@
 				775C9E2E1C4EBFCC00D45730 /* VTAnnotation.swift in Sources */,
 				773575131C4DF39C00752585 /* TravelLocationsMapViewController.swift in Sources */,
 				773575111C4DF39C00752585 /* AppDelegate.swift in Sources */,
+				775C9E311C4F19DA00D45730 /* Model.xcdatamodeld in Sources */,
+				775C9E371C4F1B4000D45730 /* Location.swift in Sources */,
+				775C9E511C4F492A00D45730 /* CoreDataStackManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +320,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		775C9E2F1C4F19DA00D45730 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				775C9E301C4F19DA00D45730 /* Model.xcdatamodel */,
+			);
+			currentVersion = 775C9E301C4F19DA00D45730 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 773575051C4DF39C00752585 /* Project object */;
 }
