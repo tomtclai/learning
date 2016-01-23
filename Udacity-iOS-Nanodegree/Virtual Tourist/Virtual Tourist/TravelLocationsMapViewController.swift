@@ -13,7 +13,11 @@ class TravelLocationsMapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        mapView.delegate = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        navigationController?.navigationBarHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,6 +32,7 @@ class TravelLocationsMapViewController: UIViewController {
             let annotation = VTAnnotation(coordinate: coordinateInMaps)
             
             let title  = String.localizedStringWithFormat("%.3f, %.3f", coordinateInMaps.latitude, coordinateInMaps.longitude)
+            //TODO: make title the city name, subtitle country
             annotation.title = title
             //TODO: add it to persistent store too
             mapView.addAnnotation(annotation)
@@ -35,14 +40,13 @@ class TravelLocationsMapViewController: UIViewController {
         }
     }
     
-    // MARK: state restoration
+    // MARK: - state restoration
     let mapViewLat = "MapViewLat"
     let mapViewLong = "MapViewLong"
     let mapViewSpanLatDelta = "MapViewSpanLatDelta"
     let mapViewSpanLongDelta = "MapViewSpanLongDelta"
     override func encodeRestorableStateWithCoder(coder: NSCoder) {
         super.encodeRestorableStateWithCoder(coder)
-        print("encodeRestorableStateWithCoder")
         coder.encodeDouble(mapView.region.center.latitude, forKey: mapViewLat)
         coder.encodeDouble(mapView.region.center.longitude, forKey: mapViewLong)
         coder.encodeDouble(mapView.region.span.latitudeDelta, forKey: mapViewSpanLatDelta)
@@ -51,7 +55,6 @@ class TravelLocationsMapViewController: UIViewController {
     
     override func decodeRestorableStateWithCoder(coder: NSCoder) {
         super.decodeRestorableStateWithCoder(coder)
-        print("decodeRestorableStateWithCoder")
 
         var center = CLLocationCoordinate2D()
         var span = MKCoordinateSpan()
@@ -67,13 +70,32 @@ class TravelLocationsMapViewController: UIViewController {
         mapView.setRegion(region, animated: true)
     }
 
+    // MARK: Segue
+    let showPhotoAlbumSegueID = "showPhotoAlbum"
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == showPhotoAlbumSegueID {
+            guard let pavc = segue.destinationViewController as? PhotoAlbumViewController else {
+                print("unexpected destionation viewcontroller")
+                return
+            }
+            pavc.coordinates = mapView.region.center
+            mapView.
+        }
+    }
+    
+    
 }
+
 extension TravelLocationsMapViewController : UIViewControllerRestoration {
     static func viewControllerWithRestorationIdentifierPath(identifierComponents: [AnyObject], coder: NSCoder) -> UIViewController? {
-        print("viewControllerWithRestorationIdentifierPath")
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TravelLocationsMapViewController")
     }
 }
-extension TravelLocationsMapViewController : MKMapViewDelegate {
 
+extension TravelLocationsMapViewController : MKMapViewDelegate {
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        performSegueWithIdentifier(showPhotoAlbumSegueID, sender: self)
+    }
 }
+
+
