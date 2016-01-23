@@ -36,16 +36,35 @@ class TravelLocationsMapViewController: UIViewController {
     }
     
     // MARK: state restoration
+    let mapViewLat = "MapViewLat"
+    let mapViewLong = "MapViewLong"
+    let mapViewSpanLatDelta = "MapViewSpanLatDelta"
+    let mapViewSpanLongDelta = "MapViewSpanLongDelta"
     override func encodeRestorableStateWithCoder(coder: NSCoder) {
         super.encodeRestorableStateWithCoder(coder)
         print("encodeRestorableStateWithCoder")
-        coder.encodeObject(mapView, forKey: "MapView")
+        coder.encodeDouble(mapView.region.center.latitude, forKey: mapViewLat)
+        coder.encodeDouble(mapView.region.center.longitude, forKey: mapViewLong)
+        coder.encodeDouble(mapView.region.span.latitudeDelta, forKey: mapViewSpanLatDelta)
+        coder.encodeDouble(mapView.region.span.longitudeDelta, forKey: mapViewSpanLongDelta)
     }
     
     override func decodeRestorableStateWithCoder(coder: NSCoder) {
         super.decodeRestorableStateWithCoder(coder)
         print("decodeRestorableStateWithCoder")
-        self.mapView = coder.decodeObjectForKey("MapView") as! MKMapView
+
+        var center = CLLocationCoordinate2D()
+        var span = MKCoordinateSpan()
+        
+        center.latitude = coder.decodeDoubleForKey(mapViewLat)
+        center.longitude = coder.decodeDoubleForKey(mapViewLong)
+        
+        span.latitudeDelta = coder.decodeDoubleForKey(mapViewSpanLatDelta)
+        span.longitudeDelta = coder.decodeDoubleForKey(mapViewSpanLongDelta)
+
+        let region = MKCoordinateRegion(center: center, span: span)
+
+        mapView.setRegion(region, animated: true)
     }
 
 }
