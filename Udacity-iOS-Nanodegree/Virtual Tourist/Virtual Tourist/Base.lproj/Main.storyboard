@@ -8,7 +8,7 @@
         <!--Travel Locations Map View Controller-->
         <scene sceneID="WDa-ip-kw8">
             <objects>
-                <viewController id="rsY-fQ-LbW" customClass="TravelLocationsMapViewController" customModule="Virtual_Tourist" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TravelLocationsMapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rsY-fQ-LbW" customClass="TravelLocationsMapViewController" customModule="Virtual_Tourist" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xoH-Hp-kCz"/>
                         <viewControllerLayoutGuide type="bottom" id="mqW-1t-EoP"/>
@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ukb-5Z-8QF">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="MapView" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ukb-5Z-8QF">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <gestureRecognizers/>
                                 <connections>
