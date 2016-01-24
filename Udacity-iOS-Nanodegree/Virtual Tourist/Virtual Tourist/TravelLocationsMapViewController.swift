@@ -11,6 +11,8 @@ import MapKit
 class TravelLocationsMapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
+    var annotation: VTAnnotation!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -78,8 +80,9 @@ class TravelLocationsMapViewController: UIViewController {
                 print("unexpected destionation viewcontroller")
                 return
             }
-            pavc.coordinates = mapView.region.center
-            mapView.
+            pavc.annotation = annotation
+            pavc.span = mapView.region.span
+
         }
     }
     
@@ -94,6 +97,7 @@ extension TravelLocationsMapViewController : UIViewControllerRestoration {
 
 extension TravelLocationsMapViewController : MKMapViewDelegate {
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        annotation = view.annotation as! VTAnnotation
         performSegueWithIdentifier(showPhotoAlbumSegueID, sender: self)
     }
 }
