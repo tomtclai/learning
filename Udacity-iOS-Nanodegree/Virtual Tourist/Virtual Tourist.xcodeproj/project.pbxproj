@@ -14,9 +14,9 @@
 		773575181C4DF39C00752585 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 773575171C4DF39C00752585 /* Assets.xcassets */; };
 		7735751B1C4DF39C00752585 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 773575191C4DF39C00752585 /* LaunchScreen.storyboard */; };
 		773575231C4DF51100752585 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 773575221C4DF51100752585 /* MapKit.framework */; };
+		7756E4CB1C559E3400480651 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7756E4C91C559E3400480651 /* Image.swift */; };
 		775C9E2E1C4EBFCC00D45730 /* VTAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C9E2D1C4EBFCC00D45730 /* VTAnnotation.swift */; };
 		775C9E311C4F19DA00D45730 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 775C9E2F1C4F19DA00D45730 /* Model.xcdatamodeld */; };
-		775C9E371C4F1B4000D45730 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C9E351C4F1B4000D45730 /* Location.swift */; };
 		775C9E511C4F492A00D45730 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C9E501C4F492A00D45730 /* CoreDataStackManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,9 +30,9 @@
 		7735751A1C4DF39C00752585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7735751C1C4DF39C00752585 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		773575221C4DF51100752585 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		7756E4C91C559E3400480651 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		775C9E2D1C4EBFCC00D45730 /* VTAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTAnnotation.swift; sourceTree = "<group>"; };
 		775C9E301C4F19DA00D45730 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		775C9E351C4F1B4000D45730 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		775C9E501C4F492A00D45730 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				773575101C4DF39C00752585 /* AppDelegate.swift */,
-				775C9E2D1C4EBFCC00D45730 /* VTAnnotation.swift */,
 				775C9E501C4F492A00D45730 /* CoreDataStackManager.swift */,
 				775C9E381C4F1B5100D45730 /* Model */,
 				771A696B1C53F44400973CA6 /* ViewControllers */,
@@ -93,8 +92,9 @@
 		775C9E381C4F1B5100D45730 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7756E4C91C559E3400480651 /* Image.swift */,
+				775C9E2D1C4EBFCC00D45730 /* VTAnnotation.swift */,
 				775C9E2F1C4F19DA00D45730 /* Model.xcdatamodeld */,
-				775C9E351C4F1B4000D45730 /* Location.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -176,11 +176,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				775C9E2E1C4EBFCC00D45730 /* VTAnnotation.swift in Sources */,
+				7756E4CB1C559E3400480651 /* Image.swift in Sources */,
 				771A696A1C53F43F00973CA6 /* PhotoAlbumViewController.swift in Sources */,
 				773575131C4DF39C00752585 /* TravelLocationsMapViewController.swift in Sources */,
 				773575111C4DF39C00752585 /* AppDelegate.swift in Sources */,
 				775C9E311C4F19DA00D45730 /* Model.xcdatamodeld in Sources */,
-				775C9E371C4F1B4000D45730 /* Location.swift in Sources */,
 				775C9E511C4F492A00D45730 /* CoreDataStackManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

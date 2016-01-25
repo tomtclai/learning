@@ -8,12 +8,44 @@
 
 import UIKit
 import MapKit
-class VTAnnotation: NSObject, MKAnnotation {
-    @objc var coordinate: CLLocationCoordinate2D
-    @objc var title: String?
-    @objc var subtitle: String?
-
-    init(coordinate: CLLocationCoordinate2D) {
-        self.coordinate = coordinate
+import CoreData
+class VTAnnotation: NSManagedObject, MKAnnotation {
+    @NSManaged var longitude: NSNumber!
+    @NSManaged var latitude: NSNumber!
+    @NSManaged @objc var title: String?
+    @NSManaged @objc var subtitle: String?
+    @NSManaged var images: [Image]
+    
+    struct Keys {
+        static let Longitude = "longitude"
+        static let Latitude = "latitude"
+        static let Title = "title"
+        static let Subtitle = "subtitle"
+        static let Images = "images"
+    }
+    
+    @objc var coordinate: CLLocationCoordinate2D {
+        get {
+            return CLLocationCoordinate2DMake(latitude.doubleValue, longitude.doubleValue)
+        }
+        set {
+            latitude = NSNumber(double: coordinate.latitude)
+            longitude = NSNumber(double: coordinate.longitude)
+        }
+    }
+    
+    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
+    
+    init(dictionary: [String:AnyObject], context: NSManagedObjectContext) {
+        let entity = NSEntityDescription.entityForName("VTAnnotation", inManagedObjectContext: context)!
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+        
+        longitude = dictionary[Keys.Longitude] as! NSNumber
+        latitude = dictionary[Keys.Latitude] as! NSNumber
+        title = dictionary[Keys.Title] as? String
+        subtitle = dictionary[Keys.Subtitle] as? String
+        
     }
 }

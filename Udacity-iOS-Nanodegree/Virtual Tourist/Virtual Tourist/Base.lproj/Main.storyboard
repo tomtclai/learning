@@ -9,12 +9,6 @@
         <!--Travel Locations Map View Controller-->
         <scene sceneID="WDa-ip-kw8">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xzv-hL-eit" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="4Gs-gx-xcY">
-                    <connections>
-                        <action selector="handleLongPress:" destination="rsY-fQ-LbW" id="de0-M5-RZ8"/>
-                    </connections>
-                </pongPressGestureRecognizer>
                 <viewController storyboardIdentifier="TravelLocationsMapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rsY-fQ-LbW" customClass="TravelLocationsMapViewController" customModule="Virtual_Tourist" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xoH-Hp-kCz"/>
@@ -61,6 +55,12 @@
                         <segue destination="uKc-om-q3R" kind="show" identifier="showPhotoAlbum" id="PMv-vB-VO6"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xzv-hL-eit" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="4Gs-gx-xcY">
+                    <connections>
+                        <action selector="handleLongPress:" destination="rsY-fQ-LbW" id="de0-M5-RZ8"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1250" y="464"/>
         </scene>

@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import CoreData
+
 class TravelLocationsMapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
@@ -16,6 +18,12 @@ class TravelLocationsMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        fetchedResultsController.delegate = self
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("Fetch failed: \(error)")
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -31,14 +39,14 @@ class TravelLocationsMapViewController: UIViewController {
         if (gestureRecognizer.state == .Began) {
             let touchPoint = gestureRecognizer.locationInView(mapView)
             let coordinateInMaps = mapView.convertPoint(touchPoint, toCoordinateFromView: mapView)
-            let annotation = VTAnnotation(coordinate: coordinateInMaps)
-            
-            let title  = String.localizedStringWithFormat("%.3f, %.3f", coordinateInMaps.latitude, coordinateInMaps.longitude)
-            //TODO: make title the city name, subtitle country
-            annotation.title = title
-            //TODO: add it to persistent store too
-            mapView.addAnnotation(annotation)
-            mapView.selectAnnotation(annotation, animated: true)
+            let annotationDictionary : [String:AnyObject] = [
+                VTAnnotation.Keys.Longitude : NSNumber(double: coordinateInMaps.longitude),
+                VTAnnotation.Keys.Latitude : NSNumber(double: coordinateInMaps.latitude),
+                //TODO: make title the city name, subtitle country
+                VTAnnotation.Keys.Title : String.localizedStringWithFormat("%.3f, %.3f", coordinateInMaps.latitude, coordinateInMaps.longitude),
+            ]
+            let _ = VTAnnotation(dictionary: annotationDictionary, context: sharedContext)
+            CoreDataStackManager.sharedInstance().saveContext()
         }
     }
     
@@ -86,20 +94,47 @@ class TravelLocationsMapViewController: UIViewController {
         }
     }
     
-    
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }
+    lazy var fetchedResultsController: NSFetchedResultsController = {
+        let request = NSFetchRequest(entityName: "VTAnnotation")
+        request.sortDescriptors = [NSSortDescriptor(key: "latitude", ascending: true), NSSortDescriptor(key: "longitude", ascending: true)]
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
+    }()
 }
 
+// MARK: UIViewControllerRestoration
 extension TravelLocationsMapViewController : UIViewControllerRestoration {
     static func viewControllerWithRestorationIdentifierPath(identifierComponents: [AnyObject], coder: NSCoder) -> UIViewController? {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TravelLocationsMapViewController")
     }
 }
 
+// MARK: MKMapViewDelegate
 extension TravelLocationsMapViewController : MKMapViewDelegate {
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         annotation = view.annotation as! VTAnnotation
         performSegueWithIdentifier(showPhotoAlbumSegueID, sender: self)
     }
+}
+
+// MARK: NSFetchedResultsControllerDelegate
+extension TravelLocationsMapViewController : NSFetchedResultsControllerDelegate {
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+
+        print("didChangeObject")
+        let pin = anObject as! VTAnnotation
+        switch type {
+        case .Insert:
+            mapView.addAnnotation(pin)
+        case .Delete:
+            mapView.removeAnnotation(pin)
+        default:
+            return
+        }
+    }
+    
 }
 
 
