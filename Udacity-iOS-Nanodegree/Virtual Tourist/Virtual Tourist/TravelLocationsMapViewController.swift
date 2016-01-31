@@ -24,6 +24,8 @@ class TravelLocationsMapViewController: UIViewController {
         } catch {
             fatalError("Fetch failed: \(error)")
         }
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.addAnnotations(fetchedResultsController.fetchedObjects as! [MKAnnotation])
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -130,6 +132,9 @@ extension TravelLocationsMapViewController : NSFetchedResultsControllerDelegate 
             mapView.addAnnotation(pin)
         case .Delete:
             mapView.removeAnnotation(pin)
+        case .Update:
+            mapView.removeAnnotation(pin)
+            mapView.addAnnotation(pin)
         default:
             return
         }

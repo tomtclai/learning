@@ -26,7 +26,7 @@ class VTAnnotation: NSManagedObject, MKAnnotation {
     
     @objc var coordinate: CLLocationCoordinate2D {
         get {
-            return CLLocationCoordinate2DMake(latitude.doubleValue, longitude.doubleValue)
+            return CLLocationCoordinate2D(latitude: latitude.doubleValue, longitude: longitude.doubleValue)
         }
         set {
             latitude = NSNumber(double: coordinate.latitude)
