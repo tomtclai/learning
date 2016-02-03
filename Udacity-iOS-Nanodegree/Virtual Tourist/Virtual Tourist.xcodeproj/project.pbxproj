@@ -18,6 +18,8 @@
 		775C9E2E1C4EBFCC00D45730 /* VTAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C9E2D1C4EBFCC00D45730 /* VTAnnotation.swift */; };
 		775C9E311C4F19DA00D45730 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 775C9E2F1C4F19DA00D45730 /* Model.xcdatamodeld */; };
 		775C9E511C4F492A00D45730 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C9E501C4F492A00D45730 /* CoreDataStackManager.swift */; };
+		775D0A281C5EAD5E0030AC9C /* Flickr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775D0A271C5EAD5E0030AC9C /* Flickr.swift */; };
+		775D0A2A1C5EAEBB0030AC9C /* Flickr-Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775D0A291C5EAEBB0030AC9C /* Flickr-Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		775C9E2D1C4EBFCC00D45730 /* VTAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTAnnotation.swift; sourceTree = "<group>"; };
 		775C9E301C4F19DA00D45730 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		775C9E501C4F492A00D45730 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		775D0A271C5EAD5E0030AC9C /* Flickr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flickr.swift; sourceTree = "<group>"; };
+		775D0A291C5EAEBB0030AC9C /* Flickr-Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Flickr-Constants.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,11 +96,21 @@
 		775C9E381C4F1B5100D45730 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7756E4C91C559E3400480651 /* Image.swift */,
+				775D0A261C5EAD070030AC9C /* Flicker */,
 				775C9E2D1C4EBFCC00D45730 /* VTAnnotation.swift */,
 				775C9E2F1C4F19DA00D45730 /* Model.xcdatamodeld */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		775D0A261C5EAD070030AC9C /* Flicker */ = {
+			isa = PBXGroup;
+			children = (
+				7756E4C91C559E3400480651 /* Image.swift */,
+				775D0A271C5EAD5E0030AC9C /* Flickr.swift */,
+				775D0A291C5EAEBB0030AC9C /* Flickr-Constants.swift */,
+			);
+			name = Flicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,9 +191,11 @@
 			files = (
 				775C9E2E1C4EBFCC00D45730 /* VTAnnotation.swift in Sources */,
 				7756E4CB1C559E3400480651 /* Image.swift in Sources */,
+				775D0A281C5EAD5E0030AC9C /* Flickr.swift in Sources */,
 				771A696A1C53F43F00973CA6 /* PhotoAlbumViewController.swift in Sources */,
 				773575131C4DF39C00752585 /* TravelLocationsMapViewController.swift in Sources */,
 				773575111C4DF39C00752585 /* AppDelegate.swift in Sources */,
+				775D0A2A1C5EAEBB0030AC9C /* Flickr-Constants.swift in Sources */,
 				775C9E311C4F19DA00D45730 /* Model.xcdatamodeld in Sources */,
 				775C9E511C4F492A00D45730 /* CoreDataStackManager.swift in Sources */,
 			);

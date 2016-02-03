@@ -23,6 +23,7 @@ class PhotoAlbumViewController: UIViewController {
         mapView.userInteractionEnabled = false
         let region = MKCoordinateRegion(center: annotation.coordinate, span: span)
         mapView.setRegion(region, animated: false)
-        
+        print("top\(topLayoutGuide.topAnchor), bottom\(topLayoutGuide.bottomAnchor), height\(topLayoutGuide.heightAnchor)")
     }
+    
 }
