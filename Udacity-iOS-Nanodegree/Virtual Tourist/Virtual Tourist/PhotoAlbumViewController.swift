@@ -8,10 +8,12 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 class PhotoAlbumViewController: UIViewController {
     var annotation: VTAnnotation!
     var span: MKCoordinateSpan!
+    var blockOperation : NSBlockOperation!
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -25,6 +27,8 @@ class PhotoAlbumViewController: UIViewController {
         mapView.setRegion(region, animated: false)
         print("top\(topLayoutGuide.topAnchor), bottom\(topLayoutGuide.bottomAnchor), height\(topLayoutGuide.heightAnchor)")
         searchPhotosByLatLon()
+        fetchedResultsController.delegate = self
+        collectionView.delegate = self
     }
     
     
@@ -33,7 +37,7 @@ class PhotoAlbumViewController: UIViewController {
     let METHOD_NAME = "flickr.photos.search"
     let API_KEY = "fbb0f7411bc2751b84e6d44d7b806c4f"
     
-    let EXTRAS = "url_m"
+    let EXTRAS = "url_b,url_q"
     let SAFE_SEARCH = "1"
     let DATA_FORMAT = "json"
     let NO_JSON_CALLBACK = "1"
@@ -223,35 +227,91 @@ class PhotoAlbumViewController: UIViewController {
                     return
                 }
                 
-                let randomPhotoIndex = Int(arc4random_uniform(UInt32(photosArray.count)))// instead of random, iterate through the array
-                // TODO: dunno why but photoArray is empty...
-                let photoDictionary = photosArray[randomPhotoIndex] as [String: AnyObject]
-                //                let photoTitle = photoDictionary["title"] as? String /* non-fatal */
                 
-                /* GUARD: Does our photo have a key for 'url_m'? */
-                guard let imageUrlString = photoDictionary["url_m"] as? String else {
-                    print("Cannot find key 'url_m' in \(photoDictionary)")
-                    return
+                for photoDictionary in photosArray {
+                    
+                    /* GUARD: Does our photo have a key for 'url_m'? */
+                    guard let thumbnailUrlStr = photoDictionary["url_q"] as? String else {
+                        print("Cannot find key 'url_s' in \(photoDictionary)")
+                        return
+                    }
+                    guard let imageUrlStr = photoDictionary["url_q"] as? String else {
+                        print("Cannot find key 'url_s' in \(photoDictionary)")
+                        return
+                    }
+                    
+                    
+                    
+                    // add thumbnail url to core data
+                    // add medium url to core data
+                    let imageDictionary : [String: AnyObject] = [
+                        Image.Keys.ThumbnailUrl : thumbnailUrlStr,
+                        Image.Keys.ImageUrl : imageUrlStr
+                    ]
+                    
+                    let image = Image(dictionary: imageDictionary, context: self.sharedContext)
+                    image.pin = self.annotation
+
+                    self.saveContext()
                 }
                 
-                let imageURL = NSURL(string: imageUrlString)
-                if let imageData = NSData(contentsOfURL: imageURL!) {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        
-                        //                        let photo = UIImage(data: imageData)
-                        // found photos, what do?
-                        self.collectionView.addSubview(UIImageView(image: UIImage(data: imageData)))
-                    })
-                } else {
-                    print("Image does not exist at \(imageURL)")
-                }
             } else {
                 dispatch_async(dispatch_get_main_queue(), {
-                    // No photos Found, what do?
+                    UIAlertController(title: "No Photos found", message: "You can add some", preferredStyle: .Alert)
                 })
             }
         }
         
         task.resume()
     }
+    
+    // MARK: - Core Data Convenience
+    func saveContext() {
+        CoreDataStackManager.sharedInstance().saveContext()
+    }
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }
+    lazy var fetchedResultsController: NSFetchedResultsController = {
+        let request = NSFetchRequest(entityName: "VTAnnotation")
+        request.sortDescriptors = [NSSortDescriptor(key: "latitude", ascending: true), NSSortDescriptor(key: "longitude", ascending: true)]
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
+    }()
+    
+}
+extension PhotoAlbumViewController : NSFetchedResultsControllerDelegate {
+
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        blockOperation = NSBlockOperation()
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        let set = NSIndexSet(index: sectionIndex)
+        switch type {
+        case .Insert:
+            blockOperation.addExecutionBlock({
+                self.collectionView.insertSections(set)
+            })
+        case .Delete:
+            blockOperation.addExecutionBlock({
+                self.collectionView.deleteSections(set)
+            })
+        case .Update:
+            blockOperation.addExecutionBlock({
+                self.collectionView.reloadSections(set)
+            })
+        default: break
+        }
+    }
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        collectionView.performBatchUpdates({ () -> Void in
+            self.blockOperation.start()
+            }) { (finished) -> Void in
+                // finished
+        }
+    }
+}
+
+extension PhotoAlbumViewController : UICollectionViewDelegate {
+    // TODO: implement
 }
