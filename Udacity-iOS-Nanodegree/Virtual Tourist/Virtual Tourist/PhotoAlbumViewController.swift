@@ -29,6 +29,7 @@ class PhotoAlbumViewController: UIViewController {
         searchPhotosByLatLon()
         fetchedResultsController.delegate = self
         collectionView.delegate = self
+        collectionView.dataSource = self
     }
     
     
@@ -257,7 +258,8 @@ class PhotoAlbumViewController: UIViewController {
                 
             } else {
                 dispatch_async(dispatch_get_main_queue(), {
-                    UIAlertController(title: "No Photos found", message: "You can add some", preferredStyle: .Alert)
+                    let alert = UIAlertController(title: "No Photos found", message: "You can add some", preferredStyle: .Alert)
+                    self.showViewController(alert, sender: nil)
                 })
             }
         }
@@ -273,8 +275,8 @@ class PhotoAlbumViewController: UIViewController {
         return CoreDataStackManager.sharedInstance().managedObjectContext
     }
     lazy var fetchedResultsController: NSFetchedResultsController = {
-        let request = NSFetchRequest(entityName: "VTAnnotation")
-        request.sortDescriptors = [NSSortDescriptor(key: "latitude", ascending: true), NSSortDescriptor(key: "longitude", ascending: true)]
+        let request = NSFetchRequest(entityName: "Image")
+        request.sortDescriptors = [NSSortDescriptor(key: "thumbnailUrl", ascending: true)]
         return NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
     }()
     
@@ -313,5 +315,32 @@ extension PhotoAlbumViewController : NSFetchedResultsControllerDelegate {
 }
 
 extension PhotoAlbumViewController : UICollectionViewDelegate {
-    // TODO: implement
+
+}
+extension PhotoAlbumViewController : UICollectionViewDataSource {
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        if let sections = fetchedResultsController.sections {
+            return sections.count
+        } else {
+            return 0
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return fetchedResultsController.sections![section].numberOfObjects
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionViewCell", forIndexPath: indexPath)
+        let image = fetchedResultsController.objectAtIndexPath(indexPath) as? Image
+        let url = image?.thumbnailUrl
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) { () -> Void in
+            let image = UIImage(contentsOfFile: url!)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                let view =  UIImageView(image: image)
+                cell.backgroundView?.addSubview(view)
+            })
+        }
+        return cell
+    }
 }

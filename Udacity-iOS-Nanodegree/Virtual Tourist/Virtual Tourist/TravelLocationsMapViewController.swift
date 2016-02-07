@@ -128,7 +128,7 @@ extension TravelLocationsMapViewController : MKMapViewDelegate {
 extension TravelLocationsMapViewController : NSFetchedResultsControllerDelegate {
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
 
-        print("didChangeObject")
+        print("didChangeObject1")
         let pin = anObject as! VTAnnotation
         switch type {
         case .Insert:
