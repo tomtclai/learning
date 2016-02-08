@@ -13,7 +13,7 @@ import CoreData
 class PhotoAlbumViewController: UIViewController {
     var annotation: VTAnnotation!
     var span: MKCoordinateSpan!
-    var blockOperation : NSBlockOperation!
+    var blockOperations: [NSBlockOperation] = []
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -21,13 +21,18 @@ class PhotoAlbumViewController: UIViewController {
     override func viewDidLoad() {
         navigationController?.navigationBarHidden = false
         mapView.clipsToBounds = false
+        do {
+            try self.fetchedResultsController.performFetch()
+        }
+        catch
+        {}
         mapView.addAnnotation(annotation)
         mapView.userInteractionEnabled = false
         let region = MKCoordinateRegion(center: annotation.coordinate, span: span)
         mapView.setRegion(region, animated: false)
         print("top\(topLayoutGuide.topAnchor), bottom\(topLayoutGuide.bottomAnchor), height\(topLayoutGuide.heightAnchor)")
         searchPhotosByLatLon()
-        fetchedResultsController.delegate = self
+
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -236,19 +241,37 @@ class PhotoAlbumViewController: UIViewController {
                         print("Cannot find key 'url_s' in \(photoDictionary)")
                         return
                     }
+                    
+                    let request = NSFetchRequest(entityName: "Image")
+                    request.predicate = NSPredicate(format: "thumbnailUrl == %@", thumbnailUrlStr)
+                    
+                    do {
+                        let existingImage = try self.sharedContext.executeFetchRequest(request)
+                        if !existingImage.isEmpty {
+                            return
+                        }
+                    } catch {
+                        
+                    }
+                    
+                    
+                    
                     guard let imageUrlStr = photoDictionary["url_q"] as? String else {
                         print("Cannot find key 'url_s' in \(photoDictionary)")
                         return
                     }
                     
                     
-                    
+                    let thumb = NSData(contentsOfURL: NSURL(string: thumbnailUrlStr)!)!
                     // add thumbnail url to core data
                     // add medium url to core data
                     let imageDictionary : [String: AnyObject] = [
                         Image.Keys.ThumbnailUrl : thumbnailUrlStr,
-                        Image.Keys.ImageUrl : imageUrlStr
+                        Image.Keys.ImageUrl : imageUrlStr,
+                        Image.Keys.Thumbnail : thumb
                     ]
+                    
+                    
                     
                     let image = Image(dictionary: imageDictionary, context: self.sharedContext)
                     image.pin = self.annotation
@@ -256,10 +279,13 @@ class PhotoAlbumViewController: UIViewController {
                     self.saveContext()
                 }
                 
+
+                
             } else {
                 dispatch_async(dispatch_get_main_queue(), {
                     let alert = UIAlertController(title: "No Photos found", message: "You can add some", preferredStyle: .Alert)
-                    self.showViewController(alert, sender: nil)
+                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
                 })
             }
         }
@@ -277,43 +303,83 @@ class PhotoAlbumViewController: UIViewController {
     lazy var fetchedResultsController: NSFetchedResultsController = {
         let request = NSFetchRequest(entityName: "Image")
         request.sortDescriptors = [NSSortDescriptor(key: "thumbnailUrl", ascending: true)]
-        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        let fetched =  NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetched.delegate = self
+        return fetched
     }()
     
 }
 extension PhotoAlbumViewController : NSFetchedResultsControllerDelegate {
 
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        blockOperation = NSBlockOperation()
+        blockOperations.removeAll(keepCapacity: false)
     }
-    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch type {
+        case .Insert:
+            blockOperations.append(
+                NSBlockOperation(block: { () -> Void in
+                    self.collectionView.insertItemsAtIndexPaths([newIndexPath!])
+                })
+            )
+        case .Delete:
+            blockOperations.append(
+                NSBlockOperation(block: { () -> Void in
+                    self.collectionView.deleteItemsAtIndexPaths([indexPath!])
+                })
+            )
+        case .Update:
+            blockOperations.append(
+                NSBlockOperation(block: { () -> Void in
+                    self.collectionView.reloadItemsAtIndexPaths([indexPath!])
+                })
+            )
+        case .Move:
+            blockOperations.append(
+                NSBlockOperation(block: { () -> Void in
+                    self.collectionView.moveItemAtIndexPath(indexPath!, toIndexPath: newIndexPath!)
+                })
+            )
+        }
+    }
     func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
         let set = NSIndexSet(index: sectionIndex)
         switch type {
         case .Insert:
-            blockOperation.addExecutionBlock({
-                self.collectionView.insertSections(set)
-            })
+            blockOperations.append(
+                NSBlockOperation(block: { () -> Void in
+                    self.collectionView.insertSections(set)
+                })
+            )
         case .Delete:
-            blockOperation.addExecutionBlock({
-                self.collectionView.deleteSections(set)
-            })
+            blockOperations.append(
+                NSBlockOperation(block: { () -> Void in
+                    self.collectionView.deleteSections(set)
+                })
+            )
         case .Update:
-            blockOperation.addExecutionBlock({
-                self.collectionView.reloadSections(set)
-            })
+            blockOperations.append(
+                NSBlockOperation(block: { () -> Void in
+                    self.collectionView.reloadSections(set)
+                })
+            )
         default: break
         }
     }
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        
         collectionView.performBatchUpdates({ () -> Void in
-            self.blockOperation.start()
-            }) { (finished) -> Void in
-                // finished
+            for op : NSBlockOperation in self.blockOperations {
+                op.start()
+            }
+            
+            }) { completed -> Void in
+                self.blockOperations.removeAll(keepCapacity: false)
+                
         }
     }
 }
-
 extension PhotoAlbumViewController : UICollectionViewDelegate {
 
 }
@@ -333,14 +399,7 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionViewCell", forIndexPath: indexPath)
         let image = fetchedResultsController.objectAtIndexPath(indexPath) as? Image
-        let url = image?.thumbnailUrl
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) { () -> Void in
-            let image = UIImage(contentsOfFile: url!)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                let view =  UIImageView(image: image)
-                cell.backgroundView?.addSubview(view)
-            })
-        }
+        cell.backgroundView = UIImageView(image: UIImage(data: image!.thumbnail))
         return cell
     }
 }

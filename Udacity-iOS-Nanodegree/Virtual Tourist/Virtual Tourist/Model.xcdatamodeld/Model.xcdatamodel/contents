@@ -2,7 +2,8 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
     <entity name="Image" representedClassName=".Image" syncable="YES">
         <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="thumbnailUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnail" attributeType="Binary" syncable="YES"/>
+        <attribute name="thumbnailUrl" attributeType="String" syncable="YES"/>
         <relationship name="pin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VTAnnotation" inverseName="images" inverseEntity="VTAnnotation" syncable="YES"/>
     </entity>
     <entity name="VTAnnotation" representedClassName=".VTAnnotation" syncable="YES">
@@ -13,7 +14,7 @@
         <relationship name="images" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Image" inverseName="pin" inverseEntity="Image" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Image" positionX="-63" positionY="0" width="128" height="90"/>
+        <element name="Image" positionX="-63" positionY="0" width="128" height="105"/>
         <element name="VTAnnotation" positionX="-63" positionY="-18" width="128" height="120"/>
     </elements>
 </model>
