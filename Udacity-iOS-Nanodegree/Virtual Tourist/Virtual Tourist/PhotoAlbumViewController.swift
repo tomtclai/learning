@@ -31,6 +31,7 @@ class PhotoAlbumViewController: UIViewController {
         let region = MKCoordinateRegion(center: annotation.coordinate, span: span)
         mapView.setRegion(region, animated: false)
         print("top\(topLayoutGuide.topAnchor), bottom\(topLayoutGuide.bottomAnchor), height\(topLayoutGuide.heightAnchor)")
+        
         searchPhotosByLatLon()
 
         collectionView.delegate = self
@@ -244,7 +245,6 @@ class PhotoAlbumViewController: UIViewController {
                     
                     let request = NSFetchRequest(entityName: "Image")
                     request.predicate = NSPredicate(format: "thumbnailUrl == %@", thumbnailUrlStr)
-                    
                     do {
                         let existingImage = try self.sharedContext.executeFetchRequest(request)
                         if !existingImage.isEmpty {
@@ -268,10 +268,8 @@ class PhotoAlbumViewController: UIViewController {
                     let imageDictionary : [String: AnyObject] = [
                         Image.Keys.ThumbnailUrl : thumbnailUrlStr,
                         Image.Keys.ImageUrl : imageUrlStr,
-                        Image.Keys.Thumbnail : thumb
+                        Image.Keys.Thumbnail : thumb,
                     ]
-                    
-                    
                     
                     let image = Image(dictionary: imageDictionary, context: self.sharedContext)
                     image.pin = self.annotation
@@ -302,6 +300,7 @@ class PhotoAlbumViewController: UIViewController {
     }
     lazy var fetchedResultsController: NSFetchedResultsController = {
         let request = NSFetchRequest(entityName: "Image")
+        request.predicate = NSPredicate(format: "pin == %@", self.annotation)
         request.sortDescriptors = [NSSortDescriptor(key: "thumbnailUrl", ascending: true)]
         
         let fetched =  NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)

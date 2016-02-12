@@ -4,7 +4,7 @@
         <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnail" attributeType="Binary" syncable="YES"/>
         <attribute name="thumbnailUrl" attributeType="String" syncable="YES"/>
-        <relationship name="pin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VTAnnotation" inverseName="images" inverseEntity="VTAnnotation" syncable="YES"/>
+        <relationship name="pin" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="VTAnnotation" inverseName="images" inverseEntity="VTAnnotation" syncable="YES"/>
     </entity>
     <entity name="VTAnnotation" representedClassName=".VTAnnotation" syncable="YES">
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>

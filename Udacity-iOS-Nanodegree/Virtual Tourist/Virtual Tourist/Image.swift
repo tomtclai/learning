@@ -12,12 +12,13 @@ import CoreData
 class Image: NSManagedObject {
     @NSManaged var imageUrl: String?
     @NSManaged var thumbnailUrl: String
-    @NSManaged var pin: VTAnnotation?
+    @NSManaged var pin: VTAnnotation!
     @NSManaged var thumbnail: NSData
     struct Keys {
         static let ImageUrl = "imageUrl"
         static let ThumbnailUrl = "thumbnailUrl"
         static let Thumbnail = "thumbnail"
+
     }
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
