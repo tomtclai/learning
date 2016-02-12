@@ -380,8 +380,15 @@ extension PhotoAlbumViewController : NSFetchedResultsControllerDelegate {
         }
     }
 }
+extension PhotoAlbumViewController : UICollectionViewDelegateFlowLayout {
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let screenRect = UIScreen.mainScreen().bounds
+        let width = screenRect.size.width
+        let itemEdge = width / 3.0
+        return CGSizeMake(itemEdge, itemEdge)
+    }
+}
 extension PhotoAlbumViewController : UICollectionViewDelegate {
-
 }
 extension PhotoAlbumViewController : UICollectionViewDataSource {
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
