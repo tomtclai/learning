@@ -235,47 +235,62 @@ class PhotoAlbumViewController: UIViewController {
                 }
                 
                 
+                let placeHolderPath = NSBundle.mainBundle().pathForResource("placeholder", ofType: "png")!
+                var images = [Image]()
+                var thumbnailURLs = [String]()
                 for photoDictionary in photosArray {
-                    
-                    /* GUARD: Does our photo have a key for 'url_m'? */
+
                     guard let thumbnailUrlStr = photoDictionary["url_q"] as? String else {
                         print("Cannot find key 'url_s' in \(photoDictionary)")
                         return
                     }
+
                     
                     let request = NSFetchRequest(entityName: "Image")
                     request.predicate = NSPredicate(format: "thumbnailUrl == %@", thumbnailUrlStr)
                     do {
                         let existingImage = try self.sharedContext.executeFetchRequest(request)
                         if !existingImage.isEmpty {
-                            return
+                            let imageDictionary : [String: AnyObject] = [
+                                Image.Keys.ThumbnailUrl : placeHolderPath,
+                                Image.Keys.ImageUrl : "",
+                                Image.Keys.Thumbnail : UIImage(contentsOfFile: placeHolderPath)!,
+                            ]
+                            let image = Image(dictionary: imageDictionary, context: self.sharedContext)
+                            image.pin = self.annotation
+                            
+                            images.append(image)
                         }
                     } catch {
                         
                     }
-                    
-                    
+                    thumbnailURLs.append(thumbnailUrlStr)
                     
                     guard let imageUrlStr = photoDictionary["url_q"] as? String else {
                         print("Cannot find key 'url_s' in \(photoDictionary)")
                         return
                     }
+
+                    
+
+                }
+                for i in 0...photosArray.count {
+                    
+
                     
                     
                     let thumb = NSData(contentsOfURL: NSURL(string: thumbnailUrlStr)!)!
                     // add thumbnail url to core data
                     // add medium url to core data
-                    let imageDictionary : [String: AnyObject] = [
-                        Image.Keys.ThumbnailUrl : thumbnailUrlStr,
-                        Image.Keys.ImageUrl : imageUrlStr,
-                        Image.Keys.Thumbnail : thumb,
-                    ]
+                    images[i].thumbnailUrl = thumbnailUrlStr
+                    images[i].imageUrl = imageUrlStr
+                    images[i].thumbnail = thumb
                     
-                    let image = Image(dictionary: imageDictionary, context: self.sharedContext)
-                    image.pin = self.annotation
-
+                    
+                    
                     self.saveContext()
                 }
+                
                 
 
                 
@@ -388,6 +403,7 @@ extension PhotoAlbumViewController : UICollectionViewDelegateFlowLayout {
     }
 }
 extension PhotoAlbumViewController : UICollectionViewDelegate {
+
 }
 extension PhotoAlbumViewController : UICollectionViewDataSource {
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
