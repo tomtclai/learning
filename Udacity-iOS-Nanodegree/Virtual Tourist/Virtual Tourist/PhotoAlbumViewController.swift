@@ -17,7 +17,7 @@ class PhotoAlbumViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
-
+    
     override func viewDidLoad() {
         navigationController?.navigationBarHidden = false
         mapView.clipsToBounds = false
@@ -33,7 +33,7 @@ class PhotoAlbumViewController: UIViewController {
         print("top\(topLayoutGuide.topAnchor), bottom\(topLayoutGuide.bottomAnchor), height\(topLayoutGuide.heightAnchor)")
         
         searchPhotosByLatLon()
-
+        
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -67,7 +67,7 @@ class PhotoAlbumViewController: UIViewController {
         ]
         getImageFromFlickrBySearch(methodArguments)
     }
-
+    
     // MARK: Escape HTML Parameters
     
     func escapedParameters(parameters: [String : AnyObject]) -> String {
@@ -160,7 +160,7 @@ class PhotoAlbumViewController: UIViewController {
         
         task.resume()
     }
-
+    
     func getImageFromFlickrBySearchWithPage(methodArguments: [String : AnyObject], pageNumber: Int) {
         
         /* Add the page to the method's arguments */
@@ -234,65 +234,62 @@ class PhotoAlbumViewController: UIViewController {
                     return
                 }
                 
-                
-                let placeHolderPath = NSBundle.mainBundle().pathForResource("placeholder", ofType: "png")!
                 var images = [Image]()
-                var thumbnailURLs = [String]()
                 for photoDictionary in photosArray {
-
+                    
+                    /* GUARD: Does our photo have a key for 'url_m'? */
                     guard let thumbnailUrlStr = photoDictionary["url_q"] as? String else {
-                        print("Cannot find key 'url_s' in \(photoDictionary)")
+                        print("Cannot find key 'url_q' in \(photoDictionary)")
                         return
                     }
-
                     
                     let request = NSFetchRequest(entityName: "Image")
                     request.predicate = NSPredicate(format: "thumbnailUrl == %@", thumbnailUrlStr)
                     do {
                         let existingImage = try self.sharedContext.executeFetchRequest(request)
                         if !existingImage.isEmpty {
-                            let imageDictionary : [String: AnyObject] = [
-                                Image.Keys.ThumbnailUrl : placeHolderPath,
-                                Image.Keys.ImageUrl : "",
-                                Image.Keys.Thumbnail : UIImage(contentsOfFile: placeHolderPath)!,
-                            ]
-                            let image = Image(dictionary: imageDictionary, context: self.sharedContext)
-                            image.pin = self.annotation
-                            
-                            images.append(image)
+                            return
                         }
                     } catch {
                         
                     }
-                    thumbnailURLs.append(thumbnailUrlStr)
+                    
+                    
                     
                     guard let imageUrlStr = photoDictionary["url_q"] as? String else {
                         print("Cannot find key 'url_s' in \(photoDictionary)")
                         return
                     }
+                    
+                    
+                    let placeholder = UIImage(named: "placeholder")!
 
-                    
-
-                }
-                for i in 0...photosArray.count {
-                    
-
-                    
-                    
-                    let thumb = NSData(contentsOfURL: NSURL(string: thumbnailUrlStr)!)!
                     // add thumbnail url to core data
                     // add medium url to core data
-                    images[i].thumbnailUrl = thumbnailUrlStr
-                    images[i].imageUrl = imageUrlStr
-                    images[i].thumbnail = thumb
+                    let imageDictionary : [String: AnyObject] = [
+                        Image.Keys.ThumbnailUrl : thumbnailUrlStr,
+                        Image.Keys.ImageUrl : imageUrlStr,
+                        Image.Keys.Thumbnail : UIImagePNGRepresentation(placeholder)!
+                    ]
                     
+                    let image = Image(dictionary: imageDictionary, context: self.sharedContext)
+                    image.pin = self.annotation
                     
-                    
+                    images.append(image)
                     self.saveContext()
                 }
-                
-                
 
+                for img in images {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
+                        if let thumb = UIImage(contentsOfFile: img.thumbnailUrl) {
+                            img.thumbnail = UIImagePNGRepresentation(thumb)!
+                        } else {
+                            print("could not download image")
+                        }
+                    })
+                }
+
+                
                 
             } else {
                 dispatch_async(dispatch_get_main_queue(), {
@@ -325,7 +322,7 @@ class PhotoAlbumViewController: UIViewController {
     
 }
 extension PhotoAlbumViewController : NSFetchedResultsControllerDelegate {
-
+    
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         blockOperations.removeAll(keepCapacity: false)
     }
@@ -403,7 +400,6 @@ extension PhotoAlbumViewController : UICollectionViewDelegateFlowLayout {
     }
 }
 extension PhotoAlbumViewController : UICollectionViewDelegate {
-
 }
 extension PhotoAlbumViewController : UICollectionViewDataSource {
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -417,7 +413,7 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return fetchedResultsController.sections![section].numberOfObjects
     }
-    
+
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionViewCell", forIndexPath: indexPath)
         let image = fetchedResultsController.objectAtIndexPath(indexPath) as? Image
