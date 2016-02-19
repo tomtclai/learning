@@ -262,8 +262,8 @@ class PhotoAlbumViewController: UIViewController {
                     }
                     
                     
-
-
+                    
+                    
                     // add thumbnail url to core data
                     // add medium url to core data
                     let imageDictionary : [String: AnyObject] = [
@@ -275,7 +275,7 @@ class PhotoAlbumViewController: UIViewController {
                     let image = Image(dictionary: imageDictionary, context: self.sharedContext)
                     image.pin = self.annotation
                     images.append(image)
-
+                    
                     
                     self.saveContext()
                 }
@@ -294,7 +294,7 @@ class PhotoAlbumViewController: UIViewController {
     func getDataFromUrl(url: NSURL, completion: ((data:NSData?, response: NSURLResponse?, error: NSError?) ->Void)) {
         NSURLSession.sharedSession().dataTaskWithURL(url) {
             completion(data: $0, response: $1, error: $2)
-        }.resume()
+            }.resume()
     }
     func downloadImage(url: String, completion:(data:NSData?, response: NSURLResponse?, error: NSError?) ->Void) {
         getDataFromUrl(NSURL(string: url)!) {
@@ -321,7 +321,7 @@ class PhotoAlbumViewController: UIViewController {
     
 }
 extension PhotoAlbumViewController : NSFetchedResultsControllerDelegate {
-    
+
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         blockOperations.removeAll(keepCapacity: false)
     }
@@ -330,7 +330,9 @@ extension PhotoAlbumViewController : NSFetchedResultsControllerDelegate {
         case .Insert:
             blockOperations.append(
                 NSBlockOperation(block: { () -> Void in
+                    
                     self.collectionView.insertItemsAtIndexPaths([newIndexPath!])
+                    
                 })
             )
         case .Delete:
@@ -378,6 +380,7 @@ extension PhotoAlbumViewController : NSFetchedResultsControllerDelegate {
         }
     }
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        
         UIView.animateWithDuration(0) { () -> Void in
             self.collectionView.performBatchUpdates({ () -> Void in
                 for op : NSBlockOperation in self.blockOperations {
@@ -389,6 +392,7 @@ extension PhotoAlbumViewController : NSFetchedResultsControllerDelegate {
                     
             }
         }
+        
     }
 }
 extension PhotoAlbumViewController : UICollectionViewDelegateFlowLayout {
@@ -413,12 +417,14 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return fetchedResultsController.sections![section].numberOfObjects
     }
-
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionViewCell", forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionViewCell", forIndexPath: indexPath) as! VTCollectionViewCell
+        cell.activity.hidesWhenStopped = true
         let image = fetchedResultsController.objectAtIndexPath(indexPath) as? Image
         cell.backgroundView = UIImageView(image: UIImage(data: image!.thumbnail))
         if image?.thumbnail == placeholder {
+            cell.activity.startAnimating()
             downloadImage((image?.thumbnailUrl)!, completion: { (data, response, error) -> Void in
                 /* GUARD: Was there an error? */
                 guard (error == nil) else {
@@ -447,6 +453,8 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
                 image?.thumbnail = data
                 
             })
+        } else {
+            cell.activity.stopAnimating()
         }
         return cell
     }

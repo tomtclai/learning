@@ -13,7 +13,7 @@ class Image: NSManagedObject {
     @NSManaged var imageUrl: String?
     @NSManaged var thumbnailUrl: String
     @NSManaged var pin: VTAnnotation!
-    @NSManaged var thumbnail: NSData
+    @NSManaged var thumbnail: NSData!
     struct Keys {
         static let ImageUrl = "imageUrl"
         static let ThumbnailUrl = "thumbnailUrl"

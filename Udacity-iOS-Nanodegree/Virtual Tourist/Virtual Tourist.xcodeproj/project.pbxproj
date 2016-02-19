@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7703CAC11C77DD19000D9F34 /* VTCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703CAC01C77DD19000D9F34 /* VTCollectionViewCell.swift */; };
 		771A696A1C53F43F00973CA6 /* PhotoAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771A69691C53F43F00973CA6 /* PhotoAlbumViewController.swift */; };
 		773575111C4DF39C00752585 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773575101C4DF39C00752585 /* AppDelegate.swift */; };
 		773575131C4DF39C00752585 /* TravelLocationsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773575121C4DF39C00752585 /* TravelLocationsMapViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7703CAC01C77DD19000D9F34 /* VTCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTCollectionViewCell.swift; sourceTree = "<group>"; };
 		771A69691C53F43F00973CA6 /* PhotoAlbumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbumViewController.swift; sourceTree = "<group>"; };
 		7735750D1C4DF39C00752585 /* Virtual Tourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Tourist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		773575101C4DF39C00752585 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			children = (
 				773575121C4DF39C00752585 /* TravelLocationsMapViewController.swift */,
 				771A69691C53F43F00973CA6 /* PhotoAlbumViewController.swift */,
+				7703CAC01C77DD19000D9F34 /* VTCollectionViewCell.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				773575111C4DF39C00752585 /* AppDelegate.swift in Sources */,
 				775D0A2A1C5EAEBB0030AC9C /* Flickr-Constants.swift in Sources */,
 				775C9E311C4F19DA00D45730 /* Model.xcdatamodeld in Sources */,
+				7703CAC11C77DD19000D9F34 /* VTCollectionViewCell.swift in Sources */,
 				775C9E511C4F492A00D45730 /* CoreDataStackManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
