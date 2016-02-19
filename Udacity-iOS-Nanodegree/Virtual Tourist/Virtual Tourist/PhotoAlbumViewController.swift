@@ -14,7 +14,7 @@ class PhotoAlbumViewController: UIViewController {
     var annotation: VTAnnotation!
     var span: MKCoordinateSpan!
     var blockOperations: [NSBlockOperation] = []
-    
+    let placeholder = UIImagePNGRepresentation(UIImage(named: "placeholder")!)!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -262,34 +262,23 @@ class PhotoAlbumViewController: UIViewController {
                     }
                     
                     
-                    let placeholder = UIImage(named: "placeholder")!
+
 
                     // add thumbnail url to core data
                     // add medium url to core data
                     let imageDictionary : [String: AnyObject] = [
                         Image.Keys.ThumbnailUrl : thumbnailUrlStr,
                         Image.Keys.ImageUrl : imageUrlStr,
-                        Image.Keys.Thumbnail : UIImagePNGRepresentation(placeholder)!
+                        Image.Keys.Thumbnail : self.placeholder
                     ]
                     
                     let image = Image(dictionary: imageDictionary, context: self.sharedContext)
                     image.pin = self.annotation
-                    
                     images.append(image)
+
+                    
                     self.saveContext()
                 }
-
-                for img in images {
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
-                        if let thumb = UIImage(contentsOfFile: img.thumbnailUrl) {
-                            img.thumbnail = UIImagePNGRepresentation(thumb)!
-                        } else {
-                            print("could not download image")
-                        }
-                    })
-                }
-
-                
                 
             } else {
                 dispatch_async(dispatch_get_main_queue(), {
@@ -301,6 +290,16 @@ class PhotoAlbumViewController: UIViewController {
         }
         
         task.resume()
+    }
+    func getDataFromUrl(url: NSURL, completion: ((data:NSData?, response: NSURLResponse?, error: NSError?) ->Void)) {
+        NSURLSession.sharedSession().dataTaskWithURL(url) {
+            completion(data: $0, response: $1, error: $2)
+        }.resume()
+    }
+    func downloadImage(url: String, completion:(data:NSData?, response: NSURLResponse?, error: NSError?) ->Void) {
+        getDataFromUrl(NSURL(string: url)!) {
+            completion(data: $0, response: $1, error: $2)
+        }
     }
     
     // MARK: - Core Data Convenience
@@ -379,15 +378,16 @@ extension PhotoAlbumViewController : NSFetchedResultsControllerDelegate {
         }
     }
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        
-        collectionView.performBatchUpdates({ () -> Void in
-            for op : NSBlockOperation in self.blockOperations {
-                op.start()
-            }
-            
-            }) { completed -> Void in
-                self.blockOperations.removeAll(keepCapacity: false)
+        UIView.animateWithDuration(0) { () -> Void in
+            self.collectionView.performBatchUpdates({ () -> Void in
+                for op : NSBlockOperation in self.blockOperations {
+                    op.start()
+                }
                 
+                }) { completed -> Void in
+                    self.blockOperations.removeAll(keepCapacity: false)
+                    
+            }
         }
     }
 }
@@ -418,6 +418,36 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionViewCell", forIndexPath: indexPath)
         let image = fetchedResultsController.objectAtIndexPath(indexPath) as? Image
         cell.backgroundView = UIImageView(image: UIImage(data: image!.thumbnail))
+        if image?.thumbnail == placeholder {
+            downloadImage((image?.thumbnailUrl)!, completion: { (data, response, error) -> Void in
+                /* GUARD: Was there an error? */
+                guard (error == nil) else {
+                    print("There was an error with your request: \(error)")
+                    return
+                }
+                
+                /* GUARD: Did we get a successful 2XX response? */
+                guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                    if let response = response as? NSHTTPURLResponse {
+                        print("Your request returned an invalid response! Status code: \(response.statusCode)!")
+                    } else if let response = response {
+                        print("Your request returned an invalid response! Response: \(response)!")
+                    } else {
+                        print("Your request returned an invalid response!")
+                    }
+                    return
+                }
+                
+                /* GUARD: Was there any data returned? */
+                guard let data = data else {
+                    print("No data was returned by the request!")
+                    return
+                }
+                
+                image?.thumbnail = data
+                
+            })
+        }
         return cell
     }
 }
