@@ -116,12 +116,27 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qz1-yN-Yrn">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="t9L-nt-CqJ"/>
+                                    <barButtonItem title="New Collection" id="oC4-9A-ZJM">
+                                        <connections>
+                                            <action selector="newCollectionTapped:" destination="uKc-om-q3R" id="mDN-8r-oTL"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="F85-eQ-ILq"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="DIY-nk-T9d" secondAttribute="trailing" constant="-20" id="523-Wn-0d0"/>
                             <constraint firstItem="DIY-nk-T9d" firstAttribute="top" secondItem="mjU-pi-oHd" secondAttribute="topMargin" constant="64" id="5cd-03-AiI"/>
+                            <constraint firstItem="2Ls-RA-QJ6" firstAttribute="top" secondItem="qz1-yN-Yrn" secondAttribute="bottom" id="IEU-3N-ZDC"/>
+                            <constraint firstItem="qz1-yN-Yrn" firstAttribute="leading" secondItem="mjU-pi-oHd" secondAttribute="leadingMargin" constant="-20" id="NDr-Op-4Da"/>
                             <constraint firstAttribute="trailingMargin" secondItem="r9t-eM-ufU" secondAttribute="trailing" constant="-20" id="NEI-dG-BwZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qz1-yN-Yrn" secondAttribute="trailing" constant="-20" id="ak3-Cg-Yjk"/>
                             <constraint firstItem="DIY-nk-T9d" firstAttribute="top" secondItem="iTR-34-S0S" secondAttribute="bottom" constant="-20" id="ars-Na-4s1"/>
                             <constraint firstItem="r9t-eM-ufU" firstAttribute="top" secondItem="DIY-nk-T9d" secondAttribute="bottom" id="ib2-v1-cMU"/>
                             <constraint firstItem="DIY-nk-T9d" firstAttribute="leading" secondItem="mjU-pi-oHd" secondAttribute="leadingMargin" constant="-20" id="kEO-jm-VnJ"/>

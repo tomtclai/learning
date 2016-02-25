@@ -18,6 +18,9 @@ class PhotoAlbumViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBAction func newCollectionTapped(sender: AnyObject) {
+        print("newCollectionTapped");
+    }
     override func viewDidLoad() {
         navigationController?.navigationBarHidden = false
         mapView.clipsToBounds = false
