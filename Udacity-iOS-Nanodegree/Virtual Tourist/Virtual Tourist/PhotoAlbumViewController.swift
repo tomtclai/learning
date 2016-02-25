@@ -20,6 +20,18 @@ class PhotoAlbumViewController: UIViewController {
     
     @IBAction func newCollectionTapped(sender: AnyObject) {
         print("newCollectionTapped");
+        removeAllPhotosAtThisLocation()
+        do {
+            try sharedContext.save()
+        } catch {}
+//        searchPhotosByLatLon()
+    }
+    func removeAllPhotosAtThisLocation() {
+        for object in fetchedResultsController.fetchedObjects! {
+            if let obj = object as? NSManagedObject {
+                sharedContext.deleteObject(obj)
+            }
+        }
     }
     override func viewDidLoad() {
         navigationController?.navigationBarHidden = false
