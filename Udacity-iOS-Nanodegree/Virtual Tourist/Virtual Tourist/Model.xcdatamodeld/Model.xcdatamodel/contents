@@ -4,17 +4,17 @@
         <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnail" attributeType="Binary" syncable="YES"/>
         <attribute name="thumbnailUrl" attributeType="String" syncable="YES"/>
-        <relationship name="pin" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="VTAnnotation" inverseName="images" inverseEntity="VTAnnotation" syncable="YES"/>
+        <relationship name="pin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VTAnnotation" inverseName="images" inverseEntity="VTAnnotation" syncable="YES"/>
     </entity>
     <entity name="VTAnnotation" representedClassName=".VTAnnotation" syncable="YES">
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="images" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Image" inverseName="pin" inverseEntity="Image" syncable="YES"/>
+        <relationship name="images" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Image" inverseName="pin" inverseEntity="Image" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Image" positionX="-63" positionY="0" width="128" height="105"/>
-        <element name="VTAnnotation" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Image" positionX="-63" positionY="0" width="128" height="103"/>
+        <element name="VTAnnotation" positionX="286" positionY="15" width="128" height="118"/>
     </elements>
 </model>

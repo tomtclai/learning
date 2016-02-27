@@ -17,6 +17,7 @@ class PhotoAlbumViewController: UIViewController {
     let placeholder = UIImagePNGRepresentation(UIImage(named: "placeholder")!)!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var noPhotosLabel: UILabel!
     
     @IBAction func newCollectionTapped(sender: AnyObject) {
         print("newCollectionTapped");
@@ -24,7 +25,7 @@ class PhotoAlbumViewController: UIViewController {
         do {
             try sharedContext.save()
         } catch {}
-//        searchPhotosByLatLon()
+        searchPhotosByLatLon()
     }
     func removeAllPhotosAtThisLocation() {
         for object in fetchedResultsController.fetchedObjects! {
@@ -51,9 +52,9 @@ class PhotoAlbumViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
+
     }
-    
-    
+
     // MARK: Flickr API
     let BASE_URL = "https://api.flickr.com/services/rest/"
     let METHOD_NAME = "flickr.photos.search"
@@ -87,16 +88,14 @@ class PhotoAlbumViewController: UIViewController {
             }
             let pageLimit = min(totalPages!, 40)
             let randomPage = Int(arc4random_uniform(UInt32(pageLimit))) + 1
-//            self.getImageFromFlickrBySearchWithPage(methodArguments, pageNumber: randomPage)
             self.getImageFromFlickrBySearchWithPage(methodArguments, pageNumber: randomPage, completionHandler: { (stat, photosDictionary, totalPhotosVal, error) -> Void in
-                
                 guard error == nil else {
                     print(error?.localizedDescription)
                     return
                 }
                 
                 if totalPhotosVal > 0 {
-                    
+                    print("photos");
                     /* GUARD: Is the "photo" key in photosDictionary? */
                     guard let photosArray = photosDictionary!["photo"] as? [[String: AnyObject]] else {
                         print("Cannot find key 'photo' in \(photosDictionary)")
@@ -140,6 +139,9 @@ class PhotoAlbumViewController: UIViewController {
                         
                         self.saveContext()
                     }
+                } else {
+                    print("no photos")
+                    self.noPhotosLabel.hidden=false;
                 }
             })
         }

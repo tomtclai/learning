@@ -128,6 +128,12 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="F85-eQ-ILq"/>
                                 </items>
                             </toolbar>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3B-DE-US5">
+                                <rect key="frame" x="0.0" y="173" width="600" height="427"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="48"/>
+                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -136,11 +142,15 @@
                             <constraint firstItem="2Ls-RA-QJ6" firstAttribute="top" secondItem="qz1-yN-Yrn" secondAttribute="bottom" id="IEU-3N-ZDC"/>
                             <constraint firstItem="qz1-yN-Yrn" firstAttribute="leading" secondItem="mjU-pi-oHd" secondAttribute="leadingMargin" constant="-20" id="NDr-Op-4Da"/>
                             <constraint firstAttribute="trailingMargin" secondItem="r9t-eM-ufU" secondAttribute="trailing" constant="-20" id="NEI-dG-BwZ"/>
+                            <constraint firstItem="N3B-DE-US5" firstAttribute="top" secondItem="r9t-eM-ufU" secondAttribute="top" id="UEo-wG-FHA"/>
+                            <constraint firstItem="N3B-DE-US5" firstAttribute="bottom" secondItem="r9t-eM-ufU" secondAttribute="bottom" id="YWa-dx-Ksp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qz1-yN-Yrn" secondAttribute="trailing" constant="-20" id="ak3-Cg-Yjk"/>
                             <constraint firstItem="DIY-nk-T9d" firstAttribute="top" secondItem="iTR-34-S0S" secondAttribute="bottom" constant="-20" id="ars-Na-4s1"/>
                             <constraint firstItem="r9t-eM-ufU" firstAttribute="top" secondItem="DIY-nk-T9d" secondAttribute="bottom" id="ib2-v1-cMU"/>
                             <constraint firstItem="DIY-nk-T9d" firstAttribute="leading" secondItem="mjU-pi-oHd" secondAttribute="leadingMargin" constant="-20" id="kEO-jm-VnJ"/>
+                            <constraint firstItem="N3B-DE-US5" firstAttribute="leading" secondItem="r9t-eM-ufU" secondAttribute="leading" id="nkw-hF-vSs"/>
                             <constraint firstItem="2Ls-RA-QJ6" firstAttribute="top" secondItem="r9t-eM-ufU" secondAttribute="bottom" id="trH-vi-GiQ"/>
+                            <constraint firstItem="N3B-DE-US5" firstAttribute="trailing" secondItem="r9t-eM-ufU" secondAttribute="trailing" id="uY3-8B-n0Q"/>
                             <constraint firstItem="r9t-eM-ufU" firstAttribute="leading" secondItem="mjU-pi-oHd" secondAttribute="leadingMargin" constant="-20" id="zPL-Kj-isC"/>
                         </constraints>
                         <variation key="default">
@@ -153,6 +163,7 @@
                     <connections>
                         <outlet property="collectionView" destination="r9t-eM-ufU" id="1lK-oX-fhn"/>
                         <outlet property="mapView" destination="DIY-nk-T9d" id="HyP-w0-whc"/>
+                        <outlet property="noPhotosLabel" destination="N3B-DE-US5" id="xkA-xT-CG2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rVK-PI-6eB" userLabel="First Responder" sceneMemberID="firstResponder"/>
