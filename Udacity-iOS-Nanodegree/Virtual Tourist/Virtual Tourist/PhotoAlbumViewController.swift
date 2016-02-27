@@ -15,13 +15,25 @@ class PhotoAlbumViewController: UIViewController {
     var span: MKCoordinateSpan!
     var blockOperations: [NSBlockOperation] = []
     let placeholder = UIImagePNGRepresentation(UIImage(named: "placeholder")!)!
+
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var noPhotosLabel: UILabel!
-    
+    var pageNumber : Int {
+        set {
+            annotation.pageNumber = newValue
+            do {
+                try sharedContext.save()
+            } catch {}
+        }
+        get {
+            return annotation.pageNumber.integerValue
+        }
+    }
     @IBAction func newCollectionTapped(sender: AnyObject) {
         print("newCollectionTapped");
         removeAllPhotosAtThisLocation()
+        self.pageNumber++
         do {
             try sharedContext.save()
         } catch {}
@@ -87,8 +99,8 @@ class PhotoAlbumViewController: UIViewController {
                 return
             }
             let pageLimit = min(totalPages!, 40)
-            let randomPage = Int(arc4random_uniform(UInt32(pageLimit))) + 1
-            self.getImageFromFlickrBySearchWithPage(methodArguments, pageNumber: randomPage, completionHandler: { (stat, photosDictionary, totalPhotosVal, error) -> Void in
+            self.pageNumber = self.pageNumber % pageLimit
+            self.getImageFromFlickrBySearchWithPage(methodArguments, pageNumber: self.pageNumber, completionHandler: { (stat, photosDictionary, totalPhotosVal, error) -> Void in
                 guard error == nil else {
                     print(error?.localizedDescription)
                     return
@@ -355,6 +367,15 @@ class PhotoAlbumViewController: UIViewController {
         return fetched
     }()
     
+    // MARK: state restoration
+    override func encodeRestorableStateWithCoder(coder: NSCoder) {
+        super.encodeRestorableStateWithCoder(coder)
+    }
+    
+    override func decodeRestorableStateWithCoder(coder: NSCoder) {
+        super.decodeRestorableStateWithCoder(coder)
+    }
+    
 }
 extension PhotoAlbumViewController : NSFetchedResultsControllerDelegate {
 
@@ -494,4 +515,12 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
         }
         return cell
     }
+}
+
+extension PhotoAlbumViewController : UIViewControllerRestoration {
+    static func viewControllerWithRestorationIdentifierPath(identifierComponents: [AnyObject], coder: NSCoder) -> UIViewController? {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PhotoAlbumViewController")
+    }
+    
+    
 }

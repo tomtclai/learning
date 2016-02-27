@@ -46,6 +46,7 @@ class TravelLocationsMapViewController: UIViewController {
                 VTAnnotation.Keys.Latitude : NSNumber(double: coordinateInMaps.latitude),
                 //TODO: make title the city name, subtitle country
                 VTAnnotation.Keys.Title : String.localizedStringWithFormat("%.3f, %.3f", coordinateInMaps.latitude, coordinateInMaps.longitude),
+                VTAnnotation.Keys.Page : NSNumber(integer: 1)
             ]
             let _ = VTAnnotation(dictionary: annotationDictionary, context: sharedContext)
             CoreDataStackManager.sharedInstance().saveContext()

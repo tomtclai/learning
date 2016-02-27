@@ -15,6 +15,7 @@ class VTAnnotation: NSManagedObject, MKAnnotation {
     @NSManaged @objc var title: String?
     @NSManaged @objc var subtitle: String?
     @NSManaged var images: [Image]
+    @NSManaged var pageNumber: NSNumber!
     
     struct Keys {
         static let Longitude = "longitude"
@@ -22,6 +23,7 @@ class VTAnnotation: NSManagedObject, MKAnnotation {
         static let Title = "title"
         static let Subtitle = "subtitle"
         static let Images = "images"
+        static let Page = "page"
     }
     
     @objc var coordinate: CLLocationCoordinate2D {
@@ -46,6 +48,7 @@ class VTAnnotation: NSManagedObject, MKAnnotation {
         latitude = dictionary[Keys.Latitude] as! NSNumber
         title = dictionary[Keys.Title] as? String
         subtitle = dictionary[Keys.Subtitle] as? String
+        pageNumber = dictionary[Keys.Page] as! NSNumber
         
     }
 }
