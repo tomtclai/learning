@@ -163,6 +163,7 @@
                     <connections>
                         <outlet property="collectionView" destination="r9t-eM-ufU" id="1lK-oX-fhn"/>
                         <outlet property="mapView" destination="DIY-nk-T9d" id="HyP-w0-whc"/>
+                        <outlet property="newCollection" destination="oC4-9A-ZJM" id="OIH-Ln-8rN"/>
                         <outlet property="noPhotosLabel" destination="N3B-DE-US5" id="xkA-xT-CG2"/>
                     </connections>
                 </viewController>

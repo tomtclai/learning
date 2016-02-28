@@ -16,6 +16,7 @@ class PhotoAlbumViewController: UIViewController {
     var blockOperations: [NSBlockOperation] = []
     let placeholder = UIImagePNGRepresentation(UIImage(named: "placeholder")!)!
 
+    @IBOutlet weak var newCollection: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var noPhotosLabel: UILabel!
@@ -33,7 +34,7 @@ class PhotoAlbumViewController: UIViewController {
     @IBAction func newCollectionTapped(sender: AnyObject) {
         print("newCollectionTapped");
         removeAllPhotosAtThisLocation()
-        self.pageNumber++
+        pageNumber++
         do {
             try sharedContext.save()
         } catch {}
@@ -91,7 +92,8 @@ class PhotoAlbumViewController: UIViewController {
             "format": DATA_FORMAT,
             "nojsoncallback": NO_JSON_CALLBACK,
             "lat": annotation.latitude.doubleValue,
-            "lon": annotation.longitude.doubleValue
+            "lon": annotation.longitude.doubleValue,
+            "per_page": 21
         ]
         getImageFromFlickrBySearch(methodArguments) { (stat, photosDict, totalPages, error) -> Void in
             guard error == nil else {
@@ -99,63 +101,78 @@ class PhotoAlbumViewController: UIViewController {
                 return
             }
             let pageLimit = min(totalPages!, 40)
-            self.pageNumber = self.pageNumber % pageLimit
-            self.getImageFromFlickrBySearchWithPage(methodArguments, pageNumber: self.pageNumber, completionHandler: { (stat, photosDictionary, totalPhotosVal, error) -> Void in
-                guard error == nil else {
-                    print(error?.localizedDescription)
-                    return
+            dispatch_async(dispatch_get_main_queue()){
+                if pageLimit == 0 {
+                    self.pageNumber = 0
+                } else {
+                    self.pageNumber = self.pageNumber % pageLimit
                 }
+            
                 
-                if totalPhotosVal > 0 {
-                    print("photos");
-                    /* GUARD: Is the "photo" key in photosDictionary? */
-                    guard let photosArray = photosDictionary!["photo"] as? [[String: AnyObject]] else {
-                        print("Cannot find key 'photo' in \(photosDictionary)")
+                self.getImageFromFlickrBySearchWithPage(methodArguments, pageNumber: self.pageNumber, completionHandler: { (stat, photosDictionary, totalPhotosVal, error) -> Void in
+                    guard error == nil else {
+                        print(error?.localizedDescription)
                         return
                     }
                     
-                    var images = [Image]()
-                    for photoDictionary in photosArray {
-                        
-                        /* GUARD: Does our photo have a key for 'url_m'? */
-                        guard let thumbnailUrlStr = photoDictionary["url_q"] as? String else {
-                            print("Cannot find key 'url_q' in \(photoDictionary)")
+                    if totalPhotosVal > 0 {
+                        print("photos");
+                        /* GUARD: Is the "photo" key in photosDictionary? */
+                        guard let photosArray = photosDictionary!["photo"] as? [[String: AnyObject]] else {
+                            print("Cannot find key 'photo' in \(photosDictionary)")
                             return
                         }
                         
-                        let request = NSFetchRequest(entityName: "Image")
-                        request.predicate = NSPredicate(format: "thumbnailUrl == %@", thumbnailUrlStr)
-                        do {
-                            let existingImage = try self.sharedContext.executeFetchRequest(request)
-                            if !existingImage.isEmpty {
+                        var images = [Image]()
+                        for photoDictionary in photosArray {
+                            
+                            /* GUARD: Does our photo have a key for 'url_m'? */
+                            guard let thumbnailUrlStr = photoDictionary["url_q"] as? String else {
+                                print("Cannot find key 'url_q' in \(photoDictionary)")
                                 return
                             }
-                        } catch {}
-                        
-                        guard let imageUrlStr = photoDictionary["url_q"] as? String else {
-                            print("Cannot find key 'url_s' in \(photoDictionary)")
-                            return
+                            
+                            let request = NSFetchRequest(entityName: "Image")
+                            request.predicate = NSPredicate(format: "thumbnailUrl == %@", thumbnailUrlStr)
+                            dispatch_async(dispatch_get_main_queue()){
+                                do {
+                                    let existingImage = try self.sharedContext.executeFetchRequest(request)
+                                    if !existingImage.isEmpty {
+                                        return
+                                    }
+                                } catch {}
+                            }
+                            
+                            guard let imageUrlStr = photoDictionary["url_q"] as? String else {
+                                print("Cannot find key 'url_s' in \(photoDictionary)")
+                                return
+                            }
+                            
+                            // add thumbnail url to core data
+                            // add medium url to core data
+                            let imageDictionary : [String: AnyObject] = [
+                                Image.Keys.ThumbnailUrl : thumbnailUrlStr,
+                                Image.Keys.ImageUrl : imageUrlStr,
+                                Image.Keys.Thumbnail : self.placeholder
+                            ]
+                            
+                            dispatch_async(dispatch_get_main_queue()){
+                                let image = Image(dictionary: imageDictionary, context: self.sharedContext)
+                                image.pin = self.annotation
+                                images.append(image)
+                                
+                                self.saveContext()
+                            }
                         }
-                        
-                        // add thumbnail url to core data
-                        // add medium url to core data
-                        let imageDictionary : [String: AnyObject] = [
-                            Image.Keys.ThumbnailUrl : thumbnailUrlStr,
-                            Image.Keys.ImageUrl : imageUrlStr,
-                            Image.Keys.Thumbnail : self.placeholder
-                        ]
-                        
-                        let image = Image(dictionary: imageDictionary, context: self.sharedContext)
-                        image.pin = self.annotation
-                        images.append(image)
-                        
-                        self.saveContext()
+                    } else {
+                        print("no photos")
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.newCollection.enabled = false;
+                            self.noPhotosLabel.hidden = false;
+                        })
                     }
-                } else {
-                    print("no photos")
-                    self.noPhotosLabel.hidden=false;
-                }
-            })
+                })
+            }
         }
     }
     
@@ -506,8 +523,9 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
                     print("No data was returned by the request!")
                     return
                 }
-                
-                image?.thumbnail = data
+                dispatch_async(dispatch_get_main_queue()){
+                    image?.thumbnail = data
+                }
                 
             })
         } else {

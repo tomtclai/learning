@@ -1,8 +1,0 @@
-I noticed that I will get an error if I:
-1 Create a pin 
-2 Tap on the pin 
-3 While the album is loading, Go back to the map view and create a different pin
-
-The error is: 2016-02-26 22:16:35.489 Virtual Tourist[2281:603892] *** Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'recordChangeSnapshot:forObjectID:: global ID may not be temporary when recording
-
-But i don't know how I would fix it... 

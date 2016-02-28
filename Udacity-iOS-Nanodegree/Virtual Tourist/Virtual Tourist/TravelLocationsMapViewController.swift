@@ -48,8 +48,10 @@ class TravelLocationsMapViewController: UIViewController {
                 VTAnnotation.Keys.Title : String.localizedStringWithFormat("%.3f, %.3f", coordinateInMaps.latitude, coordinateInMaps.longitude),
                 VTAnnotation.Keys.Page : NSNumber(integer: 1)
             ]
-            let _ = VTAnnotation(dictionary: annotationDictionary, context: sharedContext)
-            CoreDataStackManager.sharedInstance().saveContext()
+            dispatch_async(dispatch_get_main_queue()){
+                let _ = VTAnnotation(dictionary: annotationDictionary, context: self.sharedContext)
+                CoreDataStackManager.sharedInstance().saveContext()
+            }
         }
     }
     
@@ -128,8 +130,6 @@ extension TravelLocationsMapViewController : MKMapViewDelegate {
 // MARK: NSFetchedResultsControllerDelegate
 extension TravelLocationsMapViewController : NSFetchedResultsControllerDelegate {
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-
-        print("didChangeObject1")
         let pin = anObject as! VTAnnotation
         switch type {
         case .Insert:
