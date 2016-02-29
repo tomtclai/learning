@@ -20,7 +20,7 @@ class PhotoAlbumViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var noPhotosLabel: UILabel!
-    var pageNumber : Int {
+    var lastPageNumber : Int {
         set {
             annotation.pageNumber = newValue
             do {
@@ -34,11 +34,11 @@ class PhotoAlbumViewController: UIViewController {
     @IBAction func newCollectionTapped(sender: AnyObject) {
         print("newCollectionTapped");
         removeAllPhotosAtThisLocation()
-        pageNumber++
+
         do {
             try sharedContext.save()
         } catch {}
-        searchPhotosByLatLon()
+        searchPhotosByLatLon(lastPageNumber + 1)
     }
     func removeAllPhotosAtThisLocation() {
         for object in fetchedResultsController.fetchedObjects! {
@@ -61,7 +61,7 @@ class PhotoAlbumViewController: UIViewController {
         mapView.setRegion(region, animated: false)
         print("top\(topLayoutGuide.topAnchor), bottom\(topLayoutGuide.bottomAnchor), height\(topLayoutGuide.heightAnchor)")
         
-        searchPhotosByLatLon()
+        searchPhotosByLatLon(lastPageNumber)
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -83,7 +83,7 @@ class PhotoAlbumViewController: UIViewController {
     let LAT_MAX = 90.0
     let LON_MIN = -180.0
     let LON_MAX = 180.0
-    func searchPhotosByLatLon() {
+    func searchPhotosByLatLon(pageNumber: Int) {
         let methodArguments : [String:AnyObject] = [
             "method": METHOD_NAME,
             "api_key": API_KEY,
@@ -103,13 +103,14 @@ class PhotoAlbumViewController: UIViewController {
             let pageLimit = min(totalPages!, 40)
             dispatch_async(dispatch_get_main_queue()){
                 if pageLimit == 0 {
-                    self.pageNumber = 0
-                } else {
-                    self.pageNumber = self.pageNumber % pageLimit
+                    self.lastPageNumber = 0
+                } else if self.collectionView.numberOfItemsInSection(0) == 0 {
+                    self.lastPageNumber = pageNumber % pageLimit
+                } else if self.lastPageNumber == pageNumber { // do not download the same page again
+                        return
                 }
             
-                
-                self.getImageFromFlickrBySearchWithPage(methodArguments, pageNumber: self.pageNumber, completionHandler: { (stat, photosDictionary, totalPhotosVal, error) -> Void in
+                self.getImageFromFlickrBySearchWithPage(methodArguments, pageNumber: self.lastPageNumber, completionHandler: { (stat, photosDictionary, totalPhotosVal, error) -> Void in
                     guard error == nil else {
                         print(error?.localizedDescription)
                         return
@@ -137,7 +138,7 @@ class PhotoAlbumViewController: UIViewController {
                             dispatch_async(dispatch_get_main_queue()){
                                 do {
                                     let existingImage = try self.sharedContext.executeFetchRequest(request)
-                                    if !existingImage.isEmpty {
+                                    if !existingImage.isEmpty { // do not add duplicated photos
                                         return
                                     }
                                 } catch {}
