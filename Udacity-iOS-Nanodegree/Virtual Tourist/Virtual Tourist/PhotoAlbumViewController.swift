@@ -33,7 +33,6 @@ class PhotoAlbumViewController: UIViewController {
         }
     }
     @IBAction func newCollectionTapped(sender: AnyObject) {
-        print("newCollectionTapped");
         removeAllPhotosAtThisLocation()
 
         do {
@@ -42,7 +41,6 @@ class PhotoAlbumViewController: UIViewController {
         searchPhotosByLatLon(lastPageNumber + 1)
     }
     @IBAction func didTap(sender: UITapGestureRecognizer) {
-        print("didTap")
         let point = sender.locationInView(self.collectionView)
         if let indexPath = self.collectionView.indexPathForItemAtPoint(point)
         {
@@ -51,10 +49,10 @@ class PhotoAlbumViewController: UIViewController {
             do {
                 try sharedContext.save()
             } catch {}
-        } else {
-            print("Index Path is nil")
         }
-
+        if self.collectionView.numberOfItemsInSection(0) == 0 {
+            newCollectionTapped(sender)
+        }
     }
     func removeAllPhotosAtThisLocation() {
         for object in fetchedResultsController.fetchedObjects! {
@@ -331,30 +329,7 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
             // not found, download and save to documents directory, then display in cell
             cell.activity.startAnimating()
             cell.backgroundView = UIImageView(image: placeholder)
-            Flickr.sharedInstance().downloadImage((image.thumbnailUrl), completion: { (data, response, error) -> Void in
-                /* GUARD: Was there an error? */
-                guard (error == nil) else {
-                    print("There was an error with your request: \(error)")
-                    return
-                }
-                
-                /* GUARD: Did we get a successful 2XX response? */
-                guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                    if let response = response as? NSHTTPURLResponse {
-                        print("Your request returned an invalid response! Status code: \(response.statusCode)!")
-                    } else if let response = response {
-                        print("Your request returned an invalid response! Response: \(response)!")
-                    } else {
-                        print("Your request returned an invalid response!")
-                    }
-                    return
-                }
-                
-                /* GUARD: Was there any data returned? */
-                guard let data = data else {
-                    print("No data was returned by the request!")
-                    return
-                }
+            Flickr.sharedInstance().getCellImageConvenience(image.thumbnailUrl, completion: { (data) -> Void in
                 dispatch_async(dispatch_get_main_queue()){
                     let img = UIImage(data: data)!
                     cell.backgroundView = UIImageView(image: img)
@@ -366,7 +341,6 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
                     } catch {}
                 }
             })
-
         }
         return cell
     }

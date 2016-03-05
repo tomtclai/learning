@@ -205,6 +205,34 @@ class Flickr : NSObject {
         
         task.resume()
     }
+    func getCellImageConvenience(url:String, completion: ((data: NSData) -> Void)) {
+        self.downloadImage(url, completion: { (data, response, error) -> Void in
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                print("There was an error with your request: \(error)")
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                if let response = response as? NSHTTPURLResponse {
+                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
+                } else if let response = response {
+                    print("Your request returned an invalid response! Response: \(response)!")
+                } else {
+                    print("Your request returned an invalid response!")
+                }
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                print("No data was returned by the request!")
+                return
+            }
+            completion(data: data)
+        })
+    }
     func getDataFromUrl(url: NSURL, completion: ((data:NSData?, response: NSURLResponse?, error: NSError?) ->Void)) {
         NSURLSession.sharedSession().dataTaskWithURL(url) {
             completion(data: $0, response: $1, error: $2)
