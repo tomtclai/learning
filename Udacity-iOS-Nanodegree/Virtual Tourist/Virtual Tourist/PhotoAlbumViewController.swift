@@ -85,10 +85,6 @@ class PhotoAlbumViewController: UIViewController {
     }
 
     // MARK: Flickr API
-    let BASE_URL = "https://api.flickr.com/services/rest/"
-    let METHOD_NAME = "flickr.photos.search"
-    let API_KEY = "fbb0f7411bc2751b84e6d44d7b806c4f"
-    
     let EXTRAS = "url_b,url_q"
     let SAFE_SEARCH = "1"
     let DATA_FORMAT = "json"
@@ -101,8 +97,8 @@ class PhotoAlbumViewController: UIViewController {
     let LON_MAX = 180.0
     func searchPhotosByLatLon(pageNumber: Int) {
         let methodArguments : [String:AnyObject] = [
-            "method": METHOD_NAME,
-            "api_key": API_KEY,
+            "method": Flickr.Resources.search,
+            "api_key": Flickr.Constants.apiKey,
             "safe_search": SAFE_SEARCH,
             "extras": EXTRAS,
             "format": DATA_FORMAT,

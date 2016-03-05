@@ -205,6 +205,19 @@ class Flickr : NSObject {
         
         task.resume()
     }
+    func getDataFromUrl(url: NSURL, completion: ((data:NSData?, response: NSURLResponse?, error: NSError?) ->Void)) {
+        NSURLSession.sharedSession().dataTaskWithURL(url) {
+            completion(data: $0, response: $1, error: $2)
+            }.resume()
+    }
+    func downloadImage(url: String, completion:(data:NSData?, response: NSURLResponse?, error: NSError?) ->Void) {
+        getDataFromUrl(NSURL(string: url)!) {
+            completion(data: $0, response: $1, error: $2)
+        }
+    }
+}
+// Convenience methods
+extension Flickr {
     func getCellImageConvenience(url:String, completion: ((data: NSData) -> Void)) {
         self.downloadImage(url, completion: { (data, response, error) -> Void in
             /* GUARD: Was there an error? */
@@ -232,15 +245,5 @@ class Flickr : NSObject {
             }
             completion(data: data)
         })
-    }
-    func getDataFromUrl(url: NSURL, completion: ((data:NSData?, response: NSURLResponse?, error: NSError?) ->Void)) {
-        NSURLSession.sharedSession().dataTaskWithURL(url) {
-            completion(data: $0, response: $1, error: $2)
-            }.resume()
-    }
-    func downloadImage(url: String, completion:(data:NSData?, response: NSURLResponse?, error: NSError?) ->Void) {
-        getDataFromUrl(NSURL(string: url)!) {
-            completion(data: $0, response: $1, error: $2)
-        }
     }
 }

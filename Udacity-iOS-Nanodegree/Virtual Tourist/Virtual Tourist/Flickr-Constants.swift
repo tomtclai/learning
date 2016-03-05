@@ -15,9 +15,7 @@ extension Flickr {
     }
     
     struct Resources {
+        static let search = "flickr.photos.search"
     }
-    
-    struct Keys {
-    }
-    
+
 }
