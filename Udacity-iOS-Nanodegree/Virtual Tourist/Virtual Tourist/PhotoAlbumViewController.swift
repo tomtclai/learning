@@ -16,7 +16,7 @@ class PhotoAlbumViewController: UIViewController {
     var span: MKCoordinateSpan!
     var blockOperations: [NSBlockOperation] = []
     let placeholder = UIImage(named: "placeholder")!
-
+    @IBOutlet var tapGesture: UITapGestureRecognizer!
     @IBOutlet weak var newCollection: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -41,6 +41,21 @@ class PhotoAlbumViewController: UIViewController {
         } catch {}
         searchPhotosByLatLon(lastPageNumber + 1)
     }
+    @IBAction func didTap(sender: UITapGestureRecognizer) {
+        print("didTap")
+        let point = sender.locationInView(self.collectionView)
+        if let indexPath = self.collectionView.indexPathForItemAtPoint(point)
+        {
+            let img = fetchedResultsController.objectAtIndexPath(indexPath) as! Image
+            sharedContext.deleteObject(img)
+            do {
+                try sharedContext.save()
+            } catch {}
+        } else {
+            print("Index Path is nil")
+        }
+
+    }
     func removeAllPhotosAtThisLocation() {
         for object in fetchedResultsController.fetchedObjects! {
             if let obj = object as? NSManagedObject {
@@ -48,6 +63,8 @@ class PhotoAlbumViewController: UIViewController {
             }
         }
     }
+
+    
     override func viewDidLoad() {
         navigationController?.navigationBarHidden = false
         mapView.clipsToBounds = false
@@ -66,7 +83,7 @@ class PhotoAlbumViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
-
+        collectionView.addGestureRecognizer(tapGesture)
     }
 
     // MARK: Flickr API
@@ -197,6 +214,7 @@ class PhotoAlbumViewController: UIViewController {
     }
     
 }
+// MARK: NSFetchedResultsControllerDelegate
 extension PhotoAlbumViewController : NSFetchedResultsControllerDelegate {
 
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
@@ -258,7 +276,7 @@ extension PhotoAlbumViewController : NSFetchedResultsControllerDelegate {
     }
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         
-        UIView.animateWithDuration(0) { () -> Void in
+        UIView.animateWithDuration(0.25) { () -> Void in
             self.collectionView.performBatchUpdates({ () -> Void in
                 for op : NSBlockOperation in self.blockOperations {
                     op.start()
@@ -272,6 +290,7 @@ extension PhotoAlbumViewController : NSFetchedResultsControllerDelegate {
         
     }
 }
+// MARK: UICollectionViewDelegateFlowLayout
 extension PhotoAlbumViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let screenRect = UIScreen.mainScreen().bounds
@@ -280,8 +299,7 @@ extension PhotoAlbumViewController : UICollectionViewDelegateFlowLayout {
         return CGSizeMake(itemEdge, itemEdge)
     }
 }
-extension PhotoAlbumViewController : UICollectionViewDelegate {
-}
+// MARK: UICollectionViewDataSource
 extension PhotoAlbumViewController : UICollectionViewDataSource {
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         if let sections = fetchedResultsController.sections {
@@ -340,6 +358,9 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
                     let img = UIImage(data: data)
                     cell.backgroundView = UIImageView(image: img)
                     image.localPath = imgPath
+                    do {
+                        try self.sharedContext.save()
+                    } catch {}
                 }
             })
 
@@ -348,6 +369,7 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
     }
 }
 
+//MARK: UIViewControllerRestoration
 extension PhotoAlbumViewController : UIViewControllerRestoration {
     static func viewControllerWithRestorationIdentifierPath(identifierComponents: [AnyObject], coder: NSCoder) -> UIViewController? {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PhotoAlbumViewController")
@@ -360,4 +382,7 @@ extension PhotoAlbumViewController  {
         let documentsDirectoryURL: NSURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
         return documentsDirectoryURL.URLByAppendingPathComponent(uniqueFileName)
     }
+}
+//MARK: UIGestureRecognizerDelegate
+extension PhotoAlbumViewController : UIGestureRecognizerDelegate {
 }

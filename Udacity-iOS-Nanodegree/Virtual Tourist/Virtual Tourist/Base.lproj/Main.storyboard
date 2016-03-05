@@ -85,6 +85,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="r9t-eM-ufU">
                                 <rect key="frame" x="0.0" y="173" width="600" height="427"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="0.0" id="8f5-Pj-4l9">
                                     <size key="itemSize" width="100" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -130,6 +131,7 @@
                             </toolbar>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3B-DE-US5">
                                 <rect key="frame" x="0.0" y="173" width="600" height="427"/>
+                                <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="48"/>
                                 <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -165,9 +167,16 @@
                         <outlet property="mapView" destination="DIY-nk-T9d" id="HyP-w0-whc"/>
                         <outlet property="newCollection" destination="oC4-9A-ZJM" id="OIH-Ln-8rN"/>
                         <outlet property="noPhotosLabel" destination="N3B-DE-US5" id="xkA-xT-CG2"/>
+                        <outlet property="tapGesture" destination="6ys-Gz-SCu" id="dUT-qO-6uX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rVK-PI-6eB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="6ys-Gz-SCu">
+                    <connections>
+                        <action selector="didTap:" destination="uKc-om-q3R" id="Gzz-fO-5nj"/>
+                        <outlet property="delegate" destination="uKc-om-q3R" id="CTt-Uw-jfC"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2050" y="443"/>
         </scene>
