@@ -319,14 +319,16 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
         let image = fetchedResultsController.objectAtIndexPath(indexPath) as! Image
         
         // look for local path, if not found, download and save to documents directory
-        if let imgPath = image.localPath  {
-            let img = UIImage(contentsOfFile: imgPath)
-            cell.backgroundView = UIImageView(image: img)
-            cell.activity.stopAnimating()
+        
+        if let uuid = image.uuid  {
+            
+            if let img = UIImage(contentsOfFile: Image.imgPath(uuid)) {
+                cell.backgroundView = UIImageView(image: img)
+                cell.activity.stopAnimating()
+            }
+            
         } else {
             // not found, download and save to documents directory, then display in cell
-            let documentDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
-            let imgPath = documentDirectory.stringByAppendingPathComponent(NSUUID().UUIDString)
             cell.activity.startAnimating()
             cell.backgroundView = UIImageView(image: placeholder)
             Flickr.sharedInstance().downloadImage((image.thumbnailUrl), completion: { (data, response, error) -> Void in
@@ -353,11 +355,12 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
                     print("No data was returned by the request!")
                     return
                 }
-                data.writeToFile(imgPath, atomically: false)
                 dispatch_async(dispatch_get_main_queue()){
-                    let img = UIImage(data: data)
+                    let img = UIImage(data: data)!
                     cell.backgroundView = UIImageView(image: img)
-                    image.localPath = imgPath
+                    image.uuid = NSUUID().UUIDString
+                    let jpegData = UIImageJPEGRepresentation(img, 1.0)!
+                    jpegData.writeToFile(Image.imgPath(image.uuid!), atomically: true)
                     do {
                         try self.sharedContext.save()
                     } catch {}
@@ -367,6 +370,7 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
         }
         return cell
     }
+
 }
 
 //MARK: UIViewControllerRestoration

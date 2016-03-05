@@ -11,13 +11,13 @@ import CoreData
 
 class Image: NSManagedObject {
     @NSManaged var imageUrl: String?
-    @NSManaged var localPath: String?
+    @NSManaged var uuid: String?
     @NSManaged var thumbnailUrl: String
     @NSManaged var pin: VTAnnotation!
     struct Keys {
         static let ImageUrl = "imageUrl"
         static let ThumbnailUrl = "thumbnailUrl"
-        static let LocalPath = "localPath"
+        static let UUID = "uuid"
     }
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
@@ -30,16 +30,23 @@ class Image: NSManagedObject {
         
         imageUrl = dictionary[Keys.ImageUrl] as? String
         thumbnailUrl = dictionary[Keys.ThumbnailUrl] as! String
-        localPath = dictionary[Keys.LocalPath] as? String
+        uuid = dictionary[Keys.UUID] as? String
     }
     
     override func prepareForDeletion() {
-        if let localPath = localPath {
+        if let uuid = uuid {
+            let documentDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+            let imgPath = documentDirectory.stringByAppendingPathComponent(uuid).stringByAppendingString(".jpg")
             do {
-                try NSFileManager.defaultManager().removeItemAtPath(localPath)
+                try NSFileManager.defaultManager().removeItemAtPath(imgPath)
             } catch {
                 print("rm file error")
             }
         }
+    }
+    
+    static func imgPath(uuid: String) -> String{
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+        return documentDirectory.stringByAppendingPathComponent(uuid).stringByAppendingString(".jpg")
     }
 }
