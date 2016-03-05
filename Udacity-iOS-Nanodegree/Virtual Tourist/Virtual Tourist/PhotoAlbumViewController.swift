@@ -9,12 +9,13 @@
 import UIKit
 import MapKit
 import CoreData
+import Foundation
 
 class PhotoAlbumViewController: UIViewController {
     var annotation: VTAnnotation!
     var span: MKCoordinateSpan!
     var blockOperations: [NSBlockOperation] = []
-    let placeholder = UIImagePNGRepresentation(UIImage(named: "placeholder")!)!
+    let placeholder = UIImage(named: "placeholder")!
 
     @IBOutlet weak var newCollection: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
@@ -146,14 +147,12 @@ class PhotoAlbumViewController: UIViewController {
                             let imageDictionary : [String: AnyObject] = [
                                 Image.Keys.ThumbnailUrl : thumbnailUrlStr,
                                 Image.Keys.ImageUrl : imageUrlStr,
-                                Image.Keys.Thumbnail : self.placeholder
                             ]
                             
                             dispatch_async(dispatch_get_main_queue()){
                                 let image = Image(dictionary: imageDictionary, context: self.sharedContext)
                                 image.pin = self.annotation
                                 images.append(image)
-                                
                                 self.saveContext()
                             }
                         }
@@ -299,11 +298,20 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionViewCell", forIndexPath: indexPath) as! VTCollectionViewCell
         cell.activity.hidesWhenStopped = true
-        let image = fetchedResultsController.objectAtIndexPath(indexPath) as? Image
-        cell.backgroundView = UIImageView(image: UIImage(data: image!.thumbnail))
-        if image?.thumbnail == placeholder {
+        let image = fetchedResultsController.objectAtIndexPath(indexPath) as! Image
+        
+        // look for thumbnail in documents directory, if not found, download and save to documents directory
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+        let imgPath = documentDirectory.stringByAppendingPathComponent(image.thumbnailUrl)
+        if let img = UIImage(contentsOfFile: imgPath)  {
+            // found, display in cell
+            cell.backgroundView = UIImageView(image: img)
+            cell.activity.stopAnimating()
+        } else {
+            // not found, download and save to documents directory, then display in cell
             cell.activity.startAnimating()
-            Flickr.sharedInstance().downloadImage((image?.thumbnailUrl)!, completion: { (data, response, error) -> Void in
+            cell.backgroundView = UIImageView(image: placeholder)
+            Flickr.sharedInstance().downloadImage((image.thumbnailUrl), completion: { (data, response, error) -> Void in
                 /* GUARD: Was there an error? */
                 guard (error == nil) else {
                     print("There was an error with your request: \(error)")
@@ -327,14 +335,13 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
                     print("No data was returned by the request!")
                     return
                 }
+                data.writeToFile(imgPath, atomically: false)
                 dispatch_async(dispatch_get_main_queue()){
-
-                    image?.thumbnail = data
+                    let img = UIImage(data: data)
+                    cell.backgroundView = UIImageView(image: img)
                 }
-                
             })
-        } else {
-            cell.activity.stopAnimating()
+
         }
         return cell
     }
