@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C4DFEC411B4ED7CC005838A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DFEC401B4ED7CC005838A1 /* AppDelegate.swift */; };
+		C4DFEC431B4ED7CC005838A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DFEC421B4ED7CC005838A1 /* ViewController.swift */; };
+		C4DFEC461B4ED7CC005838A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4DFEC441B4ED7CC005838A1 /* Main.storyboard */; };
+		C4DFEC481B4ED7CC005838A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4DFEC471B4ED7CC005838A1 /* Images.xcassets */; };
+		C4DFEC4B1B4ED7CC005838A1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4DFEC491B4ED7CC005838A1 /* LaunchScreen.xib */; };
+		C4DFEC571B4ED7CC005838A1 /* SnapKit_TutorialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DFEC561B4ED7CC005838A1 /* SnapKit_TutorialTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C4DFEC511B4ED7CC005838A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4DFEC331B4ED7CC005838A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4DFEC3A1B4ED7CC005838A1;
+			remoteInfo = "SnapKit Tutorial";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C4DFEC3B1B4ED7CC005838A1 /* SnapKit Tutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SnapKit Tutorial.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4DFEC3F1B4ED7CC005838A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4DFEC401B4ED7CC005838A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C4DFEC421B4ED7CC005838A1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C4DFEC451B4ED7CC005838A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C4DFEC471B4ED7CC005838A1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C4DFEC4A1B4ED7CC005838A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		C4DFEC501B4ED7CC005838A1 /* SnapKit TutorialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SnapKit TutorialTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4DFEC551B4ED7CC005838A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4DFEC561B4ED7CC005838A1 /* SnapKit_TutorialTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapKit_TutorialTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C4DFEC381B4ED7CC005838A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4DFEC4D1B4ED7CC005838A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C4DFEC321B4ED7CC005838A1 = {
+			isa = PBXGroup;
+			children = (
+				C4DFEC3D1B4ED7CC005838A1 /* SnapKit Tutorial */,
+				C4DFEC531B4ED7CC005838A1 /* SnapKit TutorialTests */,
+				C4DFEC3C1B4ED7CC005838A1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C4DFEC3C1B4ED7CC005838A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C4DFEC3B1B4ED7CC005838A1 /* SnapKit Tutorial.app */,
+				C4DFEC501B4ED7CC005838A1 /* SnapKit TutorialTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C4DFEC3D1B4ED7CC005838A1 /* SnapKit Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				C4DFEC401B4ED7CC005838A1 /* AppDelegate.swift */,
+				C4DFEC421B4ED7CC005838A1 /* ViewController.swift */,
+				C4DFEC441B4ED7CC005838A1 /* Main.storyboard */,
+				C4DFEC471B4ED7CC005838A1 /* Images.xcassets */,
+				C4DFEC491B4ED7CC005838A1 /* LaunchScreen.xib */,
+				C4DFEC3E1B4ED7CC005838A1 /* Supporting Files */,
+			);
+			path = "SnapKit Tutorial";
+			sourceTree = "<group>";
+		};
+		C4DFEC3E1B4ED7CC005838A1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C4DFEC3F1B4ED7CC005838A1 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C4DFEC531B4ED7CC005838A1 /* SnapKit TutorialTests */ = {
+			isa = PBXGroup;
+			children = (
+				C4DFEC561B4ED7CC005838A1 /* SnapKit_TutorialTests.swift */,
+				C4DFEC541B4ED7CC005838A1 /* Supporting Files */,
+			);
+			path = "SnapKit TutorialTests";
+			sourceTree = "<group>";
+		};
+		C4DFEC541B4ED7CC005838A1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C4DFEC551B4ED7CC005838A1 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C4DFEC3A1B4ED7CC005838A1 /* SnapKit Tutorial */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4DFEC5A1B4ED7CC005838A1 /* Build configuration list for PBXNativeTarget "SnapKit Tutorial" */;
+			buildPhases = (
+				C4DFEC371B4ED7CC005838A1 /* Sources */,
+				C4DFEC381B4ED7CC005838A1 /* Frameworks */,
+				C4DFEC391B4ED7CC005838A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SnapKit Tutorial";
+			productName = "SnapKit Tutorial";
+			productReference = C4DFEC3B1B4ED7CC005838A1 /* SnapKit Tutorial.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C4DFEC4F1B4ED7CC005838A1 /* SnapKit TutorialTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4DFEC5D1B4ED7CC005838A1 /* Build configuration list for PBXNativeTarget "SnapKit TutorialTests" */;
+			buildPhases = (
+				C4DFEC4C1B4ED7CC005838A1 /* Sources */,
+				C4DFEC4D1B4ED7CC005838A1 /* Frameworks */,
+				C4DFEC4E1B4ED7CC005838A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C4DFEC521B4ED7CC005838A1 /* PBXTargetDependency */,
+			);
+			name = "SnapKit TutorialTests";
+			productName = "SnapKit TutorialTests";
+			productReference = C4DFEC501B4ED7CC005838A1 /* SnapKit TutorialTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C4DFEC331B4ED7CC005838A1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Medigarage Studios LTD";
+				TargetAttributes = {
+					C4DFEC3A1B4ED7CC005838A1 = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					C4DFEC4F1B4ED7CC005838A1 = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = C4DFEC3A1B4ED7CC005838A1;
+					};
+				};
+			};
+			buildConfigurationList = C4DFEC361B4ED7CC005838A1 /* Build configuration list for PBXProject "SnapKit Tutorial" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C4DFEC321B4ED7CC005838A1;
+			productRefGroup = C4DFEC3C1B4ED7CC005838A1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C4DFEC3A1B4ED7CC005838A1 /* SnapKit Tutorial */,
+				C4DFEC4F1B4ED7CC005838A1 /* SnapKit TutorialTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C4DFEC391B4ED7CC005838A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4DFEC461B4ED7CC005838A1 /* Main.storyboard in Resources */,
+				C4DFEC4B1B4ED7CC005838A1 /* LaunchScreen.xib in Resources */,
+				C4DFEC481B4ED7CC005838A1 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4DFEC4E1B4ED7CC005838A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C4DFEC371B4ED7CC005838A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4DFEC431B4ED7CC005838A1 /* ViewController.swift in Sources */,
+				C4DFEC411B4ED7CC005838A1 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4DFEC4C1B4ED7CC005838A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4DFEC571B4ED7CC005838A1 /* SnapKit_TutorialTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C4DFEC521B4ED7CC005838A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4DFEC3A1B4ED7CC005838A1 /* SnapKit Tutorial */;
+			targetProxy = C4DFEC511B4ED7CC005838A1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C4DFEC441B4ED7CC005838A1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4DFEC451B4ED7CC005838A1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C4DFEC491B4ED7CC005838A1 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4DFEC4A1B4ED7CC005838A1 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C4DFEC581B4ED7CC005838A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C4DFEC591B4ED7CC005838A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C4DFEC5B1B4ED7CC005838A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "SnapKit Tutorial/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C4DFEC5C1B4ED7CC005838A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "SnapKit Tutorial/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		C4DFEC5E1B4ED7CC005838A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SnapKit TutorialTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapKit Tutorial.app/SnapKit Tutorial";
+			};
+			name = Debug;
+		};
+		C4DFEC5F1B4ED7CC005838A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SnapKit TutorialTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnapKit Tutorial.app/SnapKit Tutorial";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C4DFEC361B4ED7CC005838A1 /* Build configuration list for PBXProject "SnapKit Tutorial" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4DFEC581B4ED7CC005838A1 /* Debug */,
+				C4DFEC591B4ED7CC005838A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4DFEC5A1B4ED7CC005838A1 /* Build configuration list for PBXNativeTarget "SnapKit Tutorial" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4DFEC5B1B4ED7CC005838A1 /* Debug */,
+				C4DFEC5C1B4ED7CC005838A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4DFEC5D1B4ED7CC005838A1 /* Build configuration list for PBXNativeTarget "SnapKit TutorialTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4DFEC5E1B4ED7CC005838A1 /* Debug */,
+				C4DFEC5F1B4ED7CC005838A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C4DFEC331B4ED7CC005838A1 /* Project object */;
+}
