@@ -15,13 +15,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         //1 : Here you just made three views with some background color to better visualise their frames when running the project, and you add them as subviews to the root view.
         let topView = UIView()
-        topView.backgroundColor = UIColor.blueColor()
-        
         let bottomLeftView = UIView()
-        bottomLeftView.backgroundColor = UIColor.yellowColor()
-        
         let bottomRightView = UIView()
-        bottomRightView.backgroundColor = UIColor.grayColor()
         
         self.view.addSubview(topView)
         self.view.addSubview(bottomLeftView)
@@ -46,6 +41,39 @@ class ViewController: UIViewController {
             make.width.equalTo(self.view.snp_width).multipliedBy(0.5)
         }
         
+        let logo = UIImageView(image: UIImage(named: "logo"))
+        topView.addSubview(logo)
+        logo.snp_makeConstraints { (make) in
+            make.center.equalTo(topView.center)
+            make.width.equalTo(100)
+            make.height.equalTo(110)
+        }
+        
+        let tutorialsButton = UIButton()
+        styleButton(tutorialsButton, title: "Tutorials")
+        bottomLeftView.addSubview(tutorialsButton)
+        
+        tutorialsButton.snp_makeConstraints { (make) in
+            make.center.equalTo(bottomLeftView.center)
+            make.width.equalTo(100)
+            make.height.equalTo(25)
+        }
+        
+        let quizButton = UIButton()
+        styleButton(quizButton, title: "Quiz")
+        bottomRightView.addSubview(quizButton)
+        quizButton.snp_makeConstraints { (make) in
+            make.center.equalTo(bottomRightView.center)
+            make.width.equalTo(100)
+            make.height.equalTo(25)
+        }
+    }
+    
+    func styleButton(button: UIButton, title:String) {
+        button.setTitle(title, forState: UIControlState.Normal)
+        button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        button.backgroundColor = UIColor.redColor()
+
     }
 
     override func didReceiveMemoryWarning() {
