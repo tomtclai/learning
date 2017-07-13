@@ -2,7 +2,7 @@ class Solution {
     func hammingDistance(_ x: Int, _ y: Int) -> Int {
         // go thru each bit
         // xor on the bit
-        // if it doesn't match i increment a counter 
+        // if it doesn't match i increment a counter
         var bit = 1
         var hammingCount = 0
         for i in 0...31 {
