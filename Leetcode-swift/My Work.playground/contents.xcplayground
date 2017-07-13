@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<playground version='6.0' target-platform='ios'>
+<playground version='6.0' target-platform='ios' display-mode='rendered'>
     <pages>
         <page name='Merge Trees'/>
         <page name='Complex Number Multiplication'/>
         <page name='Hamming Distance'/>
-        <page name='findMedianSortedArrays0'/>
-        <page name='findMedianSortedArrays'/>
-        <page name='add Two Numbers'/>
-        <page name='Length Of Longest Substring'/>
     </pages>
 </playground>
