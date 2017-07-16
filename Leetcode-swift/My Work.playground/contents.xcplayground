@@ -4,5 +4,12 @@
         <page name='Merge Trees'/>
         <page name='Complex Number Multiplication'/>
         <page name='Hamming Distance'/>
+        <page name='add Two Numbers'/>
+        <page name='Battleships in a Board'/>
+        <page name='findMedianSortedArrays'/>
+        <page name='findMedianSortedArrays0'/>
+        <page name='Length Of Longest Substring'/>
+        <page name='Two Sum'/>
+        <page name='Nested List Weight Sum'/>
     </pages>
 </playground>

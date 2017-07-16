@@ -40,7 +40,7 @@ func countBattleships(_ board: [[Character]]) -> Int {
                     isInTheMiddleOfShip = true
                 }
             } else {
-                isInTheMiddleOfShip = false
+                isInTheMiddleOfShip = false
             }
         }
         isInTheMiddleOfShip = false
@@ -48,3 +48,37 @@ func countBattleships(_ board: [[Character]]) -> Int {
     }
     return count
 }
+
+
+countBattleships([["X","X","X"],
+                  [".",".","."],
+                  ["X","X","X"]])
+countBattleships([["X",".","X",".","X"],
+                  ["X",".",".",".","X"],
+                  ["X",".","X",".","X"]])
+
+
+
+func countBattleships_Oof1Solution(_ board: [[Character]]) -> Int {
+    var count = 0
+    for (i, row) in board.enumerated() {
+        for (j, character) in row.enumerated() {
+            if character == "." {
+                continue
+            }
+            if i > 0 && board[i - 1][j] == "X" ||
+               j > 0 && row[j - 1] == "X" {
+                continue
+            }
+            count += 1
+        }
+    }
+    return count
+}
+
+countBattleships_Oof1Solution([["X","X","X"],
+                               [".",".","."],
+                               ["X","X","X"]])
+countBattleships_Oof1Solution([["X",".","X",".","X"],
+                               ["X",".",".",".","X"],
+                               ["X",".","X",".","X"]])
