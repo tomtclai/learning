@@ -25,5 +25,26 @@
 
 import Foundation
 
-var str = "Hello, playground"
-
+func countBattleships(_ board: [[Character]]) -> Int {
+    var count = 0
+    var isInTheMiddleOfShip = false
+    var previousRow: [Character]?
+    for row in board {
+        for (index, character) in row.enumerated() {
+            if let previousRow = previousRow, previousRow[index] == "X" {
+                isInTheMiddleOfShip = true
+            }
+            if character == "X" {
+                if !isInTheMiddleOfShip {
+                    count += 1
+                    isInTheMiddleOfShip = true
+                }
+            } else {
+                isInTheMiddleOfShip = false
+            }
+        }
+        isInTheMiddleOfShip = false
+        previousRow = row
+    }
+    return count
+}
