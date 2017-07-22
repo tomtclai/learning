@@ -105,7 +105,7 @@ extension ViewController {
       
       let article = (self?.vowels.contains(topResult.identifier.first!))! ? "an" : "a"
       DispatchQueue.main.async { [weak self] in
-        self?.answerLabel.text = "\(Int(topResult.confidence * 100)) % it is \(article) \(topResult.identifier)"
+        self?.answerLabel.text = "I am \(Int(topResult.confidence * 100))% sure it's \(article) \(topResult.identifier)"
         
       }
     }
