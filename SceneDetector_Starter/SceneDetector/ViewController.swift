@@ -36,14 +36,16 @@ class ViewController: UIViewController {
   // MARK: - IBOutlets
   @IBOutlet weak var scene: UIImageView!
   @IBOutlet weak var answerLabel: UILabel!
-
+  let pickerController = UIImagePickerController()
+  @IBOutlet weak var pickImageButton: UIButton!
+    
   // MARK: - Properties
   let vowels: [Character] = ["a", "e", "i", "o", "u"]
 
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    pickerController.delegate = self
     guard let image = UIImage(named: "train_night") else {
       fatalError("no starting image")
     }
@@ -60,10 +62,10 @@ class ViewController: UIViewController {
 extension ViewController {
 
   @IBAction func pickImage(_ sender: Any) {
-    let pickerController = UIImagePickerController()
-    pickerController.delegate = self
-    pickerController.sourceType = .savedPhotosAlbum
-    present(pickerController, animated: true)
+    pickImageButton.isEnabled = false
+    present(pickerController, animated: true) {
+        self.pickImageButton.isEnabled = true
+    }
   }
 }
 
