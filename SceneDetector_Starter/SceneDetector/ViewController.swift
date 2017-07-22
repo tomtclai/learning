@@ -29,7 +29,8 @@
  */
 
 import UIKit
-
+import CoreML
+import Vision
 class ViewController: UIViewController {
 
   // MARK: - IBOutlets
@@ -48,6 +49,10 @@ class ViewController: UIViewController {
     }
 
     scene.image = image
+    guard let ciImage = CIImage(image: image) else {
+      fatalError("Cant convery to CIImage")
+    }
+    detectScene(image: ciImage)
   }
 }
 
@@ -73,9 +78,46 @@ extension ViewController: UIImagePickerControllerDelegate {
     }
 
     scene.image = image
+    
+    guard let ciImage = CIImage(image: image) else {
+      fatalError("Cant convery to CIImage")
+    }
+    detectScene(image: ciImage)
   }
 }
 
 // MARK: - UINavigationControllerDelegate
 extension ViewController: UINavigationControllerDelegate {
+}
+
+extension ViewController {
+  func detectScene(image: CIImage) {
+    answerLabel.text = "detecting scene"
+    guard let model = try? VNCoreMLModel(for: GoogLeNetPlaces().model) else {
+      fatalError("can't load Places ML model")
+    }
+    
+    let request = VNCoreMLRequest(model: model) { [weak self] request, errpr in
+      guard let results = request.results as? [VNClassificationObservation],
+        let topResult = results.first else {
+          fatalError("unexpected result type")
+      }
+      
+      let article = (self?.vowels.contains(topResult.identifier.first!))! ? "an" : "a"
+      DispatchQueue.main.async { [weak self] in
+        self?.answerLabel.text = "\(Int(topResult.confidence * 100)) % it is \(article) \(topResult.identifier)"
+        
+      }
+    }
+    
+    let handler = VNImageRequestHandler(ciImage: image)
+    DispatchQueue.global(qos: .userInteractive).async {
+      do {
+        try handler.perform([request])
+      } catch {
+        print(error)
+      }
+    }
+    
+  }
 }

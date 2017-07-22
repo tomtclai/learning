@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77000CB21F23A88700A76F1D /* GoogLeNetPlaces.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 77000CB11F23A88700A76F1D /* GoogLeNetPlaces.mlmodel */; };
 		CD8A65A11EE7EC0700942922 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8A65A01EE7EC0700942922 /* AppDelegate.swift */; };
 		CD8A65A31EE7EC0700942922 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8A65A21EE7EC0700942922 /* ViewController.swift */; };
 		CD8A65A61EE7EC0700942922 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8A65A41EE7EC0700942922 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		77000CB11F23A88700A76F1D /* GoogLeNetPlaces.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = GoogLeNetPlaces.mlmodel; path = ../../../../Downloads/GoogLeNetPlaces.mlmodel; sourceTree = "<group>"; };
 		CD8A659D1EE7EC0700942922 /* SceneDetector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SceneDetector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD8A65A01EE7EC0700942922 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD8A65A21EE7EC0700942922 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 		CD8A65B21EE7EC4100942922 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				77000CB11F23A88700A76F1D /* GoogLeNetPlaces.mlmodel */,
 				CD8A65A41EE7EC0700942922 /* Main.storyboard */,
 				CD8A65A71EE7EC0700942922 /* Assets.xcassets */,
 				CD8A65B51EE7ECF600942922 /* Default-568h@2x.png */,
@@ -109,7 +112,7 @@
 				TargetAttributes = {
 					CD8A659C1EE7EC0700942922 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -152,6 +155,7 @@
 			files = (
 				CD8A65A31EE7EC0700942922 /* ViewController.swift in Sources */,
 				CD8A65A11EE7EC0700942922 /* AppDelegate.swift in Sources */,
+				77000CB21F23A88700A76F1D /* GoogLeNetPlaces.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,12 +290,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				INFOPLIST_FILE = SceneDetector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.SceneDetector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -302,8 +308,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				INFOPLIST_FILE = SceneDetector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.SceneDetector;
