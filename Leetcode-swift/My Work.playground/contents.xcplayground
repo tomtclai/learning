@@ -12,5 +12,6 @@
         <page name='Two Sum'/>
         <page name='Nested List Weight Sum'/>
         <page name='FindBitwiseComplement'/>
+        <page name='Counting Bits'/>
     </pages>
 </playground>
