@@ -34,6 +34,7 @@ Follow up:
 
 
  */
-func countBits(_ num: Int) -> [Int] {
+//func countBits(_ num: Int) -> [Int] {
+//    return [0]
+//}
 
-}
