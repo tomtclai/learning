@@ -11,5 +11,8 @@
         <page name='Length Of Longest Substring'/>
         <page name='Two Sum'/>
         <page name='Nested List Weight Sum'/>
+        <page name='FindBitwiseComplement'/>
+        <page name='Counting Bits'/>
+        <page name='Longest Palindromic String'/>
     </pages>
 </playground>
