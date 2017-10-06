@@ -18,74 +18,52 @@
  Output: "bb"
 ```
 */
+/*
+ Ref: http://oleb.net/blog/2014/07/swift-strings/
+ "Because of the way Swift strings are stored, the String type does not support random access to its Characters via an integer index — there is no direct equivalent to NSStringʼs characterAtIndex: method. Conceptually, a String can be seen as a doubly linked list of characters rather than an array."
+
+ By creating and storing a seperate array of the same sequence of characters,
+ we could hopefully achieve amortized O(1) time for random access.
+ */
+
 
 func longestPalindrome(_ s: String) -> String {
-    // use brute force...
-    // function for testing for palindrome .. O(n)
-    // loop that varies the start index O(n)
-    // loop that varies the end index O(n)
+    let strArr = Array(s.characters)
+    let stringLength = s.count
+    var palindromeStart = 0
+    var palindromeLength = 0
 
-    var arrayBools = [Bool]()
-    var isPalindomeFromTo = [[Bool]]()
-    // better solution... remember those smaller solutions
-    // make a table of (string size)^2
-    s.characters.forEach { _ in
-        arrayBools.append(false)
-    }
-
-    s.characters.forEach { _ in
-        isPalindomeFromTo.append(arrayBools)
-    }
-
-    // input: babad
-    //        01234
-    //
-    // from    0 1 2 3 4
-    //       0 T
-    //       1 F T
-    // to    2 T F T
-    //       3 F T F T
-    //       4 F F F F T
-
-    var maxPalindromeLength = 1
-    var maxPalindromeStart = 0
-    for i in 0..<s.count {
-        // any strings from i to i is 1 character long, 1 character strings are palindromes
-        isPalindomeFromTo[i][i] = true
-    }
-
-    // for max length 2
-    for i in 0..<s.count {
-        if String(s[s.index(s.startIndex, offsetBy: s)]) == String(s[s.index(s.startIndex, offsetBy: s+1)]) {
-            isPalindomeFromTo[i][i+1] = true
-            maxPalindromeStart = i
-            maxPalindromeLength = 2
-        }
-    }
-
-    //for length 3 and above
-    for length in 3...s.count {
-        for start in 0..<s.count-length {
-            let end = start + length - 1
-
-            if isPalindomeFromTo[start+1][end-1] && String(
-                s[s.index(
-                    s.startIndex, offsetBy: start)
-                ]) == String(
-                    s[s.index(
-                        s.startIndex, offsetBy: end)
-                    ])
-            {
-                isPalindomeFromTo[start][end] = true
-                if length > maxPalindromeLength {
-                    maxPalindromeStart = start
-                    maxPalindromeLength = length
-                }
+    var isPalindromFromTo = makeBoolTable(ofSize: stringLength)
+    for begin in (0..<stringLength).reversed() {
+        for end in begin..<stringLength {
+            if strArr[begin] == strArr[end] {
+                isPalindromFromTo[begin][end] =
+                    // This covers the 1 character, 2 character and 3 character case.
+                    end-begin < 3 ||
+                    // if there are more than 3 characters, we refer to previous answers
+                    isPalindromFromTo[begin+1][end-1]
+            }
+            if isPalindromFromTo[begin][end] && end-begin+1 > palindromeLength {
+                palindromeStart = begin
+                palindromeLength = end-begin+1
             }
         }
     }
-    let rangeStart = s.index(s.startIndex, offsetBy: maxPalindromeStart)
-    let rangeEnd = s.index(s.startIndex, offsetBy: maxPalindromeStart+maxPalindromeLength)
+    let rangeStart = s.index(s.startIndex, offsetBy: palindromeStart)
+    let rangeEnd = s.index(s.startIndex, offsetBy: palindromeStart+palindromeLength)
     return String(s[rangeStart..<rangeEnd])
 }
 
+func makeBoolTable(ofSize size: Int) -> [[Bool]] {
+    var tableRow = [Bool]()
+    var table = [[Bool]]()
+    for _ in 0..<size {
+        tableRow.append(Bool())
+    }
+    for _ in 0..<size {
+        table.append(tableRow)
+    }
+    return table
+}
+
+longestPalindrome("oooo")
