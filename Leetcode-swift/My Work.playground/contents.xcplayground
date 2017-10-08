@@ -14,5 +14,7 @@
         <page name='FindBitwiseComplement'/>
         <page name='Counting Bits'/>
         <page name='Longest Palindromic String'/>
+        <page name='FindBottomLeftTreeValue'/>
+        <page name='How many Palindromic substrings'/>
     </pages>
 </playground>
