@@ -13,24 +13,25 @@ public class TreeNode {
 
 func findBottomLeftValue(_ root: TreeNode?) -> Int {
     guard let root = root else {
-        return 9999
+        fatalError("root does not exist")
     }
-    var maxLevel = -1
-    var bottomLeftValue = -1
-    findBottomLeftValue(root, level: 0, maxLevel: &maxLevel, bottomLeftValue: &bottomLeftValue)
-    return bottomLeftValue
-}
+    func findBottomLeftValue(root: TreeNode, currentLevel: Int, maxLevel: inout Int, blVal: inout Int) {
+        // right, middle, left
+        if let right = root.right {
+            findBottomLeftValue(root: right, currentLevel: currentLevel+1, maxLevel: &maxLevel, blVal: &blVal)
+        }
+        // base case: I'm at the lowest level value
+        if currentLevel >= maxLevel {
+            blVal = root.val
+            maxLevel = currentLevel
+        }
+        if let left = root.left {
+            findBottomLeftValue(root: left, currentLevel: currentLevel+1, maxLevel: &maxLevel, blVal: &blVal)
+        }
 
-func findBottomLeftValue(_ root: TreeNode, level: Int, maxLevel: inout Int, bottomLeftValue: inout Int){
-    // you wanna do left, middle, right
-    if let left = root.left {
-        findBottomLeftValue(left, level: level + 1, maxLevel: &maxLevel, bottomLeftValue: &bottomLeftValue)
     }
-    if level > maxLevel {
-        maxLevel = level
-        bottomLeftValue = root.val
-    }
-    if let right = root.right {
-        findBottomLeftValue(right, level: level + 1, maxLevel: &maxLevel, bottomLeftValue: &bottomLeftValue)
-    }
+    var bottomLeftValue = 0
+    var level = 0
+    findBottomLeftValue(root: root, currentLevel: 0, maxLevel: &level, blVal: &bottomLeftValue)
+    return bottomLeftValue
 }
