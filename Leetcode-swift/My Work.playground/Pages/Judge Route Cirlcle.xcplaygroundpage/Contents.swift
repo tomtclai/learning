@@ -5,14 +5,10 @@ func judgeCircle(_ moves: String) -> Bool {
     let charArray = Array(moves.characters)
     for char in charArray {
         switch char {
-        case "U":
-            y += 1
-        case "D":
-            y -= 1
-        case "L":
-            x -= 1
-        case "R":
-            x += 1
+        case "U": y += 1
+        case "D": y -= 1
+        case "L": x -= 1
+        case "R": x += 1
         default:
             print("unexpected characters!!")
         }
