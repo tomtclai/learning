@@ -16,5 +16,8 @@
         <page name='Longest Palindromic String'/>
         <page name='FindBottomLeftTreeValue'/>
         <page name='How many Palindromic substrings'/>
+        <page name='Judge Route Cirlcle'/>
+        <page name='Keyboard Row'/>
+        <page name='Reverse Words in String'/>
     </pages>
 </playground>
