@@ -19,5 +19,7 @@
         <page name='Judge Route Cirlcle'/>
         <page name='Keyboard Row'/>
         <page name='Reverse Words in String'/>
+        <page name='Reverse String'/>
+        <page name='BaseBall Game'/>
     </pages>
 </playground>
