@@ -21,5 +21,9 @@
         <page name='Reverse Words in String'/>
         <page name='Reverse String'/>
         <page name='BaseBall Game'/>
+        <page name='Distribute Candies'/>
+        <page name='Fizzbuzz'/>
+        <page name='Reshape the Matrix'/>
+        <page name='Trim a Binary Search Tree'/>
     </pages>
 </playground>
