@@ -25,5 +25,8 @@
         <page name='Fizzbuzz'/>
         <page name='Reshape the Matrix'/>
         <page name='Trim a Binary Search Tree'/>
+        <page name='Island Perimeter'/>
+        <page name='Find all dupes in an array'/>
+        <page name='Next Greater Element I'/>
     </pages>
 </playground>
