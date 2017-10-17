@@ -1,17 +1,19 @@
-func nextGreaterElement(_ findNums: [Int], _ nums: [Int]) -> [Int] {
-    var dictOfNextGreaterElement = [Int: Int]()
+    func nextGreaterElement(_ findNums: [Int], _ nums: [Int]) -> [Int] {
+        var dictOfNextGreaterElement = [Int: Int]()
+        var stack = [Int]()
+        guard !findNums.isEmpty else {return findNums}
+        for num in nums {
+            while !stack.isEmpty && stack.last! < num {
+                dictOfNextGreaterElement[stack.removeLast()] = num
+            }
+            stack.append(num)
+        }
 
-    dictOfNextGreaterElement[nums.last!] = -1
-
-    for i in 0..<nums.count-1 {
-        if nums[i] < nums[i+1] {
-            dictOfNextGreaterElement[nums[i]] = nums[i+1]
-        } else {
-            dictOfNextGreaterElement[nums[i]] = -1
+        return findNums.map {
+            if let nextGreater = dictOfNextGreaterElement[$0] {
+                return nextGreater
+            }
+            return -1
         }
     }
-
-    return findNums.map {dictOfNextGreaterElement[$0]!}
-}
-
 //https://leetcode.com/problems/next-greater-element-i/description
