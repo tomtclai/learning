@@ -1,12 +1,12 @@
     func nextGreaterElement(_ findNums: [Int], _ nums: [Int]) -> [Int] {
         var dictOfNextGreaterElement = [Int: Int]()
-        var stack = [Int]()
+        var unmatchedNums = [Int]()
         guard !findNums.isEmpty else {return findNums}
         for num in nums {
-            while !stack.isEmpty && stack.last! < num {
-                dictOfNextGreaterElement[stack.removeLast()] = num
+            while !unmatchedNums.isEmpty && unmatchedNums.last! < num {
+                dictOfNextGreaterElement[unmatchedNums.removeLast()] = num
             }
-            stack.append(num)
+            unmatchedNums.append(num)
         }
 
         return findNums.map {
