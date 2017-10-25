@@ -40,7 +40,7 @@ func countBattleships(_ board: [[Character]]) -> Int {
                     isInTheMiddleOfShip = true
                 }
             } else {
-                isInTheMiddleOfShip = false
+                isInTheMiddleOfShip = false
             }
         }
         isInTheMiddleOfShip = false
