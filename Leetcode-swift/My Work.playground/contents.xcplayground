@@ -28,5 +28,12 @@
         <page name='Island Perimeter'/>
         <page name='Find all dupes in an array'/>
         <page name='Next Greater Element I'/>
+        <page name='Average of Levels in Binary Tree'/>
+        <page name='Find Largest Value in Each Tree Row'/>
+        <page name='Maximum Binary Tree'/>
+        <page name='Nim Game'/>
+        <page name='Optimal Division'/>
+        <page name='Queue Reconstruction by Height'/>
+        <page name='Beautiful Arrangement'/>
     </pages>
 </playground>
