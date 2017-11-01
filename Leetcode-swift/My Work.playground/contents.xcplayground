@@ -35,5 +35,9 @@
         <page name='Optimal Division'/>
         <page name='Queue Reconstruction by Height'/>
         <page name='Beautiful Arrangement'/>
+        <page name='1-bit and 2-bit Characters'/>
+        <page name='Binary Number with Alternating Bits'/>
+        <page name='Max Area of Island'/>
+        <page name='Most Frequency Subtree Sum'/>
     </pages>
 </playground>
