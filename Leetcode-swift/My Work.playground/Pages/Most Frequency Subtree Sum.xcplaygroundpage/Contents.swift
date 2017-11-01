@@ -11,21 +11,11 @@ func findFrequentTreeSum(_ root: TreeNode?) -> [Int] {
     }
 
     // then i move them all to an array so i can sort by the frequency
-    var arrayOfTuples = [(key: Int, freq: Int)]()
-    for (sum, f) in valToFrequency {
-        arrayOfTuples.append((key: sum, freq: f))
+    guard let max = valToFrequency.map({$0.value}).max() else {
+        return [Int]()
     }
 
-    arrayOfTuples.sort { $0.1 > $1.1}
-    let maxFreq = arrayOfTuples.first!.freq
-    var resultArray = [Int]()
-    for (sum, f) in arrayOfTuples {
-        guard f == maxFreq else {
-            break
-        }
-        resultArray.append(sum)
-    }
-    return resultArray
+    return valToFrequency.filter{ $0.value == max }.map{ $0.key }
 }
 private func readSumFrequency(_ root: TreeNode?,_ dict: inout [Int:Int]) -> Int {
     guard let root = root else {
