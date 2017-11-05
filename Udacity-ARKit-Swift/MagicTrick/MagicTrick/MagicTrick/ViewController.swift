@@ -34,7 +34,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         super.viewWillAppear(animated)
         
         // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
+        let configuration = ARWorldTrackingConfiguration.isSupported ?
+            ARWorldTrackingConfiguration() :
+            AROrientationTrackingConfiguration()
 
         // Run the view's session
         sceneView.session.run(configuration)

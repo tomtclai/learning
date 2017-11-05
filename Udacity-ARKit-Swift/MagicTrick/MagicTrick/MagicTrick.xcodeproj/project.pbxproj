@@ -15,6 +15,7 @@
 		77A0F1221FAE85C600B6E1EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77A0F1201FAE85C600B6E1EE /* LaunchScreen.storyboard */; };
 		77A0F12D1FAE85C600B6E1EE /* MagicTrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A0F12C1FAE85C600B6E1EE /* MagicTrickTests.swift */; };
 		77A0F1381FAE85C600B6E1EE /* MagicTrickUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A0F1371FAE85C600B6E1EE /* MagicTrickUITests.swift */; };
+		77A0F1461FAE860F00B6E1EE /* hat.scn in Resources */ = {isa = PBXBuildFile; fileRef = 77A0F1451FAE860F00B6E1EE /* hat.scn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		77A0F1331FAE85C600B6E1EE /* MagicTrickUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MagicTrickUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A0F1371FAE85C600B6E1EE /* MagicTrickUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicTrickUITests.swift; sourceTree = "<group>"; };
 		77A0F1391FAE85C600B6E1EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77A0F1451FAE860F00B6E1EE /* hat.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = hat.scn; path = art.scnassets/hat.scn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				77A0F1151FAE85C600B6E1EE /* AppDelegate.swift */,
+				77A0F1451FAE860F00B6E1EE /* hat.scn */,
 				77A0F1171FAE85C600B6E1EE /* art.scnassets */,
 				77A0F1191FAE85C600B6E1EE /* ViewController.swift */,
 				77A0F11B1FAE85C600B6E1EE /* Main.storyboard */,
@@ -238,6 +241,7 @@
 				77A0F1181FAE85C600B6E1EE /* art.scnassets in Resources */,
 				77A0F1221FAE85C600B6E1EE /* LaunchScreen.storyboard in Resources */,
 				77A0F11F1FAE85C600B6E1EE /* Assets.xcassets in Resources */,
+				77A0F1461FAE860F00B6E1EE /* hat.scn in Resources */,
 				77A0F11D1FAE85C600B6E1EE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
