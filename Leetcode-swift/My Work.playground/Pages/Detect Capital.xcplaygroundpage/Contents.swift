@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/detect-capital/description/
+import Foundation
 func detectCapitalUse(_ word: String) -> Bool {
     func isUpper(_ char: UnicodeScalar) -> Bool {
         return CharacterSet.uppercaseLetters.contains(char)
@@ -8,7 +9,7 @@ func detectCapitalUse(_ word: String) -> Bool {
         return true
     }
     var lastCharIsUpperCase = isUpper(charArray.first!)
-    var allCharShouldBeUpperCase = isUpper(charArray.first!) && isUpper(charArray[1])
+    let allCharShouldBeUpperCase = isUpper(charArray.first!) && isUpper(charArray[1])
     for i in 1..<charArray.count {
         let thisCharIsUpperCase = isUpper(charArray[i])
         if !lastCharIsUpperCase && thisCharIsUpperCase {
