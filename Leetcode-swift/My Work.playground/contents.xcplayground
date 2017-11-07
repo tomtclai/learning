@@ -42,5 +42,6 @@
         <page name='Detect Capital'/>
         <page name='Single Number III'/>
         <page name='Find All Numbers Disappeared in an Array'/>
+        <page name='Add Digits'/>
     </pages>
 </playground>
