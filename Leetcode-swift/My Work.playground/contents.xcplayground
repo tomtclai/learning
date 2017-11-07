@@ -39,5 +39,8 @@
         <page name='Binary Number with Alternating Bits'/>
         <page name='Max Area of Island'/>
         <page name='Most Frequency Subtree Sum'/>
+        <page name='Detect Capital'/>
+        <page name='Single Number III'/>
+        <page name='Find All Numbers Disappeared in an Array'/>
     </pages>
 </playground>
