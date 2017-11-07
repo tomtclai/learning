@@ -9,7 +9,7 @@
             }
         }
         var result = [Int]()
-        // record all positive indices
+        // record all positive indices, they are the ones that are missing
         for i in 0..<nums.count {
             if nums[i] > 0 {
                 result.append(i+1)
