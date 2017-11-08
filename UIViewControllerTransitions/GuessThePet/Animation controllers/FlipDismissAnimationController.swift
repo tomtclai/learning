@@ -28,60 +28,59 @@
 
 import UIKit
 
-class FlipPresentAnimationController: NSObject {
-  private let originFrame: CGRect
-  init(originFrame: CGRect) {
-    self.originFrame = originFrame
+class FlipDismissAnimationController: NSObject {
+  private let destinationFrame: CGRect
+
+  init(destinationFrame: CGRect) {
+    self.destinationFrame = destinationFrame
   }
 }
 
-extension FlipPresentAnimationController: UIViewControllerAnimatedTransitioning {
+extension FlipDismissAnimationController: UIViewControllerAnimatedTransitioning {
   func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
     return 0.6
   }
+
   func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-    guard let fromVC = transitionContext.viewController(forKey: .from), let toVC = transitionContext.viewController(forKey: .to), let snapshot = toVC.view.snapshotView(afterScreenUpdates: true) else {
-      return
+    // This time is a from view you must manipulate so you take a snapshot of that.
+    guard let fromVC = transitionContext.viewController(forKey: .from),
+      let toVC = transitionContext.viewController(forKey: .to),
+      let snapshot = fromVC.view.snapshotView(afterScreenUpdates: false) else {
+        return
     }
-
-    let containerView = transitionContext.containerView
-    let finalFrame = transitionContext.finalFrame(for: toVC)
-
-    snapshot.frame = originFrame
     snapshot.layer.cornerRadius = CardViewController.cardCornerRadius
     snapshot.layer.masksToBounds = true
 
-    containerView.addSubview(toVC.view)
+    // From back to front... To view, from View, snapshot view
+    let containerView = transitionContext.containerView
+    containerView.insertSubview(toVC.view, at: 0)
     containerView.addSubview(snapshot)
-    toVC.view.isHidden = true
+    fromVC.view.isHidden = true
 
+    // Rotate the to view to be edge on so it can be revealed with animation
     AnimationHelper.perspectiveTransform(for: containerView)
-    snapshot.layer.transform = AnimationHelper.yRotation(.pi / 2)
-
+    toVC.view.layer.transform = AnimationHelper.yRotation(-.pi / 2)
     let duration = transitionDuration(using: transitionContext)
 
-    // You use a standard UIView keyframe animation. The duration of the animation must exactly match the length of the transition.
-    UIView.animateKeyframes(withDuration: duration, delay: 0, options: .calculationModeCubic, animations: {
-      // Start by rotating the “from” view 90˚ around its y-axis to hide it from view.
-      UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/3) {
-        fromVC.view.layer.transform = AnimationHelper.yRotation(-.pi / 2)
-      }
-      // Next, reveal the snapshot by rotating it back from its edge-on state that you set up above.
-      UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3) {
-        snapshot.layer.transform = AnimationHelper.yRotation(0.0)
-      }
-      // Set the frame of the snapshot to fill the screen
-      UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3) {
-        snapshot.frame = finalFrame
-        snapshot.layer.cornerRadius = 0
-      }
 
-    }) { _ in
-      // The snapshot now exactly matches the “to” view so it’s finally safe to reveal the real “to” view. Remove the snapshot from the view hierarchy since it’s no longer needed. Next, restore the “from” view to its original state; otherwise, it would be hidden when transitioning back. Calling completeTransition(_:) informs UIKit that the animation is complete. It will ensure the final state is consistent and remove the “from” view from the container.
-      toVC.view.isHidden = false
+    UIView.animateKeyframes(withDuration: duration, delay: 0, options: .calculationModeCubic, animations: {
+
+      UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/3){
+        snapshot.frame = self.destinationFrame
+      }
+      UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3){
+        snapshot.layer.transform = AnimationHelper.yRotation(.pi/2)
+      }
+      UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3){
+        toVC.view.layer.transform = AnimationHelper.yRotation(0)
+      }
+    }, completion: { _ in
+      fromVC.view.isHidden = false
       snapshot.removeFromSuperview()
-      fromVC.view.layer.transform = CATransform3DIdentity
+      if transitionContext.transitionWasCancelled {
+        toVC.view.removeFromSuperview()
+      }
       transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-    }
+    })
   }
 }
