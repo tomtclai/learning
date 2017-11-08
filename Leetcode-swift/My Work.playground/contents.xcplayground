@@ -43,5 +43,7 @@
         <page name='Single Number III'/>
         <page name='Find All Numbers Disappeared in an Array'/>
         <page name='Add Digits'/>
+        <page name='Two Sum IV - Input is a BST'/>
+        <page name='Min Moves 2'/>
     </pages>
 </playground>
