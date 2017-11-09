@@ -2,7 +2,7 @@
 func minMoves2(_ nums: [Int]) -> Int {
     var nums = nums.sorted()
     var sum = 0
-    for i in 0..<nums.count {
+    for i in 0..<nums.count/2 {
         let j = nums.count - 1 - i
         sum += nums[j] - nums[i]
     }
