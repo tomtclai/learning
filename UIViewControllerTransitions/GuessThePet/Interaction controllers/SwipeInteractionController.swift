@@ -27,14 +27,11 @@
 /// THE SOFTWARE.
 
 import UIKit
-class SwipeInteractionController: UIPercentDrivenInteractiveTransition {
-  var interactionIsInProgress = false
-  private var shouldCompleteTransition = false
-  private weak var viewController: UIViewController!
+class SwipeInteractionController: InteractiveTransition {
 
-  init(viewController: UIViewController) {
-    super.init()
-    self.viewController = viewController
+  override init(viewController: UIViewController) {
+    super.init(viewController: viewController)
+
     prepareGestureRecognizer(in: viewController.view)
   }
   private func prepareGestureRecognizer(in view: UIView) {
@@ -49,29 +46,7 @@ class SwipeInteractionController: UIPercentDrivenInteractiveTransition {
     var progress = translation.x / 200
     progress = CGFloat(fminf(fmaxf(Float(progress), 0.0), 1.0))
 
-    switch gestureRecognizer.state {
-    case .began:
-      interactionIsInProgress = true
-      viewController.dismiss(animated: true, completion: nil)
-
-    case .changed:
-      shouldCompleteTransition = progress > 0.5
-      update(progress)
-
-    case .cancelled:
-      interactionIsInProgress = false
-      cancel()
-
-    case .ended:
-      interactionIsInProgress = false
-      if shouldCompleteTransition {
-        finish()
-      } else {
-        cancel()
-      }
-    default:
-      break
-    }
+    super.handleGesture(gestureRecognizer, progress: progress)
   }
 
 }

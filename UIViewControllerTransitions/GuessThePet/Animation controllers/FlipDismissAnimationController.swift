@@ -30,9 +30,9 @@ import UIKit
 
 class FlipDismissAnimationController: NSObject {
   private let destinationFrame: CGRect
-  let interactionController: SwipeInteractionController?
+  let interactionController: InteractiveTransition?
 
-  init(destinationFrame: CGRect, interactionController: SwipeInteractionController?) {
+  init(destinationFrame: CGRect, interactionController: InteractiveTransition?) {
     self.destinationFrame = destinationFrame
     self.interactionController = interactionController
   }

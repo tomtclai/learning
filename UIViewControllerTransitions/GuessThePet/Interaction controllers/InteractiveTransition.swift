@@ -1,15 +1,15 @@
-/// Copyright (c) 2017 Razeware LLC
-///
+///// Copyright (c) 2017 Razeware LLC
+/// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-///
+/// 
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-///
+/// 
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,7 +17,7 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
-///
+/// 
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,23 +27,39 @@
 /// THE SOFTWARE.
 
 import UIKit
+class InteractiveTransition: UIPercentDrivenInteractiveTransition {
+  var interactionIsInProgress = false
+  private weak var viewController: UIViewController!
+  private var shouldCompleteTransition = false
 
-class RevealViewController: UIViewController {
-  
-  @IBOutlet weak var titleLabel: UILabel!
-  @IBOutlet weak var imageView: UIImageView!
-  var swipeInteractionController: InteractiveTransition?
+  func handleGesture(_ gestureRecognizer: UIGestureRecognizer, progress: CGFloat) {
+    switch gestureRecognizer.state {
+    case .began:
+      interactionIsInProgress = true
+      viewController.dismiss(animated: true, completion: nil)
 
-  var petCard: PetCard?
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    titleLabel.text = petCard?.name
-    imageView.image = petCard?.image
-    swipeInteractionController = ZoomOutInteractionController(viewController: self)
+    case .changed:
+      shouldCompleteTransition = progress > 0.5
+      update(progress)
+
+    case .cancelled:
+      interactionIsInProgress = false
+      cancel()
+
+    case .ended:
+      interactionIsInProgress = false
+      if shouldCompleteTransition {
+        finish()
+      } else {
+        cancel()
+      }
+    default:
+      break
+    }
   }
-  
-  @IBAction func dismissPressed(_ sender: UIButton) {
-    dismiss(animated: true, completion: nil)
+
+  init(viewController: UIViewController) {
+    super.init()
+    self.viewController = viewController
   }
 }
