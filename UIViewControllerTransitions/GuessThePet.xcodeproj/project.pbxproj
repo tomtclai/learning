@@ -12,8 +12,7 @@
 		771459791FB38C6100F57169 /* FlipDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771459781FB38C6100F57169 /* FlipDismissAnimationController.swift */; };
 		7714597B1FB3D27300F57169 /* SwipeInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714597A1FB3D27300F57169 /* SwipeInteractionController.swift */; };
 		7714597D1FB3D7D000F57169 /* ZoomOutInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714597C1FB3D7D000F57169 /* ZoomOutInteractionController.swift */; };
-		7714597F1FB3D9A200F57169 /* DismissingInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714597E1FB3D9A200F57169 /* DismissingInteractiveTransition.swift */; };
-		771459811FB3DF1700F57169 /* ZoomInInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771459801FB3DF1700F57169 /* ZoomInInteractionController.swift */; };
+		7714597F1FB3D9A200F57169 /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714597E1FB3D9A200F57169 /* InteractiveTransition.swift */; };
 		771C8C9B1FB26C5500B37F4E /* FlipPresentAnimationController .swift in Sources */ = {isa = PBXBuildFile; fileRef = 771C8C9A1FB26C5500B37F4E /* FlipPresentAnimationController .swift */; };
 		BB3B33A81B40386700B5C810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B33A71B40386700B5C810 /* AppDelegate.swift */; };
 		BB3B33AD1B40386700B5C810 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB3B33AB1B40386700B5C810 /* Main.storyboard */; };
@@ -33,8 +32,7 @@
 		771459781FB38C6100F57169 /* FlipDismissAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipDismissAnimationController.swift; sourceTree = "<group>"; };
 		7714597A1FB3D27300F57169 /* SwipeInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeInteractionController.swift; sourceTree = "<group>"; };
 		7714597C1FB3D7D000F57169 /* ZoomOutInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomOutInteractionController.swift; sourceTree = "<group>"; };
-		7714597E1FB3D9A200F57169 /* DismissingInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissingInteractiveTransition.swift; sourceTree = "<group>"; };
-		771459801FB3DF1700F57169 /* ZoomInInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomInInteractionController.swift; sourceTree = "<group>"; };
+		7714597E1FB3D9A200F57169 /* InteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTransition.swift; sourceTree = "<group>"; };
 		771C8C9A1FB26C5500B37F4E /* FlipPresentAnimationController .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlipPresentAnimationController .swift"; sourceTree = "<group>"; };
 		BB3B33A21B40386700B5C810 /* Guess the Pet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Guess the Pet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3B33A61B40386700B5C810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -163,8 +161,7 @@
 			children = (
 				7714597A1FB3D27300F57169 /* SwipeInteractionController.swift */,
 				7714597C1FB3D7D000F57169 /* ZoomOutInteractionController.swift */,
-				771459801FB3DF1700F57169 /* ZoomInInteractionController.swift */,
-				7714597E1FB3D9A200F57169 /* DismissingInteractiveTransition.swift */,
+				7714597E1FB3D9A200F57169 /* InteractiveTransition.swift */,
 			);
 			path = "Interaction controllers";
 			sourceTree = "<group>";
@@ -250,9 +247,8 @@
 				BB3B33D41B403BAF00B5C810 /* PetCard.swift in Sources */,
 				771C8C9B1FB26C5500B37F4E /* FlipPresentAnimationController .swift in Sources */,
 				BBC248791B4D8EFD00F4C642 /* AnimationHelper.swift in Sources */,
-				771459811FB3DF1700F57169 /* ZoomInInteractionController.swift in Sources */,
 				BB3B33A81B40386700B5C810 /* AppDelegate.swift in Sources */,
-				7714597F1FB3D9A200F57169 /* DismissingInteractiveTransition.swift in Sources */,
+				7714597F1FB3D9A200F57169 /* InteractiveTransition.swift in Sources */,
 				7714597D1FB3D7D000F57169 /* ZoomOutInteractionController.swift in Sources */,
 				18F4A6591F635A6D0076435C /* StoryboardSupport.swift in Sources */,
 				BB3B33D11B4039FB00B5C810 /* CardViewController.swift in Sources */,

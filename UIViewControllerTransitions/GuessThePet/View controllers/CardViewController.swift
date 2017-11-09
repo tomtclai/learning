@@ -34,7 +34,7 @@ class CardViewController: UIViewController {
   
   @IBOutlet weak var cardView: UIView!
   @IBOutlet weak var titleLabel: UILabel!
-  var interactiveTransitionController: ZoomInInteractionController?
+  
   var pageIndex: Int?
   var petCard: PetCard?
   
@@ -43,7 +43,6 @@ class CardViewController: UIViewController {
     titleLabel.text = petCard?.description
     cardView.layer.cornerRadius = CardViewController.cardCornerRadius
     cardView.layer.masksToBounds = true
-    self.interactiveTransitionController = ZoomInInteractionController(presentingViewController: self)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -66,17 +65,15 @@ extension CardViewController: SegueHandlerType {
 }
 
 extension CardViewController: UIViewControllerTransitioningDelegate {
-
   func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    return FlipPresentAnimationController(originFrame: cardView.frame,
-    interactionController: interactiveTransitionController)
+    return FlipPresentAnimationController(originFrame: cardView.frame)
   }
 
   func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     guard let revealVC = dismissed as? RevealViewController else {
       return nil
     }
-    return FlipDismissAnimationController(destinationFrame: cardView.frame, interactionController: revealVC.interactiveTransitionController)
+    return FlipDismissAnimationController(destinationFrame: cardView.frame, interactionController: revealVC.swipeInteractionController)
   }
 
   func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {

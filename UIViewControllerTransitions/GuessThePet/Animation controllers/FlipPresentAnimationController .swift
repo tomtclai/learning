@@ -30,11 +30,8 @@ import UIKit
 
 class FlipPresentAnimationController: NSObject {
   private let originFrame: CGRect
-  let interactionController: ZoomInInteractionController?
-
-  init(originFrame: CGRect, interactionController: ZoomInInteractionController?) {
+  init(originFrame: CGRect) {
     self.originFrame = originFrame
-    self.interactionController = interactionController
   }
 }
 

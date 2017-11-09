@@ -27,7 +27,7 @@
 /// THE SOFTWARE.
 
 import UIKit
-class DismissingInteractiveTransition: UIPercentDrivenInteractiveTransition {
+class InteractiveTransition: UIPercentDrivenInteractiveTransition {
   var interactionIsInProgress = false
   private weak var viewController: UIViewController!
   private var shouldCompleteTransition = false

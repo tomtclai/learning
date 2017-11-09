@@ -27,7 +27,7 @@
 /// THE SOFTWARE.
 
 import UIKit
-class SwipeInteractionController: DismissingInteractiveTransition {
+class SwipeInteractionController: InteractiveTransition {
 
   override init(viewController: UIViewController) {
     super.init(viewController: viewController)
