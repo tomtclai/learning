@@ -27,17 +27,29 @@
 /// THE SOFTWARE.
 
 import UIKit
-class DismissingInteractiveTransition: UIPercentDrivenInteractiveTransition {
-  var interactionIsInProgress = false
-  private weak var viewController: UIViewController!
-  private var shouldCompleteTransition = false
 
-  func handleGesture(_ gestureRecognizer: UIGestureRecognizer, progress: CGFloat) {
+class ZoomInInteractionController: UIPercentDrivenInteractiveTransition {
+  var interactionIsInProgress = false
+  private weak var presentingViewController: UIViewController!
+  private var shouldCompleteTransition = false
+  init(presentingViewController: UIViewController) {
+    super.init()
+    self.presentingViewController = presentingViewController
+    prepareGestureRecognizer(in: presentingViewController.view)
+  }
+  private func prepareGestureRecognizer(in view: UIView) {
+    let gesture = UIPinchGestureRecognizer(target: self,
+                                           action: #selector(handleGesture(_:)))
+    view.addGestureRecognizer(gesture)
+  }
+  @objc func handleGesture(_ gestureRecognizer: UIPinchGestureRecognizer) {
+    let scale = gestureRecognizer.scale
+    var progress = scale / 10000
+    progress = CGFloat(fminf(fmaxf(Float(progress), 0.0), 1.0))
     switch gestureRecognizer.state {
     case .began:
       interactionIsInProgress = true
-      viewController.dismiss(animated: true, completion: nil)
-
+     /// this is wrong presentingViewController.performSegue(withIdentifier: CardViewController.SegueIdentifier.reveal.rawValue, sender: self)
     case .changed:
       shouldCompleteTransition = progress > 0.5
       update(progress)
@@ -56,10 +68,5 @@ class DismissingInteractiveTransition: UIPercentDrivenInteractiveTransition {
     default:
       break
     }
-  }
-
-  init(viewController: UIViewController) {
-    super.init()
-    self.viewController = viewController
   }
 }

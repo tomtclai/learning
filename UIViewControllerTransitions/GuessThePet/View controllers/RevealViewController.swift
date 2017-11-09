@@ -32,7 +32,7 @@ class RevealViewController: UIViewController {
   
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var imageView: UIImageView!
-  var swipeInteractionController: InteractiveTransition?
+  var interactiveTransitionController: DismissingInteractiveTransition?
 
   var petCard: PetCard?
   
@@ -40,7 +40,7 @@ class RevealViewController: UIViewController {
     super.viewDidLoad()
     titleLabel.text = petCard?.name
     imageView.image = petCard?.image
-    swipeInteractionController = ZoomOutInteractionController(viewController: self)
+    interactiveTransitionController = ZoomOutInteractionController(viewController: self)
   }
   
   @IBAction func dismissPressed(_ sender: UIButton) {

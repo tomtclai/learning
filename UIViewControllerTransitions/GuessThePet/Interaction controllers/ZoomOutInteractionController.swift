@@ -28,9 +28,7 @@
 
 import UIKit
 
-class ZoomOutInteractionController: InteractiveTransition {
-  private var shouldCompleteTransition = false
-
+class ZoomOutInteractionController: DismissingInteractiveTransition {
 
   override init(viewController: UIViewController) {
     super.init(viewController: viewController)
@@ -42,6 +40,7 @@ class ZoomOutInteractionController: InteractiveTransition {
                                             action: #selector(handleGesture(_:)))
     view.addGestureRecognizer(gesture)
   }
+  
   @objc func handleGesture(_ gestureRecognizer: UIPinchGestureRecognizer) {
     let scale = gestureRecognizer.scale
     var progress = 1 - scale
