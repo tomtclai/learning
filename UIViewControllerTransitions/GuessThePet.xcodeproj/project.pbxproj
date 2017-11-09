@@ -10,6 +10,7 @@
 		18F4A6551F6355560076435C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F4A6541F6355560076435C /* Launch Screen.storyboard */; };
 		18F4A6591F635A6D0076435C /* StoryboardSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F4A6581F635A6D0076435C /* StoryboardSupport.swift */; };
 		771459791FB38C6100F57169 /* FlipDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771459781FB38C6100F57169 /* FlipDismissAnimationController.swift */; };
+		7714597B1FB3D27300F57169 /* SwipeInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714597A1FB3D27300F57169 /* SwipeInteractionController.swift */; };
 		771C8C9B1FB26C5500B37F4E /* FlipPresentAnimationController .swift in Sources */ = {isa = PBXBuildFile; fileRef = 771C8C9A1FB26C5500B37F4E /* FlipPresentAnimationController .swift */; };
 		BB3B33A81B40386700B5C810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B33A71B40386700B5C810 /* AppDelegate.swift */; };
 		BB3B33AD1B40386700B5C810 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB3B33AB1B40386700B5C810 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		18F4A6541F6355560076435C /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		18F4A6581F635A6D0076435C /* StoryboardSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardSupport.swift; sourceTree = "<group>"; };
 		771459781FB38C6100F57169 /* FlipDismissAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipDismissAnimationController.swift; sourceTree = "<group>"; };
+		7714597A1FB3D27300F57169 /* SwipeInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeInteractionController.swift; sourceTree = "<group>"; };
 		771C8C9A1FB26C5500B37F4E /* FlipPresentAnimationController .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlipPresentAnimationController .swift"; sourceTree = "<group>"; };
 		BB3B33A21B40386700B5C810 /* Guess the Pet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Guess the Pet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3B33A61B40386700B5C810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 		BB3B33DF1B40654F00B5C810 /* Interaction controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7714597A1FB3D27300F57169 /* SwipeInteractionController.swift */,
 			);
 			path = "Interaction controllers";
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				BB3B33A81B40386700B5C810 /* AppDelegate.swift in Sources */,
 				18F4A6591F635A6D0076435C /* StoryboardSupport.swift in Sources */,
 				BB3B33D11B4039FB00B5C810 /* CardViewController.swift in Sources */,
+				7714597B1FB3D27300F57169 /* SwipeInteractionController.swift in Sources */,
 				BB3B33CF1B4039A600B5C810 /* PageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
