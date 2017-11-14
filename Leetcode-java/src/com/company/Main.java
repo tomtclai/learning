@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -58,6 +59,86 @@ public class Main {
             set.add(k - root.val);
             return findTarget(root.left, k, set) || findTarget(root.right, k, set);
         }
+    }
+
+    // https://leetcode.com/problems/single-number-iii/description/
+    public int[] singleNumberWithSet(int[] nums) {
+        HashSet<Integer> set = new HashSet<Integer>();
+
+        for(int num: nums) {
+            if (set.contains(num)) {
+                set.remove(num);
+            } else {
+                set.add(num);
+            }
+        }
+        return set.stream().mapToInt(i -> i.intValue()).toArray();
+    }
+
+    public int[] singleNumberWithBitwiseOperation(int[] nums) {
+        int xorTheTwoNumbers = 0;
+        for(int num: nums) {
+            xorTheTwoNumbers ^= num;
+        }
+        // Get the negative:
+        // 0000 1010 (10)
+        // 0000 1001 (10 - 1)
+        // 1111 0110 (-10)
+        //
+        // last set bit:
+        //    0000 1010 (10)
+        // &  1111 0110 (-10)
+        //    0000 0010
+        int lastSetBit = xorTheTwoNumbers & -xorTheTwoNumbers;
+        int num1 = 0;
+        int num2 = 0;
+        for(int num: nums) {
+            if ((num & lastSetBit)== 0) {
+                num1 ^= num;
+            } else {
+                num2 ^= num;
+            }
+        }
+        return new int[]{num1, num2};
+    }
+
+    // https://leetcode.com/problems/minimum-moves-to-equal-array-elements-ii/description/
+    public int minMoves2(int[] nums) {
+        if (nums == null || nums.length < 2) {
+            return 0;
+        }
+        Arrays.sort(nums);
+        int sumOfDistance = 0;
+        for(int i = 0; i < nums.length / 2; i++) {
+            int j = nums.length - i - 1;
+            sumOfDistance += nums[j] - nums[i];
+        }
+        return sumOfDistance;
+    }
+
+    // https://leetcode.com/problems/product-of-array-except-self/discuss/
+    public int[] productExceptSelf(int[] nums) {
+        // 1, 2, 3, 4
+        // 24, 12, 8, 6
+        // 6 .= 1 x 1 x 2 x 3     x 1
+        // 8  = 1 x 1 x 2     x 4 x 1
+        // 12 = 1 x 1     x 3 x 4 x 1
+        // 24 = 1 x     2 x 3 x 4 x 1
+
+        // [9, 0, -2]
+        int[] result = new int[nums.length];
+        int temp = 1;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            result[i] = temp;
+            temp *= nums[i];
+        }
+
+        temp = 1;
+        for (int i = 0; i < nums.length; i++) {
+            result[i] *= temp;
+            temp *= nums[i];
+        }
+        return result;
     }
 }
 
