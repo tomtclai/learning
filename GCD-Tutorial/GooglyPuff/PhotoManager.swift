@@ -63,33 +63,106 @@ class PhotoManager {
         }
     }
   }
-  
-  func downloadPhotosWithCompletion(_ completion: BatchPhotoDownloadingCompletionClosure?) {
-    var storedError: NSError?
-    // What you want is for the method to call completion after *ALL* the photos are downloaded.
-    // This is exactly what Dispatch Group is for.
-    let downloadGroup = DispatchGroup()
-    for address in [overlyAttachedGirlfriendURLString,
-                    successKidURLString,
-                    lotsOfFacesURLString] {
-                      let url = URL(string: address)
-                      downloadGroup.enter()
-                      let photo = DownloadPhoto(url: url!) {
-                        _, error in
-                        if error != nil {
-                          storedError = error
-                        }
-                        downloadGroup.leave()
-                      }
-                      PhotoManager.sharedManager.addPhoto(photo)
-    }
-    downloadGroup.wait()
-    DispatchQueue.main.async {
-        completion?(storedError)
-    }
 
-  }
-  
+//  func downloadPhotosWithCompletion(_ completion: BatchPhotoDownloadingCompletionClosure?) {
+//    var storedError: NSError?
+//    // What you want is for the method to call completion after *ALL* the photos are downloaded.
+//    // This is exactly what Dispatch Group is for.
+//    let downloadGroup = DispatchGroup()
+//    for address in [overlyAttachedGirlfriendURLString,
+//                    successKidURLString,
+//                    lotsOfFacesURLString] {
+//                      let url = URL(string: address)
+//                      downloadGroup.enter()
+//                      let photo = DownloadPhoto(url: url!) {
+//                        _, error in
+//                        if error != nil {
+//                          storedError = error
+//                        }
+//                        downloadGroup.leave()
+//                      }
+//                      PhotoManager.sharedManager.addPhoto(photo)
+//    }
+//    downloadGroup.wait()
+//    DispatchQueue.main.async {
+//        completion?(storedError)
+//    }
+//  }
+
+//    ConcurrentPerform works similarly to a for loop in that it executes different iterations concurrently.
+//    This code will occasionally produce marginally faster results. But it is not worth it in this case,
+//    because the data set is not very large
+//    func downloadPhotosWithCompletion(_ completion: BatchPhotoDownloadingCompletionClosure?) {
+//        var storedError: NSError?
+//        // What you want is for the method to call completion after *ALL* the photos are downloaded.
+//        // This is exactly what Dispatch Group is for.
+//        let downloadGroup = DispatchGroup()
+//        for address in [overlyAttachedGirlfriendURLString,
+//                        successKidURLString,
+//                        lotsOfFacesURLString] {
+//                            let url = URL(string: address)
+//                            downloadGroup.enter()
+//                            let photo = DownloadPhoto(url: url!) {
+//                                _, error in
+//                                if error != nil {
+//                                    storedError = error
+//                                }
+//                                downloadGroup.leave()
+//                            }
+//                            PhotoManager.sharedManager.addPhoto(photo)
+//        }
+//        downloadGroup.wait()
+//        DispatchQueue.main.async {
+//            completion?(storedError)
+//        }
+//    }
+
+//  GCD cancelling blocks.
+//  This is a contrived example but illustrates how dispatch blocks are used and cancelled
+    func downloadPhotosWithCompletion(_ completion: BatchPhotoDownloadingCompletionClosure?) {
+        var storedError: NSError?
+        let downloadGroup = DispatchGroup()
+        let addresses = [overlyAttachedGirlfriendURLString,
+                         successKidURLString,
+                         lotsOfFacesURLString,
+                         overlyAttachedGirlfriendURLString,
+                         successKidURLString,
+                         lotsOfFacesURLString,
+                         overlyAttachedGirlfriendURLString,
+                         successKidURLString,
+                         lotsOfFacesURLString]
+
+        var blocks = [DispatchWorkItem]()
+
+        for i in 0 ..< addresses.count {
+            downloadGroup.enter()
+            let block = DispatchWorkItem(flags: .inheritQoS) {
+                let address = addresses[i]
+                let url = URL(string: address)
+                let photo = DownloadPhoto(url: url!) {
+                    _, error in
+                    if error != nil {
+                        storedError = error
+                    }
+                    downloadGroup.leave()
+                }
+                PhotoManager.sharedManager.addPhoto(photo)
+            }
+            blocks.append(block)
+            DispatchQueue.main.async(execute: block)
+        }
+
+        for block in blocks[3..<blocks.count] {
+            let cancel = arc4random_uniform(2)
+            if cancel == 1 {
+                block.cancel()
+                downloadGroup.leave()
+            }
+        }
+        downloadGroup.notify(queue: .main) {
+            completion?(storedError)
+        }
+    }
   fileprivate func postContentAddedNotification() {
     NotificationCenter.default.post(name: Notification.Name(rawValue: photoManagerContentAddedNotification), object: nil)
   }
