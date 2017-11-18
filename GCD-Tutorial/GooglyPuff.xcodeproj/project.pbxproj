@@ -215,6 +215,7 @@
 					};
 					3093203B1DDC12AD00EBA0AC = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = DPRFY9YDG3;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 309320271DDC12AD00EBA0AC;
 					};
@@ -448,6 +449,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				INFOPLIST_FILE = GooglyPuffTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.GooglyPuffTests;
@@ -462,6 +464,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				INFOPLIST_FILE = GooglyPuffTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.GooglyPuffTests;
