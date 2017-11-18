@@ -47,20 +47,39 @@ class GooglyPuffTests: XCTestCase {
   func testOverlyAttachedGirlfriendImageURL() {
     downloadImageURLWithString(overlyAttachedGirlfriendURLString)
   }
-  
-  func downloadImageURLWithString(_ urlString: String) {
-    let url = URL(string: urlString)
-    let semaphore = DispatchSemaphore(value: 0) // no one can acces the semaphore without signaling (incrementing) it first
-    let _ = DownloadPhoto(url: url!) {
-        _, error in
-        if let error = error {
-            XCTFail("\(urlString) failed. \(error.localizedDescription)")
+
+    // With semaphore
+//    func downloadImageURLWithString(_ urlString: String) {
+//        let url = URL(string: urlString)
+//
+//        let semaphore = DispatchSemaphore(value: 0) // no one can acces the semaphore without signaling (incrementing) it first
+//        let _ = DownloadPhoto(url: url!) {
+//            _, error in
+//            if let error = error {
+//                XCTFail("\(urlString) failed. \(error.localizedDescription)")
+//            }
+//            semaphore.signal()
+//        }
+//        let timeout = DispatchTime.now() + DispatchTimeInterval.seconds(defaultTimeoutLengthInSeconds)
+//        if semaphore.wait(timeout: timeout) == .timedOut {
+//            XCTFail("\(urlString) timed out")
+//        }
+//    }
+    // with expectations
+    func downloadImageURLWithString(_ urlString: String) {
+        let url = URL(string: urlString)
+        let downloadExpectation = expectation(description: "Image downloaded from \(urlString)")
+        let _ = DownloadPhoto(url: url!) {
+            _, error in
+            if let error = error {
+                XCTFail("\(urlString) failed. \(error.localizedDescription)")
+            }
+            downloadExpectation.fulfill()
         }
-        semaphore.signal()
+        waitForExpectations(timeout: 10) { error in
+            if let error = error {
+                XCTFail(error.localizedDescription)
+            }
+        }
     }
-    let timeout = DispatchTime.now() + DispatchTimeInterval.seconds(defaultTimeoutLengthInSeconds)
-    if semaphore.wait(timeout: timeout) == .timedOut {
-        XCTFail("\(urlString) timed out")
-    }
-  }
 }
