@@ -25,18 +25,40 @@ import Photos
 
 private let reuseIdentifier = "photoCell"
 private let backgroundImageOpacity: CGFloat = 0.1
+#if DEBUG
+var signal: DispatchSourceSignal?
+    private let setupSignalHandlerFor = { (_ object: AnyObject) -> Void in
+        signal = DispatchSource.makeSignalSource(signal: Int32(SIGSTOP), queue: .main)
+        signal?.setEventHandler {
+            print("Hi. i am \(object.description!)")
+            /*
+             *********** How to manipulate app with debugger with SIGSTOP ************
+             1. Set a breakpoint on the print statement (line 33)
+             2. pause the execution and then resume so the debugger stops at said breakpoint
+             you can now refer to the viewcontroller in debugger at the (lldb) prompt.
+             for example, type `expr object.navigationItem.promt = "WOOOT"`, then resume execution
+             */
+        }
+        signal?.resume()
+
+}
+#endif
 
 class PhotoCollectionViewController: UICollectionViewController {
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    #if DEBUG
+        _ = setupSignalHandlerFor(self)
+    #endif
     // Background image setup
     let backgroundImageView = UIImageView(image: UIImage(named:"background"))
     backgroundImageView.alpha = backgroundImageOpacity
     backgroundImageView.contentMode = .center
     collectionView?.backgroundView = backgroundImageView
-    
+
+
+
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(contentChangedNotification(_:)),
