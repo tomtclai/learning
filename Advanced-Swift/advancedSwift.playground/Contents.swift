@@ -66,7 +66,7 @@ extension Dictionary {
     }
 }
 
-let settingsAsStrings = defaultSettings.mapValue {
+let settingsAsStrings = defaultSettings.mapValues {
     setting -> String in
     switch setting {
     case .text(let text): return text
