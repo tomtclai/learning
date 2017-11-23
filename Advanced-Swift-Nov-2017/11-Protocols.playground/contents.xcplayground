@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version="6.0" target-platform="ios" display-mode="rendered">
+    <pages>
+        <page name="Table of Contents"/>
+        <page name="Protocols "/>
+        <page name="Protocol-Oriented Programming"/>
+        <page name="Protocol-Oriented Programming – 2"/>
+        <page name="Two Types of Protocols"/>
+        <page name="Two Types of Protocols – Type Erasers "/>
+        <page name="Two Types of Protocols – 3"/>
+        <page name="Protocols with Self Requirements"/>
+        <page name="Protocol Internals "/>
+        <page name="Recap"/>
+    </pages>
+</playground>

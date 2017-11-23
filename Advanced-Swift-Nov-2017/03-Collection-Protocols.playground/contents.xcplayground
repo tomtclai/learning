@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version="6.0" target-platform="ios" display-mode="rendered">
+    <pages>
+        <page name="Table of Contents"/>
+        <page name="Collection Protocols "/>
+        <page name="Sequences "/>
+        <page name="Sequences  – Iterators"/>
+        <page name="Sequences  – Conforming to Sequence"/>
+        <page name="Sequences  – Iterators and Value Semantics"/>
+        <page name="Sequences  – Function-Based Iterators and Sequences"/>
+        <page name="Sequences  – Infinite Sequences"/>
+        <page name="Sequences  – Unstable Sequences"/>
+        <page name="Sequences  – The Relationship Between Sequences and Iterators "/>
+        <page name="Sequences  – Subsequences"/>
+        <page name="Sequences  – Conforming List to Sequence "/>
+        <page name="Collections "/>
+        <page name="Collections  – A Custom Collection"/>
+        <page name="Collections  – A Queue Implementation"/>
+        <page name="Conforming to Collection"/>
+        <page name="Conforming to Collection – Conforming to ExpressibleByArrayLiteral "/>
+        <page name="Conforming to Collection – Associated Types"/>
+        <page name="Indices"/>
+        <page name="Indices – Index Invalidation"/>
+        <page name="Indices – Advancing Indices"/>
+        <page name="Indices – Custom Collection Indices "/>
+        <page name="Slices"/>
+        <page name="Slices – Slices Share Indices with the Base Collection"/>
+        <page name="Slices – A Generic PrefixIterator"/>
+        <page name="Specialized Collections"/>
+        <page name="Specialized Collections – BidirectionalCollection"/>
+        <page name="Specialized Collections – RandomAccessCollection"/>
+        <page name="Specialized Collections – MutableCollection"/>
+        <page name="Specialized Collections – RangeReplaceableCollection"/>
+        <page name="Specialized Collections – Composing Capabilities"/>
+        <page name="Recap"/>
+    </pages>
+</playground>

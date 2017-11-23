@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version="6.0" target-platform="ios" display-mode="rendered">
+    <pages>
+        <page name="Table of Contents"/>
+        <page name="Purely Functional Data Structures"/>
+        <page name="Binary Search Trees"/>
+        <page name="Autocompletion Using Tries"/>
+        <page name="Discussion"/>
+    </pages>
+</playground>

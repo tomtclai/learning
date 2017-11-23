@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version="6.0" target-platform="ios" display-mode="rendered">
+    <pages>
+        <page name="Table of Contents"/>
+        <page name="Error Handling "/>
+        <page name="The Result Type"/>
+        <page name="Throwing and Catching"/>
+        <page name="Typed Errors"/>
+        <page name="Bridging Errors to Objective-C"/>
+        <page name="Errors and Function Parameters"/>
+        <page name="Errors and Function Parameters – Rethrows"/>
+        <page name="Cleaning Up Using defer"/>
+        <page name="Errors and Optionals"/>
+        <page name="Chaining Errors"/>
+        <page name="Chaining Errors – Chaining Result"/>
+        <page name="Higher-Order Functions and Errors"/>
+        <page name="Recap"/>
+    </pages>
+</playground>

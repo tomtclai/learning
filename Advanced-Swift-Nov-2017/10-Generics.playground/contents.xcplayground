@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version="6.0" target-platform="ios" display-mode="rendered">
+    <pages>
+        <page name="Table of Contents"/>
+        <page name="Generics "/>
+        <page name="Overloading"/>
+        <page name="Overloading – Overload Resolution for Operators"/>
+        <page name="Overloading – Overloading with Generic Constraints"/>
+        <page name="Overloading – 4"/>
+        <page name="Overloading – Parameterizing Behavior with Closures"/>
+        <page name="Operating Generically on Collections"/>
+        <page name="Operating Generically on Collections – Generic Binary Search"/>
+        <page name="Operating Generically on Collections – Shuffling Collections"/>
+        <page name="Operating Generically on Collections – 4"/>
+        <page name="Designing with Generics"/>
+        <page name="Designing with Generics – Extracting Common Functionality"/>
+        <page name="Designing with Generics – Creating a Generic Data Type"/>
+        <page name="How Generics Work"/>
+        <page name="How Generics Work – Generic Specialization"/>
+        <page name="How Generics Work – Whole Module Optimization"/>
+        <page name="Recap"/>
+    </pages>
+</playground>

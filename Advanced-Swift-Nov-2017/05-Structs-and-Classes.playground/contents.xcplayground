@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version="6.0" target-platform="ios" display-mode="rendered">
+    <pages>
+        <page name="Table of Contents"/>
+        <page name="Structs and Classes "/>
+        <page name="Value Types"/>
+        <page name="Mutability"/>
+        <page name="Mutability – 2"/>
+        <page name="Mutability – 3"/>
+        <page name="Mutability – 4"/>
+        <page name="Structs "/>
+        <page name="Structs  – Mutating Methods"/>
+        <page name="Structs  – How mutating Works: inout Parameters"/>
+        <page name="Structs  – Value Types Can Help Avoid Concurrency Bugs"/>
+        <page name="Copy-On-Write"/>
+        <page name="Copy-On-Write – Implementing Copy-On-Write"/>
+        <page name="Copy-On-Write – 3"/>
+        <page name="Copy-On-Write – Copy-On-Write (The Expensive Way)"/>
+        <page name="Copy-On-Write – Copy-On-Write (The Efficient Way)"/>
+        <page name="Copy-On-Write – Copy-On-Write Gotchas"/>
+        <page name="Closures and Mutability"/>
+        <page name="Memory "/>
+        <page name="Memory  – Weak References"/>
+        <page name="Memory  – Unowned References"/>
+        <page name="Memory  – Choosing Between Unowned and Weak References"/>
+        <page name="Memory  – 5"/>
+        <page name="Memory  – Reference Cycles with Closures"/>
+        <page name="Memory  – Capture Lists"/>
+        <page name="Recap"/>
+    </pages>
+</playground>
