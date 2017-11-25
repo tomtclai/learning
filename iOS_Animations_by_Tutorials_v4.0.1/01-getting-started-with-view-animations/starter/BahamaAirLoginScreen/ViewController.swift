@@ -76,11 +76,32 @@ class ViewController: UIViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
+    [heading, heading, password].forEach { ([weak self], ) in
+        guard let strongSelf = self else {return}
+        selfview.center.x -= strongSelf.view.bounds.width
+    }
+//    heading.center.x -= view.bounds.width
+//    username.center.x -= view.bounds.width
+//    password.center.x -= view.bounds.width
     super.viewWillAppear(animated)
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+    UIView.animate(withDuration: 0.5) { [weak self] in
+        guard let strongSelf = self else {return}
+        strongSelf.heading.center.x += strongSelf.view.bounds.width
+    }
+    UIView.animate(withDuration: 0.5, delay: 0.3, options: [], animations: { [weak self] in
+        guard let strongSelf = self else {return}
+        strongSelf.username.center.x += strongSelf.view.bounds.width
+    }, completion: nil
+    )
+    UIView.animate(withDuration: 0.5, delay: 0.4, options: [], animations: { [weak self] in
+        guard let strongSelf = self else {return}
+        strongSelf.password.center.x += strongSelf.view.bounds.width
+        }, completion: nil
+    )
   }
   
   // MARK: further methods
