@@ -60,6 +60,46 @@ class ContainerViewController: UIViewController {
     addChildViewController(centerNavigationController)
 
     centerNavigationController.didMove(toParentViewController: self)
+
+    let panGestureReconizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+    centerNavigationController.view.addGestureRecognizer(panGestureReconizer)
+    panGestureReconizer.delegate = self
+  }
+}
+extension ContainerViewController: UIGestureRecognizerDelegate {
+  @objc func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
+    let containerView = view!
+    let gestureIsFromLeftToRight = recognizer.velocity(in: view).x > 0
+
+    switch recognizer.state {
+    case .began:
+      if currentState == .bothCollapsed {
+        if gestureIsFromLeftToRight {
+          addLeftPanelToSubview()
+        } else {
+          addRightPanelToSubview()
+        }
+        showShadowForCenterViewController(true)
+      }
+    case .changed:
+      if let centerView = recognizer.view {
+        centerView.center.x += recognizer.translation(in: view).x
+        recognizer.setTranslation(.zero, in: view)
+      }
+    case .ended:
+      guard let centerView = recognizer.view else {
+        return
+      }
+      if let _ = leftViewController {
+        let halfComplete = centerView.center.x > containerView.bounds.size.width
+        animateLeftPanel(shouldExpand: halfComplete)
+      } else if let _ = rightViewController {
+        let halfComplete = centerView.center.x < 0
+        animateRightPanel(shouldExpand: halfComplete)
+      }
+    default:
+      break
+    }
   }
 }
 extension ContainerViewController: CenterViewControllerDelegate {
