@@ -32,7 +32,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ID-10029135.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="5QZ-bA-oHp">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ID-10029135" translatesAutoresizingMaskIntoConstraints="NO" id="5QZ-bA-oHp">
                                 <rect key="frame" x="0.0" y="64" width="375" height="350"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="350" id="dKw-DS-MxB"/>
@@ -100,7 +100,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="126"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ID-100113060.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="8JH-eQ-4D0">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ID-100113060" translatesAutoresizingMaskIntoConstraints="NO" id="8JH-eQ-4D0">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="126"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="126" id="bju-32-fka"/>
@@ -123,7 +123,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="53.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xsm-hm-29D">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ID-100113060" translatesAutoresizingMaskIntoConstraints="NO" id="Xsm-hm-29D">
                                                     <rect key="frame" x="0.0" y="0.0" width="85" height="53"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="amC-ZB-6o3"/>
@@ -200,7 +200,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="126"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ID-100137.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dSj-5o-0nt">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ID-10034505" translatesAutoresizingMaskIntoConstraints="NO" id="dSj-5o-0nt">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="126"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="126" id="qz0-oV-GaK"/>
@@ -235,7 +235,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y1D-r4-Yrf">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ID-10011404" translatesAutoresizingMaskIntoConstraints="NO" id="Y1D-r4-Yrf">
                                                     <rect key="frame" x="290" y="0.0" width="85" height="53"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="Yad-lW-s2x"/>
@@ -283,8 +283,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ID-100113060.jpg" width="400" height="266"/>
-        <image name="ID-100137.jpg" width="400" height="300"/>
-        <image name="ID-10029135.jpg" width="400" height="359"/>
+        <image name="ID-100113060" width="400" height="266"/>
+        <image name="ID-10011404" width="400" height="341"/>
+        <image name="ID-10029135" width="400" height="359"/>
+        <image name="ID-10034505" width="400" height="333"/>
     </resources>
 </document>

@@ -46,5 +46,10 @@ class CenterViewController: UIViewController {
   }
   
   @IBAction func puppiesTapped(_ sender: Any) {
+    guard let toggleRightPanel = delegate?.toggleRightPanel else {
+      print("Either toggleRightPanel is not implemented yet, or delegate is nil")
+      return
+    }
+    toggleRightPanel()
   }
 }
