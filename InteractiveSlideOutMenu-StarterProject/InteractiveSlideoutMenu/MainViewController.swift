@@ -11,9 +11,11 @@ import UIKit
 class MainViewController: UIViewController {
     let interactor = Interactor()
     @IBAction func openMenu(_ sender: AnyObject) {
+        openMenu()
+    }
+    private func openMenu() {
         performSegue(withIdentifier: "openMenu", sender: nil)
     }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationViewController = segue.destination as? MenuViewController {
             destinationViewController.transitioningDelegate = self
@@ -24,7 +26,14 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
 
     }
+    @IBAction func handleGesture(sender: UIScreenEdgePanGestureRecognizer) {
+        let translation = sender.translation(in: view)
+        let progress = MenuHelper.calculateProgress(translationInView: translation, viewBounds: view.bounds, direction: .right)
+        MenuHelper.mapGestureStateToInteractor(gestureState: sender.state, progress: progress, interactor: interactor) {
+            openMenu()
 
+        }
+    }
 }
 
 extension MainViewController: UIViewControllerTransitioningDelegate {
@@ -34,9 +43,12 @@ extension MainViewController: UIViewControllerTransitioningDelegate {
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return DismissMenuAnimator()
     }
+    // implement this for DIMISSAL to be interactive
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        // return nil if you dont want it to be interaective.
-        // I only want it to be interactive if user is panning
+        return interactor.hasStarted ? interactor : nil
+    }
+    // implement this for PRESENTATION to be interactive
+    func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactor.hasStarted ? interactor : nil
     }
 }

@@ -40,14 +40,19 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="6kP-Pf-dEi"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="6kP-Pf-dEi">
+                    <rectEdge key="edges" left="YES"/>
+                    <connections>
+                        <action selector="handleGestureWithSender:" destination="BYZ-38-t0r" id="OaN-1m-WSK"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="469" y="991"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="KfK-DX-E9p">
             <objects>
-                <viewController id="syw-Sf-K3A" customClass="MenuViewController" customModule="InteractiveSlideoutMenu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="menu" useStoryboardIdentifierAsRestorationIdentifier="YES" id="syw-Sf-K3A" customClass="MenuViewController" customModule="InteractiveSlideoutMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fTz-R2-xhX"/>
                         <viewControllerLayoutGuide type="bottom" id="pz6-jp-sdW"/>

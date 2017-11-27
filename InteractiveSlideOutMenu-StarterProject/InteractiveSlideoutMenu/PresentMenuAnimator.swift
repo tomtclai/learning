@@ -10,13 +10,15 @@ import Foundation
 import UIKit
 class PresentMenuAnimator: NSObject {}
 
-extension PresentMenuAnimator: UIViewControllerAnimatedTransitioning {
+extension PresentMenuAnimator : UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.6
     }
+    
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let fromVC = transitionContext.viewController(forKey: .from),
-        let toVC = transitionContext.viewController(forKey: .to) else {
+        guard
+            let fromVC = transitionContext.viewController(forKey: .from),
+            let toVC = transitionContext.viewController(forKey: .to) else {
                 return
         }
         let containerView = transitionContext.containerView

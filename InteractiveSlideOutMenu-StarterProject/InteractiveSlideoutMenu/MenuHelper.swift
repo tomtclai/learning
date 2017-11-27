@@ -52,17 +52,25 @@ struct MenuHelper {
         switch gestureState {
         case .began:
             interactor.hasStarted = true
+            print("began")
             triggerSegue()
         case .changed:
             interactor.shouldFinish = progress > percentThreshold
             interactor.update(progress)
+            print("changed \(progress)")
         case .cancelled:
             interactor.hasStarted = false
             interactor.cancel()
+            print("cancelled")
         case .ended:
             interactor.hasStarted = false
             interactor.shouldFinish ?
                 interactor.finish() : interactor.cancel()
+            if interactor.shouldFinish {
+                print("ended: completed")
+            } else {
+                print("ended: cancelled")
+            }
         default:
             break
         }
