@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		77548CF01FCB8026007A2959 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77548CEF1FCB8026007A2959 /* Interactor.swift */; };
 		77548CF21FCB8035007A2959 /* MenuHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77548CF11FCB8035007A2959 /* MenuHelper.swift */; };
+		77548CF41FCB9869007A2959 /* PresentMenuAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77548CF31FCB9869007A2959 /* PresentMenuAnimator.swift */; };
 		FCE69DB01C67A61B004247E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE69DAF1C67A61B004247E0 /* AppDelegate.swift */; };
 		FCE69DB21C67A61B004247E0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE69DB11C67A61B004247E0 /* MainViewController.swift */; };
 		FCE69DB51C67A61B004247E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCE69DB31C67A61B004247E0 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		77548CEF1FCB8026007A2959 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		77548CF11FCB8035007A2959 /* MenuHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHelper.swift; sourceTree = "<group>"; };
+		77548CF31FCB9869007A2959 /* PresentMenuAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentMenuAnimator.swift; sourceTree = "<group>"; };
 		FCE69DAC1C67A61B004247E0 /* InteractiveSlideoutMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InteractiveSlideoutMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCE69DAF1C67A61B004247E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCE69DB11C67A61B004247E0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				FCE69DCF1C67A695004247E0 /* MenuViewController.swift */,
 				77548CEF1FCB8026007A2959 /* Interactor.swift */,
 				77548CF11FCB8035007A2959 /* MenuHelper.swift */,
+				77548CF31FCB9869007A2959 /* PresentMenuAnimator.swift */,
 				FCE69DB31C67A61B004247E0 /* Main.storyboard */,
 				FCE69DB61C67A61B004247E0 /* Assets.xcassets */,
 				FCE69DB81C67A61B004247E0 /* LaunchScreen.storyboard */,
@@ -212,6 +215,7 @@
 				FCE69DB21C67A61B004247E0 /* MainViewController.swift in Sources */,
 				FCE69DD01C67A695004247E0 /* MenuViewController.swift in Sources */,
 				77548CF01FCB8026007A2959 /* Interactor.swift in Sources */,
+				77548CF41FCB9869007A2959 /* PresentMenuAnimator.swift in Sources */,
 				77548CF21FCB8035007A2959 /* MenuHelper.swift in Sources */,
 				FCE69DB01C67A61B004247E0 /* AppDelegate.swift in Sources */,
 			);

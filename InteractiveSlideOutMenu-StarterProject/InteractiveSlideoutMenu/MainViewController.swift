@@ -13,7 +13,12 @@ class MainViewController: UIViewController {
     @IBAction func openMenu(_ sender: AnyObject) {
         performSegue(withIdentifier: "openMenu", sender: nil)
     }
-    
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationViewController = segue.destination as? MenuViewController {
+            destinationViewController.transitioningDelegate = self
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,3 +26,8 @@ class MainViewController: UIViewController {
 
 }
 
+extension MainViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return PresentMenuAnimator()
+    }
+}
