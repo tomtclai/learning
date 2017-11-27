@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,6 +23,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="6kP-Pf-dEi" appends="YES" id="sjs-ie-7ql"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="rWn-Ze-DLl">
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="Rcp-VJ-rYt">
@@ -34,6 +40,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="6kP-Pf-dEi"/>
             </objects>
             <point key="canvasLocation" x="469" y="991"/>
         </scene>
@@ -49,19 +56,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29E-Nc-GHA">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29E-Nc-GHA">
                                 <rect key="frame" x="281" y="20" width="94" height="647"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <state key="normal" title="Close"/>
                                 <connections>
                                     <action selector="closeMenu:" destination="syw-Sf-K3A" eventType="touchUpInside" id="ju1-g5-R7O"/>
+                                    <outletCollection property="gestureRecognizers" destination="YZe-F6-IIA" appends="YES" id="gK5-NQ-cHb"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.79557251930236816" green="0.9956849217414856" blue="0.39550536870956421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="pz6-jp-sdW" firstAttribute="top" secondItem="29E-Nc-GHA" secondAttribute="bottom" id="EzI-3k-uHH"/>
+                            <constraint firstItem="29E-Nc-GHA" firstAttribute="top" secondItem="fTz-R2-xhX" secondAttribute="bottom" id="FGo-jo-YU6"/>
+                            <constraint firstItem="29E-Nc-GHA" firstAttribute="width" secondItem="dmw-oP-DcN" secondAttribute="width" multiplier="0.2" id="PL4-MA-9E0"/>
+                            <constraint firstItem="29E-Nc-GHA" firstAttribute="trailing" secondItem="dmw-oP-DcN" secondAttribute="trailingMargin" id="qgD-zg-k8t"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rKm-2E-IGl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="YZe-F6-IIA">
+                    <connections>
+                        <action selector="handleGestureWithSender:" destination="syw-Sf-K3A" id="0hN-0y-My8"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="927.5" y="990.5"/>
         </scene>

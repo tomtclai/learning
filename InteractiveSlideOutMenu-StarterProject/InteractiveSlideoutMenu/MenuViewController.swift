@@ -9,8 +9,17 @@
 import UIKit
 
 class MenuViewController : UIViewController {
-    
+    var interactor: Interactor? = nil
+    @IBAction func handleGesture(sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: view)
+        let progress = MenuHelper.calculateProgress(translationInView: translation, viewBounds: view.bounds, direction: .left)
+
+        MenuHelper.mapGestureStateToInteractor(gestureState: sender.state, progress: progress, interactor: interactor) {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
     @IBAction func closeMenu(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil)
     }
+
 }
