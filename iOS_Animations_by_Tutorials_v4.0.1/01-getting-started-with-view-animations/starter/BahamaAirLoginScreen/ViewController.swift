@@ -84,17 +84,17 @@ class ViewController: UIViewController {
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    UIView.animate(withDuration: 0.5) {
+    let damping: CGFloat = 0.5
+    let duration: TimeInterval = 0.5
+    UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: 0, options:[], animations: {
         self.heading.center.x += self.view.bounds.width
-    }
-    UIView.animate(withDuration: 0.5, delay: 0.3, options: [], animations: {
+    })
+    UIView.animate(withDuration: duration, delay: 0.3, usingSpringWithDamping: damping, initialSpringVelocity: 0, options:[], animations: {
         self.username.center.x += self.view.bounds.width
-    }, completion: nil
-    )
-    UIView.animate(withDuration: 0.5, delay: 0.4, options: [], animations: {
+    })
+    UIView.animate(withDuration: duration, delay: 0.4, usingSpringWithDamping: damping, initialSpringVelocity: 0, options:[], animations: {
         self.password.center.x += self.view.bounds.width
-        }, completion: nil
-    )
+    })
     UIView.animate(withDuration: 0.5, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
         self.loginButton.center.y -= 30.0
         self.loginButton.alpha = 1.0
