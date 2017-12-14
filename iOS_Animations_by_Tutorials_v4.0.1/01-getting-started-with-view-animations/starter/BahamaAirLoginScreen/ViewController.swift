@@ -85,13 +85,20 @@ class ViewController: UIViewController {
     super.viewWillAppear(animated)
     loginButton.center.y += 30.0
     loginButton.alpha = 0.0
+    [cloud1, cloud2, cloud3, cloud4].forEach{ self.animateCloud(cloud: $0) }
   }
   func animateCloud(cloud: UIImageView) {
     // cloud should completely cross the screen in a minute
     let parentViewWidth = view.frame.size.width
-    let cloudWidth = cloud.frame.size.width
-    let cloudSpeed = (parentViewWidth - cloudWidth) * 60.0 / parentViewWidth
-
+    let translation = parentViewWidth - cloud.frame.origin.x
+    let speed = parentViewWidth / 60.0
+    let duration : TimeInterval = TimeInterval(translation / speed)
+    UIView.animate(withDuration: duration, delay: 0.0, options: [.curveLinear], animations: {
+      cloud.frame.origin.x = parentViewWidth
+    }, completion: { _ in
+      cloud.frame.origin.x = -cloud.frame.size.width
+      self.animateCloud(cloud: cloud)
+    })
   }
   func showMessage(index: Int) {
     label.text = messages[index]
