@@ -28,78 +28,104 @@ func delay(_ seconds: Double, completion: @escaping ()->Void) {
 }
 
 class ViewController: UIViewController {
-  
+
   // MARK: IB outlets
-  
+
   @IBOutlet var loginButton: UIButton!
   @IBOutlet var heading: UILabel!
   @IBOutlet var username: UITextField!
   @IBOutlet var password: UITextField!
-  
+
   @IBOutlet var cloud1: UIImageView!
   @IBOutlet var cloud2: UIImageView!
   @IBOutlet var cloud3: UIImageView!
   @IBOutlet var cloud4: UIImageView!
-  
+
   // MARK: further UI
-  
+
   let spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
   let status = UIImageView(image: UIImage(named: "banner"))
   let label = UILabel()
   let messages = ["Connecting ...", "Authorizing ...", "Sending credentials ...", "Failed"]
-  
+
   var statusPosition = CGPoint.zero
-  
+  let spinnerOrigin = CGPoint(x: -20.0, y: 16.0)
+  var loginButtonFrame = CGRect.zero
+  var loginButtonColor: UIColor = UIColor.clear
   // MARK: view controller methods
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     //set up the UI
     loginButton.layer.cornerRadius = 8.0
     loginButton.layer.masksToBounds = true
-    
-    spinner.frame = CGRect(x: -20.0, y: 6.0, width: 20.0, height: 20.0)
+    loginButtonColor = loginButton.backgroundColor!
+    loginButtonFrame = loginButton.frame
+    spinner.frame = CGRect(x: spinnerOrigin.x, y: spinnerOrigin.y, width: 20.0, height: 20.0)
     spinner.startAnimating()
     spinner.alpha = 0.0
     loginButton.addSubview(spinner)
-    
+
     status.isHidden = true
     status.center = loginButton.center
     view.addSubview(status)
-    
+
     label.frame = CGRect(x: 0.0, y: 0.0, width: status.frame.size.width, height: status.frame.size.height)
     label.font = UIFont(name: "HelveticaNeue", size: 18.0)
     label.textColor = UIColor(red: 0.89, green: 0.38, blue: 0.0, alpha: 1.0)
     label.textAlignment = .center
     status.addSubview(label)
-    
+
     statusPosition = status.center
   }
-  
+
   override func viewWillAppear(_ animated: Bool) {
     [heading, username, password].forEach {$0.center.x -= view.bounds.width}
     super.viewWillAppear(animated)
     loginButton.center.y += 30.0
     loginButton.alpha = 0.0
   }
-  
+  func animateCloud(cloud: UIImageView) {
+    // cloud should completely cross the screen in a minute
+    let parentViewWidth = view.frame.size.width
+    let cloudWidth = cloud.frame.size.width
+    let cloudSpeed = (parentViewWidth - cloudWidth) * 60.0 / parentViewWidth
+
+  }
   func showMessage(index: Int) {
     label.text = messages[index]
-    
-    UIView.transition(with: status, duration: 0.33, options: [.curveEaseOut, .transitionCurlDown], animations: {
+
+    UIView.transition(with: status, duration: 0.33, options: [.curveEaseOut, .transitionFlipFromBottom], animations: {
       self.status.isHidden = false
     }) { _ in
       delay(2.0, completion: {
         if index < self.messages.count - 1 {
           self.removeMessage(index: index)
         } else {
-          // reset form
+          self.resetForm()
         }
       })
     }
   }
-  
+
+  func resetForm() {
+    UIView.transition(with: status, duration: 0.2, options: [.curveEaseInOut, .transitionFlipFromTop], animations: {
+      self.status.center = self.statusPosition
+      self.status.isHidden = true
+    }) { _ in
+    }
+    UIView.animate(withDuration: 0.2, delay: 0.0, options: [.curveEaseInOut], animations: {
+      let size = self.spinner.frame.size
+      self.spinner.frame = CGRect(x: self.spinnerOrigin.x, y: self.spinnerOrigin.y, width: size.width, height: size.height)
+      self.spinner.alpha = 0.0
+      self.loginButton.backgroundColor = self.loginButtonColor
+      self.loginButton.frame = self.loginButtonFrame
+    }) { _ in
+
+    }
+  }
+
   func removeMessage(index: Int) {
     UIView.animate(withDuration: 0.33, delay: 0.0, options: [], animations: {
       self.status.center.x += self.view.frame.size.width
@@ -109,7 +135,7 @@ class ViewController: UIViewController {
       self.showMessage(index: index+1)
     })
   }
-  
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     let damping: CGFloat = 0.5
@@ -128,9 +154,9 @@ class ViewController: UIViewController {
       self.loginButton.alpha = 1.0
     }, completion: nil)
   }
-  
+
   // MARK: further methods
-  
+
   @IBAction func login() {
     view.endEditing(true)
     UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.0, options:[], animations: {
@@ -145,15 +171,15 @@ class ViewController: UIViewController {
                                     y: self.loginButton.frame.size.height/2)
       self.spinner.alpha = 1
     }, completion: nil)
-    
+
   }
-  
+
   // MARK: UITextFieldDelegate
-  
+
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     let nextField = (textField === username) ? password : username
     nextField?.becomeFirstResponder()
     return true
   }
-  
+
 }
