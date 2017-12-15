@@ -83,8 +83,10 @@ class ViewController: UIViewController {
       transition(label: flightNr, toText: data.flightNr, direction: direction)
       transition(label: gateNr, toText: data.gateNr, direction: direction)
       transition(label: flightStatus, toText: data.flightStatus, direction: direction)
-      transition(label: departingFrom, toText: data.departingFrom, direction: direction)
-      transition(label: arrivingTo, toText: data.arrivingTo, direction: direction)
+      let offsetDeparting = CGPoint(x: CGFloat(direction.rawValue * 80), y: 0)
+      let offsetArriving = CGPoint(x: 0, y: CGFloat(direction.rawValue * 50))
+      move(label: departingFrom, text: data.departingFrom, offset: offsetDeparting)
+      move(label: arrivingTo, text: data.arrivingTo, offset: offsetArriving)
     } else {
       bgImageView.image = UIImage(named: data.weatherImageName)
       snowView.isHidden = !data.showWeatherEffects
@@ -136,4 +138,31 @@ class ViewController: UIViewController {
     }
   }
 
+  func move(label: UILabel, text: String, offset: CGPoint) {
+    let auxLabel = UILabel(frame: label.frame)
+    auxLabel.text = text
+    auxLabel.font = label.font
+    auxLabel.textAlignment = label.textAlignment
+    auxLabel.textColor = label.textColor
+    auxLabel.backgroundColor = .clear
+    auxLabel.transform = CGAffineTransform(translationX: offset.x, y: offset.y)
+    auxLabel.alpha = 0
+    view.addSubview(auxLabel)
+
+    UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
+      label.transform = CGAffineTransform(translationX: offset.x, y: offset.y)
+      label.alpha = 0.0
+    }, completion: nil)
+
+    UIView.animate(withDuration: 0.25, delay: 0.1, options: .curveEaseIn, animations: {
+      auxLabel.transform = .identity
+      auxLabel.alpha = 1.0
+    }) { _ in
+      auxLabel.removeFromSuperview()
+      label.text = text
+      label.alpha = 1.0
+      label.transform = .identity
+    }
+  }
 }
+
