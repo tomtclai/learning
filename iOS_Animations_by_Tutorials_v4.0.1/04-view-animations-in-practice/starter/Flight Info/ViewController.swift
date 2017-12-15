@@ -63,12 +63,12 @@ class ViewController: UIViewController {
     view.addSubview(snowClipView)
     
     //start rotating the flights
-    changeFlight(to: londonToParis)
+    changeFlight(to: londonToParis, animated: true)
   }
   
   //MARK: custom methods
   
-  func changeFlight(to data: FlightData) {
+  func changeFlight(to data: FlightData, animated: Bool = false) {
     
     // populate the UI with the next flight's data
     summary.text = data.summary
@@ -77,13 +77,26 @@ class ViewController: UIViewController {
     departingFrom.text = data.departingFrom
     arrivingTo.text = data.arrivingTo
     flightStatus.text = data.flightStatus
-    bgImageView.image = UIImage(named: data.weatherImageName)
-    snowView.isHidden = !data.showWeatherEffects
+    if animated {
+      fade(imageView: bgImageView, toImage: UIImage(named: data.weatherImageName)!, showEffects: data.showWeatherEffects)
+    } else {
+      bgImageView.image = UIImage(named: data.weatherImageName)
+      snowView.isHidden = !data.showWeatherEffects
+    }
     
     // schedule next flight
     delay(seconds: 3.0) {
-      self.changeFlight(to: data.isTakingOff ? parisToRome : londonToParis)
+      self.changeFlight(to: data.isTakingOff ? parisToRome : londonToParis, animated: animated)
     }
   }
 
+  func fade(imageView: UIImageView, toImage image: UIImage, showEffects: Bool) {
+    UIView.transition(with: imageView, duration: 0.5, options: [.transitionCrossDissolve], animations: {
+      imageView.image = image
+    }, completion: nil)
+
+    UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+      self.snowView.alpha = showEffects ? 1 : 0
+    }, completion: nil)
+  }
 }
