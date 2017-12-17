@@ -85,6 +85,7 @@ class ViewController: UIViewController {
     loginButton.center.y += 30.0
     loginButton.alpha = 0.0
     [cloud1, cloud2, cloud3, cloud4].forEach{ self.animateCloud(cloud: $0) }
+
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -97,7 +98,9 @@ class ViewController: UIViewController {
     heading.layer.add(flyRight, forKey: nil)
     flyRight.beginTime = CACurrentMediaTime() + 0.3
     // During 0 ~ 0.3 seconds we don't want to see username field
-    flyRight.fillMode = kCAFillModeBoth
+    flyRight.fillMode = kCAFillModeBackwards
+    // This is a bad idea because then the screen won't reflect reality. but you can do it
+    // flyRight.isRemovedOnCompletion = false
     username.layer.add(flyRight, forKey: nil)
     flyRight.beginTime = CACurrentMediaTime() + 0.4
     password.layer.add(flyRight, forKey: nil)
