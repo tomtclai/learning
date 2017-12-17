@@ -81,7 +81,6 @@ class ViewController: UIViewController {
   }
 
   override func viewWillAppear(_ animated: Bool) {
-    [username, password].forEach {$0.center.x -= view.bounds.width}
     super.viewWillAppear(animated)
     loginButton.center.y += 30.0
     loginButton.alpha = 0.0
@@ -96,15 +95,13 @@ class ViewController: UIViewController {
     flyRight.duration = 0.5
     // This makes a copy of the animation object and tells Core Animation to run it on hte layer. The key is for your use only, so that you can change or stop the animation at a later time
     heading.layer.add(flyRight, forKey: nil)
+    flyRight.beginTime = CACurrentMediaTime() + 0.3
+    // During 0 ~ 0.3 seconds we don't want to see username field
+    flyRight.fillMode = kCAFillModeBoth
+    username.layer.add(flyRight, forKey: nil)
+    flyRight.beginTime = CACurrentMediaTime() + 0.4
+    password.layer.add(flyRight, forKey: nil)
     super.viewDidAppear(animated)
-    let damping: CGFloat = 0.5
-    let duration: TimeInterval = 0.5
-    UIView.animate(withDuration: duration, delay: 0.3, usingSpringWithDamping: damping, initialSpringVelocity: 0, options:[], animations: {
-      self.username.center.x += self.view.bounds.width
-    })
-    UIView.animate(withDuration: duration, delay: 0.4, usingSpringWithDamping: damping, initialSpringVelocity: 0, options:[], animations: {
-      self.password.center.x += self.view.bounds.width
-    })
     UIView.animate(withDuration: 0.5, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
       self.loginButton.center.y -= 30.0
       self.loginButton.alpha = 1.0
