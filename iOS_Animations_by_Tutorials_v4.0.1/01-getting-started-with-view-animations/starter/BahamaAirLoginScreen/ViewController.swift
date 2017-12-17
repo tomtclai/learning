@@ -26,7 +26,14 @@ import UIKit
 func delay(_ seconds: Double, completion: @escaping ()->Void) {
   DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
 }
-
+func tintBackgroundColor(layer: CALayer, toColor: UIColor) {
+  let animation = CABasicAnimation(keyPath: "backgroundColor")
+  animation.fromValue = layer.backgroundColor
+  animation.toValue = toColor.cgColor
+  animation.duration = 1.0
+  layer.add(animation, forKey: nil)
+  layer.backgroundColor = toColor.cgColor
+}
 class ViewController: UIViewController {
 
   // MARK: IB outlets
@@ -51,7 +58,7 @@ class ViewController: UIViewController {
   var statusPosition = CGPoint.zero
   let spinnerOrigin = CGPoint(x: -20.0, y: 16.0)
   var loginButtonFrame = CGRect.zero
-  var loginButtonColor: UIColor = UIColor.clear
+
   // MARK: view controller methods
 
   override func viewDidLoad() {
@@ -60,7 +67,6 @@ class ViewController: UIViewController {
     //set up the UI
     loginButton.layer.cornerRadius = 8.0
     loginButton.layer.masksToBounds = true
-    loginButtonColor = loginButton.backgroundColor!
     loginButtonFrame = loginButton.frame
     spinner.frame = CGRect(x: spinnerOrigin.x, y: spinnerOrigin.y, width: 20.0, height: 20.0)
     spinner.startAnimating()
@@ -84,8 +90,19 @@ class ViewController: UIViewController {
     super.viewWillAppear(animated)
     loginButton.center.y += 30.0
     loginButton.alpha = 0.0
-    [cloud1, cloud2, cloud3, cloud4].forEach{ self.animateCloud(cloud: $0) }
-
+    let cloudAnimation = CABasicAnimation(keyPath: "opacity")
+    cloudAnimation.fromValue = 0
+    cloudAnimation.toValue = 1
+    cloudAnimation.duration = 0.5
+    cloudAnimation.fillMode = kCAFillModeBackwards
+    cloudAnimation.beginTime = CACurrentMediaTime() + 0.5
+    cloud1.layer.add(cloudAnimation, forKey: nil)
+    cloudAnimation.beginTime = CACurrentMediaTime() + 0.7
+    cloud2.layer.add(cloudAnimation, forKey: nil)
+    cloudAnimation.beginTime = CACurrentMediaTime() + 0.9
+    cloud3.layer.add(cloudAnimation, forKey: nil)
+    cloudAnimation.beginTime = CACurrentMediaTime() + 1.1
+    cloud4.layer.add(cloudAnimation, forKey: nil)
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -150,7 +167,6 @@ class ViewController: UIViewController {
       let size = self.spinner.frame.size
       self.spinner.frame = CGRect(x: self.spinnerOrigin.x, y: self.spinnerOrigin.y, width: size.width, height: size.height)
       self.spinner.alpha = 0.0
-      self.loginButton.backgroundColor = self.loginButtonColor
       self.loginButton.frame = self.loginButtonFrame
     }) { _ in
 
@@ -178,12 +194,12 @@ class ViewController: UIViewController {
     })
     UIView.animate(withDuration: 0.33, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options:[], animations: {
       self.loginButton.center.y += 60.0
-      self.loginButton.backgroundColor = UIColor(red: 0.85, green: 0.83, blue: 0.45, alpha: 1)
       self.spinner.center = CGPoint(x: 40.0,
                                     y: self.loginButton.frame.size.height/2)
       self.spinner.alpha = 1
     }, completion: nil)
-
+    let tintColor = UIColor(red: 0.85, green: 0.83, blue: 0.45, alpha: 1)
+    tintBackgroundColor(layer: loginButton.layer, toColor: tintColor)
   }
 
   // MARK: UITextFieldDelegate
