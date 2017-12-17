@@ -81,12 +81,36 @@ class ViewController: UIViewController {
   }
 
   override func viewWillAppear(_ animated: Bool) {
-    [heading, username, password].forEach {$0.center.x -= view.bounds.width}
+    [username, password].forEach {$0.center.x -= view.bounds.width}
     super.viewWillAppear(animated)
     loginButton.center.y += 30.0
     loginButton.alpha = 0.0
     [cloud1, cloud2, cloud3, cloud4].forEach{ self.animateCloud(cloud: $0) }
   }
+
+  override func viewDidAppear(_ animated: Bool) {
+    // Animation objects in core animation are simply data models; you create an instance of the model and set its data properties accordingly
+    let flyRight = CABasicAnimation(keyPath: "position.x")
+    flyRight.fromValue = -view.bounds.size.width / 2
+    flyRight.toValue = view.bounds.size.width / 2
+    flyRight.duration = 0.5
+    // This makes a copy of the animation object and tells Core Animation to run it on hte layer. The key is for your use only, so that you can change or stop the animation at a later time
+    heading.layer.add(flyRight, forKey: nil)
+    super.viewDidAppear(animated)
+    let damping: CGFloat = 0.5
+    let duration: TimeInterval = 0.5
+    UIView.animate(withDuration: duration, delay: 0.3, usingSpringWithDamping: damping, initialSpringVelocity: 0, options:[], animations: {
+      self.username.center.x += self.view.bounds.width
+    })
+    UIView.animate(withDuration: duration, delay: 0.4, usingSpringWithDamping: damping, initialSpringVelocity: 0, options:[], animations: {
+      self.password.center.x += self.view.bounds.width
+    })
+    UIView.animate(withDuration: 0.5, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
+      self.loginButton.center.y -= 30.0
+      self.loginButton.alpha = 1.0
+    }, completion: nil)
+  }
+
   func animateCloud(cloud: UIImageView) {
     // cloud should completely cross the screen in a minute
     let parentViewWidth = view.frame.size.width
@@ -141,25 +165,6 @@ class ViewController: UIViewController {
       self.status.center = self.statusPosition
       self.showMessage(index: index+1)
     })
-  }
-
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    let damping: CGFloat = 0.5
-    let duration: TimeInterval = 0.5
-    UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: 0, options:[], animations: {
-      self.heading.center.x += self.view.bounds.width
-    })
-    UIView.animate(withDuration: duration, delay: 0.3, usingSpringWithDamping: damping, initialSpringVelocity: 0, options:[], animations: {
-      self.username.center.x += self.view.bounds.width
-    })
-    UIView.animate(withDuration: duration, delay: 0.4, usingSpringWithDamping: damping, initialSpringVelocity: 0, options:[], animations: {
-      self.password.center.x += self.view.bounds.width
-    })
-    UIView.animate(withDuration: 0.5, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
-      self.loginButton.center.y -= 30.0
-      self.loginButton.alpha = 1.0
-    }, completion: nil)
   }
 
   // MARK: further methods
