@@ -26,13 +26,21 @@ import UIKit
 func delay(_ seconds: Double, completion: @escaping ()->Void) {
   DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
 }
-func tintBackgroundColor(layer: CALayer, toColor: UIColor) {
+func tintBackgroundColor(for layer: CALayer, to color: UIColor) {
   let animation = CABasicAnimation(keyPath: "backgroundColor")
   animation.fromValue = layer.backgroundColor
-  animation.toValue = toColor.cgColor
+  animation.toValue = color.cgColor
   animation.duration = 1.0
   layer.add(animation, forKey: nil)
-  layer.backgroundColor = toColor.cgColor
+  layer.backgroundColor = color.cgColor
+}
+func roundCorners(for layer: CALayer, to radius: CGFloat) {
+  let animation = CABasicAnimation(keyPath: "cornerRadius")
+  animation.fromValue = layer.cornerRadius
+  animation.toValue = radius
+  animation.duration = 0.33
+  layer.add(animation, forKey: nil)
+  layer.cornerRadius = radius
 }
 class ViewController: UIViewController {
 
@@ -169,7 +177,9 @@ class ViewController: UIViewController {
       self.spinner.alpha = 0.0
       self.loginButton.frame = self.loginButtonFrame
     }) { _ in
-
+        let tintColor = UIColor(red: 0.63, green: 0.84, blue: 0.35, alpha: 1.0)
+        tintBackgroundColor(for: self.loginButton.layer, to: tintColor)
+        roundCorners(for: self.loginButton.layer, to: 10)
     }
   }
 
@@ -199,7 +209,8 @@ class ViewController: UIViewController {
       self.spinner.alpha = 1
     }, completion: nil)
     let tintColor = UIColor(red: 0.85, green: 0.83, blue: 0.45, alpha: 1)
-    tintBackgroundColor(layer: loginButton.layer, toColor: tintColor)
+    tintBackgroundColor(for: loginButton.layer, to: tintColor)
+    roundCorners(for: loginButton.layer, to: 25)
   }
 
   // MARK: UITextFieldDelegate
