@@ -44,6 +44,8 @@ func roundCorners(for layer: CALayer, to radius: CGFloat) {
 }
 class ViewController: UIViewController {
 
+  let info = UILabel()
+
   // MARK: IB outlets
 
   @IBOutlet var loginButton: UIButton!
@@ -92,6 +94,13 @@ class ViewController: UIViewController {
     status.addSubview(label)
 
     statusPosition = status.center
+
+    info.frame = CGRect(x: 0, y: loginButton.center.y + 60, width: view.frame.size.width, height: 30)
+    info.backgroundColor = .clear
+    info.font = UIFont(name: "HelveticaNeue", size: 12)
+    info.textAlignment = .center
+    info.text = "Tap on a field and enter username and password"
+    view.insertSubview(info, belowSubview: loginButton)
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -119,14 +128,18 @@ class ViewController: UIViewController {
     flyRight.fromValue = -view.bounds.size.width / 2
     flyRight.toValue = view.bounds.size.width / 2
     flyRight.duration = 0.5
+    flyRight.setValue("form", forKey: "name")
+    flyRight.delegate = self
     // This makes a copy of the animation object and tells Core Animation to run it on hte layer. The key is for your use only, so that you can change or stop the animation at a later time
     heading.layer.add(flyRight, forKey: nil)
+    flyRight.setValue(username.layer, forKey: "layer")
     flyRight.beginTime = CACurrentMediaTime() + 0.3
     // During 0 ~ 0.3 seconds we don't want to see username field
     flyRight.fillMode = kCAFillModeBackwards
     // This is a bad idea because then the screen won't reflect reality. but you can do it
     // flyRight.isRemovedOnCompletion = false
     username.layer.add(flyRight, forKey: nil)
+    flyRight.setValue(password.layer, forKey: "layer")
     flyRight.beginTime = CACurrentMediaTime() + 0.4
     password.layer.add(flyRight, forKey: nil)
     super.viewDidAppear(animated)
@@ -134,6 +147,21 @@ class ViewController: UIViewController {
       self.loginButton.center.y -= 30.0
       self.loginButton.alpha = 1.0
     }, completion: nil)
+
+    let flyLeft = CABasicAnimation(keyPath: "position.x")
+    flyLeft.fromValue = info.layer.position.x + view.frame.size.width
+    flyLeft.toValue = info.layer.position.x
+    flyLeft.duration = 5.0
+    info.layer.add(flyLeft, forKey: "infoappear")
+
+    let fadeLabelIn = CABasicAnimation(keyPath: "opacity")
+    fadeLabelIn.fromValue = 0.2
+    fadeLabelIn.toValue = 1.0
+    fadeLabelIn.duration = 4.5
+    info.layer.add(fadeLabelIn, forKey: "fadein")
+
+    username.delegate = self
+    password.delegate = self
   }
 
   func animateCloud(cloud: UIImageView) {
@@ -221,4 +249,36 @@ class ViewController: UIViewController {
     return true
   }
 
+}
+// MARK: CAAnimiationDelegate
+extension ViewController: CAAnimationDelegate {
+  func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+    print("animation did finish")
+    guard let name = anim.value(forKey: "name") as? String else {
+      return
+    }
+    if name == "form" {
+      //form field found
+      let layer = anim.value(forKey: "layer") as? CALayer
+      anim.setValue(nil, forKey: "layer")
+
+      let pulse = CABasicAnimation(keyPath: "transform.scale")
+      pulse.fromValue = 1.25
+      pulse.toValue = 1.0
+      pulse.duration = 0.25
+      layer?.add(pulse, forKey: nil)
+
+    }
+  }
+}
+
+// MARK: UITextFieldDelegate
+extension ViewController: UITextFieldDelegate {
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    guard let runningAnimations = info.layer.animationKeys() else {
+      return
+    }
+    print(runningAnimations)
+    info.layer.removeAnimation(forKey: "infoappear")
+  }
 }
