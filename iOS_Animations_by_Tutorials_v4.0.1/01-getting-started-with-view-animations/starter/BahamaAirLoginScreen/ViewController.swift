@@ -162,20 +162,27 @@ class ViewController: UIViewController {
 
     username.delegate = self
     password.delegate = self
+
+    animateCloud(layer: cloud1.layer)
+    animateCloud(layer: cloud2.layer)
+    animateCloud(layer: cloud3.layer)
+    animateCloud(layer: cloud4.layer)
   }
 
-  func animateCloud(cloud: UIImageView) {
+  func animateCloud(layer: CALayer) {
     // cloud should completely cross the screen in a minute
-    let parentViewWidth = view.frame.size.width
-    let translation = parentViewWidth - cloud.frame.origin.x
+    let parentViewWidth = view.layer.frame.size.width
+    let translation = parentViewWidth - layer.frame.origin.x
     let speed = parentViewWidth / 60.0
     let duration : TimeInterval = TimeInterval(translation / speed)
-    UIView.animate(withDuration: duration, delay: 0.0, options: [.curveLinear], animations: {
-      cloud.frame.origin.x = parentViewWidth
-    }, completion: { _ in
-      cloud.frame.origin.x = -cloud.frame.size.width
-      self.animateCloud(cloud: cloud)
-    })
+
+    let cloudMove = CABasicAnimation(keyPath: "position.x")
+    cloudMove.duration = duration
+    cloudMove.toValue = self.view.bounds.width + layer.bounds.width / 2
+    cloudMove.delegate = self
+    cloudMove.setValue("cloud", forKey: "name")
+    cloudMove.setValue(layer, forKey: "layer")
+    layer.add(cloudMove, forKey: nil)
   }
   func showMessage(index: Int) {
     label.text = messages[index]
@@ -257,8 +264,8 @@ extension ViewController: CAAnimationDelegate {
     guard let name = anim.value(forKey: "name") as? String else {
       return
     }
-    if name == "form" {
-      //form field found
+    switch name {
+    case "form":
       let layer = anim.value(forKey: "layer") as? CALayer
       anim.setValue(nil, forKey: "layer")
 
@@ -267,7 +274,16 @@ extension ViewController: CAAnimationDelegate {
       pulse.toValue = 1.0
       pulse.duration = 0.25
       layer?.add(pulse, forKey: nil)
-
+    case "cloud":
+      guard let layer = anim.value(forKey: "layer") as? CALayer else {
+        return
+      }
+      layer.position.x = -layer.bounds.width/2
+      delay(0.5, completion: {
+        self.animateCloud(layer: layer)
+      })
+    default:
+      return
     }
   }
 }
