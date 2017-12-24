@@ -105,8 +105,7 @@ class ViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    loginButton.center.y += 30.0
-    loginButton.alpha = 0.0
+
     let cloudAnimation = CABasicAnimation(keyPath: "opacity")
     cloudAnimation.fromValue = 0
     cloudAnimation.toValue = 1
@@ -124,34 +123,53 @@ class ViewController: UIViewController {
 
   override func viewDidAppear(_ animated: Bool) {
     // Animation objects in core animation are simply data models; you create an instance of the model and set its data properties accordingly
+    let fadeFromPoint25 = CABasicAnimation(keyPath: "opacity")
+    fadeFromPoint25.fromValue = 0.25
+    fadeFromPoint25.toValue = 1.0
     let flyRight = CABasicAnimation(keyPath: "position.x")
     flyRight.fromValue = -view.bounds.size.width / 2
     flyRight.toValue = view.bounds.size.width / 2
-    flyRight.duration = 0.5
-    flyRight.setValue("form", forKey: "name")
-    flyRight.delegate = self
-    // This makes a copy of the animation object and tells Core Animation to run it on hte layer. The key is for your use only, so that you can change or stop the animation at a later time
-    heading.layer.add(flyRight, forKey: nil)
-    flyRight.setValue(username.layer, forKey: "layer")
-    flyRight.beginTime = CACurrentMediaTime() + 0.3
-    // During 0 ~ 0.3 seconds we don't want to see username field
-    flyRight.fillMode = kCAFillModeBackwards
-    // This is a bad idea because then the screen won't reflect reality. but you can do it
-    // flyRight.isRemovedOnCompletion = false
-    username.layer.add(flyRight, forKey: nil)
-    flyRight.setValue(password.layer, forKey: "layer")
-    flyRight.beginTime = CACurrentMediaTime() + 0.4
-    password.layer.add(flyRight, forKey: nil)
+
+    let formAnimation = CAAnimationGroup()
+    formAnimation.delegate = self
+    formAnimation.setValue("form", forKey: "name")
+    formAnimation.beginTime = CACurrentMediaTime() + 0.3
+    formAnimation.animations = [fadeFromPoint25, flyRight]
+    formAnimation.fillMode = kCAFillModeBackwards
+    formAnimation.setValue(username.layer, forKey: "layer")
+    username.layer.add(formAnimation, forKey: nil)
+    formAnimation.beginTime = CACurrentMediaTime() + 0.4
+    formAnimation.setValue(password.layer, forKey: "layer")
+    password.layer.add(formAnimation, forKey: nil)
     super.viewDidAppear(animated)
-    UIView.animate(withDuration: 0.5, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
-      self.loginButton.center.y -= 30.0
-      self.loginButton.alpha = 1.0
-    }, completion: nil)
+
+    let buttonAnimation = CAAnimationGroup()
+    buttonAnimation.beginTime = CACurrentMediaTime()
+    buttonAnimation.duration = 0.5
+    buttonAnimation.fillMode = kCAFillModeBackwards
+
+    let scaleDown = CABasicAnimation(keyPath: "transform.scale")
+    scaleDown.fromValue = 3.5
+    scaleDown.toValue = 1.0
+
+    let rotate = CABasicAnimation(keyPath: "transform.rotation")
+    rotate.fromValue = .pi / 4.0
+    rotate.toValue = 0
+
+    let fadeFromZero = CABasicAnimation(keyPath: "opacity")
+    fadeFromZero.fromValue = 0.0
+    fadeFromZero.toValue = 1.0
+
+    buttonAnimation.animations = [scaleDown, rotate, fadeFromZero]
+
+    buttonAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+    loginButton.layer.add(buttonAnimation, forKey: nil)
 
     let flyLeft = CABasicAnimation(keyPath: "position.x")
     flyLeft.fromValue = info.layer.position.x + view.frame.size.width
     flyLeft.toValue = info.layer.position.x
     flyLeft.duration = 5.0
+    
     info.layer.add(flyLeft, forKey: "infoappear")
 
     let fadeLabelIn = CABasicAnimation(keyPath: "opacity")
@@ -260,7 +278,6 @@ class ViewController: UIViewController {
 // MARK: CAAnimiationDelegate
 extension ViewController: CAAnimationDelegate {
   func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-    print("animation did finish")
     guard let name = anim.value(forKey: "name") as? String else {
       return
     }
