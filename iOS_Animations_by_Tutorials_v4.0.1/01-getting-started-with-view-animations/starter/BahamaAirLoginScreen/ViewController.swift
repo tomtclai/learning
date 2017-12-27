@@ -286,10 +286,11 @@ extension ViewController: CAAnimationDelegate {
       let layer = anim.value(forKey: "layer") as? CALayer
       anim.setValue(nil, forKey: "layer")
 
-      let pulse = CABasicAnimation(keyPath: "transform.scale")
+      let pulse = CASpringAnimation(keyPath: "transform.scale")
       pulse.fromValue = 1.25
       pulse.toValue = 1.0
-      pulse.duration = 0.25
+      pulse.duration = pulse.settlingDuration
+      pulse.damping = 7.5
       layer?.add(pulse, forKey: nil)
     case "cloud":
       guard let layer = anim.value(forKey: "layer") as? CALayer else {
@@ -313,5 +314,31 @@ extension ViewController: UITextFieldDelegate {
     }
     print(runningAnimations)
     info.layer.removeAnimation(forKey: "infoappear")
+  }
+
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    guard let text = textField.text else {return}
+    if text.count < 5 {
+      let jump = CASpringAnimation(keyPath: "position.y")
+      jump.fromValue = textField.layer.position.y + 1.0
+      jump.initialVelocity = 100
+      jump.mass = 10
+      jump.stiffness = 1500
+      jump.damping = 50
+      jump.toValue = textField.layer.position.y
+      jump.duration = jump.settlingDuration
+      textField.layer.add(jump, forKey: nil)
+
+      let flash = CASpringAnimation(keyPath: "borderColor")
+      flash.damping = 7
+      flash.stiffness = 200
+      flash.fromValue = UIColor(red: 1.0, green: 0.27, blue: 0, alpha: 1).cgColor
+      flash.toValue = UIColor.white.cgColor
+      flash.duration = flash.settlingDuration
+      textField.layer.borderWidth = 2
+      textField.layer.cornerRadius = 5
+      textField.layer.borderColor = UIColor.white.cgColor
+      textField.layer.add(flash, forKey: nil)
+    }
   }
 }
