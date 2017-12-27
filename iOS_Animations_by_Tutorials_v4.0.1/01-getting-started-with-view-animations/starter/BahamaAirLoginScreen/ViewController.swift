@@ -276,6 +276,25 @@ class ViewController: UIViewController {
     let tintColor = UIColor(red: 0.85, green: 0.83, blue: 0.45, alpha: 1)
     tintBackgroundColor(for: loginButton.layer, to: tintColor)
     roundCorners(for: loginButton.layer, to: 25)
+
+
+    let balloon = CALayer()
+    balloon.contents = #imageLiteral(resourceName: "balloon").cgImage
+    balloon.frame = CGRect(x: -50, y: 0, width: 50, height: 65)
+    view.layer.insertSublayer(balloon, below: username.layer)
+
+    let flight = CAKeyframeAnimation(keyPath: "position")
+    flight.duration = 12.0
+    let offsetX : CGFloat = -50
+    let offsetY : CGFloat = 160
+    flight.values = [
+      CGPoint(x: offsetX, y: 0),
+      CGPoint(x: view.frame.width - offsetX, y: offsetY),
+      CGPoint(x: offsetX, y: loginButton.center.y)
+      ].map{NSValue(cgPoint: $0)}
+    flight.keyTimes = [0, 0.5, 1]
+    balloon.add(flight, forKey: nil)
+    balloon.position = CGPoint(x: offsetX, y: loginButton.center.y)
   }
 
   // MARK: UITextFieldDelegate
