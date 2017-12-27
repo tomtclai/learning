@@ -27,18 +27,22 @@ func delay(_ seconds: Double, completion: @escaping ()->Void) {
   DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
 }
 func tintBackgroundColor(for layer: CALayer, to color: UIColor) {
-  let animation = CABasicAnimation(keyPath: "backgroundColor")
+  let animation = CASpringAnimation(keyPath: "backgroundColor")
   animation.fromValue = layer.backgroundColor
   animation.toValue = color.cgColor
-  animation.duration = 1.0
+  animation.damping = 2
+  animation.stiffness = 200
+  animation.duration = animation.settlingDuration
   layer.add(animation, forKey: nil)
   layer.backgroundColor = color.cgColor
 }
 func roundCorners(for layer: CALayer, to radius: CGFloat) {
-  let animation = CABasicAnimation(keyPath: "cornerRadius")
+  let animation = CASpringAnimation(keyPath: "cornerRadius")
   animation.fromValue = layer.cornerRadius
   animation.toValue = radius
-  animation.duration = 0.33
+  animation.damping = 2
+  animation.stiffness = 200
+  animation.duration = animation.settlingDuration
   layer.add(animation, forKey: nil)
   layer.cornerRadius = radius
 }
