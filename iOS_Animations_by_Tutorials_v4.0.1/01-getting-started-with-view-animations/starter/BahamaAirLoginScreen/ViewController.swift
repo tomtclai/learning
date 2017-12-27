@@ -41,7 +41,7 @@ func roundCorners(for layer: CALayer, to radius: CGFloat) {
   animation.fromValue = layer.cornerRadius
   animation.toValue = radius
   animation.damping = 2
-  animation.stiffness = 200
+  animation.stiffness = 400
   animation.duration = animation.settlingDuration
   layer.add(animation, forKey: nil)
   layer.cornerRadius = radius
@@ -238,6 +238,14 @@ class ViewController: UIViewController {
         tintBackgroundColor(for: self.loginButton.layer, to: tintColor)
         roundCorners(for: self.loginButton.layer, to: 10)
     }
+
+    let wobble = CAKeyframeAnimation(keyPath: "transform.rotation")
+    wobble.duration = 0.25
+    wobble.repeatCount = 4
+    let deg45 = .pi/4.0
+    wobble.values = [0, -deg45, 0, deg45, 0]
+    wobble.keyTimes = [0, 0.25, 0.5, 0.75, 1]
+    heading.layer.add(wobble, forKey: nil)
   }
 
   func removeMessage(index: Int) {
