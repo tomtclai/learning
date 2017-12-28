@@ -58,6 +58,28 @@ class ViewController: UIViewController {
                                   y: myAvatar.center.y)
     myAvatar.bounceOff(stopAtCenter: rightBouncePoint, morphSize: morphSize)
     opponentAvatar.bounceOff(stopAtCenter: leftBouncePoint, morphSize: morphSize)
+    delay(seconds: 4, completion: foundOpponent)
+  }
+
+  func foundOpponent() {
+    status.text = "Connecting..."
+    opponentAvatar.image = #imageLiteral(resourceName: "avatar-2")
+    opponentAvatar.name = "Ray"
+    delay(seconds: 4, completion: connectedToOpponent)
+  }
+
+  func connectedToOpponent() {
+    myAvatar.shouldTransitionToFinishedState = true
+    opponentAvatar.shouldTransitionToFinishedState = true
+    delay(seconds: 1, completion: completed)
+  }
+
+  func completed() {
+    status.text = "Ready to play"
+    UIView.animate(withDuration: 0.2) {
+      self.vs.alpha = 1
+      self.searchAgain.alpha = 1
+    }
   }
 }
 
