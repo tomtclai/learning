@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		773A88BB1FF61B820054AC8A /* GradientAnimationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773A88BA1FF61B820054AC8A /* GradientAnimationModel.swift */; };
 		9C9A5AD51A2E5A16008AD141 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A5AD41A2E5A16008AD141 /* AppDelegate.swift */; };
 		9C9A5AD71A2E5A16008AD141 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A5AD61A2E5A16008AD141 /* ViewController.swift */; };
 		9C9A5ADA1A2E5A16008AD141 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C9A5AD81A2E5A16008AD141 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		773A88BA1FF61B820054AC8A /* GradientAnimationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientAnimationModel.swift; sourceTree = "<group>"; };
 		9C9A5ACF1A2E5A16008AD141 /* SlideToReveal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideToReveal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9A5AD31A2E5A16008AD141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C9A5AD41A2E5A16008AD141 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				9C9A5AF41A2E5C1F008AD141 /* AnimatedMaskLabel.swift */,
+				773A88BA1FF61B820054AC8A /* GradientAnimationModel.swift */,
 				9C9A5AD41A2E5A16008AD141 /* AppDelegate.swift */,
 				9C9A5AD61A2E5A16008AD141 /* ViewController.swift */,
 				9C9A5AD81A2E5A16008AD141 /* Main.storyboard */,
@@ -150,6 +153,7 @@
 			files = (
 				9C9A5AD71A2E5A16008AD141 /* ViewController.swift in Sources */,
 				9C9A5AD51A2E5A16008AD141 /* AppDelegate.swift in Sources */,
+				773A88BB1FF61B820054AC8A /* GradientAnimationModel.swift in Sources */,
 				9C9A5AF51A2E5C1F008AD141 /* AnimatedMaskLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

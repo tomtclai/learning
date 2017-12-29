@@ -25,13 +25,6 @@ import QuartzCore
 
 @IBDesignable
 class AnimatedMaskLabel: UIView {
-
-  struct GradientAnimationModel {
-    let colorValues: [UIColor]
-    let fromLocations: [Float]
-    let toLocations: [Float]
-  }
-
   static let basicBWBGradient = GradientAnimationModel(
     colorValues: [.black, .white, .black],
     fromLocations: [0, 0, 0.25],
@@ -40,8 +33,8 @@ class AnimatedMaskLabel: UIView {
   static let psychedelicGradient = GradientAnimationModel(
     colorValues: [.black, .red, .orange, .yellow, .green,
                   .cyan, .blue, .purple, .magenta, .black],
-    fromLocations: [0, 0.05, 0.1, 0.15, 0.2,
-                    0.25, 0.3, 0.35, 0.4, 0.45],
+    fromLocations: [0.04, 0.05, 0.1, 0.15, 0.2,
+                    0.25, 0.3, 0.35, 0.4, 0.41],
     toLocations: [1, 1, 1, 1, 1,
                   1, 1, 1, 1, 1])
 
