@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     
   }
   
-  func didSlide() {
+  @IBAction func didSlide(_ sender: UISwipeGestureRecognizer) {
     
     // reveal the meme upon successful slide
     let image = UIImageView(image: UIImage(named: "meme"))
@@ -59,6 +59,7 @@ class ViewController: UIViewController {
         image.removeFromSuperview()
       }
     )
+
   }
   
 }
