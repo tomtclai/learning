@@ -107,6 +107,7 @@
 				TargetAttributes = {
 					9C9A5ACE1A2E5A16008AD141 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = DPRFY9YDG3;
 						LastSwiftMigration = 0900;
 					};
 				};
@@ -275,6 +276,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				INFOPLIST_FILE = SlideToReveal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.$(PRODUCT_NAME:rfc1034identifier)";
@@ -287,6 +289,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				INFOPLIST_FILE = SlideToReveal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.$(PRODUCT_NAME:rfc1034identifier)";
