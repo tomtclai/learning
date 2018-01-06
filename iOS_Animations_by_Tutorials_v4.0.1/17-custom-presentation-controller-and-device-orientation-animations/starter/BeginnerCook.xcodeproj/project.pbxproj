@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7748E7A21FFE14F700ADB7C2 /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7748E7A11FFE14F700ADB7C2 /* PopAnimator.swift */; };
 		9CC38A4D1A04DC6A00000B57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC38A4C1A04DC6A00000B57 /* AppDelegate.swift */; };
 		9CC38A4F1A04DC6A00000B57 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC38A4E1A04DC6A00000B57 /* ViewController.swift */; };
 		9CC38A521A04DC6A00000B57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CC38A501A04DC6A00000B57 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7748E7A11FFE14F700ADB7C2 /* PopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
 		9CC38A471A04DC6A00000B57 /* BeginnerCook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeginnerCook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CC38A4B1A04DC6A00000B57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CC38A4C1A04DC6A00000B57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				9CC38A4E1A04DC6A00000B57 /* ViewController.swift */,
+				7748E7A11FFE14F700ADB7C2 /* PopAnimator.swift */,
 				9CC38A7B1A04E68000000B57 /* HerbModel.swift */,
 				9CC38A811A0502F300000B57 /* HerbDetailsViewController.swift */,
 				9CC38A4C1A04DC6A00000B57 /* AppDelegate.swift */,
@@ -110,6 +113,7 @@
 				TargetAttributes = {
 					9CC38A461A04DC6A00000B57 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = DPRFY9YDG3;
 						LastSwiftMigration = 0900;
 					};
 				};
@@ -154,6 +158,7 @@
 				9CC38A4D1A04DC6A00000B57 /* AppDelegate.swift in Sources */,
 				9CC38A7C1A04E68000000B57 /* HerbModel.swift in Sources */,
 				9CC38A821A0502F300000B57 /* HerbDetailsViewController.swift in Sources */,
+				7748E7A21FFE14F700ADB7C2 /* PopAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +284,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				INFOPLIST_FILE = BeginnerCook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.$(PRODUCT_NAME:rfc1034identifier)";
@@ -292,6 +298,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				INFOPLIST_FILE = BeginnerCook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.$(PRODUCT_NAME:rfc1034identifier)";

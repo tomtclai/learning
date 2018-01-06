@@ -29,12 +29,14 @@ class ViewController: UIViewController {
   @IBOutlet var listView: UIScrollView!
   @IBOutlet var bgImage: UIImageView!
   var selectedImage: UIImageView?
-  
+  let transition = PopAnimator()
   //MARK: UIViewController
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    transition.dismissCompletion = {
+      self.selectedImage!.isHidden = false
+    }
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -107,6 +109,22 @@ class ViewController: UIViewController {
     //present details view controller
     let herbDetails = storyboard!.instantiateViewController(withIdentifier: "HerbDetailsViewController") as! HerbDetailsViewController
     herbDetails.herb = selectedHerb
+    herbDetails.transitioningDelegate = self
     present(herbDetails, animated: true, completion: nil)
+  }
+}
+extension ViewController: UIViewControllerTransitioningDelegate {
+  func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    guard let selectedImage = selectedImage else {
+      return nil
+    }
+    transition.scrollViewCellFrame = selectedImage.superview!.convert(selectedImage.frame, to: nil)
+    transition.direction = .presenting
+    selectedImage.isHidden = true
+    return transition
+  }
+  func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    transition.direction = .dismissing
+    return transition
   }
 }
