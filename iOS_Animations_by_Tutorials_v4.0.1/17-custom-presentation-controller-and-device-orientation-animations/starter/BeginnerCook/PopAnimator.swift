@@ -28,6 +28,7 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     let containerView = transitionContext.containerView
     let toView = transitionContext.view(forKey: .to)!
 
+    var herbDetailsViewController: HerbDetailsViewController?
     var herbDetailView: UIView!
     var toFrame: CGRect!
     var fromFrame: CGRect!
@@ -37,12 +38,14 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     switch direction {
     case .presenting:
       herbDetailView = toView
+      herbDetailsViewController = transitionContext.viewController(forKey: .to) as? HerbDetailsViewController
       toFrame = scrollViewCellFrame
       fromFrame = herbDetailView.frame
       xScaleFactor = toFrame.width / fromFrame.width
       yScaleFactor = toFrame.height / fromFrame.height
     case .dismissing:
       herbDetailView = transitionContext.view(forKey: .from)!
+      herbDetailsViewController = transitionContext.viewController(forKey: .from) as? HerbDetailsViewController
       toFrame = herbDetailView.frame
       fromFrame = scrollViewCellFrame
       xScaleFactor = fromFrame.width / toFrame.width
@@ -56,21 +59,44 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
       herbDetailView.transform = scaleTransform
       herbDetailView.center = CGPoint(x: toFrame.midX, y: toFrame.midY)
       herbDetailView.clipsToBounds = true
+      herbDetailsViewController?.containerView.alpha = 0
     }
 
     containerView.addSubview(toView)
     containerView.bringSubview(toFront: herbDetailView)
 
     UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, animations: {
-      herbDetailView.transform = self.direction == .presenting ?
-        CGAffineTransform.identity : scaleTransform
       herbDetailView.center = CGPoint(x: fromFrame.midX, y: fromFrame.midY)
+      switch self.direction {
+      case .presenting:
+        herbDetailView.transform = .identity
+        // corner radius is one of the few special layer properties UIKit can animate
+//        herbDetailView.layer.cornerRadius = 0
+        herbDetailsViewController?.containerView.alpha = 1
+      case .dismissing:
+        herbDetailView.transform = scaleTransform
+//        herbDetailView.layer.cornerRadius = 20
+        herbDetailsViewController?.containerView.alpha = 0
+      }
+
     }, completion: { _ in
       if self.direction == .dismissing {
         self.dismissCompletion?()
       }
       transitionContext.completeTransition(true)
     })
+
+    let cornerAnimation = CABasicAnimation(keyPath: "cornerRadius")
+    cornerAnimation.duration = duration / 2
+    switch direction {
+    case .presenting:
+      cornerAnimation.fromValue = 20 / xScaleFactor
+      cornerAnimation.toValue = 0
+    case .dismissing:
+      cornerAnimation.fromValue = 0
+      cornerAnimation.toValue = 20 / xScaleFactor
+    }
+    herbDetailView.layer.add(cornerAnimation, forKey: nil)
   }
 
 }

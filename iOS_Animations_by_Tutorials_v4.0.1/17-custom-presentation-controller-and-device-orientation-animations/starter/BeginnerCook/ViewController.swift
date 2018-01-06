@@ -23,7 +23,7 @@
 import UIKit
 
 let herbs = HerbModel.all()
-
+typealias DeviceOrientationTransition = ViewController
 class ViewController: UIViewController {
   
   @IBOutlet var listView: UIScrollView!
@@ -126,5 +126,14 @@ extension ViewController: UIViewControllerTransitioningDelegate {
   func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     transition.direction = .dismissing
     return transition
+  }
+}
+extension DeviceOrientationTransition {
+  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransition(to: size, with: coordinator)
+    coordinator.animate(alongsideTransition: { context in
+      self.bgImage.alpha = size.width > size.height ? 0.25 : 0.55
+      self.positionListItems()
+    }, completion: nil)
   }
 }
