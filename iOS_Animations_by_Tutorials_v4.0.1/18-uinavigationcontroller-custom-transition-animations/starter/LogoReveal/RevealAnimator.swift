@@ -9,17 +9,24 @@
 import UIKit
 
 
-class RevealAnimator: NSObject, UIViewControllerAnimatedTransitioning, CAAnimationDelegate {
-
+class RevealAnimator: UIPercentDrivenInteractiveTransition, UIViewControllerAnimatedTransitioning, CAAnimationDelegate {
+  private var pausedTime: CFTimeInterval = 0
   let animationDuration = 2.0
   var operation: UINavigationControllerOperation = .push
   weak var storedContext: UIViewControllerContextTransitioning?
+  var interactive = false
 
   func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
     return animationDuration
   }
 
   func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    if interactive {
+      let transitionLayer = transitionContext.containerView.layer
+      pausedTime = transitionLayer.convertTime(CACurrentMediaTime(), to: nil)
+      transitionLayer.speed = 0
+      transitionLayer.timeOffset = pausedTime
+    }
     storedContext =  transitionContext
     switch operation {
     case .push:
@@ -74,6 +81,11 @@ class RevealAnimator: NSObject, UIViewControllerAnimatedTransitioning, CAAnimati
     }
   }
 
+  override func update(_ percentComplete: CGFloat) {
+    super.update(percentComplete)
+    let animationProgressInSeconds = TimeInterval(animationDuration) * TimeInterval(percentComplete)
+    storedContext?.containerView.layer.timeOffset = pausedTime + animationProgressInSeconds
+  }
   func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
     if let context = storedContext {
       context.completeTransition(!context.transitionWasCancelled)
@@ -85,5 +97,45 @@ class RevealAnimator: NSObject, UIViewControllerAnimatedTransitioning, CAAnimati
       toVC?.view.layer.mask = nil
     }
     storedContext = nil
+  }
+
+  func handlePan(_ recognizer: UIPanGestureRecognizer) {
+    let translation = recognizer.translation(in: recognizer.view!.superview!)
+    var progress = pythagoreanDistance(translation) / 200
+    progress = min(max(progress, 0.01), 0.99)
+    switch recognizer.state {
+    case .changed:
+      update(progress)
+    case .cancelled, .ended:
+      if progress < 0.5 {
+        cancel()
+      } else {
+        finish()
+      }
+      interactive = false
+    default:
+      break
+    }
+  }
+
+  override func cancel() {
+    restart(forFinishing: false)
+    super.cancel()
+  }
+  override func finish() {
+    restart(forFinishing: true)
+    super.finish()
+  }
+  private func restart(forFinishing: Bool) {
+    if let transitionLayer = storedContext?.containerView.layer {
+      transitionLayer.beginTime = CACurrentMediaTime()
+      transitionLayer.speed = forFinishing ? 1 : -1
+    }
+  }
+  func pythagoreanDistance(_ translation: CGPoint) -> CGFloat {
+    return CGFloat(sqrt(
+        (translation.x * translation.x) +
+        (translation.y * translation.y)
+    ))
   }
 }
