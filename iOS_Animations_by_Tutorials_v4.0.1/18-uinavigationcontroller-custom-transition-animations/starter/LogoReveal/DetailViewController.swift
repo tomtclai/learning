@@ -24,21 +24,35 @@ import UIKit
 import QuartzCore
 
 class DetailViewController: UITableViewController, UINavigationControllerDelegate {
-  
+  weak var transition: RevealAnimator!
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     title = "Pack List"
     tableView.rowHeight = 54.0
   }
-  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+
+    var pan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(didPan(_:)))
+    pan.edges = [.left, .right]
+    view.addGestureRecognizer(pan)
+  }
   // MARK: Table View methods
   let packItems = ["Ice cream money", "Great weather", "Beach ball", "Swimsuit for him", "Swimsuit for her", "Beach games", "Ironing board", "Cocktail mood", "Sunglasses", "Flip flops"]
   
   override func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
-  
+  @objc func didPan(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+    switch recognizer.state {
+    case .began:
+      transition.interactive = true
+      navigationController?.popViewController(animated: true)
+    default:
+      transition.handlePan(recognizer)
+    }
+  }
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return 10
   }

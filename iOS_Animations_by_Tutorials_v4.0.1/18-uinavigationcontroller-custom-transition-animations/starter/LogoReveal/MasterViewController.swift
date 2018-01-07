@@ -63,6 +63,12 @@ class MasterViewController: UIViewController {
       transition.handlePan(recognizer)
     }
   }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "details", let detailVC = segue.destination as? DetailViewController {
+      detailVC.transition = transition
+    }
+  }
 }
 extension MasterViewController: UINavigationControllerDelegate {
   func navigationController(
