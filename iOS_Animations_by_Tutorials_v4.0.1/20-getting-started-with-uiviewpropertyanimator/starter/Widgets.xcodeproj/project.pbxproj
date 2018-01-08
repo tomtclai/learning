@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7760CDC120029C9300C8D424 /* AnimatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7760CDC020029C9300C8D424 /* AnimatorFactory.swift */; };
 		9C125E081DAEEFBF00E352C1 /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C125E071DAEEFBF00E352C1 /* IconCell.swift */; };
 		9C5513E41DB2619E0085E8A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C5513E31DB2619E0085E8A7 /* Assets.xcassets */; };
 		9C7446771DB2995E0075364A /* WidgetsOwnerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7446761DB2995E0075364A /* WidgetsOwnerProtocol.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7760CDC020029C9300C8D424 /* AnimatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorFactory.swift; sourceTree = "<group>"; };
 		9C125E071DAEEFBF00E352C1 /* IconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
 		9C5513E31DB2619E0085E8A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C7446761DB2995E0075364A /* WidgetsOwnerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetsOwnerProtocol.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			children = (
 				9C3A2E341DAFBDD000384C68 /* Widget */,
 				9C9E23F71DAD251B004749FD /* LockScreenViewController.swift */,
+				7760CDC020029C9300C8D424 /* AnimatorFactory.swift */,
 				9CF4C0F41DAE912000F4E30A /* FooterCell.swift */,
 				9C7446761DB2995E0075364A /* WidgetsOwnerProtocol.swift */,
 			);
@@ -152,6 +155,7 @@
 				TargetAttributes = {
 					9C9E23F11DAD251B004749FD = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = DPRFY9YDG3;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -194,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CF4C0F11DAE5D0900F4E30A /* SettingsViewController.swift in Sources */,
+				7760CDC120029C9300C8D424 /* AnimatorFactory.swift in Sources */,
 				9C7446771DB2995E0075364A /* WidgetsOwnerProtocol.swift in Sources */,
 				9CF4C0F51DAE912000F4E30A /* FooterCell.swift in Sources */,
 				9C125E081DAEEFBF00E352C1 /* IconCell.swift in Sources */,
@@ -336,7 +341,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				INFOPLIST_FILE = LockSearch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.Widgets;
@@ -350,7 +355,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				INFOPLIST_FILE = LockSearch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.Widgets;
