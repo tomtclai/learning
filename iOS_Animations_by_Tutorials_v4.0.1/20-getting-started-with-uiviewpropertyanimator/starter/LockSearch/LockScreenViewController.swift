@@ -38,8 +38,7 @@ class LockScreenViewController: UIViewController {
     super.viewDidLoad()
 
     view.bringSubview(toFront: searchBar)
-    blurView.effect = UIBlurEffect(style: .dark)
-    blurView.alpha = 0
+
     blurView.isUserInteractionEnabled = false
     view.insertSubview(blurView, belowSubview: searchBar)
 
@@ -47,9 +46,13 @@ class LockScreenViewController: UIViewController {
     tableView.rowHeight = UITableViewAutomaticDimension
   }
   override func viewDidAppear(_ animated: Bool) {
-    AnimatorFactory.scaleUp(view: tableView).startAnimation()
+    AnimatorFactory.animateConstraint(view: view, constraint: dateTopConstraint, by: 100).startAnimation()
+//    AnimatorFactory.scaleUp(view: tableView).startAnimation()
   }
-
+  override func viewWillAppear(_ animated: Bool) {
+    dateTopConstraint.constant -= 100
+    view.layoutIfNeeded()
+  }
   override func viewWillLayoutSubviews() {
     blurView.frame = view.bounds
   }
@@ -65,7 +68,25 @@ class LockScreenViewController: UIViewController {
   }
 
   func toggleBlur(_ blurred: Bool) {
-    AnimatorFactory.fadeIn(view: blurView, visible: blurred)
+    UIViewPropertyAnimator(duration: 0.55,
+                           controlPoint1: CGPoint(x:0.57, y: -0.4),
+                           controlPoint2: CGPoint(x:0.96, y: 0.87),
+                           animations: blurAnimations(blurred))
+      .startAnimation()
+  }
+
+  func blurAnimations(_ blurred: Bool) -> () -> Void {
+    return {
+      if blurred {
+        self.blurView.effect = UIBlurEffect(style: .dark)
+        self.tableView.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        self.tableView.alpha = 0.33
+      } else {
+        self.blurView.effect = nil
+        self.tableView.transform = .identity
+        self.tableView.alpha = 1
+      }
+    }
   }
 }
 

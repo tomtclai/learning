@@ -43,11 +43,45 @@ class WidgetCell: UITableViewCell {
   @IBAction func toggleShowMore(_ sender: UIButton) {
 
     self.showsMore = !self.showsMore
+//
+//    self.widgetHeight.constant = self.showsMore ? 230 : 130
+//    self.tableView?.reloadData()
+//
+//    widgetView.expanded = showsMore
+//    widgetView.reload()
+    let animations = {
+      self.widgetHeight.constant = self.showsMore ? 230 : 130
+      if let tableView = self.tableView {
+        // a little trick, first you change the constraints. then you call begin updates and end updates so UIKit will ask all cells about their height and layout as needed
+          tableView.beginUpdates()
+          tableView.endUpdates()
+          tableView.layoutIfNeeded()
+      }
+    }
 
-    self.widgetHeight.constant = self.showsMore ? 230 : 130
-    self.tableView?.reloadData()
+    let textTransition = {
+      UIView.transition(with: sender, duration: 0.25, options: .transitionFlipFromTop, animations: {
+        sender.setTitle(self.showsMore ? "Show Less" : "Show More", for: .normal)
+      }, completion: nil)
+    }
 
+    let spring = UISpringTimingParameters(mass: 30, stiffness: 1000, damping: 300, initialVelocity: CGVector(dx: 5, dy: 0))
+    let shouldAddAnimation = toggleHeightAnimator != nil && toggleHeightAnimator!.isRunning
+    if shouldAddAnimation {
+      toggleHeightAnimator!.pauseAnimation()
+    } else {
+      toggleHeightAnimator = UIViewPropertyAnimator(duration: 0, timingParameters: spring)
+    }
+    toggleHeightAnimator?.addAnimations(animations)
+    toggleHeightAnimator?.addAnimations(textTransition, delayFactor: 0.5)
+
+    if shouldAddAnimation {
+      toggleHeightAnimator?.continueAnimation(withTimingParameters: spring, durationFactor: 1)
+    } else {
+      toggleHeightAnimator?.startAnimation()
+    }
     widgetView.expanded = showsMore
     widgetView.reload()
+
   }
 }
