@@ -77,6 +77,7 @@ class WidgetCell: UITableViewCell {
 
     if shouldAddAnimation {
       toggleHeightAnimator?.continueAnimation(withTimingParameters: spring, durationFactor: 1)
+
     } else {
       toggleHeightAnimator?.startAnimation()
     }

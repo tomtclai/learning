@@ -57,6 +57,7 @@ extension WidgetView: UIPreviewInteractionDelegate {
   
   public func previewInteractionDidCancel(_ previewInteraction: UIPreviewInteraction) {
     owner.cancelPreview()
+    print("cancelPreview")
   }
   
   func previewInteractionShouldBegin(_ previewInteraction: UIPreviewInteraction) -> Bool {

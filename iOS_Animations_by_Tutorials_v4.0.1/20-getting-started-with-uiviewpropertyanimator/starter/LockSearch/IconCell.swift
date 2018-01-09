@@ -30,7 +30,7 @@ class IconCell: UICollectionViewCell {
     if let animator = animator, animator.isRunning {
       return
     }
-    animator = AnimatorFactory.jiggle(view: icon)
+    animator = AnimatorFactory.jiggle(view: self)
 
   }
 }

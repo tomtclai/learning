@@ -18,9 +18,6 @@ class AnimatorFactory {
     scale.addAnimations({
       view.transform = CGAffineTransform.identity
     }, delayFactor: 0.33)
-    scale.addCompletion { _ in
-      print("ready")
-    }
     return scale
   }
 
@@ -62,5 +59,51 @@ class AnimatorFactory {
       view.layoutIfNeeded()
     }
     return animator
+  }
+
+  static func grow(view: UIVisualEffectView, blurView: UIVisualEffectView) -> UIViewPropertyAnimator {
+    view.contentView.alpha = 0
+    view.transform = .identity
+
+    let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeIn)
+
+    animator.addAnimations {
+      blurView.effect = UIBlurEffect(style: .dark)
+      view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+    }
+
+    animator.addCompletion { position in
+      switch position {
+      case .start:
+        blurView.effect = nil
+      case .end:
+        blurView.effect = UIBlurEffect(style: .dark)
+      default: break
+      }
+    }
+
+    return animator
+  }
+
+  static func reset(frame: CGRect, view: UIVisualEffectView, blurView: UIVisualEffectView) -> UIViewPropertyAnimator {
+    return UIViewPropertyAnimator(duration: 0.5, dampingRatio: 0.7) {
+      view.transform = .identity
+      view.frame = frame
+      view.contentView.alpha = 0
+
+      blurView.effect = nil
+    }
+  }
+  static func complete(view: UIVisualEffectView) -> UIViewPropertyAnimator {
+    return UIViewPropertyAnimator(duration: 0.3, dampingRatio: 0.7, animations: {
+      view.contentView.alpha = 1
+      view.transform = .identity
+      let mutiplier: CGFloat = 3/5
+      view.frame = CGRect(
+        x: view.frame.minX * mutiplier,
+        y: view.frame.minY - 60 - 8,
+        width: view.frame.width + 120,
+        height: 60)
+    })
   }
 }
