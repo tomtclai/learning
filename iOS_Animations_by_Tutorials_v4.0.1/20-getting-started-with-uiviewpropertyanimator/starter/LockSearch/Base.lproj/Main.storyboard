@@ -350,7 +350,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ow3-yd-imm" firstAttribute="top" secondItem="Jpv-13-gDQ" secondAttribute="bottom" id="AY4-jl-VyI"/>
                             <constraint firstItem="5E3-Rd-5GW" firstAttribute="top" secondItem="ow3-yd-imm" secondAttribute="top" id="EVw-X9-Exs"/>
