@@ -25,6 +25,7 @@
 import UIKit
 
 class LockScreenViewController: UIViewController {
+  let threshold: CGFloat = -30
 
   @IBOutlet weak var searchBar: UISearchBar!
   @IBOutlet weak var tableView: UITableView!
@@ -34,6 +35,9 @@ class LockScreenViewController: UIViewController {
   var previewView: UIView?
   var previewAnimator: UIViewPropertyAnimator?
   let presentTransition = PresentTransition()
+  var isDragging = false
+  var isPresentingSettings = false
+  var touchesStartPointY: CGFloat?
 
   let blurView = UIVisualEffectView(effect: nil)
   let previewEffectView = IconEffectView(blur: .extraLight)
@@ -70,9 +74,34 @@ class LockScreenViewController: UIViewController {
     return .lightContent
   }
 
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    guard presentTransition.wantsInteractiveStart == false, presentTransition.animator != nil else {
+      return
+    }
+    touchesStartPointY = touches.first!.location(in: view).y
+    presentTransition.interruptTransition()
+  }
+  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    guard let startY = touchesStartPointY else {
+      return
+    }
+
+    let currentPoint = touches.first!.location(in: view).y
+    if currentPoint < startY - 40 { // touch going up
+      touchesStartPointY = nil
+      presentTransition.animator?.addCompletion {_ in
+        self.blurView.effect = nil
+      }
+      presentTransition.cancel()
+    } else if currentPoint > startY + 40 { // touch going down
+      touchesStartPointY = nil
+      presentTransition.finish()
+    }
+  }
   @IBAction func presentSettings(_ sender: Any? = nil) {
     //present the view controller
     presentTransition.auxAnimations = blurAnimations(true)
+    presentTransition.auxAnimationsCancel = blurAnimations(false)
     settingsController = storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
     settingsController.transitioningDelegate = self
     settingsController.didDismiss = { [weak self] in
@@ -174,6 +203,7 @@ extension LockScreenViewController: UITableViewDataSource {
     if indexPath.row == 1 {
       let cell = tableView.dequeueReusableCell(withIdentifier: "Footer") as! FooterCell
       cell.didPressEdit = {[unowned self] in
+        self.presentTransition.wantsInteractiveStart = false
         self.presentSettings()
       }
       return cell
@@ -206,5 +236,41 @@ extension LockScreenViewController: UISearchBarDelegate {
 extension LockScreenViewController: UIViewControllerTransitioningDelegate {
   func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     return presentTransition
+  }
+
+  func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    return presentTransition
+  }
+}
+
+extension LockScreenViewController: UIScrollViewDelegate {
+  func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    isDragging = true
+  }
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    guard isDragging else {
+      return
+    }
+    if !isPresentingSettings, scrollView.contentOffset.y < -30 {
+      isPresentingSettings = true
+      presentTransition.wantsInteractiveStart = true
+      presentSettings()
+      return
+    }
+    if isPresentingSettings {
+      let progress = max(0, min(1, (threshold - scrollView.contentOffset.y) / 90.0))
+      presentTransition.update(progress)
+    }
+  }
+  func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    let progress = max(0.0, min(1, (threshold - scrollView.contentOffset.y) / 90.0))
+    if progress > 0.5 {
+      presentTransition.finish()
+    } else {
+      presentTransition.cancel()
+    }
+
+    isPresentingSettings = false
+    isDragging = false
   }
 }

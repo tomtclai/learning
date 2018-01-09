@@ -8,10 +8,12 @@
 
 import UIKit
 typealias EmptyCallback = (()-> Void)?
-class PresentTransition: NSObject, UIViewControllerAnimatedTransitioning {
+class PresentTransition: UIPercentDrivenInteractiveTransition, UIViewControllerAnimatedTransitioning {
 
   var auxAnimations: EmptyCallback = nil
   var auxAnimationsCancel: EmptyCallback = nil
+  var context: UIViewControllerContextTransitioning?
+  var animator: UIViewPropertyAnimator?
 
   func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
     return 0.75
@@ -51,9 +53,38 @@ class PresentTransition: NSObject, UIViewControllerAnimatedTransitioning {
       animator.addAnimations(auxAnimations)
     }
 
-    animator.addCompletion{_ in
-      transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+    animator.addCompletion{ position in
+      switch position {
+      case .end:
+        transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+      default:
+        transitionContext.completeTransition(false)
+        self.auxAnimationsCancel?()
+      }
     }
+
+    self.animator = animator
+    self.context = transitionContext
+
+    animator.addCompletion { [weak self] _ in
+      self?.animator = nil
+      self?.context = nil
+    }
+
+    animator.isUserInteractionEnabled = true
     return animator
+  }
+
+  func interruptTransition() {
+    guard let context = context else {
+      return
+    }
+
+    context.pauseInteractiveTransition()
+    pause()
+  }
+
+  func interruptibleAnimator(using transitionContext: UIViewControllerContextTransitioning) -> UIViewImplicitlyAnimating {
+    return transitionAnimator(using: transitionContext)
   }
 }
