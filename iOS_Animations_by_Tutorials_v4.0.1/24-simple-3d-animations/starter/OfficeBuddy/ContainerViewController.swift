@@ -128,8 +128,25 @@ class ContainerViewController: UIViewController {
     centerViewController.view.frame.origin.x = menuWidth * CGFloat(percent)
     menuViewController.view.layer.transform = menuTransform(percent: percent)
     menuViewController.view.alpha = CGFloat(max(0.2, percent))
-  }
+    let centerVC = centerViewController.viewControllers.first as? CenterViewController
+    if let menuButton = centerVC?.menuButton {
+      menuButton.imageView.layer.transform = menuImageTransform(percent: percent)
+    }
 
+
+  }
+  func menuImageTransform(percent: CGFloat) -> CATransform3D {
+    var identity = CATransform3DIdentity
+
+    identity.m34 = -1/1000
+    // at 0 percent, the angle is 0, as percent increase we increase it to 180 ( pi)
+    let angle = percent * .pi
+
+    // rotate along the x and y axis
+    let rotationTransForm = CATransform3DRotate(identity, angle, 1, 1, 0)
+
+    return rotationTransForm
+  }
   func menuTransform(percent: CGFloat) -> CATransform3D {
     var identity = CATransform3DIdentity
     // Why is this property called m34? view and layer transformations are expressed as two dimensional math matrices. In the case of a layer transform matrix, the element in the 3rd row at the 4th colomn sets your z axis perspective
