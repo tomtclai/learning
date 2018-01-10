@@ -132,6 +132,7 @@
 				TargetAttributes = {
 					9CE1EF251A3724FD0075F614 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = DPRFY9YDG3;
 						LastSwiftMigration = 0900;
 					};
 				};
@@ -303,6 +304,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				INFOPLIST_FILE = OfficeBuddy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.$(PRODUCT_NAME:rfc1034identifier)";
@@ -316,6 +318,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				INFOPLIST_FILE = OfficeBuddy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.$(PRODUCT_NAME:rfc1034identifier)";

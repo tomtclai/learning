@@ -60,12 +60,14 @@ class ContainerViewController: UIViewController {
     addChildViewController(menuViewController)
     view.addSubview(menuViewController.view)
     menuViewController.didMove(toParentViewController: self)
-    
+
+    menuViewController.view.layer.anchorPoint.x = 1.0
     menuViewController.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: view.frame.height)
     (menuViewController as! SideMenuViewController).headerHeight = centerViewController.navigationBar.frame.size.height
     
     let panGesture = UIPanGestureRecognizer(target:self, action:#selector(ContainerViewController.handleGesture(_:)))
     view.addGestureRecognizer(panGesture)
+    setMenu(toPercent: 0)
   }
   
   @objc func handleGesture(_ recognizer: UIPanGestureRecognizer) {
@@ -79,13 +81,14 @@ class ContainerViewController: UIViewController {
     case .began:
       let isOpen = floor(centerViewController.view.frame.origin.x/menuWidth)
       isOpening = isOpen == 1.0 ? false: true
+      // Don't want zigzags as I rotate
+      menuViewController.view.layer.shouldRasterize = true
+      menuViewController.view.layer.rasterizationScale = UIScreen.main.scale
       
     case .changed:
       setMenu(toPercent: isOpening ? progress: (1.0 - progress))
       
-    case .ended: fallthrough
-    case .cancelled: fallthrough
-    case .failed:
+    case .ended, .cancelled, .failed:
       
       var targetProgress: CGFloat
       if (isOpening) {
@@ -102,7 +105,7 @@ class ContainerViewController: UIViewController {
           
         }
       )
-      
+      self.menuViewController.view.layer.shouldRasterize = false
     default: break
     }
   }
@@ -123,7 +126,23 @@ class ContainerViewController: UIViewController {
   
   func setMenu(toPercent percent: CGFloat) {
     centerViewController.view.frame.origin.x = menuWidth * CGFloat(percent)
-    menuViewController.view.frame.origin.x = menuWidth * CGFloat(percent) - menuWidth
+    menuViewController.view.layer.transform = menuTransform(percent: percent)
+    menuViewController.view.alpha = CGFloat(max(0.2, percent))
   }
-  
+
+  func menuTransform(percent: CGFloat) -> CATransform3D {
+    var identity = CATransform3DIdentity
+    // Why is this property called m34? view and layer transformations are expressed as two dimensional math matrices. In the case of a layer transform matrix, the element in the 3rd row at the 4th colomn sets your z axis perspective
+    identity.m34 = -1/1000
+
+    // at 0 percent, the angle is 90 degrees away (half pi). As percent increases we reduce angle back to 0
+    let angle = (1 - percent) * -.pi / 2
+
+    // Here you use rotationTransform to rotate the layer away from you around its y axis.
+    let rotationTransform = CATransform3DRotate(identity, angle, 0, 1, 0)
+    // The menu is moving in from the left, so you also create a translation transform to move it along the x axis, eventually to menu width at 100%.
+    let translationTransform = CATransform3DMakeTranslation(menuWidth * percent, 0, 0)
+    // Finally, you concatenate the two transforms and return the result.
+    return CATransform3DConcat(rotationTransform, translationTransform)
+  }
 }
