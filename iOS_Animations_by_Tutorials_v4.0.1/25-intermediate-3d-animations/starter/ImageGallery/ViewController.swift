@@ -24,7 +24,7 @@ import UIKit
 import QuartzCore
 
 class ViewController: UIViewController {
-  
+  var isGalleryOpen = false
   let images = [
     ImageViewCard(imageNamed: "Hurricane_Katia.jpg", title: "Hurricane Katia"),
     ImageViewCard(imageNamed: "Hurricane_Douglas.jpg", title: "Hurricane Douglas"),
@@ -61,6 +61,20 @@ class ViewController: UIViewController {
   
   @IBAction func toggleGallery(_ sender: AnyObject) {
     var imageYOffset: CGFloat = 50
+    guard !isGalleryOpen else {
+      for subview in view.subviews {
+        if let subview = subview as? ImageViewCard {
+          let revert = CABasicAnimation(keyPath: "transform")
+          revert.fromValue = NSValue(caTransform3D: subview.layer.transform)
+          revert.toValue = NSValue(caTransform3D: CATransform3DIdentity)
+          revert.duration = 0.33
+          subview.layer.add(revert, forKey: nil)
+          subview.layer.transform = CATransform3DIdentity
+        }
+      }
+      isGalleryOpen = false
+      return
+    }
     for subview in view.subviews {
       guard let image = subview as? ImageViewCard else {
         continue
@@ -79,6 +93,7 @@ class ViewController: UIViewController {
       image.layer.add(animation, forKey: nil)
       image.layer.transform = imageTransform
     }
+    isGalleryOpen = true
   }
 
   func selectImage(selectedImage: ImageViewCard) {
@@ -102,5 +117,6 @@ class ViewController: UIViewController {
         })
       }
     }
+    isGalleryOpen = false
   }
 }
