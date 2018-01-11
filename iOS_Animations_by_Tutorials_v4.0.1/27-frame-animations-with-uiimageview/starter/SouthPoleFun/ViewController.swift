@@ -27,7 +27,13 @@ class ViewController: UIViewController {
   @IBOutlet var penguin: UIImageView!
   @IBOutlet var slideButton: UIButton!
   
-  var isLookingRight: Bool = true
+  var isLookingRight: Bool = true {
+    didSet {
+      let xScale: CGFloat = isLookingRight ? 1 : -1
+      penguin.transform = CGAffineTransform(scaleX: xScale, y: 1)
+      slideButton.transform = penguin.transform
+    }
+  }
   var penguinY: CGFloat = 0.0
   
   var walkSize: CGSize = CGSize.zero
@@ -35,18 +41,9 @@ class ViewController: UIViewController {
   
   let animationDuration = 1.0
   
-  var walkFrames = [
-    UIImage(named: "walk01.png")!,
-    UIImage(named: "walk02.png")!,
-    UIImage(named: "walk03.png")!,
-    UIImage(named: "walk04.png")!
-  ]
+  var walkFrames = [#imageLiteral(resourceName: "walk01"), #imageLiteral(resourceName: "walk02"), #imageLiteral(resourceName: "walk03"), #imageLiteral(resourceName: "walk04")]
   
-  var slideFrames = [
-    UIImage(named: "slide01.png")!,
-    UIImage(named: "slide02.png")!,
-    UIImage(named: "slide01.png")!
-  ]
+  var slideFrames = [#imageLiteral(resourceName: "slide01"), #imageLiteral(resourceName: "slide02")]
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -58,11 +55,15 @@ class ViewController: UIViewController {
     
     //setup the animation
     penguinY = penguin.frame.origin.y
+
+    loadWalkAnimation()
     
   }
   
   func loadWalkAnimation() {
-    
+    penguin.animationImages = walkFrames
+    penguin.animationDuration = animationDuration / 3
+    penguin.animationRepeatCount = 3
   }
   
   func loadSlideAnimation() {
@@ -70,11 +71,20 @@ class ViewController: UIViewController {
   }
   
   @IBAction func actionLeft(_ sender: AnyObject) {
-    
+    isLookingRight = false
+    penguinWalk(translation: -walkSize.width)
   }
-  
+
+  func penguinWalk(translation: CGFloat) {
+    penguin.startAnimating()
+    UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseOut, animations: {
+      self.penguin.center.x += translation
+    }, completion: nil)
+  }
+
   @IBAction func actionRight(_ sender: AnyObject) {
-    
+    isLookingRight = true
+    penguinWalk(translation: +walkSize.width)
   }
   
   @IBAction func actionSlide(_ sender: AnyObject) {
