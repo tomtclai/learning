@@ -24,7 +24,8 @@ import UIKit
 import QuartzCore
 
 class ViewController: UIViewController {
-  
+  @IBOutlet weak var effectView: UIVisualEffectView!
+
   @IBOutlet var bgImageView: UIImageView!
   
   @IBOutlet var summaryIcon: UIImageView!
@@ -51,9 +52,43 @@ class ViewController: UIViewController {
     //start rotating the flights
     changeFlightDataTo(londonToParis)
     
-    
+    let rect = CGRect(x: 0, y: -70, width: view.bounds.width, height: 50)
+    let emitter = CAEmitterLayer()
+    emitter.frame = rect
+    view.layer.addSublayer(emitter)
+    view.bringSubview(toFront: effectView)
+
+    emitter.emitterShape = kCAEmitterLayerRectangle
+    emitter.emitterPosition = CGPoint(x: rect.width/2, y: rect.height/2)
+    emitter.emitterSize = rect.size
+    emitter.emitterCells = [#imageLiteral(resourceName: "flake1"), #imageLiteral(resourceName: "flake2"), #imageLiteral(resourceName: "flake3"), #imageLiteral(resourceName: "flake4")].map(makeEmitterCell)
   }
-  
+
+  func makeEmitterCell(image: UIImage) -> CAEmitterCell {
+    let emitterCell = CAEmitterCell()
+    emitterCell.contents = image.cgImage
+    emitterCell.birthRate = 37
+    emitterCell.lifetime = 5.5
+    emitterCell.yAcceleration = 70
+    emitterCell.xAcceleration = 10
+    emitterCell.velocity = 20
+    emitterCell.emissionLongitude = -.pi
+    emitterCell.velocityRange = 200
+    emitterCell.emissionRange = .pi * 0.5
+    emitterCell.color = UIColor(red: 0.9, green: 1, blue: 1, alpha: 1).cgColor
+    emitterCell.blueRange = 0.1
+    emitterCell.redRange = 0.1
+    emitterCell.greenRange = 0.1
+    emitterCell.scale = 0.8
+    emitterCell.scaleRange = 0.8
+    emitterCell.scaleSpeed = -0.15
+    emitterCell.alphaRange = 0.75
+    emitterCell.alphaSpeed = -0.15
+    emitterCell.lifetimeRange = 1.0
+    emitterCell.spin = 2 * .pi
+    emitterCell.spinRange = 2 * .pi
+    return emitterCell
+  }
   //MARK: custom methods
   
   func changeFlightDataTo(_ data: FlightData) {

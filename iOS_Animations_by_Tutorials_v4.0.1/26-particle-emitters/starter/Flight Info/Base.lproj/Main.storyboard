@@ -114,6 +114,7 @@
                         <outlet property="arrivingTo" destination="ztY-G1-uag" id="e1e-rb-fsL"/>
                         <outlet property="bgImageView" destination="hw7-Z5-Erh" id="Wvw-Q4-d90"/>
                         <outlet property="departingFrom" destination="F05-Lv-e4P" id="FNL-es-Kai"/>
+                        <outlet property="effectView" destination="OeJ-vW-tu3" id="oEi-FD-hGt"/>
                         <outlet property="flightNr" destination="4nT-Kh-9b6" id="axj-2z-LFO"/>
                         <outlet property="flightStatus" destination="o46-P0-lk3" id="pau-Ak-BXR"/>
                         <outlet property="gateNr" destination="D15-jf-ADn" id="8Fd-dv-fKE"/>
