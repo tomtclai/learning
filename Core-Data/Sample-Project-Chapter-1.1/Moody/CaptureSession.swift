@@ -68,9 +68,9 @@ class CaptureSession: NSObject {
 
     fileprivate func setup() {
         #if !IOS_SIMULATOR
-        session.sessionPreset = AVCaptureSessionPresetPhoto
-            let discovery = AVCaptureDeviceDiscoverySession(__deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaTypeVideo, position: .back)
-        if let camera = discovery?.devices.first {
+          session.sessionPreset = .photo
+          let discovery = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back)
+          if let camera = discovery.devices.first {
             let input = try! AVCaptureDeviceInput(device: camera)
             if session.canAddInput(input) {
                 session.addInput(input)
@@ -84,7 +84,7 @@ class CaptureSession: NSObject {
     }
 
     fileprivate func requestAuthorization() {
-        AVCaptureDevice.requestAccess(for: AVMediaType.video) { authorized in
+        AVCaptureDevice.requestAccess(for: .video) { authorized in
             DispatchQueue.main.async {
                 self.delegate.captureSessionDidChangeAuthorizationStatus(authorized: authorized)
                 guard authorized else { return }
