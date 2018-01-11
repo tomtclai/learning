@@ -7,7 +7,7 @@ This repository contains work and/or practices I typed going through various mat
  - [Objective-C Programming: The Big Nerd Ranch Guide](Objective-C-by-Aaron-Hillegass/)
  - [iOS Programming: The Big Nerd Ranch Guide](iOS-Programming/)
  - [iOS Developer Nanodegree](Udacity-iOS-Nanodegree)
-
+ - [iOS Animations by Tutorials](iOS_Animations_by_Tutorials_v4.0.1)
 <!-- - [iTunes U: Developing iOS 7 Apps for iPhone and iPad](Developing-iOS-7-Apps-for-iPhone-and-iPad/)-->
 
 
