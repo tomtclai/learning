@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="asw-Je-YNc">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="83X-is-B7H">
+            <objects>
+                <tabBarController id="asw-Je-YNc" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="C0F-tg-YTC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="selectedImageTintColor" red="0.39277971509999998" green="0.77307859050000005" blue="0.83349204060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="uRc-ft-lp0" kind="relationship" relationship="viewControllers" id="jDr-Si-L3p"/>
+                        <segue destination="Bjh-mU-xic" kind="relationship" relationship="viewControllers" id="nw7-so-PVw"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m1N-sV-3p5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-999" y="-22"/>
+        </scene>
+        <!--Contracts-->
+        <scene sceneID="vr1-10-1gS">
+            <objects>
+                <tableViewController id="Fe6-gN-7Ku" customClass="ContractsTableViewController" customModule="WenderlichBeverages" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rzb-B9-p0E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="DSB-g8-5oi">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DSB-g8-5oi" id="h15-wX-iJM">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="hel-Xq-X8b" kind="show" identifier="CurrentContractSegue" id="g4u-g4-XFf"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Fe6-gN-7Ku" id="9Ng-vm-xeW"/>
+                            <outlet property="delegate" destination="Fe6-gN-7Ku" id="fHi-uD-vNY"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Contracts" id="tM0-Hg-cp4">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Zjo-Qo-g0h"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="72q-F1-9uJ">
+                            <connections>
+                                <segue destination="hel-Xq-X8b" kind="show" identifier="NewContractSegue" id="4Ul-hR-zTZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p9a-z2-dQR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="702" y="311"/>
+        </scene>
+        <!--Wenderlich Beverages-->
+        <scene sceneID="RvD-Id-wUa">
+            <objects>
+                <viewController id="V9I-Ad-uwh" customClass="HomeViewController" customModule="WenderlichBeverages" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uhK-wh-3Kk"/>
+                        <viewControllerLayoutGuide type="bottom" id="LQf-Mw-h7K"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zX0-7f-Gwt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="IuW-XE-e7L">
+                                <rect key="frame" x="16" y="124" width="343" height="486"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6b-2P-gBH">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="s2p-pD-bWl"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="X4K-Zw-695">
+                                        <rect key="frame" x="0.0" y="36" width="343" height="450"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Your Sales Documents" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPa-dI-5HX">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20.5" id="Uld-ci-t7D"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="f1A-8G-IsR">
+                                                <rect key="frame" x="0.0" y="28.5" width="343" height="421.5"/>
+                                                <subviews>
+                                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6rc-2l-J7O">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="207"/>
+                                                        <gestureRecognizers/>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="tOd-ha-4tO" appends="YES" id="fTz-mm-2Zd"/>
+                                                        </connections>
+                                                    </imageView>
+                                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6IB-j0-A8x">
+                                                        <rect key="frame" x="0.0" y="215" width="343" height="206.5"/>
+                                                        <gestureRecognizers/>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="BvP-MK-YXb" appends="YES" id="EbM-8w-qtj"/>
+                                                        </connections>
+                                                    </imageView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LQf-Mw-h7K" firstAttribute="top" secondItem="IuW-XE-e7L" secondAttribute="bottomMargin" constant="8" id="1Vq-3b-ROA"/>
+                            <constraint firstItem="IuW-XE-e7L" firstAttribute="leading" secondItem="zX0-7f-Gwt" secondAttribute="leadingMargin" id="Arg-4x-sos"/>
+                            <constraint firstItem="IuW-XE-e7L" firstAttribute="topMargin" secondItem="uhK-wh-3Kk" secondAttribute="bottom" constant="8" id="wPN-Bc-IJV"/>
+                            <constraint firstItem="IuW-XE-e7L" firstAttribute="trailing" secondItem="zX0-7f-Gwt" secondAttribute="trailingMargin" id="xZa-AP-bJ8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Wenderlich Beverages" largeTitleDisplayMode="always" id="Dsf-lp-u3Z">
+                        <barButtonItem key="backBarButtonItem" title=" " id="28F-kx-M3L"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="documentsStackView" destination="f1A-8G-IsR" id="ijW-Pv-OnE"/>
+                        <outlet property="imageView1" destination="6rc-2l-J7O" id="2GF-Fv-aqs"/>
+                        <outlet property="imageView2" destination="6IB-j0-A8x" id="z8V-Qq-SOH"/>
+                        <segue destination="hel-Xq-X8b" kind="show" identifier="ShowDocumentSegue" id="ayz-eL-Bno"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="exS-G7-Cxt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="tOd-ha-4tO">
+                    <connections>
+                        <action selector="showDocument:" destination="V9I-Ad-uwh" id="7bm-kg-OAy"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="BvP-MK-YXb">
+                    <connections>
+                        <action selector="showDocument:" destination="V9I-Ad-uwh" id="w0g-sg-Iw4"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="702" y="-347"/>
+        </scene>
+        <!--DocumentViewController-->
+        <scene sceneID="lBH-eh-hHm">
+            <objects>
+                <viewController title="DocumentViewController" id="hel-Xq-X8b" customClass="DocumentViewController" customModule="WenderlichBeverages" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EKw-4R-Zrr"/>
+                        <viewControllerLayoutGuide type="bottom" id="QnH-5f-IWh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Php-B0-TF0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gcp-G8-g56" customClass="PDFView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QnH-5f-IWh" firstAttribute="top" secondItem="gcp-G8-g56" secondAttribute="bottom" id="C9G-cY-gLl"/>
+                            <constraint firstAttribute="trailing" secondItem="gcp-G8-g56" secondAttribute="trailing" id="FJV-bS-cfG"/>
+                            <constraint firstItem="gcp-G8-g56" firstAttribute="leading" secondItem="Php-B0-TF0" secondAttribute="leading" id="Hxh-Ao-x7w"/>
+                            <constraint firstItem="gcp-G8-g56" firstAttribute="top" secondItem="EKw-4R-Zrr" secondAttribute="bottom" id="hyZ-A3-lVp"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="never" id="oOU-SC-3Ke">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="KEV-8J-5rd">
+                            <connections>
+                                <action selector="saveAnnotations:" destination="hel-Xq-X8b" id="cci-1D-aj7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="pdfView" destination="gcp-G8-g56" id="6g7-VM-F6c"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KKU-6C-HTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1778" y="-22"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="XwR-FX-mzf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uRc-ft-lp0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="shed" id="enh-ki-Z1R"/>
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" largeTitles="YES" id="ayj-OO-dHZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.39277971506452308" green="0.77307859049962779" blue="0.83349204063415527" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="V9I-Ad-uwh" kind="relationship" relationship="rootViewController" id="xE9-dF-H3U"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MFc-Tp-lZ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-71" y="-346"/>
+        </scene>
+        <!--Contracts-->
+        <scene sceneID="lWu-ms-3Cr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bjh-mU-xic" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Contracts" image="scroll" id="ECy-vu-M5e"/>
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" largeTitles="YES" id="kcb-ez-hTH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.39277971509999998" green="0.77307859050000005" blue="0.83349204060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Fe6-gN-7Ku" kind="relationship" relationship="rootViewController" id="MU9-6z-tmb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Iuc-2x-CQX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-71" y="311"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="scroll" width="30" height="30"/>
+        <image name="shed" width="30" height="30"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ayz-eL-Bno"/>
+    </inferredMetricsTieBreakers>
+</document>

@@ -1,0 +1,360 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A1A4C4921F0462D60006518C /* SegueIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A4C4911F0462D60006518C /* SegueIdentifiers.swift */; };
+		A1A4C4941F0465C00006518C /* LockedMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A4C4931F0465C00006518C /* LockedMark.swift */; };
+		A1A4C4981F048F2C0006518C /* ContractsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A4C4971F048F2C0006518C /* ContractsTableViewController.swift */; };
+		A1CAE9521F0EE0D000284191 /* contractTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A1A4C4A51F0EDF0D0006518C /* contractTemplate.pdf */; };
+		A1CAE9531F0EE0D000284191 /* wbCola.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A1A4C4A41F0EDF0D0006518C /* wbCola.pdf */; };
+		A1CAE9541F0EE0D000284191 /* wbRaysReserve.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A1A4C4A31F0EDF0D0006518C /* wbRaysReserve.pdf */; };
+		A1EAC4FA1F030D5C00CBDDF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EAC4F91F030D5C00CBDDF4 /* AppDelegate.swift */; };
+		A1EAC4FF1F030D5C00CBDDF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1EAC4FD1F030D5C00CBDDF4 /* Main.storyboard */; };
+		A1EAC5011F030D5C00CBDDF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1EAC5001F030D5C00CBDDF4 /* Assets.xcassets */; };
+		A1EAC5041F030D5C00CBDDF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1EAC5021F030D5C00CBDDF4 /* LaunchScreen.storyboard */; };
+		A1EAC50C1F03102300CBDDF4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EAC50B1F03102300CBDDF4 /* HomeViewController.swift */; };
+		A1EAC5181F032A0600CBDDF4 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EAC5171F032A0600CBDDF4 /* DocumentViewController.swift */; };
+		A1EAC51A1F045FD800CBDDF4 /* FileUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EAC5191F045FD800CBDDF4 /* FileUtilities.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A1A4C4911F0462D60006518C /* SegueIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueIdentifiers.swift; sourceTree = "<group>"; };
+		A1A4C4931F0465C00006518C /* LockedMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedMark.swift; sourceTree = "<group>"; };
+		A1A4C4971F048F2C0006518C /* ContractsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractsTableViewController.swift; sourceTree = "<group>"; };
+		A1A4C4A31F0EDF0D0006518C /* wbRaysReserve.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = wbRaysReserve.pdf; sourceTree = "<group>"; };
+		A1A4C4A41F0EDF0D0006518C /* wbCola.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = wbCola.pdf; sourceTree = "<group>"; };
+		A1A4C4A51F0EDF0D0006518C /* contractTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = contractTemplate.pdf; sourceTree = "<group>"; };
+		A1EAC4F61F030D5C00CBDDF4 /* WenderlichBeverages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WenderlichBeverages.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1EAC4F91F030D5C00CBDDF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A1EAC4FE1F030D5C00CBDDF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A1EAC5001F030D5C00CBDDF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A1EAC5031F030D5C00CBDDF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A1EAC5051F030D5C00CBDDF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1EAC50B1F03102300CBDDF4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A1EAC5171F032A0600CBDDF4 /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
+		A1EAC5191F045FD800CBDDF4 /* FileUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtilities.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A1EAC4F31F030D5C00CBDDF4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A1EAC4ED1F030D5C00CBDDF4 = {
+			isa = PBXGroup;
+			children = (
+				A1EAC4F81F030D5C00CBDDF4 /* WenderlichBeverages */,
+				A1EAC4F71F030D5C00CBDDF4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A1EAC4F71F030D5C00CBDDF4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1EAC4F61F030D5C00CBDDF4 /* WenderlichBeverages.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A1EAC4F81F030D5C00CBDDF4 /* WenderlichBeverages */ = {
+			isa = PBXGroup;
+			children = (
+				A1EAC4F91F030D5C00CBDDF4 /* AppDelegate.swift */,
+				A1EAC50B1F03102300CBDDF4 /* HomeViewController.swift */,
+				A1A4C4971F048F2C0006518C /* ContractsTableViewController.swift */,
+				A1EAC5171F032A0600CBDDF4 /* DocumentViewController.swift */,
+				A1EAC5191F045FD800CBDDF4 /* FileUtilities.swift */,
+				A1A4C4911F0462D60006518C /* SegueIdentifiers.swift */,
+				A1A4C4931F0465C00006518C /* LockedMark.swift */,
+				A1EAC4FD1F030D5C00CBDDF4 /* Main.storyboard */,
+				A1EAC5001F030D5C00CBDDF4 /* Assets.xcassets */,
+				A1EAC5021F030D5C00CBDDF4 /* LaunchScreen.storyboard */,
+				A1EAC5051F030D5C00CBDDF4 /* Info.plist */,
+				A1EAC50F1F031B0400CBDDF4 /* Sales Documents */,
+			);
+			path = WenderlichBeverages;
+			sourceTree = "<group>";
+		};
+		A1EAC50F1F031B0400CBDDF4 /* Sales Documents */ = {
+			isa = PBXGroup;
+			children = (
+				A1A4C4A51F0EDF0D0006518C /* contractTemplate.pdf */,
+				A1A4C4A41F0EDF0D0006518C /* wbCola.pdf */,
+				A1A4C4A31F0EDF0D0006518C /* wbRaysReserve.pdf */,
+			);
+			path = "Sales Documents";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A1EAC4F51F030D5C00CBDDF4 /* WenderlichBeverages */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1EAC5081F030D5C00CBDDF4 /* Build configuration list for PBXNativeTarget "WenderlichBeverages" */;
+			buildPhases = (
+				A1EAC4F21F030D5C00CBDDF4 /* Sources */,
+				A1EAC4F31F030D5C00CBDDF4 /* Frameworks */,
+				A1EAC4F41F030D5C00CBDDF4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WenderlichBeverages;
+			productName = WenderlichBeverages;
+			productReference = A1EAC4F61F030D5C00CBDDF4 /* WenderlichBeverages.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A1EAC4EE1F030D5C00CBDDF4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = Razeware;
+				TargetAttributes = {
+					A1EAC4F51F030D5C00CBDDF4 = {
+						CreatedOnToolsVersion = 9.0;
+					};
+				};
+			};
+			buildConfigurationList = A1EAC4F11F030D5C00CBDDF4 /* Build configuration list for PBXProject "WenderlichBeverages" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A1EAC4ED1F030D5C00CBDDF4;
+			productRefGroup = A1EAC4F71F030D5C00CBDDF4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A1EAC4F51F030D5C00CBDDF4 /* WenderlichBeverages */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A1EAC4F41F030D5C00CBDDF4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1CAE9531F0EE0D000284191 /* wbCola.pdf in Resources */,
+				A1CAE9541F0EE0D000284191 /* wbRaysReserve.pdf in Resources */,
+				A1EAC5041F030D5C00CBDDF4 /* LaunchScreen.storyboard in Resources */,
+				A1EAC5011F030D5C00CBDDF4 /* Assets.xcassets in Resources */,
+				A1CAE9521F0EE0D000284191 /* contractTemplate.pdf in Resources */,
+				A1EAC4FF1F030D5C00CBDDF4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A1EAC4F21F030D5C00CBDDF4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1A4C4921F0462D60006518C /* SegueIdentifiers.swift in Sources */,
+				A1A4C4981F048F2C0006518C /* ContractsTableViewController.swift in Sources */,
+				A1EAC4FA1F030D5C00CBDDF4 /* AppDelegate.swift in Sources */,
+				A1EAC5181F032A0600CBDDF4 /* DocumentViewController.swift in Sources */,
+				A1A4C4941F0465C00006518C /* LockedMark.swift in Sources */,
+				A1EAC51A1F045FD800CBDDF4 /* FileUtilities.swift in Sources */,
+				A1EAC50C1F03102300CBDDF4 /* HomeViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A1EAC4FD1F030D5C00CBDDF4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A1EAC4FE1F030D5C00CBDDF4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A1EAC5021F030D5C00CBDDF4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A1EAC5031F030D5C00CBDDF4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A1EAC5061F030D5C00CBDDF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A1EAC5071F030D5C00CBDDF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A1EAC5091F030D5C00CBDDF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = WenderlichBeverages/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.WenderlichBeverages;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A1EAC50A1F030D5C00CBDDF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = WenderlichBeverages/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.WenderlichBeverages;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A1EAC4F11F030D5C00CBDDF4 /* Build configuration list for PBXProject "WenderlichBeverages" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1EAC5061F030D5C00CBDDF4 /* Debug */,
+				A1EAC5071F030D5C00CBDDF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1EAC5081F030D5C00CBDDF4 /* Build configuration list for PBXNativeTarget "WenderlichBeverages" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1EAC5091F030D5C00CBDDF4 /* Debug */,
+				A1EAC50A1F030D5C00CBDDF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A1EAC4EE1F030D5C00CBDDF4 /* Project object */;
+}

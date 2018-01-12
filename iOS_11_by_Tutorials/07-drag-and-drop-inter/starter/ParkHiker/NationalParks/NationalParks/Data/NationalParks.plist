@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>Yellowstone</string>
+		<key>imageName</key>
+		<string>riley-mcneal-209169.jpg</string>
+		<key>summary</key>
+		<string>Visit Yellowstone and experience the world&apos;s first national park. Marvel at a volcano’s hidden power rising up in colorful hot springs, mudpots, and geysers. Explore mountains, forests, and lakes to watch wildlife and witness the drama of the natural world unfold. Discover the history that led to the conservation of our national treasures “for the benefit and enjoyment of the people.” - nps.gov</string>
+		<key>latitude</key>
+		<real>44.428</real>
+		<key>longitude</key>
+		<real>-110.5885</real>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Yosemite</string>
+		<key>imageName</key>
+		<string>emmanuel-maceda-133635.jpg</string>
+		<key>summary</key>
+		<string>Not just a great valley, but a shrine to human foresight, the strength of granite, the power of glaciers, the persistence of life, and the tranquility of the High Sierra.
+
+First protected in 1864, Yosemite National Park is best known for its waterfalls, but within its nearly 1,200 square miles, you can find deep valleys, grand meadows, ancient giant sequoias, a vast wilderness area, and much more. - nps.gov</string>
+		<key>latitude</key>
+		<real>37.8651</real>
+		<key>longitude</key>
+		<real>-119.5383</real>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Big Bend</string>
+		<key>imageName</key>
+		<string>pawel-nolbert-284272.jpg</string>
+		<key>summary</key>
+		<string>There is a place in Far West Texas where night skies are dark as coal and rivers carve temple-like canyons in ancient limestone. Here, at the end of the road, hundreds of bird species take refuge in a solitary mountain range surrounded by weather-beaten desert. Tenacious cactus bloom in sublime southwestern sun, and diversity of species is the best in the country. This magical place is Big Bend. - nps.gov</string>
+		<key>latitude</key>
+		<real>29.127487</real>
+		<key>longitude</key>
+		<real>-103.242538</real>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Haleakalā National Park</string>
+		<key>imageName</key>
+		<string>andrew-preble-181949.jpg</string>
+		<key>summary</key>
+		<string>This special place vibrates with stories of ancient and modern Hawaiian culture and protects the bond between the land and its people. The park also cares for endangered species, some of which exist nowhere else. Come visit this special place - renew your spirit amid stark volcanic landscapes and sub-tropical rain forest with an unforgettable hike through the backcountry. - nps.gov</string>
+		<key>latitude</key>
+		<real>20.720383</real>
+		<key>longitude</key>
+		<real>-156.155152</real>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Great Smoky Mountains National Park</string>
+		<key>imageName</key>
+		<string>smokies-3-1229120.jpg</string>
+		<key>summary</key>
+		<string>Ridge upon ridge of forest straddles the border between North Carolina and Tennessee in Great Smoky Mountains National Park. World renowned for its diversity of plant and animal life, the beauty of its ancient mountains, and the quality of its remnants of Southern Appalachian mountain culture, this is America&apos;s most visited national park. - nps.gov</string>
+		<key>latitude</key>
+		<real>35.611764</real>
+		<key>longitude</key>
+		<real>-83.48954500000001</real>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Kenai Fjords National Park</string>
+		<key>imageName</key>
+		<string>phillip-sauerbeck-28360.jpg</string>
+		<key>summary</key>
+		<string>At the edge of the Kenai Peninsula lies a land where the ice age lingers. Nearly 40 glaciers flow from the Harding Icefield, Kenai Fjords&apos; crowning feature. Wildlife thrives in icy waters and lush forests around this vast expanse of ice. Native Alutiiq relied on these resources to nurture a life entwined with the sea. Today, shrinking glaciers bear witness to the effects of our changing climate. - nps.gov</string>
+		<key>latitude</key>
+		<real>60.043776</real>
+		<key>longitude</key>
+		<real>-149.816364</real>
+	</dict>
+</array>
+</plist>

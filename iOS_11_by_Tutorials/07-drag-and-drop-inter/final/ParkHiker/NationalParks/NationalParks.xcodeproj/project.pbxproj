@@ -1,0 +1,442 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1231E79F1F149A3A007C0585 /* pawel-nolbert-284272.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1231E7941F14983C007C0585 /* pawel-nolbert-284272.jpg */; };
+		1231E7A01F149A3A007C0585 /* phillip-sauerbeck-28360.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1231E7901F14983C007C0585 /* phillip-sauerbeck-28360.jpg */; };
+		1231E7A11F149A3A007C0585 /* smokies-3-1229120.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1231E7911F14983C007C0585 /* smokies-3-1229120.jpg */; };
+		1231E7A21F149A3A007C0585 /* andrew-preble-181949.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1231E7921F14983C007C0585 /* andrew-preble-181949.jpg */; };
+		1231E7A31F149A41007C0585 /* ashley-knedler-102792.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1231E79B1F14984F007C0585 /* ashley-knedler-102792.jpg */; };
+		1231E7A41F149A41007C0585 /* katelyn-wamsley-216293.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1231E79C1F14984F007C0585 /* katelyn-wamsley-216293.jpg */; };
+		1231E7A51F149A41007C0585 /* riley-mcneal-209169.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1231E79D1F14984F007C0585 /* riley-mcneal-209169.jpg */; };
+		1231E7A61F149A41007C0585 /* todd-cravens-94271.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1231E79E1F14984F007C0585 /* todd-cravens-94271.jpg */; };
+		1231E7A71F149A45007C0585 /* emmanuel-maceda-133635.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1231E7961F14984F007C0585 /* emmanuel-maceda-133635.jpg */; };
+		1231E7A81F149A45007C0585 /* emmanuel-maceda-203795.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1231E7971F14984F007C0585 /* emmanuel-maceda-203795.jpg */; };
+		1231E7A91F149A45007C0585 /* emmanuel-maceda-204258.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1231E7981F14984F007C0585 /* emmanuel-maceda-204258.jpg */; };
+		1231E7AA1F149A45007C0585 /* emmanuel-maceda-218575.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1231E7991F14984F007C0585 /* emmanuel-maceda-218575.jpg */; };
+		124FD9A11F0BED9700BC7B26 /* NationalParks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 124FD9A01F0BED9700BC7B26 /* NationalParks.plist */; };
+		124FD9A41F0C0F4F00BC7B26 /* Park.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 124FD9A31F0C0F4F00BC7B26 /* Park.framework */; };
+		124FD9A51F0C0F4F00BC7B26 /* Park.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 124FD9A31F0C0F4F00BC7B26 /* Park.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		12B723A61F0AD44000D46C97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B723A51F0AD44000D46C97 /* AppDelegate.swift */; };
+		12B723AB1F0AD44100D46C97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12B723A91F0AD44100D46C97 /* Main.storyboard */; };
+		12B723AD1F0AD44100D46C97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12B723AC1F0AD44100D46C97 /* Assets.xcassets */; };
+		12B723B01F0AD44100D46C97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12B723AE1F0AD44100D46C97 /* LaunchScreen.storyboard */; };
+		12B723FE1F0B2DBF00D46C97 /* ParksPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B723FD1F0B2DBF00D46C97 /* ParksPageViewController.swift */; };
+		12B724001F0B2EEE00D46C97 /* ParkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B723FF1F0B2EEE00D46C97 /* ParkViewController.swift */; };
+		12E3AD3A1F11512700846DCF /* ParkDragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3AD391F11512700846DCF /* ParkDragView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		124FD9A61F0C0F4F00BC7B26 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				124FD9A51F0C0F4F00BC7B26 /* Park.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1231E7901F14983C007C0585 /* phillip-sauerbeck-28360.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "phillip-sauerbeck-28360.jpg"; sourceTree = "<group>"; };
+		1231E7911F14983C007C0585 /* smokies-3-1229120.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "smokies-3-1229120.jpg"; sourceTree = "<group>"; };
+		1231E7921F14983C007C0585 /* andrew-preble-181949.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "andrew-preble-181949.jpg"; sourceTree = "<group>"; };
+		1231E7931F14983C007C0585 /* NationalParks.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = NationalParks.plist; sourceTree = "<group>"; };
+		1231E7941F14983C007C0585 /* pawel-nolbert-284272.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "pawel-nolbert-284272.jpg"; sourceTree = "<group>"; };
+		1231E7961F14984F007C0585 /* emmanuel-maceda-133635.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "emmanuel-maceda-133635.jpg"; sourceTree = "<group>"; };
+		1231E7971F14984F007C0585 /* emmanuel-maceda-203795.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "emmanuel-maceda-203795.jpg"; sourceTree = "<group>"; };
+		1231E7981F14984F007C0585 /* emmanuel-maceda-204258.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "emmanuel-maceda-204258.jpg"; sourceTree = "<group>"; };
+		1231E7991F14984F007C0585 /* emmanuel-maceda-218575.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "emmanuel-maceda-218575.jpg"; sourceTree = "<group>"; };
+		1231E79B1F14984F007C0585 /* ashley-knedler-102792.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ashley-knedler-102792.jpg"; sourceTree = "<group>"; };
+		1231E79C1F14984F007C0585 /* katelyn-wamsley-216293.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "katelyn-wamsley-216293.jpg"; sourceTree = "<group>"; };
+		1231E79D1F14984F007C0585 /* riley-mcneal-209169.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "riley-mcneal-209169.jpg"; sourceTree = "<group>"; };
+		1231E79E1F14984F007C0585 /* todd-cravens-94271.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "todd-cravens-94271.jpg"; sourceTree = "<group>"; };
+		124FD9A01F0BED9700BC7B26 /* NationalParks.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = NationalParks.plist; sourceTree = "<group>"; };
+		124FD9A31F0C0F4F00BC7B26 /* Park.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Park.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		12B723A21F0AD44000D46C97 /* NationalParks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NationalParks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		12B723A51F0AD44000D46C97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		12B723AA1F0AD44100D46C97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		12B723AC1F0AD44100D46C97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		12B723AF1F0AD44100D46C97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		12B723B11F0AD44100D46C97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12B723FD1F0B2DBF00D46C97 /* ParksPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParksPageViewController.swift; sourceTree = "<group>"; };
+		12B723FF1F0B2EEE00D46C97 /* ParkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkViewController.swift; sourceTree = "<group>"; };
+		12E3AD391F11512700846DCF /* ParkDragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkDragView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		12B7239F1F0AD44000D46C97 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				124FD9A41F0C0F4F00BC7B26 /* Park.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1231E7951F14984F007C0585 /* Yosemite */ = {
+			isa = PBXGroup;
+			children = (
+				1231E7961F14984F007C0585 /* emmanuel-maceda-133635.jpg */,
+				1231E7971F14984F007C0585 /* emmanuel-maceda-203795.jpg */,
+				1231E7981F14984F007C0585 /* emmanuel-maceda-204258.jpg */,
+				1231E7991F14984F007C0585 /* emmanuel-maceda-218575.jpg */,
+			);
+			path = Yosemite;
+			sourceTree = "<group>";
+		};
+		1231E79A1F14984F007C0585 /* Yellowstone */ = {
+			isa = PBXGroup;
+			children = (
+				1231E79B1F14984F007C0585 /* ashley-knedler-102792.jpg */,
+				1231E79C1F14984F007C0585 /* katelyn-wamsley-216293.jpg */,
+				1231E79D1F14984F007C0585 /* riley-mcneal-209169.jpg */,
+				1231E79E1F14984F007C0585 /* todd-cravens-94271.jpg */,
+			);
+			path = Yellowstone;
+			sourceTree = "<group>";
+		};
+		124FD9A21F0C09EF00BC7B26 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				12B723FD1F0B2DBF00D46C97 /* ParksPageViewController.swift */,
+				12B723FF1F0B2EEE00D46C97 /* ParkViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		12B723991F0AD44000D46C97 = {
+			isa = PBXGroup;
+			children = (
+				124FD9A31F0C0F4F00BC7B26 /* Park.framework */,
+				12B723A41F0AD44000D46C97 /* NationalParks */,
+				12B723A31F0AD44000D46C97 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		12B723A31F0AD44000D46C97 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				12B723A21F0AD44000D46C97 /* NationalParks.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		12B723A41F0AD44000D46C97 /* NationalParks */ = {
+			isa = PBXGroup;
+			children = (
+				12E3AD3B1F11602A00846DCF /* Views */,
+				124FD9A21F0C09EF00BC7B26 /* View Controllers */,
+				12B723EA1F0AF44100D46C97 /* Data */,
+				12B723A51F0AD44000D46C97 /* AppDelegate.swift */,
+				12B723A91F0AD44100D46C97 /* Main.storyboard */,
+				12B723AC1F0AD44100D46C97 /* Assets.xcassets */,
+				12B723AE1F0AD44100D46C97 /* LaunchScreen.storyboard */,
+				12B723B11F0AD44100D46C97 /* Info.plist */,
+			);
+			path = NationalParks;
+			sourceTree = "<group>";
+		};
+		12B723EA1F0AF44100D46C97 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1231E7931F14983C007C0585 /* NationalParks.plist */,
+				1231E79A1F14984F007C0585 /* Yellowstone */,
+				1231E7951F14984F007C0585 /* Yosemite */,
+				1231E7941F14983C007C0585 /* pawel-nolbert-284272.jpg */,
+				1231E7901F14983C007C0585 /* phillip-sauerbeck-28360.jpg */,
+				1231E7911F14983C007C0585 /* smokies-3-1229120.jpg */,
+				1231E7921F14983C007C0585 /* andrew-preble-181949.jpg */,
+				124FD9A01F0BED9700BC7B26 /* NationalParks.plist */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		12E3AD3B1F11602A00846DCF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				12E3AD391F11512700846DCF /* ParkDragView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		12B723A11F0AD44000D46C97 /* NationalParks */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12B723B41F0AD44100D46C97 /* Build configuration list for PBXNativeTarget "NationalParks" */;
+			buildPhases = (
+				12B7239E1F0AD44000D46C97 /* Sources */,
+				12B7239F1F0AD44000D46C97 /* Frameworks */,
+				12B723A01F0AD44000D46C97 /* Resources */,
+				124FD9A61F0C0F4F00BC7B26 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NationalParks;
+			productName = NationalParks;
+			productReference = 12B723A21F0AD44000D46C97 /* NationalParks.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		12B7239A1F0AD44000D46C97 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Razeware LLC";
+				TargetAttributes = {
+					12B723A11F0AD44000D46C97 = {
+						CreatedOnToolsVersion = 9.0;
+					};
+				};
+			};
+			buildConfigurationList = 12B7239D1F0AD44000D46C97 /* Build configuration list for PBXProject "NationalParks" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 12B723991F0AD44000D46C97;
+			productRefGroup = 12B723A31F0AD44000D46C97 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				12B723A11F0AD44000D46C97 /* NationalParks */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		12B723A01F0AD44000D46C97 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12B723B01F0AD44100D46C97 /* LaunchScreen.storyboard in Resources */,
+				1231E79F1F149A3A007C0585 /* pawel-nolbert-284272.jpg in Resources */,
+				1231E7A81F149A45007C0585 /* emmanuel-maceda-203795.jpg in Resources */,
+				1231E7A01F149A3A007C0585 /* phillip-sauerbeck-28360.jpg in Resources */,
+				1231E7A61F149A41007C0585 /* todd-cravens-94271.jpg in Resources */,
+				1231E7A31F149A41007C0585 /* ashley-knedler-102792.jpg in Resources */,
+				1231E7A71F149A45007C0585 /* emmanuel-maceda-133635.jpg in Resources */,
+				12B723AD1F0AD44100D46C97 /* Assets.xcassets in Resources */,
+				1231E7A21F149A3A007C0585 /* andrew-preble-181949.jpg in Resources */,
+				1231E7A41F149A41007C0585 /* katelyn-wamsley-216293.jpg in Resources */,
+				1231E7A91F149A45007C0585 /* emmanuel-maceda-204258.jpg in Resources */,
+				1231E7A11F149A3A007C0585 /* smokies-3-1229120.jpg in Resources */,
+				124FD9A11F0BED9700BC7B26 /* NationalParks.plist in Resources */,
+				1231E7A51F149A41007C0585 /* riley-mcneal-209169.jpg in Resources */,
+				1231E7AA1F149A45007C0585 /* emmanuel-maceda-218575.jpg in Resources */,
+				12B723AB1F0AD44100D46C97 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		12B7239E1F0AD44000D46C97 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12E3AD3A1F11512700846DCF /* ParkDragView.swift in Sources */,
+				12B724001F0B2EEE00D46C97 /* ParkViewController.swift in Sources */,
+				12B723FE1F0B2DBF00D46C97 /* ParksPageViewController.swift in Sources */,
+				12B723A61F0AD44000D46C97 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		12B723A91F0AD44100D46C97 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				12B723AA1F0AD44100D46C97 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		12B723AE1F0AD44100D46C97 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				12B723AF1F0AD44100D46C97 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		12B723B21F0AD44100D46C97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		12B723B31F0AD44100D46C97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		12B723B51F0AD44100D46C97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = NationalParks/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.NationalParks;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		12B723B61F0AD44100D46C97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = NationalParks/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.NationalParks;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		12B7239D1F0AD44000D46C97 /* Build configuration list for PBXProject "NationalParks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12B723B21F0AD44100D46C97 /* Debug */,
+				12B723B31F0AD44100D46C97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		12B723B41F0AD44100D46C97 /* Build configuration list for PBXNativeTarget "NationalParks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12B723B51F0AD44100D46C97 /* Debug */,
+				12B723B61F0AD44100D46C97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 12B7239A1F0AD44000D46C97 /* Project object */;
+}

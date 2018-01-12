@@ -1,0 +1,468 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B412F6581F1D4B2B00B6B4F0 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B412F6571F1D4B2B00B6B4F0 /* AsyncOperation.swift */; };
+		B4187DD81F1D66B100F739CE /* UIViewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4187DD71F1D635400F739CE /* UIViewController+extensions.swift */; };
+		B4187DDA1F1D6F3500F739CE /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4187DD91F1D6F1100F739CE /* ImageCache.swift */; };
+		B427B78E1F05B74100C1334D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B427B78D1F05B74100C1334D /* Assets.xcassets */; };
+		B427B7951F05B74100C1334D /* Name That Tune MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B427B7941F05B74100C1334D /* Name That Tune MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B427B79A1F05B74100C1334D /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B427B7991F05B74100C1334D /* Messages.framework */; };
+		B427B79D1F05B74100C1334D /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B427B79C1F05B74100C1334D /* MessagesViewController.swift */; };
+		B427B7A01F05B74100C1334D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B427B79E1F05B74100C1334D /* MainInterface.storyboard */; };
+		B427B7A21F05B74100C1334D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B427B7A11F05B74100C1334D /* Assets.xcassets */; };
+		B427B7AE1F06DF7A00C1334D /* SongListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B427B7AD1F06DF7900C1334D /* SongListViewController.swift */; };
+		B427B7B21F06F5D100C1334D /* SongSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B427B7B11F06F5D100C1334D /* SongSelectionViewController.swift */; };
+		B427B7B41F0710F900C1334D /* SongAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B427B7B31F0710F900C1334D /* SongAnswerViewController.swift */; };
+		B427B7B61F0801FD00C1334D /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = B427B7B51F0801FD00C1334D /* Song.swift */; };
+		B427B7B81F08020600C1334D /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = B427B7B71F08020600C1334D /* Quiz.swift */; };
+		B4F351721F3A7170004D2AA5 /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F351711F3A7170004D2AA5 /* AuthorizationManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B427B7961F05B74100C1334D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B427B7841F05B74100C1334D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B427B7931F05B74100C1334D;
+			remoteInfo = "Name That Tune MessagesExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B427B7A91F05B74100C1334D /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B427B7951F05B74100C1334D /* Name That Tune MessagesExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B412F6571F1D4B2B00B6B4F0 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		B4187DD71F1D635400F739CE /* UIViewController+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extensions.swift"; sourceTree = "<group>"; };
+		B4187DD91F1D6F1100F739CE /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		B427B78A1F05B74100C1334D /* Name That Tune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Name That Tune.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B427B78D1F05B74100C1334D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B427B78F1F05B74100C1334D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B427B7941F05B74100C1334D /* Name That Tune MessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Name That Tune MessagesExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B427B7991F05B74100C1334D /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
+		B427B79C1F05B74100C1334D /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		B427B79F1F05B74100C1334D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		B427B7A11F05B74100C1334D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B427B7A31F05B74100C1334D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B427B7AD1F06DF7900C1334D /* SongListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongListViewController.swift; sourceTree = "<group>"; };
+		B427B7B11F06F5D100C1334D /* SongSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSelectionViewController.swift; sourceTree = "<group>"; };
+		B427B7B31F0710F900C1334D /* SongAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongAnswerViewController.swift; sourceTree = "<group>"; };
+		B427B7B51F0801FD00C1334D /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		B427B7B71F08020600C1334D /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
+		B4F351711F3A7170004D2AA5 /* AuthorizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B427B7911F05B74100C1334D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B427B79A1F05B74100C1334D /* Messages.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B427B7831F05B74100C1334D = {
+			isa = PBXGroup;
+			children = (
+				B427B78C1F05B74100C1334D /* Name That Tune */,
+				B427B79B1F05B74100C1334D /* Name That Tune MessagesExtension */,
+				B427B7981F05B74100C1334D /* Frameworks */,
+				B427B78B1F05B74100C1334D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B427B78B1F05B74100C1334D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B427B78A1F05B74100C1334D /* Name That Tune.app */,
+				B427B7941F05B74100C1334D /* Name That Tune MessagesExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B427B78C1F05B74100C1334D /* Name That Tune */ = {
+			isa = PBXGroup;
+			children = (
+				B427B78D1F05B74100C1334D /* Assets.xcassets */,
+				B427B78F1F05B74100C1334D /* Info.plist */,
+			);
+			path = "Name That Tune";
+			sourceTree = "<group>";
+		};
+		B427B7981F05B74100C1334D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B427B7991F05B74100C1334D /* Messages.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B427B79B1F05B74100C1334D /* Name That Tune MessagesExtension */ = {
+			isa = PBXGroup;
+			children = (
+				B4F351711F3A7170004D2AA5 /* AuthorizationManager.swift */,
+				B427B79C1F05B74100C1334D /* MessagesViewController.swift */,
+				B427B7AD1F06DF7900C1334D /* SongListViewController.swift */,
+				B427B7B11F06F5D100C1334D /* SongSelectionViewController.swift */,
+				B427B7B31F0710F900C1334D /* SongAnswerViewController.swift */,
+				B427B7B51F0801FD00C1334D /* Song.swift */,
+				B427B7B71F08020600C1334D /* Quiz.swift */,
+				B4187DD91F1D6F1100F739CE /* ImageCache.swift */,
+				B4187DD71F1D635400F739CE /* UIViewController+extensions.swift */,
+				B427B79E1F05B74100C1334D /* MainInterface.storyboard */,
+				B427B7A11F05B74100C1334D /* Assets.xcassets */,
+				B427B7A31F05B74100C1334D /* Info.plist */,
+				B412F6571F1D4B2B00B6B4F0 /* AsyncOperation.swift */,
+			);
+			path = "Name That Tune MessagesExtension";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B427B7891F05B74100C1334D /* Name That Tune */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B427B7AA1F05B74100C1334D /* Build configuration list for PBXNativeTarget "Name That Tune" */;
+			buildPhases = (
+				B427B7881F05B74100C1334D /* Resources */,
+				B427B7A91F05B74100C1334D /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B427B7971F05B74100C1334D /* PBXTargetDependency */,
+			);
+			name = "Name That Tune";
+			productName = "Name That Tune";
+			productReference = B427B78A1F05B74100C1334D /* Name That Tune.app */;
+			productType = "com.apple.product-type.application.messages";
+		};
+		B427B7931F05B74100C1334D /* Name That Tune MessagesExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B427B7A61F05B74100C1334D /* Build configuration list for PBXNativeTarget "Name That Tune MessagesExtension" */;
+			buildPhases = (
+				B427B7901F05B74100C1334D /* Sources */,
+				B427B7911F05B74100C1334D /* Frameworks */,
+				B427B7921F05B74100C1334D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Name That Tune MessagesExtension";
+			productName = "Name That Tune MessagesExtension";
+			productReference = B427B7941F05B74100C1334D /* Name That Tune MessagesExtension.appex */;
+			productType = "com.apple.product-type.app-extension.messages";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B427B7841F05B74100C1334D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Razeware, LLC";
+				TargetAttributes = {
+					B427B7891F05B74100C1334D = {
+						CreatedOnToolsVersion = 9.0;
+					};
+					B427B7931F05B74100C1334D = {
+						CreatedOnToolsVersion = 9.0;
+					};
+				};
+			};
+			buildConfigurationList = B427B7871F05B74100C1334D /* Build configuration list for PBXProject "Name That Tune" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B427B7831F05B74100C1334D;
+			productRefGroup = B427B78B1F05B74100C1334D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B427B7891F05B74100C1334D /* Name That Tune */,
+				B427B7931F05B74100C1334D /* Name That Tune MessagesExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B427B7881F05B74100C1334D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B427B78E1F05B74100C1334D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B427B7921F05B74100C1334D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B427B7A21F05B74100C1334D /* Assets.xcassets in Resources */,
+				B427B7A01F05B74100C1334D /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B427B7901F05B74100C1334D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B427B7B21F06F5D100C1334D /* SongSelectionViewController.swift in Sources */,
+				B427B79D1F05B74100C1334D /* MessagesViewController.swift in Sources */,
+				B427B7B81F08020600C1334D /* Quiz.swift in Sources */,
+				B4187DDA1F1D6F3500F739CE /* ImageCache.swift in Sources */,
+				B427B7AE1F06DF7A00C1334D /* SongListViewController.swift in Sources */,
+				B4187DD81F1D66B100F739CE /* UIViewController+extensions.swift in Sources */,
+				B427B7B41F0710F900C1334D /* SongAnswerViewController.swift in Sources */,
+				B4F351721F3A7170004D2AA5 /* AuthorizationManager.swift in Sources */,
+				B427B7B61F0801FD00C1334D /* Song.swift in Sources */,
+				B412F6581F1D4B2B00B6B4F0 /* AsyncOperation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B427B7971F05B74100C1334D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B427B7931F05B74100C1334D /* Name That Tune MessagesExtension */;
+			targetProxy = B427B7961F05B74100C1334D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B427B79E1F05B74100C1334D /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B427B79F1F05B74100C1334D /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B427B7A41F05B74100C1334D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B427B7A51F05B74100C1334D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B427B7A71F05B74100C1334D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Name That Tune MessagesExtension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raywenderlich.Name-That-Tune.MessagesExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B427B7A81F05B74100C1334D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Name That Tune MessagesExtension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raywenderlich.Name-That-Tune.MessagesExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B427B7AB1F05B74100C1334D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Name That Tune/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raywenderlich.Name-That-Tune";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B427B7AC1F05B74100C1334D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Name That Tune/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raywenderlich.Name-That-Tune";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B427B7871F05B74100C1334D /* Build configuration list for PBXProject "Name That Tune" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B427B7A41F05B74100C1334D /* Debug */,
+				B427B7A51F05B74100C1334D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B427B7A61F05B74100C1334D /* Build configuration list for PBXNativeTarget "Name That Tune MessagesExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B427B7A71F05B74100C1334D /* Debug */,
+				B427B7A81F05B74100C1334D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B427B7AA1F05B74100C1334D /* Build configuration list for PBXNativeTarget "Name That Tune" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B427B7AB1F05B74100C1334D /* Debug */,
+				B427B7AC1F05B74100C1334D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B427B7841F05B74100C1334D /* Project object */;
+}

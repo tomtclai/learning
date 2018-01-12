@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zj7-h4-Muq">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="Xxh-v8-7Po">
+            <objects>
+                <viewController id="zj7-h4-Muq" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yL0-Os-iRG"/>
+                        <viewControllerLayoutGuide type="bottom" id="X5y-QS-g2U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZgO-hX-zLg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rwdevcon-bg" translatesAutoresizingMaskIntoConstraints="NO" id="0fS-VT-lFJ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Razewarelogo_1024" translatesAutoresizingMaskIntoConstraints="NO" id="Zxn-tc-PRG">
+                                <rect key="frame" x="20" y="40" width="335" height="587"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Zxn-tc-PRG" firstAttribute="centerY" secondItem="ZgO-hX-zLg" secondAttribute="centerY" id="3Ee-y4-zQD"/>
+                            <constraint firstItem="Zxn-tc-PRG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0fS-VT-lFJ" secondAttribute="leading" constant="20" id="M3d-7s-b9Z"/>
+                            <constraint firstAttribute="trailing" secondItem="0fS-VT-lFJ" secondAttribute="trailing" id="YhD-eG-g4a"/>
+                            <constraint firstItem="0fS-VT-lFJ" firstAttribute="leading" secondItem="ZgO-hX-zLg" secondAttribute="leading" id="ct8-jh-jcP"/>
+                            <constraint firstItem="Zxn-tc-PRG" firstAttribute="centerX" secondItem="ZgO-hX-zLg" secondAttribute="centerX" id="evX-oy-3H9"/>
+                            <constraint firstItem="0fS-VT-lFJ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Zxn-tc-PRG" secondAttribute="trailing" constant="20" id="fJP-tx-cJG"/>
+                            <constraint firstItem="Zxn-tc-PRG" firstAttribute="top" relation="greaterThanOrEqual" secondItem="0fS-VT-lFJ" secondAttribute="top" constant="20" id="g2c-hE-UFS"/>
+                            <constraint firstItem="0fS-VT-lFJ" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Zxn-tc-PRG" secondAttribute="bottom" constant="20" id="lCA-uz-BLu"/>
+                            <constraint firstItem="0fS-VT-lFJ" firstAttribute="top" secondItem="yL0-Os-iRG" secondAttribute="bottom" id="xyr-oI-qV3"/>
+                            <constraint firstItem="X5y-QS-g2U" firstAttribute="top" secondItem="0fS-VT-lFJ" secondAttribute="bottom" id="yKt-L5-FtK"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oY1-VZ-pW2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Razewarelogo_1024" width="1024" height="1024"/>
+        <image name="rwdevcon-bg" width="2208" height="2208"/>
+    </resources>
+</document>

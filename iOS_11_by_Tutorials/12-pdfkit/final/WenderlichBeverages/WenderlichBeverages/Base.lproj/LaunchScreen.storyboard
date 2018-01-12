@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rwdevcon-bg" translatesAutoresizingMaskIntoConstraints="NO" id="noh-O0-GCS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Razewarelogo_1024" translatesAutoresizingMaskIntoConstraints="NO" id="QFy-0Q-hDS">
+                                <rect key="frame" x="20" y="166" width="335" height="335"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="QFy-0Q-hDS" secondAttribute="height" multiplier="1:1" id="s52-Wd-2WN"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="noh-O0-GCS" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="0uB-6a-92Z"/>
+                            <constraint firstItem="QFy-0Q-hDS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" id="1kE-du-hqC"/>
+                            <constraint firstAttribute="trailing" secondItem="noh-O0-GCS" secondAttribute="trailing" id="5p0-Gg-FVX"/>
+                            <constraint firstItem="noh-O0-GCS" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="76I-QX-RfH"/>
+                            <constraint firstItem="QFy-0Q-hDS" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="HV2-jS-Hgy"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="QFy-0Q-hDS" secondAttribute="bottom" constant="20" id="QDU-3g-ZdG"/>
+                            <constraint firstItem="QFy-0Q-hDS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="20" id="cMA-Y9-j3s"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QFy-0Q-hDS" secondAttribute="trailing" constant="20" id="jFU-sV-rse"/>
+                            <constraint firstItem="QFy-0Q-hDS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="rl1-Jh-Sh8"/>
+                            <constraint firstAttribute="bottom" secondItem="noh-O0-GCS" secondAttribute="bottom" id="x3q-cF-5RY"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Razewarelogo_1024" width="1024" height="1024"/>
+        <image name="rwdevcon-bg" width="2208" height="2208"/>
+    </resources>
+</document>

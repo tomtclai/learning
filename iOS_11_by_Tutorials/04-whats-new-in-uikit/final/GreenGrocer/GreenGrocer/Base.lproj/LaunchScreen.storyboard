@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kPq-je-cve">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="5lW-ee-Q9r">
+            <objects>
+                <viewController id="kPq-je-cve" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="caJ-Kc-Zpp"/>
+                        <viewControllerLayoutGuide type="bottom" id="emv-BM-ny4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3vT-qQ-vAM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch icon" translatesAutoresizingMaskIntoConstraints="NO" id="yE3-EP-Lye">
+                                <rect key="frame" x="36" y="182" width="303" height="303"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="yE3-EP-Lye" secondAttribute="height" multiplier="1:1" id="m3b-4E-DN8"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.18823529410000001" green="0.21960784310000001" blue="0.074509803920000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="yE3-EP-Lye" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3vT-qQ-vAM" secondAttribute="topMargin" constant="20" id="5B4-7y-pKk"/>
+                            <constraint firstItem="yE3-EP-Lye" firstAttribute="centerY" secondItem="3vT-qQ-vAM" secondAttribute="centerY" id="9PW-bX-GfR"/>
+                            <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="yE3-EP-Lye" secondAttribute="bottom" constant="20" id="HRu-BE-fft"/>
+                            <constraint firstItem="yE3-EP-Lye" firstAttribute="centerX" secondItem="3vT-qQ-vAM" secondAttribute="centerX" id="ex4-wQ-E8J"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="yE3-EP-Lye" secondAttribute="trailing" constant="20" id="ndQ-Gy-GHj"/>
+                            <constraint firstItem="yE3-EP-Lye" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3vT-qQ-vAM" secondAttribute="leadingMargin" constant="20" id="rlW-Fa-k3t"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YPE-zo-5WK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Launch icon" width="1024" height="1024"/>
+    </resources>
+</document>
