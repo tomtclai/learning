@@ -31,10 +31,14 @@
 import UIKit
 
 class SourceListController: UITableViewController {
-  
+  private var token: NSKeyValueObservation?
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    token = NewsAPI.service.observe(\.sources, changeHandler: { (_, _) in
+      DispatchQueue.main.async {
+        self.tableView.reloadData()
+      }
+    })
     NewsAPI.service.fetchSources()
   }
   

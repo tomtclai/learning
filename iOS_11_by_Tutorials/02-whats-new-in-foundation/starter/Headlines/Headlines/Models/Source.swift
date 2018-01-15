@@ -30,11 +30,18 @@
 
 import Foundation
 
-class Source {
+class Source: NSObject, Codable {
   let id: String
   let name: String
   let overview: String
   let category: String
+
+  enum CodingKeys: String, CodingKey {
+    case id
+    case name
+    case overview = "description"
+    case category
+  }
   
   init(id: String, name: String, overview: String, category: String) {
     self.id = id

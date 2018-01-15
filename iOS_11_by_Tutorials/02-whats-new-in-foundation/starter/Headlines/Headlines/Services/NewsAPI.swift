@@ -30,17 +30,20 @@
 
 import Foundation
 
-class NewsAPI {
+class NewsAPI: NSObject {
   
   static let service = NewsAPI()
-  
+  private struct Response: Codable {
+    let sources: [Source]?
+    let articles: [Article]?
+  }
   private enum API {
     private static let basePath = "https://newsapi.org/v1"
     /*
      Head on over to https://newsapi.org/register to get your
      free API key, and then replace the value below with it.
      */
-    private static let key = "00000000000000000000000000000000"
+    private static let key = "77670f3c43b042a68020a77dc71c1d2b"
     
     case sources
     case articles(Source)
@@ -64,20 +67,37 @@ class NewsAPI {
     }
   }
   
-  private(set) var sources: [Source] = []
-  private(set) var articles: [Article] = []
+  @objc dynamic private(set) var sources: [Source] = []
+  @objc dynamic private(set) var articles: [Article] = []
   
   func fetchSources() {
     API.sources.fetch { data in
-      if let json = String(data: data, encoding: .utf8) {
-        print(json)
+      do {
+        if let sources = try JSONDecoder().decode(Response.self, from: data).sources {
+          self.sources = sources
+        }
+      } catch {
+        print("json error: \(error.localizedDescription)")
       }
     }
   }
   
   func fetchArticles(for source: Source) {
     API.articles(source).fetch { data in
-      
+      let decoder = JSONDecoder()
+      let formatter = ISO8601DateFormatter()
+      let customDateHandler: (Decoder) throws -> Date = { decoder in
+        var string = try decoder.singleValueContainer().decode(String.self)
+        string.deleteMillisecondsIfPresent()
+        guard let date = formatter.date(from: string) else {
+          return Date()
+        }
+        return date
+      }
+      decoder.dateDecodingStrategy = .custom(customDateHandler)
+      if let articles = try! decoder.decode(Response.self, from: data).articles {
+        self.articles = articles
+      }
     }
   }
   

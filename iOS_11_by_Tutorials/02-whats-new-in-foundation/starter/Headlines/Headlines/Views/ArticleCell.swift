@@ -40,7 +40,11 @@ class ArticleCell: UITableViewCell {
   
   func render(article: Article, using formatter: DateFormatter) {
     downloadBanner(from: article.imageURL)
-    publishedLabel.text = formatter.string(from: article.published)
+    if let published = article.published {
+      publishedLabel.text = formatter.string(from: published)
+    } else {
+      publishedLabel.text = nil
+    }
     titleLabel.text = article.title
     snippetLabel.text = article.snippet
   }
