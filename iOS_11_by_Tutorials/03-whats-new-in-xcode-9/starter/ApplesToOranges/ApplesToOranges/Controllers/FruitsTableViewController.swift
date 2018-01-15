@@ -30,7 +30,7 @@
 
 import UIKit
 
-class FruitsDisplayTableViewController: UITableViewController {
+class FruitsTableViewController: UITableViewController {
 
   private var fruits = FruitStore.fruits.sorted { $0.name < $1.name }
 

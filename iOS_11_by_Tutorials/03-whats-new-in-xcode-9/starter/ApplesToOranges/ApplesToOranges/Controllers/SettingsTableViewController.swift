@@ -58,7 +58,7 @@ class SettingsTableViewController: UITableViewController {
     var fruit = fruits[sender.tag]
     fruit.calories = Double(sender.text ?? "") ?? 0
 
-    if let index = FruitStore.fruits.index(where: { $0.name == fruit.name }) {
+    if let index = FruitStore.fruits.index(of: fruit) {
       FruitStore.fruits[index] = fruit
     }
   }

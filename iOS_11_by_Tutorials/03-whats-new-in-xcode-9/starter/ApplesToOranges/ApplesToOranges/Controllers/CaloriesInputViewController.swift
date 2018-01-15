@@ -35,7 +35,7 @@ private let maxCalories = 2000.0
 
 class CaloriesInputViewController: UIViewController {
 
-  private var fruitsTableViewController: FruitsDisplayTableViewController!
+  private var fruitsTableViewController: FruitsTableViewController!
 
   @IBOutlet weak var caloriesTextField: UITextField!
 
@@ -48,7 +48,7 @@ class CaloriesInputViewController: UIViewController {
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     // Obtain reference to embedded child view controller
-    fruitsTableViewController = segue.destination as! FruitsDisplayTableViewController
+    fruitsTableViewController = segue.destination as! FruitsTableViewController
   }
 
   private func reloadData() {

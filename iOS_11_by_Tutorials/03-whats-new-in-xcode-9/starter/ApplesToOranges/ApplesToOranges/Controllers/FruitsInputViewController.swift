@@ -39,7 +39,7 @@ class FruitsInputViewController: UIViewController {
   @IBOutlet private weak var stepper: UIStepper!
   @IBOutlet private weak var caloriesCountLabel: UILabel!
 
-  private var fruitsTableViewController: FruitsDisplayTableViewController!
+  private var fruitsTableViewController: FruitsTableViewController!
 
   private var fruits = FruitStore.fruits.sorted { $0.name < $1.name }
 
@@ -71,7 +71,7 @@ class FruitsInputViewController: UIViewController {
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     // Obtain reference to embedded child view controller
-    fruitsTableViewController = segue.destination as! FruitsDisplayTableViewController
+    fruitsTableViewController = segue.destination as! FruitsTableViewController
   }
 
   private func reloadData() {

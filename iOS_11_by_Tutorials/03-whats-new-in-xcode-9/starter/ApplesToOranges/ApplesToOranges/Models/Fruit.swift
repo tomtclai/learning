@@ -47,3 +47,10 @@ struct Fruit {
     return customPluralName ?? name + "s"
   }
 }
+extension Fruit: Equatable {
+  static func ==(lhs: Fruit, rhs: Fruit) -> Bool {
+    return lhs.name == rhs.name
+  }
+
+
+}
