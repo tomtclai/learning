@@ -76,6 +76,7 @@ extension ProductTableViewCell {
   
   override func copy(_ sender: Any?) {
     guard let product = product else { return }
-    UIPasteboard.general.string = product.name
+    let data = NSKeyedArchiver.archivedData(withRootObject: product)
+    UIPasteboard.general.setData(data, forPasteboardType: Product.productTypeId)
   }
 }
