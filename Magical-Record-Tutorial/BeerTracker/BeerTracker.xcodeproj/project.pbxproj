@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		774C530820122142005A6B7F /* BeerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 774C530620122142005A6B7F /* BeerModel.xcdatamodeld */; };
 		A150E34517F11FA400BF5BC1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A150E34417F11FA400BF5BC1 /* Foundation.framework */; };
 		A150E34717F11FA400BF5BC1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A150E34617F11FA400BF5BC1 /* CoreGraphics.framework */; };
 		A150E34917F11FA400BF5BC1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A150E34817F11FA400BF5BC1 /* UIKit.framework */; };
@@ -69,6 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		774C530720122142005A6B7F /* BeerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BeerModel.xcdatamodel; sourceTree = "<group>"; };
 		A150E34117F11FA400BF5BC1 /* BeerTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeerTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A150E34417F11FA400BF5BC1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A150E34617F11FA400BF5BC1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -232,6 +234,7 @@
 				A150E38117F1208300BF5BC1 /* Preloaded Images */,
 				A150E38517F1245900BF5BC1 /* AMRating */,
 				A150E34B17F11FA400BF5BC1 /* Supporting Files */,
+				774C530620122142005A6B7F /* BeerModel.xcdatamodeld */,
 			);
 			path = BeerTracker;
 			sourceTree = "<group>";
@@ -433,6 +436,10 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Andy Pereira";
 				TargetAttributes = {
+					A150E34017F11FA400BF5BC1 = {
+						DevelopmentTeam = DPRFY9YDG3;
+						LastSwiftMigration = 0830;
+					};
 					A150E36117F11FA400BF5BC1 = {
 						TestTargetID = A150E34017F11FA400BF5BC1;
 					};
@@ -512,6 +519,7 @@
 				A156785D1849095D00DB62C8 /* MagicalRecord+ShorthandSupport.m in Sources */,
 				A15678501849095D00DB62C8 /* NSManagedObject+MagicalRequests.m in Sources */,
 				A15678461849095D00DB62C8 /* NSAttributeDescription+MagicalDataImport.m in Sources */,
+				774C530820122142005A6B7F /* BeerModel.xcdatamodeld in Sources */,
 				A156785E1849095D00DB62C8 /* MagicalRecord.m in Sources */,
 				A150E35117F11FA400BF5BC1 /* main.m in Sources */,
 				A156785C1849095D00DB62C8 /* MagicalRecord+Setup.m in Sources */,
@@ -646,10 +654,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeerTracker/BeerTracker-Prefix.pch";
 				INFOPLIST_FILE = "BeerTracker/BeerTracker-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -659,10 +672,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeerTracker/BeerTracker-Prefix.pch";
 				INFOPLIST_FILE = "BeerTracker/BeerTracker-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -740,6 +757,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		774C530620122142005A6B7F /* BeerModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				774C530720122142005A6B7F /* BeerModel.xcdatamodel */,
+			);
+			currentVersion = 774C530720122142005A6B7F /* BeerModel.xcdatamodel */;
+			path = BeerModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A150E33917F11FA400BF5BC1 /* Project object */;
 }

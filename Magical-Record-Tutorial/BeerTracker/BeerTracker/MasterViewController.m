@@ -6,7 +6,8 @@
 #import "AMRating/AMRatingControl.h"
 #import "BeerViewController.h"
 #import "ImageSaver.h"
-
+#import "Beer+CoreDataClass.h"
+#import "BeerDetails+CoreDataClass.h"
 @interface MasterViewController ()<UISearchBarDelegate>
 @property (nonatomic) NSMutableArray *beers;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -27,6 +28,7 @@ NSString * const WB_SORT_KEY     = @"WB_SORT_KEY";
 	if ([[[NSUserDefaults standardUserDefaults] objectForKey:WB_SORT_KEY] isEqualToString:SORT_KEY_NAME]) {
 		self.segmentedControl.selectedSegmentIndex = 1;
 	}
+  [self fetchAllBeers];
 	[self.tableView reloadData];
 }
 
@@ -40,7 +42,7 @@ NSString * const WB_SORT_KEY     = @"WB_SORT_KEY";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	BeerViewController *upcoming = segue.destinationViewController;
     if ([[segue identifier] isEqualToString:@"editBeer"]) {
-    
+      upcoming.beer = self.beers[self.tableView.indexPathForSelectedRow.row];
 	} else if ([segue.identifier isEqualToString:@"addBeer"]) {
 		upcoming.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonSystemItemCancel target:upcoming action:@selector(cancelAdd)];
 		upcoming.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonSystemItemAdd target:upcoming action:@selector(addNewBeer)];
@@ -48,7 +50,9 @@ NSString * const WB_SORT_KEY     = @"WB_SORT_KEY";
 }
 
 - (void)fetchAllBeers {
-
+  NSString *sortKey = [[NSUserDefaults standardUserDefaults] objectForKey:WB_SORT_KEY];
+  BOOL ascending = ![sortKey isEqualToString:SORT_KEY_NAME];
+  self.beers = [[Beer findAllSortedBy:sortKey ascending:ascending] mutableCopy];
 }
 
 - (void)saveContext {
@@ -71,7 +75,17 @@ NSString * const WB_SORT_KEY     = @"WB_SORT_KEY";
 }
 
 - (void)configureCell:(UITableViewCell*)cell atIndex:(NSIndexPath*)indexPath {
-
+  static const int RATING_CONTROL_TAG = 20;
+  Beer *beer = self.beers[indexPath.row];
+  cell.textLabel.text = beer.name;
+  AMRatingControl *ratingControl;
+  if ([cell viewWithTag:RATING_CONTROL_TAG]) {
+    ratingControl = (AMRatingControl*) [cell viewWithTag:RATING_CONTROL_TAG];
+  } else {
+    ratingControl = [[AMRatingControl alloc] initWithLocation:CGPointMake(190, 10) emptyImage:[UIImage imageNamed:@"beermug-empty"] solidImage:[UIImage imageNamed:@"beermug-full"] andMaxRating:5];
+    ratingControl.tag = RATING_CONTROL_TAG;
+  }
+  ratingControl.rating = beer.beerDetails.rating;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

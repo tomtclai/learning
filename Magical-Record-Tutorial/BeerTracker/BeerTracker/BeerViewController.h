@@ -4,8 +4,10 @@
 
 #import <UIKit/UIKit.h>
 @class AMRatingControl;
+@class Beer;
 
 @interface BeerViewController : UITableViewController
+@property (nonatomic, strong) Beer *beer;
 @property (weak, nonatomic) IBOutlet UIImageView *beerImage;
 @property (weak, nonatomic) IBOutlet UITextField *beerNameField;
 @property (weak, nonatomic) IBOutlet UITextView *beerNotesView;

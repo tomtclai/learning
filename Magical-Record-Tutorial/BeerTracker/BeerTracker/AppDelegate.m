@@ -11,6 +11,8 @@
 	self.window.tintColor = [UIColor whiteColor];
 	[[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.22f green:0.17f blue:0.13f alpha:1.00f]];
 	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+  [MagicalRecord setupCoreDataStackWithStoreNamed:@"BeerModel"];
+
     return YES;
 }
 							

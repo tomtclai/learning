@@ -3,8 +3,8 @@
 //  Copyright (c) 2013 Ray Wenderlich. All rights reserved.
 
 #import "ImageSaver.h"
-//#import "Beer.h"
-//#import "BeerDetails.h"
+#import "Beer+CoreDataClass.h"
+#import "BeerDetails+CoreDataClass.h"
 
 @implementation ImageSaver
 
@@ -14,7 +14,7 @@
 	NSString *path	  = [NSString stringWithFormat:@"Documents/%@.jpg", name];
 	NSString *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:path];
 	if ([imgData writeToFile:jpgPath atomically:YES]) {
-//		beer.beerDetails.image = path;
+		beer.beerDetails.image = path;
 	} else {
 		[[[UIAlertView alloc] initWithTitle:@"Error"
 									message:@"There was an error saving your photo. Try again."

@@ -6,6 +6,8 @@
 #import "AMRating/AMRatingControl.h"
 #import "PhotoViewController.h"
 #import "ImageSaver.h"
+#import "Beer+CoreDataClass.h"
+#import "BeerDetails+CoreDataClass.h"
 
 @interface BeerViewController ()<UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
 @end
@@ -14,8 +16,25 @@
 @implementation BeerViewController
 
 - (void)viewDidLoad {
-	self.beerNotesView.layer.borderColor = [UIColor colorWithWhite:0.667 alpha:0.500].CGColor;
-	self.beerNotesView.layer.borderWidth = 1.0f;
+
+  if (!self.beer) {
+    self.beer = [Beer createEntity];
+    if (!self.beer.beerDetails) {
+      self.beer.beerDetails = [BeerDetails createEntity];
+    }
+  }
+  self.title = self.beer.name ? : @"New Beer";
+  self.beerNameField.text = self.beer.name;
+  self.beerNotesView.text = self.beer.beerDetails.note;
+  self.ratingControl.rating = self.beer.beerDetails.rating;
+  [self.cellOne addSubview:self.ratingControl];
+  self.beerNotesView.layer.borderColor = [UIColor colorWithWhite:0.667 alpha:0.500].CGColor;
+  self.beerNotesView.layer.borderWidth = 1.0f;
+
+  if ([self.beer.beerDetails.image length] > 0) {
+    NSData *imgData = [NSData dataWithContentsOfFile:[NSHomeDirectory() stringByAppendingPathComponent:self.beer.beerDetails.image]];
+    [self setImageForBeer:[UIImage imageWithData:imgData]];
+  }
 }
 
 - (void)setImageForBeer:(UIImage*)img {
@@ -33,6 +52,7 @@
 }
 
 - (void)cancelAdd {
+  [self.beer deleteEntity];
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -41,7 +61,13 @@
 }
 
 - (void)saveContext {
-
+  [[NSManagedObjectContext defaultContext] saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+    if (success) {
+      NSLog(@"You successfully saved your context");
+    } else if (error) {
+      NSLog(@"Error saving context");
+    }
+  }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -67,7 +93,7 @@
 
 // Updates rating
 - (void)updateRating {
-	
+  self.beer.beerDetails.rating = self.ratingControl.rating;
 }
 
 #pragma mark - TextField & TextView Delegate
@@ -78,13 +104,14 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField {
 	if ([textField.text length] > 0) {
 		self.title     = textField.text;
+    self.beer.name = textField.text;
 	}
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
 	[textView resignFirstResponder];
 	if ([textView.text length] > 0) {
-		
+    self.beer.beerDetails.note = textView.text;
 	}
 }
 
@@ -106,6 +133,14 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
 	[picker dismissViewControllerAnimated:YES completion:nil];
+  UIImage *image = info[UIImagePickerControllerOriginalImage];
+  if (self.beer.beerDetails.image) {
+    [ImageSaver deleteImageAtPath:self.beer.beerDetails.image];
+  }
+  if ([ImageSaver saveImageToDisk:image andToBeer:self.beer]) {
+    [self setImageForBeer:image];
+  }
+  [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UIActionSheet Delegate

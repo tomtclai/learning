@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="17C205" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Beer" representedClassName="Beer" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="beerDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BeerDetails" inverseName="beer" inverseEntity="BeerDetails" syncable="YES"/>
+    </entity>
+    <entity name="BeerDetails" representedClassName="BeerDetails" syncable="YES" codeGenerationType="class">
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="beer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Beer" inverseName="beerDetails" inverseEntity="Beer" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Beer" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="BeerDetails" positionX="-54" positionY="18" width="128" height="105"/>
+    </elements>
+</model>
