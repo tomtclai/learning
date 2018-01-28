@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77562FC5201E27A4005ABD2F /* Bowtie+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77562FC3201E27A4005ABD2F /* Bowtie+CoreDataClass.swift */; };
+		77562FC6201E27A4005ABD2F /* Bowtie+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77562FC4201E27A4005ABD2F /* Bowtie+CoreDataProperties.swift */; };
 		95BD9F471F5018FC0058C9F4 /* SampleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE116B6B1F254BFD00BC128B /* SampleData.plist */; };
 		FEA6248E1D6A54FA0011CF8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA6248D1D6A54FA0011CF8F /* AppDelegate.swift */; };
 		FEA624901D6A54FA0011CF8F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA6248F1D6A54FA0011CF8F /* ViewController.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		77562FC3201E27A4005ABD2F /* Bowtie+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bowtie+CoreDataClass.swift"; sourceTree = "<group>"; };
+		77562FC4201E27A4005ABD2F /* Bowtie+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bowtie+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FE116B6B1F254BFD00BC128B /* SampleData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SampleData.plist; sourceTree = "<group>"; };
 		FEA6248A1D6A54FA0011CF8F /* Bow Ties.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bow Ties.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA6248D1D6A54FA0011CF8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +64,8 @@
 		FEA6248C1D6A54FA0011CF8F /* Bow Ties */ = {
 			isa = PBXGroup;
 			children = (
+				77562FC3201E27A4005ABD2F /* Bowtie+CoreDataClass.swift */,
+				77562FC4201E27A4005ABD2F /* Bowtie+CoreDataProperties.swift */,
 				FEA6248D1D6A54FA0011CF8F /* AppDelegate.swift */,
 				FEA6248F1D6A54FA0011CF8F /* ViewController.swift */,
 				FEA624911D6A54FA0011CF8F /* Main.storyboard */,
@@ -150,6 +156,8 @@
 				FEA624961D6A54FA0011CF8F /* Bow_Ties.xcdatamodeld in Sources */,
 				FEA624901D6A54FA0011CF8F /* ViewController.swift in Sources */,
 				FEA6248E1D6A54FA0011CF8F /* AppDelegate.swift in Sources */,
+				77562FC5201E27A4005ABD2F /* Bowtie+CoreDataClass.swift in Sources */,
+				77562FC6201E27A4005ABD2F /* Bowtie+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
