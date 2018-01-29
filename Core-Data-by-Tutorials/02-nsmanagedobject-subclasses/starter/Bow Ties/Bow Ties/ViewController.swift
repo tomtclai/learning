@@ -21,7 +21,7 @@
  */
 
 import UIKit
-
+import CoreData
 class ViewController: UIViewController {
 
   // MARK: - IBOutlets
@@ -33,6 +33,8 @@ class ViewController: UIViewController {
   @IBOutlet weak var lastWornLabel: UILabel!
   @IBOutlet weak var favoriteLabel: UILabel!
 
+  // MARK: - Properties
+  var managedContext: NSManagedObjectContext!
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -49,5 +51,59 @@ class ViewController: UIViewController {
   
   @IBAction func rate(_ sender: Any) {
 
+  }
+
+  func insertSampleData() {
+    let fetch: NSFetchRequest<Bowtie> = Bowtie.fetchRequest()
+    fetch.predicate = NSPredicate(format: "searchKey != nil")
+
+    let count = try! managedContext.count(for: fetch)
+
+    if count > 0 {
+      return
+    }
+
+    let path = Bundle.main.path(forResource: "SampleData", ofType: "plist")
+    let dataArray = NSArray(contentsOfFile: path!)!
+
+    for dict in dataArray {
+      let entity = NSEntityDescription.entity(forEntityName: "Bowtie", in: managedContext)!
+      let bowtie = Bowtie(entity: entity, insertInto: managedContext)
+      let btDict = dict as! [String: Any]
+
+      bowtie.id = UUID(uuidString: btDict["id"] as! String)
+      bowtie.name = btDict["name"] as? String
+      bowtie.searchKey = btDict["searchKey"] as? String
+      bowtie.rating = btDict["rating"] as! Double
+      let colorDict = btDict["tintColor"] as! [String: Any]
+      bowtie.tintColor = UIColor.color(dict: colorDict)
+
+      let imageName = btDict["imageName"] as? String
+      let image = UIImage(named: imageName!)
+      let photoData = UIImagePNGRepresentation(image!)!
+      bowtie.photoData = NSData(data: photoData)
+      bowtie.lastWorn = btDict["lastWorn"] as? NSDate
+
+      let timesNumber = btDict["timesWorn"] as! NSNumber
+      bowtie.timesWorn = timesNumber.int32Value
+      bowtie.isFavorite = btDict["isFavorite"] as! Bool
+      bowtie.url = URL(string: btDict["url"] as! String)
+    }
+    try! managedContext.save()
+  }
+}
+
+private extension UIColor {
+  static func color(dict: [String: Any]) -> UIColor? {
+    guard let red = dict["red"] as? NSNumber,
+      let green = dict["green"] as? NSNumber,
+      let blue = dict["blue"] as? NSNumber else {
+        return nil
+    }
+
+    return UIColor(displayP3Red: CGFloat(truncating: red),
+                   green: CGFloat(truncating: green),
+                   blue: CGFloat(truncating: blue),
+                   alpha: 1)
   }
 }
