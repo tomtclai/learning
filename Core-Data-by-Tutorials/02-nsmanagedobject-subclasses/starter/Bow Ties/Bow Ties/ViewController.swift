@@ -35,6 +35,12 @@ class ViewController: UIViewController {
 
   // MARK: - Properties
   var managedContext: NSManagedObjectContext!
+  var currentBowtie: Bowtie! {
+    didSet {
+      populate(bowtie: currentBowtie)
+    }
+  }
+
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -47,27 +53,82 @@ class ViewController: UIViewController {
       format: "%K = %@",
       argumentArray: [#keyPath(Bowtie.searchKey), firstTitle])
     do {
-      // The managed object context executes the fetch requestion you crafted above and returns an array of Bowties
       let results = try managedContext.fetch(request)
-
-      // Populate the UI with the first bowtie in the results array
-      populate(bowtie: results.first!)
+      currentBowtie = results.first
     } catch let error as NSError {
-      print("COuld not fetch \(error), \(error.userInfo)")
+      print("Could not fetch \(error), \(error.userInfo)")
     }
   }
 
   // MARK: - IBActions
   @IBAction func segmentedControl(_ sender: Any) {
+    guard let control = sender as? UISegmentedControl, let selectedValue = control.titleForSegment(at: control.selectedSegmentIndex) else {
+      return
+    }
 
+    let request = NSFetchRequest<Bowtie>(entityName: "Bowtie")
+    request.predicate = NSPredicate(format: "%K = %@",
+                                    argumentArray: [#keyPath(Bowtie.searchKey), selectedValue])
+
+    do {
+      let results = try managedContext.fetch(request)
+      currentBowtie = results.first
+    } catch let error as NSError {
+      print("Could not fetch \(error), \(error.userInfo)")
+    }
   }
 
   @IBAction func wear(_ sender: Any) {
+    let times = currentBowtie.timesWorn
+    currentBowtie.timesWorn = times + 1
+    currentBowtie.lastWorn = NSDate()
 
+    do {
+      try managedContext.save()
+      populate(bowtie: currentBowtie)
+    } catch let error as NSError {
+      print("Could not fetch \(error), \(error.userInfo)")
+    }
   }
   
   @IBAction func rate(_ sender: Any) {
+    let alert = UIAlertController(title: "New Rating",
+                                  message: "Rate this bow tie",
+                                  preferredStyle: .alert)
+    alert.addTextField { (textfield) in
+      textfield.keyboardType = .decimalPad
+    }
 
+    let cancelAction = UIAlertAction(title: "Cancel", style: .default)
+    let saveAction = UIAlertAction(title: "Save", style: .default) { [unowned self] action in
+      guard let textField = alert.textFields?.first else {
+        return
+      }
+
+      self.update(rating: textField.text)
+    }
+    alert.addAction(cancelAction)
+    alert.addAction(saveAction)
+    present(alert, animated: true)
+  }
+
+  func update(rating: String?) {
+    guard let ratingString = rating, let rating = Double(ratingString) else {
+      return
+    }
+    do {
+      currentBowtie.rating = rating
+      try managedContext.save()
+      populate(bowtie: currentBowtie)
+    } catch let error as NSError {
+      if error.domain == NSCocoaErrorDomain,
+        error.code == NSValidationNumberTooLargeError ||
+          error.code == NSValidationNumberTooSmallError {
+        rate(currentBowtie)
+      } else {
+        print("Could not save \(error), \(error.userInfo)")
+      }
+    }
   }
 
   func populate(bowtie: Bowtie) {
