@@ -38,6 +38,23 @@ class ViewController: UIViewController {
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    insertSampleDataIfNeeded()
+
+    let request : NSFetchRequest<Bowtie> = Bowtie.fetchRequest()
+    // The predicate is looking for bowties with their searchKey set to segment control's first button title, 'R'
+    let firstTitle = segmentedControl.titleForSegment(at: 0)!
+    request.predicate = NSPredicate(
+      format: "%K = %@",
+      argumentArray: [#keyPath(Bowtie.searchKey), firstTitle])
+    do {
+      // The managed object context executes the fetch requestion you crafted above and returns an array of Bowties
+      let results = try managedContext.fetch(request)
+
+      // Populate the UI with the first bowtie in the results array
+      populate(bowtie: results.first!)
+    } catch let error as NSError {
+      print("COuld not fetch \(error), \(error.userInfo)")
+    }
   }
 
   // MARK: - IBActions
@@ -53,13 +70,34 @@ class ViewController: UIViewController {
 
   }
 
-  func insertSampleData() {
+  func populate(bowtie: Bowtie) {
+    guard let imageData = bowtie.photoData as Data?,
+      let lastWorn = bowtie.lastWorn as Date?,
+      let tintColor = bowtie.tintColor as? UIColor else {
+        return
+    }
+
+    imageView.image = UIImage(data: imageData)
+    nameLabel.text = bowtie.name
+    ratingLabel.text = "Rating: \(bowtie.rating)/5"
+
+    timesWornLabel.text = "# times worn: \(bowtie.timesWorn)"
+
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .short
+    dateFormatter.timeStyle = .none
+
+    lastWornLabel.text = "Last worn: " + dateFormatter.string(from: lastWorn)
+
+    favoriteLabel.isHidden = !bowtie.isFavorite
+    view.tintColor = tintColor
+  }
+
+  func insertSampleDataIfNeeded() {
     let fetch: NSFetchRequest<Bowtie> = Bowtie.fetchRequest()
     fetch.predicate = NSPredicate(format: "searchKey != nil")
 
-    let count = try! managedContext.count(for: fetch)
-
-    if count > 0 {
+    guard try! managedContext.count(for: fetch) == 0 else {
       return
     }
 
@@ -101,9 +139,9 @@ private extension UIColor {
         return nil
     }
 
-    return UIColor(displayP3Red: CGFloat(truncating: red),
-                   green: CGFloat(truncating: green),
-                   blue: CGFloat(truncating: blue),
+    return UIColor(red: CGFloat(truncating: red) / 255.0,
+                   green: CGFloat(truncating: green) / 255.0,
+                   blue: CGFloat(truncating: blue) / 255.0,
                    alpha: 1)
   }
 }
