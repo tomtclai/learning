@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		778C4ADC2027948E0003142A /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C4ADB2027948E0003142A /* CoreDataStack.swift */; };
+		778C4ADF2027A5D10003142A /* Dog Walk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 778C4ADD2027A5D10003142A /* Dog Walk.xcdatamodeld */; };
+		778C4AE42027AC990003142A /* Dog+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C4AE02027AC990003142A /* Dog+CoreDataClass.swift */; };
+		778C4AE52027AC990003142A /* Dog+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C4AE12027AC990003142A /* Dog+CoreDataProperties.swift */; };
+		778C4AE62027AC990003142A /* Walk+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C4AE22027AC990003142A /* Walk+CoreDataClass.swift */; };
+		778C4AE72027AC990003142A /* Walk+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C4AE32027AC990003142A /* Walk+CoreDataProperties.swift */; };
 		FEAB7CA91D7385CB00570B31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAB7CA81D7385CB00570B31 /* AppDelegate.swift */; };
 		FEAB7CAB1D7385CB00570B31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAB7CAA1D7385CB00570B31 /* ViewController.swift */; };
 		FEAB7CAE1D7385CB00570B31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEAB7CAC1D7385CB00570B31 /* Main.storyboard */; };
@@ -15,6 +21,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		778C4ADB2027948E0003142A /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		778C4ADE2027A5D10003142A /* Dog Walk.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Dog Walk.xcdatamodel"; sourceTree = "<group>"; };
+		778C4AE02027AC990003142A /* Dog+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dog+CoreDataClass.swift"; sourceTree = "<group>"; };
+		778C4AE12027AC990003142A /* Dog+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dog+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		778C4AE22027AC990003142A /* Walk+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Walk+CoreDataClass.swift"; sourceTree = "<group>"; };
+		778C4AE32027AC990003142A /* Walk+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Walk+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FEAB7CA51D7385CB00570B31 /* Dog Walk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dog Walk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEAB7CA81D7385CB00570B31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEAB7CAA1D7385CB00570B31 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,7 +68,13 @@
 		FEAB7CA71D7385CB00570B31 /* Dog Walk */ = {
 			isa = PBXGroup;
 			children = (
+				778C4AE02027AC990003142A /* Dog+CoreDataClass.swift */,
+				778C4AE12027AC990003142A /* Dog+CoreDataProperties.swift */,
+				778C4AE22027AC990003142A /* Walk+CoreDataClass.swift */,
+				778C4AE32027AC990003142A /* Walk+CoreDataProperties.swift */,
+				778C4ADD2027A5D10003142A /* Dog Walk.xcdatamodeld */,
 				FEAB7CA81D7385CB00570B31 /* AppDelegate.swift */,
+				778C4ADB2027948E0003142A /* CoreDataStack.swift */,
 				FEAB7CAA1D7385CB00570B31 /* ViewController.swift */,
 				FEAB7CAC1D7385CB00570B31 /* Main.storyboard */,
 				FEAB7CB21D7385CB00570B31 /* Assets.xcassets */,
@@ -98,6 +116,7 @@
 				TargetAttributes = {
 					FEAB7CA41D7385CB00570B31 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = DPRFY9YDG3;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -139,7 +158,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				778C4AE52027AC990003142A /* Dog+CoreDataProperties.swift in Sources */,
+				778C4ADC2027948E0003142A /* CoreDataStack.swift in Sources */,
+				778C4AE72027AC990003142A /* Walk+CoreDataProperties.swift in Sources */,
+				778C4AE42027AC990003142A /* Dog+CoreDataClass.swift in Sources */,
 				FEAB7CAB1D7385CB00570B31 /* ViewController.swift in Sources */,
+				778C4ADF2027A5D10003142A /* Dog Walk.xcdatamodeld in Sources */,
+				778C4AE62027AC990003142A /* Walk+CoreDataClass.swift in Sources */,
 				FEAB7CA91D7385CB00570B31 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +302,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				INFOPLIST_FILE = "Dog Walk/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.Dog-Walk";
@@ -290,6 +316,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				INFOPLIST_FILE = "Dog Walk/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.Dog-Walk";
@@ -321,6 +348,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		778C4ADD2027A5D10003142A /* Dog Walk.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				778C4ADE2027A5D10003142A /* Dog Walk.xcdatamodel */,
+			);
+			currentVersion = 778C4ADE2027A5D10003142A /* Dog Walk.xcdatamodel */;
+			path = "Dog Walk.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FEAB7C9D1D7385CB00570B31 /* Project object */;
 }
