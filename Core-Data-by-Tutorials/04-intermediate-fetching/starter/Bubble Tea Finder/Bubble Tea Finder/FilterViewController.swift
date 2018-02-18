@@ -29,6 +29,13 @@
  */
 
 import UIKit
+import CoreData
+
+protocol FilterViewControllerDelegate: class {
+  func filterViewController(filter: FilterViewController,
+                            didSelectPredicate predicate: NSPredicate?,
+                            sortDescriptor: NSSortDescriptor?)
+}
 
 class FilterViewController: UITableViewController {
 
@@ -53,10 +60,55 @@ class FilterViewController: UITableViewController {
   @IBOutlet weak var distanceSortCell: UITableViewCell!
   @IBOutlet weak var priceSortCell: UITableViewCell!
 
+  // MARK: - Properties
+  var coreDataStack: CoreDataStack!
+
+  weak var delegate: FilterViewControllerDelegate?
+  var selectedSortDescriptor: NSSortDescriptor?
+  var selectedPredicate: NSPredicate?
+
+  lazy var cheapVenuePredicate: NSPredicate = {
+    return NSPredicate(format: "%K == %@", #keyPath(Venue.priceInfo.priceCategory), "$")
+  }()
+  lazy var moderateVenuePredicate: NSPredicate = {
+    return NSPredicate(format: "%K == %@", #keyPath(Venue.priceInfo.priceCategory), "$$")
+  }()
+  lazy var expensiveVenuePredicate: NSPredicate = {
+    return NSPredicate(format: "%K == %@", #keyPath(Venue.priceInfo.priceCategory), "$$$")
+  }()
+
+  lazy var offeringDealPredicate: NSPredicate = {
+    return NSPredicate(format: "%K > 0", #keyPath(Venue.specialCount))
+  }()
+
+  lazy var walkingDistancePredicate: NSPredicate = {
+    return NSPredicate(format: "%K < 500", #keyPath(Venue.location.distance))
+  }()
+
+  lazy var hasUserTipsPredicate: NSPredicate = {
+    return NSPredicate(format: "%K > 0", #keyPath(Venue.stats.tipCount))
+  }()
+
+  lazy var nameSortDescriptor: NSSortDescriptor = {
+    let compareSelector = #selector(NSString.localizedStandardCompare(_:))
+    return NSSortDescriptor(key: #keyPath(Venue.name), ascending: true, selector: compareSelector)
+  }()
+
+  lazy var distanceSortDescriptor: NSSortDescriptor = {
+    return NSSortDescriptor(key: #keyPath(Venue.location.distance), ascending: true)
+  }()
+
+  lazy var priceSortDescriptor: NSSortDescriptor = {
+    return NSSortDescriptor(key: #keyPath(Venue.priceInfo.priceCategory), ascending: true)
+  }()
+
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    populateCheapVenueCountLabel()
+    populateModerateVenueCountLabel()
+    populateExpensiveVenueCountabel()
+    populateDealsCountLabel()
   }
 }
 
@@ -64,7 +116,9 @@ class FilterViewController: UITableViewController {
 extension FilterViewController {
 
   @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+    delegate?.filterViewController(filter: self, didSelectPredicate: selectedPredicate, sortDescriptor: selectedSortDescriptor)
 
+    dismiss(animated: true)
   }
 }
 
@@ -72,6 +126,94 @@ extension FilterViewController {
 extension FilterViewController {
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let cell = tableView.cellForRow(at: indexPath) else {
+      return
+    }
 
+    switch cell {
+    // Price
+    case cheapVenueCell:
+      selectedPredicate = cheapVenuePredicate
+    case moderateVenueCell:
+      selectedPredicate = moderateVenuePredicate
+    case expensiveVenueCell:
+      selectedPredicate = expensiveVenuePredicate
+    // Most popular
+    case offeringDealCell:
+      selectedPredicate = offeringDealPredicate
+    case walkingDistanceCell:
+      selectedPredicate = walkingDistancePredicate
+    case userTipsCell:
+      selectedPredicate = hasUserTipsPredicate
+    // Sort by section
+    case nameAZSortCell:
+      selectedSortDescriptor = nameSortDescriptor
+    case nameZASortCell:
+      selectedSortDescriptor = nameSortDescriptor.reversedSortDescriptor as? NSSortDescriptor
+    case distanceSortCell:
+      selectedSortDescriptor = distanceSortDescriptor
+    case priceSortCell:
+      selectedSortDescriptor = priceSortDescriptor
+    default:
+      break
+    }
+
+    cell.accessoryType = .checkmark
+  }
+}
+
+// MARK: - Helper Methods
+extension FilterViewController {
+  func populateCheapVenueCountLabel() {
+    populateVenueCountLabel(predicate: cheapVenuePredicate, label: firstPriceCategoryLabel)
+  }
+  func populateModerateVenueCountLabel() {
+    populateVenueCountLabel(predicate: moderateVenuePredicate, label: secondPriceCategoryLabel)
+  }
+  func populateExpensiveVenueCountabel() {
+    populateVenueCountLabel(predicate: expensiveVenuePredicate, label: thirdPriceCategoryLabel)
+  }
+
+  private func populateVenueCountLabel(predicate: NSPredicate, label: UILabel) {
+    let fetchRequest = NSFetchRequest<NSNumber>(entityName: "Venue")
+    fetchRequest.resultType = .countResultType
+    fetchRequest.predicate = predicate
+
+    do {
+      let count =  try coreDataStack.managedContext.count(for: fetchRequest)
+      label.text = "\(count) bubble tea places"
+    } catch let error as NSError {
+      print("Could not fetch \(error), \(error.userInfo)")
+    }
+  }
+
+  // Core data has a built-in support for a number of differenct functions such as average, sum, min and max.
+  func populateDealsCountLabel() {
+    // You begin by creating your typical fetch request for retrieving Venue objects. Next, you specify the result type to be .dictionaryResultType.
+    let fetchRequest = NSFetchRequest<NSDictionary>(entityName: "Venue")
+    fetchRequest.resultType = .dictionaryResultType
+
+    // You create an NSExpressionDescription to request the sum, and give it the name sumDeals so you can read its result out of the result dictionary you’ll get back from the fetch request.
+    let sumExpressionDesc = NSExpressionDescription()
+    sumExpressionDesc.name = "sumDeals"
+
+    // You give the expression description an NSExpression to specify you want the sum function. Next, give that expression another NSExpression to specify what property you want to sum over-- in this case, specialCount. Finally, you have to set the return data type of your expression description, so you set it to integer32AttributeType
+    let specialCountExp = NSExpression(forKeyPath: #keyPath(Venue.specialCount))
+    sumExpressionDesc.expression = NSExpression(forFunction: "sum:", arguments: [specialCountExp])
+    sumExpressionDesc.expressionResultType = .integer32AttributeType
+
+    // You tell your original fetch request to fetch the sum by setting its propertiesToFetch property to the expression description you just created
+    fetchRequest.propertiesToFetch = [sumExpressionDesc]
+
+    // Finally, execute the fetch request in the usual do-catch statement. The result type is an NSDictionary array, so you retrieve the result of your expression using your expression description's name "sumDeals" and you're done!
+    do {
+      let results = try coreDataStack.managedContext.fetch(fetchRequest)
+
+      let resultDict = results.first!
+      let numDeals = resultDict["sumDeals"]!
+      numDealsLabel.text = "\(numDeals) total deals"
+    } catch let error as NSError {
+      print("Could not fetch \(error), \(error.userInfo)")
+    }
   }
 }

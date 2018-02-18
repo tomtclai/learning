@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11224.2" systemVersion="15G31" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17D47" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Category" representedClassName=".Category" syncable="YES">
         <attribute name="categoryID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -34,6 +34,7 @@
         <relationship name="priceInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PriceInfo" inverseName="venue" inverseEntity="PriceInfo" syncable="YES"/>
         <relationship name="stats" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stats" inverseName="venue" inverseEntity="Stats" syncable="YES"/>
     </entity>
+    <fetchRequest name="FetchRequest" entity="Venue"/>
     <elements>
         <element name="Category" positionX="-63" positionY="-18" width="128" height="90"/>
         <element name="Location" positionX="-54" positionY="-9" width="128" height="150"/>
