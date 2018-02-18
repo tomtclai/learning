@@ -40,6 +40,7 @@ class ViewController: UIViewController {
   var coreDataStack: CoreDataStack!
   var fetchRequest: NSFetchRequest<Venue>?
   var venues: [Venue] = []
+  var asyncFetchRequest: NSAsynchronousFetchRequest<Venue>?
 
   // MARK: - IBOutlets
   @IBOutlet weak var tableView: UITableView!
@@ -47,8 +48,46 @@ class ViewController: UIViewController {
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    let batchUpdate = NSBatchUpdateRequest(entityName: "Venue")
+    batchUpdate.propertiesToUpdate = [#keyPath(Venue.favorite) : true]
+
+    batchUpdate.affectedStores = coreDataStack.managedContext.persistentStoreCoordinator?.persistentStores
+
+    batchUpdate.resultType = .updatedObjectsCountResultType
+
+    do {
+      let batchResult = try coreDataStack.managedContext.execute(batchUpdate) as! NSBatchUpdateResult
+      print("Records updated \(batchResult.result!)")
+    } catch let error as NSError {
+      print("Could not update \(error), \(error.userInfo)")
+    }
+
     fetchRequest = Venue.fetchRequest()
     fetchAndReload()
+
+    // Notice here that an asynchronous fetch request doesn’t replace the regular fetch request. Rather, you can think of an asynchronous fetch request as a wrapper around the fetch request you already had.
+    let venueFetchRequest: NSFetchRequest<Venue> = Venue.fetchRequest()
+    fetchRequest = venueFetchRequest
+
+    // To create an NSAsynchronousFetchRequest you need two things: a plain old NSFetchRequest and a completion handler. Your fetched venues are contained in NSAsynchronousFetchResult’s finalResult property. Within the completion handler, you update the venues property and reload the table view.
+    asyncFetchRequest = NSAsynchronousFetchRequest<Venue>(fetchRequest: venueFetchRequest) { [weak self] (result: NSAsynchronousFetchResult) in
+      guard let venues = result.finalResult, let strongSelf = self else {
+        return
+      }
+      strongSelf.venues = venues
+      strongSelf.tableView.reloadData()
+    }
+
+    // Specifying the completion handler is not enough! You still have to execute the asynchronous fetch request. Once again, CoreDataStack’s managedContext property handles the heavy lifting for you. However, notice the method you use is different — this time, it’s execute(_:) instead of the usual fetch(_:).
+    do {
+      guard let asyncFetchRequest = asyncFetchRequest else {
+        return
+      }
+      try coreDataStack.managedContext.execute(asyncFetchRequest)
+    } catch let error as NSError {
+      print("Could not fetch \(error), \(error.userInfo)")
+    }
   }
 
   // MARK: - Navigation
