@@ -27,6 +27,7 @@
 /* Begin PBXFileReference section */
 		22AFD4B51B5527B9002CE770 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		279570D619827BC400F52BA9 /* ImageTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTransformer.swift; sourceTree = "<group>"; };
+		77234B6620471FE30065F9AD /* UnCloudNotesDataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "UnCloudNotesDataModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		790FC6E3198439AD00B52A53 /* AttachPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachPhotoViewController.swift; sourceTree = "<group>"; };
 		95863A161D6DE01200247AE2 /* NoteImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteImageTableViewCell.swift; sourceTree = "<group>"; };
 		C71A68731948D2CB003A62E7 /* CreateNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CreateNoteViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -139,6 +140,7 @@
 				TargetAttributes = {
 					C77E1E761947D6D700762492 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = DPRFY9YDG3;
 						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.iCloud = {
@@ -325,7 +327,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				INFOPLIST_FILE = UnCloudNotes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raywenderlich.cdbt.${PRODUCT_NAME:rfc1034identifier}";
@@ -342,7 +344,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				INFOPLIST_FILE = UnCloudNotes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raywenderlich.cdbt.${PRODUCT_NAME:rfc1034identifier}";
@@ -380,9 +382,10 @@
 		C7F78B92194E1FA900BAF550 /* UnCloudNotesDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				77234B6620471FE30065F9AD /* UnCloudNotesDataModel 2.xcdatamodel */,
 				C7F78B93194E1FA900BAF550 /* UnCloudNotesDataModel.xcdatamodel */,
 			);
-			currentVersion = C7F78B93194E1FA900BAF550 /* UnCloudNotesDataModel.xcdatamodel */;
+			currentVersion = 77234B6620471FE30065F9AD /* UnCloudNotesDataModel 2.xcdatamodel */;
 			path = UnCloudNotesDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
