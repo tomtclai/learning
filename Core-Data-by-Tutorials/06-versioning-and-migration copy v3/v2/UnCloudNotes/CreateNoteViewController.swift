@@ -29,55 +29,76 @@
  */
 
 import UIKit
+import CoreData
 
-class AttachPhotoViewController: UIViewController {
+class CreateNoteViewController: UIViewController, UsesCoreDataObjects {
 
   // MARK: - Properties
-  var note : Note?
-  lazy var imagePicker : UIImagePickerController = {
-    let picker = UIImagePickerController()
-    picker.sourceType = .photoLibrary
-    picker.delegate = self
-    self.addChildViewController(picker)
-    return picker
+  var managedObjectContext: NSManagedObjectContext?
+  lazy var note: Note? = {
+    guard let context = self.managedObjectContext else { return nil }
+    return Note(context: context)
   }()
 
+  // MARK: - IBOutlets
+  @IBOutlet fileprivate var titleField: UITextField!
+  @IBOutlet fileprivate var bodyField: UITextView!
+  @IBOutlet private var attachPhotoButton: UIButton!
+  @IBOutlet private var attachedPhoto: UIImageView!
+
   // MARK: - View Life Cycle
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    addChildViewController(imagePicker)
-    view.addSubview(imagePicker.view)
-  }
-
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
-
-    imagePicker.view.frame = view.bounds
-  }
-}
-
-// MARK: - UIImagePickerControllerDelegate
-extension AttachPhotoViewController: UIImagePickerControllerDelegate {
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-    guard let note = note,
-      let context = note.managedObjectContext else {
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    guard let image = note?.image else {
+      titleField.becomeFirstResponder()
       return
     }
     
-    let attachment = Attachment(context: context)
-    attachment.dateCreated = Date()
-    attachment.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-    attachment.note = note
+    attachedPhoto.image = image
+    view.endEditing(true)
+  }
+  
+  // MARK: - Navigation
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let nextViewController = segue.destination as? NoteDisplayable else { return }
 
-    _ = navigationController?.popViewController(animated: true)
+    nextViewController.note = note
   }
 }
 
-// MARK: - UINavigationControllerDelegate
-extension AttachPhotoViewController: UINavigationControllerDelegate {
+// MARK: - IBActions
+extension CreateNoteViewController {
+
+  @IBAction func saveNote() {
+    guard let note = note,
+      let managedObjectContext = managedObjectContext else {
+        return
+    }
+
+    note.title = titleField.text ?? ""
+    note.body = bodyField.text ?? ""
+
+    do {
+      try managedObjectContext.save()
+    } catch let error as NSError {
+      print("Error saving \(error)", terminator: "")
+    }
+
+    performSegue(withIdentifier: "unwindToNotesList", sender: self)
+  }
 }
 
-// MARK: - NoteDisplayable
-extension AttachPhotoViewController: NoteDisplayable {
+// MARK: - UITextFieldDelegate
+extension CreateNoteViewController: UITextFieldDelegate {
+
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    saveNote()
+    textField.resignFirstResponder()
+    return false
+  }
+}
+
+// MARK: - UITextViewDelegate
+extension CreateNoteViewController: UITextViewDelegate {
 }

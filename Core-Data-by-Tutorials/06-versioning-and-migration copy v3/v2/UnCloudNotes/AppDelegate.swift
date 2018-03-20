@@ -28,39 +28,30 @@
  * THE SOFTWARE.
  */
 
-import Foundation
-import CoreData
 import UIKit
 
-class Note: NSManagedObject {
-  @NSManaged var title: String
-  @NSManaged var body: String
-  @NSManaged var dateCreated: Date
-  @NSManaged var displayIndex: NSNumber!
-  @NSManaged var attachments: Set<Attachment>?
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
-  var image: UIImage? {
-    return latestAttachment?.image
+  var window: UIWindow?
+
+  func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
+    if let splitController = window?.rootViewController as? UISplitViewController {
+      splitController.delegate = self
+    }
+    return true
   }
+}
 
-  var latestAttachment: Attachment? {
-    guard let attachments = attachments,
-      let startingAttachment = attachments.first else {
-        return nil
+// MARK: - UISplitViewControllerDelegate
+extension AppDelegate: UISplitViewControllerDelegate {
+
+  func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+    guard let secondaryAsNoteDetail = secondaryViewController as? NoteDetailViewController else {
+      return false
     }
 
-    return Array(attachments).reduce(startingAttachment, { (reduced, next) -> Attachment in
-      switch (reduced.dateCreated.compare(next.dateCreated)) {
-      case .orderedAscending:
-        return reduced
-      default:
-        return next
-      }
-    })
-  }
-
-  override func awakeFromInsert() {
-    super.awakeFromInsert()
-    dateCreated = Date()
+    // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
+    return secondaryAsNoteDetail.note == nil
   }
 }

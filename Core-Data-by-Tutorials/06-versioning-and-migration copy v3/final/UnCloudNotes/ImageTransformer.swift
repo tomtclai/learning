@@ -29,38 +29,27 @@
  */
 
 import Foundation
-import CoreData
 import UIKit
 
-class Note: NSManagedObject {
-  @NSManaged var title: String
-  @NSManaged var body: String
-  @NSManaged var dateCreated: Date
-  @NSManaged var displayIndex: NSNumber!
-  @NSManaged var attachments: Set<Attachment>?
+class ImageTransformer: ValueTransformer {
 
-  var image: UIImage? {
-    return latestAttachment?.image
+  override class func transformedValueClass() -> AnyClass {
+    return NSData.self
   }
 
-  var latestAttachment: Attachment? {
-    guard let attachments = attachments,
-      let startingAttachment = attachments.first else {
-        return nil
-    }
+  override class func allowsReverseTransformation() -> Bool {
+    return true
+  }
+  
+  override func reverseTransformedValue(_ value: Any?) -> Any? {
+    guard let data = value as? Data else { return nil }
 
-    return Array(attachments).reduce(startingAttachment, { (reduced, next) -> Attachment in
-      switch (reduced.dateCreated.compare(next.dateCreated)) {
-      case .orderedAscending:
-        return reduced
-      default:
-        return next
-      }
-    })
+    return UIImage(data: data)
   }
 
-  override func awakeFromInsert() {
-    super.awakeFromInsert()
-    dateCreated = Date()
+  override func transformedValue(_ value: Any?) -> Any? {
+    guard let image = value as? UIImage else { return nil }
+
+    return UIImagePNGRepresentation(image)
   }
 }

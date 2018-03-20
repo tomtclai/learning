@@ -28,39 +28,58 @@
  * THE SOFTWARE.
  */
 
-import Foundation
-import CoreData
 import UIKit
 
-class Note: NSManagedObject {
-  @NSManaged var title: String
-  @NSManaged var body: String
-  @NSManaged var dateCreated: Date
-  @NSManaged var displayIndex: NSNumber!
-  @NSManaged var attachments: Set<Attachment>?
+class AttachPhotoViewController: UIViewController {
 
-  var image: UIImage? {
-    return latestAttachment?.image
+  // MARK: - Properties
+  var note : Note?
+  lazy var imagePicker : UIImagePickerController = {
+    let picker = UIImagePickerController()
+    picker.sourceType = .photoLibrary
+    picker.delegate = self
+    self.addChildViewController(picker)
+    return picker
+  }()
+
+  // MARK: - View Life Cycle
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    addChildViewController(imagePicker)
+    view.addSubview(imagePicker.view)
   }
 
-  var latestAttachment: Attachment? {
-    guard let attachments = attachments,
-      let startingAttachment = attachments.first else {
-        return nil
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+
+    imagePicker.view.frame = view.bounds
+  }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+extension AttachPhotoViewController: UIImagePickerControllerDelegate {
+  func imagePickerController(_ picker: UIImagePickerController,
+                             didFinishPickingMediaWithInfo info: [String: Any]) {
+    
+    guard let note = note,
+      let context = note.managedObjectContext else {
+        return
     }
-
-    return Array(attachments).reduce(startingAttachment, { (reduced, next) -> Attachment in
-      switch (reduced.dateCreated.compare(next.dateCreated)) {
-      case .orderedAscending:
-        return reduced
-      default:
-        return next
-      }
-    })
+    
+    let attachment = ImageAttachment(context: context)
+    attachment.dateCreated = Date()
+    attachment.caption = "New Photo"
+    attachment.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+    attachment.note = note
+    _ = navigationController?.popViewController(animated: true)
   }
+}
 
-  override func awakeFromInsert() {
-    super.awakeFromInsert()
-    dateCreated = Date()
-  }
+// MARK: - UINavigationControllerDelegate
+extension AttachPhotoViewController: UINavigationControllerDelegate {
+}
+
+// MARK: - NoteDisplayable
+extension AttachPhotoViewController: NoteDisplayable {
 }

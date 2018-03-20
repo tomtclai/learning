@@ -28,39 +28,42 @@
  * THE SOFTWARE.
  */
 
-import Foundation
-import CoreData
 import UIKit
 
-class Note: NSManagedObject {
-  @NSManaged var title: String
-  @NSManaged var body: String
-  @NSManaged var dateCreated: Date
-  @NSManaged var displayIndex: NSNumber!
-  @NSManaged var attachments: Set<Attachment>?
+protocol NoteDisplayable: class {
+  var note: Note? { get set }
+}
 
-  var image: UIImage? {
-    return latestAttachment?.image
+class NoteDetailViewController: UIViewController, NoteDisplayable {
+
+  // MARK: - Properties
+  var note: Note? {
+    didSet {
+      updateNoteInfo()
+    }
   }
 
-  var latestAttachment: Attachment? {
-    guard let attachments = attachments,
-      let startingAttachment = attachments.first else {
-        return nil
+  // MARK: - IBOutlets
+  @IBOutlet fileprivate var titleField: UILabel!
+  @IBOutlet fileprivate var bodyField: UITextView!
+
+  // MARK: - View Life Cycle
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    updateNoteInfo()
+  }
+}
+
+// MARK: - Internal
+extension NoteDetailViewController {
+
+  func updateNoteInfo() {
+    guard isViewLoaded,
+      let note = note else {
+        return
     }
 
-    return Array(attachments).reduce(startingAttachment, { (reduced, next) -> Attachment in
-      switch (reduced.dateCreated.compare(next.dateCreated)) {
-      case .orderedAscending:
-        return reduced
-      default:
-        return next
-      }
-    })
-  }
-
-  override func awakeFromInsert() {
-    super.awakeFromInsert()
-    dateCreated = Date()
+    titleField.text = note.title
+    bodyField.text = note.body
   }
 }

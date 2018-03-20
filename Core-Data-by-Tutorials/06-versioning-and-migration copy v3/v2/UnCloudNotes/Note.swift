@@ -35,30 +35,10 @@ import UIKit
 class Note: NSManagedObject {
   @NSManaged var title: String
   @NSManaged var body: String
-  @NSManaged var dateCreated: Date
+  @NSManaged var dateCreated: Date!
   @NSManaged var displayIndex: NSNumber!
-  @NSManaged var attachments: Set<Attachment>?
-
-  var image: UIImage? {
-    return latestAttachment?.image
-  }
-
-  var latestAttachment: Attachment? {
-    guard let attachments = attachments,
-      let startingAttachment = attachments.first else {
-        return nil
-    }
-
-    return Array(attachments).reduce(startingAttachment, { (reduced, next) -> Attachment in
-      switch (reduced.dateCreated.compare(next.dateCreated)) {
-      case .orderedAscending:
-        return reduced
-      default:
-        return next
-      }
-    })
-  }
-
+  @NSManaged var image: UIImage?
+  
   override func awakeFromInsert() {
     super.awakeFromInsert()
     dateCreated = Date()

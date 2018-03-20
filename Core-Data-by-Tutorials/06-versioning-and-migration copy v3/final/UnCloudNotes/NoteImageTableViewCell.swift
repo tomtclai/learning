@@ -28,39 +28,20 @@
  * THE SOFTWARE.
  */
 
-import Foundation
-import CoreData
 import UIKit
 
-class Note: NSManagedObject {
-  @NSManaged var title: String
-  @NSManaged var body: String
-  @NSManaged var dateCreated: Date
-  @NSManaged var displayIndex: NSNumber!
-  @NSManaged var attachments: Set<Attachment>?
+class NoteImageTableViewCell: NoteTableViewCell {
 
-  var image: UIImage? {
-    return latestAttachment?.image
-  }
+  // MARK: - IBOutlets
+  @IBOutlet fileprivate var noteImage: UIImageView!
+}
 
-  var latestAttachment: Attachment? {
-    guard let attachments = attachments,
-      let startingAttachment = attachments.first else {
-        return nil
-    }
+// MARK: - Internal
+extension NoteImageTableViewCell {
 
-    return Array(attachments).reduce(startingAttachment, { (reduced, next) -> Attachment in
-      switch (reduced.dateCreated.compare(next.dateCreated)) {
-      case .orderedAscending:
-        return reduced
-      default:
-        return next
-      }
-    })
-  }
-
-  override func awakeFromInsert() {
-    super.awakeFromInsert()
-    dateCreated = Date()
+  override func updateNoteInfo(note: Note) {
+    super.updateNoteInfo(note: note)
+    
+    noteImage.image = note.image
   }
 }

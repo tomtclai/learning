@@ -28,39 +28,12 @@
  * THE SOFTWARE.
  */
 
-import Foundation
-import CoreData
 import UIKit
+import CoreData
 
-class Note: NSManagedObject {
-  @NSManaged var title: String
-  @NSManaged var body: String
-  @NSManaged var dateCreated: Date
-  @NSManaged var displayIndex: NSNumber!
-  @NSManaged var attachments: Set<Attachment>?
-
-  var image: UIImage? {
-    return latestAttachment?.image
-  }
-
-  var latestAttachment: Attachment? {
-    guard let attachments = attachments,
-      let startingAttachment = attachments.first else {
-        return nil
-    }
-
-    return Array(attachments).reduce(startingAttachment, { (reduced, next) -> Attachment in
-      switch (reduced.dateCreated.compare(next.dateCreated)) {
-      case .orderedAscending:
-        return reduced
-      default:
-        return next
-      }
-    })
-  }
-
-  override func awakeFromInsert() {
-    super.awakeFromInsert()
-    dateCreated = Date()
-  }
+class ImageAttachment: Attachment {
+  @NSManaged var image: UIImage?
+  @NSManaged var width: Float
+  @NSManaged var height: Float
+  @NSManaged var caption: String
 }

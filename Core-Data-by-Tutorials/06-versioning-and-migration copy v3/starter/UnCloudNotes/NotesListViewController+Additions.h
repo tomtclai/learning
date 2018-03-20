@@ -28,39 +28,10 @@
  * THE SOFTWARE.
  */
 
-import Foundation
-import CoreData
-import UIKit
+@import UIKit
 
-class Note: NSManagedObject {
-  @NSManaged var title: String
-  @NSManaged var body: String
-  @NSManaged var dateCreated: Date
-  @NSManaged var displayIndex: NSNumber!
-  @NSManaged var attachments: Set<Attachment>?
+@interface NotesListViewController (Additions)
 
-  var image: UIImage? {
-    return latestAttachment?.image
-  }
+- (IBAction) unwindToNotesList:(UIStoryboardSegue *)segue;
 
-  var latestAttachment: Attachment? {
-    guard let attachments = attachments,
-      let startingAttachment = attachments.first else {
-        return nil
-    }
-
-    return Array(attachments).reduce(startingAttachment, { (reduced, next) -> Attachment in
-      switch (reduced.dateCreated.compare(next.dateCreated)) {
-      case .orderedAscending:
-        return reduced
-      default:
-        return next
-      }
-    })
-  }
-
-  override func awakeFromInsert() {
-    super.awakeFromInsert()
-    dateCreated = Date()
-  }
-}
+@end
