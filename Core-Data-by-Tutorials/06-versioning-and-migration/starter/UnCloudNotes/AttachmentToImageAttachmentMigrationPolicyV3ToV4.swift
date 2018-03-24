@@ -61,9 +61,12 @@ class AttachmentToImageAttachmentMigrationPolicyV3toV4: NSEntityMigrationPolicy 
     }
 
     // For the caption simply grab the notes body text and take the first 80 characters
-    let body = sInstance.value(forKey: "note.body") as? NSString ?? ""
-    newAttachment.setValue(body.substring(to: 80), forKey: "caption")
-
+    let body = sInstance.value(forKeyPath: "note.body") as? NSString ?? ""
+    if body.length > 80 {
+      newAttachment.setValue(body.substring(to: 80), forKey: "caption")
+    } else {
+      newAttachment.setValue(body, forKey: "caption")
+    }
 
     // The migration manager needs to know the connection between the source object, the newly created destination object and the mapping. Failing to call this method at the end of a custom migraion will result in missing data in the destination store.
     manager.associate(sourceInstance: sInstance, withDestinationInstance: newAttachment, for: mapping)
