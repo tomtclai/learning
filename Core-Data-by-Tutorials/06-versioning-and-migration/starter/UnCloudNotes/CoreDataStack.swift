@@ -47,7 +47,7 @@ class CoreDataStack {
   var savingContext: NSManagedObjectContext {
     return storeContainer.newBackgroundContext()
   }
-
+  
   var storeName: String = "UnCloudNotesDataModel"
   var storeURL : URL {
     let storePaths = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)
@@ -67,7 +67,7 @@ class CoreDataStack {
       .appendingPathComponent(storeName + ".sqlite")
     return URL(fileURLWithPath: sqliteFilePath)
   }
-  
+
   lazy var storeDescription: NSPersistentStoreDescription = {
     let description = NSPersistentStoreDescription(url: self.storeURL)
     description.shouldMigrateStoreAutomatically = true
