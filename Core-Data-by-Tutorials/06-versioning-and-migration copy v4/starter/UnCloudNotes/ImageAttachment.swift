@@ -2,11 +2,10 @@
 //  ImageAttachment.swift
 //  UnCloudNotes
 //
-//  Created by Tom Lai on 3/21/18.
+//  Created by Tom Lai on 3/28/18.
 //  Copyright © 2018 Ray Wenderlich. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import CoreData
 
@@ -16,4 +15,3 @@ class ImageAttachment: Attachment {
   @NSManaged var height: Float
   @NSManaged var caption: String
 }
-
