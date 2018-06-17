@@ -1,4 +1,4 @@
-Title  | Getting Started With RxSwift and RxCocoa
+Title  | Beginning RxSwift
 -------|-------------------
 Author | Ellen Shapiro
-Link   | [raywenderlich.com](https://www.raywenderlich.com/138547/getting-started-with-rxswift-and-rxcocoa)
+Link   | [videos.raywenderlich.com](https://videos.raywenderlich.com/courses/116-beginning-rxswift)
