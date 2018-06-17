@@ -1,7 +1,9 @@
 //: Please build the scheme 'RxSwiftPlayground' first
 import RxSwift
 
-
+example(of: "creating observables") {
+  let mostPopular: Observable<String> = Observable<String>.just(episodeV)
+}
 
 /*:
  Copyright (c) 2014-2018 Razeware LLC
