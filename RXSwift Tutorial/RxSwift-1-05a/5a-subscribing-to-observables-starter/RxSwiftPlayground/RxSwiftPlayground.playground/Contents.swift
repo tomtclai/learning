@@ -48,6 +48,13 @@ example(of: "dispose") {
 
   subscription.dispose()
 }
+
+example(of: "disposeBag") {
+  let disposeBag = DisposeBag()
+  Observable.of(episodeVII, episodeI, rogueOne)
+    .subscribe{print($0)}
+    .disposed(by: disposeBag)
+}
 /*:
  Copyright (c) 2014-2018 Razeware LLC
  
