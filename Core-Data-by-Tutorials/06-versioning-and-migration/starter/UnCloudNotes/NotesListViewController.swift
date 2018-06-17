@@ -41,7 +41,10 @@ class NotesListViewController: UITableViewController {
 
   private lazy var notes: NSFetchedResultsController<Note> = {
     let context = self.stack.managedContext
-    let request = Note.fetchRequest() as! NSFetchRequest<Note>
+
+    guard let request = NSFetchRequest<NSFetchRequestResult>(entityName:"Note") as? NSFetchRequest<Note> else {
+      preconditionFailure("note.fetchrequest didnt return the right type")
+    }
     request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Note.dateCreated), ascending: false)]
 
     let notes = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
