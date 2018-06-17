@@ -2,7 +2,52 @@
 import RxSwift
 
 
+example(of: "subscribe") {
+  let observable = Observable.of(episodeIV, episodeV, episodeVI)
+  observable.subscribe{ event in
+    print(event)
+  }
+}
 
+example(of: "subscribe element") {
+  let observable = Observable.of(episodeIV, episodeV, episodeVI)
+  observable.subscribe(onNext: { element in
+    print(element)
+  }, onCompleted: {
+    print("Completed")
+  })
+}
+
+
+example(of: "empty") {
+  let observable = Observable<Void>.empty()
+
+  observable.subscribe(onNext: { element in
+    print(element)
+  }, onCompleted: {
+    print("Completed")
+  })
+}
+
+
+example(of: "never") {
+  let observable = Observable<Any>.never()
+
+  observable.subscribe(onNext: { element in
+    print(element)
+  }, onCompleted: {
+    print("Completed")
+  })
+}
+
+example(of: "dispose") {
+  let mostPopular = Observable.of(episodeV, episodeIV, episodeVI)
+  let subscription = mostPopular.subscribe { event in
+    print(event)
+  }
+
+  subscription.dispose()
+}
 /*:
  Copyright (c) 2014-2018 Razeware LLC
  
