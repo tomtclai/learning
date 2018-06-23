@@ -62,6 +62,74 @@ example(of: "DisposeBag") {
     .disposed(by: disposeBag)
 }
 
+example(of: "create") {
+  enum Droid: Error {
+    case OU812
+  }
+
+  let disposeBag = DisposeBag()
+
+  Observable<String>.create { observer in
+
+    observer.onNext("R2-D2")
+    observer.onError(Droid.OU812)
+    observer.onNext("C-3PO")
+    observer.onNext("K-2SO")
+    observer.onCompleted()
+
+    return Disposables.create()
+  }.subscribe(
+    onNext: { print($0) },
+    onError:  { print("Error: \($0)") },
+    onCompleted: { print("Completed") },
+    onDisposed: { print("diposed")}
+  )
+    .disposed(by: disposeBag)
+}
+// traits: Single, Completable, Maybe
+// Single - only one next or error
+// Completable - completed or error
+// maybe - only one completed or error or next
+
+example(of: "Single") {
+  enum FileReadError: Error { case fileNotFound, unreadable, encodingFailed }
+  let disposeBag = DisposeBag()
+
+  func loadText(from filename: String) -> Single<String> {
+    return Single.create { single in
+      let disposable = Disposables.create()
+
+      guard let path = Bundle.main.path(forResource: filename, ofType: "txt") else {
+        single(.error(FileReadError.fileNotFound))
+        return disposable
+      }
+
+      guard let data = FileManager.default.contents(atPath: path) else {
+        single(.error(FileReadError.unreadable))
+        return disposable
+      }
+      guard let content = String(data: data, encoding: .utf8) else {
+        single(.error(FileReadError.encodingFailed))
+        return disposable
+      }
+
+      single(.success(content))
+
+      return disposable
+
+    }
+  }
+
+  loadText(from: "ANewHope").subscribe {
+    switch $0 {
+    case .success(let string):
+      print(string)
+    case .error(let error):
+      print(error)
+    }
+  }.disposed(by: disposeBag)
+}
+
 /*:
  Copyright (c) 2014-2018 Razeware LLC
  

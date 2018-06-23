@@ -4,19 +4,20 @@ import RxSwift
 example(of: "never") {
   
   let observable = Observable<Any>.never()
-  
+
+  let disposeBag = DisposeBag()
+
   observable
-    .subscribe(
-      onNext: { element in
-        print(element)
-    },
-      onCompleted: {
-        print("Completed")
-    },
-      onDisposed: {
-        print("Disposed")
-    }
-  )
+    .do(onNext: { (next) in print(next) },
+        onError: { (error) in print(error)},
+        onCompleted: { print("completed") },
+        onSubscribe: { print("on subscribe") },
+        onSubscribed: { print("on subscribed") },
+        onDispose: { print("on dispose") })
+    .subscribe( onNext: { element in print(element) },
+                onCompleted: { print("Completed") },
+                onDisposed: { print("Disposed") })
+    .disposed(by: disposeBag)
 }
 
 /*:

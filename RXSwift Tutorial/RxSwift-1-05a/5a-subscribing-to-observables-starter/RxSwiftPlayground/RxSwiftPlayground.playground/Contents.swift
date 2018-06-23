@@ -47,11 +47,13 @@ example(of: "dispose") {
 }
 
 example(of: "disposeBag") {
-  let disposeBag = DisposeBag()
+  let disposeBag = DisposeBag() // this prevents memory leaks
   Observable.of(episodeVII, episodeI, rogueOne)
     .subscribe{print($0)}
-    .disposed(by: disposeBag)
+    .disposed(by: disposeBag) // used a lot
 }
+
+
 /*:
  Copyright (c) 2014-2018 Razeware LLC
  
