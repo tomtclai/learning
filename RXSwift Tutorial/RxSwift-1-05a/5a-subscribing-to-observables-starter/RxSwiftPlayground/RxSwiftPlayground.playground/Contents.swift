@@ -1,7 +1,6 @@
 //: Please build the scheme 'RxSwiftPlayground' first
 import RxSwift
 
-
 example(of: "subscribe") {
   let observable = Observable.of(episodeIV, episodeV, episodeVI)
   observable.subscribe{ event in
@@ -18,7 +17,6 @@ example(of: "subscribe element") {
   })
 }
 
-
 example(of: "empty") {
   let observable = Observable<Void>.empty()
 
@@ -29,14 +27,13 @@ example(of: "empty") {
   })
 }
 
-
 example(of: "never") {
   let observable = Observable<Any>.never()
 
   observable.subscribe(onNext: { element in
     print(element)
   }, onCompleted: {
-    print("Completed")
+    print("Completed")  // never never completes, it has an infinite duration
   })
 }
 
