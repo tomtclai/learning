@@ -10,7 +10,7 @@ example(of: "PublishSubject") {
   let subscriptionOne = quotes
     .subscribe {
       print(label: "1)", event: $0)
-  }
+    }
   
   quotes.on(.next(doOrDoNot))
   
@@ -33,11 +33,65 @@ example(of: "PublishSubject") {
   }
   
   quotes.onNext(stayOnTarget)
-  
+
+  subscriptionOne.dispose()
   subscriptionTwo.dispose()
   subscriptionThree.dispose()
 }
 
+example(of: "BehaviorSubject") {
+  let disposeBag = DisposeBag()
+
+  let quotes = BehaviorSubject(value: iAmYourFather)
+
+  quotes
+    .subscribe {
+    print(label: "1)", event: $0)
+  }
+
+  quotes.onError(Quote.neverSaidThat)
+
+  quotes
+    .subscribe {
+      print(label: "2)", event: $0)
+    }
+    .disposed(by: disposeBag)
+}
+
+example(of: "ReplaySubject") {
+  let disposeBag = DisposeBag()
+  let subject = ReplaySubject<String>.create(bufferSize: 2)
+  subject.onNext(useTheForce)
+
+  subject
+    .subscribe{
+      print(label: "1)", event: $0)
+  }
+    .disposed(by: disposeBag)
+
+  subject.onNext(theForceIsStrong)
+
+  subject
+    .subscribe{
+      print(label: "2)", event: $0)
+    }
+    .disposed(by: disposeBag)
+}
+
+example(of: "Variable") {
+  let disposeBag = DisposeBag()
+  let variable = Variable(mayTheForceBeWithYou)
+
+  print(variable.value)
+
+  variable.asObservable()
+    .subscribe {
+      print(label: "1)", event: $0)
+  }
+  // variable cannot have errors
+  // does not compile:
+  //variable.asObservable().onError(MyError.anError)
+}
 /*:
  Copyright (c) 2014-2018 Razeware LLC
  
