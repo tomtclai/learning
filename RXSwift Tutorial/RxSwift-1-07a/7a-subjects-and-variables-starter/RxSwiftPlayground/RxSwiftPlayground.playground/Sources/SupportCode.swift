@@ -12,7 +12,7 @@ public func print<T: CustomStringConvertible>(label: String, event: Event<T>) {
     } else if let error = event.error {
         print(label, error)
     } else {
-    print(label, event)
+        print(label, event)
     }
 //  print(label, event.element ?? (event.error ?? event))
 }

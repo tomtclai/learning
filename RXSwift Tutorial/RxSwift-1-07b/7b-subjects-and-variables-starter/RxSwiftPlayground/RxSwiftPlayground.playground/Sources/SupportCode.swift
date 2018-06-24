@@ -7,7 +7,13 @@ public func example(of description: String, action: () -> Void) {
 }
 
 public func print<T: CustomStringConvertible>(label: String, event: Event<T>) {
-  print(label, event.element ?? event.error ?? event)
+    if let element = event.element {
+        print(label, element)
+    } else if let error = event.error {
+        print(label, error)
+    } else {
+        print(label, event)
+    }
 }
 
 public enum Quote: Error {
