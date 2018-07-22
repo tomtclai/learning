@@ -71,7 +71,7 @@ class PhotosViewController: UICollectionViewController {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PhotoCell
 
     cell.representedAssetIdentifier = asset.localIdentifier
-    
+
     imageManager.requestImage(for: asset, targetSize: thumbnailSize, contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
       if cell.representedAssetIdentifier == asset.localIdentifier {
         cell.imageView.image = image

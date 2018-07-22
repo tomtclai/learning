@@ -35,14 +35,14 @@ struct Song: Decodable {
   let artist: String
   let id: String
   let artworkUrl: URL
-  
+
   init(title: String) {
     self.title = title
     self.artist = "Artist name"
     self.id = "0"
     self.artworkUrl = URL(string: "http://temp.com")!
   }
-  
+
   init?(queryItems: [URLQueryItem]) {
     guard let title = queryItems.first(where: { queryItem in queryItem.name == Song.CodingKeys.title.stringValue })?.value,
       let artist = queryItems.first(where: { queryItem in queryItem.name == Song.CodingKeys.artist.stringValue })?.value,
@@ -51,12 +51,12 @@ struct Song: Decodable {
     self.title = title
     self.artist = artist
     self.id = id
-    
+
     // TODO: replace {w} and {h} with the size we want to get
     guard let artworkUrl = URL(string: artworkUrlString) else { return nil }
     self.artworkUrl = artworkUrl
   }
-  
+
   var queryItems: [URLQueryItem] {
     var items: [URLQueryItem] = []
     items.append(URLQueryItem(name: Song.CodingKeys.title.stringValue, value: title))

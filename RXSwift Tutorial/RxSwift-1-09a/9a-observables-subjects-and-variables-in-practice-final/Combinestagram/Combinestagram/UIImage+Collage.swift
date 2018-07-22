@@ -61,7 +61,7 @@ extension UIImage {
       y: (newSize.height - height) / 2.0,
       width: width, height: height)
 
-    UIGraphicsBeginImageContextWithOptions(scaledRect.size, false, 0.0);
+    UIGraphicsBeginImageContextWithOptions(scaledRect.size, false, 0.0)
     defer { UIGraphicsEndImageContext() }
 
     draw(in: scaledRect)

@@ -50,5 +50,5 @@ class PhotoWriter {
       return Disposables.create()
     })
   }
-  
+
 }

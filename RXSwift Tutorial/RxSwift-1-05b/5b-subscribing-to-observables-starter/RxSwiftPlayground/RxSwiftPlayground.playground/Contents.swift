@@ -2,18 +2,18 @@
 import RxSwift
 
 example(of: "subscribe") {
-  
+
   let observable = Observable.of(episodeIV, episodeV, episodeVI)
-  
+
   observable.subscribe(onNext: { element in
     print(element)
   })
 }
 
 example(of: "empty") {
-  
+
   let observable = Observable<Void>.empty()
-  
+
   observable
     .subscribe(
       onNext: { element in
@@ -26,9 +26,9 @@ example(of: "empty") {
 }
 
 example(of: "never") {
-  
+
   let observable = Observable<Any>.never()
-  
+
   observable
     .subscribe(
       onNext: { element in
@@ -41,20 +41,20 @@ example(of: "never") {
 }
 
 example(of: "dispose") {
-  
+
   let mostPopular = Observable.of(episodeV, episodeIV, episodeVI)
-  
+
   let subscription = mostPopular.subscribe { event in
     print(event)
   }
-  
+
   subscription.dispose()
 }
 
 example(of: "DisposeBag") {
-  
+
   let disposeBag = DisposeBag()
-  
+
   Observable.of(episodeVII, episodeI, rogueOne)
     .subscribe {
       print($0)
@@ -80,7 +80,7 @@ example(of: "create") {
     return Disposables.create()
   }.subscribe(
     onNext: { print($0) },
-    onError:  { print("Error: \($0)") },
+    onError: { print("Error: \($0)") },
     onCompleted: { print("Completed") },
     onDisposed: { print("diposed")}
   )

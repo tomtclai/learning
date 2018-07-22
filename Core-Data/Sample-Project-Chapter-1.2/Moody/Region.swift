@@ -8,7 +8,6 @@
 
 import CoreData
 
-
 final class Region: NSManagedObject {}
 
 extension Region: Managed {
@@ -16,4 +15,3 @@ extension Region: Managed {
         return [NSSortDescriptor(key: "updatedAt", ascending: false)]
     }
 }
-

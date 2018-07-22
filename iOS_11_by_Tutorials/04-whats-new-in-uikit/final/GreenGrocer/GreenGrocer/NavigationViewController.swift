@@ -31,7 +31,7 @@
 import UIKit
 
 class NavigationViewController: UINavigationController, DataStoreOwner {
-  
+
   var dataStore: DataStore? {
     didSet {
       passDataStoreToChildren()

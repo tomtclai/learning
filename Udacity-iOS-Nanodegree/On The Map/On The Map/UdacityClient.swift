@@ -9,16 +9,14 @@
 import UIKit
 
 class UdacityClient: HTTPClient {
-    
+
     var session = NSURLSession.sharedSession()
-    
-    
-    var sessionID : String? = nil
-    var userAccount : String? = nil
-    
-    func taskForPostMethod(method: String, parameters: [String : AnyObject]?, jsonBody: [String: AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-        
-        
+
+    var sessionID: String?
+    var userAccount: String?
+
+    func taskForPostMethod(method: String, parameters: [String: AnyObject]?, jsonBody: [String: AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+
         /* Build the URL and configure the request */
         let urlString = Constants.BaseURL + method + UdacityClient.escapedParameters(parameters)
         let url = NSURL(string: urlString)!
@@ -26,19 +24,19 @@ class UdacityClient: HTTPClient {
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+
         do {
             request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
         }
-        
+
         /* Make Request */
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
-            
+
             guard (error == nil) else {
                 print("There was an error with your request: \(error)")
                 return completionHandler(result: nil, error: error)
             }
-            
+
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 if let response = response as? NSHTTPURLResponse {
                     print("Your request returned an invalid response #\(response.statusCode)")
@@ -49,49 +47,48 @@ class UdacityClient: HTTPClient {
                 }
                 return completionHandler(result: nil, error: NSError(domain: "taskForPostMethod", code: 2, userInfo: nil))
             }
-            
+
             guard let data = data else {
                 print("No data was returned by the request")
                 return completionHandler(result: nil, error: error)
             }
-            
+
             UdacityClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
-            
+
         }
-        
+
         task.resume()
-        
+
         return task
     }
-    
-    func taskForDeleteMethod(method: String, parameters: [String : AnyObject]?, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-        
-        
+
+    func taskForDeleteMethod(method: String, parameters: [String: AnyObject]?, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+
         /* Build the URL and configure the request */
         let urlString = Constants.BaseURL + method + UdacityClient.escapedParameters(parameters)
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "DELETE"
-        
+
         var xsrfCookie: NSHTTPCookie? = nil
         let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
 
         for cookie in sharedCookieStorage.cookies! {
             if cookie.name == "XFRF-TOKEN" { xsrfCookie = cookie }
         }
-        
+
         if let xsrfCookie = xsrfCookie {
             request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
         }
-        
+
         /* Make Request */
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
-            
+
             guard (error == nil) else {
                 print("There was an error with your request: \(error)")
                 return completionHandler(result: nil, error: error)
             }
-            
+
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 if let response = response as? NSHTTPURLResponse {
                     print("Your request returned an invalid response #\(response.statusCode)")
@@ -102,18 +99,18 @@ class UdacityClient: HTTPClient {
                 }
                 return completionHandler(result: nil, error: NSError(domain: "taskForDeleteMethod", code: 2, userInfo: nil))
             }
-            
+
             guard let data = data else {
                 print("No data was returned by the request")
                 return completionHandler(result: nil, error: error)
             }
-            
+
             UdacityClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
-            
+
         }
-        
+
         task.resume()
-        
+
         return task
     }
 
@@ -125,12 +122,12 @@ class UdacityClient: HTTPClient {
 
         /* Make Request */
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
-            
+
             guard (error == nil) else {
                 print("There was an error with your request: \(error)")
                 return completionHandler(result: nil, error: error)
             }
-            
+
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 if let response = response as? NSHTTPURLResponse {
                     print("Your request returned an invalid response #\(response.statusCode)")
@@ -141,21 +138,21 @@ class UdacityClient: HTTPClient {
                 }
                 return completionHandler(result: nil, error: NSError(domain: "taskForGetMethod", code: 2, userInfo: nil))
             }
-            
+
             guard let data = data else {
                 print("No data was returned by the request")
                 return completionHandler(result: nil, error: error)
             }
-            
+
             UdacityClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
-            
+
         }
-        
+
         task.resume()
-        
+
         return task
     }
-    
+
     class func parseJSONWithCompletionHandler(data: NSData, completionHandler : (result: AnyObject!, error: NSError?) -> Void) {
         // Udacity use the first 5 characters for security purposes and should be skipped
         let newData  =  data.subdataWithRange(NSMakeRange(5, data.length - 5))
@@ -168,14 +165,14 @@ class UdacityClient: HTTPClient {
         }
         completionHandler(result: parsedResult, error: nil)
     }
-    
+
     // MARK: Shared Instance
     class func sharedInstance() -> UdacityClient {
-        
+
         struct Singleton {
             static var sharedInstance = UdacityClient()
         }
-        
+
         return Singleton.sharedInstance
     }
 

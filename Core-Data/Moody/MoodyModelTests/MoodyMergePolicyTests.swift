@@ -94,7 +94,6 @@ class MoodyMergePolicyTests: XCTestCase {
 
 }
 
-
 class MoodyMergePolicyConstraintTests: XCTestCase {
 
     var managedObjectContext1: NSManagedObjectContext!
@@ -132,5 +131,3 @@ class MoodyMergePolicyConstraintTests: XCTestCase {
     }
 
 }
-
-

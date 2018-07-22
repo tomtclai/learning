@@ -8,7 +8,6 @@
 
 import MoodyModel
 
-
 final class ConsoleRemote: MoodyRemote {
 
     fileprivate func log(_ str: String) {
@@ -19,35 +18,34 @@ final class ConsoleRemote: MoodyRemote {
         log("Setting up subscription")
     }
 
-    func fetchLatestMoods(completion: @escaping ([RemoteMood]) -> ()) {
+    func fetchLatestMoods(completion: @escaping ([RemoteMood]) -> Void) {
         log("Fetching latest moods")
         completion([])
     }
 
-    func fetchNewMoods(completion: @escaping ([RemoteRecordChange<RemoteMood>], @escaping (_ success: Bool) -> ()) -> ()) {
+    func fetchNewMoods(completion: @escaping ([RemoteRecordChange<RemoteMood>], @escaping (_ success: Bool) -> Void) -> Void) {
         log("Fetching new moods")
         completion([], { _ in })
     }
 
-    func upload(_ moods: [Mood], completion: @escaping ([RemoteMood], RemoteError?) -> ()) {
+    func upload(_ moods: [Mood], completion: @escaping ([RemoteMood], RemoteError?) -> Void) {
         log("Uploading \(moods.count) moods")
         let remoteMoods = moods.map { RemoteMood(mood: $0) }.flatMap { $0 }
         completion(remoteMoods, nil)
     }
 
-    func remove(_ moods: [Mood], completion: @escaping ([RemoteRecordID], RemoteError?) -> ()) {
+    func remove(_ moods: [Mood], completion: @escaping ([RemoteRecordID], RemoteError?) -> Void) {
         log("Deleting \(moods.count) moods")
         let ids = moods.map { $0.remoteIdentifier }.flatMap { $0 }
         completion(ids, nil)
     }
 
-    func fetchUserID(completion: @escaping (RemoteRecordID?) -> ()) {
+    func fetchUserID(completion: @escaping (RemoteRecordID?) -> Void) {
         log("Fetching ID of logged in user")
         completion(nil)
     }
 
 }
-
 
 extension RemoteMood {
     fileprivate init?(mood: Mood) {
@@ -59,5 +57,3 @@ extension RemoteMood {
         self.isoCountry = mood.country?.iso3166Code ?? .unknown
     }
 }
-
-

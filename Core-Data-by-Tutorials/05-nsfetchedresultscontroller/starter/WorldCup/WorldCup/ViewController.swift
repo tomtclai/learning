@@ -56,7 +56,6 @@ class ViewController: UIViewController {
     return fetchedResultsController
   }()
 
-
   // MARK: - IBOutlets
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var addButton: UIBarButtonItem!
@@ -87,7 +86,6 @@ extension ViewController {
     guard let cell = cell as? TeamCell else {
       return
     }
-
 
     let team = fetchedResultsController.object(at: indexPath)
     cell.teamLabel.text = team.teamName
@@ -141,7 +139,6 @@ extension ViewController: UITableViewDelegate {
 
   }
 }
-
 
 extension ViewController: NSFetchedResultsControllerDelegate {
   func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {

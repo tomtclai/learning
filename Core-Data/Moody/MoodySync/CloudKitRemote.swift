@@ -23,13 +23,13 @@ final class CloudKitRemote: MoodyRemote {
         info.shouldSendContentAvailable = true
         subscription.notificationInfo = info
         let op = CKModifySubscriptionsOperation(subscriptionsToSave: [subscription], subscriptionIDsToDelete: [])
-        op.modifySubscriptionsCompletionBlock = { (foo, bar, error: Error?) -> () in
+        op.modifySubscriptionsCompletionBlock = { (foo, bar, error: Error?) -> Void in
             if let e = error { print("Failed to modify subscription: \(e)") }
         }
         cloudKitContainer.publicCloudDatabase.add(op)
     }
 
-    func fetchLatestMoods(completion: @escaping ([RemoteMood]) -> ()) {
+    func fetchLatestMoods(completion: @escaping ([RemoteMood]) -> Void) {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Mood", predicate: predicate)
         query.sortDescriptors = [ NSSortDescriptor(key: "date", ascending: false) ]
@@ -40,7 +40,7 @@ final class CloudKitRemote: MoodyRemote {
         }
     }
 
-    func fetchNewMoods(completion: @escaping ([RemoteRecordChange<RemoteMood>], @escaping (_ success: Bool) -> ()) -> ()) {
+    func fetchNewMoods(completion: @escaping ([RemoteRecordChange<RemoteMood>], @escaping (_ success: Bool) -> Void) -> Void) {
         cloudKitContainer.fetchAllPendingNotifications(changeToken: nil) { changeReasons, error, callback in
             guard error == nil else { return completion([], { _ in }) } // TODO We should handle this case with e.g. a clean refetch
             guard changeReasons.count > 0 else { return completion([], callback) }
@@ -50,7 +50,7 @@ final class CloudKitRemote: MoodyRemote {
         }
     }
 
-    func upload(_ moods: [Mood], completion: @escaping ([RemoteMood], RemoteError?) -> ()) {
+    func upload(_ moods: [Mood], completion: @escaping ([RemoteMood], RemoteError?) -> Void) {
         let recordsToSave = moods.map { $0.cloudKitRecord }
         let op = CKModifyRecordsOperation(recordsToSave: recordsToSave,
             recordIDsToDelete: nil)
@@ -62,7 +62,7 @@ final class CloudKitRemote: MoodyRemote {
         cloudKitContainer.publicCloudDatabase.add(op)
     }
 
-    func remove(_ moods: [Mood], completion: @escaping ([RemoteRecordID], RemoteError?) -> ()) {
+    func remove(_ moods: [Mood], completion: @escaping ([RemoteRecordID], RemoteError?) -> Void) {
         let recordIDsToDelete = moods.map { (mood: Mood) -> CKRecordID in
             guard let name = mood.remoteIdentifier else { fatalError("Must have a remote ID") }
             return CKRecordID(recordName: name)
@@ -74,14 +74,13 @@ final class CloudKitRemote: MoodyRemote {
         cloudKitContainer.publicCloudDatabase.add(op)
     }
 
-    func fetchUserID(completion: @escaping (RemoteRecordID?) -> ()) {
+    func fetchUserID(completion: @escaping (RemoteRecordID?) -> Void) {
         cloudKitContainer.fetchUserRecordID { userRecordID, error in
             completion(userRecordID?.recordName)
         }
     }
 
 }
-
 
 extension RemoteError {
     fileprivate init?(cloudKitError: Error?) {
@@ -93,7 +92,6 @@ extension RemoteError {
         }
     }
 }
-
 
 extension RemoteRecordChange {
     fileprivate init?(moodChange: CloudKitRecordChange) {
@@ -109,7 +107,6 @@ extension RemoteRecordChange {
         }
     }
 }
-
 
 extension RemoteMood {
     fileprivate static var remoteRecordName: String { return "Mood" }
@@ -133,7 +130,6 @@ extension RemoteMood {
     }
 }
 
-
 extension Mood {
     fileprivate var cloudKitRecord: CKRecord {
         let record = CKRecord(recordType: RemoteMood.remoteRecordName)
@@ -146,4 +142,3 @@ extension Mood {
         return record
     }
 }
-

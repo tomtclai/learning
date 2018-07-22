@@ -22,7 +22,7 @@ public class TreeNode {
     }
 }
 func mergeTrees(_ t1: TreeNode?, _ t2: TreeNode?) -> TreeNode? {
-    
+
     // if both is nil, return nil
     if t1 == nil && t2 == nil {
         return nil
@@ -40,7 +40,6 @@ func mergeTrees(_ t1: TreeNode?, _ t2: TreeNode?) -> TreeNode? {
     newNode.left = mergeTrees(t1.left, t2.left)
     // recursive call on right
     newNode.right = mergeTrees(t1.right, t2.right)
-    
+
     return newNode
 }
-

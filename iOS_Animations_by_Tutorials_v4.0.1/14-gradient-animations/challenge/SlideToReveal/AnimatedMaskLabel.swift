@@ -102,4 +102,3 @@ class AnimatedMaskLabel: UIView {
   }
 
 }
-

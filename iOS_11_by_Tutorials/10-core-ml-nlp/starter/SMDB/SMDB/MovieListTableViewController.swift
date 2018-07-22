@@ -32,7 +32,7 @@ import UIKit
 
 class MovieListTableViewController: UITableViewController {
 
-  var movies: [String]  { return ReviewsManager.instance.reviewsByMovie.keys.sorted() }
+  var movies: [String] { return ReviewsManager.instance.reviewsByMovie.keys.sorted() }
   var selectedMovie: String?
 
   // MARK: - Table view data source

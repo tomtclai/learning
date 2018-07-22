@@ -91,7 +91,7 @@ extension DepartmentListViewController {
     //2
     var uniqueDepartments: [String: Int] = [:]
     for employee in fetchResults {
-      
+
       if let employeeDepartmentCount = uniqueDepartments[employee.department!] {
         uniqueDepartments[employee.department!] = employeeDepartmentCount + 1
       } else {

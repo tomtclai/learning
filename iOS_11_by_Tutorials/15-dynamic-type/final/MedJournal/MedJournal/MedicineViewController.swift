@@ -40,10 +40,10 @@ class MedicineViewController: UITableViewController {
       tableView.reloadData()
     }
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     meds = [Medicine(name: "Metformin", dose: "500 mg by mouth twice daily"),
             Medicine(name: "Glipizide", dose: "5 mg by mouth daily before breakfast"),
             Medicine(name: "Humulin R", dose: "5 units subq 30 minutes before meals")]
@@ -54,7 +54,7 @@ extension MedicineViewController {
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return meds?.count ?? 0
   }
-  
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: .cellIdentifier, for: indexPath)
     guard let medicine = meds?[indexPath.row] else { fatalError() }

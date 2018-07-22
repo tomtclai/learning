@@ -31,20 +31,20 @@
 import UIKit
 
 public class ParkDragView: UIView {
-  
+
   public init (_ image: UIImage, name: String) {
     super.init(frame: CGRect(x: 0, y: 0, width: 200, height: 240))
     let imageView = UIImageView(image: image)
     let nameLabel = UILabel()
     nameLabel.font = UIFont.systemFont(ofSize: 22)
-    
+
     NSLayoutConstraint.activate([
       imageView.widthAnchor.constraint(equalToConstant: 180),
       imageView.heightAnchor.constraint(equalToConstant: 180)
       ])
-    
+
     nameLabel.text = name
-    
+
     let stackView = UIStackView(arrangedSubviews: [nameLabel, imageView])
     stackView.alignment = .center
     stackView.axis = .vertical
@@ -52,12 +52,11 @@ public class ParkDragView: UIView {
     let stackBounds = CGRect(x: bounds.origin.x, y: bounds.origin.y,
                              width: bounds.width, height: bounds.height - 20)
     stackView.frame = stackBounds
-    
+
     addSubview(stackView)
   }
-  
+
   public required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)!
   }
 }
-

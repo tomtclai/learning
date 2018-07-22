@@ -13,7 +13,6 @@ enum MoodSource {
     case continent(Continent)
 }
 
-
 extension MoodSource {
     init(region: NSManagedObject) {
         if let country = region as? Country {
@@ -26,7 +25,7 @@ extension MoodSource {
     }
 
     var predicate: NSPredicate {
-        switch self  {
+        switch self {
         case .country(let c):
             return NSPredicate(format: "country = %@", argumentArray: [c])
         case .continent(let c):
@@ -42,13 +41,11 @@ extension MoodSource {
     }
 }
 
-
 extension MoodSource: LocalizedStringConvertible {
     var localizedDescription: String {
-        switch self  {
+        switch self {
         case .country(let c): return c.localizedDescription
         case .continent(let c): return c.localizedDescription
         }
     }
 }
-

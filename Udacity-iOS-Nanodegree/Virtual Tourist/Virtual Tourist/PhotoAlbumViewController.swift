@@ -21,7 +21,7 @@ class PhotoAlbumViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var noPhotosLabel: UILabel!
-    var lastPageNumber : Int {
+    var lastPageNumber: Int {
         set {
             annotation.pageNumber = newValue
             do {
@@ -42,8 +42,7 @@ class PhotoAlbumViewController: UIViewController {
     }
     @IBAction func didTap(sender: UITapGestureRecognizer) {
         let point = sender.locationInView(self.collectionView)
-        if let indexPath = self.collectionView.indexPathForItemAtPoint(point)
-        {
+        if let indexPath = self.collectionView.indexPathForItemAtPoint(point) {
             let img = fetchedResultsController.objectAtIndexPath(indexPath) as! Image
             sharedContext.deleteObject(img)
             do {
@@ -62,23 +61,20 @@ class PhotoAlbumViewController: UIViewController {
         }
     }
 
-    
     override func viewDidLoad() {
         navigationController?.navigationBarHidden = false
         mapView.clipsToBounds = false
         do {
             try self.fetchedResultsController.performFetch()
-        }
-        catch
-        {}
+        } catch {}
         mapView.addAnnotation(annotation)
         mapView.userInteractionEnabled = false
         let region = MKCoordinateRegion(center: annotation.coordinate, span: span)
         mapView.setRegion(region, animated: false)
         print("top\(topLayoutGuide.topAnchor), bottom\(topLayoutGuide.bottomAnchor), height\(topLayoutGuide.heightAnchor)")
-        
+
         searchPhotosByLatLon(lastPageNumber)
-        
+
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.addGestureRecognizer(tapGesture)
@@ -96,7 +92,7 @@ class PhotoAlbumViewController: UIViewController {
     let LON_MIN = -180.0
     let LON_MAX = 180.0
     func searchPhotosByLatLon(pageNumber: Int) {
-        let methodArguments : [String:AnyObject] = [
+        let methodArguments: [String: AnyObject] = [
             "method": Flickr.Resources.search,
             "api_key": Flickr.Constants.apiKey,
             "safe_search": SAFE_SEARCH,
@@ -113,7 +109,7 @@ class PhotoAlbumViewController: UIViewController {
                 return
             }
             let pageLimit = min(totalPages!, 40)
-            dispatch_async(dispatch_get_main_queue()){
+            dispatch_async(dispatch_get_main_queue()) {
                 if pageLimit == 0 {
                     self.lastPageNumber = 0
                 } else if self.collectionView.numberOfItemsInSection(0) == 0 {
@@ -121,46 +117,46 @@ class PhotoAlbumViewController: UIViewController {
                 } else if self.lastPageNumber == pageNumber { // do not download the same page again
                         return
                 }
-            
+
                 Flickr.sharedInstance().getImageFromFlickrBySearchWithPage(methodArguments, pageNumber: self.lastPageNumber, completionHandler: { (stat, photosDictionary, totalPhotosVal, error) -> Void in
                     guard error == nil else {
                         print(error?.localizedDescription)
                         return
                     }
-                    
+
                     if totalPhotosVal > 0 {
-                        print("photos");
+                        print("photos")
                         /* GUARD: Is the "photo" key in photosDictionary? */
                         guard let photosArray = photosDictionary!["photo"] as? [[String: AnyObject]] else {
                             print("Cannot find key 'photo' in \(photosDictionary)")
                             return
                         }
-                        
+
                         var images = [Image]()
                         for photoDictionary in photosArray {
-                            
+
                             /* GUARD: Does our photo have a key for 'url_m'? */
                             guard let thumbnailUrlStr = photoDictionary["url_q"] as? String else {
                                 print("Cannot find key 'url_q' in \(photoDictionary)")
                                 return
                             }
-                            
+
                             let request = NSFetchRequest(entityName: "Image")
                             request.predicate = NSPredicate(format: "thumbnailUrl == %@", thumbnailUrlStr)
-                            
+
                             guard let imageUrlStr = photoDictionary["url_q"] as? String else {
                                 print("Cannot find key 'url_s' in \(photoDictionary)")
                                 return
                             }
-                            
+
                             // add thumbnail url to core data
                             // add medium url to core data
-                            let imageDictionary : [String: AnyObject] = [
+                            let imageDictionary: [String: AnyObject] = [
                                 Image.Keys.ThumbnailUrl : thumbnailUrlStr,
-                                Image.Keys.ImageUrl : imageUrlStr,
+                                Image.Keys.ImageUrl : imageUrlStr
                             ]
-                            
-                            dispatch_async(dispatch_get_main_queue()){
+
+                            dispatch_async(dispatch_get_main_queue()) {
                                 let image = Image(dictionary: imageDictionary, context: self.sharedContext)
                                 image.pin = self.annotation
                                 images.append(image)
@@ -170,17 +166,15 @@ class PhotoAlbumViewController: UIViewController {
                     } else {
                         print("no photos")
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.newCollection.enabled = false;
-                            self.noPhotosLabel.hidden = false;
+                            self.newCollection.enabled = false
+                            self.noPhotosLabel.hidden = false
                         })
                     }
                 })
             }
         }
     }
-    
-    
-    
+
     // MARK: - Core Data Convenience
     func saveContext() {
         CoreDataStackManager.sharedInstance().saveContext()
@@ -192,24 +186,24 @@ class PhotoAlbumViewController: UIViewController {
         let request = NSFetchRequest(entityName: "Image")
         request.predicate = NSPredicate(format: "pin == %@", self.annotation)
         request.sortDescriptors = [NSSortDescriptor(key: "thumbnailUrl", ascending: true)]
-        
+
         let fetched =  NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
         fetched.delegate = self
         return fetched
     }()
-    
+
     // MARK: state restoration
     override func encodeRestorableStateWithCoder(coder: NSCoder) {
         super.encodeRestorableStateWithCoder(coder)
     }
-    
+
     override func decodeRestorableStateWithCoder(coder: NSCoder) {
         super.decodeRestorableStateWithCoder(coder)
     }
-    
+
 }
 // MARK: NSFetchedResultsControllerDelegate
-extension PhotoAlbumViewController : NSFetchedResultsControllerDelegate {
+extension PhotoAlbumViewController: NSFetchedResultsControllerDelegate {
 
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         blockOperations.removeAll(keepCapacity: false)
@@ -219,9 +213,9 @@ extension PhotoAlbumViewController : NSFetchedResultsControllerDelegate {
         case .Insert:
             blockOperations.append(
                 NSBlockOperation(block: { () -> Void in
-                    
+
                     self.collectionView.insertItemsAtIndexPaths([newIndexPath!])
-                    
+
                 })
             )
         case .Delete:
@@ -269,32 +263,32 @@ extension PhotoAlbumViewController : NSFetchedResultsControllerDelegate {
         }
     }
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        
+
         UIView.animateWithDuration(0.25) { () -> Void in
             self.collectionView.performBatchUpdates({ () -> Void in
-                for op : NSBlockOperation in self.blockOperations {
+                for op: NSBlockOperation in self.blockOperations {
                     op.start()
                 }
-                
+
                 }) { completed -> Void in
                     self.blockOperations.removeAll(keepCapacity: false)
-                    
+
             }
         }
-        
+
     }
 }
 // MARK: UICollectionViewDelegateFlowLayout
-extension PhotoAlbumViewController : UICollectionViewDelegateFlowLayout {
+extension PhotoAlbumViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let screenRect = UIScreen.mainScreen().bounds
         let width = screenRect.size.width
         let itemEdge = width / 3.0
-        return CGSizeMake(itemEdge, itemEdge)
+        return CGSize(width: itemEdge, height: itemEdge)
     }
 }
 // MARK: UICollectionViewDataSource
-extension PhotoAlbumViewController : UICollectionViewDataSource {
+extension PhotoAlbumViewController: UICollectionViewDataSource {
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         if let sections = fetchedResultsController.sections {
             return sections.count
@@ -302,31 +296,31 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
             return 0
         }
     }
-    
+
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return fetchedResultsController.sections![section].numberOfObjects
     }
-    
+
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionViewCell", forIndexPath: indexPath) as! VTCollectionViewCell
         cell.activity.hidesWhenStopped = true
         let image = fetchedResultsController.objectAtIndexPath(indexPath) as! Image
-        
+
         // look for local path, if not found, download and save to documents directory
-        
-        if let uuid = image.uuid  {
-            
+
+        if let uuid = image.uuid {
+
             if let img = UIImage(contentsOfFile: Image.imgPath(uuid)) {
                 cell.backgroundView = UIImageView(image: img)
                 cell.activity.stopAnimating()
             }
-            
+
         } else {
             // not found, download and save to documents directory, then display in cell
             cell.activity.startAnimating()
             cell.backgroundView = UIImageView(image: placeholder)
             Flickr.sharedInstance().getCellImageConvenience(image.thumbnailUrl, completion: { (data) -> Void in
-                dispatch_async(dispatch_get_main_queue()){
+                dispatch_async(dispatch_get_main_queue()) {
                     let img = UIImage(data: data)!
                     cell.backgroundView = UIImageView(image: img)
                     image.uuid = NSUUID().UUIDString
@@ -343,20 +337,20 @@ extension PhotoAlbumViewController : UICollectionViewDataSource {
 
 }
 
-//MARK: UIViewControllerRestoration
-extension PhotoAlbumViewController : UIViewControllerRestoration {
+// MARK: UIViewControllerRestoration
+extension PhotoAlbumViewController: UIViewControllerRestoration {
     static func viewControllerWithRestorationIdentifierPath(identifierComponents: [AnyObject], coder: NSCoder) -> UIViewController? {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PhotoAlbumViewController")
     }
 }
 
 //Mark: documents directory
-extension PhotoAlbumViewController  {
+extension PhotoAlbumViewController {
     static func photoURL(uniqueFileName: String) -> NSURL {
         let documentsDirectoryURL: NSURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
         return documentsDirectoryURL.URLByAppendingPathComponent(uniqueFileName)
     }
 }
-//MARK: UIGestureRecognizerDelegate
-extension PhotoAlbumViewController : UIGestureRecognizerDelegate {
+// MARK: UIGestureRecognizerDelegate
+extension PhotoAlbumViewController: UIGestureRecognizerDelegate {
 }

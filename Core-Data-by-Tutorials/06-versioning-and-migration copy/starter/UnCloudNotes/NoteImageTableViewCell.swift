@@ -43,5 +43,3 @@ extension NoteImageTableViewCell {
     super.updateNoteInfo(note: note)
   }
 }
-
-

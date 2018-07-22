@@ -47,13 +47,13 @@ class CoreDataStack {
   var savingContext: NSManagedObjectContext {
     return storeContainer.newBackgroundContext()
   }
-  
+
   var storeName: String = "UnCloudNotesDataModel"
-  var storeURL : URL {
+  var storeURL: URL {
     let storePaths = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)
     let storePath = storePaths[0] as NSString
     let fileManager = FileManager.default
-    
+
     do {
       try fileManager.createDirectory(
         atPath: storePath as String,
@@ -62,7 +62,7 @@ class CoreDataStack {
     } catch {
       print("Error creating storePath \(storePath): \(error)")
     }
-    
+
     let sqliteFilePath = storePath
       .appendingPathComponent(storeName + ".sqlite")
     return URL(fileURLWithPath: sqliteFilePath)
@@ -75,7 +75,7 @@ class CoreDataStack {
 //    description.shouldAddStoreAsynchronously = true
     return description
   }()
-  
+
   private lazy var storeContainer: NSPersistentContainer = {
     let container = NSPersistentContainer(name: self.modelName)
     container.persistentStoreDescriptions = [self.storeDescription]

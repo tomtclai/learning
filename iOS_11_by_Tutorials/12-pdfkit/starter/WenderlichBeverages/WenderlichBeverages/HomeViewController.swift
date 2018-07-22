@@ -32,16 +32,16 @@ import UIKit
 import PDFKit
 
 class HomeViewController: UIViewController {
-  
+
   @IBOutlet weak var documentsStackView: UIStackView!
   @IBOutlet weak var imageView1: UIImageView!
   @IBOutlet weak var imageView2: UIImageView!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     preloadDocuments()
   }
-  
+
   private func preloadDocuments() {
     for document in SalesDocument.allDocuments() {
       let documentPath = FileUtilities.documentsDirectory().appending("/\(document.nameWithExtension())")
@@ -52,14 +52,14 @@ class HomeViewController: UIViewController {
       }
     }
   }
-  
+
   @IBAction func showDocument(_ sender: UITapGestureRecognizer) {
-    
+
   }
-  
+
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
+
   }
-  
+
 }

@@ -1,7 +1,6 @@
 import Foundation
 import CoreData
 
-
 public final class City: NSManagedObject, Managed {
     @NSManaged public var name: String
     @NSManaged public var mayor: Person
@@ -9,7 +8,6 @@ public final class City: NSManagedObject, Managed {
     @NSManaged public var residents: Set<Person>
     @NSManaged public var visitors: NSOrderedSet
 }
-
 
 public class Person: NSManagedObject, Managed {
     @NSManaged public var givenName: String
@@ -22,7 +20,6 @@ public class Person: NSManagedObject, Managed {
     @NSManaged public var mayorOf: City?
     @NSManaged public var visitedCities: Set<City>
 }
-
 
 let personNameFormatter: PersonNameComponentsFormatter = {
     let f = PersonNameComponentsFormatter()
@@ -63,7 +60,7 @@ public func citiesAndPeopleModel() -> NSManagedObjectModel {
             uuid.getBytes(uuidBytes)
             return NSData(bytes: uuidBytes, length: 16)
         }, reverse: { (data: NSData?) -> NSUUID? in
-            guard let data = data , data.length == 16 else { return nil }
+            guard let data = data, data.length == 16 else { return nil }
             let uuidBytes = UnsafeMutablePointer<UInt8>.allocate(capacity: 16)
             data.getBytes(uuidBytes, length: 16)
             return NSUUID(uuidBytes: uuidBytes)
@@ -85,7 +82,6 @@ public func citiesAndPeopleModel() -> NSManagedObjectModel {
 //
 // MARK: Stack
 //
-
 
 private let cityNames = ["New York", "Los Angeles", "Chicago", "Houston", "Philadelphia", "Phoenix", "San Antonio", "San Diego", "Dallas", "San Jose", "Austin", "Jacksonville", "San Francisco", "Indianapolis", "Columbus", "Fort Worth", "Charlotte", "Detroit", "El Paso", "Seattle", "Denver", "Washington", "Memphis", "Boston", "Nashville", "Baltimore", "Oklahoma City", "Portland", "Las Vegas", "Louisville", "Milwaukee", "Albuquerque", "Tucson", "Fresno", "Sacramento", "Long Beach", "Kansas City", "Mesa", "Atlanta", "Virginia Beach", "Omaha", "Colorado Springs", "Raleigh", "Miami", "Oakland", "Minneapolis", "Tulsa", "Cleveland", "Wichita", "New Orleans"]
 
@@ -135,4 +131,3 @@ public func createCitiesAndPeople(in moc: NSManagedObjectContext) {
     }
     try! moc.save()
 }
-

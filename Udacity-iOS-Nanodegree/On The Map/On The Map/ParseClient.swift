@@ -11,10 +11,10 @@ import UIKit
 
 class ParseClient: HTTPClient {
 
-    var locationObjectID : String? = nil
-    func getStudentLocations(completionHandler: (result: AnyObject!, error: NSError?) -> Void) ->NSURLSessionDataTask {
+    var locationObjectID: String?
+    func getStudentLocations(completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         let session = NSURLSession.sharedSession()
-        let optionalParameters : [String:AnyObject] = [
+        let optionalParameters: [String: AnyObject] = [
             ParameterKeys.Limit : 100,
             ParameterKeys.Order : JSONBodyKeys.ReverseUpdatedAt
         ]
@@ -25,7 +25,7 @@ class ParseClient: HTTPClient {
                 print("There was an error with your request: \(error)")
                 return completionHandler(result: nil, error: error)
             }
-            
+
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 if let response = response as? NSHTTPURLResponse {
                     print("Your request returned an invalid response #\(response.statusCode)")
@@ -36,22 +36,22 @@ class ParseClient: HTTPClient {
                 }
                 return completionHandler(result: nil, error: NSError(domain: "getStudentLocations", code: 2, userInfo: nil))
             }
-            
+
             guard let data = data else {
                 print("No data was returned by the request")
                 return completionHandler(result: nil, error: error)
             }
-            
+
             ParseClient.parseJSONWithCompletionHandler(data, completionHandler: { (result, error) -> Void in
                 completionHandler(result: result[JSONResponseKeyPaths.StudentLocations], error: error)
             })
-            
+
         }
         task.resume()
         return task
     }
-    
-    func postStudentLocation(mapString: String!, mediaURL: String!, latitude: Double!, longitude: Double!, completionHandler: (result: String?, error: NSError?) -> Void) -> Void {
+
+    func postStudentLocation(mapString: String!, mediaURL: String!, latitude: Double!, longitude: Double!, completionHandler: (result: String?, error: NSError?) -> Void) {
         UdacityClient.sharedInstance().getStudentData { (userID, firstname, lastname, error) -> Void in
             if let error = error {
                 print(error)
@@ -72,8 +72,8 @@ class ParseClient: HTTPClient {
             let session = NSURLSession.sharedSession()
             let url = NSURL(string: Constants.BaseURL)
             let urlRequest = self.starterURLRequest(url!)
-            
-            let jsonBody : [String: AnyObject] = [
+
+            let jsonBody: [String: AnyObject] = [
                 JSONBodyKeys.UniqueKey : userID,
                 JSONBodyKeys.FirstName : firstname,
                 JSONBodyKeys.LastName : lastname,
@@ -82,14 +82,14 @@ class ParseClient: HTTPClient {
                 JSONBodyKeys.Latitude : latitude,
                 JSONBodyKeys.Longitude : longitude
             ]
-            
+
             urlRequest.HTTPMethod = "POST"
             do {
                 urlRequest.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
             }
-            
+
             let task = session.dataTaskWithRequest(urlRequest) { (data, response, error) in
-                
+
                 guard (error == nil) else {
                     print("There was an error with your request: \(error)")
                     return completionHandler(result: nil, error: error)
@@ -115,22 +115,21 @@ class ParseClient: HTTPClient {
                     } else {
                         print("no \(JSONResponseKeyPaths.ObjectId) in \(result)")
                     }
-                    
+
                 })
 
             }
             task.resume()
         }
     }
-    
-    
+
     func starterURLRequest(url: NSURL) -> NSMutableURLRequest {
         let request = NSMutableURLRequest(URL: url)
         request.addValue(Constants.ApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue(Constants.ApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
         return request
     }
-    
+
     class func parseJSONWithCompletionHandler(data: NSData, completionHandler : (result: AnyObject!, error: NSError?) -> Void) {
         var parsedResult: AnyObject!
         do {
@@ -141,16 +140,15 @@ class ParseClient: HTTPClient {
         }
         completionHandler(result: parsedResult, error: nil)
     }
-    
-    
+
     // MARK: Shared Instance
     class func sharedInstance() -> ParseClient {
-        
+
         struct Singleton {
             static var sharedInstance = ParseClient()
         }
-        
+
         return Singleton.sharedInstance
     }
-    
+
 }

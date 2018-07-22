@@ -30,25 +30,25 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-  
+
   @IBOutlet weak var username: UITextField!
   @IBOutlet weak var password: UITextField!
   @IBOutlet weak var loginButton: UIButton!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     enableLoginButton(false)
   }
-  
+
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return .lightContent
   }
-  
+
   @IBAction func login(_ sender: Any) {
     LoginStatus.loggedIn = true
     performSegue(withIdentifier: "LoggedIn", sender: self)
   }
-  
+
   private func validate(username: String?, password: String?) -> Bool {
     guard let username = username,
       let password = password,
@@ -58,12 +58,12 @@ class LoginViewController: UIViewController {
     }
     return true
   }
-  
+
   private func enableLoginButton(_ enable: Bool) {
     loginButton.isEnabled = enable
     loginButton.alpha = enable ? 1.0 : 0.5
   }
-  
+
 }
 
 extension LoginViewController: UITextFieldDelegate {
@@ -84,7 +84,7 @@ extension LoginViewController: UITextFieldDelegate {
   enableLoginButton(isValid)
     return true
   }
-  
+
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     if textField == username {
       password.becomeFirstResponder()

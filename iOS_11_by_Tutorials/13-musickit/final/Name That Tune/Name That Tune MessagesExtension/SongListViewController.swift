@@ -46,10 +46,10 @@ class SongListViewController: UITableViewController {
       tableView.reloadData()
     }
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     Song.top40Songs { songs, error in
       if let songs = songs {
         self.songs = songs
@@ -64,13 +64,13 @@ extension SongListViewController {
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return songs.count
   }
-  
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: .cellIdentifier, for: indexPath)
     cell.textLabel?.text = songs[indexPath.row].title
     return cell
   }
-  
+
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
     if let delegate = delegate {
@@ -82,7 +82,7 @@ extension SongListViewController {
       let wrongChoice2 = remainingSongs.remove(at: index)
       index = Int(arc4random_uniform(UInt32(remainingSongs.endIndex)))
       let wrongChoice3 = remainingSongs.remove(at: index)
-      
+
       delegate.songListViewController(self, didSelect: songs[indexPath.row], wrongTitles: [wrongChoice1.title, wrongChoice2.title, wrongChoice3.title])
     }
   }

@@ -43,13 +43,13 @@ func applyAppAppearance() {
 private func styleNavBar() {
   let appearanceProxy = UINavigationBar.appearance()
   appearanceProxy.barTintColor = UIColor(named: ggDarkGreen)
-  
+
   appearanceProxy.titleTextAttributes = [
-    NSAttributedStringKey.foregroundColor: UIColor.white,
+    NSAttributedStringKey.foregroundColor: UIColor.white
   ]
-  
+
   appearanceProxy.largeTitleTextAttributes = [
-    NSAttributedStringKey.foregroundColor: UIColor.white,
+    NSAttributedStringKey.foregroundColor: UIColor.white
   ]
 }
 

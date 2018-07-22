@@ -23,7 +23,7 @@
 import UIKit
 
 class EventCell: UITableViewCell {
-  
+
   @IBOutlet var title: UILabel!
   @IBOutlet var date: UILabel!
   @IBOutlet var details: UILabel!
@@ -34,7 +34,7 @@ class EventCell: UITableViewCell {
 
     let formatter = DateFormatter()
     formatter.dateStyle = .short
-    
+
     if let when = event.closeDate {
       date.text = formatter.string(for: when)
     } else {

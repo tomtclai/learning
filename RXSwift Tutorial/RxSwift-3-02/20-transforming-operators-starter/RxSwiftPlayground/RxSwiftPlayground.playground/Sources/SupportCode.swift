@@ -19,16 +19,16 @@ public let episodeIX = "Episode IX"
 public let episodes = [episodeI, episodeII, episodeIII, episodeIV, episodeV, episodeVI, episodeVII, episodeVIII, episodeIX]
 
 public extension String {
-  
+
   /// https://stackoverflow.com/a/36949832/616764
-  func romanNumeralIntValue() throws -> Int  {
-    if range(of: "^(?=[MDCLXVI])M*(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})$", options: .regularExpression) == nil  {
+  func romanNumeralIntValue() throws -> Int {
+    if range(of: "^(?=[MDCLXVI])M*(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})$", options: .regularExpression) == nil {
       throw NSError(domain: "NotValidRomanNumber", code: -1, userInfo: nil)
     }
-    
+
     var result = 0
     var maxValue = 0
-    
+
     uppercased().reversed().forEach {
       let value: Int
       switch $0 {
@@ -49,26 +49,26 @@ public extension String {
       default:
         value = 0
       }
-      
+
       maxValue = max(value, maxValue)
       result += value == maxValue ? value : -value
     }
-    
+
     return result
   }
 }
 
 public struct Jedi {
-  
+
   public var rank: BehaviorSubject<JediRank>
-  
+
   public init(rank: BehaviorSubject<JediRank>) {
     self.rank = rank
   }
 }
 
 public enum JediRank: String {
-  
+
   case youngling = "Youngling"
   case padawan = "Padawan"
   case jediKnight = "Jedi Knight"

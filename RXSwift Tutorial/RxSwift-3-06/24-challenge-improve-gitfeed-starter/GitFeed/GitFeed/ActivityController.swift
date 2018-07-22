@@ -26,7 +26,7 @@ import RxCocoa
 import Kingfisher
 
 func cachedFileURL(_ fileName: String) -> URL {
-  
+
   return FileManager.default
     .urls(for: .cachesDirectory, in: .allDomainsMask)
     .first!
@@ -73,17 +73,17 @@ class ActivityController: UITableViewController {
 
   func fetchEvents(repo: String) {
     let topReposUrlString = "https://api.github.com/search/repositories?q=language:swift&per_page=5"
-    
+
     let response = Observable.from([repo])
       .map { [weak self] repo in
         let url = URL(string: "https://api.github.com/repos/\(repo)/events")!
         var request = URLRequest(url: url)
-        
+
         if let modifiedHeader = self?.lastModified.value {
           request.addValue(modifiedHeader as String,
                            forHTTPHeaderField: "Last-Modified")
         }
-        
+
         return request
       }
       .flatMap { request -> Observable<(response: HTTPURLResponse, data: Data)> in
@@ -100,7 +100,7 @@ class ActivityController: UITableViewController {
           let result = jsonObject as? [[String: Any]] else {
             return []
         }
-        
+
         return result
       }
       .filter { objects in
@@ -122,7 +122,7 @@ class ActivityController: UITableViewController {
         guard let value = response.allHeaderFields["Last-Modified"]  as? NSString else {
           return Observable.empty()
         }
-        
+
         return Observable.just(value)
       }
       .subscribe(onNext: { [weak self] modifiedHeader in
@@ -136,7 +136,7 @@ class ActivityController: UITableViewController {
 
   func processEvents(_ newEvents: [Event]) {
     var updatedEvents = newEvents + events.value
-    
+
     if updatedEvents.count > 50 {
       updatedEvents = Array<Event>(updatedEvents.prefix(upTo: 50))
     }

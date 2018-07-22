@@ -11,7 +11,6 @@ import MoodyModel
 import CoreData
 import CoreDataHelpers
 
-
 class RegionsTableViewController: UITableViewController, SegueHandler {
 
     enum SegueIdentifier: String {
@@ -52,7 +51,6 @@ class RegionsTableViewController: UITableViewController, SegueHandler {
         updateDataSource()
     }
 
-
     // MARK: Private
 
     fileprivate var dataSource: TableViewDataSource<NSFetchRequestResult, RegionsTableViewController>!
@@ -87,14 +85,12 @@ class RegionsTableViewController: UITableViewController, SegueHandler {
     }
 }
 
-
 extension RegionsTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let region = dataSource.objectAtIndexPath(indexPath)
         performSegue(withIdentifier: region.segue)
     }
 }
-
 
 extension RegionsTableViewController: TableViewDataSourceDelegate {
     func supplementaryObject(at indexPath: IndexPath) -> DisplayableRegion? {
@@ -124,7 +120,6 @@ extension RegionsTableViewController: TableViewDataSourceDelegate {
     }
 }
 
-
 protocol DisplayableRegion: LocalizedStringConvertible {
     var segue: RegionsTableViewController.SegueIdentifier { get }
     var localizedDetailDescription: String { get }
@@ -144,7 +139,6 @@ extension Country: DisplayableRegion {
     }
 }
 
-
 extension Continent: DisplayableRegion {
     var segue: RegionsTableViewController.SegueIdentifier {
         return .showContinentMoods
@@ -159,7 +153,6 @@ extension Continent: DisplayableRegion {
     }
 }
 
-
 extension UISegmentedControl {
     fileprivate var regionType: Managed.Type {
         switch selectedSegmentIndex {
@@ -170,7 +163,6 @@ extension UISegmentedControl {
         }
     }
 }
-
 
 enum UserRegion {
     case all
@@ -199,5 +191,3 @@ extension UserRegion: DisplayableRegion {
         }
     }
 }
-
-

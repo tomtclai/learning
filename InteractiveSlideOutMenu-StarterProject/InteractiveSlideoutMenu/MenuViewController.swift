@@ -8,8 +8,8 @@
 
 import UIKit
 
-class MenuViewController : UIViewController {
-    var interactor: Interactor? = nil
+class MenuViewController: UIViewController {
+    var interactor: Interactor?
     @IBAction func handleGesture(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         let progress = MenuHelper.calculateProgress(translationInView: translation, viewBounds: view.bounds, direction: .left)

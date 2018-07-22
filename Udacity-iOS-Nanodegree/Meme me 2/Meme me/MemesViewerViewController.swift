@@ -9,28 +9,26 @@
 import UIKit
 
 class MemesViewerViewController: UIViewController {
-    var memeIndex : Int?
-    
+    var memeIndex: Int?
+
     @IBOutlet private weak var imageView: UIImageView!
     private var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     private var image: UIImage?
-    
-    
+
     override func viewDidLoad() {
         imageView.contentMode = .ScaleAspectFit
         if let memeIndex = memeIndex {
             image = appDelegate.memes[memeIndex]?.memedImage
         }
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         navigationController?.hidesBarsOnTap = true
-        if let image = image  {
+        if let image = image {
             imageView.image = image
         }
     }
-    
-    
+
     override func viewWillDisappear(animated: Bool) {
         navigationController?.hidesBarsOnTap = false
     }
@@ -43,9 +41,9 @@ class MemesViewerViewController: UIViewController {
         }
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
-        
+
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "MemeEditorViewController" {
             if let dvc = segue.destinationViewController as? UINavigationController {

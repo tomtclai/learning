@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
   @IBOutlet weak var containerView: UIView!
   @IBOutlet weak var innerView: UIView!
-  
+
   @IBOutlet weak var frameXSlider: UISlider!
   @IBOutlet weak var boundsXSlider: UISlider!
   @IBOutlet weak var frameYSlider: UISlider!
@@ -33,12 +33,12 @@ class ViewController: UIViewController {
 
     updateValues()
   }
-  
+
   @IBAction func frameXSliderChanged(_ sender: UISlider) {
     containerView.frame.origin.x = CGFloat(sender.value)
     updateValues()
   }
-  
+
    @IBAction func boundsXSliderChanged(_ sender: UISlider) {
     containerView.bounds.origin.x = CGFloat(sender.value)
     updateValues()

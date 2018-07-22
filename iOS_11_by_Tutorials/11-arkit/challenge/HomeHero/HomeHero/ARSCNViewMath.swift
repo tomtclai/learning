@@ -36,62 +36,62 @@ extension ARSCNView {
     let cameraPosition = pointOfView!.position
     return (pointWorldPosition - cameraPosition).normalized()
   }
-  
+
   func hitTestFeaturePoints(_ point: CGPoint, allowedAngleFromRay: Float) -> SCNVector3? {
-    
+
     guard let featurePoints = session.currentFrame?.rawFeaturePoints else {
       return nil
     }
-    
+
     var vectorsArray: [SCNVector3] = []
-    
+
     for i in 0..<featurePoints.points.count {
       let feature = featurePoints.points[i]
       let featurePosition = SCNVector3(feature)
       vectorsArray.append(featurePosition)
     }
-    
+
     return hitTestFeaturePoints(point, featurePoints: vectorsArray, allowedAngleFromRay: allowedAngleFromRay)
   }
-  
-  func hitTestFeaturePoints(_ point:CGPoint, featurePoints: [SCNVector3], allowedAngleFromRay: Float) -> SCNVector3? {
-    
+
+  func hitTestFeaturePoints(_ point: CGPoint, featurePoints: [SCNVector3], allowedAngleFromRay: Float) -> SCNVector3? {
+
     let ray = rayFromTapPoint(point)
     let maxAngleRadians = allowedAngleFromRay / 180 * Float.pi
-    
+
     var maxLength: Float = 0
     var currentFeaturePoint: SCNVector3? = nil
-    
+
     for featurePosition in featurePoints {
-      
+
       let cameraPosition = pointOfView!.position
       let cameraToFeaturePoint = (featurePosition - cameraPosition).normalized()
       let angleBetweenRayAndFeature = acos(ray.dot(vector: cameraToFeaturePoint))
       let cameraToFeaturePointLength = featurePosition.distanceTo(cameraPosition)
-      
+
       let fitsInAngle = angleBetweenRayAndFeature <= maxAngleRadians
       let greaterLength = cameraToFeaturePointLength > maxLength
       let notTooClose = cameraToFeaturePointLength > 0.2
-      
+
       if greaterLength && fitsInAngle && notTooClose {
         maxLength = cameraToFeaturePointLength
         currentFeaturePoint = featurePosition
       }
     }
-    
+
     return currentFeaturePoint
   }
-  
+
   func hitTestWithInfiniteHorizontalPlane(_ point: CGPoint, _ pointOnPlane: SCNVector3) -> SCNVector3? {
-    
+
     let ray = rayFromTapPoint(point)
     return rayIntersectionWithHorizontalPlane(rayOrigin: pointOfView!.position, direction: ray, planeY: pointOnPlane.y)
   }
-  
+
   func rayIntersectionWithHorizontalPlane(rayOrigin: SCNVector3, direction: SCNVector3, planeY: Float) -> SCNVector3? {
     let direction = direction.normalized()
     let dist = (planeY - rayOrigin.y) / direction.y
     return rayOrigin + (direction * dist)
   }
-  
+
 }

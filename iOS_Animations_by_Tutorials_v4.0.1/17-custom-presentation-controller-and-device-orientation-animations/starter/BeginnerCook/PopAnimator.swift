@@ -18,7 +18,7 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
   var direction = TransitionDirection.presenting
   var scrollViewCellFrame = CGRect.zero
 
-  var dismissCompletion: (()->Void)?
+  var dismissCompletion: (() -> Void)?
 
   func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
     return duration
@@ -53,7 +53,6 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     }
 
     let scaleTransform = CGAffineTransform(scaleX: xScaleFactor, y: yScaleFactor)
-
 
     if direction == .presenting {
       herbDetailView.transform = scaleTransform

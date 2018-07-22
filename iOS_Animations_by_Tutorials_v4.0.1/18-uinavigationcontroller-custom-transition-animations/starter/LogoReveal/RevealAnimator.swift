@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class RevealAnimator: UIPercentDrivenInteractiveTransition, UIViewControllerAnimatedTransitioning, CAAnimationDelegate {
   private var pausedTime: CFTimeInterval = 0
   let animationDuration = 2.0
@@ -32,7 +31,7 @@ class RevealAnimator: UIPercentDrivenInteractiveTransition, UIViewControllerAnim
     case .push:
       let fromVC = transitionContext.viewController(forKey: .from) as! MasterViewController
       let toVC = transitionContext.viewController(forKey: .to) as! DetailViewController
-      
+
       transitionContext.containerView.addSubview(toVC.view)
       toVC.view.frame = transitionContext.finalFrame(for: toVC)
 

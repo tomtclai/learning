@@ -59,7 +59,7 @@ class CreateNoteViewController: UIViewController, UsesCoreDataObjects {
     attachedPhoto.image = image
     view.endEditing(true)
   }
-  
+
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let nextViewController = segue.destination as? NoteDisplayable else { return }

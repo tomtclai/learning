@@ -31,7 +31,6 @@ import UIKit
 class ZoomOutInteractionController: InteractiveTransition {
   private var shouldCompleteTransition = false
 
-
   override init(viewController: UIViewController) {
     super.init(viewController: viewController)
     prepareGestureRecognizer(in: viewController.view)

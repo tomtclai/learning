@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 import CoreDataHelpers
 
-
 class TestObject: NSManagedObject, Managed {
     static var entityName: String { return "TestObject" }
     static var defaultSortDescriptors: [NSSortDescriptor] {
@@ -30,7 +29,7 @@ class TestObjectB: NSManagedObject, Managed {
 }
 
 var model: NSManagedObjectModel = {
-    return NSManagedObjectModel() {
+    return NSManagedObjectModel {
         let testObject = NSEntityDescription(cls: TestObject.self, name: TestObject.entityName)
         testObject.add(NSAttributeDescription.stringType(name: "name", defaultValue: "", propertyOptions: []))
         let testObjectB = NSEntityDescription(cls: TestObjectB.self, name: TestObjectB.entityName)
@@ -39,10 +38,8 @@ var model: NSManagedObjectModel = {
     }
 }()
 
-
 func createPersistentStoreCoordinatorWithInMemotyStore() -> NSPersistentStoreCoordinator {
     let psc = NSPersistentStoreCoordinator(managedObjectModel: model)
     try! psc.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
     return psc
 }
-

@@ -67,7 +67,7 @@ class PhotosViewController: UICollectionViewController {
     super.viewDidLoad()
 
   }
-  
+
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     selectedPhotosSubject.onCompleted()

@@ -9,16 +9,12 @@
 import UIKit
 import MoodyModel
 
-
 class MoodCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var moodView: MoodView!
 }
-
 
 extension MoodCollectionViewCell {
     func configure(for mood: Mood) {
         moodView.colors = mood.colors
     }
 }
-
-

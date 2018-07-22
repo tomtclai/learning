@@ -24,7 +24,7 @@ import UIKit
 import CoreData
 
 class ViewController: UIViewController {
-  
+
   // MARK: - IBOutlets
   @IBOutlet weak var segmentedControl: UISegmentedControl!
   @IBOutlet weak var imageView: UIImageView!
@@ -33,17 +33,17 @@ class ViewController: UIViewController {
   @IBOutlet weak var timesWornLabel: UILabel!
   @IBOutlet weak var lastWornLabel: UILabel!
   @IBOutlet weak var favoriteLabel: UILabel!
-  
+
   // MARK: Properties
   var managedContext: NSManagedObjectContext!
   var currentBowtie: Bowtie!
-  
+
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     insertSampleData()
-    
+
     let request: NSFetchRequest<Bowtie> = Bowtie.fetchRequest()
     let firstTitle = segmentedControl.titleForSegment(at: 0)!
     request.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(Bowtie.searchKey), firstTitle])
@@ -51,13 +51,13 @@ class ViewController: UIViewController {
     do {
       let results = try managedContext.fetch(request)
       currentBowtie = results.first
-      
+
       populate(bowtie: results.first!)
     } catch let error as NSError {
       print("Could not fetch \(error), \(error.userInfo)")
     }
   }
-  
+
   // MARK: - IBActions
   @IBAction func segmentedControl(_ sender: Any) {
     guard let control = sender as? UISegmentedControl,
@@ -67,23 +67,23 @@ class ViewController: UIViewController {
 
     let request: NSFetchRequest<Bowtie> = Bowtie.fetchRequest()
     request.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(Bowtie.searchKey), selectedValue])
-    
+
     do {
       let results =  try managedContext.fetch(request)
       currentBowtie =  results.first
       populate(bowtie: currentBowtie)
-      
+
     } catch let error as NSError {
       print("Could not fetch \(error), \(error.userInfo)")
     }
   }
-  
+
   @IBAction func wear(_ sender: Any) {
-    
+
     let times = currentBowtie.timesWorn
     currentBowtie.timesWorn = times + 1
     currentBowtie.lastWorn = NSDate()
-    
+
     do {
       try managedContext.save()
       populate(bowtie: currentBowtie)
@@ -91,19 +91,19 @@ class ViewController: UIViewController {
       print("Could not fetch \(error), \(error.userInfo)")
     }
   }
-  
+
   @IBAction func rate(_ sender: Any) {
 
     let alert = UIAlertController(title: "New Rating",
                                   message: "Rate this bow tie",
                                   preferredStyle: .alert)
-    
+
     alert.addTextField { (textField) in
       textField.keyboardType = .decimalPad
     }
-    
+
     let cancelAction = UIAlertAction(title: "Cancel", style: .default)
-    
+
     let saveAction = UIAlertAction(title: "Save", style: .default) {
       [unowned self] action in
 
@@ -113,51 +113,51 @@ class ViewController: UIViewController {
 
       self.update(rating: textField.text)
     }
-    
+
     alert.addAction(cancelAction)
     alert.addAction(saveAction)
-    
+
     present(alert, animated: true)
   }
-  
+
   func populate(bowtie: Bowtie) {
-    
+
     guard let imageData = bowtie.photoData as Data?,
       let lastWorn = bowtie.lastWorn as Date?,
       let tintColor = bowtie.tintColor as? UIColor else {
         return
     }
-    
+
     imageView.image = UIImage(data: imageData)
     nameLabel.text = bowtie.name
     ratingLabel.text = "Rating: \(bowtie.rating)/5"
-    
+
     timesWornLabel.text = "# times worn: \(bowtie.timesWorn)"
-    
+
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .short
     dateFormatter.timeStyle = .none
-    
+
     lastWornLabel.text = "Last worn: " + dateFormatter.string(from: lastWorn)
-    
+
     favoriteLabel.isHidden = !bowtie.isFavorite
     view.tintColor = tintColor
   }
-  
+
   func update(rating: String?) {
-    
+
     guard let ratingString = rating,
       let rating = Double(ratingString) else {
         return
     }
-    
+
     do {
       currentBowtie.rating = rating
       try managedContext.save()
       populate(bowtie: currentBowtie)
-      
+
     } catch let error as NSError {
-      
+
       if error.domain == NSCocoaErrorDomain &&
         (error.code == NSValidationNumberTooLargeError ||
           error.code == NSValidationNumberTooSmallError) {
@@ -167,7 +167,7 @@ class ViewController: UIViewController {
       }
     }
   }
-  
+
   func insertSampleData() {
     let fetch: NSFetchRequest<Bowtie> = Bowtie.fetchRequest()
     fetch.predicate = NSPredicate(format: "searchKey != nil")
@@ -215,15 +215,15 @@ class ViewController: UIViewController {
 
 // MARK: - Private
 private extension UIColor {
-  
-  static func color(dict: [String : Any]) -> UIColor? {
-    
+
+  static func color(dict: [String: Any]) -> UIColor? {
+
     guard let red = dict["red"] as? NSNumber,
       let green = dict["green"] as? NSNumber,
       let blue = dict["blue"] as? NSNumber else {
         return nil
     }
-    
+
     return UIColor(red: CGFloat(truncating: red) / 255.0,
                    green: CGFloat(truncating: green) / 255.0,
                    blue: CGFloat(truncating: blue) / 255.0,

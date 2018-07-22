@@ -39,5 +39,5 @@ public extension Camper {
   @NSManaged var fullName: String?
   @NSManaged var phoneNumber: String?
   @NSManaged var reservations: Reservation?
-  
+
 }

@@ -95,7 +95,7 @@ private extension EmployeeDetailViewController {
 extension EmployeeDetailViewController {
 
   func salesCountForEmployee(_ employee: Employee) -> String {
-    
+
     let fetchRequest: NSFetchRequest<Sale> = Sale.fetchRequest()
     let predicate = NSPredicate(format: "%K == %@", #keyPath(Sale.employee), employee)
     fetchRequest.predicate = predicate

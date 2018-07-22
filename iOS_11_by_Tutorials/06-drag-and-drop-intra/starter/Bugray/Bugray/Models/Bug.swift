@@ -31,24 +31,24 @@
 import Foundation
 
 class Bug: Codable {
-  
+
   enum Context: Int, Codable {
     case toDo
     case inProgress
     case done
   }
-  
+
   enum Priority: Int, Codable {
     case low
     case medium
     case high
   }
-  
+
   var id: String
   var label: String
   var context: Context
   var priority: Priority
-  
+
   init(id: String, label: String, context: Context = .toDo, priority: Priority = .high) {
     self.id = id
     self.label = label

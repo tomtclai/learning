@@ -12,8 +12,7 @@ import CoreData
 import CoreDataHelpers
 @testable import MoodySync
 
-
-public func AssertEqual<T: Equatable>(_ expression1: @autoclosure () -> T?, _ expression2: @autoclosure () -> T?, _ message: String = "", file: StaticString = #file, line: UInt = #line, continuation: () -> () = {}) {
+public func AssertEqual<T: Equatable>(_ expression1: @autoclosure () -> T?, _ expression2: @autoclosure () -> T?, _ message: String = "", file: StaticString = #file, line: UInt = #line, continuation: () -> Void = {}) {
     let a = expression1()
     let b = expression2()
     if a != b {
@@ -22,7 +21,6 @@ public func AssertEqual<T: Equatable>(_ expression1: @autoclosure () -> T?, _ ex
         continuation()
     }
 }
-
 
 private class TestSyncContext: ContextOwner {
 
@@ -49,7 +47,6 @@ private class TestSyncContext: ContextOwner {
     }
 }
 
-
 extension DispatchGroup {
     func spinUntilEmpty() {
         var done = false
@@ -62,10 +59,9 @@ extension DispatchGroup {
     }
 }
 
-
 class SyncContextTests: XCTestCase {
 
-    fileprivate var sut: TestSyncContext? = nil
+    fileprivate var sut: TestSyncContext?
 
     override func tearDown() {
         tearDownContext()
@@ -172,4 +168,3 @@ class SyncContextTests: XCTestCase {
     }
 
 }
-

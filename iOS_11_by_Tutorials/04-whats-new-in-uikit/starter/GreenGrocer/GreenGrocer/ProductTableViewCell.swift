@@ -35,17 +35,17 @@ class ProductTableViewCell: UITableViewCell {
   @IBOutlet weak var productImageView: UIImageView!
   @IBOutlet weak var nameLabel: UILabel!
   var gestureManager: MenuGestureController?
-  
+
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     defaultInit()
   }
-  
+
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     defaultInit()
   }
-  
+
   private func defaultInit() {
     gestureManager = MenuGestureController(view: self)
     if let gestureManager = gestureManager {
@@ -54,7 +54,7 @@ class ProductTableViewCell: UITableViewCell {
     }
   }
 
-  var product : Product? {
+  var product: Product? {
     didSet {
       if let product = product {
         nameLabel?.text = product.name
@@ -69,11 +69,11 @@ extension ProductTableViewCell {
   override var canBecomeFirstResponder: Bool {
     return true
   }
-  
+
   override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
     return action == #selector(copy(_:))
   }
-  
+
   override func copy(_ sender: Any?) {
     guard let product = product else { return }
     let data = NSKeyedArchiver.archivedData(withRootObject: product)

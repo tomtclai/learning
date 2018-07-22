@@ -42,26 +42,26 @@ class HikeViewController: UIViewController {
   @IBOutlet weak var rightImageView: UIImageView!
   @IBOutlet weak var clearButton: UIButton!
   @IBOutlet weak var stackView: UIStackView!
-  
+
   var imageViews: [UIImageView]?
-  
+
   var images: [UIImage] = []
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     imageViews = [leftImageView, rightImageView]
     startingMapRegion = mapView.region
     hikeNotesTextView.textDropDelegate = self
     displayPark()
   }
-  
+
   @IBAction func clearButtonPressed(_ sender: Any) {
     park = nil
     hikeNotesTextView.text = ""
     displayPark()
   }
-  
+
   func displayPark() {
     guard let park = park else {
       nameLabel.text = " "
@@ -72,27 +72,27 @@ class HikeViewController: UIViewController {
       updateImages()
       return
     }
-    
+
     nameLabel.text = park.name
-    
+
     let coordinate = CLLocationCoordinate2D(latitude: park.latitude, longitude: park.longitude)
     let mapRect = MKCoordinateRegionMakeWithDistance(coordinate, 100000, 100000)
     mapView.setRegion(mapRect, animated: false)
     images.removeAll()
     addImage(park.image)
   }
-  
+
   func updateImages() {
     guard let imageViews = imageViews, images.count < 3
       else { return }
-    
+
     var i = 0
     imageViews.forEach {
       $0.image = (i < images.count) ? images[i] : nil
       i += 1
     }
   }
-  
+
   func addImage(_ image: UIImage) {
     images.insert(image, at: 0)
     images = Array(images.prefix(2))

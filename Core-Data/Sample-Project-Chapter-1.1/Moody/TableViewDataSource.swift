@@ -9,13 +9,11 @@
 import UIKit
 import CoreData
 
-
 protocol TableViewDataSourceDelegate: class {
     associatedtype Object: NSFetchRequestResult
     associatedtype Cell: UITableViewCell
     func configure(_ cell: Cell, for object: Object)
 }
-
 
 /// Note: this class doesn't support working with multiple sections
 class TableViewDataSource<Delegate: TableViewDataSourceDelegate>: NSObject, UITableViewDataSource, NSFetchedResultsControllerDelegate {
@@ -43,13 +41,12 @@ class TableViewDataSource<Delegate: TableViewDataSourceDelegate>: NSObject, UITa
         return fetchedResultsController.object(at: indexPath)
     }
 
-    func reconfigureFetchRequest(_ configure: (NSFetchRequest<Object>) -> ()) {
+    func reconfigureFetchRequest(_ configure: (NSFetchRequest<Object>) -> Void) {
         NSFetchedResultsController<NSFetchRequestResult>.deleteCache(withName: fetchedResultsController.cacheName)
         configure(fetchedResultsController.fetchRequest)
         do { try fetchedResultsController.performFetch() } catch { fatalError("fetch request failed") }
         tableView.reloadData()
     }
-
 
     // MARK: Private
 
@@ -104,4 +101,3 @@ class TableViewDataSource<Delegate: TableViewDataSourceDelegate>: NSObject, UITa
         tableView.endUpdates()
     }
 }
-

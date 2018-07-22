@@ -35,23 +35,23 @@ class ShoppingListViewController: UIViewController {
   @IBOutlet var tableView: UITableView!
   @IBOutlet weak var addButton: UIBarButtonItem!
   @IBOutlet weak var sortButton: UIBarButtonItem!
-  
+
   var shoppingList = [ListItem(name: "Avocado"),
                       ListItem(name: "Strawberries"),
                       ListItem(name: "Sweet Potatoes"),
                       ListItem(name: "Oranges"),
                       ListItem(name: "Cantaloupe")]
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     configureAccessibility()
   }
-  
+
   func configureAccessibility() {
     addButton.accessibilityLabel = "Add"
     addButton.accessibilityHint = "Display a prompt for adding new list items"
-    
+
     sortButton.accessibilityLabel = "Sort"
     sortButton.accessibilityHint = "Sort the shopping list alphabetically"
   }
@@ -62,7 +62,7 @@ class ShoppingListViewController: UIViewController {
     shoppingList = Array(Set(shoppingList)).sorted {
       $0.name.caseInsensitiveCompare($1.name) == .orderedAscending
     }
-    
+
     tableView.performBatchUpdates({
       for (index, item) in originalList.enumerated() {
         let oldIndexPath = IndexPath(row: index, section: 0)
@@ -94,15 +94,15 @@ extension ShoppingListViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return shoppingList.count
   }
-  
+
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingListCell", for: indexPath)
-    
+
     let currentItem = shoppingList[indexPath.row]
     if let cell = cell as? ShoppingListCell {
       cell.configureCell(with: currentItem)
     }
-    
+
     return cell
   }
 }
@@ -131,4 +131,3 @@ extension ShoppingListViewController: ListControllerProtocol {
     tableView?.reloadData()
   }
 }
-

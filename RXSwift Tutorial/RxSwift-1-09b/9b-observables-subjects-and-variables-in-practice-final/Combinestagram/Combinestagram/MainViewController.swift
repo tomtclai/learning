@@ -35,7 +35,7 @@ class MainViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     images.asObservable()
       .subscribe(onNext: { [weak self] photos in
         guard let preview = self?.imagePreview else { return }

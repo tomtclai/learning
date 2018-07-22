@@ -8,17 +8,15 @@
 
 import CloudKit
 
-
 enum CloudKitRecordChange {
     case created(CKRecord)
     case updated(CKRecord)
     case deleted(CKRecordID)
 }
 
-
 extension CKContainer {
 
-    func fetchAllPendingNotifications(changeToken: CKServerChangeToken?, processChanges: @escaping (_ changeReasons: [CKRecordID: CKQueryNotificationReason], _ error: NSError?, _ callback: @escaping (_ success: Bool) -> ()) -> ()) {
+    func fetchAllPendingNotifications(changeToken: CKServerChangeToken?, processChanges: @escaping (_ changeReasons: [CKRecordID: CKQueryNotificationReason], _ error: NSError?, _ callback: @escaping (_ success: Bool) -> Void) -> Void) {
         let op = CKFetchNotificationChangesOperation(previousServerChangeToken: changeToken)
         var changeReasons: [CKRecordID: CKQueryNotificationReason] = [:]
         var notificationIDs: [CKNotificationID] = []
@@ -45,10 +43,9 @@ extension CKContainer {
 
 }
 
-
 extension CKDatabase {
 
-    func fetchRecords(for changeReasons: [CKRecordID: CKQueryNotificationReason], completion: @escaping ([CloudKitRecordChange], NSError?) -> ()) {
+    func fetchRecords(for changeReasons: [CKRecordID: CKQueryNotificationReason], completion: @escaping ([CloudKitRecordChange], NSError?) -> Void) {
         var deletedIDs: [CKRecordID] = []
         var insertedOrUpdatedIDs: [CKRecordID] = []
         for (id, reason) in changeReasons {
@@ -75,10 +72,9 @@ extension CKDatabase {
 
 }
 
-
 extension CKQueryOperation {
 
-    func fetchAggregateResults(in database: CKDatabase, previousResults: [CKRecord], completion: @escaping ([CKRecord], NSError?) -> ()) {
+    func fetchAggregateResults(in database: CKDatabase, previousResults: [CKRecord], completion: @escaping ([CKRecord], NSError?) -> Void) {
         var results = previousResults
         recordFetchedBlock = { record in
             results.append(record)
@@ -93,14 +89,13 @@ extension CKQueryOperation {
 
 }
 
-
 extension NSError {
 
-    func partiallyFailedRecords() -> [CKRecordID:NSError] {
+    func partiallyFailedRecords() -> [CKRecordID: NSError] {
         guard domain == CKErrorDomain else { return [:] }
         let errorCode = CKError.Code(rawValue: code)
         guard errorCode == .partialFailure else { return [:] }
-        return userInfo[CKPartialErrorsByItemIDKey] as? [CKRecordID:NSError] ?? [:]
+        return userInfo[CKPartialErrorsByItemIDKey] as? [CKRecordID: NSError] ?? [:]
     }
 
     var partiallyFailedRecordIDsWithPermanentError: [CKRecordID] {
@@ -154,4 +149,3 @@ extension NSError {
         }
     }
 }
-

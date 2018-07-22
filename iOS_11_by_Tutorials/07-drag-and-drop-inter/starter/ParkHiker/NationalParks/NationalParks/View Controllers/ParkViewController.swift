@@ -39,19 +39,18 @@ class ParkViewController: UIViewController {
   @IBOutlet weak var summaryTextView: UITextView!
   @IBOutlet weak var addresslabel: UILabel!
   @IBOutlet weak var stackView: UIStackView!
-  
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
+
     guard let park = park else { return }
     nameLabel.text! = park.name
     imageView.image = park.image
     summaryTextView.text! = park.summary
     addresslabel.text! = "\(park.latitude)°N, \(park.longitude)°W"
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
   }
 }
-

@@ -41,7 +41,7 @@ class LockedMark: PDFPage {
     let pageBounds = self.bounds(for: box)
     context.translateBy(x: 0.0, y: pageBounds.size.height)
     context.scaleBy(x: 1.0, y: -1.0)
-    
+
     // 3
     let string: NSString = "SIGNED"
     let attributes: [NSAttributedStringKey: Any] = [
@@ -49,7 +49,7 @@ class LockedMark: PDFPage {
       NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 30)
     ]
     // 4
-    string.draw(at: CGPoint(x:250, y:40), withAttributes: attributes)
+    string.draw(at: CGPoint(x: 250, y: 40), withAttributes: attributes)
     context.restoreGState()
     UIGraphicsPopContext()
   }

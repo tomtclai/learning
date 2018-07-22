@@ -15,4 +15,3 @@ extension RegionTableViewCell {
         textLabel?.text = object.localizedDescription
     }
 }
-

@@ -77,7 +77,7 @@ class LockScreenViewController: UIViewController {
                            animations: blurAnimations(blurred))
       .startAnimation()
   }
-  
+
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return .lightContent
   }
@@ -140,7 +140,7 @@ extension LockScreenViewController: WidgetsOwnerProtocol {
     previewAnimator?.stopAnimation(false)
     previewAnimator?.finishAnimation(at: .end)
     previewAnimator = nil
-    
+
     AnimatorFactory.complete(view: previewEffectView)
       .startAnimation()
   }

@@ -18,7 +18,6 @@ extension Collection where Iterator.Element: NSManagedObject {
         request.entity = object.entity
         request.returnsObjectsAsFaults = false
         request.predicate = NSPredicate(format: "self in %@", faults)
-        let _ = try! context.fetch(request)
+        _ = try! context.fetch(request)
     }
 }
-

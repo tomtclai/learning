@@ -2,13 +2,13 @@
 import RxSwift
 
 example(of: "startWith") {
-  
+
   let disposeBag = DisposeBag()
-  
+
   let prequelEpisodes = Observable.of(episodeI, episodeII, episodeIII)
-  
+
   let flashback = prequelEpisodes.startWith(episodeIV, episodeV)
-  
+
   flashback
     .subscribe(onNext: { episode in
       print(episode)
@@ -17,13 +17,13 @@ example(of: "startWith") {
 }
 
 example(of: "concat") {
-  
+
   let disposeBag = DisposeBag()
 
   let prequelTrilogy = Observable.of(episodeI, episodeII, episodeIII)
-  
+
   let originalTrilogy = Observable.of(episodeIV, episodeV, episodeVI)
-  
+
   prequelTrilogy.concat(originalTrilogy)
     .subscribe(onNext: { episode in
       print(episode)
@@ -32,42 +32,42 @@ example(of: "concat") {
 }
 
 example(of: "merge") {
-  
+
   let disposeBag = DisposeBag()
-  
+
   let filmTrilogies = PublishSubject<String>()
-  
+
   let standaloneFilms = PublishSubject<String>()
-  
+
   let storyOrder = Observable.of(filmTrilogies, standaloneFilms)
-  
+
   storyOrder.merge()
     .subscribe(onNext: {
       print($0)
     })
     .disposed(by: disposeBag)
-  
+
   filmTrilogies.onNext(episodeI)
   filmTrilogies.onNext(episodeII)
-  
+
   standaloneFilms.onNext(theCloneWars)
-  
+
   filmTrilogies.onNext(episodeIII)
-  
+
   standaloneFilms.onNext(solo)
   standaloneFilms.onNext(rogueOne)
-  
+
   filmTrilogies.onNext(episodeIV)
 }
 
 example(of: "combineLatest") {
-  
+
   let disposeBag = DisposeBag()
 
   let characters = Observable.of(luke, hanSolo, leia, chewbacca)
-  
+
   let primaryWeapons = Observable.of(lightsaber, dl44, defender, bowcaster)
-  
+
   Observable.combineLatest(characters, primaryWeapons) { character, weapon in
     "\(character): \(weapon)"
     }
@@ -78,13 +78,13 @@ example(of: "combineLatest") {
 }
 
 example(of: "zip") {
-  
+
   let disposeBag = DisposeBag()
-  
+
   let characters = Observable.of(luke, hanSolo, leia, chewbacca)
-  
+
   let primaryWeapons = Observable.of(lightsaber, dl44, defender, bowcaster)
-  
+
   Observable.zip(characters, primaryWeapons) { character, weapon in
     "\(character): \(weapon)"
     }
@@ -95,13 +95,13 @@ example(of: "zip") {
 }
 
 example(of: "amb") {
-  
+
   let disposeBag = DisposeBag()
-  
+
   let prequelEpisodes = PublishSubject<String>()
-  
+
   let originalEpisodes = PublishSubject<String>()
-  
+
   prequelEpisodes.amb(originalEpisodes)
     .subscribe(onNext: {
       print($0)
@@ -109,18 +109,18 @@ example(of: "amb") {
     .disposed(by: disposeBag)
 
   originalEpisodes.onNext(episodeIV)
-  
+
   prequelEpisodes.onNext(episodeI)
 
   prequelEpisodes.onNext(episodeII)
-  
+
   originalEpisodes.onNext(episodeV)
 }
 
 example(of: "reduce") {
-  
+
   let disposeBag = DisposeBag()
-  
+
   Observable.from(runtimes.values)
     .reduce(0, accumulator: +)
     .subscribe(onNext: {
@@ -130,9 +130,9 @@ example(of: "reduce") {
 }
 
 example(of: "scan") {
-  
+
   let disposeBag = DisposeBag()
-  
+
   Observable.from(runtimes.values)
     .scan(0, accumulator: +)
     .subscribe(onNext: {

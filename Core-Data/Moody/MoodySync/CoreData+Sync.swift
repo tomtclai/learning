@@ -8,9 +8,8 @@
 
 import CoreData
 
-
 extension NSManagedObjectContext {
-    func perform(group: DispatchGroup, block: @escaping () -> ()) {
+    func perform(group: DispatchGroup, block: @escaping () -> Void) {
         group.enter()
         perform {
             block()
@@ -18,7 +17,6 @@ extension NSManagedObjectContext {
         }
     }
 }
-
 
 extension Sequence where Iterator.Element: NSManagedObject {
     func remap(to context: NSManagedObjectContext) -> [Iterator.Element] {
@@ -30,13 +28,12 @@ extension Sequence where Iterator.Element: NSManagedObject {
     }
 }
 
-
 extension NSManagedObjectContext {
     fileprivate var changedObjectsCount: Int {
         return insertedObjects.count + updatedObjects.count + deletedObjects.count
     }
 
-    func delayedSaveOrRollback(group: DispatchGroup, completion: @escaping (Bool) -> () = { _ in }) {
+    func delayedSaveOrRollback(group: DispatchGroup, completion: @escaping (Bool) -> Void = { _ in }) {
         let changeCountLimit = 100
         guard changeCountLimit >= changedObjectsCount else { return completion(saveOrRollback()) }
         let queue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default)
@@ -48,4 +45,3 @@ extension NSManagedObjectContext {
         }
     }
 }
-

@@ -23,17 +23,17 @@
 import UIKit
 import RxSwift
 
-class EventsViewController : UIViewController {
+class EventsViewController: UIViewController {
 
   @IBOutlet var tableView: UITableView!
   @IBOutlet var slider: UISlider!
   @IBOutlet var daysLabel: UILabel!
-  
+
   let events = Variable<[EOEvent]>([])
-  
+
   let days = Variable<Int>(360)
   let filteredEvents = Variable<[EOEvent]>([])
-  
+
   let disposeBag = DisposeBag()
 
   override func viewDidLoad() {
@@ -48,11 +48,11 @@ class EventsViewController : UIViewController {
 }
 
 extension EventsViewController: UITableViewDataSource {
-  
+
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return events.value.count
   }
-  
+
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell") as! EventCell
     return cell

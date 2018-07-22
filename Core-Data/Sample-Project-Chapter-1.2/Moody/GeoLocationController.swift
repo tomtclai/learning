@@ -9,11 +9,9 @@
 import Foundation
 import CoreLocation
 
-
 protocol GeoLocationControllerDelegate: class {
     func geoLocationDidChangeAuthorizationStatus(authorized: Bool)
 }
-
 
 class GeoLocationController: NSObject {
     var isAuthorized: Bool {
@@ -33,7 +31,7 @@ class GeoLocationController: NSObject {
         }
     }
 
-    func retrieveCurrentLocation(_ completion: @escaping (CLLocation?, CLPlacemark?) -> ()) {
+    func retrieveCurrentLocation(_ completion: @escaping (CLLocation?, CLPlacemark?) -> Void) {
         guard let location = locationManager.location else {
             completion(nil, nil)
             return
@@ -46,7 +44,6 @@ class GeoLocationController: NSObject {
             completion(location, placemarks?.first)
         }
     }
-
 
     // MARK: Private
 
@@ -64,7 +61,6 @@ class GeoLocationController: NSObject {
     }
 }
 
-
 extension GeoLocationController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         start()
@@ -77,5 +73,3 @@ extension GeoLocationController: CLLocationManagerDelegate {
         print(error)
     }
 }
-
-

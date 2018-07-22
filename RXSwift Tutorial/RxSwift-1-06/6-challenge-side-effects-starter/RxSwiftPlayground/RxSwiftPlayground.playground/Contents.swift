@@ -2,7 +2,7 @@
 import RxSwift
 
 example(of: "never") {
-  
+
   let observable = Observable<Any>.never()
 
   let disposeBag = DisposeBag()

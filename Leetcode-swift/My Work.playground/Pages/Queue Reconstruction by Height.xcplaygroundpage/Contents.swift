@@ -1,8 +1,6 @@
 func reconstructQueue(_ people: [[Int]]) -> [[Int]] {
     var people = people.sorted { a, b in
-        if a[0] > b[0] { return true }
-        else if a[0] < b[0] { return false }
-        else { return a[1] < b[1] }
+        if a[0] > b[0] { return true } else if a[0] < b[0] { return false } else { return a[1] < b[1] }
     }
 
     // find where the first number stops

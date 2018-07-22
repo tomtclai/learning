@@ -8,7 +8,7 @@
 
 import UIKit
 import UserNotifications
-class ViewController: UIViewController, UNUserNotificationCenterDelegate{
+class ViewController: UIViewController, UNUserNotificationCenterDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,23 +29,21 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate{
         content.sound = AudioServicePlaySystemSound(1315)
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
         let request = UNNotificationRequest(identifier: "notification.id.01", content: content, trigger: trigger)
-        
-        
+
         UNUserNotificationCenter.current().delegate = self
-        
+
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        
+
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
+
         //displaying the ios local notification when app is in foreground
         completionHandler([.alert, .badge, .sound])
     }
 }
-

@@ -23,7 +23,7 @@
 import Foundation
 
 struct EOEvent {
-  
+
   let id: String
   let title: String
   let description: String
@@ -41,20 +41,20 @@ struct EOEvent {
           let categories = json["categories"] as? [[String: Any]] else {
       return nil
     }
-    
+
     self.id = id
     self.title = title
     self.description = description
     self.link = URL(string: link)
     self.closeDate = EONET.ISODateReader.date(from: closeDate)
-    
+
     self.categories = categories.flatMap { categoryDesc in
       guard let catID = categoryDesc["id"] as? Int else {
         return nil
       }
       return catID
     }
-    
+
     if let geometries = json["geometries"] as? [[String: Any]] {
       locations = geometries.flatMap(EOLocation.init)
     } else {

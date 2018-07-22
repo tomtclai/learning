@@ -1,4 +1,3 @@
-
 // https://leetcode.com/problems/fizz-buzz/description/
 func fizzBuzz(_ n: Int) -> [String] {
     // later optimization, save this outside of the function
@@ -16,4 +15,3 @@ func fizzBuzz(_ n: Int) -> [String] {
     }
     return resultString
 }
-

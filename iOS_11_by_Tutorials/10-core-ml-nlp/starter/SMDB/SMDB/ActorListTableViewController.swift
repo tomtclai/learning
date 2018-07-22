@@ -32,7 +32,7 @@ import UIKit
 
 class ActorListTableViewController: UITableViewController {
 
-  var actors: [String]  { return ReviewsManager.instance.reviewsByActor.keys.sorted() }
+  var actors: [String] { return ReviewsManager.instance.reviewsByActor.keys.sorted() }
   var selectedActor: String?
 
   // MARK: - Table view data source

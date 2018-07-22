@@ -9,13 +9,13 @@
 import UIKit
 
 class ViewController: UIViewController {
-  
+
   @IBOutlet weak var scrollView: UIScrollView!
   @IBOutlet weak var imageView: UIImageView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     scrollView.contentInsetAdjustmentBehavior = .never
     scrollView.contentSize = imageView.image!.size
   }
@@ -25,6 +25,4 @@ class ViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
 
-
 }
-

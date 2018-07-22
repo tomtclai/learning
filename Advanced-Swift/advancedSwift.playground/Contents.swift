@@ -32,14 +32,14 @@ extension Array {
 }
 
 let suits = ["♠︎", "♥︎", "♣︎", "♦︎"]
-let ranks = ["J","Q","K","A"]
+let ranks = ["J", "Q", "K", "A"]
 let result = suits.flatMap { suit in
     ranks.map { rank in
     (suit, rank)
     }
 }
 
-[1,2,3].forEach{print($0)}
+[1, 2, 3].forEach {print($0)}
 
 enum Setting {
     case text(String)
@@ -49,7 +49,7 @@ enum Setting {
 
 let defaultSettings: [String: Setting] = [
     "Airplane Mode": .bool(true),
-    "Name": .text("My iPhone"),
+    "Name": .text("My iPhone")
 ]
 
 let nameSetting = defaultSettings["Name"]
@@ -59,7 +59,7 @@ localizedSettings["Name"] = .text("Mein iPhone")
 
 extension Dictionary {
     mutating func merge<S>(_ other: S)
-        where S: Sequence, S.Iterator.Element == (key: Key, value: Value){
+        where S: Sequence, S.Iterator.Element == (key: Key, value: Value) {
             for (k, v) in other {
                 self[k] = v
             }
@@ -97,7 +97,7 @@ extension Person: Hashable {
 }
 
 //Set elements must be hashable.
-let natruals: Set = [1,2,3,2]
+let natruals: Set = [1, 2, 3, 2]
 let iPods: Set = ["iPod Touch", "iPod nano", "iPod mini", "iPod shuffle", "iPod Classic"]
 let discontinuedIPods: Set = ["iPod mini", "iPod Classic"]
 let currentIpods = iPods.subtracting(discontinuedIPods)
@@ -106,12 +106,11 @@ let iPodsWithTouchScreen = iPods.intersection(hasTouchScreen)
 var discontinued: Set = ["iBook", "Powerbook", "Power Mac"]
 discontinued.formUnion(discontinuedIPods)
 
-
 // Set is adopted by IndexSet and CharacterSet
 var indices = IndexSet()
 indices.insert(integersIn: 1..<5)
 indices.insert(integersIn: 11..<15)
-let evenIndices = indices.filter{$0 % 2 == 0}
+let evenIndices = indices.filter {$0 % 2 == 0}
 
 // Unlike IndexSet, CharacterSet isn't a collection
 
@@ -119,7 +118,7 @@ let evenIndices = indices.filter{$0 % 2 == 0}
 extension Sequence where Iterator.Element: Hashable {
     func unique() -> [Iterator.Element] {
         var seen: Set<Iterator.Element> = []
-        return filter{
+        return filter {
             if seen.contains($0) {
                 return false
             } else {
@@ -129,8 +128,7 @@ extension Sequence where Iterator.Element: Hashable {
         }
     }
 }
-[1,2,3,12,1,3,4,5,6,4,6].unique()
-
+[1, 2, 3, 12, 1, 3, 4, 5, 6, 4, 6].unique()
 
 // Strideable Ranges
 let singleDigitNums = 0..<10
@@ -146,7 +144,6 @@ let lowerCaseLetters = Character("a")...Character("z")
 // extension Range: RandomAccessCollection where Bound: Strideable, Bound.Stride: SignedInteger {
 //
 // }
-
 
 // This produces an infinite stream, it keeps generating numbers until it reaches integer overflow, then the program crahses
 struct FibonacciIterator: IteratorProtocol {
@@ -208,6 +205,3 @@ var i4 = i3
 i3.next()
 i4.next()
 i3.next()
-
-
-

@@ -9,9 +9,9 @@
 import UIKit
 private let reuseIdentifier = "SentMemesTableViewCell"
 class SentMemesTableViewController: UITableViewController {
-    
-    private let rowHeight : CGFloat = 88.0
-    
+
+    private let rowHeight: CGFloat = 88.0
+
     var memes: [Meme?] {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
     }
@@ -20,7 +20,7 @@ class SentMemesTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -34,14 +34,14 @@ class SentMemesTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! SentMemesTableViewCell
-        
+
         let meme = memes[indexPath.row]!
         cell.memeImageView.image = meme.memedImage
         cell.title.text = meme.topText!.isEmpty ? "No Title" : meme.topText
         cell.subtitle.text = meme.bottomText!.isEmpty ? "No Subtitle" : meme.bottomText
         return cell
     }
-    
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Get DetailVC
         let dvc = storyboard?.instantiateViewControllerWithIdentifier("MemesViewerViewController") as! MemesViewerViewController

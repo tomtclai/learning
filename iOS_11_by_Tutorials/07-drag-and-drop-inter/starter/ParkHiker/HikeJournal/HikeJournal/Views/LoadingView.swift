@@ -30,23 +30,22 @@
 
 import UIKit
 
-
 class LoadingView: UIView {
   var progress: Progress!
   var progressLabel: UILabel!
   let fractionCompletedKey = "fractionCompleted"
-  
+
   init(_ frame: CGRect, progress: Progress) {
     super.init(frame: frame)
-    
+
     self.progress = progress
     progress.addObserver(self, forKeyPath: fractionCompletedKey, options: .new, context: nil)
-    
+
     let blurEffect = UIBlurEffect(style: .light)
     let blurView = UIVisualEffectView(effect: blurEffect)
     blurView.translatesAutoresizingMaskIntoConstraints = false
     addSubview(blurView)
-    
+
     let layoutConstraints = [NSLayoutConstraint(item: blurView,
                                                 attribute: .height, relatedBy: .equal, toItem: self,
                                                 attribute: .height, multiplier: 1, constant: 0),
@@ -54,28 +53,28 @@ class LoadingView: UIView {
                                                 attribute: .width, relatedBy: .equal, toItem: self,
                                                 attribute: .width, multiplier: 1, constant: 0)]
     NSLayoutConstraint.activate(layoutConstraints)
-    
+
     progressLabel = UILabel(frame: bounds)
     progressLabel.text = "0%"
     progressLabel.font = UIFont.systemFont(ofSize: 60)
     progressLabel.textAlignment = .center
     addSubview(progressLabel)
   }
-  
+
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
-  
-  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?,
+
+  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?,
                              context: UnsafeMutableRawPointer?) {
     guard let progress = object as? Progress else { return }
     let percentComplete = Int(round(progress.fractionCompleted * 100))
-    
+
     DispatchQueue.main.async {
       self.progressLabel.text = "\(percentComplete)%"
     }
   }
-  
+
   deinit {
     progress.removeObserver(self, forKeyPath: fractionCompletedKey)
   }

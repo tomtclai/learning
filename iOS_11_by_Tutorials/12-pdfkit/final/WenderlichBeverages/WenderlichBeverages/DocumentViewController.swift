@@ -36,13 +36,13 @@ protocol DocumentViewControllerDelegate {
 }
 
 class DocumentViewController: UIViewController {
-  
+
   @IBOutlet weak var pdfView: PDFView!
-  
+
   var document: PDFDocument?
   var addAnnotations = false
   var delegate: DocumentViewControllerDelegate?
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     if let document = document {
@@ -60,7 +60,7 @@ class DocumentViewController: UIViewController {
       pdfView.displaysPageBreaks = true
       pdfView.autoScales = true
       pdfView.document = document
-      
+
       if addAnnotations {
         addContractAnnotations()
       } else {
@@ -68,11 +68,11 @@ class DocumentViewController: UIViewController {
       }
     }
   }
-  
+
   @IBAction func saveAnnotations(_ sender: Any) {
     guard let document = document,
       let page = document.page(at: 0) else { return }
-    
+
     // 1
     var contracteeName: String?
     for annotation in page.annotations {
@@ -96,7 +96,7 @@ class DocumentViewController: UIViewController {
       navigationController?.popViewController(animated: true)
     }
   }
-  
+
 }
 
 extension DocumentViewController: PDFDocumentDelegate {
@@ -116,82 +116,82 @@ extension DocumentViewController {
   func addContractAnnotations() {
     guard let page = document?.page(at: 0) else { return }
     let pageBounds = page.bounds(for: .cropBox)
-    
+
     // 1. Add Name Box
     let textFieldNameBounds = CGRect(x: 128, y: pageBounds.size.height - 142, width: 230, height: 23)
     let textFieldName = textWidget(bounds: textFieldNameBounds, fieldName: FieldNames.name.rawValue)
     page.addAnnotation(textFieldName)
-    
+
     // 2. Add Birthday Box
     let textFieldDateBounds = CGRect(x: 198, y: pageBounds.size.height - 166, width: 160, height: 23)
     let textFieldDate = textWidget(bounds: textFieldDateBounds, fieldName: nil)
     textFieldDate.maximumLength = 10
     textFieldDate.hasComb = true
     page.addAnnotation(textFieldDate)
-    
+
     // 3. Add Price Boxes
     let textFieldPriceColaBounds = CGRect(x: 182, y: pageBounds.size.height - 190, width: 176, height: 23)
     let textFieldPriceCola = textWidget(bounds: textFieldPriceColaBounds, fieldName: FieldNames.colaPrice.rawValue)
     page.addAnnotation(textFieldPriceCola)
-    
+
     let textFieldPriceRRBounds = CGRect(x: 200, y: pageBounds.size.height - 214, width: 158, height: 23)
     let textFieldPriceRR = textWidget(bounds: textFieldPriceRRBounds, fieldName: FieldNames.rrPrice.rawValue)
     page.addAnnotation(textFieldPriceRR)
-    
+
     // 4. Add Delivery Day Radio Buttons
     let buttonSize = CGSize(width: 18, height: 18)
     let buttonYOrigin = pageBounds.size.height - 285
     let buttonFieldName = "WEEK"
-    
+
     let sundayButton = radioButton(
       fieldName: buttonFieldName,
       startingState: "Sun",
       bounds: CGRect(origin: CGPoint(x: 105, y: buttonYOrigin), size: buttonSize))
     page.addAnnotation(sundayButton)
-    
+
     let mondayButton = radioButton(
       fieldName: buttonFieldName,
       startingState: "Mon",
       bounds: CGRect(origin: CGPoint(x: 160, y: buttonYOrigin), size: buttonSize))
     page.addAnnotation(mondayButton)
-    
+
     let tuesdayButton = radioButton(
       fieldName: buttonFieldName,
       startingState: "Tue",
       bounds: CGRect(origin: CGPoint(x: 215, y: buttonYOrigin), size: buttonSize))
     page.addAnnotation(tuesdayButton)
-    
+
     let wednesdayButton = radioButton(
       fieldName: buttonFieldName,
       startingState: "Wed",
       bounds: CGRect(origin: CGPoint(x: 267, y: buttonYOrigin), size: buttonSize))
     page.addAnnotation(wednesdayButton)
-    
+
     let thursdayButton = radioButton(
       fieldName: buttonFieldName,
       startingState: "Thr",
       bounds: CGRect(origin: CGPoint(x: 320, y: buttonYOrigin), size: buttonSize))
     page.addAnnotation(thursdayButton)
-    
+
     let fridayButton = radioButton(
       fieldName: buttonFieldName,
       startingState: "Fri",
       bounds: CGRect(origin: CGPoint(x: 370, y: buttonYOrigin), size: buttonSize))
     page.addAnnotation(fridayButton)
-    
+
     let saturdayButton = radioButton(
       fieldName: buttonFieldName,
       startingState: "Sat",
       bounds: CGRect(origin: CGPoint(x: 420, y: buttonYOrigin), size: buttonSize))
     page.addAnnotation(saturdayButton)
-    
+
     // 5. Add Agree Check Box
     let checkBoxAgreeBounds = CGRect(x: 75, y: pageBounds.size.height - 375, width: 18, height: 18)
     let checkBox = PDFAnnotation(bounds: checkBoxAgreeBounds, forType: .widget, withProperties: nil)
     checkBox.widgetFieldType = .button
     checkBox.widgetControlType = .checkBoxControl
     page.addAnnotation(checkBox)
-    
+
     // 6. Add Clear Button
     let clearButtonBounds = CGRect(x: 75, y: pageBounds.size.height - 450, width: 106, height: 32)
     let clearButton = PDFAnnotation(bounds: clearButtonBounds, forType: .widget, withProperties: nil)
@@ -200,13 +200,13 @@ extension DocumentViewController {
     clearButton.caption = "Clear"
     clearButton.fieldName = FieldNames.clearButton.rawValue
     page.addAnnotation(clearButton)
-    
+
     let resetFormAction = PDFActionResetForm()
     resetFormAction.fields = [FieldNames.colaPrice.rawValue, FieldNames.rrPrice.rawValue]
     resetFormAction.fieldsIncludedAreCleared = false
     clearButton.action = resetFormAction
   }
-  
+
   func textWidget(bounds: CGRect, fieldName: String?) -> PDFAnnotation {
     let textWidget = PDFAnnotation(bounds: bounds, forType: .widget, withProperties: nil)
     textWidget.widgetFieldType = .text
@@ -214,7 +214,7 @@ extension DocumentViewController {
     textWidget.fieldName = fieldName
     return textWidget
   }
-  
+
   func radioButton(fieldName: String, startingState: String, bounds: CGRect) -> PDFAnnotation {
     let radioButton = PDFAnnotation(bounds: bounds, forType: .widget, withProperties: nil)
     radioButton.widgetFieldType = .button

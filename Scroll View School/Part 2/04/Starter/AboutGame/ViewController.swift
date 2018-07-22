@@ -25,7 +25,6 @@ import UIKit
 class ViewController: UIViewController {
   @IBOutlet weak var fgScrollView: UIScrollView!
   @IBOutlet weak var felipeImageView: UIImageView!
-  
 
   override func viewDidLoad() {
     super.viewDidLoad()

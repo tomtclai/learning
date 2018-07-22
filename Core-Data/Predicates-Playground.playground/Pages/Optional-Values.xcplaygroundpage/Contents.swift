@@ -18,12 +18,11 @@ let allCities = try! moc.fetch(City.sortedFetchRequest)
 let allPeople = try! moc.fetch(Person.sortedFetchRequest)
 
 func inMemoryPeople(matching predicate: NSPredicate) -> [Person] {
-    return allPeople.filter{ predicate.evaluate(with: $0) }
+    return allPeople.filter { predicate.evaluate(with: $0) }
 }
 func inMemoryCities(matching predicate: NSPredicate) -> [City] {
-    return allCities.filter{ predicate.evaluate(with: $0) }
+    return allCities.filter { predicate.evaluate(with: $0) }
 }
-
 
 extension NSPredicate {
     var carsOwnedCountForMatchingPeople: String {
@@ -69,4 +68,3 @@ do {
 }
 
 //: [Next](@next)
-

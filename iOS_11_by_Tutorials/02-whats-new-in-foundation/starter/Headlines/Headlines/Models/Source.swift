@@ -42,7 +42,7 @@ class Source: NSObject, Codable {
     case overview = "description"
     case category
   }
-  
+
   init(id: String, name: String, overview: String, category: String) {
     self.id = id
     self.name = name

@@ -29,7 +29,6 @@ example(of: "PublishSubject") {
   subscriptionThree.dispose()
 }
 
-
 /*:
  Copyright (c) 2014-2018 Razeware LLC
  

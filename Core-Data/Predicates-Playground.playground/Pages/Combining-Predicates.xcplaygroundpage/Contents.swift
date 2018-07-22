@@ -11,7 +11,6 @@ let moc = container.viewContext
 
 createCitiesAndPeople(in: moc)
 
-
 //: ### Format String
 //: We can combine smaller predicates into more complex ones with `AND`, `OR`, and `NOT.
 
@@ -63,4 +62,3 @@ do {
     let formatD = Person.isMayorOrRecentlyModifiedPredicate.predicateFormat
 }
 //: [Next](@next)
-

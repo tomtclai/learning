@@ -9,7 +9,6 @@
 import MoodyModel
 import CoreData
 
-
 extension RemoteMood {
     func insert(into context: NSManagedObjectContext) -> Mood? {
         let mood = Mood.insert(into: context, colors: colors, location: location, isoCountry: isoCountry, remoteIdentifier: id, date: date, creatorID: creatorID)
@@ -17,6 +16,4 @@ extension RemoteMood {
     }
 }
 
-
 extension Mood: RemoteObject {}
-

@@ -46,7 +46,7 @@ class AnimatedMaskLabel: UIView {
     gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
 
     let colors = currentGradient.colorValues
-    gradientLayer.colors = colors.map{$0.cgColor}
+    gradientLayer.colors = colors.map {$0.cgColor}
     gradientLayer.locations = [0.25, 0.5, 0.75]
     return gradientLayer
   }()
@@ -59,7 +59,6 @@ class AnimatedMaskLabel: UIView {
       .paragraphStyle : style
     ]
   }()
-
 
   @IBInspectable var text: String! {
     didSet {

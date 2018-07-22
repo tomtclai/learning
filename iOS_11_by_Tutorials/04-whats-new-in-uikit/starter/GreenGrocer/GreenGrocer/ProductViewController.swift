@@ -31,18 +31,18 @@
 import UIKit
 
 class ProductViewController: UIViewController {
-  
+
   @IBOutlet weak var productImageView: UIImageView!
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var detailsLabel: UILabel!
   @IBOutlet weak var priceLabel: UILabel!
-  
+
   var product: Product? {
     didSet {
       updateViewForProduct()
     }
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     updateViewForProduct()

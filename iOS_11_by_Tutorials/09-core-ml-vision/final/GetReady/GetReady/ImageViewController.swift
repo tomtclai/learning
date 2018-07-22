@@ -33,10 +33,10 @@ import Vision
 import ImageIO
 
 class ImageViewController: UIViewController {
-  
+
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var annotationView: AnnotationLayer!
-  
+
   var image: UIImage! {
     didSet {
       imageView?.image = image
@@ -49,24 +49,24 @@ class ImageViewController: UIViewController {
 
     imageView.image = image
   }
-  
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
+
     guard let cgImage = image.cgImage else {
       print("can't create CIImage from UIImage")
       return
     }
-    
+
     let orientation = CGImagePropertyOrientation(
       image.imageOrientation)
-    
+
     let faceRequest = VNDetectFaceLandmarksRequest(
       completionHandler: handleFaces)
 
     let handler = VNImageRequestHandler(cgImage: cgImage,
                                         orientation: orientation)
-    
+
     var requests: [VNRequest] = [faceRequest]
     let leNetPlaces = GoogLeNetPlaces()
     if let model = try? VNCoreMLModel(for: leNetPlaces.model) {
@@ -74,7 +74,7 @@ class ImageViewController: UIViewController {
                                        completionHandler: handleClassification)
       requests.append(mlRequest)
     }
-    
+
     DispatchQueue.global(qos: .userInteractive).async {
       do {
         try handler.perform(requests)
@@ -83,34 +83,34 @@ class ImageViewController: UIViewController {
       }
     }
   }
-  
+
   func handleFaces(request: VNRequest, error: Error?) {
     guard let observations = request.results
       as? [VNFaceObservation] else {
         print("unexpected result type from face request")
         return
     }
-    
+
     DispatchQueue.main.async {
       self.handleFaces(observations: observations)
     }
   }
-  
+
   func handleFaces(observations: [VNFaceObservation]) {
     var faces: [FaceDimensions] = []
-    
+
     // 1
     let viewSize = imageView.bounds.size
     let imageSize = image.size
-    
+
     let widthRatio = viewSize.width / imageSize.width
     let heightRatio = viewSize.height / imageSize.height
     let scaledRatio = min(widthRatio, heightRatio)
-    
+
     let scaleTransform = CGAffineTransform(scaleX: scaledRatio,
                                            y: scaledRatio)
     let scaledImageSize = imageSize.applying(scaleTransform)
-    
+
     let imageX = (viewSize.width - scaledImageSize.width) / 2
     let imageY = (viewSize.height - scaledImageSize.height) / 2
     let imageLocationTransform = CGAffineTransform(
@@ -122,7 +122,7 @@ class ImageViewController: UIViewController {
     for face in observations {
       // 2
       let observedFaceBox = face.boundingBox
-      
+
       let faceBox = observedFaceBox
         .scaled(to: imageSize)
         .applying(uiTransform)
@@ -173,7 +173,7 @@ class ImageViewController: UIViewController {
     }
     return drawPoints
   }
-  
+
   func handleClassification(request: VNRequest, error: Error?) {
     guard let observations = request.results
       as? [VNClassificationObservation] else {
@@ -184,7 +184,7 @@ class ImageViewController: UIViewController {
       print("Did not a valid classification")
       return
     }
-    
+
     DispatchQueue.main.async {
       let scene = SceneType(classification: bestResult.identifier)
       self.annotationView.classification = scene

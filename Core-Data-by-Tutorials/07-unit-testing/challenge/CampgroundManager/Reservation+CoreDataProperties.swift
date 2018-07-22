@@ -41,5 +41,5 @@ public extension Reservation {
   @NSManaged var status: String?
   @NSManaged var camper: Camper?
   @NSManaged var campSite: CampSite?
-  
+
 }

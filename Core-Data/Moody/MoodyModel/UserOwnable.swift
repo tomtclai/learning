@@ -10,7 +10,6 @@ import CoreData
 import CoreDataHelpers
 import CloudKit
 
-
 public protocol UserOwnable: class {
     var creatorID: String? { get }
     var belongsToCurrentUser: Bool { get }
@@ -35,9 +34,7 @@ extension UserOwnable where Self: NSManagedObject {
     }
 }
 
-
 extension Mood: UserOwnable {}
-
 
 extension Country {
     public static func predicateForContainingMoods(withCreatorIdentifier identifier: String?) -> NSPredicate {
@@ -48,7 +45,6 @@ extension Country {
         return NSCompoundPredicate(orPredicateWithSubpredicates: [noIDPredicate, defaultOwnerPredicate, idPredicate])
     }
 }
-
 
 private let UserIDKey = "io.objc.Moody.CloudKitUserID"
 
@@ -63,5 +59,3 @@ extension NSManagedObjectContext {
         }
     }
 }
-
-

@@ -59,11 +59,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let count = try! coreDataStack.managedContext.count(for: fetchRequest)
 
     guard count == 0 else { return }
-    
+
     do {
       let results = try coreDataStack.managedContext.fetch(fetchRequest)
       results.forEach({ coreDataStack.managedContext.delete($0) })
-      
+
       coreDataStack.saveContext()
       importJSONSeedData()
     } catch let error as NSError {

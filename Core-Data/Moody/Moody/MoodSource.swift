@@ -17,10 +17,9 @@ enum MoodSource {
     case continent(MoodyModel.Continent)
 }
 
-
 extension MoodSource {
     var predicate: NSPredicate {
-        switch self  {
+        switch self {
         case .all:
             return NSPredicate(value: true)
         case .yours(let id):
@@ -58,10 +57,9 @@ extension MoodSource {
     }
 }
 
-
 extension MoodSource: LocalizedStringConvertible {
     var localizedDescription: String {
-        switch self  {
+        switch self {
         case .all: return localized(.moodSource_all)
         case .yours: return localized(.moodSource_your)
         case .country(let c): return c.localizedDescription
@@ -69,4 +67,3 @@ extension MoodSource: LocalizedStringConvertible {
         }
     }
 }
-

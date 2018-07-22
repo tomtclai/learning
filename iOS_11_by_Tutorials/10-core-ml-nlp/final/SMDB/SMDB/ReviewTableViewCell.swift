@@ -30,7 +30,7 @@
 
 import UIKit
 
-fileprivate let languageMapping = [
+private let languageMapping = [
   "de": "🇩🇪",
   "en": "🇺🇸",
   "es": "🇪🇸",
@@ -40,7 +40,7 @@ fileprivate let languageMapping = [
   "pt": "🇵🇹"
 ]
 
-fileprivate let sentimentMapping = [
+private let sentimentMapping = [
   1: "😍",
   0: "😞"
 ]

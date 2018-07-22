@@ -8,7 +8,6 @@
 
 import CoreData
 
-
 final class Country5ToCountry6Policy: NSEntityMigrationPolicy {
     override func createDestinationInstances(forSource sInstance: NSManagedObject, in mapping: NSEntityMapping, manager: NSMigrationManager) throws {
         try super.createDestinationInstances(forSource: sInstance, in: mapping, manager: manager)
@@ -20,7 +19,6 @@ final class Country5ToCountry6Policy: NSEntityMigrationPolicy {
         country.setContinent(continent)
     }
 }
-
 
 private let NumericISO3166CodeKey = "numericISO3166Code"
 private let IsoContinentKey = "isoContinent"
@@ -44,7 +42,7 @@ extension NSManagedObject {
 
 extension NSManagedObjectContext {
     fileprivate func findOrCreateContinent(withISOCode isoCode: NSNumber) -> NSManagedObject {
-        guard let continent = materializedObject(matching: { $0.isContinent(withCode:isoCode) }) else {
+        guard let continent = materializedObject(matching: { $0.isContinent(withCode: isoCode) }) else {
             let continent = NSEntityDescription.insertNewObject(forEntityName: ContinentEntityName, into: self)
             continent.setValue(isoCode, forKey: NumericISO3166CodeKey)
             return continent
@@ -60,4 +58,3 @@ extension NSManagedObjectContext {
         return nil
     }
 }
-

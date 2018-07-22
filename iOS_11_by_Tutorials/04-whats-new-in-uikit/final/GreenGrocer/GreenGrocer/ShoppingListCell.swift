@@ -31,9 +31,9 @@
 import UIKit
 
 class ShoppingListCell: UITableViewCell {
-  
+
   @IBOutlet weak var itemLabel: UILabel!
-  
+
   public func configureCell(with item: ListItem) {
     itemLabel.text = item.name
     accessoryType = item.checked ? .checkmark : .none

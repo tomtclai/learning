@@ -11,21 +11,20 @@ import UIKit
 class MainViewController: UITableViewController {
 
     var transitionManager = TransitionManager()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         transitionManager.sourceViewController = self
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let menu = segue.destinationViewController as! MenuViewController
         menu.transitioningDelegate = self.transitionManager
-        
+
     }
-    
-    
-    @IBAction func unwindToMainViewController (sender: UIStoryboardSegue){
+
+    @IBAction func unwindToMainViewController (sender: UIStoryboardSegue) {
 
     }
 
@@ -33,6 +32,5 @@ class MainViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
+
 }

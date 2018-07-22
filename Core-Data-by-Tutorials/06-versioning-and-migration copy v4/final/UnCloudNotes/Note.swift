@@ -44,7 +44,7 @@ class Note: NSManagedObject {
     dateCreated = Date()
   }
 
-  var image : UIImage? {
+  var image: UIImage? {
     let imageAttachment = latestAttachment as? ImageAttachment
     return imageAttachment?.image
   }

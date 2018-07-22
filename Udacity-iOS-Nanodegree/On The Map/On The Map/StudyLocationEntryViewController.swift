@@ -11,17 +11,16 @@ import CoreLocation
 class StudyLocationEntryViewController: UIViewController {
 
     @IBOutlet weak var locationField: UITextField!
-    private var locationString : String!
+    private var locationString: String!
     private var geocoder = CLGeocoder()
-    private var location : CLLocationCoordinate2D?
-    
-    
+    private var location: CLLocationCoordinate2D?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         locationField.delegate = self
         // Do any additional setup after loading the view.
     }
-    
+
     // MARK: - Navigation
 
     @IBAction func findOnTheMapTapped(sender: AnyObject) {
@@ -40,10 +39,10 @@ class StudyLocationEntryViewController: UIViewController {
                     self.showOKAlert("Cannot geocode", subtitle: error.localizedDescription)
                 }
             })
-            
+
         }
     }
-    
+
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showUrlEntryView" {
@@ -52,11 +51,11 @@ class StudyLocationEntryViewController: UIViewController {
             uev.location = self.location
         }
     }
-    
+
     @IBAction func cancelTapped(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-   
+
 }
 
 extension StudyLocationEntryViewController: UITextFieldDelegate {

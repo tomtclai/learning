@@ -27,13 +27,13 @@ class MapViewController: UIViewController {
   @IBOutlet weak var desiredYConstraint: NSLayoutConstraint!
   @IBOutlet weak var marker: UIView!
   @IBOutlet weak var markerImageView: UIImageView!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     marker.layoutIfNeeded()
     decideArrowOrX()
   }
-  
+
   func decideArrowOrX() {
     let currentPoint = marker.frame.origin
     let desiredPoint = CGPoint(x: desiredXConstraint.constant, y: desiredYConstraint.constant)
@@ -46,7 +46,7 @@ class MapViewController: UIViewController {
       markerImageView.transform = CGAffineTransform(rotationAngle: angle)
     }
   }
-  
+
   func angleBetween(_ firstPoint: CGPoint, _ secondPoint: CGPoint) -> CGFloat {
     let deltaX = secondPoint.x - firstPoint.x
     let deltaY = secondPoint.y - firstPoint.y

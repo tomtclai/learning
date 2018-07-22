@@ -9,7 +9,6 @@
 import CoreData
 import CoreLocation
 
-
 public protocol RemoteObject: class {
 }
 
@@ -35,7 +34,6 @@ public struct RemoteMood: RemoteRecord {
     }
 }
 
-
 internal let RemoteIdentifierKey = "remoteIdentifier"
 
 extension RemoteObject {
@@ -46,13 +44,11 @@ extension RemoteObject {
 
 }
 
-
 extension RemoteObject where Self: RemoteDeletable & DelayedDeletable {
 
     public static var waitingForUploadPredicate: NSPredicate {
         let notUploaded = NSPredicate(format: "%K == NULL", RemoteIdentifierKey)
-        return NSCompoundPredicate(andPredicateWithSubpredicates:[notUploaded, notMarkedForDeletionPredicate])
+        return NSCompoundPredicate(andPredicateWithSubpredicates: [notUploaded, notMarkedForDeletionPredicate])
     }
 
 }
-

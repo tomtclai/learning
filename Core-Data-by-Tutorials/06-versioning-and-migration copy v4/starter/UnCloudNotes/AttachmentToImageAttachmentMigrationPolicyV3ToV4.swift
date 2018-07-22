@@ -15,7 +15,7 @@ class AttachmentToImageAttachmentMigrationPolicyV3toV4: NSEntityMigrationPolicy 
     let description = NSEntityDescription.entity(forEntityName: "ImageAttachment", in: manager.destinationContext)
     let newAttachment = ImageAttachment(entity: description!, insertInto: manager.destinationContext)
 
-    func traversePropertyMappings(block: (NSPropertyMapping, String) -> ()) throws {
+    func traversePropertyMappings(block: (NSPropertyMapping, String) -> Void) throws {
       if let attributeMappings = mapping.attributeMappings {
         for propertyMapping in attributeMappings {
           if let destinationName = propertyMapping.name {

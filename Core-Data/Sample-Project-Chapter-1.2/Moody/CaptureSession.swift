@@ -9,12 +9,10 @@
 import UIKit
 import AVFoundation
 
-
 protocol CaptureSessionDelegate: class {
     func captureSessionDidChangeAuthorizationStatus(authorized: Bool)
     func captureSessionDidCapture(_ image: UIImage?)
 }
-
 
 class CaptureSession: NSObject {
     var isAuthorized: Bool {
@@ -58,7 +56,6 @@ class CaptureSession: NSObject {
         }
     }
 
-
     // MARK: - Private
 
     fileprivate let session = AVCaptureSession()
@@ -94,7 +91,6 @@ class CaptureSession: NSObject {
     }
 }
 
-
 extension CaptureSession: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         let image = photo.fileDataRepresentation().flatMap(UIImage.init)
@@ -103,5 +99,3 @@ extension CaptureSession: AVCapturePhotoCaptureDelegate {
         }
     }
 }
-
-

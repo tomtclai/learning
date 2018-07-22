@@ -29,7 +29,6 @@ func constructMaximumBinaryTree(_ nums: [Int]) -> TreeNode? {
     return pathToRoot.first!
 }
 
-
 public class TreeNode {
     public var val: Int
     public var left: TreeNode?
@@ -40,4 +39,3 @@ public class TreeNode {
         self.right = nil
     }
 }
-

@@ -24,7 +24,7 @@ import UIKit
 
 class FooterCell: UITableViewCell {
 
-  var didPressEdit: (()->Void)?
+  var didPressEdit: (() -> Void)?
 
   @IBAction func edit() {
     didPressEdit?()

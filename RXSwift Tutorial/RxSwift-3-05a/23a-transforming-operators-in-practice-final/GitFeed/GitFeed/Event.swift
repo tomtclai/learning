@@ -42,7 +42,7 @@ class Event {
       else {
         return nil
     }
-    
+
     repo = repoName
     name = actorName
     imageUrl = actorUrl

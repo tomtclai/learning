@@ -11,21 +11,21 @@ import UIKit
 class UIActivityIndicatorViewController: NSObject {
 
     var spinner = UIActivityIndicatorView()
-    
+
     static let sharedInstance = UIActivityIndicatorViewController()
-    
+
     override init() {
-        spinner.frame = CGRectMake(40.0, 20.0, 60.0, 60.0);
+        spinner.frame = CGRect(x: 40.0, y: 20.0, width: 60.0, height: 60.0)
         spinner.center = UIApplication.sharedApplication().delegate!.window!!.center
         spinner.color = UIColor.blackColor()
     }
-    
+
     func start() {
         spinner.startAnimating()
         UIApplication.sharedApplication().delegate!.window!!.addSubview(spinner)
-        spinner.layer.zPosition = 1;
+        spinner.layer.zPosition = 1
     }
-    
+
     func stop() {
         spinner.stopAnimating()
         dispatch_async(dispatch_get_main_queue()) {

@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationDidEnterBackground(_ application: UIApplication) {
     coreDataStack.saveContext()
   }
-  
+
   func applicationWillTerminate(_ application: UIApplication) {
     coreDataStack.saveContext()
   }

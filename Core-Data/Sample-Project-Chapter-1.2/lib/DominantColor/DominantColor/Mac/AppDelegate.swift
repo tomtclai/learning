@@ -60,5 +60,3 @@ class AppDelegate: NSObject, NSApplicationDelegate, DragAndDropImageViewDelegate
         }
     }
 }
-
-

@@ -9,7 +9,6 @@
 import CoreData
 import CoreDataHelpers
 
-
 private let MarkedForRemoteDeletionKey = "markedForRemoteDeletion"
 
 public protocol RemoteDeletable: class {
@@ -17,7 +16,6 @@ public protocol RemoteDeletable: class {
     var markedForRemoteDeletion: Bool { get set }
     func markForRemoteDeletion()
 }
-
 
 extension RemoteDeletable {
     public static var notMarkedForRemoteDeletionPredicate: NSPredicate {
@@ -36,18 +34,14 @@ extension RemoteDeletable {
     }
 }
 
-
 extension RemoteDeletable where Self: NSManagedObject {
     public var changedForRemoteDeletion: Bool {
         return changedValue(forKey: MarkedForRemoteDeletionKey) as? Bool == true
     }
 }
 
-
 extension RemoteDeletable where Self: DelayedDeletable {
     public static var notMarkedForDeletionPredicate: NSPredicate {
         return NSCompoundPredicate(andPredicateWithSubpredicates: [notMarkedForLocalDeletionPredicate, notMarkedForRemoteDeletionPredicate])
     }
 }
-
-

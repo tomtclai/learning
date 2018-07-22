@@ -1,4 +1,4 @@
-  //https://leetcode.com/problems/trim-a-binary-search-tree/description/
+//https://leetcode.com/problems/trim-a-binary-search-tree/description/
   func trimBST(_ root: TreeNode?, _ L: Int, _ R: Int) -> TreeNode? {
     guard var root = root else {
         return nil
@@ -18,10 +18,9 @@
         root.right = trimBST(root.right, L, R)
         return root
     }
-    
+
   }
-  
-  
+
   //  Definition for a binary tree node.
   public class TreeNode {
     public var val: Int
@@ -33,4 +32,3 @@
         self.right = nil
     }
   }
-  

@@ -26,7 +26,7 @@ import RxCocoa
 import Kingfisher
 
 func cachedFileURL(_ fileName: String) -> URL {
-  
+
   return FileManager.default
     .urls(for: .cachesDirectory, in: .allDomainsMask)
     .first!
@@ -65,7 +65,7 @@ class ActivityController: UITableViewController {
       strongSelf.fetchEvents(repo: strongSelf.repo)
     }
   }
-  
+
   func fetchEvents(repo: String) {
     let response = Observable.from([repo])
       .map { repo in
@@ -76,7 +76,7 @@ class ActivityController: UITableViewController {
         URLSession.shared.rx.response(request: request)
       }
       .share(replay: 1, scope: .whileConnected)
-    
+
     response
       .filter { response, _ in
         return 200..<300 ~= response.statusCode
@@ -86,7 +86,7 @@ class ActivityController: UITableViewController {
           let result = jsonObject as? [[String: Any]] else {
             return []
         }
-        
+
         return result
       }
       .filter { objects in
@@ -99,21 +99,21 @@ class ActivityController: UITableViewController {
         self?.processEvents(newEvents)
       })
   }
-  
+
   func processEvents(_ newEvents: [Event]) {
     var updatedEvents = newEvents + events.value
-    
+
     if updatedEvents.count > 50 {
       updatedEvents = Array<Event>(updatedEvents.prefix(upTo: 50))
     }
-    
+
     events.value = updatedEvents
-    
+
     DispatchQueue.main.async {
       self.tableView.reloadData()
       self.refreshControl?.endRefreshing()
     }
-    
+
     let eventsArray = updatedEvents.map { $0.dictionary } as NSArray
     eventsArray.write(to: eventsFileURL, atomically: true)
   }

@@ -27,9 +27,9 @@ import RxCocoa
 class CategoriesViewController: UIViewController {
 
   @IBOutlet var tableView: UITableView!
-  
+
   let categories = Variable<[EOCategory]>([])
-  
+
   let disposeBag = DisposeBag()
 
   override func viewDidLoad() {
@@ -39,16 +39,16 @@ class CategoriesViewController: UIViewController {
   }
 
   func startDownload() {
-    
+
   }
 }
 
 extension CategoriesViewController: UITableViewDataSource {
-  
+
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return categories.value.count
   }
-  
+
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell")!
     return cell
@@ -56,8 +56,8 @@ extension CategoriesViewController: UITableViewDataSource {
 }
 
 extension CategoriesViewController: UITableViewDelegate {
-  
+
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
+
   }
 }

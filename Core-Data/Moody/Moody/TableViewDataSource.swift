@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 
-
 protocol TableViewDataSourceDelegate: class {
     associatedtype Object
     associatedtype Cell: UITableViewCell
@@ -37,7 +36,6 @@ extension TableViewDataSourceDelegate {
         return presentedIndexPath
     }
 }
-
 
 /// Note: this class doesn't support working with multiple sections
 class TableViewDataSource<Result: NSFetchRequestResult, Delegate: TableViewDataSourceDelegate>: NSObject, UITableViewDataSource, NSFetchedResultsControllerDelegate {
@@ -69,13 +67,12 @@ class TableViewDataSource<Result: NSFetchRequestResult, Delegate: TableViewDataS
         return (fetchedResultsController.object(at: fetchedIndexPath) as! Object)
     }
 
-    func reconfigureFetchRequest(_ configure: (NSFetchRequest<Result>) -> ()) {
+    func reconfigureFetchRequest(_ configure: (NSFetchRequest<Result>) -> Void) {
         NSFetchedResultsController<NSFetchRequestResult>.deleteCache(withName: fetchedResultsController.cacheName)
         configure(fetchedResultsController.fetchRequest)
         do { try fetchedResultsController.performFetch() } catch { fatalError("fetch request failed") }
         tableView.reloadData()
     }
-
 
     // MARK: Private
 
@@ -130,4 +127,3 @@ class TableViewDataSource<Result: NSFetchRequestResult, Delegate: TableViewDataS
         tableView.endUpdates()
     }
 }
-

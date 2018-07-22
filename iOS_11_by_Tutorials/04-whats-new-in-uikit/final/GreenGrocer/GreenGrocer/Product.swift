@@ -41,13 +41,13 @@ final class Product: NSObject, NSCoding {
     static let details = "details"
     static let photoName = "photoName"
   }
-  
+
   let id: ProductID
   let name: String
   let price: Int
   let details: String
   let photoName: String
-  
+
   init(id: ProductID, name: String, price: Int, details: String, photoName: String) {
     self.id = id
     self.name = name
@@ -55,7 +55,7 @@ final class Product: NSObject, NSCoding {
     self.details = details
     self.photoName = photoName
   }
-  
+
   public func encode(with aCoder: NSCoder) {
     aCoder.encode(id, forKey: PropertyKey.id)
     aCoder.encode(name, forKey: PropertyKey.name)
@@ -63,16 +63,16 @@ final class Product: NSObject, NSCoding {
     aCoder.encode(details, forKey: PropertyKey.details)
     aCoder.encode(photoName, forKey: PropertyKey.photoName)
   }
-  
+
   public required convenience init?(coder aDecoder: NSCoder) {
     guard let id = aDecoder.decodeObject(forKey: PropertyKey.id) as? UUID,
       let name = aDecoder.decodeObject(forKey: PropertyKey.name) as? String,
       let details = aDecoder.decodeObject(forKey: PropertyKey.details) as? String,
       let photoName = aDecoder.decodeObject(forKey: PropertyKey.photoName) as? String
       else { return nil }
-    
+
     let price = aDecoder.decodeInteger(forKey: PropertyKey.price)
-    
+
     self.init(id: id, name: name, price: price, details: details, photoName: photoName)
   }
 }
@@ -95,14 +95,14 @@ extension Product: Serializable {
     }
     self.init(id: id, name: name, price: price, details: details, photoName: photoName)
   }
-  
+
   var dictRepresentation: [String: AnyObject] {
     return [
       PropertyKey.id            : id.uuidString as AnyObject,
       PropertyKey.name          : name as AnyObject,
       PropertyKey.price         : price as AnyObject,
       PropertyKey.details       : details as AnyObject,
-      PropertyKey.photoName     : photoName as AnyObject,
+      PropertyKey.photoName     : photoName as AnyObject
     ]
   }
 }
@@ -130,8 +130,8 @@ extension Product: NSItemProviderReading {
       throw EncodingError.invalidData
     }
   }
-  
+
   static var readableTypeIdentifiersForItemProvider: [String] {
     return [productTypeId]
-  }  
+  }
 }

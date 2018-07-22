@@ -12,5 +12,3 @@ protocol MoodsPresenter: class {
     var moodSource: MoodSource! { get set }
     var managedObjectContext: NSManagedObjectContext! { get set }
 }
-
-

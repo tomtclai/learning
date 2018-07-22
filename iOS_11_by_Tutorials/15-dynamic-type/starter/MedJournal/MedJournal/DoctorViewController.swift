@@ -37,7 +37,7 @@ class DoctorViewController: UIViewController {
   @IBOutlet var cityStateZipLabel: UILabel!
   @IBOutlet var notesLabel: UILabel!
   @IBOutlet var profileImageView: UIImageView!
-  
+
   var doctor: Doctor? {
     didSet {
       loadViewIfNeeded()

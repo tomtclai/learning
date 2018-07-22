@@ -32,14 +32,14 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  
+
   var window: UIWindow?
-  
-  func application(_ app: UIApplication, open inputURL: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+
+  func application(_ app: UIApplication, open inputURL: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
     guard inputURL.isFileURL else { return false }
-    
+
     guard let documentBrowserViewController = window?.rootViewController as? DocumentBrowserViewController else { return false }
-    
+
     documentBrowserViewController.revealDocument(at: inputURL, importIfNeeded: true) { (revealedDocumentURL, error) in
       guard let revealedDocumentURL = revealedDocumentURL,
         error == nil else {
@@ -50,6 +50,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     return true
   }
-  
-}
 
+}

@@ -37,20 +37,20 @@ func nodeWithModelName(_ modelName: String) -> SCNNode {
 
 func createPlaneNode(center: vector_float3, extent: vector_float3) -> SCNNode {
     let plane = SCNPlane(width: CGFloat(extent.x), height: CGFloat(extent.z))
-    
+
     let planeMaterial = SCNMaterial()
     planeMaterial.diffuse.contents = UIColor.blue.withAlphaComponent(0.4)
     plane.materials = [planeMaterial]
     let planeNode = SCNNode(geometry: plane)
     planeNode.position = SCNVector3Make(center.x, 0, center.z)
     planeNode.transform = SCNMatrix4MakeRotation(-Float.pi / 2, 1, 0, 0)
-    
+
     return planeNode
 }
 
 func updatePlaneNode(_ node: SCNNode, center: vector_float3, extent: vector_float3) {
     let geometry = node.geometry as! SCNPlane
-    
+
     geometry.width = CGFloat(extent.x)
     geometry.height = CGFloat(extent.z)
     node.position = SCNVector3Make(center.x, 0, center.z)
@@ -63,7 +63,7 @@ func removeChildren(inNode node: SCNNode) {
 }
 
 func createSphereNode(radius: CGFloat) -> SCNNode {
-    let sphere = SCNSphere(radius:radius)
+    let sphere = SCNSphere(radius: radius)
     sphere.firstMaterial?.diffuse.contents = UIColor.red
     return SCNNode(geometry: sphere)
 }
@@ -79,9 +79,9 @@ func createLineNode(fromNode: SCNNode, toNode: SCNNode) -> SCNNode {
 
 func lineFrom(vector vector1: SCNVector3, toVector vector2: SCNVector3) -> SCNGeometry {
     let indices: [Int32] = [0, 1]
-    
+
     let source = SCNGeometrySource(vertices: [vector1, vector2])
     let element = SCNGeometryElement(indices: indices, primitiveType: .line)
-    
+
     return SCNGeometry(sources: [source], elements: [element])
 }

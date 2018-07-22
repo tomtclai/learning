@@ -9,7 +9,6 @@
 import CoreData
 import MoodyModel
 
-
 final class MoodUploader: ElementChangeProcessor {
     var elementsInProgress = InProgressTracker<Mood>()
 
@@ -21,7 +20,7 @@ final class MoodUploader: ElementChangeProcessor {
         processInsertedMoods(objects, in: context)
     }
 
-    func processRemoteChanges<T>(_ changes: [RemoteRecordChange<T>], in context: ChangeProcessorContext, completion: () -> ()) {
+    func processRemoteChanges<T>(_ changes: [RemoteRecordChange<T>], in context: ChangeProcessorContext, completion: () -> Void) {
         // no-op
         completion()
     }
@@ -57,4 +56,3 @@ extension MoodUploader {
         })
     }
 }
-

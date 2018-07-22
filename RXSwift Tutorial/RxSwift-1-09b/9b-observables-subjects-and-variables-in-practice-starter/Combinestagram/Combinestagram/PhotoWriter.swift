@@ -26,10 +26,9 @@ import Photos
 import RxSwift
 
 class PhotoWriter {
-  
+
   enum Errors: Error {
     case couldNotSavePhoto
   }
-
 
 }

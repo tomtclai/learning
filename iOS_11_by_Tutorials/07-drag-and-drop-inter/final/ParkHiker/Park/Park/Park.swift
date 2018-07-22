@@ -39,7 +39,7 @@ enum EncodingError: Error {
 }
 
 open class Park: NSObject, NSCoding {
-  
+
   public enum Key {
     public static let image = "image"
     public static let name = "name"
@@ -47,13 +47,13 @@ open class Park: NSObject, NSCoding {
     public static let longitude = "longitude"
     public static let latitude = "latitude"
   }
-  
+
   public var image: UIImage
   public let name: String
   public let summary: String
   public let longitude: Double
   public let latitude: Double
-  
+
   public init(image: UIImage, name: String, summary: String, longitude: Double, latitude: Double) {
     self.image = image
     self.name = name
@@ -62,7 +62,7 @@ open class Park: NSObject, NSCoding {
     self.latitude = latitude
     super.init()
   }
-  
+
   public required init(_ park: Park) {
     self.image = park.image
     self.name = park.name
@@ -71,7 +71,7 @@ open class Park: NSObject, NSCoding {
     self.latitude = park.latitude
     super.init()
   }
-  
+
   public func encode(with aCoder: NSCoder) {
     aCoder.encode(UIImagePNGRepresentation(image), forKey: Key.image)
     aCoder.encode(name, forKey: Key.name)
@@ -79,7 +79,7 @@ open class Park: NSObject, NSCoding {
     aCoder.encode(longitude, forKey: Key.longitude)
     aCoder.encode(latitude, forKey: Key.latitude)
   }
-  
+
   public required convenience init?(coder aDecoder: NSCoder) {
     guard let image = (aDecoder.decodeObject(forKey: Key.image) as? Data).flatMap(UIImage.init),
     let name = aDecoder.decodeObject(forKey: Key.name) as? String,
@@ -87,7 +87,7 @@ open class Park: NSObject, NSCoding {
       else { return nil }
     let longitude = aDecoder.decodeDouble(forKey: Key.longitude)
     let latitude = aDecoder.decodeDouble(forKey: Key.latitude)
-    
+
     self.init(image: image, name: name, summary: summary, longitude: longitude, latitude: latitude)
   }
 
@@ -100,7 +100,7 @@ extension Park: NSItemProviderWriting {
             kUTTypePNG as String,
             kUTTypePlainText as String]
   }
-  
+
   public func loadData(
     withTypeIdentifier typeIdentifier: String,
     forItemProviderCompletionHandler completionHandler:
@@ -118,14 +118,14 @@ extension Park: NSItemProviderWriting {
       let data = NSKeyedArchiver.archivedData(withRootObject: self)
       completionHandler(data, nil)
     }
-    
+
     return nil
   }
 }
 
 // MARK: NSItemProviderReading
 extension Park: NSItemProviderReading {
-  
+
   public static func object(withItemProviderData data: Data,
                             typeIdentifier: String) throws -> Self {
     switch typeIdentifier {
@@ -138,9 +138,8 @@ extension Park: NSItemProviderReading {
       throw EncodingError.invalidData
     }
   }
-  
-  public static var readableTypeIdentifiersForItemProvider:
-    [String] {
+
+  public static var readableTypeIdentifiersForItemProvider: [String] {
     return [parkTypeId]
   }
 }

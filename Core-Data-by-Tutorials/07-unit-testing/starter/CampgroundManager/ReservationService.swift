@@ -47,7 +47,7 @@ public final class ReservationService {
 // MARK: Public
 extension ReservationService {
 
-  public func reserveCampSite(_ campSite: CampSite, camper: Camper, date: Date, numberOfNights: Int) -> (reservation: Reservation?, error: NSError?)  {
+  public func reserveCampSite(_ campSite: CampSite, camper: Camper, date: Date, numberOfNights: Int) -> (reservation: Reservation?, error: NSError?) {
     let reservation = Reservation(context: managedObjectContext)
     reservation.camper = camper
     reservation.campSite = campSite
@@ -62,9 +62,9 @@ extension ReservationService {
 
     // Some complex logic here to determine if reservation is valid or if there are conflicts
     let registrationError: NSError? = nil
-    
+
     reservation.status = "Reserved"
-    
+
     coreDataStack.saveContext(managedObjectContext)
 
     // Error here would be a custom error to explain a failed reservation possibly

@@ -11,7 +11,6 @@ import CoreData
 import CoreDataHelpers
 import MoodyModel
 
-
 class MoodsCollectionViewController: UICollectionViewController, MoodsPresenter, SegueHandler {
 
     enum SegueIdentifier: String {
@@ -24,7 +23,7 @@ class MoodsCollectionViewController: UICollectionViewController, MoodsPresenter,
             guard let o = moodSource.managedObject as? Managed else { return }
             observer = ManagedObjectObserver(object: o) { [unowned self] type in
                 guard type == .delete else { return }
-                let _ = self.navigationController?.popViewController(animated: true)
+                _ = self.navigationController?.popViewController(animated: true)
             }
         }
     }
@@ -52,7 +51,6 @@ class MoodsCollectionViewController: UICollectionViewController, MoodsPresenter,
         }
     }
 
-
     // MARK: Private
 
     fileprivate var dataSource: CollectionViewDataSource<MoodsCollectionViewController>!
@@ -74,5 +72,3 @@ extension MoodsCollectionViewController: CollectionViewDataSourceDelegate {
         cell.configure(for: object)
     }
 }
-
-

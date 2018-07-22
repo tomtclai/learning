@@ -36,19 +36,19 @@ protocol DocumentViewControllerDelegate {
 }
 
 class DocumentViewController: UIViewController {
-  
+
   var document: PDFDocument?
   var addAnnotations = false
   var delegate: DocumentViewControllerDelegate?
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
   }
-  
+
   @IBAction func saveAnnotations(_ sender: Any) {
-    
+
   }
-  
+
 }
 
 enum FieldNames: String {

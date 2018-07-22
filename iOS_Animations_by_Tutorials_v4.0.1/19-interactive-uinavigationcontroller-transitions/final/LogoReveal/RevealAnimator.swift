@@ -51,27 +51,27 @@ class RevealAnimator: UIPercentDrivenInteractiveTransition,
       break
     }
   }
-  
+
   func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
     return animationDuration
   }
-  
+
   override func update(_ percentComplete: CGFloat) {
     super.update(percentComplete)
     let animationProgress = TimeInterval(animationDuration) * TimeInterval(percentComplete)
     storedContext?.containerView.layer.timeOffset = pausedTime + animationProgress
   }
-  
+
   override func cancel() {
     restart(forFinishing: false)
     super.cancel()
   }
-  
+
   override func finish() {
     restart(forFinishing: true)
     super.finish()
   }
-  
+
   private func restart(forFinishing: Bool) {
     let transitionLayer = storedContext?.containerView.layer
     transitionLayer?.beginTime = CACurrentMediaTime()
@@ -79,14 +79,14 @@ class RevealAnimator: UIPercentDrivenInteractiveTransition,
   }
 
   func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-    
+
     if interactive {
       let transitionLayer = transitionContext.containerView.layer
       pausedTime = transitionLayer.convertTime(CACurrentMediaTime(), from: nil)
       transitionLayer.speed = 0
       transitionLayer.timeOffset = pausedTime
     }
-    
+
     storedContext = transitionContext
 
     if operation == .push {

@@ -64,16 +64,15 @@ extension FlipDismissAnimationController: UIViewControllerAnimatedTransitioning 
     toVC.view.layer.transform = AnimationHelper.yRotation(-.pi / 2)
     let duration = transitionDuration(using: transitionContext)
 
-
     UIView.animateKeyframes(withDuration: duration, delay: 0, options: .calculationModeCubic, animations: {
 
-      UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/3){
+      UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/3) {
         snapshot.frame = self.destinationFrame
       }
-      UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3){
+      UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3) {
         snapshot.layer.transform = AnimationHelper.yRotation(.pi/2)
       }
-      UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3){
+      UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3) {
         toVC.view.layer.transform = AnimationHelper.yRotation(0)
       }
     }, completion: { _ in

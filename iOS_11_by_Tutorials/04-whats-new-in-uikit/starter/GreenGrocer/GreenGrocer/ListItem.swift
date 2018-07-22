@@ -36,7 +36,7 @@ enum EncodingError: Error {
 
 final class ListItem: NSObject {
   static let listItemTypeId = "com.razeware.listItem"
-  
+
   public enum Key {
     public static let name = "name"
     public static let checked = "checked"
@@ -44,33 +44,33 @@ final class ListItem: NSObject {
 
   var name: String
   var checked: Bool
-  
+
   init(name: String, checked: Bool = false) {
     self.name = name
     self.checked = checked
   }
-  
+
   public func encode(with aCoder: NSCoder) {
     aCoder.encode(name, forKey: Key.name)
     aCoder.encode(checked, forKey: Key.checked)
   }
-  
+
   public required convenience init?(coder aDecoder: NSCoder) {
     guard let name = aDecoder.decodeObject(forKey: Key.name) as? String
       else { return nil }
     let checked = aDecoder.decodeBool(forKey: Key.checked)
-    
+
     self.init(name: name, checked: checked)
   }
-  
+
   override var hash: Int {
     return name.hashValue
   }
-  
+
   override func isEqual(_ object: Any?) -> Bool {
     guard let object = object as? ListItem
       else { return false }
-    
+
     return self.name == object.name
   }
 }
@@ -80,7 +80,7 @@ extension ListItem: NSItemProviderWriting {
   static var writableTypeIdentifiersForItemProvider: [String] {
     return [listItemTypeId]
   }
-  
+
   func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress? {
     if typeIdentifier == ListItem.listItemTypeId {
       let data = NSKeyedArchiver.archivedData(withRootObject: self)
@@ -103,9 +103,8 @@ extension ListItem: NSItemProviderReading {
       throw EncodingError.invalidData
     }
   }
-  
+
   public static var readableTypeIdentifiersForItemProvider: [String] {
     return [listItemTypeId]
   }
 }
-

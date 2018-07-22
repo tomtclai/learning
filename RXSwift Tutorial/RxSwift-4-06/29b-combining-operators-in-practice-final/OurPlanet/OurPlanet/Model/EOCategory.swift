@@ -23,7 +23,7 @@
 import Foundation
 
 struct EOCategory {
-  
+
   let id: Int
   let name: String
   let description: String
@@ -36,7 +36,7 @@ struct EOCategory {
         let description = json["description"] as? String else {
       return nil
     }
-    
+
     self.id = id
     self.name = name
     self.description = description
@@ -45,7 +45,7 @@ struct EOCategory {
 }
 
 extension EOCategory: Equatable {
-  
+
   static func ==(lhs: EOCategory, rhs: EOCategory) -> Bool {
     return lhs.id == rhs.id
   }

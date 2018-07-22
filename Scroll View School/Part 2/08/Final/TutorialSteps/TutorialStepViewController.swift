@@ -39,7 +39,7 @@ class TutorialStepViewController: UIViewController {
     iconImageView.image = iconImage
 
     if let text = text {
-      let font = UIFont(name: "HelveticaNeue-Light", size:20.0)!
+      let font = UIFont(name: "HelveticaNeue-Light", size: 20.0)!
       let paragraphStyle = NSMutableParagraphStyle()
       paragraphStyle.lineSpacing = 8
       paragraphStyle.alignment = .center
@@ -50,4 +50,3 @@ class TutorialStepViewController: UIViewController {
   }
 
 }
-

@@ -18,5 +18,3 @@ func memoize<T: Hashable, U>(_ f: @escaping (T) -> U) -> (T) -> U {
         return value!
     }
 }
-
-

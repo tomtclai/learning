@@ -31,11 +31,11 @@
 import UIKit
 
 class SourceCell: UITableViewCell {
-  
+
   @IBOutlet private var nameLabel: UILabel!
   @IBOutlet private var overviewLabel: UILabel!
   @IBOutlet private var categoryLabel: UILabel!
-  
+
   var source: Source? {
     didSet {
       guard let source = source else { return }

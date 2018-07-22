@@ -2,38 +2,38 @@
 import RxSwift
 
 example(of: "PublishSubject") {
-  
+
   let quotes = PublishSubject<String>()
-  
+
   quotes.onNext(itsNotMyFault)
-  
+
   let subscriptionOne = quotes
     .subscribe {
       print(label: "1)", event: $0)
   }
-  
+
   quotes.on(.next(doOrDoNot))
-  
+
   let subscriptionTwo = quotes
     .subscribe {
       print(label: "2)", event: $0)
   }
-  
+
   quotes.onNext(lackOfFaith)
-  
+
   subscriptionOne.dispose()
-  
+
   quotes.onNext(eyesCanDeceive)
-  
+
   quotes.onCompleted()
-  
+
   let subscriptionThree = quotes
     .subscribe {
       print("3)", $0)
   }
-  
+
   quotes.onNext(stayOnTarget)
-  
+
   subscriptionTwo.dispose()
   subscriptionThree.dispose()
 }

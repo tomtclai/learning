@@ -71,7 +71,7 @@ class LockScreenViewController: UIViewController {
                            animations: blurAnimations(blurred))
       .startAnimation()
   }
-  
+
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return .lightContent
   }

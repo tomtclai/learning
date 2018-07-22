@@ -2,9 +2,9 @@
 import RxSwift
 
 example(of: "zip + scan") {
-  
+
   let disposeBag = DisposeBag()
-  
+
   Observable.from(runtimes.values)
     .scan(0, accumulator: +)
     .subscribe(onNext: {

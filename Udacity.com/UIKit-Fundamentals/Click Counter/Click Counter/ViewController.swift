@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     var count = 0
-    @IBOutlet var label:UILabel! // ! means optional, can be nil at compile time
+    @IBOutlet var label: UILabel! // ! means optional, can be nil at compile time
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,20 +57,20 @@ class ViewController: UIViewController {
         updateLabel()
         setRandomBackgroundColor()
     }
-    
+
     func updateLabel() {
         self.label.text = "\(self.count)"
     }
-    
+
     func setRandomBackgroundColor() {
         self.view.backgroundColor = getRandomColor()
     }
-    
+
     func getRandomColor() -> UIColor {
-        var randomR:CGFloat = CGFloat(drand48())
-        var randomG:CGFloat = CGFloat(drand48())
-        var randomB:CGFloat = CGFloat(drand48())
-        
+        var randomR: CGFloat = CGFloat(drand48())
+        var randomG: CGFloat = CGFloat(drand48())
+        var randomB: CGFloat = CGFloat(drand48())
+
         return UIColor(red: randomB, green: randomG, blue: randomB, alpha: 1.0)
     }
 

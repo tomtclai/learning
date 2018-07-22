@@ -8,11 +8,9 @@
 
 import UIKit
 
-
 public protocol SegueHandler {
      associatedtype SegueIdentifier: RawRepresentable
 }
-
 
 extension SegueHandler where Self: UIViewController, SegueIdentifier.RawValue == String {
     public func segueIdentifier(for segue: UIStoryboardSegue) -> SegueIdentifier {
@@ -26,5 +24,3 @@ extension SegueHandler where Self: UIViewController, SegueIdentifier.RawValue ==
         performSegue(withIdentifier: segueIdentifier.rawValue, sender: nil)
     }
 }
-
-

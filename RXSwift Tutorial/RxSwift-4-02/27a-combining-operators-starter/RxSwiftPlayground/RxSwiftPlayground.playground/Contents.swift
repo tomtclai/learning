@@ -1,8 +1,6 @@
 //: Please build the scheme 'RxSwiftPlayground' first
 import RxSwift
 
-
-
 /*:
  Copyright (c) 2014-2018 Razeware LLC
  

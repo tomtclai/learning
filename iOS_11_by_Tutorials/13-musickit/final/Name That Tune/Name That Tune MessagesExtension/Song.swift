@@ -42,14 +42,14 @@ struct Song {
   let artist: String
   let id: String
   let artworkUrl: URL
-  
+
   init(id: String, title: String, artist: String, artworkUrl: URL) {
     self.title = title
     self.artist = artist
     self.id = id
     self.artworkUrl = artworkUrl
   }
-  
+
   init?(queryItems: [URLQueryItem]) {
     guard let title = queryItems.first(where: { queryItem in queryItem.name == Song.AttributesKeys.title.stringValue })?.value,
       let artist = queryItems.first(where: { queryItem in queryItem.name == Song.AttributesKeys.artist.stringValue })?.value,
@@ -58,11 +58,11 @@ struct Song {
     self.title = title
     self.artist = artist
     self.id = id
-    
+
     guard let artworkUrl = URL(string: artworkUrlString) else { return nil }
     self.artworkUrl = artworkUrl
   }
-  
+
   var queryItems: [URLQueryItem] {
     var items: [URLQueryItem] = []
     items.append(URLQueryItem(name: Song.AttributesKeys.title.stringValue, value: title))
@@ -78,32 +78,32 @@ extension Song: Decodable {
     case id
     case attributes
   }
-  
+
   enum AttributesKeys: String, CodingKey {
     case title = "name"
     case artist = "artistName"
     case artwork
   }
-  
+
   enum ArtworkKeys: String, CodingKey {
     case url
   }
-  
+
   init(from decoder: Decoder) throws {
     let topContainer = try decoder.container(keyedBy: CodingKeys.self)
     let id = try topContainer.decode(String.self, forKey: .id)
-    
+
     let attributes = try topContainer.nestedContainer(keyedBy: AttributesKeys.self, forKey: .attributes)
     let title = try attributes.decode(String.self, forKey: .title)
     let artist = try attributes.decode(String.self, forKey: .artist)
-    
+
     let artwork = try attributes.nestedContainer(keyedBy: ArtworkKeys.self, forKey: .artwork)
     let artworkUrlTemplate = try artwork.decode(String.self, forKey: .url)
     let urlString = artworkUrlTemplate.replacingOccurrences(of: "{w}", with: "150").replacingOccurrences(of: "{h}", with: "150")
     guard let url = URL(string: urlString) else {
       throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [ArtworkKeys.url], debugDescription: "Artwork URL not in URL format"))
     }
-    
+
     self.init(id: id, title: title, artist: artist, artworkUrl: url)
   }
 }
@@ -133,7 +133,7 @@ extension Song {
         }
         guard let jsonData = try? JSONSerialization.jsonObject(with: data),
           let dataDictionary = jsonData as? [String: Any],
-          let results = dataDictionary["results"] as? [String:Any],
+          let results = dataDictionary["results"] as? [String: Any],
           let songsArray = results["songs"] as? [[String: Any]],
           let songsItem = songsArray.first,
           let songsDictionary = songsItem["data"],

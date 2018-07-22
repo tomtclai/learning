@@ -9,7 +9,7 @@
 import UIKit
 import DominantColor
 
-class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet var boxes: [UIView]!
     @IBOutlet weak var imageView: UIImageView!
@@ -41,7 +41,7 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
 
     // MARK: ImagePicker Delegate
 
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject: AnyObject]!) {
         if let imageSelected = image {
             self.image = imageSelected
             imageView.image = imageSelected
@@ -59,7 +59,6 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
     }
 
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        picker.dismissViewControllerAnimated(true, completion: nil);
+        picker.dismissViewControllerAnimated(true, completion: nil)
     }
 }
-

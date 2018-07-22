@@ -15,7 +15,7 @@ class RWScrollView: UIView {
     let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panView(with:)))
     addGestureRecognizer(panGesture)
   }
-  
+
   @objc func panView(with gestureRecognizer: UIPanGestureRecognizer) {
     let translation = gestureRecognizer.translation(in: self)
     UIView.animate(withDuration: 0.20) {

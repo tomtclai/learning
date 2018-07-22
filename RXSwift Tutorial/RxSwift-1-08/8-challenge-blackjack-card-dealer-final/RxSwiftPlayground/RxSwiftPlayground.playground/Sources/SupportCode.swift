@@ -21,6 +21,6 @@ public func points(for hand: [(String, Int)]) -> Int {
 }
 
 public enum HandError: Error {
-  
+
   case busted
 }

@@ -31,28 +31,28 @@
 import UIKit
 
 class MenuGestureController: NSObject {
-  
+
   var targetView: UIView!
-  
+
   init(view: UIView) {
     targetView = view
     super.init()
     tapGestureRecognizer.delegate = self
   }
-  
+
   public lazy var longPressGestureRecognizer: UILongPressGestureRecognizer = {
     return UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
   }()
-  
+
   public lazy var tapGestureRecognizer = {
     return UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
   }()
-  
+
   @objc func handleLongPress(sender: UILongPressGestureRecognizer) {
     switch sender.state {
     case .began:
       let pressLocation = sender.location(in: targetView)
-      
+
       targetView.becomeFirstResponder()
       let menu = UIMenuController.shared
       let rect = CGRect(origin: pressLocation, size: CGSize(width: 10, height: 10))
@@ -64,7 +64,7 @@ class MenuGestureController: NSObject {
       return
     }
   }
-  
+
   @objc func handleTap(sender: UITapGestureRecognizer) {
     UIMenuController.shared.setMenuVisible(false, animated: true)
   }
@@ -76,4 +76,3 @@ extension MenuGestureController: UIGestureRecognizerDelegate {
     return UIMenuController.shared.isMenuVisible
   }
 }
-

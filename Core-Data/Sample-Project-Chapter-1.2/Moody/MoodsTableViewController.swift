@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 
-
 class MoodsTableViewController: UITableViewController, SegueHandler {
 
     enum SegueIdentifier: String {
@@ -22,7 +21,7 @@ class MoodsTableViewController: UITableViewController, SegueHandler {
             guard let o = moodSource.managedObject else { return }
             observer = ManagedObjectObserver(object: o) { [unowned self] type in
                 guard type == .delete else { return }
-                let _ = self.navigationController?.popViewController(animated: true)
+                _ = self.navigationController?.popViewController(animated: true)
             }
         }
     }
@@ -41,7 +40,6 @@ class MoodsTableViewController: UITableViewController, SegueHandler {
         }
     }
 
-
     // MARK: Private
 
     fileprivate var dataSource: TableViewDataSource<MoodsTableViewController>!
@@ -59,11 +57,8 @@ class MoodsTableViewController: UITableViewController, SegueHandler {
 
 }
 
-
 extension MoodsTableViewController: TableViewDataSourceDelegate {
     func configure(_ cell: MoodTableViewCell, for object: Mood) {
         cell.configure(for: object)
     }
 }
-
-

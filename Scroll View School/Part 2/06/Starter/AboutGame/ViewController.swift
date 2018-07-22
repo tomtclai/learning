@@ -25,7 +25,7 @@ import UIKit
 class ViewController: UIViewController {
   @IBOutlet weak var fgScrollView: UIScrollView!
   @IBOutlet weak var felipeImageView: UIImageView!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -40,7 +40,6 @@ class ViewController: UIViewController {
     felipeImageView.animationImages = animationFrames
     felipeImageView.animationDuration = 0.4
     felipeImageView.startAnimating()
-
 
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)

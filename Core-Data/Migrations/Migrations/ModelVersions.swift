@@ -9,7 +9,6 @@
 import CoreData
 import UIKit
 
-
 enum Version: String {
     case version1 = "Moody"
     case version2 = "Moody 2"
@@ -18,7 +17,6 @@ enum Version: String {
     case version5 = "Moody 5"
     case version6 = "Moody 6"
 }
-
 
 extension Version: ModelVersion {
     static var all___: [Version] { return [.version2, .version1] }
@@ -54,4 +52,3 @@ extension Version: ModelVersion {
         }
     }
 }
-

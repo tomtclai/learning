@@ -38,7 +38,7 @@ class ViewController: UIViewController {
   @IBOutlet weak var answerLabel: UILabel!
   let pickerController = UIImagePickerController()
   @IBOutlet weak var pickImageButton: UIButton!
-    
+
   // MARK: - Properties
   let vowels: [Character] = ["a", "e", "i", "o", "u"]
 
@@ -72,7 +72,7 @@ extension ViewController {
 // MARK: - UIImagePickerControllerDelegate
 extension ViewController: UIImagePickerControllerDelegate {
 
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
     dismiss(animated: true)
 
     guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
@@ -80,7 +80,7 @@ extension ViewController: UIImagePickerControllerDelegate {
     }
 
     scene.image = image
-    
+
     guard let ciImage = CIImage(image: image) else {
       fatalError("Cant convery to CIImage")
     }
@@ -98,20 +98,20 @@ extension ViewController {
     guard let model = try? VNCoreMLModel(for: GoogLeNetPlaces().model) else {
       fatalError("can't load Places ML model")
     }
-    
+
     let request = VNCoreMLRequest(model: model) { [weak self] request, errpr in
       guard let results = request.results as? [VNClassificationObservation],
         let topResult = results.first else {
           fatalError("unexpected result type")
       }
-      
+
       let article = (self?.vowels.contains(topResult.identifier.first!))! ? "an" : "a"
       DispatchQueue.main.async { [weak self] in
         self?.answerLabel.text = "I am \(Int(topResult.confidence * 100))% sure it's \(article) \(topResult.identifier)"
-        
+
       }
     }
-    
+
     let handler = VNImageRequestHandler(ciImage: image)
     DispatchQueue.global(qos: .userInteractive).async {
       do {
@@ -120,6 +120,6 @@ extension ViewController {
         print(error)
       }
     }
-    
+
   }
 }

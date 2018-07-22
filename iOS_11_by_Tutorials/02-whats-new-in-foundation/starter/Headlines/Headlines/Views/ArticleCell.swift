@@ -31,13 +31,13 @@
 import UIKit
 
 class ArticleCell: UITableViewCell {
-  
+
   @IBOutlet private var bannerView: UIImageView!
   @IBOutlet private var publishedLabel: UILabel!
   @IBOutlet private var titleLabel: UILabel!
   @IBOutlet private var snippetLabel: UILabel!
   private var task: URLSessionDataTask?
-  
+
   func render(article: Article, using formatter: DateFormatter) {
     downloadBanner(from: article.imageURL)
     if let published = article.published {
@@ -48,13 +48,13 @@ class ArticleCell: UITableViewCell {
     titleLabel.text = article.title
     snippetLabel.text = article.snippet
   }
-  
+
   override func prepareForReuse() {
     super.prepareForReuse()
     guard let task = task else { return }
     task.cancel()
   }
-  
+
   private func downloadBanner(from url: URL) {
     let task = URLSession.shared.dataTask(with: url) { data, response, error in
       guard let data = data, error == nil else { return }

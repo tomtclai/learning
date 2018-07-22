@@ -147,15 +147,15 @@ private extension JournalListViewController {
   }
 
   // MARK: Export
-  
+
   func activityIndicatorBarButtonItem() -> UIBarButtonItem {
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     let barButtonItem = UIBarButtonItem(customView: activityIndicator)
     activityIndicator.startAnimating()
-    
+
     return barButtonItem
   }
-  
+
   func exportBarButtonItem() -> UIBarButtonItem {
     return UIBarButtonItem(title: "Export", style: .plain, target: self, action: #selector(exportButtonTapped(_:)))
   }
@@ -190,7 +190,7 @@ private extension JournalListViewController {
   }
 
   func surfJournalFetchRequest() -> NSFetchRequest<JournalEntry> {
-    let fetchRequest:NSFetchRequest<JournalEntry> = JournalEntry.fetchRequest()
+    let fetchRequest: NSFetchRequest<JournalEntry> = JournalEntry.fetchRequest()
     fetchRequest.fetchBatchSize = 20
 
     let sortDescriptor = NSSortDescriptor(key: #keyPath(JournalEntry.date), ascending: false)
@@ -210,22 +210,22 @@ extension JournalListViewController: NSFetchedResultsControllerDelegate {
 
 // MARK: UITableViewDataSource
 extension JournalListViewController {
-  
+
   override func numberOfSections(in tableView: UITableView) -> Int {
     return fetchedResultsController.sections?.count ?? 0
   }
-  
+
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return fetchedResultsController.sections?[section].numberOfObjects ?? 0
   }
-  
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SurfEntryTableViewCell
     configureCell(cell, indexPath: indexPath)
     return cell
   }
 
-  private func configureCell(_ cell: SurfEntryTableViewCell, indexPath:IndexPath) {
+  private func configureCell(_ cell: SurfEntryTableViewCell, indexPath: IndexPath) {
     let surfJournalEntry = fetchedResultsController.object(at: indexPath)
     cell.dateLabel.text = surfJournalEntry.stringForDate()
 
@@ -282,7 +282,7 @@ extension JournalListViewController {
 
 // MARK: JournalEntryDelegate
 extension JournalListViewController: JournalEntryDelegate {
-  
+
   func didFinish(viewController: JournalEntryViewController, didSave: Bool) {
 
     guard didSave,

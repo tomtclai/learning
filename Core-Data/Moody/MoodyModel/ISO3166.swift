@@ -531,7 +531,7 @@ private let countriesAndContinents: [(ISO3166.Continent, ISO3166.Country)] = [
     (.oc, .wlf),
     (.oc, .wsm),
     (.as, .yem),
-    (.af, .zmb),
+    (.af, .zmb)
 ]
 
 extension ISO3166.Continent {
@@ -1340,4 +1340,3 @@ extension ISO3166.Country: LocalizedStringConvertible {
 extension ISO3166.Continent: LocalizedStringConvertible {
     public var localizedDescription: String { return String(describing: self) }
 }
-

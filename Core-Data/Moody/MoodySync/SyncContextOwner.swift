@@ -10,7 +10,6 @@ import MoodyModel
 import CoreData
 import CoreDataHelpers
 
-
 /// Implements the integration with Core Data change notifications.
 ///
 /// This protocol merges changes from the view context into the sync context and vice versa.
@@ -26,7 +25,6 @@ protocol ContextOwner: class, ObserverTokenStore {
     /// Will be called whenever objects on the sync managed object context have changed.
     func processChangedLocalObjects(_ objects: [NSManagedObject])
 }
-
 
 extension ContextOwner {
     func setupContexts() {
@@ -87,4 +85,3 @@ extension ContextOwner {
         }
     }
 }
-

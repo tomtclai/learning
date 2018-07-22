@@ -27,7 +27,7 @@ class MainViewController: UIViewController {
 
   private let bag = DisposeBag()
   private let images = Variable<[UIImage]>([])
-  
+
   var imageCache = [Int]()
 
   @IBOutlet weak var imagePreview: UIImageView!
@@ -87,7 +87,7 @@ class MainViewController: UIViewController {
 
     let newPhotos = photosViewController.selectedPhotos
       .share()
-    
+
     newPhotos
       .takeWhile { [weak self] image in
         (self?.images.value.count ?? 0) < 6
@@ -97,11 +97,11 @@ class MainViewController: UIViewController {
       }
       .filter { [weak self] newImage in
         let len = UIImagePNGRepresentation(newImage)?.count ?? 0
-        
+
         guard self?.imageCache.contains(len) == false else {
           return false
         }
-        
+
         self?.imageCache.append(len)
         return true
       }
@@ -112,7 +112,7 @@ class MainViewController: UIViewController {
           print("completed photo selection")
       })
       .disposed(by: bag)
-    
+
     newPhotos
       .ignoreElements()
       .subscribe(onCompleted: { [weak self] in
@@ -122,12 +122,12 @@ class MainViewController: UIViewController {
 
     navigationController!.pushViewController(photosViewController, animated: true)
   }
-  
+
   func updateNavigationIcon() {
     let icon = imagePreview.image?
       .scaled(CGSize(width: 22, height: 22))
       .withRenderingMode(.alwaysOriginal)
-    
+
     navigationItem.leftBarButtonItem = UIBarButtonItem(image: icon, style: .done, target: nil, action: nil)
   }
 

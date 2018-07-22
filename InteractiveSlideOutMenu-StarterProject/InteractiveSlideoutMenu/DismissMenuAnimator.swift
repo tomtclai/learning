@@ -8,9 +8,9 @@
 
 import Foundation
 import UIKit
-class DismissMenuAnimator : NSObject {}
+class DismissMenuAnimator: NSObject {}
 
-extension DismissMenuAnimator : UIViewControllerAnimatedTransitioning {
+extension DismissMenuAnimator: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.6
     }

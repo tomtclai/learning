@@ -42,7 +42,7 @@ class ImageViewController: UIViewController {
       imageView?.image = image
     }
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     navigationItem.largeTitleDisplayMode = .never

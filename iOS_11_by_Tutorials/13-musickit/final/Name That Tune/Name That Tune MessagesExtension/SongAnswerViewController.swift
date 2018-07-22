@@ -50,7 +50,7 @@ class SongAnswerViewController: UIViewController {
       }
     }
   }
-  
+
   var isCorrect: Bool? {
     didSet {
       loadViewIfNeeded()

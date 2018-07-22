@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 
-
 class RegionsTableViewController: UITableViewController, SegueHandler {
     enum SegueIdentifier: String {
         case showMoods = "showMoods"
@@ -33,7 +32,6 @@ class RegionsTableViewController: UITableViewController, SegueHandler {
         }
     }
 
-
     // MARK: Private
 
     fileprivate var dataSource: TableViewDataSource<RegionsTableViewController>!
@@ -48,7 +46,6 @@ class RegionsTableViewController: UITableViewController, SegueHandler {
     }
 }
 
-
 extension RegionsTableViewController: TableViewDataSourceDelegate {
     func configure(_ cell: RegionTableViewCell, for object: Region) {
         guard let region = object as? LocalizedStringConvertible else { fatalError("Wrong object type") }
@@ -56,17 +53,14 @@ extension RegionsTableViewController: TableViewDataSourceDelegate {
     }
 }
 
-
 extension Country: LocalizedStringConvertible {
     var localizedDescription: String {
         return iso3166Code.localizedDescription
     }
 }
 
-
 extension Continent: LocalizedStringConvertible {
     var localizedDescription: String {
         return iso3166Code.localizedDescription
     }
 }
-

@@ -28,7 +28,7 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
   var presenting = true
   var originFrame = CGRect.zero
 
-  var dismissCompletion: (()->Void)?
+  var dismissCompletion: (() -> Void)?
 
   func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
     return duration
@@ -71,7 +71,7 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
       herbController.containerView.alpha = 0.0
     }
 
-    UIView.animate(withDuration: duration, delay:0.0, usingSpringWithDamping: 0.4,
+    UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 0.4,
                    initialSpringVelocity: 0.0,
                    animations: {
                     herbView.transform = self.presenting ? CGAffineTransform.identity : scaleTransform

@@ -26,7 +26,7 @@ class AppearanceManager {
   class func setupAppearance() {
     let navBarAppearance = UINavigationBar.appearance(for: UITraitCollection(horizontalSizeClass: .unspecified))
     navBarAppearance.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "MarkerFelt-Wide", size: 22)!]
-    
+
     let navBarCompactAppearance = UINavigationBar.appearance(for: UITraitCollection(horizontalSizeClass: .compact))
     navBarCompactAppearance.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "MarkerFelt-Thin", size: 14)!]
   }

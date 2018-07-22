@@ -31,11 +31,11 @@
 import UIKit
 
 extension UIColor {
-  static var ggGreen : UIColor {
+  static var ggGreen: UIColor {
     return UIColor(red: 127/255.0, green: 148/255.0, blue: 49/255.0, alpha: 1.0)
   }
-  
-  static var ggDarkGreen : UIColor {
+
+  static var ggDarkGreen: UIColor {
     return UIColor(red: 48/255.0, green: 56/255.0, blue: 19/255.0, alpha: 1.0)
   }
 }
@@ -50,13 +50,13 @@ func applyAppAppearance() {
 private func styleNavBar() {
   let appearanceProxy = UINavigationBar.appearance()
   appearanceProxy.barTintColor = UIColor.ggDarkGreen
-  
+
   appearanceProxy.titleTextAttributes = [
-    NSAttributedStringKey.foregroundColor: UIColor.white,
+    NSAttributedStringKey.foregroundColor: UIColor.white
   ]
-  
+
   appearanceProxy.largeTitleTextAttributes = [
-    NSAttributedStringKey.foregroundColor: UIColor.white,
+    NSAttributedStringKey.foregroundColor: UIColor.white
   ]
 }
 

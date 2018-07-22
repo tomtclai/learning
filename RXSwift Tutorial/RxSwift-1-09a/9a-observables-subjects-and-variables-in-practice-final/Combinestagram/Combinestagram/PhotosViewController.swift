@@ -1,4 +1,4 @@
-  /*
+/*
  * Copyright (c) 2016-2018 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,13 +22,13 @@
 
 import UIKit
 import Photos
-  
+
 import RxSwift
 
 class PhotosViewController: UICollectionViewController {
-  
+
   private let selectedPhotosSubject = PublishSubject<UIImage>()
-  
+
   var selectedPhotos: Observable<UIImage> {
     return selectedPhotosSubject.asObservable()
   }
@@ -71,7 +71,7 @@ class PhotosViewController: UICollectionViewController {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PhotoCell
 
     cell.representedAssetIdentifier = asset.localIdentifier
-    
+
     imageManager.requestImage(for: asset, targetSize: thumbnailSize, contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
       if cell.representedAssetIdentifier == asset.localIdentifier {
         cell.imageView.image = image
@@ -90,7 +90,7 @@ class PhotosViewController: UICollectionViewController {
 
     imageManager.requestImage(for: asset, targetSize: view.frame.size, contentMode: .aspectFill, options: nil, resultHandler: { [weak self] image, info in
       guard let image = image, let info = info else { return }
-      
+
       if let isThumbnail = info[PHImageResultIsDegradedKey as NSString] as? Bool, !isThumbnail {
         self?.selectedPhotosSubject.onNext(image)
       }

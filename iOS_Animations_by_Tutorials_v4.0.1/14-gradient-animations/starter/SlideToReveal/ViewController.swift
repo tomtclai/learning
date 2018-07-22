@@ -23,23 +23,23 @@
 import UIKit
 
 class ViewController: UIViewController {
-  
+
   @IBOutlet var slideView: AnimatedMaskLabel!
   @IBOutlet var time: UILabel!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
   }
-  
+
   @IBAction func didSlide(_ sender: UISwipeGestureRecognizer) {
-    
+
     // reveal the meme upon successful slide
     let image = UIImageView(image: UIImage(named: "meme"))
     image.center = view.center
     image.center.x += view.bounds.size.width
     view.addSubview(image)
-    
+
     UIView.animate(withDuration: 0.33, delay: 0.0,
       animations: {
         self.time.center.y -= 200.0
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
       },
       completion: nil
     )
-    
+
     UIView.animate(withDuration: 0.33, delay: 1.0,
       animations: {
         self.time.center.y += 200.0
@@ -61,5 +61,5 @@ class ViewController: UIViewController {
     )
 
   }
-  
+
 }

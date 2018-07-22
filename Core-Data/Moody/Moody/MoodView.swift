@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class MoodView: UIView {
 
     var colors: [UIColor] = [] {
@@ -21,7 +20,6 @@ class MoodView: UIView {
     }
 
 }
-
 
 // MARK: - Private
 
@@ -37,7 +35,6 @@ private func drawShape(_ colors: [UIColor], shapes: (DivisableShape, DivisableSh
         drawShape(tail, shapes: shapes.1.divide(), context: context)
     }
 }
-
 
 private protocol DivisableShape {
 
@@ -87,7 +84,6 @@ private struct Triangle: DivisableShape {
 
 }
 
-
 extension UIBezierPath {
     fileprivate convenience init(points: [CGPoint]) {
         self.init()
@@ -100,4 +96,3 @@ extension UIBezierPath {
         }
     }
 }
-

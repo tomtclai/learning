@@ -1,6 +1,5 @@
 // https://leetcode.com/problems/keyboard-row/description/
 
-
 let firstRow = CharacterSet(charactersIn: "qwertyuiop")
 let secondRow = CharacterSet(charactersIn: "asdfghjkl")
 let thirdRow = CharacterSet(charactersIn: "zxcvbnm")
@@ -28,6 +27,5 @@ func canBeTypedWithOneRow(_ word: String) -> Bool {
     return true
 }
 func findWords(_ words: [String]) -> [String] {
-    return words.filter{canBeTypedWithOneRow($0)}
+    return words.filter {canBeTypedWithOneRow($0)}
 }
-

@@ -32,7 +32,7 @@ import UIKit
 
 protocol DataStoreOwner {
   var dataStore: DataStore? { get set }
-  
+
   func passDataStoreToChildren()
 }
 

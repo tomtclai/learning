@@ -6,7 +6,6 @@ func reverseWordsWithSplit(_ s: String) -> String {
     return listOfReversedStrings.joined(separator: " ")
 }
 
-
 func reverseWords(_ s: String) -> String {
     var arrayOfChars = Array(s.characters)
     var wordBeginning = 0
@@ -32,7 +31,7 @@ func reverseChars(array: inout [Character], beginIndex: Int, endIndexExclusive: 
     var i = beginIndex
     var j = endIndexExclusive - 1
     while i < j {
-        array.swapAt(i,j)
+        array.swapAt(i, j)
         i = i + 1
         j = j - 1
     }

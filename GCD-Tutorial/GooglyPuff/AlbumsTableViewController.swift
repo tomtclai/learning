@@ -29,13 +29,13 @@ class AlbumsTableViewController: UITableViewController {
 
   var selectedAssets: SelectedAssets?
   var assetPickerDelegate: AssetPickerDelegate?
-  
-  fileprivate let sectionNames = ["","Albums"]
+
+  fileprivate let sectionNames = ["", "Albums"]
   fileprivate var userLibrary: PHFetchResult<PHAssetCollection>!
   fileprivate var userAlbums: PHFetchResult<PHCollection>!
-  
+
   fileprivate var doneButton: UIBarButtonItem!
-  
+
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -55,12 +55,12 @@ class AlbumsTableViewController: UITableViewController {
     }
     doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed(_:)))
   }
-  
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     updateDoneButton()
   }
-  
+
   // MARK: - Navigation
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -96,7 +96,7 @@ class AlbumsTableViewController: UITableViewController {
   @IBAction func cancelPressed(_ sender: Any) {
     assetPickerDelegate?.assetPickerDidCancel()
   }
-  
+
   @IBAction func donePressed(_ sender: Any) {
     // Should only be invoked when there are selected assets
     if let assets = self.selectedAssets?.assets {
@@ -105,7 +105,7 @@ class AlbumsTableViewController: UITableViewController {
       self.selectedAssets?.assets.removeAll()
     }
   }
-  
+
 }
 
 // MARK: - Private Methods
@@ -118,7 +118,7 @@ extension AlbumsTableViewController {
       subtype: .smartAlbumUserLibrary,
       options: nil)
   }
-  
+
   func showNoAccessAlertAndCancel() {
     let alert = UIAlertController(title: "No Photo Permissions", message: "Please grant photo permissions in Settings", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -129,10 +129,10 @@ extension AlbumsTableViewController {
         completionHandler: nil)
       return
     }))
-    
+
     self.present(alert, animated: true, completion: nil)
   }
-  
+
   fileprivate func updateDoneButton() {
     guard selectedAssets != nil else { return }
     // Add a done button when there are selected assets
@@ -150,7 +150,7 @@ extension AlbumsTableViewController {
   override func numberOfSections(in tableView: UITableView) -> Int {
     return sectionNames.count
   }
-  
+
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch (section) {
     case 0:
@@ -161,11 +161,11 @@ extension AlbumsTableViewController {
       return 0
     }
   }
-  
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
     cell.textLabel!.text = ""
-    
+
     switch(indexPath.section) {
     case 0:
       let library = userLibrary[indexPath.row]
@@ -184,9 +184,9 @@ extension AlbumsTableViewController {
     default:
       break
     }
-    
+
     cell.accessoryType = .disclosureIndicator
-    
+
     return cell
   }
 
@@ -198,8 +198,8 @@ extension AlbumsTableViewController: AssetPickerDelegate {
   func assetPickerDidCancel() {
     assetPickerDelegate?.assetPickerDidCancel()
   }
-  
-  func assetPickerDidFinishPickingAssets(_ selectedAssets: [PHAsset])  {
+
+  func assetPickerDidFinishPickingAssets(_ selectedAssets: [PHAsset]) {
     assetPickerDelegate?.assetPickerDidFinishPickingAssets(selectedAssets)
     // Clear out selections
     self.selectedAssets?.assets.removeAll()

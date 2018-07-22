@@ -33,19 +33,19 @@ import Park
 import CoreLocation
 
 class ParksPageViewController: UIPageViewController {
-  
+
   lazy var parks: [Park] = {
     guard let path = Bundle.main.path(forResource: "NationalParks", ofType: "plist")
       else {
         print("Failed to read NationalParks.plist")
         return []
     }
-    
+
     let fileUrl = URL.init(fileURLWithPath: path)
-    
+
     guard let parksArray = NSArray(contentsOf: fileUrl) as? [Dictionary<String, Any>]
       else { return [] }
-    
+
     let parks: [Park] = parksArray.flatMap({ (park) in
       guard let imageName = park["imageName"] as? String,
         let image = UIImage(named: imageName),
@@ -54,13 +54,13 @@ class ParksPageViewController: UIPageViewController {
         let longitude = park[Park.Key.longitude] as? Double,
         let latitude = park[Park.Key.latitude] as? Double
         else { return nil }
-      
+
       return Park(image: image, name: name, summary: summary, longitude: longitude, latitude: latitude)
     })
-    
+
     return parks
   }()
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     if let parkViewController = storyboard?.instantiateViewController(withIdentifier: "ParkViewController") as? ParkViewController,
@@ -80,40 +80,40 @@ extension ParksPageViewController: UIPageViewControllerDataSource {
       let currentPageIndex = currentVC.pageIndex,
       currentPageIndex > 0
       else { return nil }
-    
+
     guard let newVC = storyboard?.instantiateViewController(withIdentifier: "ParkViewController") as? ParkViewController
       else { return nil }
-    
+
     newVC.pageIndex = currentPageIndex - 1
     newVC.park = parks[newVC.pageIndex!]
     return newVC
   }
-  
+
   @available(iOS 5.0, *)
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
     guard let currentVC = viewController as? ParkViewController,
       let currentPageIndex = currentVC.pageIndex,
       (currentPageIndex + 1) < parks.count
       else { return nil }
-    
+
     guard let newVC = storyboard?.instantiateViewController(withIdentifier: "ParkViewController") as? ParkViewController
       else { return nil }
-    
+
     newVC.pageIndex = currentPageIndex + 1
     newVC.park = parks[newVC.pageIndex!]
     return newVC
   }
-  
+
   func presentationCount(for pageViewController: UIPageViewController) -> Int {
     return parks.count
   }
-  
+
   func presentationIndex(for pageViewController: UIPageViewController) -> Int {
     guard let viewControllers = pageViewController.viewControllers,
       let currentVC = viewControllers[0] as? ParkViewController,
       let currentPageIndex = currentVC.pageIndex
       else { return 0 }
-    
+
     return currentPageIndex
   }
 }

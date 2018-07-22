@@ -35,14 +35,14 @@ class BlurView: GLKView {
   let clampFilter = CIFilter(name: "CIAffineClamp")!
   let blurFilter = CIFilter(name: "CIGaussianBlur")!
   let ciContext: CIContext
-  
+
   override init(frame: CGRect) {
     let glContext = EAGLContext(api: .openGLES2)!
     ciContext = CIContext(eaglContext: glContext, options: [kCIContextWorkingColorSpace: NSNull()])
     super.init(frame: frame, context: glContext)
     enableSetNeedsDisplay = true
   }
-  
+
   required init?(coder aDecoder: NSCoder) {
     let glContext = EAGLContext(api: .openGLES2)!
     ciContext = CIContext(eaglContext: glContext, options: [kCIContextWorkingColorSpace: NSNull()])
@@ -50,7 +50,7 @@ class BlurView: GLKView {
     context = glContext
     enableSetNeedsDisplay = true
   }
-  
+
   func setImage(fromView view: UIView) {
     UIGraphicsBeginImageContextWithOptions(view.frame.size, view.isOpaque, 0)
     view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
@@ -58,27 +58,27 @@ class BlurView: GLKView {
     UIGraphicsEndImageContext()
     inputImage = image
   }
-  
+
   @IBInspectable var inputImage: UIImage? {
     didSet {
       inputCIImage = inputImage.map { CIImage(image: $0)! }
     }
   }
-  
+
   @IBInspectable var blurRadius: Float = 0 {
     didSet {
       blurFilter.setValue(blurRadius, forKey: "inputRadius")
       setNeedsDisplay()
     }
   }
-  
+
   var inputCIImage: CIImage? {
     didSet { setNeedsDisplay() }
   }
-  
+
   override func draw(_ rect: CGRect) {
     guard let inputCIImage = inputCIImage else { return }
-    
+
     clampFilter.setValue(inputCIImage, forKey: kCIInputImageKey)
     blurFilter.setValue(clampFilter.outputImage!, forKey: kCIInputImageKey)
     let rect = CGRect(x: 0, y: 0, width: drawableWidth, height: drawableHeight)
@@ -90,7 +90,7 @@ extension UIWindow {
   private struct AssociatedKeys {
     static var window: UInt8 = 0
   }
-  
+
   var blurWindow: UIWindow? {
     get {
       return objc_getAssociatedObject(self, &AssociatedKeys.window) as? UIWindow
@@ -99,13 +99,13 @@ extension UIWindow {
       objc_setAssociatedObject(self, &AssociatedKeys.window, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
   }
-  
+
   func installBlurView() {
     let tripleTapGesture = UITapGestureRecognizer(target: self, action: #selector(setupBlurView))
     tripleTapGesture.numberOfTapsRequired = 3
     self.addGestureRecognizer(tripleTapGesture)
   }
-  
+
   @objc func setupBlurView() {
     let controller: UIViewController
     let window: UIWindow
@@ -122,19 +122,19 @@ extension UIWindow {
       window.windowLevel = UIWindowLevelAlert
       blurWindow = window
     }
-    
+
     let blurView = BlurView(frame: self.bounds)
     blurView.blurRadius = 10
     blurView.setImage(fromView: self)
     controller.view.addSubview(blurView)
-    
+
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(removeBlur))
     tapGesture.numberOfTapsRequired = 1
     controller.view.addGestureRecognizer(tapGesture)
-    
+
     window.makeKeyAndVisible()
   }
-  
+
   @objc func removeBlur() {
     blurWindow?.removeFromSuperview()
     blurWindow = nil

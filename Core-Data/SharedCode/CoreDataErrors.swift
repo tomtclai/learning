@@ -8,10 +8,9 @@
 
 import CoreData
 
-
 struct ManagedObjectValidationError {
     fileprivate let error: NSError
-    fileprivate var userInfo: [AnyHashable:Any] { return error.userInfo }
+    fileprivate var userInfo: [AnyHashable: Any] { return error.userInfo }
 
     init(error: NSError) {
         self.error = error
@@ -45,10 +44,9 @@ extension ManagedObjectValidationError: CustomDebugStringConvertible {
     }
 }
 
-
 extension NSManagedObject {
     func propertyValidationError(forKey key: String, localizedDescription: String) -> NSError {
-        let userInfo: [String:Any] = [
+        let userInfo: [String: Any] = [
             NSValidationObjectErrorKey: self,
             NSValidationKeyErrorKey: key as AnyObject,
             NSLocalizedDescriptionKey: localizedDescription as AnyObject
@@ -58,7 +56,7 @@ extension NSManagedObject {
     }
 
     func validationError(withLocalizedDescription description: String) -> NSError {
-        let userInfo: [String:Any] = [
+        let userInfo: [String: Any] = [
             NSValidationObjectErrorKey: self,
             NSLocalizedDescriptionKey: description as AnyObject
         ]
@@ -67,11 +65,10 @@ extension NSManagedObject {
     }
 
     func multipleValidationError(withLocalizedDescriptions descriptions: [String]) -> NSError {
-        let userInfo: [String:Any] = [
+        let userInfo: [String: Any] = [
             NSDetailedErrorsKey: descriptions.map(validationError)
         ]
         let domain = Bundle(for: type(of: self)).bundleIdentifier ?? "undefined"
         return NSError(domain: domain, code: NSValidationMultipleErrorsError, userInfo: userInfo)
     }
 }
-

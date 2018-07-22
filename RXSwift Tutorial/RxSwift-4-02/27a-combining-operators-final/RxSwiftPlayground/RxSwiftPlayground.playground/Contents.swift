@@ -2,13 +2,13 @@
 import RxSwift
 
 example(of: "startWith") {
-  
+
   let disposeBag = DisposeBag()
-  
+
   let prequelEpisodes = Observable.of(episodeI, episodeII, episodeIII)
-  
+
   let flashback = prequelEpisodes.startWith(episodeIV, episodeV)
-  
+
   flashback
     .subscribe(onNext: { episode in
       print(episode)
@@ -17,13 +17,13 @@ example(of: "startWith") {
 }
 
 example(of: "concat") {
-  
+
   let disposeBag = DisposeBag()
-  
+
   let prequelTrilogy = Observable.of(episodeI, episodeII, episodeIII)
-  
+
   let originalTrilogy = Observable.of(episodeIV, episodeV, episodeVI)
-  
+
   prequelTrilogy.concat(originalTrilogy)
     .subscribe(onNext: { episode in
       print(episode)
@@ -32,31 +32,31 @@ example(of: "concat") {
 }
 
 example(of: "merge") {
-  
+
   let disposeBag = DisposeBag()
-  
+
   let filmTrilogies = PublishSubject<String>()
-  
+
   let standaloneFilms = PublishSubject<String>()
-  
+
   let storyOrder = Observable.of(filmTrilogies, standaloneFilms)
-  
+
   storyOrder.merge()
     .subscribe(onNext: {
       print($0)
     })
     .disposed(by: disposeBag)
-  
+
   filmTrilogies.onNext(episodeI)
   filmTrilogies.onNext(episodeII)
-  
+
   standaloneFilms.onNext(theCloneWars)
-  
+
   filmTrilogies.onNext(episodeIII)
-  
+
   standaloneFilms.onNext(solo)
   standaloneFilms.onNext(rogueOne)
-  
+
   filmTrilogies.onNext(episodeIV)
 }
 

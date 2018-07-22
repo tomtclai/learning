@@ -34,7 +34,7 @@ class MainViewController: UIViewController {
     super.viewDidLoad()
 
   }
-  
+
   @IBAction func actionClear() {
 
   }

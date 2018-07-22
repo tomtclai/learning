@@ -38,9 +38,9 @@ enum FunctionMode {
 }
 
 class HomeHeroViewController: UIViewController {
-  
+
   // MARK: - Properties
-  
+
   @IBOutlet var sceneView: ARSCNView!
   @IBOutlet weak var chairButton: UIButton!
   @IBOutlet weak var candleButton: UIButton!
@@ -50,14 +50,14 @@ class HomeHeroViewController: UIViewController {
   @IBOutlet weak var crosshair: UIView!
   @IBOutlet weak var messageLabel: UILabel!
   @IBOutlet weak var trackingInfo: UILabel!
-  
+
   var lastHighQualityFeaturePoint: SCNVector3?
   var currentMode: FunctionMode = .none
   var measuringNodes: [SCNNode] = []
   var objects: [SCNNode] = []
-  
+
   // MARK: - UIViewController methods
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     runSession()
@@ -66,14 +66,14 @@ class HomeHeroViewController: UIViewController {
     distanceLabel.isHidden = true
     selectVase()
   }
-  
+
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    
+
     if let hit = sceneView.hitTest(viewCenter, types: [.existingPlaneUsingExtent]).first {
       sceneView.session.add(anchor: ARAnchor(transform: hit.worldTransform))
       return
     }
-    
+
     if let highQualityFeature = lastHighQualityFeaturePoint {
       if let point = sceneView.hitTestWithInfiniteHorizontalPlane(viewCenter, highQualityFeature) {
         let matrix =  SCNMatrix4MakeTranslation(point.x, point.y, point.z)
@@ -81,44 +81,44 @@ class HomeHeroViewController: UIViewController {
         return
       }
     }
-    
+
     showMessage("Please move around with the camera", label: messageLabel, seconds: 2)
   }
-  
+
   @IBAction func didTapChair(_ sender: Any) {
     currentMode = .placeObject("Models.scnassets/chair/chair.scn")
     selectButton(chairButton)
   }
-  
+
   @IBAction func didTapCandle(_ sender: Any) {
     currentMode = .placeObject("Models.scnassets/candle/candle.scn")
     selectButton(candleButton)
   }
-  
+
   @IBAction func didTapMeasure(_ sender: Any) {
     currentMode = .measure
     selectButton(measureButton)
   }
-  
+
   @IBAction func didTapVase(_ sender: Any) {
     selectVase()
   }
-  
+
   @IBAction func didTapReset(_ sender: Any) {
     removeAllObjects()
     distanceLabel.text = ""
   }
-  
+
   func selectVase() {
     currentMode = .placeObject("Models.scnassets/vase/vase.scn")
     selectButton(vaseButton)
   }
-  
+
   func selectButton(_ button: UIButton) {
     unselectAllButtons()
     button.isSelected = true
   }
-  
+
   func unselectAllButtons() {
     [chairButton, candleButton, measureButton, vaseButton].forEach {
       $0?.isSelected = false
@@ -129,26 +129,26 @@ class HomeHeroViewController: UIViewController {
 // MARK: - ARSCNViewDelegate
 
 extension HomeHeroViewController: ARSCNViewDelegate {
-  
+
   func session(_ session: ARSession, didFailWithError error: Error) {
     showMessage(error.localizedDescription, label: messageLabel, seconds: 2)
   }
-  
+
   func sessionWasInterrupted(_ session: ARSession) {
-    
+
     showMessage("Session interrupted", label: messageLabel, seconds: 2)
   }
-  
+
   func sessionInterruptionEnded(_ session: ARSession) {
     showMessage("Session resumed", label: messageLabel, seconds: 2)
     removeAllObjects()
     runSession()
   }
-  
+
   func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-    
+
     DispatchQueue.main.async {
-      
+
       if let planeAnchor = anchor as? ARPlaneAnchor {
         #if DEBUG
           let planeNode = createPlaneNode(center: planeAnchor.center, extent: planeAnchor.extent)
@@ -156,18 +156,18 @@ extension HomeHeroViewController: ARSCNViewDelegate {
         #endif
       } else {
         switch self.currentMode {
-          
-        case .none: break;
-          
+
+        case .none: break
+
         case .placeObject(let name):
-          
+
           let modelClone = nodeWithModelName(name)
           self.objects.append(modelClone)
           modelClone.position = SCNVector3Zero
           node.addChildNode(modelClone)
-          
+
         case .measure:
-          
+
           let sphereNode = createSphereNode(radius: 0.02)
           self.objects.append(sphereNode)
           sphereNode.position = SCNVector3Zero
@@ -177,10 +177,9 @@ extension HomeHeroViewController: ARSCNViewDelegate {
       }
     }
   }
-  
-  
+
   func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-    
+
     DispatchQueue.main.async {
       if let planeAnchor = anchor as? ARPlaneAnchor {
         updatePlaneNode(node.childNodes[0], center: planeAnchor.center, extent: planeAnchor.extent)
@@ -189,17 +188,17 @@ extension HomeHeroViewController: ARSCNViewDelegate {
       }
     }
   }
-  
+
   func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-    
+
     DispatchQueue.main.async {
-      
+
       self.updateTrackingInfo()
-      
+
       if let highQualityFeature = self.sceneView.hitTestFeaturePoints(self.viewCenter, allowedAngleFromRay: 8) {
         self.lastHighQualityFeaturePoint = highQualityFeature
       }
-      
+
       if let _ = self.sceneView.hitTest(self.viewCenter, types: [.existingPlaneUsingExtent]).first {
         self.crosshair.backgroundColor = UIColor.green
       } else {
@@ -207,7 +206,7 @@ extension HomeHeroViewController: ARSCNViewDelegate {
       }
     }
   }
-  
+
   func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
     guard anchor is ARPlaneAnchor else { return }
     removeChildren(inNode: node)
@@ -217,22 +216,22 @@ extension HomeHeroViewController: ARSCNViewDelegate {
 // MARK: - Private methods
 
 private extension HomeHeroViewController {
-  
+
   func updateMeasuringNodes() {
     guard measuringNodes.count > 1 else {
       return
     }
-    
+
     let firstNode = measuringNodes[0]
     let secondNode = measuringNodes[1]
-    
+
     let showMeasuring = self.measuringNodes.count == 2
-    
+
     distanceLabel.isHidden = !showMeasuring
-    
+
     if showMeasuring {
       measure(fromNode: firstNode, toNode: secondNode)
-    } else if measuringNodes.count > 2  {
+    } else if measuringNodes.count > 2 {
       firstNode.removeFromParentNode()
       secondNode.removeFromParentNode()
       measuringNodes.removeFirst(2)
@@ -243,7 +242,7 @@ private extension HomeHeroViewController {
       }
     }
   }
-  
+
   func measure(fromNode: SCNNode, toNode: SCNNode) {
     let measuringLineNode = createLineNode(fromNode: fromNode, toNode: toNode)
     measuringLineNode.name = "MeasuringLine"
@@ -253,26 +252,26 @@ private extension HomeHeroViewController {
     let measurementValue = String(format: "%.2f", dist)
     distanceLabel.text = "Distance: \(measurementValue) m"
   }
-  
+
   func runSession() {
     sceneView.delegate = self
-    
+
     let configuration = ARWorldTrackingConfiguration()
-    
+
     configuration.planeDetection = .horizontal
     configuration.isLightEstimationEnabled = true
     sceneView.session.run(configuration)
-    
+
     #if DEBUG
       sceneView.debugOptions = ARSCNDebugOptions.showFeaturePoints
     #endif
   }
-  
+
   func updateTrackingInfo() {
     guard let frame = sceneView.session.currentFrame else {
       return
     }
-    
+
     switch frame.camera.trackingState {
     case .limited(let reason):
       switch reason {
@@ -285,22 +284,22 @@ private extension HomeHeroViewController {
       }
     default: trackingInfo.text = ""
     }
-    
+
     guard let lightEstimate = frame.lightEstimate?.ambientIntensity else {
       return
     }
-    
+
     if lightEstimate < 100 {
       trackingInfo.text = "Limited Tracking: Too Dark"
     }
   }
-  
+
   func removeAllObjects() {
     for object in objects {
       object.removeFromParentNode()
     }
-    
+
     objects = []
   }
-  
+
 }

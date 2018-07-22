@@ -11,7 +11,6 @@ import CoreLocation
 import CoreData
 import CoreDataHelpers
 
-
 public class Mood: NSManagedObject {
 
     @NSManaged public fileprivate(set) var date: Date
@@ -27,7 +26,6 @@ public class Mood: NSManagedObject {
     @NSManaged public fileprivate(set) var country___: Country
     @NSManaged public fileprivate(set) var country: Country?
 
-
     public override func awakeFromInsert() {
         super.awakeFromInsert()
         primitiveDate = Date()
@@ -39,7 +37,6 @@ public class Mood: NSManagedObject {
         mood.date = Date()
         return mood
     }
-
 
     public static func insert(into moc: NSManagedObjectContext, image: UIImage, location: CLLocation?, placemark: CLPlacemark?) -> Mood {
         let iso3166 = ISO3166.Country.fromISO3166(placemark?.isoCountryCode ?? "")
@@ -69,13 +66,11 @@ public class Mood: NSManagedObject {
         }
     }
 
-
     // MARK: Private
 
     @NSManaged fileprivate var primitiveDate: Date
     @NSManaged fileprivate var latitude: NSNumber?
     @NSManaged fileprivate var longitude: NSNumber?
-
 
     fileprivate func removeFromCountry() {
         guard country != nil else { return }
@@ -83,7 +78,6 @@ public class Mood: NSManagedObject {
     }
 
 }
-
 
 extension Mood: Managed {
 
@@ -97,16 +91,13 @@ extension Mood: Managed {
 
 }
 
-
 extension Mood: DelayedDeletable {
     @NSManaged public var markedForDeletionDate: Date?
 }
 
-
 extension Mood: RemoteDeletable {
     @NSManaged public var markedForRemoteDeletion: Bool
 }
-
 
 private let MaxColors = 8
 
@@ -126,7 +117,7 @@ extension Data {
         var rgbValues = Array(repeating: UInt8(), count: count)
         rgbValues.withUnsafeMutableBufferPointer { buffer in
             let voidPointer = UnsafeMutableRawPointer(buffer.baseAddress)
-            let _ = withUnsafeBytes { bytes in
+            _ = withUnsafeBytes { bytes in
                 memcpy(voidPointer, bytes, count)
             }
         }
@@ -138,7 +129,6 @@ extension Data {
     }
 }
 
-
 extension Sequence where Iterator.Element == UIColor {
     public var moodData: Data {
         let rgbValues = flatMap { $0.rgb }
@@ -148,7 +138,6 @@ extension Sequence where Iterator.Element == UIColor {
         }
     }
 }
-
 
 private let ColorsTransformerName = "ColorsTransformer"
 
@@ -167,7 +156,6 @@ extension Mood {
         })
     }()
 }
-
 
 extension UIColor {
 
@@ -188,5 +176,3 @@ extension UIColor {
     }
 
 }
-
-

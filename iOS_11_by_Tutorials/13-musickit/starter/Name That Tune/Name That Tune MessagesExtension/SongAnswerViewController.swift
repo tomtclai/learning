@@ -44,7 +44,7 @@ class SongAnswerViewController: UIViewController {
       // TODO: load the artwork from the URL
     }
   }
-  
+
   var isCorrect: Bool? {
     didSet {
       loadViewIfNeeded()

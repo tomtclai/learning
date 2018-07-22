@@ -33,16 +33,16 @@ import Foundation
 final class DataStore {
   private static let defaultPlistName = "GreenGrocer"
   private static let productsKey = "products"
-  
-  // MARK:- Storage
+
+  // MARK: - Storage
   var products: [Product] = []
-  
+
   init(products: [Product]) {
     self.products = products
   }
 }
 
-// MARK:- Reading from disc
+// MARK: - Reading from disc
 extension DataStore {
   convenience init(plistURL: URL) {
     guard let rawDict = DataStore.loadPlistFromURL(plistURL),
@@ -51,58 +51,58 @@ extension DataStore {
         self.init(products: [])
         return
     }
-    
+
     let sortedProducts = products.sorted { $0.name < $1.name }
     self.init(products: sortedProducts)
   }
-  
+
   convenience init(plistName: String) {
     let fileURL = URL.urlForFileInDocumentsDirectory(plistName, fileExtension: "plist")
     self.init(plistURL: fileURL)
   }
-  
+
   convenience init() {
     self.init(plistName: DataStore.defaultPlistName)
   }
-  
+
   fileprivate static func loadPlistFromURL(_ plistURL: URL) -> [String: AnyObject]? {
     let rawDict = NSDictionary(contentsOf: plistURL)
     return rawDict as? [String: AnyObject]
   }
-  
+
   static var defaultDataStorePresentOnDisk: Bool {
     let storePath = URL.urlForFileInDocumentsDirectory(defaultPlistName, fileExtension: "plist").path
     return FileManager.default.fileExists(atPath: storePath)
   }
 }
 
-// MARK:- Persisting
+// MARK: - Persisting
 extension DataStore {
   func save(plistName: String) {
     let serialisedData = [
-      DataStore.productsKey: products.map { $0.dictRepresentation },
+      DataStore.productsKey: products.map { $0.dictRepresentation }
       ] as NSDictionary
     serialisedData.write(to: URL.urlForFileInDocumentsDirectory(plistName, fileExtension: "plist"), atomically: true)
   }
-  
+
   func save() {
     save(plistName: DataStore.defaultPlistName)
   }
 }
 
-// MARK:- Accessors
+// MARK: - Accessors
 extension DataStore {
   public func product(withId identifier: String) -> Product? {
     return products.filter { $0.id.uuidString == identifier }.first
   }
 }
 
-// MARK:- NSURL Util methods
+// MARK: - NSURL Util methods
 extension URL {
-  fileprivate static var documentsDirectory : URL {
+  fileprivate static var documentsDirectory: URL {
     return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
   }
-  
+
   fileprivate static func urlForFileInDocumentsDirectory(_ fileName: String, fileExtension: String) -> URL {
     return URL.documentsDirectory.appendingPathComponent(fileName).appendingPathExtension(fileExtension)
   }

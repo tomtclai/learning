@@ -30,33 +30,33 @@ class AssetsCollectionViewController: UICollectionViewController {
   var assetsFetchResults: PHFetchResult<AnyObject>?
   var selectedAssets: SelectedAssets!
   var assetPickerDelegate: AssetPickerDelegate?
-  
+
   fileprivate var thumbnailSize = CGSize.zero
   fileprivate let imageManager = PHImageManager()
-  
+
   fileprivate var doneButton: UIBarButtonItem!
-  
+
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     collectionView!.allowsMultipleSelection = true
-    
+
     doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed(_:)))
   }
-  
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
+
     // Determine the size of the thumbnails to request from the PHCachingImageManager
     let scale = UIScreen.main.scale
     let cellSize = (collectionViewLayout as! UICollectionViewFlowLayout).itemSize
     thumbnailSize = CGSize(width: cellSize.width * scale, height: cellSize.height * scale)
-    
+
     collectionView!.reloadData()
     updateSelectedItems()
   }
-  
+
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransition(to: size, with: coordinator)
     collectionView!.reloadData()
@@ -68,12 +68,12 @@ class AssetsCollectionViewController: UICollectionViewController {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
   }
-  
+
   // MARK: - Button handlers
   func donePressed(_ sender: UIBarButtonItem) {
     assetPickerDelegate?.assetPickerDidFinishPickingAssets(selectedAssets.assets)
   }
-  
+
 }
 
 // MARK: - Private Methods
@@ -100,7 +100,7 @@ extension AssetsCollectionViewController {
     }
     updateDoneButton()
   }
-  
+
   fileprivate func updateDoneButton() {
     guard selectedAssets != nil else { return }
     // Add a done button when there are selected assets
@@ -118,28 +118,27 @@ extension AssetsCollectionViewController {
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return assetsFetchResults?.count ?? 0
   }
-  
+
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! AssetCollectionViewCell
-    
+
     // Configure the cell
     if let fetchResults = assetsFetchResults {
       let asset = fetchResults[indexPath.item] as! PHAsset
       let options = PHImageRequestOptions()
       options.isNetworkAccessAllowed = true
-      
+
       cell.representedAssetIdentifier = asset.localIdentifier
       imageManager.requestImage(for: asset,
                                 targetSize: thumbnailSize,
                                 contentMode: .aspectFill,
-                                options: options)
-      { image, _ in
+                                options: options) { image, _ in
         if cell.representedAssetIdentifier == asset.localIdentifier {
           cell.thumbnailImage = image
         }
       }
     }
-    
+
     return cell
   }
 }
@@ -154,7 +153,7 @@ extension AssetsCollectionViewController {
       updateDoneButton()
     }
   }
-  
+
   override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
     // Update de-selected Assets
     if let assetToDelete = assetsFetchResults?[indexPath.item] as? PHAsset {

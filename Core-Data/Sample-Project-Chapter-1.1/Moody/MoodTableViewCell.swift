@@ -8,12 +8,10 @@
 
 import UIKit
 
-
 class MoodTableViewCell: UITableViewCell {
     @IBOutlet weak var moodView: MoodView!
     @IBOutlet weak var label: UILabel!
 }
-
 
 private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
@@ -24,12 +22,9 @@ private let dateFormatter: DateFormatter = {
     return formatter
 }()
 
-
 extension MoodTableViewCell {
     func configure(for mood: Mood) {
         moodView.colors = mood.colors
         label.text = dateFormatter.string(from: mood.date)
     }
 }
-
-

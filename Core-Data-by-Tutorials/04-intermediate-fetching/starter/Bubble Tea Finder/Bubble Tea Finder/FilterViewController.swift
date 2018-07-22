@@ -53,7 +53,7 @@ class FilterViewController: UITableViewController {
   @IBOutlet weak var offeringDealCell: UITableViewCell!
   @IBOutlet weak var walkingDistanceCell: UITableViewCell!
   @IBOutlet weak var userTipsCell: UITableViewCell!
-  
+
   // MARK: - Sort section
   @IBOutlet weak var nameAZSortCell: UITableViewCell!
   @IBOutlet weak var nameZASortCell: UITableViewCell!

@@ -29,11 +29,11 @@
 import UIKit
 
 struct PetCardStore {
-  
+
   static let defaultPets: [PetCard] = {
     return parsePets()
   }()
-  
+
   private static func parsePets() -> [PetCard] {
     guard let fileURL = Bundle.main.url(forResource: "Pets", withExtension: "plist") else {
       return []

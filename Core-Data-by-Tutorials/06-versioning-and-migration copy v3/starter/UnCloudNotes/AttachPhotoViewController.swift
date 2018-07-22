@@ -33,8 +33,8 @@ import UIKit
 class AttachPhotoViewController: UIViewController {
 
   // MARK: - Properties
-  var note : Note?
-  lazy var imagePicker : UIImagePickerController = {
+  var note: Note?
+  lazy var imagePicker: UIImagePickerController = {
     let picker = UIImagePickerController()
     picker.sourceType = .photoLibrary
     picker.delegate = self
@@ -59,12 +59,12 @@ class AttachPhotoViewController: UIViewController {
 
 // MARK: - UIImagePickerControllerDelegate
 extension AttachPhotoViewController: UIImagePickerControllerDelegate {
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
     guard let note = note,
       let context = note.managedObjectContext else {
       return
     }
-    
+
     let attachment = Attachment(context: context)
     attachment.dateCreated = Date()
     attachment.image = info[UIImagePickerControllerOriginalImage] as? UIImage

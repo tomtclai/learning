@@ -23,7 +23,7 @@
 import UIKit
 
 // A delay function
-func delay(_ seconds: Double, completion: @escaping ()->Void) {
+func delay(_ seconds: Double, completion: @escaping () -> Void) {
   DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
 }
 func tintBackgroundColor(for layer: CALayer, to color: UIColor) {
@@ -173,7 +173,7 @@ class ViewController: UIViewController {
     flyLeft.fromValue = info.layer.position.x + view.frame.size.width
     flyLeft.toValue = info.layer.position.x
     flyLeft.duration = 5.0
-    
+
     info.layer.add(flyLeft, forKey: "infoappear")
 
     let fadeLabelIn = CABasicAnimation(keyPath: "opacity")
@@ -196,7 +196,7 @@ class ViewController: UIViewController {
     let parentViewWidth = view.layer.frame.size.width
     let translation = parentViewWidth - layer.frame.origin.x
     let speed = parentViewWidth / 60.0
-    let duration : TimeInterval = TimeInterval(translation / speed)
+    let duration: TimeInterval = TimeInterval(translation / speed)
 
     let cloudMove = CABasicAnimation(keyPath: "position.x")
     cloudMove.duration = duration
@@ -262,12 +262,12 @@ class ViewController: UIViewController {
 
   @IBAction func login() {
     view.endEditing(true)
-    UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.0, options:[], animations: {
+    UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.0, options: [], animations: {
       self.loginButton.bounds.size.width += 80.0
     }, completion: { _ in
       self.showMessage(index: 0)
     })
-    UIView.animate(withDuration: 0.33, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options:[], animations: {
+    UIView.animate(withDuration: 0.33, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
       self.loginButton.center.y += 60.0
       self.spinner.center = CGPoint(x: 40.0,
                                     y: self.loginButton.frame.size.height/2)
@@ -277,7 +277,6 @@ class ViewController: UIViewController {
     tintBackgroundColor(for: loginButton.layer, to: tintColor)
     roundCorners(for: loginButton.layer, to: 25)
 
-
     let balloon = CALayer()
     balloon.contents = #imageLiteral(resourceName: "balloon").cgImage
     balloon.frame = CGRect(x: -50, y: 0, width: 50, height: 65)
@@ -285,13 +284,13 @@ class ViewController: UIViewController {
 
     let flight = CAKeyframeAnimation(keyPath: "position")
     flight.duration = 12.0
-    let offsetX : CGFloat = -50
-    let offsetY : CGFloat = 160
+    let offsetX: CGFloat = -50
+    let offsetY: CGFloat = 160
     flight.values = [
       CGPoint(x: offsetX, y: 0),
       CGPoint(x: view.frame.width - offsetX, y: offsetY),
       CGPoint(x: offsetX, y: loginButton.center.y)
-      ].map{NSValue(cgPoint: $0)}
+      ].map {NSValue(cgPoint: $0)}
     flight.keyTimes = [0, 0.5, 1]
     balloon.add(flight, forKey: nil)
     balloon.position = CGPoint(x: offsetX, y: loginButton.center.y)

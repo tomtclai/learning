@@ -37,6 +37,6 @@ func generateThumbnail(forColor color: UIColor) -> UIImage {
   UIRectFill(CGRect(origin: CGPoint.zero, size: bounds))
   let thumbnail = UIGraphicsGetImageFromCurrentImageContext()!
   UIGraphicsEndImageContext()
-  
+
   return thumbnail
 }

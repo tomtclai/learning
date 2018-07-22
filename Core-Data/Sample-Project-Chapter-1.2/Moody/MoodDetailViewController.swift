@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 
-
 class MoodDetailViewController: UIViewController {
     @IBOutlet weak var moodView: MoodView!
     @IBOutlet weak var mapView: MKMapView!
@@ -20,7 +19,7 @@ class MoodDetailViewController: UIViewController {
         didSet {
             observer = ManagedObjectObserver(object: mood) { [unowned self] type in
                 guard type == .delete else { return }
-                let _ = self.navigationController?.popViewController(animated: true)
+                _ = self.navigationController?.popViewController(animated: true)
             }
             updateViews()
         }
@@ -36,7 +35,6 @@ class MoodDetailViewController: UIViewController {
             self.mood.managedObjectContext?.delete(self.mood)
         }
     }
-
 
     // MARK: Private
 
@@ -57,7 +55,6 @@ class MoodDetailViewController: UIViewController {
     }
 }
 
-
 private let dateComponentsFormatter: DateComponentsFormatter = {
     let formatter = DateComponentsFormatter()
     formatter.unitsStyle = .full
@@ -67,14 +64,12 @@ private let dateComponentsFormatter: DateComponentsFormatter = {
     return formatter
 }()
 
-
 extension Mood {
     var dateDescription: String {
         guard let timeString = dateComponentsFormatter.string(from: abs(date.timeIntervalSinceNow)) else { return "" }
         return localized(.mood_dateComponentFormat, args: [timeString])
     }
 }
-
 
 class MoodAnnotation: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
@@ -87,5 +82,3 @@ class MoodAnnotation: NSObject, MKAnnotation {
         guard let _ = mood.location, let _ = title else { return nil }
     }
 }
-
-

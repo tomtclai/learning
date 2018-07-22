@@ -8,7 +8,6 @@
 
 import CoreData
 
-
 public func migrateStore<Version: ModelVersion>(from sourceURL: URL, to targetURL: URL, targetVersion: Version, deleteSource: Bool = false, progress: Progress? = nil) {
     guard let sourceVersion = Version(storeURL: sourceURL as URL) else { fatalError("unknown store version at URL \(sourceURL)") }
     var currentURL = sourceURL
@@ -38,4 +37,3 @@ public func migrateStore<Version: ModelVersion>(from sourceURL: URL, to targetUR
         NSPersistentStoreCoordinator.destroyStore(at: sourceURL)
     }
 }
-

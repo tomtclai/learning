@@ -24,7 +24,7 @@ import UIKit
 import RxSwift
 
 class MainViewController: UIViewController {
-  
+
   let bag = DisposeBag()
   let images = Variable<[UIImage]>([])
 
@@ -43,21 +43,21 @@ class MainViewController: UIViewController {
                                         size: preview.frame.size)
       })
       .disposed(by: bag)
-    
+
     images.asObservable()
       .subscribe(onNext: { [weak self] photos in
         self?.updateUI(photos: photos)
       })
       .disposed(by: bag)
   }
-  
+
   func updateUI(photos: [UIImage]) {
     buttonSave.isEnabled = photos.count > 0 && photos.count % 2 == 0
     buttonClear.isEnabled = photos.count > 0
     itemAdd.isEnabled = photos.count < 6
     title = photos.count > 0 ? "\(photos.count) photos" : "Collage"
   }
-  
+
   @IBAction func actionClear() {
     images.value = []
   }
@@ -68,10 +68,10 @@ class MainViewController: UIViewController {
 
   @IBAction func actionAdd() {
 //    images.value.append(UIImage(named: "Barcelona.jpg")!)
-    
+
     let photosViewController = storyboard!.instantiateViewController(
       withIdentifier: "PhotosViewController") as! PhotosViewController
-    
+
     photosViewController.selectedPhotos
       .subscribe(onNext: { [weak self] newImage in
         guard let images = self?.images else { return }
@@ -80,7 +80,7 @@ class MainViewController: UIViewController {
           print("completed photo selection")
       })
       .disposed(by: bag)
-    
+
     navigationController!.pushViewController(photosViewController, animated: true)
   }
 

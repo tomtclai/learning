@@ -13,5 +13,5 @@ class SentMemesTableViewCell: UITableViewCell {
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subtitle: UILabel!
-    
+
 }

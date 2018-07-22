@@ -12,11 +12,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var memes : [Meme?] = []
-    
-    func removeMemeAtIndex(index : Int) {
+    var memes: [Meme?] = []
+
+    func removeMemeAtIndex(index: Int) {
         memes.removeAtIndex(index)
     }
 
 }
-

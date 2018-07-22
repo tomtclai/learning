@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 
-
 class MoodsTableViewController: UITableViewController, SegueHandler {
 
     enum SegueIdentifier: String {
@@ -32,7 +31,6 @@ class MoodsTableViewController: UITableViewController, SegueHandler {
         }
     }
 
-
     // MARK: Private
 
     fileprivate var dataSource: TableViewDataSource<MoodsTableViewController>!
@@ -50,11 +48,8 @@ class MoodsTableViewController: UITableViewController, SegueHandler {
 
 }
 
-
 extension MoodsTableViewController: TableViewDataSourceDelegate {
     func configure(_ cell: MoodTableViewCell, for object: Mood) {
         cell.configure(for: object)
     }
 }
-
-

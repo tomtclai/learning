@@ -38,37 +38,37 @@ protocol SongSelectionViewControllerDelegate: class {
 
 class SongSelectionViewController: UIViewController {
   static let storyboardIdentifier = "SongSelectionViewController"
-  
+
   @IBOutlet var playPauseButton: UIButton!
   @IBOutlet var answersStackView: UIStackView!
   @IBOutlet var answerButtons: [UIButton]!
-  
+
   private let bottomMargin: CGFloat = 15
   private let musicPlayerController: MPMusicPlayerController = MPMusicPlayerController.systemMusicPlayer
-  
+
   weak var delegate: SongSelectionViewControllerDelegate?
   var showAsActive: Bool = true
   var quiz: Quiz?
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     guard let quiz = quiz else { fatalError("Quiz not set before loading SongSelectionViewController") }
-    
+
     for (index, button) in answerButtons.enumerated() {
       button.setTitle(quiz.choices[index], for: .normal)
     }
-    
+
     if showAsActive == false {
       disableButtons()
     }
-    
+
     musicPlayerController.setQueue(with: [quiz.song.id])
     musicPlayerController.prepareToPlay()
     musicPlayerController.beginGeneratingPlaybackNotifications()
     NotificationCenter.default.addObserver(forName: .MPMusicPlayerControllerPlaybackStateDidChange, object: musicPlayerController, queue: OperationQueue.main) { [weak self] (_) in
       guard let `self` = self else { return }
-      
+
       self.playPauseButton.isEnabled = true
       switch self.musicPlayerController.playbackState {
       case .playing:
@@ -77,28 +77,28 @@ class SongSelectionViewController: UIViewController {
         self.playPauseButton.setImage(#imageLiteral(resourceName: "Play"), for: .normal)
       }
     }
-    
+
     AuthorizationManager.withCapabilities { [weak self] (capabilities) in
       guard let `self` = self else { return }
       self.playPauseButton.isEnabled = capabilities.contains(.musicCatalogPlayback)
     }
   }
-  
+
   deinit {
     musicPlayerController.endGeneratingPlaybackNotifications()
   }
-  
+
   private func disableButtons() {
     answerButtons.forEach { button in
       button.isEnabled = false
       button.backgroundColor = .clear
     }
   }
-  
+
   func getHeight() -> CGFloat {
     return answersStackView.frame.maxY + bottomMargin
   }
-  
+
   @IBAction func playPauseTapped(_ sender: UIButton) {
     playPauseButton.isEnabled = false
     if musicPlayerController.playbackState == .playing {
@@ -107,7 +107,7 @@ class SongSelectionViewController: UIViewController {
       musicPlayerController.play()
     }
   }
-  
+
   @IBAction func answerTapped(_ sender: UIButton) {
     musicPlayerController.pause()
     guard let delegate = delegate, let chosenTitle = sender.title(for: .normal), let correctSong = quiz?.song else { return }

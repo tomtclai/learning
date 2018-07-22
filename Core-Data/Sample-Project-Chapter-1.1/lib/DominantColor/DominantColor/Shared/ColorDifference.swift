@@ -29,8 +29,7 @@ func CIE94SquaredColorDifference(
     kC: Float = 1,
     kH: Float = 1,
     K1: Float = 0.045,
-    K2: Float = 0.015) -> (_ lab1: LABPixel, _ lab2: LABPixel) -> Float
-{
+    K2: Float = 0.015) -> (_ lab1: LABPixel, _ lab2: LABPixel) -> Float {
     return { lab1, lab2 in
         let (L1, a1, b1) = lab1.unpack()
         let (L2, a2, b2) = lab2.unpack()
@@ -53,8 +52,7 @@ func CIE94SquaredColorDifference(
 func CIE2000SquaredColorDifference(
     _ kL: Float = 1,
     kC: Float = 1,
-    kH: Float = 1) -> (_ lab1:LABPixel, _ lab2:LABPixel) -> Float
-{
+    kH: Float = 1) -> (_ lab1: LABPixel, _ lab2: LABPixel) -> Float {
     return { lab1, lab2 in
         let (L1, a1, b1) = lab1.unpack()
         let (L2, a2, b2) = lab2.unpack()
@@ -125,4 +123,3 @@ func CIE2000SquaredColorDifference(
         return pow(Lterm, 2) + pow(Cterm, 2) + pow(Hterm, 2) + Rt * Cterm * Hterm
     }
 }
-

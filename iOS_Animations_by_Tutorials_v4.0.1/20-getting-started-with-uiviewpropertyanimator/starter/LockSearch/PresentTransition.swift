@@ -7,7 +7,7 @@
 //
 
 import UIKit
-typealias EmptyCallback = (()-> Void)?
+typealias EmptyCallback = (() -> Void)?
 class PresentTransition: UIPercentDrivenInteractiveTransition, UIViewControllerAnimatedTransitioning {
 
   var auxAnimations: EmptyCallback = nil
@@ -31,14 +31,12 @@ class PresentTransition: UIPercentDrivenInteractiveTransition, UIViewControllerA
 
     container.addSubview(to)
 
-
     // scale up, move down
     to.transform = CGAffineTransform(scaleX: 1.33, y: 1.33)
       .concatenating(CGAffineTransform(translationX: 0, y: 200))
 
     // transparent
     to.alpha = 0
-
 
     let animator = UIViewPropertyAnimator(duration: duration, curve: .easeOut)
     animator.addAnimations({
@@ -53,7 +51,7 @@ class PresentTransition: UIPercentDrivenInteractiveTransition, UIViewControllerA
       animator.addAnimations(auxAnimations)
     }
 
-    animator.addCompletion{ position in
+    animator.addCompletion { position in
       switch position {
       case .end:
         transitionContext.completeTransition(!transitionContext.transitionWasCancelled)

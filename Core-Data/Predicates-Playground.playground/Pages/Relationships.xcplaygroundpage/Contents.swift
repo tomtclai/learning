@@ -13,7 +13,6 @@ let moc = container.viewContext
 
 createCitiesAndPeople(in: moc)
 
-
 //: ### To-One
 //:
 //: We use `%K` with `#keyPath` to specify a relationship.
@@ -58,4 +57,3 @@ do {
 }
 
 //: [Next](@next)
-

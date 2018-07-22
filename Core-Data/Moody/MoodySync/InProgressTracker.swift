@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 import CoreDataHelpers
 
-
 /// Tracks managed objects that are being *in progress*.
 final class InProgressTracker<O: NSManagedObject> where O: Managed {
 
@@ -33,7 +32,6 @@ final class InProgressTracker<O: NSManagedObject> where O: Managed {
 
 }
 
-
 extension InProgressTracker: CustomDebugStringConvertible {
     var debugDescription: String {
         var components = ["InProgressTracker"]
@@ -43,4 +41,3 @@ extension InProgressTracker: CustomDebugStringConvertible {
         return components.joined(separator: " ")
     }
 }
-

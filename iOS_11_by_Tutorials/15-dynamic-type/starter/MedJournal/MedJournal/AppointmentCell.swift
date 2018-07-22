@@ -32,11 +32,11 @@ import UIKit
 
 class AppointmentCell: UITableViewCell {
   static let cellIdentifier = "appointmentCell"
-  
+
   @IBOutlet var dateLabel: UILabel!
   @IBOutlet var doctorNameLabel: UILabel!
   @IBOutlet var timeLabel: UILabel!
-  
+
   private var commonConstraints: [NSLayoutConstraint] = []
   private var regularConstraints: [NSLayoutConstraint] = []
   private var largeTextConstraints: [NSLayoutConstraint] = []
@@ -47,14 +47,14 @@ class AppointmentCell: UITableViewCell {
     formatter.timeStyle = .none
     return formatter
   }()
-  
+
   private lazy var timeFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .none
     formatter.timeStyle = .short
     return formatter
   }()
-  
+
   var appointment: Appointment? {
     didSet {
       guard let appointment = appointment else {

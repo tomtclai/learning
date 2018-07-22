@@ -3,7 +3,6 @@
 //:
 //: We can match objects and their object identifiers directly, i.e. we can pass them into a predicate.
 
-
 import Foundation
 import CoreData
 
@@ -37,7 +36,7 @@ do {
     let somePeople = Array(randomPeople(count: 5))
     let predicate = NSPredicate(format: "self IN %@", somePeople)
     let s = try! moc.fetch(Person.sortedFetchRequest(with: predicate))
-        .map{ $0.personNameAndAge }
+        .map { $0.personNameAndAge }
     s
 }
 
@@ -56,6 +55,4 @@ do {
     let s = try! moc.fetch(City.sortedFetchRequest(with: predicate)) .map(cityNameAndMayor)
 }
 
-
 //: [Next](@next)
-

@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var scrollView: UIScrollView!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
@@ -59,7 +59,6 @@ class ViewController: UIViewController {
     scrollView.zoomScale = minScale
   }
 }
-
 
 extension ViewController: UIScrollViewDelegate {
   func viewForZooming(in scrollView: UIScrollView) -> UIView? {

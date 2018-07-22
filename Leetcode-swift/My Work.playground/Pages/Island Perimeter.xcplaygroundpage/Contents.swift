@@ -9,9 +9,9 @@ func islandPerimeter(_ grid: [[Int]]) -> Int {
     //  goes from 0 to 1 (+1)
     //  goes from 1 to 0 (+1)
     //  starts or end with 1 (+1)
-    
+
     var perimeter = 0
-    
+
     for col in 0..<grid.first!.count {
         var lastVal = 0
         for row in 0..<grid.count {
@@ -24,7 +24,7 @@ func islandPerimeter(_ grid: [[Int]]) -> Int {
             perimeter += 1
         }
     }
-    
+
     for row in 0..<grid.count {
         var lastVal = 0
         for col in 0..<grid.first!.count {
@@ -37,7 +37,6 @@ func islandPerimeter(_ grid: [[Int]]) -> Int {
             perimeter += 1
         }
     }
-    
+
     return perimeter
 }
-

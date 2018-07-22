@@ -24,7 +24,7 @@ private let moodyContainer: NSPersistentContainer = {
     return container
 }()
 
-public func createMoodyContainer(migrating: Bool = false, progress: Progress? = nil, completion: @escaping (NSPersistentContainer) -> ()) {
+public func createMoodyContainer(migrating: Bool = false, progress: Progress? = nil, completion: @escaping (NSPersistentContainer) -> Void) {
     Mood.registerValueTransformers()
     moodyContainer.loadPersistentStores { _, error in
         if error == nil {
@@ -40,5 +40,3 @@ public func createMoodyContainer(migrating: Bool = false, progress: Progress? = 
         }
     }
 }
-
-

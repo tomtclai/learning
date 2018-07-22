@@ -38,16 +38,16 @@ class AddItemViewController: UIViewController {
   @IBOutlet weak var addButton: UIButton!
   @IBOutlet weak var productImageView: UIImageView!
   var gestureManager: MenuGestureController?
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setupGestureRecognizer()
     configureAccessibility()
-    
+
     itemTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     itemTextField.becomeFirstResponder()
   }
-  
+
   func setupGestureRecognizer() {
     gestureManager = MenuGestureController(view: view)
     if let gestureManager = gestureManager {
@@ -55,29 +55,29 @@ class AddItemViewController: UIViewController {
       view.addGestureRecognizer(gestureManager.tapGestureRecognizer)
     }
   }
-  
+
   func configureAccessibility() {
     addButton.accessibilityLabel = "Add"
     addButton.accessibilityHint = "Add item to shopping list"
-    
+
     cancelButton.accessibilityLabel = "Cancel"
     cancelButton.accessibilityHint = "Close without adding the item"
   }
-  
+
   @IBAction func cancelButtonPressed(_ sender: Any) {
     dismiss(animated: true, completion: nil)
   }
-  
+
   @IBAction func addItemPressed(_ sender: Any) {
     if let text = itemTextField.text {
       delegate?.addItem(named: text)
     }
-    
+
     dismiss(animated: true, completion: nil)
   }
-  
+
   @objc func textFieldDidChange(_ textField: UITextField) {
     addButton.accessibilityValue = textField.text
   }
-  
+
 }

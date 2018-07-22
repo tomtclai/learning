@@ -27,9 +27,8 @@ class ViewController: UIViewController {
             navigationController.popToRootViewControllerAnimated(true)
         }
     }
-    
+
     deinit {
         print("deallocation")
     }
 }
-

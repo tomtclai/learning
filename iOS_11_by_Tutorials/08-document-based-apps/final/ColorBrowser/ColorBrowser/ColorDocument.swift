@@ -30,7 +30,7 @@
 
 import UIKit
 
-enum DocumentError : Error {
+enum DocumentError: Error {
   case runtimeError(String)
   case missingColor
 }
@@ -39,25 +39,25 @@ struct RGBColor {
   let R: Int
   let G: Int
   let B: Int
-  
+
   func lighterColor(by toAdd: Int) -> RGBColor {
     return RGBColor(R: lighter(component: R, by: toAdd), G: lighter(component: G, by: toAdd), B: lighter(component: B, by: toAdd))
   }
-  
+
   func lighter(component: Int, by toAdd: Int) -> Int {
     return min(component + toAdd, 255)
   }
 }
 
 class ColorDocument: UIDocument {
-  
+
   var color: RGBColor?
-  
+
   override func load(fromContents contents: Any, ofType typeName: String?) throws {
     guard let data = contents as? Data, data.count > 0 else { return }
-    
+
     let colorText = String(data: data, encoding: .utf8)
-    
+
     guard let colorValues = colorText?.components(separatedBy: ","),
       let rValue = Int(colorValues[0]),
       let gValue = Int(colorValues[1]),
@@ -65,27 +65,27 @@ class ColorDocument: UIDocument {
       else {
         throw DocumentError.runtimeError("Wrong file format")
     }
-    
+
     color = RGBColor(R: rValue, G: gValue, B: bValue)
   }
-  
+
   override func contents(forType typeName: String) throws -> Any {
     guard let color = color else {
       throw DocumentError.missingColor
     }
-    
+
     return "\(color.R),\(color.G),\(color.B)".data(using: .utf8) as Any
   }
-  
+
   func stringRepresentation() throws -> String {
     guard let color = color else {
       throw DocumentError.missingColor
     }
-    
+
     return "R: \(color.R), G:\(color.G), B:\(color.B)"
   }
-  
-  override func fileAttributesToWrite(to url: URL, for saveOperation: UIDocumentSaveOperation) throws -> [AnyHashable : Any] {
+
+  override func fileAttributesToWrite(to url: URL, for saveOperation: UIDocumentSaveOperation) throws -> [AnyHashable: Any] {
     guard let color = color else {
       throw DocumentError.missingColor
     }
@@ -95,4 +95,3 @@ class ColorDocument: UIDocument {
     ]
   }
 }
-

@@ -39,20 +39,20 @@ class ParkViewController: UIViewController {
   @IBOutlet weak var summaryTextView: UITextView!
   @IBOutlet weak var addresslabel: UILabel!
   @IBOutlet weak var stackView: UIStackView!
-  
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
+
     guard let park = park else { return }
     nameLabel.text! = park.name
     imageView.image = park.image
     summaryTextView.text! = park.summary
     addresslabel.text! = "\(park.latitude)°N, \(park.longitude)°W"
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     imageView.isUserInteractionEnabled = true
     let dragInteraction = UIDragInteraction(delegate: self)
     stackView.addInteraction(dragInteraction)
@@ -64,31 +64,31 @@ extension ParkViewController: UIDragInteractionDelegate {
   func dragInteraction(_ interaction: UIDragInteraction,
                        itemsForBeginning session: UIDragSession) -> [UIDragItem] {
     guard let park = park else { return [] }
-    
+
     let provider = NSItemProvider(object: park)
     let dragItem = UIDragItem(itemProvider: provider)
     return [dragItem]
   }
-  
+
   func dragInteraction(_ interaction: UIDragInteraction,
                        previewForLifting item: UIDragItem,
                        session: UIDragSession) -> UITargetedDragPreview? {
 
       guard let park = park, let dragView = interaction.view
         else { return UITargetedDragPreview(view: interaction.view!) }
-      
+
       let parkView = ParkDragView(park.image, name: park.name)
       let parameters = UIDragPreviewParameters()
       parameters.visiblePath =
         UIBezierPath(roundedRect: parkView.bounds, cornerRadius: 20)
-      
+
       let dragPoint = session.location(in: dragView)
       let target = UIDragPreviewTarget(container: dragView, center: dragPoint)
       return UITargetedDragPreview(view: parkView,
                                    parameters: parameters,
                                    target: target)
   }
-  
+
   func dragInteraction(_ interaction: UIDragInteraction,
                        willAnimateLiftWith animator: UIDragAnimating,
                        session: UIDragSession) {
@@ -96,7 +96,7 @@ extension ParkViewController: UIDragInteractionDelegate {
       self.imageView.alpha = 0.25
     }
   }
-  
+
   func dragInteraction(_ interaction: UIDragInteraction,
                        session: UIDragSession,
                        didEndWith operation: UIDropOperation) {
@@ -104,7 +104,7 @@ extension ParkViewController: UIDragInteractionDelegate {
       imageView.alpha = 1.0
     }
   }
-  
+
   func dragInteraction(_ interaction: UIDragInteraction,
                        item: UIDragItem,
                        willAnimateCancelWith animator: UIDragAnimating) {
@@ -112,26 +112,23 @@ extension ParkViewController: UIDragInteractionDelegate {
       self.imageView.alpha = 1.0
     }
   }
-  
+
   func dragInteraction(_ interaction: UIDragInteraction,
                        previewForCancelling item: UIDragItem,
                        withDefault defaultPreview: UITargetedDragPreview)
     -> UITargetedDragPreview? {
       guard let superview = imageView.superview
         else { return defaultPreview }
-      
+
       let target = UIDragPreviewTarget(container: superview,
                                        center: imageView.center)
       return UITargetedDragPreview(view: imageView,
                                    parameters: UIDragPreviewParameters(),
                                    target: target)
   }
-  
+
   func dragInteraction(_ interaction: UIDragInteraction,
-                       sessionIsRestrictedToDraggingApplication session: UIDragSession) -> Bool
-  {
+                       sessionIsRestrictedToDraggingApplication session: UIDragSession) -> Bool {
     return false
   }
 }
-
-

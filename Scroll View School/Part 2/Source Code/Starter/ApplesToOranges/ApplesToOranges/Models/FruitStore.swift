@@ -32,13 +32,13 @@ import Foundation
 
 class FruitStore {
     static var fruits: [Fruit] = [
-        Fruit(emojiChar: "🍍", name: "Pineapple",  calories: 453),
-        Fruit(emojiChar: "🍌", name: "Banana",     calories: 105),
-        Fruit(emojiChar: "🍐", name: "Pear",       calories: 103),
-        Fruit(emojiChar: "🍎", name: "Apple",      calories: 93),
-        Fruit(emojiChar: "🍊", name: "Orange",     calories: 62),
-        Fruit(emojiChar: "🍑", name: "Peach",      calories: 59, customPluralName: "Peaches"),
-        Fruit(emojiChar: "🥝", name: "Kiwi",       calories: 42),
-        Fruit(emojiChar: "🍓", name: "Strawberry", calories: 6, customPluralName: "Strawberries"),
+        Fruit(emojiChar: "🍍", name: "Pineapple", calories: 453),
+        Fruit(emojiChar: "🍌", name: "Banana", calories: 105),
+        Fruit(emojiChar: "🍐", name: "Pear", calories: 103),
+        Fruit(emojiChar: "🍎", name: "Apple", calories: 93),
+        Fruit(emojiChar: "🍊", name: "Orange", calories: 62),
+        Fruit(emojiChar: "🍑", name: "Peach", calories: 59, customPluralName: "Peaches"),
+        Fruit(emojiChar: "🥝", name: "Kiwi", calories: 42),
+        Fruit(emojiChar: "🍓", name: "Strawberry", calories: 6, customPluralName: "Strawberries")
     ]
 }

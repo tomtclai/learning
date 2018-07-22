@@ -9,14 +9,13 @@
 import Foundation
 import CoreData
 
-
 public final class ManagedObjectObserver {
     public enum ChangeType {
         case delete
         case update
     }
 
-    public init?(object: Managed, changeHandler: @escaping (ChangeType) -> ()) {
+    public init?(object: Managed, changeHandler: @escaping (ChangeType) -> Void) {
         guard let moc = object.managedObjectContext else { return nil }
         objectHasBeenDeleted = !type(of: object).defaultPredicate.evaluate(with: object)
         token = moc.addObjectsDidChangeNotificationObserver { [unowned self] note in
@@ -29,7 +28,6 @@ public final class ManagedObjectObserver {
     deinit {
         NotificationCenter.default.removeObserver(token)
     }
-
 
     // MARK: Private
 
@@ -53,4 +51,3 @@ public final class ManagedObjectObserver {
         return nil
     }
 }
-

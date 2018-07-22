@@ -23,15 +23,15 @@
 import UIKit
 
 class WidgetCell: UITableViewCell {
-  
+
   private var showsMore = false
   @IBOutlet weak var widgetHeight: NSLayoutConstraint!
 
   weak var tableView: UITableView?
   var toggleHeightAnimator: UIViewPropertyAnimator?
-  
+
   @IBOutlet weak var widgetView: WidgetView!
-  
+
   var owner: WidgetsOwnerProtocol? {
     didSet {
       if let owner = owner {
@@ -39,7 +39,7 @@ class WidgetCell: UITableViewCell {
       }
     }
   }
-  
+
   @IBAction func toggleShowMore(_ sender: UIButton) {
 
     self.showsMore = !self.showsMore

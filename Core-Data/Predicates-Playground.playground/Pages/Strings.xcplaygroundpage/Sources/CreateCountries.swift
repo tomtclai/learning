@@ -1,7 +1,6 @@
 import Foundation
 import CoreData
 
-
 public final class Country: NSManagedObject, Managed {
     @NSManaged public var name: String
     @NSManaged public var alpha2Code: String
@@ -15,7 +14,6 @@ extension Country {
     }
 }
 
-
 public func countryModel() -> NSManagedObjectModel {
     return NSManagedObjectModel(builder: {
         let country = NSEntityDescription(cls: Country.self, name: "Country")
@@ -28,7 +26,7 @@ public func countryModel() -> NSManagedObjectModel {
 }
 
 public func createCountries(in moc: NSManagedObjectContext) {
-    let data: [(String,String,String,Int16)] = [
+    let data: [(String, String, String, Int16)] = [
         ("Afghanistan", "AF", "AFG", 004),
         ("Åland Islands", "AX", "ALA", 248),
         ("Albania", "AL", "ALB", 008),
@@ -277,7 +275,7 @@ public func createCountries(in moc: NSManagedObjectContext) {
         ("Western Sahara", "EH", "ESH", 732),
         ("Yemen", "YE", "YEM", 887),
         ("Zambia", "ZM", "ZMB", 894),
-        ("Zimbabwe", "ZW", "ZWE", 716),
+        ("Zimbabwe", "ZW", "ZWE", 716)
     ]
     data.forEach({
         let c = NSEntityDescription.insertNewObject(forEntityName: Country.entity().name!, into: moc) as! Country
@@ -289,4 +287,3 @@ public func createCountries(in moc: NSManagedObjectContext) {
 
     try! moc.save()
 }
-

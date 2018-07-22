@@ -24,7 +24,7 @@ import UIKit
 
 class SettingsViewController: UIViewController {
   var items = ["Add Weather", "Add Stocks", "Add raywenderlich.com", "Cancel"]
-  var didDismiss: (()-> Void)?
+  var didDismiss: (() -> Void)?
 }
 
 extension SettingsViewController: UITableViewDataSource {

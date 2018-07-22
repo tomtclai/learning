@@ -26,7 +26,7 @@ import Photos
 import RxSwift
 
 class PhotosViewController: UICollectionViewController {
-  
+
   // MARK: public properties
   var selectedPhotos: Observable<UIImage> {
     return selectedPhotosSubject.asObservable()
@@ -50,7 +50,7 @@ class PhotosViewController: UICollectionViewController {
     allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
     return PHAsset.fetchAssets(with: allPhotosOptions)
   }
-  
+
   func errorMessage() {
     alert(title: "No access to Camera Roll",
           text: "You can grant access to Combinestagram from the Settings app")
@@ -67,33 +67,33 @@ class PhotosViewController: UICollectionViewController {
     super.viewDidLoad()
 
     let authorized = PHPhotoLibrary.authorized.share()
-    
+
     authorized
       .skipWhile { $0 == false }
       .take(1)
       .subscribe(onNext: { [weak self] _ in
         self?.photos = PhotosViewController.loadPhotos()
-        
+
         DispatchQueue.main.async {
           self?.collectionView?.reloadData()
         }
       })
       .disposed(by: disposeBag)
-    
+
     authorized
       .skip(1)
       .takeLast(1)
       .filter { $0 == false }
       .subscribe(onNext: { [weak self] _ in
         guard let `self` = self else { return }
-        
+
         DispatchQueue.main.async {
           self.errorMessage()
         }
       })
       .disposed(by: disposeBag)
   }
-  
+
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     selectedPhotosSubject.onCompleted()

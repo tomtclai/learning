@@ -76,7 +76,7 @@ class LockScreenViewController: UIViewController {
     settingsController = storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
     present(settingsController, animated: true, completion: nil)
   }
-  
+
 }
 
 extension LockScreenViewController: WidgetsOwnerProtocol { }

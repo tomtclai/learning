@@ -2,9 +2,9 @@
 import RxSwift
 
 example(of: "map") {
-  
+
   let disposeBag = DisposeBag()
-    
+
   Observable.from(episodes)
     .map {
       var components = $0.components(separatedBy: " ")
@@ -20,14 +20,14 @@ example(of: "map") {
 }
 
 example(of: "flatMap") {
-  
+
   let disposeBag = DisposeBag()
-  
+
   let ryan = Jedi(rank: BehaviorSubject(value: .youngling))
   let charlotte = Jedi(rank: BehaviorSubject(value: .youngling))
-  
+
   let student = PublishSubject<Jedi>()
-  
+
   student
     .flatMap {
       $0.rank
@@ -36,27 +36,27 @@ example(of: "flatMap") {
       print($0.rawValue)
     })
     .disposed(by: disposeBag)
-  
+
   student.onNext(ryan)
-  
+
   ryan.rank.onNext(.padawan)
-  
+
   student.onNext(charlotte)
-  
+
   ryan.rank.onNext(.jediKnight)
-  
+
   charlotte.rank.onNext(.jediMaster)
 }
 
 example(of: "flatMapLatest") {
-  
+
   let disposeBag = DisposeBag()
-  
+
   let ryan = Jedi(rank: BehaviorSubject(value: .youngling))
   let charlotte = Jedi(rank: BehaviorSubject(value: .youngling))
-  
+
   let student = PublishSubject<Jedi>()
-  
+
   student
     .flatMapLatest {
       $0.rank
@@ -65,15 +65,15 @@ example(of: "flatMapLatest") {
       print($0.rawValue)
     })
     .disposed(by: disposeBag)
-  
+
   student.onNext(ryan)
-  
+
   ryan.rank.onNext(.padawan)
-  
+
   student.onNext(charlotte)
-  
+
   ryan.rank.onNext(.jediKnight)
-  
+
   charlotte.rank.onNext(.jediMaster)
 }
 

@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 struct ObjectsDidChangeNotification {
 
     init(note: Notification) {
@@ -46,7 +45,6 @@ struct ObjectsDidChangeNotification {
         return c
     }
 
-
     // MARK: Private
 
     fileprivate let notification: Notification
@@ -57,12 +55,11 @@ struct ObjectsDidChangeNotification {
 
 }
 
-
 extension NSManagedObjectContext {
 
     /// Adds the given block to the default `NSNotificationCenter`'s dispatch table for the given context's objects-did-change notifications.
     /// - returns: An opaque object to act as the observer. This must be sent to the default `NSNotificationCenter`'s `removeObserver()`.
-    func addObjectsDidChangeNotificationObserver(_ handler: @escaping (ObjectsDidChangeNotification) -> ()) -> NSObjectProtocol {
+    func addObjectsDidChangeNotificationObserver(_ handler: @escaping (ObjectsDidChangeNotification) -> Void) -> NSObjectProtocol {
         let nc = NotificationCenter.default
         return nc.addObserver(forName: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: self, queue: nil) { note in
             let wrappedNote = ObjectsDidChangeNotification(note: note)
@@ -71,5 +68,3 @@ extension NSManagedObjectContext {
     }
 
 }
-
-

@@ -31,13 +31,13 @@
 import UIKit
 
 class DocumentBrowserViewController: UIDocumentBrowserViewController {
-  
+
   func presentDocument(_ document: ColorDocument) {
     let storyBoard = UIStoryboard(name: "Main", bundle: nil)
     let documentViewController = storyBoard.instantiateViewController(withIdentifier: "DocumentViewController") as! DocumentViewController
     documentViewController.document = document
-    
+
     present(documentViewController, animated: true, completion: nil)
   }
-  
+
 }

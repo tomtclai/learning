@@ -30,7 +30,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
       imageView.image = thumbnailImage
     }
   }
-  
+
   override func prepareForReuse() {
     super.prepareForReuse()
     imageView.image = nil

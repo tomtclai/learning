@@ -9,7 +9,6 @@
 import UIKit
 import CoreGraphics
 
-
 // MARK: Main
 
 public enum GroupingAccuracy {
@@ -40,7 +39,6 @@ public struct DominantColorOptions {
     public static let Default = DominantColorOptions(maxSampledPixelCount: 1000, accuracy: .medium, k: 16, seed: 3571, deemphasizeBlacks: false)
     public static let Moody = DominantColorOptions(maxSampledPixelCount: 800, accuracy: .high, k: 11, seed: 1300304177, deemphasizeBlacks: true)
 }
-
 
 extension CGImage {
     public func dominantColors(_ options: DominantColorOptions = .Default) -> AnyIterator<CGColor> {
@@ -147,4 +145,3 @@ private func scaledDimensionsForPixelLimit(_ limit: Int, _ width: Int, _ height:
     }
     return (width, height)
 }
-
