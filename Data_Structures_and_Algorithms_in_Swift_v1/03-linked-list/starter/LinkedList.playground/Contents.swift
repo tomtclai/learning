@@ -21,6 +21,63 @@ extension Node: CustomStringConvertible {
     }
 }
 
+public struct LinkedList<Value> {
+    public var head: Node<Value>?
+    public var tail: Node<Value>?
+
+    public init() {}
+
+    public var isEmpty: Bool { return head == nil }
+
+    public var description: String {
+        guard let head = head else {
+            return "Empty List"
+        }
+        return String(describing: head)
+    }
+
+    mutating func push(_ value: Value) {
+        head = Node(value: value, next: head)
+        if tail == nil {
+            tail = head
+        }
+    }
+    mutating func append(_ value: Value) {
+        guard !isEmpty else {
+            push(value)
+            return
+        }
+
+        let newTail = Node(value: value, next: nil)
+        tail?.next = newTail
+        tail? = newTail
+    }
+    @discardableResult
+    public mutating func insert(_ value: Value, after node: Node<Value>) -> Node<Value> {
+        guard tail !== node else {
+            append(value)
+            return tail!
+        }
+
+        let next = Node(value: value, next: node.next)
+        node.next = next
+        return next
+    }
+
+    public func node(at index: Int) -> Node<Value>? {
+        var currentNode = head
+        var currentIndex = 0
+
+        while currentNode != nil && currentIndex < index {
+            currentNode = currentNode!.next
+            currentIndex += 1
+        }
+
+        return currentNode
+    }
+}
+
+
 example(of: "Linking notes") {
     let node1 = Node(value: 1)
     let node2 = Node(value: 2)
@@ -32,31 +89,37 @@ example(of: "Linking notes") {
     node1
 }
 
-
-public struct LinkedList<Value> {
-    public var head: Node<Value>?
-    public var tail: Node<Value>?
-
-    public init() {}
-
-    public var isEmpty: Bool { return head == nil }
-
+example(of: "Push") {
+    var list = LinkedList<Int>()
+    list.push(3)
+    list.push(2)
+    list.push(1)
+    print(list)
 }
 
-extension LinkedList: CustomStringConvertible {
-    public var description: String {
-        guard let head = head else {
-            return "Empty List"
-        }
-        return String(describing: head)
+example(of: "Append") {
+    var list = LinkedList<Int>()
+    list.append(1)
+    list.append(2)
+    list.append(3)
+    print(list)
+}
+
+example(of: "Inserting at an index") {
+    var list = LinkedList<Int>()
+    list.push(3)
+    list.push(2)
+    list.push(1)
+
+    print("Before inserting \(list)")
+
+    guard var middleNode = list.node(at: 1) else {
+        print("item does not exist")
+        return
     }
 
-    func push() {
-        head = Node(value: Value, next: head)
-        if tail == nil {
-            tail = head
-        }
+    for _ in 1...4 {
+        middleNode = list.insert(-1, after: middleNode)
     }
-    func append()
-    func insert(after: Value)
+    print("After Inserting \(list)")
 }
