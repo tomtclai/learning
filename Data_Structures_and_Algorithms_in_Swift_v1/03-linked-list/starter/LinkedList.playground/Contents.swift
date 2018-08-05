@@ -64,6 +64,34 @@ public struct LinkedList<Value> {
         return next
     }
 
+    @discardableResult
+    public mutating func pop() -> Value? {
+        defer {
+            head = head?.next
+            if isEmpty {
+                tail = nil
+            }
+        }
+        return head?.value
+    }
+
+    @discardableResult
+    public mutating func removeLast() -> Value? {
+        guard let head = head else { return nil }
+        guard head.next != nil else { return pop() }
+        var prev = head
+        var current = head
+        while let next = current.next {
+            prev = current
+            current = next
+        }
+
+        prev.next = nil
+        tail = prev
+
+        return current.value
+    }
+
     public func node(at index: Int) -> Node<Value>? {
         var currentNode = head
         var currentIndex = 0
@@ -74,6 +102,17 @@ public struct LinkedList<Value> {
         }
 
         return currentNode
+    }
+
+    @discardableResult
+    public mutating func remove(after node: Node<Value>) -> Value? {
+        defer {
+            if node.next === tail {
+                tail = node
+            }
+            node.next = node.next?.next
+        }
+        return node.next?.value
     }
 }
 
@@ -123,3 +162,44 @@ example(of: "Inserting at an index") {
     }
     print("After Inserting \(list)")
 }
+
+example(of: "Pop") {
+    var list = LinkedList<Int>()
+    list.push(3)
+    list.push(2)
+    list.push(1)
+
+    print("Before popping \(list)")
+
+    let popped = list.pop()
+
+    print("After popping \(String(describing: popped)): \(list)")
+}
+
+example(of: "Removing the last node") {
+    var list = LinkedList<Int>()
+    list.push(3)
+    list.push(2)
+    list.push(1)
+
+    print("Before removing the last node \(list)")
+
+    let removed = list.removeLast()
+
+    print("After removing \(removed): \(list)")
+}
+
+example(of: "Removing the node after") {
+    var list = LinkedList<Int>()
+    list.push(3)
+    list.push(2)
+    list.push(1)
+
+    print("Before removing the node after \(list)")
+
+    let removed = list.remove(after: list.head!)
+
+    print("After removing \(removed): \(list)")
+}
+
+
