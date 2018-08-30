@@ -23,7 +23,7 @@
 import UIKit
 
 // A delay function
-func delay(seconds: Double, completion: @escaping ()-> Void) {
+func delay(seconds: Double, completion: @escaping () -> Void) {
   DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
 }
 
@@ -99,7 +99,7 @@ class ViewController: UIViewController {
 
     statusPosition = status.center
 
-    info.frame = CGRect(x: 0.0, y: loginButton.center.y + 60.0,  width: view.frame.size.width, height: 30)
+    info.frame = CGRect(x: 0.0, y: loginButton.center.y + 60.0, width: view.frame.size.width, height: 30)
     info.backgroundColor = UIColor.clear
     info.font = UIFont(name: "HelveticaNeue", size: 12.0)
     info.textAlignment = .center
@@ -265,7 +265,6 @@ class ViewController: UIViewController {
     wobble.values = [0.0, -.pi/4.0, 0.0, .pi/4.0, 0.0]
     wobble.keyTimes = [0.0, 0.25, 0.5, 0.75, 1.0]
     heading.layer.add(wobble, forKey: nil)
-
 
   }
 

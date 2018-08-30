@@ -9,7 +9,6 @@
 import UIKit
 import AVFoundation
 
-
 class CameraView: UIView {
 
     @IBOutlet weak var label: UILabel!
@@ -41,7 +40,6 @@ class CameraView: UIView {
         previewLayer?.frame = bounds
     }
 
-
     // MARK: Private
 
     fileprivate var previewLayer: AVCaptureVideoPreviewLayer?
@@ -50,7 +48,4 @@ class CameraView: UIView {
         backgroundColor = UIColor.black
     }
 
-
 }
-
-

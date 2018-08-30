@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 private let ColorsTransformerName = "ColorsTransformer"
 
 func registerValueTransformers() {
@@ -26,14 +25,13 @@ private let __registerOnce: () = {
     })
 }()
 
-
 extension Data {
     public var moodColors: [UIColor]? {
         guard count > 0 && count % 3 == 0 else { return nil }
         var rgbValues = Array(repeating: UInt8(), count: count)
         rgbValues.withUnsafeMutableBufferPointer { buffer in
             let voidPointer = UnsafeMutableRawPointer(buffer.baseAddress)
-            let _ = withUnsafeBytes { bytes in
+            _ = withUnsafeBytes { bytes in
                 memcpy(voidPointer, bytes, count)
             }
         }
@@ -45,7 +43,6 @@ extension Data {
     }
 }
 
-
 extension Sequence where Iterator.Element == UIColor {
     public var moodData: NSData {
         let rgbValues = flatMap { $0.rgb }
@@ -54,7 +51,6 @@ extension Sequence where Iterator.Element == UIColor {
         }
     }
 }
-
 
 extension UIColor {
     fileprivate var rgb: [UInt8] {
@@ -73,4 +69,3 @@ extension UIColor {
         self.init(red: red, green: green, blue: blue, alpha: 1)
     }
 }
-

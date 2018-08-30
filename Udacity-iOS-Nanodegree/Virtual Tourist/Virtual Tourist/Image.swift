@@ -19,20 +19,20 @@ class Image: NSManagedObject {
         static let ThumbnailUrl = "thumbnailUrl"
         static let UUID = "uuid"
     }
-    
+
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
-    
-    init(dictionary: [String:AnyObject], context: NSManagedObjectContext) {
+
+    init(dictionary: [String: AnyObject], context: NSManagedObjectContext) {
         let entity = NSEntityDescription.entityForName("Image", inManagedObjectContext: context)!
         super.init(entity: entity, insertIntoManagedObjectContext: context)
-        
+
         imageUrl = dictionary[Keys.ImageUrl] as? String
         thumbnailUrl = dictionary[Keys.ThumbnailUrl] as! String
         uuid = dictionary[Keys.UUID] as? String
     }
-    
+
     override func prepareForDeletion() {
         if let uuid = uuid {
             let documentDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
@@ -44,8 +44,8 @@ class Image: NSManagedObject {
             }
         }
     }
-    
-    static func imgPath(uuid: String) -> String{
+
+    static func imgPath(uuid: String) -> String {
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
         return documentDirectory.stringByAppendingPathComponent(uuid).stringByAppendingString(".jpg")
     }

@@ -8,7 +8,6 @@
 
 import CoreData
 
-
 extension NSPersistentStoreCoordinator {
     // TODO(swift3) Migrate thise to NSPersistentContainer
     public static func destroyStore(at url: URL) {
@@ -26,4 +25,3 @@ extension NSPersistentStoreCoordinator {
         try psc.replacePersistentStore(at: targetURL, destinationOptions: nil, withPersistentStoreFrom: sourceURL, sourceOptions: nil, ofType: NSSQLiteStoreType)
     }
 }
-

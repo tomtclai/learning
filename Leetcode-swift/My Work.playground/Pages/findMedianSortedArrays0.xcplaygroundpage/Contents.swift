@@ -1,4 +1,3 @@
-
 func findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
     // line the numebrs up in 1 array
     var index1 = 0

@@ -9,14 +9,14 @@
 import UIKit
 
 class ViewController: UIViewController {
-  
+
   @IBOutlet weak var scrollView: UIScrollView!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     scrollView.contentInsetAdjustmentBehavior = .never
-  
+
   }
 
   override func didReceiveMemoryWarning() {
@@ -24,6 +24,4 @@ class ViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
 
-
 }
-

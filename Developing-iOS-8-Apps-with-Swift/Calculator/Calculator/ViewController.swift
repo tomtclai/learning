@@ -1,4 +1,4 @@
-  //
+//
 //  ViewController.swift
 //  Calculator
 //
@@ -10,13 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var display: UILabel!
-    
+
     var userIsInTheMiddleOfTypingNumber = false
-    var userTappedDecimalPoint = false;
-    
+    var userTappedDecimalPoint = false
+
     var brain = CalculatorBrain()
-    
-    
+
     var displayValue: Double {
         get {
             // extra credit item
@@ -27,7 +26,7 @@ class ViewController: UIViewController {
             userIsInTheMiddleOfTypingNumber = false
         }
     }
-    
+
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
         if userIsInTheMiddleOfTypingNumber {
@@ -36,11 +35,11 @@ class ViewController: UIViewController {
             display.text = digit
             userIsInTheMiddleOfTypingNumber = true
         }
-        
+
     }
     @IBAction func addDecimalPoint() {
         if userTappedDecimalPoint {return}
-        
+
         display.text = display.text! +  "."
         userTappedDecimalPoint = true
         userIsInTheMiddleOfTypingNumber = true
@@ -67,7 +66,5 @@ class ViewController: UIViewController {
             displayValue = 0 //make this nil
         }
     }
-    
 
 }
-

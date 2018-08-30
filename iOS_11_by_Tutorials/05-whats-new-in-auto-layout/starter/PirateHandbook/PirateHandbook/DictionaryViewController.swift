@@ -25,14 +25,13 @@ import UIKit
 class DictionaryViewController: UITableViewController {
   override func awakeFromNib() {
     super.awakeFromNib()
-    
+
     let backgroundImageView = UIImageView(image: #imageLiteral(resourceName: "bg-parchment"))
     backgroundImageView.contentMode = .center
     tableView.backgroundView = backgroundImageView
   }
-  
+
   @IBAction func dismissModal() {
     dismiss(animated: true, completion: nil)
   }
 }
-

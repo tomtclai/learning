@@ -116,8 +116,7 @@ class LoginViewController: UIViewController {
                                                     accessGroup: KeychainConfiguration.accessGroup)
             let keychainPassword = try passwordItem.readPassword()
             return password == keychainPassword
-        }
-        catch {
+        } catch {
             fatalError("Error reading password from keychain \(error)")
         }
     }

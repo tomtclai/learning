@@ -31,33 +31,33 @@
 import UIKit
 
 class CopyStringActivity: UIActivity {
-  
+
   let colorDocument: ColorDocument
-  
+
   init(colorDocument: ColorDocument) {
     self.colorDocument = colorDocument
   }
-  
+
   override class var activityCategory: UIActivityCategory {
     return .action
   }
-  
+
   override var activityType: UIActivityType? {
     return UIActivityType(rawValue: "ColorBrowserCopy")
   }
-  
+
   override var activityTitle: String? {
     return "Copy"
   }
-  
+
   override var activityImage: UIImage? {
     return UIImage(named: "copy_activity_icon")
   }
-  
+
   override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
     return true
   }
-  
+
   override func perform() {
     colorDocument.open { success in
       if success {

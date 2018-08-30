@@ -41,7 +41,7 @@ class PhotoManager {
   class var sharedManager: PhotoManager {
     return _sharedManager
   }
-  
+
   fileprivate var _photos: [Photo] = []
   var photos: [Photo] {
     var photosCopy: [Photo]!
@@ -52,7 +52,7 @@ class PhotoManager {
     return photosCopy
   }
   fileprivate let concurrentPhotoQueue = DispatchQueue(label: "com.raywenderlich.GooglyPuff.photoQueue", attributes: .concurrent)
-  
+
   func addPhoto(_ photo: Photo) {
     // only one thread can be adding a photo at any point in time
     concurrentPhotoQueue.async(flags: .barrier) {

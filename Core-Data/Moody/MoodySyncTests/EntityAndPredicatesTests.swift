@@ -10,7 +10,6 @@ import XCTest
 import CoreData
 @testable import MoodySync
 
-
 class EntityAndPredicatesTests: XCTestCase {
 
     var managedObjectContext: NSManagedObjectContext! = nil
@@ -48,4 +47,3 @@ class EntityAndPredicatesTests: XCTestCase {
         XCTAssertEqual(mo?.name, "B")
     }
 }
-

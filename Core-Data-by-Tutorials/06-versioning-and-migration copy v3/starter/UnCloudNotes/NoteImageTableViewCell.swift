@@ -44,5 +44,3 @@ extension NoteImageTableViewCell {
     noteImage.image = note.image
   }
 }
-
-

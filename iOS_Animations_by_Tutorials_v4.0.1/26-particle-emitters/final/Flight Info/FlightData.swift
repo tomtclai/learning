@@ -63,4 +63,3 @@ let parisToRome = FlightData(
   showWeatherEffects: false,
   isTakingOff: false,
   flightStatus: "Delayed")
-

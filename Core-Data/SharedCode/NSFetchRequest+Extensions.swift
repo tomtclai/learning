@@ -8,7 +8,6 @@
 
 import CoreData
 
-
 extension NSFetchRequest {
 
     convenience init(entity: NSEntityDescription, predicate: NSPredicate? = nil, batchSize: Int = 0) {
@@ -19,5 +18,3 @@ extension NSFetchRequest {
     }
 
 }
-
-

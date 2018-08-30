@@ -46,7 +46,7 @@ func getSearchTerms(text: String, language: String? = nil,
                                              .joinNames,
                                              .omitOther]
   let range = NSRange(text.startIndex..., in: text)
-  
+
   // 2
   if let language = language {
     tagger.setOrthography(NSOrthography
@@ -54,8 +54,7 @@ func getSearchTerms(text: String, language: String? = nil,
   }
   // 2
   tagger.enumerateTags(in: range, unit: .word,
-                       scheme: .lemma, options: options)
-  { tag, _, _ in
+                       scheme: .lemma, options: options) { tag, _, _ in
     guard let tag = tag else { return }
     block(tag.rawValue.lowercased())
   }
@@ -71,13 +70,12 @@ func getPeopleNames(text: String, block: (String) -> Void) {
                                              .omitPunctuation,
                                              .joinNames]
   let range = NSRange(text.startIndex..., in: text)
-  
+
   tagger.enumerateTags(in: range, unit: .word,
-                       scheme: .nameType, options: options)
-  { tag, tokenRange, _ in
+                       scheme: .nameType, options: options) { tag, tokenRange, _ in
     // 2
     guard let tag = tag, tag == .personalName else { return }
-    
+
     let token = Range(tokenRange, in: text)!
     block(String(text[token]))
   }
@@ -95,7 +93,7 @@ func predictSentiment(text: String) -> Int? {
   for (index, counts) in counts.enumerated() {
     input[index] = NSNumber(value: counts)
   }
-  
+
   // 5
   let prediction = try! model.prediction(wordCount: input)
   // 6
@@ -112,14 +110,13 @@ func tokenizeAndCountWords(text: String) -> [Int] {
   let options: NSLinguisticTagger.Options =
     [.omitWhitespace, .omitPunctuation, .joinNames, .omitOther]
   let range = NSRange(text.startIndex..., in: text)
-  
+
   // 2
   var wordCount = Array(repeating: 0, count: words.count)
   tagger.enumerateTags(in: range, unit: .word,
-                       scheme: .lemma, options: options)
-  { tag, _, _ in
+                       scheme: .lemma, options: options) { tag, _, _ in
     guard let tag = tag else { return }
-    
+
     let word = tag.rawValue
     // 3
     if let index = words.index(of: word) {

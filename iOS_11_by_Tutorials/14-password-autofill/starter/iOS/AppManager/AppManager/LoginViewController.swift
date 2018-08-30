@@ -30,22 +30,22 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-  
+
   @IBOutlet weak var username: UITextField!
   @IBOutlet weak var password: UITextField!
   @IBOutlet weak var loginButton: UIButton!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
   }
-  
+
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return .lightContent
   }
-  
+
   @IBAction func login(_ sender: Any) {
     LoginStatus.loggedIn = true
     performSegue(withIdentifier: "LoggedIn", sender: self)
   }
-  
+
 }

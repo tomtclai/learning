@@ -23,7 +23,7 @@
 import UIKit
 import QuartzCore
 
-func delay(seconds: Double, completion: @escaping ()-> Void) {
+func delay(seconds: Double, completion: @escaping () -> Void) {
   DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
 }
 
@@ -36,21 +36,21 @@ class MasterViewController: UIViewController {
     title = "Start"
     navigationController?.delegate = self
   }
-  
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    
+
     // add the pan gesture recognizer
     let pan = UIPanGestureRecognizer(target: self, action: #selector(didPan))
     view.addGestureRecognizer(pan)
-    
+
     // add the logo to the view
     logo.position = CGPoint(x: view.layer.bounds.size.width/2,
       y: view.layer.bounds.size.height/2 - 30)
     logo.fillColor = UIColor.white.cgColor
     view.layer.addSublayer(logo)
   }
-  
+
   //
   // MARK: Gesture recognizer handler
   //

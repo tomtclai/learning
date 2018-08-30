@@ -110,6 +110,6 @@ class ReviewsManager {
   }
 }
 
-fileprivate struct ReviewEnvelope: Codable {
+private struct ReviewEnvelope: Codable {
   let reviews: [Review]
 }

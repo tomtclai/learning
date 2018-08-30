@@ -10,7 +10,6 @@
 //:
 //: This Playround is part of objc.io’s [Core Data Book](https://www.objc.io/books/core-data/).
 
-
 //: ### Setup
 //:
 //: This Playground uses `Person` and `City` classes and corresponding entities to show how predicates can be used.
@@ -28,7 +27,6 @@ createCitiesAndPeople(in: context)
 //: The following implements *in-memory* filtering (of `Person` and `City`).
 //: This is usually **not** what you want to do, but we use it in this Playground
 //: to illustrate some predicate related aspects.
-
 
 //: ## Introduction
 //:
@@ -68,7 +66,7 @@ do {
 
 do {
     let predicate = NSPredicate(format: "age == 32")
-    let names = context.fetchPeople(matching: predicate).map{ $0.personNameAndAge }
+    let names = context.fetchPeople(matching: predicate).map { $0.personNameAndAge }
     names
 }
 
@@ -76,7 +74,7 @@ do {
 
 do {
     let predicate = NSPredicate(format: "%K == 32", #keyPath(Person.age))
-    let names = context.fetchPeople(matching: predicate).map{ $0.personNameAndAge }
+    let names = context.fetchPeople(matching: predicate).map { $0.personNameAndAge }
     names
 }
 
@@ -84,7 +82,7 @@ do {
 
 do {
     let predicate = NSPredicate(format: "%K < %ld", #keyPath(Person.age), 32)
-    let names = context.fetchPeople(matching: predicate).map{ $0.personNameAndAge }
+    let names = context.fetchPeople(matching: predicate).map { $0.personNameAndAge }
 }
 
 //: There are various different comparison operators.
@@ -93,11 +91,11 @@ do {
     let predicateA = NSPredicate(format: "%K <= 30", #keyPath(Person.age))
     let predicateB = NSPredicate(format: "%K > 30", #keyPath(Person.age))
     let predicateC = NSPredicate(format: "%K != 24", #keyPath(Person.age))
-    let namesA = context.fetchPeople(matching: predicateA).map{ $0.personNameAndAge }
+    let namesA = context.fetchPeople(matching: predicateA).map { $0.personNameAndAge }
     namesA
-    let namesB = context.fetchPeople(matching: predicateB).map{ $0.personNameAndAge }
+    let namesB = context.fetchPeople(matching: predicateB).map { $0.personNameAndAge }
     namesB
-    let namesC = context.fetchPeople(matching: predicateC).map{ $0.personNameAndAge }
+    let namesC = context.fetchPeople(matching: predicateC).map { $0.personNameAndAge }
     namesC
 }
 
@@ -107,10 +105,8 @@ do {
 do {
     let primeNumbers = [13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
     let predicate = NSPredicate(format: "%K IN %@", #keyPath(Person.age), primeNumbers)
-    let names = context.fetchPeople(matching: predicate).map{ $0.personNameAndAge }
+    let names = context.fetchPeople(matching: predicate).map { $0.personNameAndAge }
     names
 }
 
-
 //: [Next](@next)
-

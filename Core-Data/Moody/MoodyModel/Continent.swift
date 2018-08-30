@@ -11,7 +11,6 @@ import CoreLocation
 import CoreData
 import CoreDataHelpers
 
-
 public class Continent: NSManagedObject {
 
     @NSManaged public internal(set) var numberOfCountries: Int64
@@ -65,7 +64,6 @@ public class Continent: NSManagedObject {
         numberOfMoods = committedNumberOfMoods + deltaInCountries
     }
 
-
     // MARK: Private
 
     @NSManaged fileprivate var numericISO3166Code: Int16
@@ -95,13 +93,11 @@ public class Continent: NSManagedObject {
 
 }
 
-
 extension Continent: LocalizedStringConvertible {
     public var localizedDescription: String {
         return iso3166Code.localizedDescription
     }
 }
-
 
 extension Continent: Managed {
     public static var defaultSortDescriptors: [NSSortDescriptor] {
@@ -113,11 +109,8 @@ extension Continent: Managed {
     }
 }
 
-
 extension Continent: DelayedDeletable {
     @NSManaged public var markedForDeletionDate: Date?
 }
 
-
 extension Continent: UpdateTimestampable {}
-

@@ -8,9 +8,9 @@
 import Foundation
 
 struct OTMStudent {
-    
-    static var ListOfStudent : [OTMStudent]?
-    
+
+    static var ListOfStudent: [OTMStudent]?
+
     // MARK: Initializers
     var objectId: String
     var uniqueKey: String
@@ -22,9 +22,9 @@ struct OTMStudent {
     var longitude: Float
     var createdAt: String
     var updatedAt: String
-    
+
     /* Construct a TMDBMovie from a dictionary */
-    init(dictionary: [String : AnyObject]) {
+    init(dictionary: [String: AnyObject]) {
         objectId = dictionary[ParseClient.JSONResponseKeyPaths.ObjectId] as! String
         uniqueKey = dictionary[ParseClient.JSONResponseKeyPaths.UniqueKey] as! String
         firstName = dictionary[ParseClient.JSONResponseKeyPaths.FirstName] as! String
@@ -36,15 +36,15 @@ struct OTMStudent {
         createdAt = dictionary[ParseClient.JSONResponseKeyPaths.CreatedAt] as! String
         updatedAt = dictionary[ParseClient.JSONResponseKeyPaths.UpdatedAt] as! String
     }
-    
+
     /* Helper: Given an array of dictionaries, convert them to an array of TMDBMovie objects */
-    static func studentsFromResults(results: [[String : AnyObject]]) -> [OTMStudent] {
+    static func studentsFromResults(results: [[String: AnyObject]]) -> [OTMStudent] {
         var students = [OTMStudent]()
-        
+
         for result in results {
             students.append(OTMStudent(dictionary: result))
         }
-        
+
         return students
     }
 }

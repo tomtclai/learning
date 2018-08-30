@@ -31,7 +31,7 @@
 import Foundation
 
 class BugStore: Codable {
-  
+
   static let sharedStore: BugStore = {
     var store = BugStore.emptyStore()
     if let url = Bundle.main.url(forResource: "bugs", withExtension: "json") {
@@ -44,9 +44,9 @@ class BugStore: Codable {
     }
     return store
   }()
-  
+
   private var store: [Bug.Context: [Bug]]
-  
+
   class func emptyStore() -> BugStore {
     let label = "It appears as though the JSON bug store failed to load. You might want to check that!"
     let store: [Bug.Context: [Bug]] = [
@@ -56,24 +56,24 @@ class BugStore: Codable {
     ]
     return BugStore(store: store)
   }
-  
+
   init(store: [Bug.Context: [Bug]]) {
     self.store = store
   }
-  
+
   func bugs(for context: Bug.Context) -> [Bug] {
     return store[context]!
   }
-  
+
   func bug(at index: Int, in context: Bug.Context) -> Bug {
     return bugs(for: context)[index]
   }
-  
+
   func insert(bugs: [Bug], into context: Bug.Context, at index: Int) {
     store[context]!.insert(contentsOf: bugs, at: index)
     bugs.forEach { $0.context = context }
   }
-  
+
   func deleteBugs(at indexes: [Int], in context: Bug.Context) -> [Bug] {
     let plucked = bugs(for: context)
       .enumerated()

@@ -21,13 +21,13 @@
 */
 
 struct HerbModel {
-  
+
   let name: String
   let image: String
   let license: String
   let credit: String
   let description: String
-  
+
   static func all() -> [HerbModel] {
     return [
       HerbModel(name: "Basil", image: "basil.jpg", license: "http://creativecommons.org/licenses/by-sa/3.0", credit: "http://commons.wikimedia.org/wiki/User:Castielli", description: "Basil is commonly used fresh in cooked recipes. In general, it is added at the last moment, as cooking quickly destroys the flavor. The fresh herb can be kept for a short time in plastic bags in the refrigerator, or for a longer period in the freezer, after being blanched quickly in boiling water. The dried herb also loses most of its flavor, and what little flavor remains tastes very different."),
@@ -37,5 +37,5 @@ struct HerbModel {
       HerbModel(name: "Anise", image: "anise.jpg", license: "http://commons.wikimedia.org/wiki/File:AniseSeeds.jpg", credit: "http://commons.wikimedia.org/wiki/User:Ben_pcc", description: "Anise is sweet and very aromatic, distinguished by its characteristic flavor. The seeds, whole or ground, are used in a wide variety of regional and ethnic confectioneries, including black jelly beans, British aniseed balls, Australian humbugs, and others. The Ancient Romans often served spiced cakes with aniseseed, called mustaceoe at the end of feasts as a digestive. ")
     ]
   }
-  
+
 }

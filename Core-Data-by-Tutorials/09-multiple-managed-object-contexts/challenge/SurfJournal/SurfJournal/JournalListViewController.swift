@@ -39,14 +39,14 @@ class JournalListViewController: UITableViewController {
 
   // MARK: IBOutlets
   @IBOutlet weak var exportButton: UIBarButtonItem!
-  
+
   // MARK: View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
 
     configureView()
   }
-  
+
   // MARK: Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
@@ -102,7 +102,7 @@ private extension JournalListViewController {
   func configureView() {
     fetchedResultsController = journalListFetchedResultsController()
   }
-  
+
   func exportCSVFile() {
     navigationItem.leftBarButtonItem = activityIndicatorBarButtonItem()
 
@@ -197,7 +197,7 @@ private extension JournalListViewController {
   }
 
   func surfJournalFetchRequest() -> NSFetchRequest<JournalEntry> {
-    let fetchRequest:NSFetchRequest<JournalEntry> = JournalEntry.fetchRequest()
+    let fetchRequest: NSFetchRequest<JournalEntry> = JournalEntry.fetchRequest()
     fetchRequest.fetchBatchSize = 20
 
     let sortDescriptor = NSSortDescriptor(key: #keyPath(JournalEntry.date), ascending: false)
@@ -208,7 +208,7 @@ private extension JournalListViewController {
 }
 
 // MARK: NSFetchedResultsControllerDelegate
-extension JournalListViewController: NSFetchedResultsControllerDelegate{
+extension JournalListViewController: NSFetchedResultsControllerDelegate {
 
   func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
     tableView.reloadData()
@@ -225,17 +225,17 @@ extension JournalListViewController {
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return fetchedResultsController.sections?[section].numberOfObjects ?? 0
   }
-  
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SurfEntryTableViewCell
     configureCell(cell, indexPath: indexPath)
     return cell
   }
-  
-  func configureCell(_ cell: SurfEntryTableViewCell, indexPath:IndexPath) {
+
+  func configureCell(_ cell: SurfEntryTableViewCell, indexPath: IndexPath) {
     let surfJournalEntry = fetchedResultsController.object(at: indexPath)
     cell.dateLabel.text = surfJournalEntry.stringForDate()
-    
+
     guard let rating = surfJournalEntry.rating?.int32Value else { return }
 
     switch rating {

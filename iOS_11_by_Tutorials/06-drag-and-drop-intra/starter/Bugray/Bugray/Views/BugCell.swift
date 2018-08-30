@@ -31,12 +31,12 @@
 import UIKit
 
 class BugCell: UICollectionViewCell {
-  
+
   @IBOutlet private var container: UIView!
   @IBOutlet private var idLabel: UILabel!
   @IBOutlet private var label: UILabel!
   @IBOutlet private var bugIcon: UIImageView!
-  
+
   var bug: Bug? {
     didSet {
       guard let bug = bug else { return }
@@ -45,18 +45,18 @@ class BugCell: UICollectionViewCell {
       bugIcon.tintColor = tintColorFor(priority: bug.priority)
     }
   }
-  
+
   override func awakeFromNib() {
     super.awakeFromNib()
     configureBorder()
   }
-  
+
   private func configureBorder() {
     container.layer.borderWidth = 1
     container.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1).cgColor
     container.layer.cornerRadius = 3
   }
-  
+
   private func tintColorFor(priority: Bug.Priority) -> UIColor {
     switch priority {
     case .low:

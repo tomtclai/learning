@@ -9,13 +9,11 @@
 import UIKit
 import MoodyModel
 
-
 class MoodTableViewCell: UITableViewCell {
     @IBOutlet weak var moodView: MoodView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var country: UILabel!
 }
-
 
 private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
@@ -26,7 +24,6 @@ private let dateFormatter: DateFormatter = {
     return formatter
 }()
 
-
 extension MoodTableViewCell {
     func configure(for mood: Mood) {
         moodView.colors = mood.colors
@@ -34,5 +31,3 @@ extension MoodTableViewCell {
         country.text = mood.country?.localizedDescription ?? ""
     }
 }
-
-

@@ -23,7 +23,7 @@
 import UIKit
 
 // A delay function
-func delay(seconds: Double, completion: @escaping ()-> Void) {
+func delay(seconds: Double, completion: @escaping () -> Void) {
   DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
 }
 
@@ -99,7 +99,7 @@ class ViewController: UIViewController {
 
     statusPosition = status.center
 
-    info.frame = CGRect(x: 0.0, y: loginButton.center.y + 60.0,  width: view.frame.size.width, height: 30)
+    info.frame = CGRect(x: 0.0, y: loginButton.center.y + 60.0, width: view.frame.size.width, height: 30)
     info.backgroundColor = UIColor.clear
     info.font = UIFont(name: "HelveticaNeue", size: 12.0)
     info.textAlignment = .center

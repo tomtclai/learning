@@ -84,8 +84,7 @@ extension ReviewsTableViewController: UISearchResultsUpdating {
   func findMatches(_ searchText: String) {
     var matches: Set<Review> = []
     getSearchTerms(text: searchText,
-                   language: Locale.current.languageCode)
-    { word in
+                   language: Locale.current.languageCode) { word in
       if let founds = ReviewsManager.instance.searchTerms[word] {
         matches.formUnion(founds)
       }

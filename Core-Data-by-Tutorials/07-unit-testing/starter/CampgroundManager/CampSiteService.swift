@@ -64,7 +64,7 @@ extension CampSiteService {
 
   public func getCampSite(_ siteNumber: NSNumber) -> CampSite? {
     // TODO : Not yet implemented
-    
+
     return nil
   }
 

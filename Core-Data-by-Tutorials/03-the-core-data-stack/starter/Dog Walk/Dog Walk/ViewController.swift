@@ -81,7 +81,7 @@ extension ViewController {
     walk.date = NSDate()
 
     currentDog?.addToWalks(walk)
-    
+
     tableView.reloadData()
   }
 }

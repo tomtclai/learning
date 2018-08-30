@@ -35,26 +35,26 @@ class ShoppingListViewController: UIViewController {
   @IBOutlet var tableView: UITableView!
   @IBOutlet weak var addButton: UIBarButtonItem!
   @IBOutlet weak var sortButton: UIBarButtonItem!
-  
+
   var shoppingList = [ListItem(name: "Avocado"),
                       ListItem(name: "Strawberries"),
                       ListItem(name: "Sweet Potatoes"),
                       ListItem(name: "Oranges"),
                       ListItem(name: "Cantaloupe")]
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     tableView.dropDelegate = self
     tableView.dragDelegate = self
     tableView.dragInteractionEnabled = true
     configureAccessibility()
   }
-  
+
   func configureAccessibility() {
     addButton.accessibilityLabel = "Add"
     addButton.accessibilityHint = "Display a prompt for adding new list items"
-    
+
     sortButton.accessibilityLabel = "Sort"
     sortButton.accessibilityHint = "Sort the shopping list alphabetically"
   }
@@ -65,7 +65,7 @@ class ShoppingListViewController: UIViewController {
     shoppingList = Array(Set(shoppingList)).sorted {
       $0.name.caseInsensitiveCompare($1.name) == .orderedAscending
     }
-    
+
     tableView.performBatchUpdates({
       for (index, item) in originalList.enumerated() {
         let oldIndexPath = IndexPath(row: index, section: 0)
@@ -80,7 +80,7 @@ class ShoppingListViewController: UIViewController {
       }
     }, completion: nil)
   }
-  
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "AddItemSegue" {
       guard let navController = segue.destination as? UINavigationController
@@ -97,15 +97,15 @@ extension ShoppingListViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return shoppingList.count
   }
-  
+
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingListCell", for: indexPath)
-    
+
     let currentItem = shoppingList[indexPath.row]
     if let cell = cell as? ShoppingListCell {
       cell.configureCell(with: currentItem)
     }
-    
+
     return cell
   }
 }
@@ -153,13 +153,13 @@ extension ShoppingListViewController: UITableViewDropDelegate {
                  performDropWith coordinator: UITableViewDropCoordinator) {
     guard let destinationIndexPath = coordinator.destinationIndexPath
       else { return }
-    
+
     DispatchQueue.main.async { [weak self] in
       tableView.performBatchUpdates({ coordinator.items.forEach { [weak self] (item) in
           guard let sourceIndexPath = item.sourceIndexPath,
             let `self` = self
             else { return }
-          
+
           let row = self.shoppingList
             .remove(at: sourceIndexPath.row)
           self.shoppingList
@@ -170,11 +170,11 @@ extension ShoppingListViewController: UITableViewDropDelegate {
       }, completion: nil)
     }
   }
-  
+
   func tableView(_ tableView: UITableView, canHandle session: UIDropSession) -> Bool {
     return session.canLoadObjects(ofClass: ListItem.self)
   }
-  
+
   func tableView(_ tableView: UITableView,
                  dropSessionDidUpdate session: UIDropSession,
                  withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {

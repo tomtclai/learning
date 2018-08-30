@@ -33,7 +33,7 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  
+
   var window: UIWindow?
   lazy var coreDataStack = CoreDataStack(modelName: "SurfJournalModel")
 

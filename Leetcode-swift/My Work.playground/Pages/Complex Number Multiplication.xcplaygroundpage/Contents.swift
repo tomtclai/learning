@@ -50,10 +50,10 @@ import Foundation
         let B = aNumbers.1
         let C = bNumbers.0
         let D = bNumbers.1
-        
+
         let numberResult = A*C + B*D * -1
         let imaginaryResult = A*D+B*C
-        
+
         return "\(numberResult)+\(imaginaryResult)i"
     }
     // Expect: 1+-1i
@@ -67,4 +67,4 @@ import Foundation
         let iComponent = Int(imaginaryString.substring(with: indexRange))!
         return (constant, iComponent)
     }
-    complexNumberMultiply("1+-1i","1+-1i")
+    complexNumberMultiply("1+-1i", "1+-1i")

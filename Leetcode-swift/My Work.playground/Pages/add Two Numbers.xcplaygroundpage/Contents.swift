@@ -31,7 +31,7 @@ class Solution {
             node1 = node1?.next
             node2 = node2?.next
         }
-        
+
         return headResult
     }
 }

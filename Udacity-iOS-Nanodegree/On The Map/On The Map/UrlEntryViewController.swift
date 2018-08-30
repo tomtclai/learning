@@ -9,11 +9,11 @@
 import UIKit
 import MapKit
 class UrlEntryViewController: UIViewController {
-    
+
     @IBOutlet weak var urlField: UITextField!
-    var locationString : String!
-    var location : CLLocationCoordinate2D!
-    private var annotation : OTMAnnotation!
+    var locationString: String!
+    var location: CLLocationCoordinate2D!
+    private var annotation: OTMAnnotation!
     @IBOutlet weak var mapview: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,15 +25,14 @@ class UrlEntryViewController: UIViewController {
         mapview.addAnnotation(annotation)
         mapview.selectAnnotation(annotation, animated: true)
     }
-    
-    
+
     @IBAction func cancelTapped(sender: AnyObject) {
         self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
-    
+
     @IBAction func submitTapped(sender: AnyObject) {
         UIActivityIndicatorViewController.sharedInstance.start()
-        
+
         ParseClient.sharedInstance().postStudentLocation(locationString, mediaURL: urlField.text, latitude: location.latitude, longitude: location.longitude) { (result, error) -> Void in
             UIActivityIndicatorViewController.sharedInstance.stop()
             if let error = error {

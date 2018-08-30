@@ -22,7 +22,6 @@ private func AssertEqual(_ xyz1: XYZ, _ xyz2: XYZ, _ message: String = "", file:
     XCTAssertEqual(Double(xyz1.z), Double(xyz2.z), accuracy: Double(1), "\(message) Z", file: file, line: line)
 }
 
-
 class ColorTests: XCTestCase {
 
     fileprivate var colorsToTest: [ARGBPixel_t] {
@@ -35,7 +34,7 @@ class ColorTests: XCTestCase {
             ARGBPixel_t(a: 255, r: 0, g: 0, b: 255),
             ARGBPixel_t(a: 255, r: 237, g: 10, b: 12),
             ARGBPixel_t(a: 255, r: 12, g: 240, b: 88),
-            ARGBPixel_t(a: 255, r: 78, g: 24, b: 244),
+            ARGBPixel_t(a: 255, r: 78, g: 24, b: 244)
         ]
     }
 
@@ -88,4 +87,3 @@ class ColorTests: XCTestCase {
     }
 
 }
-

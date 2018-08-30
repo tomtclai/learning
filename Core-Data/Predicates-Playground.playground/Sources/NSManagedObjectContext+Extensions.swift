@@ -8,7 +8,6 @@
 
 import CoreData
 
-
 extension NSManagedObjectContext {
 
     private var store: NSPersistentStore {
@@ -20,7 +19,7 @@ extension NSManagedObjectContext {
     public var metaData: [String: AnyObject] {
         get {
             guard let psc = persistentStoreCoordinator else { fatalError("must have PSC") }
-            return psc.metadata(for: store) as [String : AnyObject]
+            return psc.metadata(for: store) as [String: AnyObject]
         }
         set {
             performChanges {
@@ -57,7 +56,7 @@ extension NSManagedObjectContext {
         }
     }
 
-    public func performChanges(block: @escaping () -> ()) {
+    public func performChanges(block: @escaping () -> Void) {
         perform {
             block()
             _ = self.saveOrRollback()
@@ -66,9 +65,8 @@ extension NSManagedObjectContext {
 
 }
 
-
 private let SingleObjectCacheKey = "SingleObjectCache"
-private typealias SingleObjectCache = [String:NSManagedObject]
+private typealias SingleObjectCache = [String: NSManagedObject]
 
 extension NSManagedObjectContext {
     public func set(_ object: NSManagedObject?, forSingleObjectCacheKey key: String) {
@@ -78,8 +76,7 @@ extension NSManagedObjectContext {
     }
 
     public func object(forSingleObjectCacheKey key: String) -> NSManagedObject? {
-        guard let cache = userInfo[SingleObjectCacheKey] as? [String:NSManagedObject] else { return nil }
+        guard let cache = userInfo[SingleObjectCacheKey] as? [String: NSManagedObject] else { return nil }
         return cache[key]
     }
 }
-

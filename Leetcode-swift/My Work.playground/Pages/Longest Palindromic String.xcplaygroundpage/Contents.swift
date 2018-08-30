@@ -26,7 +26,6 @@
  we could hopefully achieve amortized O(1) time for random access.
  */
 
-
 func longestPalindrome(_ s: String) -> String {
     let strArr = Array(s.characters)
     let stringLength = s.count

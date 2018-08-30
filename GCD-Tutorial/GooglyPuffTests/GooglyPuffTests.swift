@@ -30,20 +30,20 @@ class GooglyPuffTests: XCTestCase {
     super.setUp()
     // Put setup code here. This method is called before the invocation of each test method in the class.
   }
-  
+
   override func tearDown() {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     super.tearDown()
   }
-  
+
   func testLotsOfFacesImageURL() {
     downloadImageURLWithString(lotsOfFacesURLString)
   }
-  
+
   func testSuccessKidImageURL() {
     downloadImageURLWithString(successKidURLString)
   }
-  
+
   func testOverlyAttachedGirlfriendImageURL() {
     downloadImageURLWithString(overlyAttachedGirlfriendURLString)
   }
@@ -69,7 +69,7 @@ class GooglyPuffTests: XCTestCase {
     func downloadImageURLWithString(_ urlString: String) {
         let url = URL(string: urlString)
         let downloadExpectation = expectation(description: "Image downloaded from \(urlString)")
-        let _ = DownloadPhoto(url: url!) {
+        _ = DownloadPhoto(url: url!) {
             _, error in
             if let error = error {
                 XCTFail("\(urlString) failed. \(error.localizedDescription)")

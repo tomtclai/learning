@@ -24,33 +24,33 @@ import UIKit
 import QuartzCore
 
 class ViewController: UIViewController {
-  
+
   @IBOutlet var bgImageView: UIImageView!
-  
+
   @IBOutlet var summaryIcon: UIImageView!
   @IBOutlet var summary: UILabel!
-  
+
   @IBOutlet var flightNr: UILabel!
   @IBOutlet var gateNr: UILabel!
   @IBOutlet var departingFrom: UILabel!
   @IBOutlet var arrivingTo: UILabel!
   @IBOutlet var planeImage: UIImageView!
-  
+
   @IBOutlet var flightStatus: UILabel!
   @IBOutlet var statusBanner: UIImageView!
-  
-  //MARK: view controller methods
-  
+
+  // MARK: view controller methods
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     //adjust ui
     summary.addSubview(summaryIcon)
     summaryIcon.center.y = summary.frame.size.height/2
-    
+
     //start rotating the flights
     changeFlightDataTo(londonToParis)
-    
+
     let rect = CGRect(x: 0.0, y: -70.0, width: view.bounds.width, height: 50.0)
     let emitter = CAEmitterLayer()
     emitter.frame = rect
@@ -125,11 +125,11 @@ class ViewController: UIViewController {
 
     emitter.emitterCells = [emitterCell, cell2, cell3]
   }
-  
-  //MARK: custom methods
-  
+
+  // MARK: custom methods
+
   func changeFlightDataTo(_ data: FlightData) {
-    
+
     // populate the UI with the next flight's data
     summary.text = data.summary
     flightNr.text = data.flightNr
@@ -139,6 +139,5 @@ class ViewController: UIViewController {
     flightStatus.text = data.flightStatus
     bgImageView.image = UIImage(named: data.weatherImageName)
   }
-  
-  
+
 }

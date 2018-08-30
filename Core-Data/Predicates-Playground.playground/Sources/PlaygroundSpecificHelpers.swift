@@ -1,9 +1,7 @@
 import Foundation
 import CoreData
 
-
 // Moved some code here to make the playground faster / cleaner
-
 
 extension Sequence where Self.Iterator.Element: AnyObject {
 
@@ -45,7 +43,6 @@ public func cityNameAndResidents(c: City) -> String {
     let r = c.residents.map { $0.personNameAndAge }.joined(separator: ", ")
     return "'\(c.name)', \(c.residents.count) residents: \(r)"
 }
-
 
 /// Create a container and synchronously load its stores.
 ///
@@ -104,4 +101,3 @@ private extension NSPersistentContainer {
         }
     }
 }
-

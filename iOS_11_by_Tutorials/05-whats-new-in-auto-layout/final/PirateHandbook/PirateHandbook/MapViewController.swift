@@ -48,7 +48,7 @@ class MapViewController: UIViewController {
 		additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: legendContainer.frame.height + scrollIndicatorMargin, right: scrollIndicatorMargin)
 		scrollView.contentInsetAdjustmentBehavior = .never
 	}
-  
+
   func decideArrowOrX() {
     let currentPoint = marker.frame.origin
     let desiredPoint = CGPoint(x: desiredXConstraint.constant, y: desiredYConstraint.constant)
@@ -61,7 +61,7 @@ class MapViewController: UIViewController {
       markerImageView.transform = CGAffineTransform(rotationAngle: angle)
     }
   }
-  
+
   func angleBetween(_ firstPoint: CGPoint, _ secondPoint: CGPoint) -> CGFloat {
     let deltaX = secondPoint.x - firstPoint.x
     let deltaY = secondPoint.y - firstPoint.y

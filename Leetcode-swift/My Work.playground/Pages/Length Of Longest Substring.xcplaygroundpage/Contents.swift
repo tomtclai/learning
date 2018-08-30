@@ -1,4 +1,3 @@
-
 func lengthOfLongestSubstring(_ s: String) -> Int {
     var characters = Array(s.characters)
     var startIndex = 0
@@ -17,6 +16,6 @@ func lengthOfLongestSubstring(_ s: String) -> Int {
             resultLength = length
         }
     }
-    
+
     return resultLength
 }

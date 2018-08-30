@@ -9,7 +9,6 @@
 import CoreLocation
 import MoodyModel
 
-
 enum RemoteRecordChange<T: RemoteRecord> {
     case insert(T)
     case update(T)
@@ -30,11 +29,9 @@ enum RemoteError {
 
 protocol MoodyRemote {
     func setupMoodSubscription()
-    func fetchLatestMoods(completion: @escaping ([RemoteMood]) -> ())
-    func fetchNewMoods(completion: @escaping ([RemoteRecordChange<RemoteMood>], @escaping (_ success: Bool) -> ()) -> ())
-    func upload(_ moods: [Mood], completion: @escaping ([RemoteMood], RemoteError?) -> ())
-    func remove(_ moods: [Mood], completion: @escaping ([RemoteRecordID], RemoteError?) -> ())
-    func fetchUserID(completion: @escaping (RemoteRecordID?) -> ())
+    func fetchLatestMoods(completion: @escaping ([RemoteMood]) -> Void)
+    func fetchNewMoods(completion: @escaping ([RemoteRecordChange<RemoteMood>], @escaping (_ success: Bool) -> Void) -> Void)
+    func upload(_ moods: [Mood], completion: @escaping ([RemoteMood], RemoteError?) -> Void)
+    func remove(_ moods: [Mood], completion: @escaping ([RemoteRecordID], RemoteError?) -> Void)
+    func fetchUserID(completion: @escaping (RemoteRecordID?) -> Void)
 }
-
-

@@ -50,7 +50,7 @@ class AnnotationLayer: UIView {
   }
 
   var annotationColor: UIColor = .green
-  
+
   override func draw(_ rect: CGRect) {
     super.draw(rect)
 

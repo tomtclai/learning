@@ -8,12 +8,10 @@
 
 import CoreData
 
-
 protocol Managed: class, NSFetchRequestResult {
     static var entityName: String { get }
     static var defaultSortDescriptors: [NSSortDescriptor] { get }
 }
-
 
 extension Managed {
     static var defaultSortDescriptors: [NSSortDescriptor] {
@@ -27,8 +25,6 @@ extension Managed {
     }
 }
 
-
 extension Managed where Self: NSManagedObject {
     static var entityName: String { return entity().name!  }
 }
-

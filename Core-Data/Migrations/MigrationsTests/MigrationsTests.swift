@@ -10,7 +10,6 @@ import XCTest
 import CoreData
 @testable import Migrations
 
-
 final class MigrationsTests: XCTestCase {
 
     var targetURL: URL!
@@ -119,4 +118,3 @@ final class MigrationsTests: XCTestCase {
     }
 
 }
-

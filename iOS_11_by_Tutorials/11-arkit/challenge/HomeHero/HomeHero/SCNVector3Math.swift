@@ -47,24 +47,24 @@ func + (left: SCNVector3, right: SCNVector3) -> SCNVector3 {
 }
 
 extension SCNVector3 {
-  
+
   func normalized() -> SCNVector3 {
-    
+
     if length() == 0 {
       return self
     }
-    
+
     return self / length()
   }
-  
+
   func length() -> Float {
     return sqrtf(x * x + y * y + z * z)
   }
-  
+
   func dot(vector: SCNVector3) -> Float {
     return x * vector.x + y * vector.y + z * vector.z
   }
-  
+
   func distanceTo(_ vector: SCNVector3) -> Float {
     return SCNVector3(x: self.x - vector.x, y: self.y - vector.y, z: self.z - vector.z).length()
   }

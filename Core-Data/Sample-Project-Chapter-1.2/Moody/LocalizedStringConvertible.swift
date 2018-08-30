@@ -11,4 +11,3 @@ import Foundation
 protocol LocalizedStringConvertible {
     var localizedDescription: String { get }
 }
-

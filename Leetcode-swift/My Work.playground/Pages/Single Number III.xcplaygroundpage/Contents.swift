@@ -17,7 +17,7 @@ func singleNumber(_ nums: [Int]) -> [Int] {
     // AND gets you the last set bit (that differentiates the two nums we want)
     let lastSetBit = x & -x
     var result1 = 0, result2 = 0
-    nums.forEach{ num in
+    nums.forEach { num in
         if num & lastSetBit == 0 {
             result1 ^= num
         } else {

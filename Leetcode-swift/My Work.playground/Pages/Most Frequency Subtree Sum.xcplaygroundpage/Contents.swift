@@ -15,9 +15,9 @@ func findFrequentTreeSum(_ root: TreeNode?) -> [Int] {
         return [Int]()
     }
 
-    return valToFrequency.filter{ $0.value == max }.map{ $0.key }
+    return valToFrequency.filter { $0.value == max }.map { $0.key }
 }
-private func readSumFrequency(_ root: TreeNode?,_ dict: inout [Int:Int]) -> Int {
+private func readSumFrequency(_ root: TreeNode?, _ dict: inout [Int: Int]) -> Int {
     guard let root = root else {
         return 0
     }
@@ -44,4 +44,3 @@ public class TreeNode {
         self.right = nil
     }
 }
-

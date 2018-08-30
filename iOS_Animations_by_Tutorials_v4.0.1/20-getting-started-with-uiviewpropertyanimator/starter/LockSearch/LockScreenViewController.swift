@@ -112,8 +112,8 @@ class LockScreenViewController: UIViewController {
 
   func toggleBlur(_ blurred: Bool) {
     UIViewPropertyAnimator(duration: 0.55,
-                           controlPoint1: CGPoint(x:0.57, y: -0.4),
-                           controlPoint2: CGPoint(x:0.96, y: 0.87),
+                           controlPoint1: CGPoint(x: 0.57, y: -0.4),
+                           controlPoint2: CGPoint(x: 0.96, y: 0.87),
                            animations: blurAnimations(blurred))
       .startAnimation()
   }
@@ -155,7 +155,7 @@ extension LockScreenViewController: WidgetsOwnerProtocol {
       previewAnimator.isReversed = true
       previewAnimator.startAnimation()
       // this doesn't replace the existing completion block, it adds a second one
-      previewAnimator.addCompletion{ position in
+      previewAnimator.addCompletion { position in
         switch position {
         case .start:
           self.previewView?.removeFromSuperview()

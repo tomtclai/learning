@@ -38,13 +38,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     dataStore = loadDataStore("GreenGrocerSeed")
-    
+
     var dso = window?.rootViewController as? DataStoreOwner
     dso?.dataStore = dataStore
-    
+
     // Style the app
     applyAppAppearance()
-    
+
     return true
   }
 }

@@ -92,7 +92,7 @@ extension DepartmentListViewController {
     //2
     var uniqueDepartments: [String: Int] = [:]
     for employee in fetchResults {
-      
+
       if let employeeDepartmentCount = uniqueDepartments[employee.department!] {
         uniqueDepartments[employee.department!] = employeeDepartmentCount + 1
       } else {
@@ -122,7 +122,7 @@ extension DepartmentListViewController {
     //2
     expressionDescription.expression =
       NSExpression(forFunction: "count:",
-                   arguments:[NSExpression(forKeyPath: "department")])
+                   arguments: [NSExpression(forKeyPath: "department")])
 
     //3
     let fetchRequest: NSFetchRequest<NSDictionary> =

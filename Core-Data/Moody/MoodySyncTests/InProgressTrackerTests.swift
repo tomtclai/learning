@@ -11,7 +11,6 @@ import CoreData
 import CoreDataHelpers
 @testable import MoodySync
 
-
 class InProgressTrackerTests: XCTestCase {
 
     var managedObjectContext: NSManagedObjectContext! = nil
@@ -65,7 +64,7 @@ class InProgressTrackerTests: XCTestCase {
         let sut = InProgressTracker<TestObject>()
 
         // When
-        let _ = sut.objectsToProcess(from: [moA, moB])
+        _ = sut.objectsToProcess(from: [moA, moB])
         let result = sut.objectsToProcess(from: [moA, moB])
 
         // Then
@@ -77,7 +76,7 @@ class InProgressTrackerTests: XCTestCase {
         let sut = InProgressTracker<TestObject>()
 
         // When
-        let _ = sut.objectsToProcess(from: [moA, moB])
+        _ = sut.objectsToProcess(from: [moA, moB])
         let result = sut.objectsToProcess(from: [moC, moA, moB, moD])
 
         // Then
@@ -91,7 +90,7 @@ class InProgressTrackerTests: XCTestCase {
         let sut = InProgressTracker<TestObject>()
 
         // When
-        let _ = sut.objectsToProcess(from: [moA, moB, moC])
+        _ = sut.objectsToProcess(from: [moA, moB, moC])
         sut.markObjectsAsComplete([moA, moC])
         let result = sut.objectsToProcess(from: [moA, moB, moC, moD])
 
@@ -102,4 +101,3 @@ class InProgressTrackerTests: XCTestCase {
         XCTAssertTrue(result.contains(moD))
     }
 }
-

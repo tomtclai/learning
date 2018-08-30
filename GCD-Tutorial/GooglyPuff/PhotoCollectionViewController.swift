@@ -52,31 +52,29 @@ class PhotoCollectionViewController: UICollectionViewController {
         _ = setupSignalHandlerFor(self)
     #endif
     // Background image setup
-    let backgroundImageView = UIImageView(image: UIImage(named:"background"))
+    let backgroundImageView = UIImageView(image: UIImage(named: "background"))
     backgroundImageView.alpha = backgroundImageOpacity
     backgroundImageView.contentMode = .center
     collectionView?.backgroundView = backgroundImageView
-
-
 
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(contentChangedNotification(_:)),
       name: NSNotification.Name(rawValue: photoManagerContentUpdatedNotification),
       object: nil)
-    
+
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(contentChangedNotification(_:)),
       name: NSNotification.Name(rawValue: photoManagerContentAddedNotification),
       object: nil)
   }
-  
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     showOrHideNavPrompt()
   }
-  
+
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
@@ -85,11 +83,11 @@ class PhotoCollectionViewController: UICollectionViewController {
   // MARK: - IBAction Methods
   @IBAction func addPhotoAssets(_ sender: Any) {
     let alert = UIAlertController(title: "Get Photos From:", message: nil, preferredStyle: .actionSheet)
-    
+
     // Cancel button
     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
     alert.addAction(cancelAction)
-    
+
     // Photo library button
     let libraryAction = UIAlertAction(title: "Photo Library", style: .default) {
       _ in
@@ -101,14 +99,14 @@ class PhotoCollectionViewController: UICollectionViewController {
       }
     }
     alert.addAction(libraryAction)
-    
+
     // Internet button
     let internetAction = UIAlertAction(title: "Le Internet", style: .default) {
       _ in
       self.downloadImageAssets()
     }
     alert.addAction(internetAction)
-    
+
     // Present alert
     present(alert, animated: true, completion: nil)
   }
@@ -126,7 +124,7 @@ private extension PhotoCollectionViewController {
         }
     }
   }
-  
+
   func downloadImageAssets() {
     PhotoManager.sharedManager.downloadPhotosWithCompletion() {
       error in
@@ -152,14 +150,14 @@ extension PhotoCollectionViewController {
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return PhotoManager.sharedManager.photos.count
   }
-  
+
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCollectionViewCell
-    
+
     // Configure the cell
     let photoAssets = PhotoManager.sharedManager.photos
     let photo = photoAssets[indexPath.row]
-    
+
     switch photo.statusThumbnail {
     case .goodToGo:
       cell.thumbnailImage = photo.thumbnail
@@ -168,7 +166,7 @@ extension PhotoCollectionViewController {
     case .failed:
       cell.thumbnailImage = UIImage(named: "photoDownloadError")
     }
-    
+
     return cell
   }
 }
@@ -178,7 +176,7 @@ extension PhotoCollectionViewController {
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let photos = PhotoManager.sharedManager.photos
     let photo = photos[indexPath.row]
-    
+
     switch photo.statusImage {
     case .goodToGo:
       let viewController = storyboard?.instantiateViewController(withIdentifier: "PhotoDetailStoryboard") as? PhotoDetailViewController
@@ -186,14 +184,14 @@ extension PhotoCollectionViewController {
         viewController.image = photo.image
         navigationController?.pushViewController(viewController, animated: true)
       }
-      
+
     case .downloading:
       let alert = UIAlertController(title: "Downloading",
                                     message: "The image is currently downloading",
                                     preferredStyle: .alert)
       alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
       present(alert, animated: true, completion: nil)
-      
+
     case .failed:
       let alert = UIAlertController(title: "Image Failed",
                                     message: "The image failed to be created",
@@ -211,8 +209,8 @@ extension PhotoCollectionViewController: AssetPickerDelegate {
     // Dismiss asset picker
     dismiss(animated: true, completion: nil)
   }
-  
-  func assetPickerDidFinishPickingAssets(_ selectedAssets: [PHAsset])  {
+
+  func assetPickerDidFinishPickingAssets(_ selectedAssets: [PHAsset]) {
     // Add assets
     for asset in selectedAssets {
       let photo = AssetPhoto(asset: asset)

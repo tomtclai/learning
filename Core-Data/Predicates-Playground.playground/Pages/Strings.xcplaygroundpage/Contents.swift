@@ -10,12 +10,10 @@
 import Foundation
 import CoreData
 
-
 let container = countryModel().createContainerWithLoadedStores(databaseName: "countries.db")
 let moc = container.viewContext
 
 createCountries(in: moc)
-
 
 func allCountries(matching predicate: NSPredicate) -> [Country] {
     let request = Country.sortedFetchRequest(with: predicate)
@@ -25,7 +23,6 @@ func allCountries(matching predicate: NSPredicate) -> [Country] {
 func descriptionsForCountries(matching predicate: NSPredicate) -> [String] {
     return allCountries(matching: predicate).map({ $0.description })
 }
-
 
 do {
     let predicate = NSPredicate(format: "%K ==[n] %@", #keyPath(Country.alpha3Code), "ZAF")
@@ -47,7 +44,6 @@ do {
     let m = descriptionsForCountries(matching: predicate)
 }
 
-
 do {
     let predicate = NSPredicate(format: "%K LIKE[n] %@", #keyPath(Country.alpha3Code), "?A?")
     let m = descriptionsForCountries(matching: predicate)
@@ -63,6 +59,4 @@ do {
     let m = descriptionsForCountries(matching: predicate)
 }
 
-
 //: [Next](@next)
-

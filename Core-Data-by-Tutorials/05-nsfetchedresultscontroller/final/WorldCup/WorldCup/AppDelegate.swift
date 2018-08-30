@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
   lazy var  coreDataStack = CoreDataStack(modelName: "WorldCup")
-  
+
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
     importJSONSeedDataIfNeeded()
@@ -84,7 +84,7 @@ extension AppDelegate {
         let zone = jsonDictionary["qualifyingZone"] as! String
         let imageName = jsonDictionary["imageName"] as! String
         let wins = jsonDictionary["wins"] as! NSNumber
-        
+
         let team = Team(context: coreDataStack.managedContext)
         team.teamName = teamName
         team.imageName = imageName

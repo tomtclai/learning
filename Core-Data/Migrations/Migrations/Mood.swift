@@ -8,6 +8,4 @@
 
 import CoreData
 
-
 public final class Mood: NSManagedObject {}
-

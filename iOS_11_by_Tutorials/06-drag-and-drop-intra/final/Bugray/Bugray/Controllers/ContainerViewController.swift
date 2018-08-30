@@ -31,7 +31,7 @@
 import UIKit
 
 class ContainerViewController: UIViewController {
-  
+
   struct Segue {
     struct Identifiers {
       static let ToDoList = "ToDoListIdentifier"
@@ -39,7 +39,7 @@ class ContainerViewController: UIViewController {
       static let DoneList = "DoneListIdentifier"
     }
   }
-  
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let identifier = segue.identifier,
       let destination = segue.destination as? BugListViewController else { return }

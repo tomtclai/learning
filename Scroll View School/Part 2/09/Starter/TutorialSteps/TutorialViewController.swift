@@ -29,7 +29,7 @@ class TutorialViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     scrollView.isPagingEnabled = true
     let page1 = createAndAddTutorialStep("bg_1", iconImageName: "icon_1", text: "PetShare is a pet photo sharing community.")
     let page2 = createAndAddTutorialStep("bg_2", iconImageName: "icon_2", text: "Take picture of your pet, and add filters or clipart to help them shine.")
@@ -37,7 +37,7 @@ class TutorialViewController: UIViewController {
     let page4 = createAndAddTutorialStep("bg_4", iconImageName: "icon_4", text: "Rate other photos, give hearts, and follow pets you adore!")
     let page5 = createAndAddTutorialStep("bg_5", iconImageName: "icon_5", text: "Set up a profile for your pet, show past photos, and let fans follow.")
     pages = [page1, page2, page3, page4, page5]
-    
+
     let views: [String: UIView] = ["view": view, "page1": page1.view, "page2": page2.view, "page3": page3.view, "page4": page4.view, "page5": page5.view]
     let metrics = ["edgeMargin": 10, "betweenMargin": 20]
     let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[page1(==view)]|", options: [], metrics: nil, views: views)

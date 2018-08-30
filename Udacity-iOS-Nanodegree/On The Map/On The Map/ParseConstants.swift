@@ -17,12 +17,12 @@ extension ParseClient {
         // MARK: URLs
         static let BaseURL = "https://api.parse.com/1/classes/StudentLocation"
     }
-    
+
     // MARK: Methods
     struct Methods {
 
     }
-    
+
     // MARK: URL Keys
     // MARK: Parameter Keys
     struct ParameterKeys {

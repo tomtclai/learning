@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 public struct ContextDidSaveNotification {
 
     public init(note: Notification) {
@@ -34,7 +33,6 @@ public struct ContextDidSaveNotification {
         return c
     }
 
-
     // MARK: Private
 
     fileprivate let notification: Notification
@@ -49,7 +47,6 @@ public struct ContextDidSaveNotification {
 
 }
 
-
 extension ContextDidSaveNotification: CustomDebugStringConvertible {
     public var debugDescription: String {
         var components = [notification.name.rawValue]
@@ -61,7 +58,6 @@ extension ContextDidSaveNotification: CustomDebugStringConvertible {
         return components.joined(separator: " ")
     }
 }
-
 
 public struct ContextWillSaveNotification {
 
@@ -75,13 +71,11 @@ public struct ContextWillSaveNotification {
         return c
     }
 
-
     // MARK: Private
 
     fileprivate let notification: Notification
 
 }
-
 
 public struct ObjectsDidChangeNotification {
 
@@ -119,7 +113,6 @@ public struct ObjectsDidChangeNotification {
         return c
     }
 
-
     // MARK: Private
 
     fileprivate let notification: Notification
@@ -130,12 +123,11 @@ public struct ObjectsDidChangeNotification {
 
 }
 
-
 extension NSManagedObjectContext {
 
     /// Adds the given block to the default `NotificationCenter`'s dispatch table for the given context's did-save notifications.
     /// - returns: An opaque object to act as the observer. This must be sent to the default `NotificationCenter`'s `removeObserver()`.
-    public func addContextDidSaveNotificationObserver(_ handler: @escaping (ContextDidSaveNotification) -> ()) -> NSObjectProtocol {
+    public func addContextDidSaveNotificationObserver(_ handler: @escaping (ContextDidSaveNotification) -> Void) -> NSObjectProtocol {
         let nc = NotificationCenter.default
         return nc.addObserver(forName: .NSManagedObjectContextDidSave, object: self, queue: nil) { note in
             let wrappedNote = ContextDidSaveNotification(note: note)
@@ -145,7 +137,7 @@ extension NSManagedObjectContext {
 
     /// Adds the given block to the default `NotificationCenter`'s dispatch table for the given context's will-save notifications.
     /// - returns: An opaque object to act as the observer. This must be sent to the default `NotificationCenter`'s `removeObserver()`.
-    public func addContextWillSaveNotificationObserver(_ handler: @escaping (ContextWillSaveNotification) -> ()) -> NSObjectProtocol {
+    public func addContextWillSaveNotificationObserver(_ handler: @escaping (ContextWillSaveNotification) -> Void) -> NSObjectProtocol {
         let nc = NotificationCenter.default
         return nc.addObserver(forName: .NSManagedObjectContextWillSave, object: self, queue: nil) { note in
             let wrappedNote = ContextWillSaveNotification(note: note)
@@ -155,7 +147,7 @@ extension NSManagedObjectContext {
 
     /// Adds the given block to the default `NotificationCenter`'s dispatch table for the given context's objects-did-change notifications.
     /// - returns: An opaque object to act as the observer. This must be sent to the default `NotificationCenter`'s `removeObserver()`.
-    public func addObjectsDidChangeNotificationObserver(_ handler: @escaping (ObjectsDidChangeNotification) -> ()) -> NSObjectProtocol {
+    public func addObjectsDidChangeNotificationObserver(_ handler: @escaping (ObjectsDidChangeNotification) -> Void) -> NSObjectProtocol {
         let nc = NotificationCenter.default
         return nc.addObserver(forName: .NSManagedObjectContextObjectsDidChange, object: self, queue: nil) { note in
             let wrappedNote = ObjectsDidChangeNotification(note: note)
@@ -170,5 +162,3 @@ extension NSManagedObjectContext {
     }
 
 }
-
-

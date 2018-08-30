@@ -43,21 +43,21 @@ class WeatherViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     setupImages(forTraitCollection: traitCollection)
   }
-  
+
   override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
     super.willTransition(to: newCollection, with: coordinator)
     if newCollection.horizontalSizeClass != traitCollection.horizontalSizeClass || newCollection.verticalSizeClass != traitCollection.verticalSizeClass {
       setupImages(forTraitCollection: newCollection)
     }
   }
-  
+
   private func setupImages(forTraitCollection traitCollection: UITraitCollection) {
     guard stackView.arrangedSubviews.count > 1 else { return }
-    
-    let compact = traitCollection.horizontalSizeClass == .compact && traitCollection.verticalSizeClass == .compact    
+
+    let compact = traitCollection.horizontalSizeClass == .compact && traitCollection.verticalSizeClass == .compact
     for subview in stackView.arrangedSubviews.suffix(from: 1) {
       subview.isHidden = compact
     }

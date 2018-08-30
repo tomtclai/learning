@@ -10,7 +10,6 @@ import UIKit
 import CoreLocation
 import CoreData
 
-
 final class Continent: NSManagedObject {
     @NSManaged fileprivate(set) var countries: Set<Country>
     @NSManaged var updatedAt: Date
@@ -35,16 +34,13 @@ final class Continent: NSManagedObject {
         return continent
     }
 
-
     // MARK: Private
 
     @NSManaged fileprivate var numericISO3166Code: Int16
 }
-
 
 extension Continent: Managed {
     static var defaultSortDescriptors: [NSSortDescriptor] {
         return [NSSortDescriptor(key: #keyPath(updatedAt), ascending: false)]
     }
 }
-

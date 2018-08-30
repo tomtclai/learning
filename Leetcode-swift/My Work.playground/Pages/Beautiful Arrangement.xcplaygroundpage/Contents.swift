@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/beautiful-arrangement/discuss/
 func countArrangement(_ N: Int) -> Int {
-    func counts(_ n: Int, _ vs: inout [Int]) -> Int{
+    func counts(_ n: Int, _ vs: inout [Int]) -> Int {
         if n < 1 {
             return 1
         }
@@ -20,4 +20,3 @@ func countArrangement(_ N: Int) -> Int {
     }
     return counts(N, &vs)
 }
-

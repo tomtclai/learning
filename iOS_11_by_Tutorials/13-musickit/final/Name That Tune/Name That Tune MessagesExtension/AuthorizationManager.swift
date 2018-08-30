@@ -38,7 +38,7 @@ private class MockURLProtocol: URLProtocol {
   static var fakeHeaders: [String: String] = [:]
   static var fakeStatusCode = 200
   static var urlToHandle: URL?
-  
+
   override func startLoading() {
     let client = self.client!
     let response = HTTPURLResponse(url: request.url!, statusCode: MockURLProtocol.fakeStatusCode, httpVersion: "HTTP/1.1", headerFields: MockURLProtocol.fakeHeaders)!
@@ -46,14 +46,14 @@ private class MockURLProtocol: URLProtocol {
     client.urlProtocol(self, didLoad: MockURLProtocol.fakeResponse.data(using: .utf8)!)
     client.urlProtocolDidFinishLoading(self)
   }
-  
+
   override func stopLoading() {
   }
-  
+
   override class func canInit(with request: URLRequest) -> Bool {
     return (request.url == developerTokenServerUrl)
   }
-  
+
   override class func canonicalRequest(for request: URLRequest) -> URLRequest {
     return request
   }
@@ -99,7 +99,7 @@ class RequestCountryCodeOperation: AsyncOperation {
 class DownloadUserTokenOperation: AsyncOperation {
   var userToken: String?
   private let userTokenKey = "userTokenKey"
-  
+
   override func main() {
     if let cachedToken = UserDefaults.standard.string(forKey: userTokenKey) {
       self.userToken = cachedToken
@@ -140,9 +140,9 @@ class AuthorizationManager {
       }
     }
   }
-  
+
   private static let capabilitiesOperation = RequestCapabilitiesOperation()
-  
+
   private static let capabilitesQueue: OperationQueue = {
     let queue = OperationQueue()
     queue.addOperation(capabilitiesOperation)
@@ -167,7 +167,7 @@ class AuthorizationManager {
     queue.addOperation(subscribeOperation)
     return queue
   }()
-  
+
   static func withCapabilities(completion: @escaping (SKCloudServiceCapability) -> Void) {
     let operation = BlockOperation {
       guard let capabilities = capabilitiesOperation.capabilities else { return }
@@ -176,17 +176,17 @@ class AuthorizationManager {
     operation.addDependency(capabilitiesOperation)
     capabilitesQueue.addOperation(operation)
   }
-  
+
   fileprivate static let downloadDeveloperTokenOperation = DownloadDeveloperTokenOperation()
   private static let requestCountryCodeOperation = RequestCountryCodeOperation()
-  
+
   private static let musicAPIQueue: OperationQueue = {
     let queue = OperationQueue()
     queue.addOperation(downloadDeveloperTokenOperation)
     queue.addOperation(requestCountryCodeOperation)
     return queue
   }()
-  
+
   static func withAPIData(completion: @escaping (String, String) -> Void) {
     let operation = BlockOperation {
       guard let developerToken = downloadDeveloperTokenOperation.developerToken, let countryCode = requestCountryCodeOperation.countryCode else { return }
@@ -196,7 +196,7 @@ class AuthorizationManager {
     operation.addDependency(requestCountryCodeOperation)
     musicAPIQueue.addOperation(operation)
   }
-  
+
   private static let downloadUserTokenOperation = DownloadUserTokenOperation()
   private static let musicUserAPIQueue: OperationQueue = {
     let queue = OperationQueue()
@@ -204,7 +204,7 @@ class AuthorizationManager {
     queue.addOperation(downloadUserTokenOperation)
     return queue
   }()
-  
+
   static func withUserAPIData(completion: @escaping (String, String, String) -> Void) {
     let operation = BlockOperation {
       guard let developerToken = downloadDeveloperTokenOperation.developerToken, let countryCode = requestCountryCodeOperation.countryCode, let userToken = downloadUserTokenOperation.userToken else { return }

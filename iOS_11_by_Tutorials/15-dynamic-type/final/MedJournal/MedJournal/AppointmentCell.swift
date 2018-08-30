@@ -32,29 +32,29 @@ import UIKit
 
 class AppointmentCell: UITableViewCell {
   static let cellIdentifier = "appointmentCell"
-  
+
   @IBOutlet var dateLabel: UILabel!
   @IBOutlet var doctorNameLabel: UILabel!
   @IBOutlet var timeLabel: UILabel!
-  
+
   private var commonConstraints: [NSLayoutConstraint] = []
   private var regularConstraints: [NSLayoutConstraint] = []
   private var largeTextConstraints: [NSLayoutConstraint] = []
-  
+
   private lazy var dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
     formatter.timeStyle = .none
     return formatter
   }()
-  
+
   private lazy var timeFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .none
     formatter.timeStyle = .short
     return formatter
   }()
-  
+
   var appointment: Appointment? {
     didSet {
       guard let appointment = appointment else {
@@ -68,22 +68,22 @@ class AppointmentCell: UITableViewCell {
       doctorNameLabel.text = appointment.doctor.name
     }
   }
-  
+
   override func awakeFromNib() {
     super.awakeFromNib()
     let metrics = UIFontMetrics(forTextStyle: .body)
     dateLabel.font = metrics.scaledFont(for: dateLabel.font)
     doctorNameLabel.font = metrics.scaledFont(for: doctorNameLabel.font)
     timeLabel.font = metrics.scaledFont(for: timeLabel.font)
-    
+
     dateLabel.adjustsFontForContentSizeCategory = true
     doctorNameLabel.adjustsFontForContentSizeCategory = true
     timeLabel.adjustsFontForContentSizeCategory = true
-    
+
     setupConstraints()
     updateConstraints()
   }
-  
+
   private func setupConstraints() {
     dateLabel.translatesAutoresizingMaskIntoConstraints = false
     doctorNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -96,41 +96,41 @@ class AppointmentCell: UITableViewCell {
       dateLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
       doctorNameLabel.lastBaselineAnchor.constraint(equalTo: dateLabel.lastBaselineAnchor),
       timeLabel.lastBaselineAnchor.constraint(equalTo: dateLabel.lastBaselineAnchor),
-      
+
       dateLabel.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor),
       dateLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor),
       doctorNameLabel.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor),
       doctorNameLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor),
       timeLabel.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor),
-      
+
       doctorNameLabel.leadingAnchor.constraintGreaterThanOrEqualToSystemSpacingAfter(dateLabel.trailingAnchor, multiplier: 1.0),
       timeLabel.leadingAnchor.constraintGreaterThanOrEqualToSystemSpacingAfter(doctorNameLabel.trailingAnchor, multiplier: 1.0),
-      
+
       doctorNameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-      
+
       contentView.trailingAnchor.constraintEqualToSystemSpacingAfter(timeLabel.trailingAnchor, multiplier: 1.0)
     ]
     largeTextConstraints = [
       dateLabel.topAnchor.constraintEqualToSystemSpacingBelow(contentView.topAnchor, multiplier: 1.0),
       doctorNameLabel.firstBaselineAnchor.constraintEqualToSystemSpacingBelow(dateLabel.lastBaselineAnchor, multiplier: 1.0),
       timeLabel.firstBaselineAnchor.constraintEqualToSystemSpacingBelow(doctorNameLabel.lastBaselineAnchor, multiplier: 1.0),
-      
+
       doctorNameLabel.leadingAnchor.constraint(equalTo: dateLabel.leadingAnchor),
       timeLabel.leadingAnchor.constraint(equalTo: dateLabel.leadingAnchor),
-      
+
       contentView.trailingAnchor.constraint(greaterThanOrEqualTo: dateLabel.trailingAnchor),
       contentView.trailingAnchor.constraint(greaterThanOrEqualTo: doctorNameLabel.trailingAnchor),
       contentView.trailingAnchor.constraint(greaterThanOrEqualTo: timeLabel.trailingAnchor)
     ]
   }
-  
+
   override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
     let isAccessibilityCategory = traitCollection.preferredContentSizeCategory.isAccessibilityCategory
     if isAccessibilityCategory != previousTraitCollection?.preferredContentSizeCategory.isAccessibilityCategory {
       setNeedsUpdateConstraints()
     }
   }
-  
+
   override func updateConstraints() {
     NSLayoutConstraint.activate(commonConstraints)
     if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {

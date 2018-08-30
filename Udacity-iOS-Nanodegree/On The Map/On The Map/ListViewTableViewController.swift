@@ -18,7 +18,7 @@ class ListViewTableViewController: UITableViewController {
     @IBAction func refresh(sender: UIBarButtonItem) {
         refreshAndReload(true)
     }
-    
+
     func refreshAndReload(forced: Bool) {
         refreshListOfStudent(forced) { students -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -42,19 +42,18 @@ class ListViewTableViewController: UITableViewController {
         return OTMStudent.ListOfStudent!.count
     }
 
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("OTMCell", forIndexPath: indexPath)
-        
+
         let name = String(OTMStudent.ListOfStudent![indexPath.row].firstName + " " + OTMStudent.ListOfStudent![indexPath.row].lastName)
         cell.textLabel!.text = name
 
         cell.imageView?.image = UIImage(named: "pin")
-    
-        if canOpenURLAtIndexPath(indexPath){
+
+        if canOpenURLAtIndexPath(indexPath) {
             cell.accessoryType = .DetailButton
         }
-        
+
         return cell
     }
 
@@ -64,17 +63,16 @@ class ListViewTableViewController: UITableViewController {
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
+
     override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
         openURLAtIndexPath(indexPath)
     }
-    
+
     @IBAction func pullToRefresh(sender: UIRefreshControl) {
         refreshAndReload(true)
         sender.endRefreshing()
     }
 
-    
     func canOpenURLAtIndexPath(indexPath: NSIndexPath) -> Bool {
         let urlString = OTMStudent.ListOfStudent![indexPath.row].mediaURL
         if let url = NSURL(string: urlString) {
@@ -83,7 +81,7 @@ class ListViewTableViewController: UITableViewController {
             return false
         }
     }
-    
+
     func openURLAtIndexPath(indexPath: NSIndexPath) {
         let urlString = OTMStudent.ListOfStudent![indexPath.row].mediaURL
         let url = NSURL(string: urlString)!

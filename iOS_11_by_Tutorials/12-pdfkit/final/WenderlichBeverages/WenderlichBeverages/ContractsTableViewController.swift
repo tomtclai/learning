@@ -32,14 +32,14 @@ import UIKit
 import PDFKit
 
 class ContractsTableViewController: UITableViewController {
-  
+
   var documents: [String]?
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     loadDocuments()
   }
-  
+
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let identifier = segue.identifier else { return }
@@ -65,7 +65,7 @@ class ContractsTableViewController: UITableViewController {
       upcoming.delegate = self
     }
   }
-  
+
   func loadDocuments() {
     documents = try? FileManager.default.contentsOfDirectory(atPath: FileUtilities.contractsDirectory())
     documents = documents?.filter { path -> Bool in
@@ -100,4 +100,3 @@ extension ContractsTableViewController {
     return cell
   }
 }
-

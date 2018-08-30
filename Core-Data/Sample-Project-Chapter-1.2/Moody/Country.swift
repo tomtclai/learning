@@ -10,7 +10,6 @@ import UIKit
 import CoreLocation
 import CoreData
 
-
 final class Country: NSManagedObject {
     @NSManaged fileprivate(set) var moods: Set<Mood>
     @NSManaged fileprivate(set) var continent: Continent?
@@ -43,16 +42,13 @@ final class Country: NSManagedObject {
         }
     }
 
-
     // MARK: Private
 
     @NSManaged fileprivate var numericISO3166Code: Int16
 }
-
 
 extension Country: Managed {
     static var defaultSortDescriptors: [NSSortDescriptor] {
         return [NSSortDescriptor(key: #keyPath(updatedAt), ascending: false)]
     }
 }
-

@@ -4,7 +4,6 @@ import Cocoa
 
 var str = "Hello, Swift"
 
-
 let constStr = str
 
 var nextYear: Int
@@ -13,13 +12,13 @@ var hasPet: Bool
 
 var arrayOfInts: [Int]
 
-var dictionaryOfCapitalsByCountry: [String:String]
+var dictionaryOfCapitalsByCountry: [String: String]
 
 var winningLotteryNumbers: Set<Int>
 
 let number=42
 var countingUp = ["one", "two"]
-let nameByParkingSpace = [13:"alice", 27:"bob"]
+let nameByParkingSpace = [13: "alice", 27: "bob"]
 
 let secondElement = countingUp[1]
 
@@ -46,7 +45,7 @@ let countingDown = countingUp.reverse()
 
 var anOptionalFLoat: Float?
 var anOptionalArrayOfStrings: [String]?
-var anOptionalArrayOfOptionalStrings:[String?]?
+var anOptionalArrayOfOptionalStrings: [String?]?
 
 var reading1: Float?
 var reading2: Float?
@@ -65,7 +64,7 @@ if  let r1 = reading1,
 if let spaceAssignee = nameByParkingSpace[13] {
 
     ("Key 13 was in the dictionary with the value \"\(spaceAssignee)\"")
-    
+
 }
 
 for var i = 0; i < countingUp.count; i++ {
@@ -116,4 +115,3 @@ let pieRawValue = PieType.Pecan.rawValue
 if let pieType = PieType(rawValue: pieRawValue) {
     pieType
 }
-

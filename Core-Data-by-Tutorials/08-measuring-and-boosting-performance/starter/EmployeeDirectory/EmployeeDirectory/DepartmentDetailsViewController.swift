@@ -38,7 +38,7 @@ class DepartmentDetailsViewController: UIViewController {
   @IBOutlet var greaterThanFiveVacationDaysLabel: UILabel!
   @IBOutlet var greaterThanZeroVacationDaysLabel: UILabel!
   @IBOutlet var zeroVacationDaysLabel: UILabel!
-  
+
   // MARK: View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()

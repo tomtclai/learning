@@ -31,7 +31,7 @@
 import UIKit
 
 class BugDragCoordinator {
-  
+
   let source: Bug.Context
   var sourceIndexPaths: [IndexPath] = []
   var sourceIndexes: [Int] {
@@ -48,19 +48,18 @@ class BugDragCoordinator {
       return source == destination
     }
   }
-  
+
   init(source: Bug.Context) {
     self.source = source
   }
-  
+
   func dragItemForBugAt(indexPath: IndexPath) -> UIDragItem {
     sourceIndexPaths.append(indexPath)
     return UIDragItem(itemProvider: NSItemProvider())
   }
-  
+
   func calculateDestinationIndexPaths(from indexPath: IndexPath, count: Int) {
     let indexes = Array(indexPath.item..<(indexPath.item + count))
     destinationIndexPaths = indexes.map { IndexPath(item: $0, section: 0)}
   }
 }
-

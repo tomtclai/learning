@@ -29,17 +29,17 @@
 import UIKit
 
 struct Animal {
-  
+
   let title: String
   let creator: String
   let image: UIImage?
-  
+
   init(title: String, creator: String, image: UIImage?) {
     self.title = title
     self.creator = creator
     self.image = image
   }
-  
+
   static func allCats() -> [Animal] {
     return [
       Animal(title: "Sleeping Cat", creator: "papaija2008", image: UIImage(named: "ID-100113060.jpg")),
@@ -55,7 +55,7 @@ struct Animal {
       Animal(title: "Cat", creator: "graur codrin", image: UIImage(named: "ID-10011404.jpg"))
     ]
   }
-  
+
   static func allDogs() -> [Animal] {
     return [
       Animal(title: "White Dog Portrait", creator: "photostock", image: UIImage(named: "ID-10034505.jpg")),

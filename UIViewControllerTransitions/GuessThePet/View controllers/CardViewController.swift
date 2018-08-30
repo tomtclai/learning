@@ -29,22 +29,22 @@
 import UIKit
 
 class CardViewController: UIViewController {
-  
+
   static let cardCornerRadius: CGFloat = 25
-  
+
   @IBOutlet weak var cardView: UIView!
   @IBOutlet weak var titleLabel: UILabel!
-  
+
   var pageIndex: Int?
   var petCard: PetCard?
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     titleLabel.text = petCard?.description
     cardView.layer.cornerRadius = CardViewController.cardCornerRadius
     cardView.layer.masksToBounds = true
   }
-  
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segueIdentifier(for: segue) == .reveal,
       let destinationViewController = segue.destination as? RevealViewController {
@@ -52,7 +52,7 @@ class CardViewController: UIViewController {
       destinationViewController.transitioningDelegate = self
     }
   }
-  
+
   @IBAction func handleTap() {
     performSegue(withIdentifier: .reveal, sender: nil)
   }

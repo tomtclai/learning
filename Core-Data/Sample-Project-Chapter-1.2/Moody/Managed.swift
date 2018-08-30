@@ -8,12 +8,10 @@
 
 import CoreData
 
-
 protocol Managed: class, NSFetchRequestResult {
     static var entityName: String { get }
     static var defaultSortDescriptors: [NSSortDescriptor] { get }
 }
-
 
 extension Managed {
     static  var defaultSortDescriptors: [NSSortDescriptor] { return [] }
@@ -31,17 +29,16 @@ extension Managed {
     }
 }
 
-
 extension Managed where Self: NSManagedObject {
     static var entityName: String { return entity().name!  }
 
-    static func fetch(in context: NSManagedObjectContext, configurationBlock: (NSFetchRequest<Self>) -> () = { _ in }) -> [Self] {
+    static func fetch(in context: NSManagedObjectContext, configurationBlock: (NSFetchRequest<Self>) -> Void = { _ in }) -> [Self] {
         let request = NSFetchRequest<Self>(entityName: Self.entityName)
         configurationBlock(request)
         return try! context.fetch(request)
     }
 
-    static func findOrCreate(in context: NSManagedObjectContext, matching predicate: NSPredicate, configure: (Self) -> ()) -> Self {
+    static func findOrCreate(in context: NSManagedObjectContext, matching predicate: NSPredicate, configure: (Self) -> Void) -> Self {
         guard let object = findOrFetch(in: context, matching: predicate) else {
             let newObject: Self = context.insertObject()
             configure(newObject)
@@ -69,4 +66,3 @@ extension Managed where Self: NSManagedObject {
         return nil
     }
 }
-

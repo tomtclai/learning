@@ -41,7 +41,7 @@ class JournalEntryViewController: UITableViewController {
   // MARK: Properties
   var journalEntry: JournalEntry?
   var context: NSManagedObjectContext!
-  var delegate:JournalEntryDelegate?
+  var delegate: JournalEntryDelegate?
 
   // MARK: IBOutlets
   @IBOutlet weak var heightTextField: UITextField!
@@ -75,7 +75,7 @@ private extension JournalEntryViewController {
 
     ratingSegmentedControl.selectedSegmentIndex = rating.intValue - 1
   }
-  
+
   func updateJournalEntry() {
     guard let entry = journalEntry else { return }
 
@@ -84,7 +84,7 @@ private extension JournalEntryViewController {
     entry.period = periodTextField.text
     entry.wind = windTextField.text
     entry.location = locationTextField.text
-    entry.rating = NSNumber(value:ratingSegmentedControl.selectedSegmentIndex + 1)
+    entry.rating = NSNumber(value: ratingSegmentedControl.selectedSegmentIndex + 1)
   }
 }
 
@@ -100,4 +100,3 @@ extension JournalEntryViewController {
     delegate?.didFinish(viewController: self, didSave: true)
   }
 }
-

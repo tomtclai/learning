@@ -38,21 +38,21 @@ class AddItemViewController: UIViewController {
   @IBOutlet weak var addButton: UIButton!
   @IBOutlet weak var productImageView: UIImageView!
   var gestureManager: MenuGestureController?
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     pasteConfiguration =
       UIPasteConfiguration(acceptableTypeIdentifiers:
         [Product.productTypeId])
-    
+
     setupGestureRecognizer()
     configureAccessibility()
-    
+
     itemTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     itemTextField.becomeFirstResponder()
   }
-  
+
   func setupGestureRecognizer() {
     gestureManager = MenuGestureController(view: view)
     if let gestureManager = gestureManager {
@@ -60,21 +60,21 @@ class AddItemViewController: UIViewController {
       view.addGestureRecognizer(gestureManager.tapGestureRecognizer)
     }
   }
-  
+
   func configureAccessibility() {
     let addLabel = NSAttributedString(string:
       "Add ", attributes: [NSAttributedStringKey(
         UIAccessibilitySpeechAttributePitch): 1.5])
     addButton.accessibilityAttributedLabel = addLabel
     addButton.accessibilityHint = "Add item to shopping list"
-    
+
     let cancelLabel = NSAttributedString(string:
       "Cancel ", attributes: [NSAttributedStringKey(
         UIAccessibilitySpeechAttributePitch): 0.5])
     cancelButton.accessibilityAttributedLabel = cancelLabel
     cancelButton.accessibilityHint = "Close without adding the item"
   }
-  
+
   override func paste(itemProviders: [NSItemProvider]) {
     itemProviders.forEach {
       $0.loadObject(ofClass: Product.self) { object, _ in
@@ -89,21 +89,21 @@ class AddItemViewController: UIViewController {
       }
     }
   }
-  
+
   @IBAction func cancelButtonPressed(_ sender: Any) {
     dismiss(animated: true, completion: nil)
   }
-  
+
   @IBAction func addItemPressed(_ sender: Any) {
     if let text = itemTextField.text {
       delegate?.addItem(named: text)
     }
-    
+
     dismiss(animated: true, completion: nil)
   }
-  
+
   @objc func textFieldDidChange(_ textField: UITextField) {
     addButton.accessibilityValue = textField.text
   }
-  
+
 }

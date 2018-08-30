@@ -49,15 +49,12 @@ func countBattleships(_ board: [[Character]]) -> Int {
     return count
 }
 
-
-countBattleships([["X","X","X"],
-                  [".",".","."],
-                  ["X","X","X"]])
-countBattleships([["X",".","X",".","X"],
-                  ["X",".",".",".","X"],
-                  ["X",".","X",".","X"]])
-
-
+countBattleships([["X", "X", "X"],
+                  [".", ".", "."],
+                  ["X", "X", "X"]])
+countBattleships([["X", ".", "X", ".", "X"],
+                  ["X", ".", ".", ".", "X"],
+                  ["X", ".", "X", ".", "X"]])
 
 func countBattleships_Oof1Solution(_ board: [[Character]]) -> Int {
     var count = 0
@@ -76,9 +73,9 @@ func countBattleships_Oof1Solution(_ board: [[Character]]) -> Int {
     return count
 }
 
-countBattleships_Oof1Solution([["X","X","X"],
-                               [".",".","."],
-                               ["X","X","X"]])
-countBattleships_Oof1Solution([["X",".","X",".","X"],
-                               ["X",".",".",".","X"],
-                               ["X",".","X",".","X"]])
+countBattleships_Oof1Solution([["X", "X", "X"],
+                               [".", ".", "."],
+                               ["X", "X", "X"]])
+countBattleships_Oof1Solution([["X", ".", "X", ".", "X"],
+                               ["X", ".", ".", ".", "X"],
+                               ["X", ".", "X", ".", "X"]])

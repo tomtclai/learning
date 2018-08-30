@@ -102,4 +102,3 @@ private extension Array {
         return indices.map { self[$0] }
     }
 }
-

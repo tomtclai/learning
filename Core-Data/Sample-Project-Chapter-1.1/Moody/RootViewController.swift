@@ -10,7 +10,6 @@ import UIKit
 import CoreLocation
 import CoreData
 
-
 class RootViewController: UIViewController, SegueHandler {
     enum SegueIdentifier: String {
         case embedNavigation = "embedNavigationController"
@@ -35,7 +34,6 @@ class RootViewController: UIViewController, SegueHandler {
         }
     }
 
-
     // MARK: Private
 
     fileprivate var cameraViewController: CameraViewController?
@@ -48,14 +46,12 @@ class RootViewController: UIViewController, SegueHandler {
     }
 }
 
-
 extension RootViewController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         let cameraVisible = (viewController as? MoodDetailViewController) == nil
         setCameraVisibility(cameraVisible)
     }
 }
-
 
 extension RootViewController: CameraViewControllerDelegate {
     func didCapture(_ image: UIImage) {
@@ -64,5 +60,3 @@ extension RootViewController: CameraViewControllerDelegate {
         }
     }
 }
-
-

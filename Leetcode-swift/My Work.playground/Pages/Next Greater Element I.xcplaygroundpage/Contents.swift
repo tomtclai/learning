@@ -1,4 +1,4 @@
-    func nextGreaterElement(_ findNums: [Int], _ nums: [Int]) -> [Int] {
+func nextGreaterElement(_ findNums: [Int], _ nums: [Int]) -> [Int] {
         var dictOfNextGreaterElement = [Int: Int]()
         var unmatchedNums = [Int]()
         guard !findNums.isEmpty else {return findNums}

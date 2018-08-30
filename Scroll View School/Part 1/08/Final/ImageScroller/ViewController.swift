@@ -9,36 +9,35 @@
 import UIKit
 
 class ViewController: UIViewController {
-  
+
   @IBOutlet weak var scrollView: UIScrollView!
   @IBOutlet weak var imageView: UIImageView!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     scrollView.contentInsetAdjustmentBehavior = .never
     imageView.frame.size = (imageView.image?.size)!
     scrollView.delegate = self
     setZoomParametersForSize(scrollView.bounds.size)
     recenterImage()
   }
-  
+
   func recenterImage() {
-  
+
     let scrollViewSize = scrollView.bounds.size
     let imageSize = imageView.frame.size
-    
+
     let horizontalSpace = imageSize.width < scrollViewSize.width ? (scrollViewSize.width - imageSize.width) / 2 : 0
     let verticalSpace = imageSize.height < scrollViewSize.height ? (scrollViewSize.height - imageSize.height) / 2 : 0
     scrollView.contentInset = UIEdgeInsets(top: verticalSpace, left: horizontalSpace, bottom: verticalSpace, right: horizontalSpace)
   }
-  
-  
+
   override func viewWillLayoutSubviews() {
     setZoomParametersForSize(scrollView.bounds.size)
     recenterImage()
   }
-  
+
   func setZoomParametersForSize(_ scrollViewSize: CGSize) {
     let imageSize = imageView.bounds.size
     let widthScale = scrollViewSize.width / imageSize.width
@@ -61,7 +60,3 @@ extension ViewController: UIScrollViewDelegate {
     return imageView
   }
 }
-
-
-
-

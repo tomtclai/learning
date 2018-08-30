@@ -52,5 +52,4 @@ extension Fruit: Equatable {
     return lhs.name == rhs.name
   }
 
-
 }

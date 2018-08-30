@@ -35,12 +35,12 @@ class ArticleListController: UITableViewController {
   private var token: NSKeyValueObservation?
   var source: Source?
   private let formatter = DateFormatter()
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     formatter.dateFormat = "MMM d, h:mm a"
   }
-  
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     guard let source = source else { return }
@@ -51,7 +51,7 @@ class ArticleListController: UITableViewController {
     })
     NewsAPI.service.fetchArticles(for: source)
   }
-  
+
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
     token?.invalidate()
@@ -62,11 +62,11 @@ class ArticleListController: UITableViewController {
 // MARK: UITableViewDataSource
 
 extension ArticleListController {
-  
+
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return NewsAPI.service.articles.count
   }
-  
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleCell
     cell.render(article: NewsAPI.service.articles[indexPath.row], using: formatter)

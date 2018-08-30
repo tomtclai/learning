@@ -1,4 +1,3 @@
-
 import Foundation
 /*:
 Given a non negative integer number num. For every numbers i in the range 0 ≤ i ≤ num calculate the number of 1's in their binary representation and return them as an array.
@@ -58,4 +57,3 @@ Follow up:
 //func countBits(_ num: Int) -> [Int] {
 //    return [0]
 //}
-

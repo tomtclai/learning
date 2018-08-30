@@ -9,7 +9,6 @@
 import Foundation
 import CoreGraphics
 
-
 /// Color in the Lab color space
 /// Cf. <https://en.wikipedia.org/wiki/Lab_color_space>
 struct LABPixel {
@@ -53,7 +52,6 @@ extension LABPixel {
     }
 }
 
-
 /// Cylindrical representation: CIELCh
 /// Cf. <https://en.wikipedia.org/wiki/Lab_color_space#Cylindrical_representation:_CIELCh_or_CIEHLC>
 struct CIELCh {
@@ -78,9 +76,9 @@ struct CIELCh {
 extension ARGBPixel_t {
     fileprivate init(xyz: XYZ) {
         let matrix: [Float] = [
-            0.41847,   -0.15866,  -0.082835,
-            -0.091169,   0.25243,   0.015708,
-            0.0009209, -0.0025498, 0.1786,
+            0.41847, -0.15866, -0.082835,
+            -0.091169, 0.25243, 0.015708,
+            0.0009209, -0.0025498, 0.1786
         ]
         self.a = UInt8.max
         self.r = UInt8(max(min(xyz.x * matrix[0] + xyz.y * matrix[1] + xyz.z * matrix[2], Float(UInt8.max)), 0))
@@ -92,7 +90,6 @@ extension ARGBPixel_t {
         self.init(xyz: xyz)
     }
 }
-
 
 extension ARGBPixel_t {
     var CGColor: CoreGraphics.CGColor {
@@ -106,7 +103,6 @@ extension ARGBPixel_t {
     }
 }
 
-
 struct XYZ {
     let x: Float
     let y: Float
@@ -119,9 +115,9 @@ struct XYZ {
     }
     init(rgb: ARGBPixel_t) {
         let matrix: [Float] = [
-            0.49,    0.31,    0.20,
+            0.49, 0.31, 0.20,
             0.17697, 0.81240, 0.01036,
-            0.0,     0.01,    0.99,
+            0.0, 0.01, 0.99
         ]
         self.x = (Float(rgb.r) * matrix[0] + Float(rgb.g) * matrix[1] + Float(rgb.b) * matrix[2]) / Float(0.17697)
         self.y = (Float(rgb.r) * matrix[3] + Float(rgb.g) * matrix[4] + Float(rgb.b) * matrix[5]) / Float(0.17697)
@@ -164,4 +160,3 @@ extension ARGBPixel_t: CustomDebugStringConvertible {
         }
     }
 }
-

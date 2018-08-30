@@ -31,7 +31,7 @@
 import Foundation
 
 class NewsAPI: NSObject {
-  
+
   static let service = NewsAPI()
   private struct Response: Codable {
     let sources: [Source]?
@@ -44,11 +44,11 @@ class NewsAPI: NSObject {
      free API key, and then replace the value below with it.
      */
     private static let key = "77670f3c43b042a68020a77dc71c1d2b"
-    
+
     case sources
     case articles(Source)
-    
-    func fetch(completion: @escaping (Data) -> ()) {
+
+    func fetch(completion: @escaping (Data) -> Void) {
       let session = URLSession(configuration: .default)
       let task = session.dataTask(with: path()) { (data, response, error) in
         guard let data = data, error == nil else { return }
@@ -56,7 +56,7 @@ class NewsAPI: NSObject {
       }
       task.resume()
     }
-    
+
     private func path() -> URL {
       switch self {
       case .sources:
@@ -66,10 +66,10 @@ class NewsAPI: NSObject {
       }
     }
   }
-  
+
   @objc dynamic private(set) var sources: [Source] = []
   @objc dynamic private(set) var articles: [Article] = []
-  
+
   func fetchSources() {
     API.sources.fetch { data in
       do {
@@ -81,7 +81,7 @@ class NewsAPI: NSObject {
       }
     }
   }
-  
+
   func fetchArticles(for source: Source) {
     API.articles(source).fetch { data in
       let decoder = JSONDecoder()
@@ -100,7 +100,7 @@ class NewsAPI: NSObject {
       }
     }
   }
-  
+
   func resetArticles() {
     articles = []
   }

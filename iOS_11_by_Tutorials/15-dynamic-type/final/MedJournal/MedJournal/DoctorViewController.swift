@@ -37,7 +37,7 @@ class DoctorViewController: UIViewController {
   @IBOutlet var cityStateZipLabel: UILabel!
   @IBOutlet var notesLabel: UILabel!
   @IBOutlet var profileImageView: UIImageView!
-  
+
   var doctor: Doctor? {
     didSet {
       loadViewIfNeeded()
@@ -53,7 +53,7 @@ class DoctorViewController: UIViewController {
       profileImageView.image = doctor?.image
     }
   }
-  
+
   override func awakeFromNib() {
     super.awakeFromNib()
     loadViewIfNeeded()
@@ -62,7 +62,7 @@ class DoctorViewController: UIViewController {
     addressLabel.font = UIFontMetrics(forTextStyle: .footnote).scaledFont(for: addressLabel.font)
     cityStateZipLabel.font = UIFontMetrics(forTextStyle: .footnote).scaledFont(for: cityStateZipLabel.font)
     notesLabel.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: notesLabel.font)
-    
+
     nameLabel.adjustsFontForContentSizeCategory = true
     phoneLabel.adjustsFontForContentSizeCategory = true
     addressLabel.adjustsFontForContentSizeCategory = true

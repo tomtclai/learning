@@ -11,7 +11,6 @@ import MapKit
 import MoodyModel
 import CoreDataHelpers
 
-
 class MoodDetailViewController: UIViewController {
 
     @IBOutlet weak var moodView: MoodView!
@@ -24,7 +23,7 @@ class MoodDetailViewController: UIViewController {
         didSet {
             observer = ManagedObjectObserver(object: mood) { [unowned self] type in
                 guard type == .delete else { return }
-                let _ = self.navigationController?.popViewController(animated: true)
+                _ = self.navigationController?.popViewController(animated: true)
             }
             updateViews()
         }
@@ -40,7 +39,6 @@ class MoodDetailViewController: UIViewController {
             self.mood.markForRemoteDeletion()
         }
     }
-
 
     // MARK: Private
 
@@ -63,7 +61,6 @@ class MoodDetailViewController: UIViewController {
 
 }
 
-
 private let dateComponentsFormatter: DateComponentsFormatter = {
     let formatter = DateComponentsFormatter()
     formatter.unitsStyle = .full
@@ -80,7 +77,6 @@ extension Mood {
     }
 }
 
-
 class MoodAnnotation: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
     let title: String?
@@ -92,5 +88,3 @@ class MoodAnnotation: NSObject, MKAnnotation {
         guard let _ = mood.location, let _ = title else { return nil }
     }
 }
-
-

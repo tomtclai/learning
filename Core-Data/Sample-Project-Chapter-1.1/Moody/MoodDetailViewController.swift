@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 
-
 class MoodDetailViewController: UIViewController {
 
     @IBOutlet weak var moodView: MoodView!
@@ -37,7 +36,6 @@ class MoodDetailViewController: UIViewController {
         }
     }
 
-
     // MARK: Private
 
     fileprivate func updateViews() {
@@ -46,7 +44,6 @@ class MoodDetailViewController: UIViewController {
     }
 
 }
-
 
 private let dateComponentsFormatter: DateComponentsFormatter = {
     let formatter = DateComponentsFormatter()
@@ -63,4 +60,3 @@ extension Mood {
         return localized(.mood_dateComponentFormat, args: [timeString])
     }
 }
-

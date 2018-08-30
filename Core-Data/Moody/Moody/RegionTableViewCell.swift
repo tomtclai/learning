@@ -14,11 +14,9 @@ class RegionTableViewCell: UITableViewCell {
     @IBOutlet weak var detailLabel: UILabel!
 }
 
-
 extension RegionTableViewCell {
     func configure(for object: DisplayableRegion) {
         titleLabel.text = object.localizedDescription
         detailLabel.text = object.localizedDetailDescription
     }
 }
-

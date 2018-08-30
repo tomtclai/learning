@@ -50,7 +50,7 @@ class AnnotationLayer: UIView {
   }
 
   var annotationColor: UIColor = .green
-  
+
   override func draw(_ rect: CGRect) {
     super.draw(rect)
 
@@ -72,7 +72,7 @@ class AnnotationLayer: UIView {
 
   private func drawHat(faceRect: CGRect, median: [CGPoint]?) {
     guard classification == .forest else { return }
-    
+
     let hatSize = hat.size
     let headSize = faceRect.size
     let hatWidthForHead = (3.0 / 2.0) * headSize.width
@@ -118,7 +118,7 @@ class AnnotationLayer: UIView {
                            median: [CGPoint]? ) {
 
     guard classification == .beach else { return }
-    
+
     let total = left + right
     let minX = total.reduce(CGFloat.infinity) { min($0, $1.x) }
     let minY = total.reduce(CGFloat.infinity) { min($0, $1.y) }
@@ -133,7 +133,7 @@ class AnnotationLayer: UIView {
 
     let eyesRect = CGRect(x: x, y: y,
                           width: width, height: height)
-    
+
     drawAngled(to: median, in: eyesRect, image: glasses)
   }
 
@@ -164,29 +164,29 @@ class AnnotationLayer: UIView {
                                   in accessoryRect: CGRect,
                                   image: UIImage) {
     if let median = median, median.count >= 2 {
-      
+
       let top = median.first!
       let bottom = median.last!
       let estimatedSlope = (top.y - bottom.y)
         / (top.x - bottom.x )
       let degrees = atan2(1, estimatedSlope)
         + (estimatedSlope < 0 ? CGFloat.pi : 0)
-      
+
       let context = UIGraphicsGetCurrentContext()
       context?.saveGState()
-      
+
       context?.translateBy(x: accessoryRect.midX,
                            y: accessoryRect.midY)
       let angle: CGFloat = -degrees
       context?.rotate(by: angle)
-      
+
       context?.translateBy(x: -accessoryRect.width / 2
         - (accessoryRect.midX - top.x),
                            y: -accessoryRect.height / 2)
       let drawRect = CGRect(origin: .zero,
                             size: accessoryRect.size)
       image.draw(in: drawRect)
-      
+
       context?.restoreGState()
     } else {
       image.draw(in: accessoryRect)

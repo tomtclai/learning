@@ -9,7 +9,6 @@
 import CoreData
 import CoreDataHelpers
 
-
 public class Region: NSManagedObject {}
 
 extension Region: Managed {
@@ -22,8 +21,6 @@ extension Region: Managed {
     }
 }
 
-
 extension Region: DelayedDeletable {
     @NSManaged public var markedForDeletionDate: Date?
 }
-

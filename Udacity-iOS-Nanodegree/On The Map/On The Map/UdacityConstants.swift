@@ -15,15 +15,15 @@ extension UdacityClient {
         // MARK: URLs
         static let BaseURL = "https://www.udacity.com/api/"
     }
-    
+
     // MARK: Methods
     struct Methods {
         static let Session = "session"
-        static func User(userID:String!) -> String {
+        static func User(userID: String!) -> String {
             return "users/\(userID)"
         }
     }
-    
+
     // MARK: URL Keys
     // MARK: Parameter Keys
     // MARK: JSON Body Keys
@@ -44,5 +44,5 @@ extension UdacityClient {
         static let LastName = "user.last_name"
         static let ImageUrl = "user._image_url"
     }
-    
+
 }

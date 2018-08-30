@@ -11,7 +11,6 @@ import CoreData
 import MoodyModel
 @testable import MoodySync
 
-
 private class TestChangeProcessor: ElementChangeProcessor {
 
     typealias Element = TestObject
@@ -27,7 +26,7 @@ private class TestChangeProcessor: ElementChangeProcessor {
         changedElements += elements
     }
 
-    func processRemoteChanges<T: RemoteRecord>(_ changes: [RemoteRecordChange<T>], in context: ChangeProcessorContext, completion: () -> ()) {
+    func processRemoteChanges<T: RemoteRecord>(_ changes: [RemoteRecordChange<T>], in context: ChangeProcessorContext, completion: () -> Void) {
         completion()
     }
 
@@ -38,7 +37,6 @@ private class TestChangeProcessor: ElementChangeProcessor {
         return NSPredicate(format: "%K == %@", "name", "A")
     }
 }
-
 
 private class TestContext: ChangeProcessorContext {
     let context: NSManagedObjectContext
@@ -52,18 +50,18 @@ private class TestContext: ChangeProcessorContext {
         fatalError()
     }
 
-    func perform(_ block: @escaping () -> ()) {
+    func perform(_ block: @escaping () -> Void) {
         block()
     }
 
-    func perform<A,B>(_ block: @escaping (A,B) -> ()) -> (A,B) -> () {
-        return {  (a: A, b: B) -> () in
+    func perform<A, B>(_ block: @escaping (A, B) -> Void) -> (A, B) -> Void {
+        return {  (a: A, b: B) -> Void in
             block(a, b)
         }
     }
 
-    func perform<A,B,C>(_ block: @escaping (A,B,C) -> ()) -> (A,B,C) -> () {
-        return {  (a: A, b: B, c: C) -> () in
+    func perform<A, B, C>(_ block: @escaping (A, B, C) -> Void) -> (A, B, C) -> Void {
+        return {  (a: A, b: B, c: C) -> Void in
             block(a, b, c)
         }
     }
@@ -72,7 +70,6 @@ private class TestContext: ChangeProcessorContext {
         XCTFail()
     }
 }
-
 
 class ElementChangeProcessorTests: XCTestCase {
 
@@ -217,4 +214,3 @@ extension ElementChangeProcessorTests {
     }
 
 }
-

@@ -36,10 +36,10 @@ class TabBarViewController: UITabBarController, DataStoreOwner {
       passDataStoreToChildren()
     }
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     let listNavController = viewControllers?.filter {
       guard let navController = $0 as? UINavigationController,
         let _ = navController.topViewController as? ListControllerProtocol
@@ -47,7 +47,7 @@ class TabBarViewController: UITabBarController, DataStoreOwner {
       return true
       }.first as? UINavigationController
     let listController = listNavController?.topViewController as? ListControllerProtocol
-    
+
     let productNavController = viewControllers?.filter {
       guard let navController = $0 as? UINavigationController,
         let _ = navController.topViewController as? ProductTableViewController
@@ -55,8 +55,7 @@ class TabBarViewController: UITabBarController, DataStoreOwner {
       return true
       }.first as? UINavigationController
     let productController = productNavController?.topViewController as? ProductTableViewController
-    
+
     productController?.listController = listController
   }
 }
-

@@ -10,7 +10,6 @@ import CoreData
 import UIKit
 @testable import Migrations
 
-
 private struct MoodV5: TestEntityData {
     let entityName = "Mood"
     let markedForRemoteDeletion: Bool
@@ -66,7 +65,6 @@ private struct MoodV5: TestEntityData {
     }
 }
 
-
 private struct CountryV5: TestEntityData {
     let entityName = "Country"
     let numberOfMoods: Int
@@ -105,7 +103,6 @@ private struct CountryV5: TestEntityData {
     }
 }
 
-
 let v5Data: TestVersionData = {
     var country21 = CountryV5(numberOfMoods: 2, numericISO3166Code: 710, isoContinent: 10004, markedForDeletionDate: nil, updatedAt: Date(timeIntervalSinceReferenceDate: 464687061.782827))
     var country30 = CountryV5(numberOfMoods: 1, numericISO3166Code: 704, isoContinent: 10005, markedForDeletionDate: nil, updatedAt: Date(timeIntervalSinceReferenceDate: 464687061.722586))
@@ -122,7 +119,6 @@ let v5Data: TestVersionData = {
 
     return TestVersionData(data: [
         [mood1, mood2, mood3, mood4],
-        [country21, country30, country31],
+        [country21, country30, country31]
     ])
 }()
-

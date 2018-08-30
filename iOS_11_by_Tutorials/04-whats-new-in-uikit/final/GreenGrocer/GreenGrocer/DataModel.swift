@@ -31,10 +31,10 @@
 import Foundation
 
 protocol Serializable {
-  
+
   init?(dict: [String: AnyObject])
   static func fromDictArray(_ array: [[String: AnyObject]]) -> [Self]?
-  
+
   var dictRepresentation: [String: AnyObject] { get }
 }
 

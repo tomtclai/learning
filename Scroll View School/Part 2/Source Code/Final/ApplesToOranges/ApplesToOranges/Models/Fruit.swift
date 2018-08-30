@@ -34,7 +34,7 @@ struct Fruit: Equatable {
   static func ==(lhs: Fruit, rhs: Fruit) -> Bool {
     return lhs.name == rhs.name
   }
-  
+
   let emojiChar: Character
   let name: String
   var calories: Double

@@ -1,4 +1,4 @@
- // https://leetcode.com/problems/reshape-the-matrix/description/
+// https://leetcode.com/problems/reshape-the-matrix/description/
   private func dimensionIsValid(rows: Int, cols: Int, forMatrix matrix: [[Int]]) -> Bool {
     let expectedRows = matrix.count
     let expectedCols = matrix.first?.count ?? 0
@@ -8,9 +8,9 @@
     guard dimensionIsValid(rows: r, cols: c, forMatrix: nums) else {
         return nums
     }
-    
+
     var result = [[Int]]()
-    var flattenedNums = nums.flatMap{$0}
+    var flattenedNums = nums.flatMap {$0}
     for _ in 0..<r {
         var newRow = [Int]()
         for _ in 0..<c {

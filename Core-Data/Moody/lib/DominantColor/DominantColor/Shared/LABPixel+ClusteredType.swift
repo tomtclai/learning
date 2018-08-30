@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Indragie Karunaratne. All rights reserved.
 //
 
-
 extension LABPixel: ClusteredType {}
 
 extension LABPixel {
@@ -30,4 +29,3 @@ func /(lhs: LABPixel, rhs: Float) -> LABPixel {
 func /(lhs: LABPixel, rhs: Int) -> LABPixel {
     return lhs / Float(rhs)
 }
-

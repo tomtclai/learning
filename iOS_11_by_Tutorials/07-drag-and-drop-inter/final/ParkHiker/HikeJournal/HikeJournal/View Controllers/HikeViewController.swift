@@ -42,15 +42,15 @@ class HikeViewController: UIViewController {
   @IBOutlet weak var rightImageView: UIImageView!
   @IBOutlet weak var clearButton: UIButton!
   @IBOutlet weak var stackView: UIStackView!
-  
+
   var imageViews: [UIImageView]?
   var progress: Progress?
   var loadingView: LoadingView?
   var images: [UIImage] = []
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     let dropInteraction = UIDropInteraction(delegate: self)
     view.addInteraction(dropInteraction)
 
@@ -63,13 +63,13 @@ class HikeViewController: UIViewController {
     hikeNotesTextView.textDropDelegate = self
     displayPark()
   }
-  
+
   @IBAction func clearButtonPressed(_ sender: Any) {
     park = nil
     hikeNotesTextView.text = ""
     displayPark()
   }
-  
+
   func displayPark() {
     guard let park = park else {
       nameLabel.text = " "
@@ -80,27 +80,27 @@ class HikeViewController: UIViewController {
       updateImages()
       return
     }
-    
+
     nameLabel.text = park.name
-    
+
     let coordinate = CLLocationCoordinate2D(latitude: park.latitude, longitude: park.longitude)
     let mapRect = MKCoordinateRegionMakeWithDistance(coordinate, 100000, 100000)
     mapView.setRegion(mapRect, animated: false)
     images.removeAll()
     addImage(park.image)
   }
-  
+
   func updateImages() {
     guard let imageViews = imageViews, images.count < 3
       else { return }
-    
+
     var i = 0
     imageViews.forEach {
       $0.image = (i < images.count) ? images[i] : nil
       i += 1
     }
   }
-  
+
   func addImage(_ image: UIImage) {
     images.insert(image, at: 0)
     images = Array(images.prefix(2))
@@ -114,22 +114,22 @@ extension HikeViewController: UIDropInteractionDelegate {
                        canHandle session: UIDropSession) -> Bool {
     return session.canLoadObjects(ofClass: Park.self)
   }
-  
+
   func dropInteraction(_ interaction: UIDropInteraction,
                        sessionDidUpdate session: UIDropSession) -> UIDropProposal {
     return UIDropProposal(operation: .copy)
   }
-  
+
   func dropInteraction(_ interaction: UIDropInteraction,
                        performDrop session: UIDropSession) {
     guard let dropItem = session.items.last else { return }
-    
+
     session.progressIndicatorStyle = .none
     progress = dropItem.itemProvider.loadObject(ofClass: Park.self) {
       [weak self] object, _ in
       guard let `self` = self else { return }
       self.park = object as? Park
-      
+
       DispatchQueue.main.async {
         self.displayPark()
         self.loadingView?.removeFromSuperview()
@@ -137,7 +137,7 @@ extension HikeViewController: UIDropInteractionDelegate {
       }
     }
   }
-  
+
   func dropInteraction(_ interaction: UIDropInteraction,
                        item: UIDragItem,
                        willAnimateDropWith animator: UIDragAnimating) {
@@ -154,14 +154,13 @@ extension HikeViewController: UIDropInteractionDelegate {
 extension HikeViewController: UIDragInteractionDelegate {
   func dragInteraction(_ interaction: UIDragInteraction,
                        itemsForBeginning session: UIDragSession)
-    -> [UIDragItem]
-  {
+    -> [UIDragItem] {
     guard let park = park else { return [] }
-    
+
     let provider =
       NSItemProvider(object: NSString(string: park.name))
     let dragItem = UIDragItem(itemProvider: provider)
-    
+
     return [dragItem]
   }
 }
@@ -174,4 +173,3 @@ extension HikeViewController: UITextDropDelegate {
     return UITextDropProposal(operation: .forbidden)
   }
 }
-

@@ -14,7 +14,7 @@ class Solution {
             }
             bit = bit << 1
         }
-        
+
         return hammingCount
     }
 }

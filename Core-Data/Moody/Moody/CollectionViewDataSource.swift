@@ -15,13 +15,12 @@ protocol CollectionViewDataSourceDelegate: class {
     func configure(_ cell: Cell, for object: Object)
 }
 
-fileprivate enum Update<Object> {
+private enum Update<Object> {
     case insert(IndexPath)
     case update(IndexPath, Object)
     case move(IndexPath, IndexPath)
     case delete(IndexPath)
 }
-
 
 class CollectionViewDataSource<Delegate: CollectionViewDataSourceDelegate>: NSObject, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
 
@@ -48,7 +47,6 @@ class CollectionViewDataSource<Delegate: CollectionViewDataSourceDelegate>: NSOb
     func objectAtIndexPath(_ indexPath: IndexPath) -> Object {
         return fetchedResultsController.object(at: indexPath)
     }
-
 
     // MARK: Private
 
@@ -123,5 +121,3 @@ class CollectionViewDataSource<Delegate: CollectionViewDataSourceDelegate>: NSOb
     }
 
 }
-
-

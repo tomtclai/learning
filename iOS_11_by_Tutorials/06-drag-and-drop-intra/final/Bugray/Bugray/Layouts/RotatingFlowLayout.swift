@@ -31,7 +31,7 @@
 import UIKit
 
 class RotatingFlowLayout: UICollectionViewFlowLayout {
-  
+
   override func invalidationContext(forBoundsChange newBounds: CGRect) -> UICollectionViewLayoutInvalidationContext {
     let context = super.invalidationContext(forBoundsChange: newBounds)
     guard let collectionView = collectionView,

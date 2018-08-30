@@ -9,7 +9,6 @@
 import CoreData
 import MoodyModel
 
-
 final class MoodRemover: ElementChangeProcessor {
 
     var elementsInProgress = InProgressTracker<Mood>()
@@ -22,7 +21,7 @@ final class MoodRemover: ElementChangeProcessor {
         processDeletedMoods(objects, in: context)
     }
 
-    func processRemoteChanges<T>(_ changes: [RemoteRecordChange<T>], in context: ChangeProcessorContext, completion: () -> ()) {
+    func processRemoteChanges<T>(_ changes: [RemoteRecordChange<T>], in context: ChangeProcessorContext, completion: () -> Void) {
         // no-op
         completion()
     }
@@ -34,10 +33,9 @@ final class MoodRemover: ElementChangeProcessor {
     var predicateForLocallyTrackedElements: NSPredicate {
         let marked = Mood.markedForRemoteDeletionPredicate
         let notDeleted = Mood.notMarkedForLocalDeletionPredicate
-        return NSCompoundPredicate(andPredicateWithSubpredicates:[marked, notDeleted])
+        return NSCompoundPredicate(andPredicateWithSubpredicates: [marked, notDeleted])
     }
 }
-
 
 extension MoodRemover {
 
@@ -69,4 +67,3 @@ extension MoodRemover {
     }
 
 }
-

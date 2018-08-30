@@ -31,13 +31,13 @@
 import UIKit
 
 class BugListViewController: UIViewController {
-  
+
   @IBOutlet private var bugCountLabel: UILabel!
   @IBOutlet private var contextLabel: UILabel!
   @IBOutlet private var collectionView: UICollectionView!
-  
+
   var context: Bug.Context = .toDo
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setBugCount()
@@ -45,7 +45,7 @@ class BugListViewController: UIViewController {
     collectionView.dataSource = self
     collectionView.delegate = self
   }
-  
+
   private func setContextTitle() {
     let contextTitleMap: [Bug.Context: String] = [
       .toDo: "To Do",
@@ -54,18 +54,18 @@ class BugListViewController: UIViewController {
     ]
     contextLabel.text = contextTitleMap[context]
   }
-  
+
   private func setBugCount() {
     bugCountLabel.text = "\(BugStore.sharedStore.bugs(for: context).count)"
   }
 }
 
 extension BugListViewController: UICollectionViewDataSource {
-  
+
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return BugStore.sharedStore.bugs(for: context).count
   }
-  
+
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BugCell", for: indexPath) as! BugCell
     let bug = BugStore.sharedStore.bug(at: indexPath.item, in: context)
@@ -75,7 +75,7 @@ extension BugListViewController: UICollectionViewDataSource {
 }
 
 extension BugListViewController: UICollectionViewDelegateFlowLayout {
-  
+
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: collectionView.bounds.width, height: 100)
   }

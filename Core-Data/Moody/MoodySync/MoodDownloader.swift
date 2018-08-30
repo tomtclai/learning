@@ -9,7 +9,6 @@
 import CoreData
 import MoodyModel
 
-
 final class MoodDownloader: ChangeProcessor {
     func setup(for context: ChangeProcessorContext) {
         context.remote.setupMoodSubscription()
@@ -19,7 +18,7 @@ final class MoodDownloader: ChangeProcessor {
         // no-op
     }
 
-    func processRemoteChanges<T>(_ changes: [RemoteRecordChange<T>], in context: ChangeProcessorContext, completion: () -> ()) {
+    func processRemoteChanges<T>(_ changes: [RemoteRecordChange<T>], in context: ChangeProcessorContext, completion: () -> Void) {
         var creates: [RemoteMood] = []
         var deletionIDs: [RemoteRecordID] = []
         for change in changes {
@@ -51,12 +50,11 @@ final class MoodDownloader: ChangeProcessor {
 
 }
 
-
 extension MoodDownloader {
 
     fileprivate func deleteMoods(with ids: [RemoteRecordID], in context: NSManagedObjectContext) {
         guard !ids.isEmpty else { return }
-        let moods = Mood.fetch(in: context) { (request) -> () in
+        let moods = Mood.fetch(in: context) { (request) -> Void in
             request.predicate = Mood.predicateForRemoteIdentifiers(ids)
             request.returnsObjectsAsFaults = false
         }
@@ -80,9 +78,8 @@ extension MoodDownloader {
         for remoteMood in remoteMoods {
             guard let id = remoteMood.id else { continue }
             guard existingMoods[id] == nil else { continue }
-            let _ = remoteMood.insert(into: context)
+            _ = remoteMood.insert(into: context)
         }
     }
 
 }
-

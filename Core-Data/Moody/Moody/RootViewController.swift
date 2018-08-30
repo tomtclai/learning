@@ -11,7 +11,6 @@ import CoreLocation
 import CoreData
 import MoodyModel
 
-
 class RootViewController: UIViewController, SegueHandler {
 
     enum SegueIdentifier: String {
@@ -42,7 +41,6 @@ class RootViewController: UIViewController, SegueHandler {
         }
     }
 
-
     // MARK: Private
 
     fileprivate var geoLocationController: GeoLocationController!
@@ -58,7 +56,7 @@ class RootViewController: UIViewController, SegueHandler {
     fileprivate func saveMoodWithImage(_ image: UIImage) {
         geoLocationController.retrieveCurrentLocation { location, placemark in
             self.managedObjectContext.performChanges {
-                let _ = Mood.insert(into: self.managedObjectContext, image: image, location: location, placemark: placemark)
+                _ = Mood.insert(into: self.managedObjectContext, image: image, location: location, placemark: placemark)
             }
         }
     }
@@ -88,7 +86,4 @@ extension RootViewController: CameraViewControllerDelegate {
         saveMoodWithImage(image)
     }
 
-
 }
-
-

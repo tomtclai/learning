@@ -10,14 +10,11 @@ import Foundation
 import CoreData
 import MoodyModel
 
-
 public protocol CloudKitNotificationDrain {
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any])
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any])
 }
 
-
 private let RemoteTypeEnvKey = "MoodyRemote"
-
 
 /// This is the central class that coordinates synchronization with the remote backend.
 ///
@@ -32,7 +29,7 @@ private let RemoteTypeEnvKey = "MoodyRemote"
 /// This class uses the `SyncContextType` and `ApplicationActiveStateObserving` protocols.
 public final class SyncCoordinator {
 
-    internal typealias ApplicationDidBecomeActive = () -> ()
+    internal typealias ApplicationDidBecomeActive = () -> Void
 
     let viewContext: NSManagedObjectContext
     let syncContext: NSManagedObjectContext
@@ -80,19 +77,17 @@ public final class SyncCoordinator {
 
 }
 
-
 extension SyncCoordinator: CloudKitNotificationDrain {
-    public func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+    public func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         perform {
             self.fetchNewRemoteData()
         }
     }
 }
 
-
 // MARK: - Context Owner -
 
-extension SyncCoordinator : ContextOwner {
+extension SyncCoordinator: ContextOwner {
     /// The sync coordinator holds onto tokens used to register with the NotificationCenter.
     func addObserverToken(_ token: NSObjectProtocol) {
         observerTokens.append(token)
@@ -108,9 +103,7 @@ extension SyncCoordinator : ContextOwner {
     }
 }
 
-
 // MARK: - Context -
-
 
 extension SyncCoordinator: ChangeProcessorContext {
 
@@ -120,20 +113,20 @@ extension SyncCoordinator: ChangeProcessorContext {
     }
 
     /// This switches onto the sync context's queue. If we're already on it, it will simply run the block.
-    func perform(_ block: @escaping () -> ()) {
+    func perform(_ block: @escaping () -> Void) {
         syncContext.perform(group: syncGroup, block: block)
     }
 
-    func perform<A,B>(_ block: @escaping (A,B) -> ()) -> (A,B) -> () {
-        return { (a: A, b: B) -> () in
+    func perform<A, B>(_ block: @escaping (A, B) -> Void) -> (A, B) -> Void {
+        return { (a: A, b: B) -> Void in
             self.perform {
                 block(a, b)
             }
         }
     }
 
-    func perform<A,B,C>(_ block: @escaping (A,B,C) -> ()) -> (A,B,C) -> () {
-        return { (a: A, b: B, c: C) -> () in
+    func perform<A, B, C>(_ block: @escaping (A, B, C) -> Void) -> (A, B, C) -> Void {
+        return { (a: A, b: B, c: C) -> Void in
             self.perform {
                 block(a, b, c)
             }
@@ -144,7 +137,6 @@ extension SyncCoordinator: ChangeProcessorContext {
         context.delayedSaveOrRollback(group: syncGroup)
     }
 }
-
 
 // MARK: Setup
 extension SyncCoordinator {
@@ -184,7 +176,6 @@ extension SyncCoordinator: ApplicationActiveStateObserving {
 
 }
 
-
 // MARK: - Remote -
 
 extension SyncCoordinator {
@@ -216,7 +207,7 @@ extension SyncCoordinator {
         }
     }
 
-    fileprivate func processRemoteChanges<T>(_ changes: [RemoteRecordChange<T>], completion: @escaping () -> ()) {
+    fileprivate func processRemoteChanges<T>(_ changes: [RemoteRecordChange<T>], completion: @escaping () -> Void) {
         self.changeProcessors.asyncForEach(completion: completion) { changeProcessor, innerCompletion in
             perform {
                 changeProcessor.processRemoteChanges(changes, in: self, completion: innerCompletion)
@@ -224,4 +215,3 @@ extension SyncCoordinator {
         }
     }
 }
-

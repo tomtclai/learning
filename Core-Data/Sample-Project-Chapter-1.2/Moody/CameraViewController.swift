@@ -8,11 +8,9 @@
 
 import UIKit
 
-
 protocol CameraViewControllerDelegate: class {
     func didCapture(_ image: UIImage)
 }
-
 
 class CameraViewController: UIViewController {
 
@@ -51,7 +49,6 @@ class CameraViewController: UIViewController {
         #endif
     }
 
-
     // MARK: Private
 
     fileprivate var session: CaptureSession!
@@ -73,7 +70,6 @@ class CameraViewController: UIViewController {
 
 }
 
-
 extension CameraViewController: CaptureSessionDelegate {
 
     func captureSessionDidCapture(_ image: UIImage?) {
@@ -81,13 +77,11 @@ extension CameraViewController: CaptureSessionDelegate {
         self.delegate.didCapture(image)
     }
 
-
     func captureSessionDidChangeAuthorizationStatus(authorized: Bool) {
         updateAuthorizationStatus()
     }
 
 }
-
 
 extension CameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -100,5 +94,3 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
     }
 
 }
-
-

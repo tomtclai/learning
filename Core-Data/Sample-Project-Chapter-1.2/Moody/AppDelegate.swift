@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var persistentContainer: NSPersistentContainer!
@@ -27,4 +26,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
-

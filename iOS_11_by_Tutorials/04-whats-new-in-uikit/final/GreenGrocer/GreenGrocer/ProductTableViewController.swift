@@ -32,7 +32,7 @@ import UIKit
 import MobileCoreServices
 
 class ProductTableViewController: UITableViewController, DataStoreOwner {
-  
+
   let searchController = UISearchController(searchResultsController: nil)
   public var listController: ListControllerProtocol?
   var dataStore: DataStore? {
@@ -40,38 +40,38 @@ class ProductTableViewController: UITableViewController, DataStoreOwner {
       tableView.reloadData()
     }
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 120
   }
-  
+
   // MARK: - UITableViewDataSource
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return dataStore?.products.count ?? 0
   }
-  
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath)
-    
+
     var product: Product? = nil
     product = dataStore?.products[(indexPath as NSIndexPath).row]
 
     if let cell = cell as? ProductTableViewCell {
       cell.product = product
     }
-    
+
     return cell
   }
-  
+
   // MARK: - UITableViewDelegate
   override func tableView(_ tableView: UITableView,
                           trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     guard let product = dataStore?.products[indexPath.row]
       else { return nil }
-    
+
     let addAction = UIContextualAction(style: .normal,
                                        title: "Add") { [weak self] (action, view, completionHandler) in
       guard let `self` = self else {
@@ -82,17 +82,17 @@ class ProductTableViewController: UITableViewController, DataStoreOwner {
       completionHandler(true)
     }
     addAction.backgroundColor = UIColor(named: ggGreen)
-    
+
     let configuration =
       UISwipeActionsConfiguration(actions: [addAction])
     return configuration
   }
-  
+
   override func tableView(_ tableView: UITableView,
                           leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     guard let product = dataStore?.products[indexPath.row]
       else { return nil }
-    
+
     let copyAction = UIContextualAction(style: .normal,
                                         title: "Copy") { (action, view, completionHandler) in
       let data =
@@ -102,12 +102,12 @@ class ProductTableViewController: UITableViewController, DataStoreOwner {
       completionHandler(true)
     }
     copyAction.backgroundColor = UIColor(named: ggDarkGreen)
-    
+
     let configuration =
       UISwipeActionsConfiguration(actions: [copyAction])
     return configuration
   }
-  
+
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let destVC = segue.destination as? ProductViewController {

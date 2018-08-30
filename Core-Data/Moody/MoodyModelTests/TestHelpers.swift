@@ -11,7 +11,7 @@ import CoreDataHelpers
 @testable import MoodyModel
 
 extension NSManagedObjectContext {
-    func performChangesAndWait(_ f: @escaping () -> ()) {
+    func performChangesAndWait(_ f: @escaping () -> Void) {
         performAndWait {
             f()
             try! self.save()
@@ -26,7 +26,7 @@ extension NSManagedObjectContext {
         return moodyTestContext { $0.addSQLiteTestStore() }
     }
 
-    static func moodyTestContext(_ addStore: (NSPersistentStoreCoordinator) -> ()) -> NSManagedObjectContext {
+    static func moodyTestContext(_ addStore: (NSPersistentStoreCoordinator) -> Void) -> NSManagedObjectContext {
         let model = MoodyModelVersion.current.managedObjectModel()
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
         addStore(coordinator)
@@ -43,7 +43,7 @@ extension NSManagedObjectContext {
         return moods
     }
 
-    func testInsertMoods(_ isoCountries:  [ISO3166.Country] = [.deu]) -> [Mood] {
+    func testInsertMoods(_ isoCountries: [ISO3166.Country] = [.deu]) -> [Mood] {
         var moods: [Mood]!
         performAndWait {
             moods = isoCountries.map { Mood.insert(into: self, colors: [.white], location: nil, isoCountry: $0) }
@@ -57,7 +57,6 @@ extension NSManagedObjectContext {
         }
     }
 }
-
 
 extension NSPersistentStoreCoordinator {
     func addInMemoryTestStore() {
@@ -73,7 +72,6 @@ extension NSPersistentStoreCoordinator {
     }
 }
 
-
 extension Managed where Self: NSManagedObject {
     func materializedObject(in context: NSManagedObjectContext) -> Self {
         var result: Self!
@@ -86,11 +84,9 @@ extension Managed where Self: NSManagedObject {
     func materialize() -> Self {
         for property in entity.properties {
             if let relationship = (self as NSManagedObject).value(forKey: property.name) as? Set<NSManagedObject> {
-                let _ = relationship.count
+                _ = relationship.count
             }
         }
         return self
     }
 }
-
-

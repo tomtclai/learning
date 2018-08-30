@@ -35,7 +35,7 @@ enum PhotoStatus {
 private let scale = UIScreen.main.scale
 private let cellSize = CGSize(width: 64, height: 64)
 private let thumbnailSize = CGSize(width: cellSize.width * scale, height: cellSize.height * scale)
-fileprivate let imageManager = PHImageManager()
+private let imageManager = PHImageManager()
 
 protocol Photo {
   var statusImage: PhotoStatus { get }
@@ -49,18 +49,18 @@ class AssetPhoto: Photo {
   var statusThumbnail: PhotoStatus = .downloading
   var image: UIImage?
   var thumbnail: UIImage?
-  
+
   let asset: PHAsset
   let representedAssetIdentifier: String
-  private let targetSize: CGSize = CGSize(width:600, height:600)
-  
+  private let targetSize: CGSize = CGSize(width: 600, height: 600)
+
   init(asset: PHAsset) {
     self.asset = asset
     self.representedAssetIdentifier = asset.localIdentifier
     fetchThumbnailImage()
     fetchImage()
   }
-  
+
   private func fetchThumbnailImage() {
     // Request thumbnail
     let options = PHImageRequestOptions()
@@ -68,8 +68,7 @@ class AssetPhoto: Photo {
     imageManager.requestImage(for: asset,
                               targetSize: thumbnailSize,
                               contentMode: .aspectFill,
-                              options: options)
-    { image, info in
+                              options: options) { image, info in
       if let image = image {
         if self.representedAssetIdentifier == self.asset.localIdentifier {
           self.thumbnail = image
@@ -81,18 +80,17 @@ class AssetPhoto: Photo {
       }
     }
   }
-  
+
   private func fetchImage() {
     // Load a high quality image
     let options = PHImageRequestOptions()
     options.deliveryMode = .highQualityFormat
     options.isNetworkAccessAllowed = true
-    
+
     PHImageManager.default().requestImage(for: asset,
                                           targetSize: targetSize,
                                           contentMode: .aspectFill,
-                                          options: options)
-    { image, info in
+                                          options: options) { image, info in
       if let image = image {
         if image.size.width < self.targetSize.width / 2 {
           DispatchQueue.main.asyncAfter(deadline: .now(), execute: self.fetchImage)
@@ -116,18 +114,18 @@ class DownloadPhoto: Photo {
   var statusThumbnail: PhotoStatus = .downloading
   var image: UIImage?
   var thumbnail: UIImage?
-  
+
   let url: URL
-  
+
   init(url: URL, completion: PhotoDownloadCompletionBlock!) {
     self.url = url
     downloadImage(completion)
   }
-  
+
   convenience init(url: URL) {
     self.init(url: url, completion: nil)
   }
-  
+
   private func downloadImage(_ completion: PhotoDownloadCompletionBlock?) {
     let task = downloadSession.dataTask(with: url, completionHandler: {
       data, response, error in
@@ -141,19 +139,19 @@ class DownloadPhoto: Photo {
         self.statusImage = .failed
         self.statusThumbnail = .failed
       }
-      
+
       self.thumbnail = self.image?.thumbnailImage(Int(cellSize.width),
                                                   transparentBorder: 0,
                                                   cornerRadius: 0,
                                                   interpolationQuality: CGInterpolationQuality.default)
-      
+
       completion?(self.image, error as NSError?)
-      
+
       DispatchQueue.main.async {
         NotificationCenter.default.post(name: Notification.Name(rawValue: photoManagerContentUpdatedNotification), object: nil)
       }
     })
-    
+
     task.resume()
   }
 }

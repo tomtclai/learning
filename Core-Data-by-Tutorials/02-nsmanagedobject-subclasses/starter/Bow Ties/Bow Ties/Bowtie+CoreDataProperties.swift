@@ -10,7 +10,6 @@
 import Foundation
 import CoreData
 
-
 extension Bowtie {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Bowtie> {

@@ -10,7 +10,6 @@
 import Foundation
 import CoreData
 
-
 extension Walk {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Walk> {

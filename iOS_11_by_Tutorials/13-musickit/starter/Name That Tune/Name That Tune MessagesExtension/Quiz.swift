@@ -40,23 +40,23 @@ private extension String {
 struct Quiz {
   let song: Song
   let choices: [String]
-  
+
   init(song: Song, choices: [String]) {
     self.song = song
     self.choices = choices
   }
-  
+
   init?(queryItems: [URLQueryItem]) {
     guard let answer1 = queryItems.first(where: { queryItem in queryItem.name == .choice1 })?.value,
       let answer2 = queryItems.first(where: { queryItem in queryItem.name == .choice2 })?.value,
       let answer3 = queryItems.first(where: { queryItem in queryItem.name == .choice3 })?.value,
       let answer4 = queryItems.first(where: { queryItem in queryItem.name == .choice4 })?.value else { return nil }
     self.choices = [answer1, answer2, answer3, answer4]
-    
+
     guard let song = Song(queryItems: queryItems) else { return nil }
     self.song = song
   }
-  
+
   var queryItems: [URLQueryItem] {
     var items: [URLQueryItem] = song.queryItems
     items.append(URLQueryItem(name: .choice1, value: choices[0]))

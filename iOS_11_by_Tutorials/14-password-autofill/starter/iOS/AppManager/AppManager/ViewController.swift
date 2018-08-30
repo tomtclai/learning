@@ -31,22 +31,21 @@
 import UIKit
 
 class ViewController: UIViewController {
-  
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     if !LoginStatus.loggedIn {
       performSegue(withIdentifier: "ShowLogin", sender: self)
     }
   }
-  
+
   @IBAction func loggedIn(segue: UIStoryboardSegue) {
     dismiss(animated: true, completion: nil)
   }
-  
+
   @IBAction func logout(_ sender: Any) {
     LoginStatus.loggedIn = false
     performSegue(withIdentifier: "ShowLogin", sender: self)
   }
-  
-}
 
+}

@@ -9,7 +9,6 @@
 import CoreData
 @testable import Migrations
 
-
 protocol TestEntityData {
     var entityName: String { get }
     func matches(_ object: NSManagedObject) -> Bool
@@ -28,4 +27,3 @@ struct TestVersionData {
         return true
     }
 }
-

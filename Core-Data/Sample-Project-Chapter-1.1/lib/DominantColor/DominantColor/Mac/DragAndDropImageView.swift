@@ -43,4 +43,3 @@ class DragAndDropImageView: NSImageView {
         return true
     }
 }
-

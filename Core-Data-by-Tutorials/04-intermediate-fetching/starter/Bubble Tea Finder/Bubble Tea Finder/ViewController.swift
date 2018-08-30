@@ -142,7 +142,6 @@ extension ViewController {
   }
 }
 
-
 extension ViewController: FilterViewControllerDelegate {
   func filterViewController(filter: FilterViewController, didSelectPredicate predicate: NSPredicate?, sortDescriptor: NSSortDescriptor?) {
     guard let fetchRequest = fetchRequest else {

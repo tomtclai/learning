@@ -31,9 +31,9 @@
 import UIKit
 
 class SourceListController: UITableViewController {
-  
+
   private var token: NSKeyValueObservation?
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     token = NewsAPI.service.observe(\.sources) { _, _ in
@@ -43,7 +43,7 @@ class SourceListController: UITableViewController {
     }
     NewsAPI.service.fetchSources()
   }
-  
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard segue.identifier == "PushArticlesSegue",
       let destination = segue.destination as? ArticleListController,
@@ -56,11 +56,11 @@ class SourceListController: UITableViewController {
 // MARK: UITableViewDataSource
 
 extension SourceListController {
-  
+
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return NewsAPI.service.sources.count
   }
-  
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "SourceCell", for: indexPath) as! SourceCell
     cell.source = NewsAPI.service.sources[indexPath.row]

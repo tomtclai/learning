@@ -161,7 +161,7 @@ extension MasterViewController: NSFetchedResultsControllerDelegate {
     }
 
     let fetchRequest: NSFetchRequest<CampSite> = CampSite.fetchRequest()
-    
+
     // Set the batch size to a suitable number.
     fetchRequest.fetchBatchSize = 20
 
@@ -185,7 +185,7 @@ extension MasterViewController: NSFetchedResultsControllerDelegate {
 
     return _fetchedResultsController!
   }
-  
+
   func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
     tableView.beginUpdates()
   }

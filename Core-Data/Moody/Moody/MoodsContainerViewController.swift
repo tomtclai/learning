@@ -10,12 +10,10 @@ import UIKit
 import CoreData
 import MoodyModel
 
-
 private enum MoodPresentationStyle: Int {
     case list = 0
     case grid = 1
 }
-
 
 class MoodsContainerViewController: UIViewController {
 
@@ -42,7 +40,6 @@ class MoodsContainerViewController: UIViewController {
         presentationStyle = presentationStyle.opposite
     }
 
-
     // MARK: Private
 
     fileprivate var tabController: UITabBarController {
@@ -60,7 +57,6 @@ class MoodsContainerViewController: UIViewController {
 
 }
 
-
 extension MoodsContainerViewController {
     static func instantiateFromStoryboard(for moodSource: MoodSource, managedObjectContext: NSManagedObjectContext) -> MoodsContainerViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -70,7 +66,6 @@ extension MoodsContainerViewController {
         return vc
     }
 }
-
 
 extension MoodPresentationStyle {
     fileprivate static var standard: MoodPresentationStyle {
@@ -94,7 +89,6 @@ extension MoodPresentationStyle: LocalizedStringConvertible {
     }
 }
 
-
 private let MoodPresentationStyleKey = "moodsPresentationStyle"
 
 extension UserDefaults {
@@ -108,4 +102,3 @@ extension UserDefaults {
         }
     }
 }
-

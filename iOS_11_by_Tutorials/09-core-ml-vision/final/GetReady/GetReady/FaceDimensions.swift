@@ -37,7 +37,7 @@ struct FaceDimensions {
   let leftEye: [CGPoint]?
   let rightEye: [CGPoint]?
   let median: [CGPoint]?
-  
+
   init(faceRect: CGRect) {
     self.faceRect = faceRect
     leftEye = nil
@@ -51,7 +51,7 @@ struct FaceDimensions {
     self.rightEye = rightEye
     median = nil
   }
-  
+
   init(faceRect: CGRect, leftEye: [CGPoint]?, rightEye: [CGPoint]?, median: [CGPoint]?) {
     self.faceRect = faceRect
     self.leftEye = leftEye

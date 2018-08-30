@@ -10,7 +10,6 @@ import CoreData
 import CoreDataHelpers
 import MoodyModel
 
-
 // MARK: - Change Processor -
 
 /// A change processor performs a specific sync task, e.g. "upload Mood objects".
@@ -27,12 +26,11 @@ protocol ChangeProcessor {
     func entityAndPredicateForLocallyTrackedObjects(in context: ChangeProcessorContext) -> EntityAndPredicate<NSManagedObject>?
 
     /// Respond to changes in remote records.
-    func processRemoteChanges<T>(_ changes: [RemoteRecordChange<T>], in context: ChangeProcessorContext, completion: () -> ())
+    func processRemoteChanges<T>(_ changes: [RemoteRecordChange<T>], in context: ChangeProcessorContext, completion: () -> Void)
 
     /// Does the initial fetch from the remote.
     func fetchLatestRemoteRecords(in context: ChangeProcessorContext)
 }
-
 
 // MARK: - Change Processor Context -
 
@@ -47,18 +45,17 @@ protocol ChangeProcessorContext: class {
     var remote: MoodyRemote { get }
 
     /// Wraps a block such that it is run on the right queue.
-    func perform(_ block: @escaping () -> ())
+    func perform(_ block: @escaping () -> Void)
 
     /// Wraps a block such that it is run on the right queue.
-    func perform<A, B>(_ block: @escaping (A, B) -> ()) -> (A, B) -> ()
+    func perform<A, B>(_ block: @escaping (A, B) -> Void) -> (A, B) -> Void
 
     /// Wraps a block such that it is run on the right queue.
-    func perform<A, B, C>(_ block: @escaping (A, B, C) -> ()) -> (A, B, C) -> ()
+    func perform<A, B, C>(_ block: @escaping (A, B, C) -> Void) -> (A, B, C) -> Void
 
     /// Eventually saves the context. May batch multiple calls into a single call to `saveOrRollback()`.
     func delayedSaveOrRollback()
 }
-
 
 // MARK: - Element Change Processor -
 
@@ -95,7 +92,6 @@ protocol ElementChangeProcessor: ChangeProcessor {
     var predicateForLocallyTrackedElements: NSPredicate { get }
 }
 
-
 extension ElementChangeProcessor {
     func processChangedLocalObjects(_ objects: [NSManagedObject], in context: ChangeProcessorContext) {
         // Filters the `NSManagedObjects` according to the `entityAndPredicateForLocallyTrackedObjects(in:)` and forwards the result to `processChangedLocalElements(_:context:completion:)`.
@@ -122,4 +118,3 @@ extension ElementChangeProcessor {
         return EntityAndPredicate(entity: Element.entity(), predicate: predicate)
     }
 }
-

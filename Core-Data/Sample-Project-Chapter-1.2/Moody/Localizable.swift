@@ -21,11 +21,9 @@ func localized(_ key: LocalizedText) -> String {
     return NSLocalizedString(key.rawValue, tableName: nil, bundle: Bundle.main, value: key.rawValue, comment: "")
 }
 
-
 func localized(_ key: LocalizedText, args: [CVarArg]) -> String {
     let format = localized(key)
     return withVaList(args) { arguments -> String in
         return NSString(format: format, locale: NSLocale.current, arguments: arguments) as String
     }
 }
-

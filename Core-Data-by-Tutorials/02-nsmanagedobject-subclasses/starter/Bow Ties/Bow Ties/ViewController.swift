@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     insertSampleDataIfNeeded()
 
-    let request : NSFetchRequest<Bowtie> = Bowtie.fetchRequest()
+    let request: NSFetchRequest<Bowtie> = Bowtie.fetchRequest()
     // The predicate is looking for bowties with their searchKey set to segment control's first button title, 'R'
     let firstTitle = segmentedControl.titleForSegment(at: 0)!
     request.predicate = NSPredicate(
@@ -90,7 +90,7 @@ class ViewController: UIViewController {
       print("Could not fetch \(error), \(error.userInfo)")
     }
   }
-  
+
   @IBAction func rate(_ sender: Any) {
     let alert = UIAlertController(title: "New Rating",
                                   message: "Rate this bow tie",

@@ -54,7 +54,5 @@ do {
     let s2 = predicate.matchingCityNameAndRemoteIdentifier
 }
 
-
 //: [Next](@next)
 //
-

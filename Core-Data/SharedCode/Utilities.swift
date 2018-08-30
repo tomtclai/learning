@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 extension Sequence {
     /// Similar to
     /// ```
@@ -16,7 +15,7 @@ extension Sequence {
     /// ```
     /// but calls the completion block once all blocks have called their completion block. If some of the calls to the block do not call their completion blocks that will result in data leaking.
 
-    func asyncForEach(completion: @escaping () -> (), block: (Iterator.Element, @escaping () -> ()) -> ()) {
+    func asyncForEach(completion: @escaping () -> Void, block: (Iterator.Element, @escaping () -> Void) -> Void) {
         let group = DispatchGroup()
         let innerCompletion = { group.leave() }
         for x in self {
@@ -41,13 +40,11 @@ extension Sequence {
     }
 }
 
-
 extension Sequence where Iterator.Element: AnyObject {
     public func containsObjectIdentical(to object: AnyObject) -> Bool {
         return contains { $0 === object }
     }
 }
-
 
 extension Array {
     var decomposed: (Iterator.Element, [Iterator.Element])? {
@@ -65,17 +62,15 @@ extension Array {
     }
 }
 
-
 extension URL {
     static var temporary: URL {
-        return URL(fileURLWithPath:NSTemporaryDirectory(), isDirectory: true).appendingPathComponent(UUID().uuidString)
+        return URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true).appendingPathComponent(UUID().uuidString)
     }
 
     static var documents: URL {
         return try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
     }
 }
-
 
 extension String {
     public func removingCharacters(in set: CharacterSet) -> String {
@@ -88,5 +83,3 @@ extension String {
         return String(chars)
     }
 }
-
-

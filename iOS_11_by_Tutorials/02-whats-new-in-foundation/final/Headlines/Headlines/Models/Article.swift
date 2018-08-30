@@ -37,7 +37,7 @@ class Article: NSObject, Codable {
   let sourceURL: URL
   let imageURL: URL
   let published: Date?
-  
+
   enum CodingKeys: String, CodingKey {
     case author
     case title
@@ -46,7 +46,7 @@ class Article: NSObject, Codable {
     case imageURL = "urlToImage"
     case published = "publishedAt"
   }
-  
+
   init(author: String, title: String, snippet: String, sourceURL: URL, imageURL: URL, published: Date) {
     self.author = author
     self.title = title
@@ -55,7 +55,7 @@ class Article: NSObject, Codable {
     self.imageURL = imageURL
     self.published = published
   }
-  
+
   required init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     author = try container.decodeIfPresent(String.self, forKey: .author)

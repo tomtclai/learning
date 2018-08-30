@@ -23,10 +23,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-  
+
   @IBOutlet var penguin: UIImageView!
   @IBOutlet var slideButton: UIButton!
-  
+
   var isLookingRight: Bool = true {
     didSet {
       let xScale: CGFloat = isLookingRight ? 1 : -1
@@ -35,37 +35,37 @@ class ViewController: UIViewController {
     }
   }
   var penguinY: CGFloat = 0.0
-  
+
   var walkSize: CGSize = CGSize.zero
   var slideSize: CGSize = CGSize.zero
-  
+
   let animationDuration = 1.0
-  
+
   var walkFrames = [#imageLiteral(resourceName: "walk01"), #imageLiteral(resourceName: "walk02"), #imageLiteral(resourceName: "walk03"), #imageLiteral(resourceName: "walk04")]
-  
+
   var slideFrames = [#imageLiteral(resourceName: "slide01"), #imageLiteral(resourceName: "slide02")]
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     //grab the sizes of the different sequences
     walkSize = walkFrames[0].size
     print(walkSize)
     slideSize = slideFrames[0].size
-    
+
     //setup the animation
     penguinY = penguin.frame.origin.y
 
     loadWalkAnimation()
-    
+
   }
-  
+
   func loadWalkAnimation() {
     penguin.animationImages = walkFrames
     penguin.animationDuration = animationDuration / 3
     penguin.animationRepeatCount = 3
   }
-  
+
   func loadSlideAnimation() {
     penguin.animationImages = slideFrames
     penguin.animationDuration = animationDuration
@@ -109,4 +109,3 @@ class ViewController: UIViewController {
     })
   }
 }
-

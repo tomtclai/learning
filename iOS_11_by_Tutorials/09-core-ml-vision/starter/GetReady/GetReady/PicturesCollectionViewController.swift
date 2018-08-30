@@ -33,14 +33,14 @@ import UIKit
 class PicturesCollectionViewController: UICollectionViewController {
 
   var images: [UIImage] = []
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     loadHardCodedPictures()
     loadSavedPictures()
   }
-  
+
   private func loadHardCodedPictures() {
     //This is for development and debugging purposes.
     //Just add any JPG image to the resource bundle and it will be loaded in the collection view, to start
@@ -49,7 +49,7 @@ class PicturesCollectionViewController: UICollectionViewController {
       .flatMap { UIImage(named: $0)}
       .forEach { images.append($0)}
   }
-  
+
   private func loadSavedPictures() {
     let documentDirectoryURL =  try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
     let imageUrls = try! FileManager.default.contentsOfDirectory(at: documentDirectoryURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles).filter { $0.pathExtension == "jpg"}
@@ -84,7 +84,7 @@ class PicturesCollectionViewController: UICollectionViewController {
   }
 }
 
-extension PicturesCollectionViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension PicturesCollectionViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   @IBAction func addImage(_ sender: Any) {
     let picker = UIImagePickerController()
     picker.delegate = self
@@ -92,7 +92,7 @@ extension PicturesCollectionViewController : UIImagePickerControllerDelegate, UI
     present(picker, animated: true)
   }
 
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
     picker.dismiss(animated: true)
 
     guard let uiImage = info[UIImagePickerControllerOriginalImage] as? UIImage
@@ -101,7 +101,7 @@ extension PicturesCollectionViewController : UIImagePickerControllerDelegate, UI
     collectionView?.insertItems(at: [IndexPath(row: images.count - 1, section: 0)])
     saveImage(image: uiImage)
   }
-  
+
   func saveImage(image: UIImage) {
     let data = UIImageJPEGRepresentation(image, 1.0)!
     let documentDirectoryURL =  try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)

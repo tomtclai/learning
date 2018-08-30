@@ -62,7 +62,7 @@ private extension EmployeeListViewController {
     fetchedResultController = employeesFetchedResultControllerFor(department)
   }
 }
-  
+
 // MARK: NSFetchedResultsController
 extension EmployeeListViewController {
 

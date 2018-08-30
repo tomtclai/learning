@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 private let rgbValues: [(CGFloat, CGFloat, CGFloat)] = [
     (0.301961, 0.372549, 0.211765),
     (0.705882, 0.478431, 0.443137),
@@ -17,7 +16,7 @@ private let rgbValues: [(CGFloat, CGFloat, CGFloat)] = [
     (0.470588, 0.313725, 0.243137),
     (0.301961, 0.0627451, 0.0901961),
     (0.556863, 0.243137, 0.239216),
-    (0.2, 0.101961, 0.0980392),
+    (0.2, 0.101961, 0.0980392)
 ]
 
 class IconGenerator {
@@ -58,4 +57,3 @@ class IconGenerator {
         return url.appendingPathExtension("png")
     }
 }
-

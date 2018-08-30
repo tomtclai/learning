@@ -99,7 +99,7 @@ private extension JournalListViewController {
   func configureView() {
     fetchedResultsController = journalListFetchedResultsController()
   }
-  
+
   func exportCSVFile() {
     navigationItem.leftBarButtonItem = activityIndicatorBarButtonItem()
     // 1
@@ -155,32 +155,32 @@ private extension JournalListViewController {
   }
 
   // MARK: Export
-  
+
   func activityIndicatorBarButtonItem() -> UIBarButtonItem {
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     let barButtonItem = UIBarButtonItem(customView: activityIndicator)
     activityIndicator.startAnimating()
-    
+
     return barButtonItem
   }
-  
+
   func exportBarButtonItem() -> UIBarButtonItem {
     return UIBarButtonItem(title: "Export", style: .plain, target: self, action: #selector(exportButtonTapped(_:)))
   }
-  
+
   func showExportFinishedAlertView(_ exportPath: String) {
     let message = "The exported CSV file can be found at \(exportPath)"
     let alertController = UIAlertController(title: "Export Finished", message: message, preferredStyle: .alert)
     let dismissAction = UIAlertAction(title: "Dismiss", style: .default)
     alertController.addAction(dismissAction)
-    
+
     present(alertController, animated: true)
   }
 }
 
 // MARK: NSFetchedResultsController
 private extension JournalListViewController {
-  
+
   func journalListFetchedResultsController() -> NSFetchedResultsController<JournalEntry> {
     let fetchedResultController = NSFetchedResultsController(fetchRequest: surfJournalFetchRequest(),
                                                              managedObjectContext: coreDataStack.mainContext,
@@ -198,7 +198,7 @@ private extension JournalListViewController {
   }
 
   func surfJournalFetchRequest() -> NSFetchRequest<JournalEntry> {
-    let fetchRequest:NSFetchRequest<JournalEntry> = JournalEntry.fetchRequest()
+    let fetchRequest: NSFetchRequest<JournalEntry> = JournalEntry.fetchRequest()
     fetchRequest.fetchBatchSize = 20
 
     let sortDescriptor = NSSortDescriptor(key: #keyPath(JournalEntry.date), ascending: false)
@@ -233,10 +233,10 @@ extension JournalListViewController {
     return cell
   }
 
-  func configureCell(_ cell: SurfEntryTableViewCell, indexPath:IndexPath) {
+  func configureCell(_ cell: SurfEntryTableViewCell, indexPath: IndexPath) {
     let surfJournalEntry = fetchedResultsController.object(at: indexPath)
     cell.dateLabel.text = surfJournalEntry.stringForDate()
-    
+
     guard let rating = surfJournalEntry.rating?.int32Value else { return }
 
     switch rating {
@@ -278,7 +278,7 @@ extension JournalListViewController {
       cell.starFiveFilledImageView.isHidden = true
     }
   }
-  
+
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     guard case(.delete) = editingStyle else { return }
 

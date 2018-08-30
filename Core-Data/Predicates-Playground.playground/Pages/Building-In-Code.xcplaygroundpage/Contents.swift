@@ -12,14 +12,11 @@ let moc = container.viewContext
 
 createCitiesAndPeople(in: moc)
 
-
 do {
     let predicate = NSComparisonPredicate(leftExpression: NSExpression(forKeyPath: #keyPath(Person.age)), rightExpression: NSExpression(forConstantValue: 32), modifier: .direct, type: .equalTo, options: [])
     let s = predicate.predicateFormat
-    let result = moc.fetchPeople(matching: predicate).map{ $0.personNameAndAge }
+    let result = moc.fetchPeople(matching: predicate).map { $0.personNameAndAge }
     result
 }
 
-
 //: [Next](@next)
-

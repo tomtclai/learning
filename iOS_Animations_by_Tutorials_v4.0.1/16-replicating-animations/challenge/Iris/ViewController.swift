@@ -24,10 +24,10 @@ import UIKit
 import AVFoundation
 
 class ViewController: UIViewController {
-  
+
   @IBOutlet weak var meterLabel: UILabel!
   @IBOutlet weak var speakButton: UIButton!
-  
+
   let monitor = MicMonitor()
   let assistant = Assistant()
 
@@ -39,7 +39,7 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     replicator.frame = view.bounds
     view.layer.addSublayer(replicator)
 
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
     }
 
   }
-  
+
   @IBAction func actionEndMonitoring(_ sender: AnyObject) {
     monitor.stopMonitoring()
 
@@ -99,20 +99,20 @@ class ViewController: UIViewController {
     tint.duration = 1.2
     tint.fillMode = kCAFillModeBackwards
     dot.add(tint, forKey: nil)
-    
+
     //speak after 1 second
     delay(seconds: 1.0) {
       self.startSpeaking()
     }
   }
-  
+
   func startSpeaking() {
     print("speak back")
 
     meterLabel.text = assistant.randomAnswer()
     assistant.speak(meterLabel.text!, completion: endSpeaking)
     speakButton.isHidden = true
-    
+
     let scale = CABasicAnimation(keyPath: "transform")
     scale.fromValue = NSValue(caTransform3D: CATransform3DIdentity)
     scale.toValue = NSValue(caTransform3D: CATransform3DMakeScale(1.4, 15, 1.0))
@@ -162,7 +162,7 @@ class ViewController: UIViewController {
     rotation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
     replicator.add(rotation, forKey: "replicatorRotation")
   }
-  
+
   func endSpeaking() {
     replicator.removeAllAnimations()
 

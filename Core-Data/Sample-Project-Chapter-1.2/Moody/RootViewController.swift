@@ -10,7 +10,6 @@ import UIKit
 import CoreLocation
 import CoreData
 
-
 class RootViewController: UIViewController, SegueHandler {
     enum SegueIdentifier: String {
         case embedNavigation = "embedNavigationController"
@@ -40,7 +39,6 @@ class RootViewController: UIViewController, SegueHandler {
         }
     }
 
-
     // MARK: Private
 
     fileprivate var cameraViewController: CameraViewController?
@@ -56,12 +54,11 @@ class RootViewController: UIViewController, SegueHandler {
     fileprivate func saveMoodWithImage(_ image: UIImage) {
         geoLocationController.retrieveCurrentLocation { location, placemark in
             self.managedObjectContext.performChanges {
-                let _ = Mood.insert(into: self.managedObjectContext, image: image, location: location, placemark: placemark)
+                _ = Mood.insert(into: self.managedObjectContext, image: image, location: location, placemark: placemark)
             }
         }
     }
 }
-
 
 extension RootViewController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
@@ -70,18 +67,14 @@ extension RootViewController: UINavigationControllerDelegate {
     }
 }
 
-
 extension RootViewController: GeoLocationControllerDelegate {
     func geoLocationDidChangeAuthorizationStatus(authorized: Bool) {
         cameraViewController?.locationIsAuthorized = authorized
     }
 }
 
-
 extension RootViewController: CameraViewControllerDelegate {
     func didCapture(_ image: UIImage) {
         saveMoodWithImage(image)
     }
 }
-
-

@@ -24,8 +24,8 @@ import Foundation
 import CoreData
 
 class Note: NSManagedObject {
-  
+
   @NSManaged var noteText: String
   @NSManaged var date: Date
-  
+
 }

@@ -10,7 +10,6 @@ import UIKit
 import CoreLocation
 import CoreData
 
-
 final class Mood: NSManagedObject {
     @NSManaged fileprivate(set) var date: Date
     @NSManaged fileprivate(set) var colors: [UIColor]
@@ -41,20 +40,17 @@ final class Mood: NSManagedObject {
         }
     }
 
-
     // MARK: Private
 
     @NSManaged fileprivate var latitude: NSNumber?
     @NSManaged fileprivate var longitude: NSNumber?
 }
 
-
 extension Mood: Managed {
     static var defaultSortDescriptors: [NSSortDescriptor] {
         return [NSSortDescriptor(key: #keyPath(date), ascending: false)]
     }
 }
-
 
 private let MaxColors = 8
 
@@ -67,4 +63,3 @@ extension UIImage {
         return colors
     }
 }
-

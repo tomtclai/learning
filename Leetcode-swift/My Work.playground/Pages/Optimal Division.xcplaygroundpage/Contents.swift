@@ -27,5 +27,5 @@ func optimalDivision(_ nums: [Int]) -> String {
     // "3 / ( 2 / 1 / 4 / 5 )
     var mutableNums = nums
     let firstNum = mutableNums.removeFirst()
-    return "\(firstNum)/(\(mutableNums.map{String($0)}.joined(separator:"/")))"
+    return "\(firstNum)/(\(mutableNums.map {String($0)}.joined(separator: "/")))"
 }

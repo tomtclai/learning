@@ -1,4 +1,4 @@
-    func averageOfLevels(_ root: TreeNode?) -> [Double] {
+func averageOfLevels(_ root: TreeNode?) -> [Double] {
         guard let root = root else {
             return [Double]()
         }

@@ -16,7 +16,7 @@ class VTAnnotation: NSManagedObject, MKAnnotation {
     @NSManaged @objc var subtitle: String?
     @NSManaged var images: [Image]
     @NSManaged var pageNumber: NSNumber!
-    
+
     struct Keys {
         static let Longitude = "longitude"
         static let Latitude = "latitude"
@@ -25,7 +25,7 @@ class VTAnnotation: NSManagedObject, MKAnnotation {
         static let Images = "images"
         static let Page = "page"
     }
-    
+
     @objc var coordinate: CLLocationCoordinate2D {
         get {
             return CLLocationCoordinate2D(latitude: latitude.doubleValue, longitude: longitude.doubleValue)
@@ -35,20 +35,20 @@ class VTAnnotation: NSManagedObject, MKAnnotation {
             longitude = NSNumber(double: coordinate.longitude)
         }
     }
-    
+
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
-    
-    init(dictionary: [String:AnyObject], context: NSManagedObjectContext) {
+
+    init(dictionary: [String: AnyObject], context: NSManagedObjectContext) {
         let entity = NSEntityDescription.entityForName("VTAnnotation", inManagedObjectContext: context)!
         super.init(entity: entity, insertIntoManagedObjectContext: context)
-        
+
         longitude = dictionary[Keys.Longitude] as! NSNumber
         latitude = dictionary[Keys.Latitude] as! NSNumber
         title = dictionary[Keys.Title] as? String
         subtitle = dictionary[Keys.Subtitle] as? String
         pageNumber = dictionary[Keys.Page] as! NSNumber
-        
+
     }
 }

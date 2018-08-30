@@ -31,38 +31,37 @@
 import UIKit
 
 class DocumentViewController: UIViewController {
-  
+
   @IBOutlet weak var documentNameLabel: UILabel!
   @IBOutlet weak var colorSample: UIView!
   @IBOutlet weak var colorLabel: UILabel!
-    
-  
+
   @IBOutlet weak var RSlider: UISlider!
   @IBOutlet weak var BSlider: UISlider!
   @IBOutlet weak var GSlider: UISlider!
-  
+
   var document: ColorDocument?
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     RSlider.maximumValue = 255
     GSlider.maximumValue = 255
     BSlider.maximumValue = 255
   }
-  
+
   @IBAction func dismissDocumentViewController() {
     dismiss(animated: true, completion: nil)
   }
-  
+
   @IBAction func didTapSave(_ sender: Any) {
-    
+
   }
-  
+
   @IBAction func didChangeSliderValue(_ sender: Any) {
     updateColorPreview(R: Int(RSlider.value), G: Int(GSlider.value), B: Int(BSlider.value))
   }
-  
+
 }
 
 private extension DocumentViewController {
@@ -70,7 +69,7 @@ private extension DocumentViewController {
     colorSample.backgroundColor = UIColor(red: CGFloat(R)/255, green: CGFloat(G)/255, blue: CGFloat(B)/255, alpha: 1)
     colorLabel.text = "Red: \(R), Green: \(G), Blue: \(B)"
   }
-  
+
   func updateUI() {
     documentNameLabel.text = document?.fileURL.lastPathComponent
     if let color = document?.color {

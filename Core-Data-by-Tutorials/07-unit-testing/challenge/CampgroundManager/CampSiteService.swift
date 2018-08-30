@@ -84,7 +84,7 @@ extension CampSiteService {
 
     var results: [CampSite]
     do {
-      try results = managedObjectContext.fetch(fetchRequest) 
+      try results = managedObjectContext.fetch(fetchRequest)
     } catch {
       results = []
     }

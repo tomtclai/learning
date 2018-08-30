@@ -15,4 +15,3 @@ func judgeCircle(_ moves: String) -> Bool {
     }
     return x==0 && y==0
 }
-

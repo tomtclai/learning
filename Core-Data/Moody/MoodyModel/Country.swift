@@ -11,7 +11,6 @@ import CoreLocation
 import CoreData
 import CoreDataHelpers
 
-
 public class Country: NSManagedObject {
 
     @NSManaged fileprivate(set) var moods: Set<Mood>
@@ -71,11 +70,9 @@ public class Country: NSManagedObject {
         return numberOfMoods - committedNumberOfMoods
     }
 
-
     // MARK: Private
     @NSManaged fileprivate var numericISO3166Code: Int16
     @NSManaged fileprivate var primitiveUpdatedAt: Date
-
 
     fileprivate var hasChangedMoods: Bool {
         return changedValue(forKey: #keyPath(moods)) != nil
@@ -108,9 +105,7 @@ public class Country: NSManagedObject {
         continent = nil
     }
 
-
 }
-
 
 extension Country: Managed {
     public static var defaultSortDescriptors: [NSSortDescriptor] {
@@ -127,4 +122,3 @@ extension Country: DelayedDeletable {
 }
 
 extension Country: UpdateTimestampable {}
-

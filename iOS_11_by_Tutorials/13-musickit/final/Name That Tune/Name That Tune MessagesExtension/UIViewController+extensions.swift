@@ -38,7 +38,7 @@ extension UIViewController {
     view.addSubview(controller.view)
     controller.didMove(toParentViewController: self)
   }
-  
+
   func removeController() {
     willMove(toParentViewController: nil)
     view.removeFromSuperview()
@@ -50,7 +50,7 @@ extension SKCloudServiceSetupViewController {
   private struct AssociatedKeys {
     static var window: UInt8 = 0
   }
-  
+
   var viewWindow: UIWindow? {
     get {
       return objc_getAssociatedObject(self, &AssociatedKeys.window) as? UIWindow
@@ -59,7 +59,7 @@ extension SKCloudServiceSetupViewController {
       objc_setAssociatedObject(self, &AssociatedKeys.window, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
   }
-  
+
   func show(animated: Bool) {
     let window = UIWindow(frame: UIScreen.main.bounds)
     viewWindow = window
@@ -68,10 +68,10 @@ extension SKCloudServiceSetupViewController {
     window.makeKeyAndVisible()
     window.rootViewController!.present(self, animated: animated, completion: nil)
   }
-  
+
   open override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
-    
+
     viewWindow?.isHidden = true
     viewWindow = nil
   }

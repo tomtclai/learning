@@ -8,8 +8,7 @@
 
 import CoreData
 
-
-func createMoodyContainer(completion: @escaping (NSPersistentContainer) -> ()) {
+func createMoodyContainer(completion: @escaping (NSPersistentContainer) -> Void) {
   let container = NSPersistentContainer(name: "Moody")
   container.loadPersistentStores { _, error in
     guard error == nil else {

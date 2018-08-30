@@ -40,22 +40,22 @@ class AppointmentsViewController: UITableViewController {
       tableView.reloadData()
     }
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     let primaryCareDoctor = Doctor(name: "Dr. General", phone: "555-123-4321", address: "123 Main St, Suite 250", city: "Frisco", state: "TX", zip: "75034", notes: "Office hours MTW 9:00 am - 2:00 pm", image: #imageLiteral(resourceName: "profile"))
     let specialist = Doctor(name: "Dr. Specialist", phone: "321-555-1234", address: "321 Central Ave", city: "Dallas", state: "TX", zip: "75001", notes: "Does surgery on Thursday", image: #imageLiteral(resourceName: "profile"))
     appointments = [Appointment(dateTime: DateComponents(calendar: .current, year: 2017, month: 6, day: 1, hour: 12, minute: 30).date!, doctor: primaryCareDoctor),
                     Appointment(dateTime: DateComponents(calendar: .current, year: 2017, month: 7, day: 15, hour: 15, minute: 45).date!, doctor: specialist)]
   }
-  
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == .doctorSegue {
       guard let cell = sender as? AppointmentCell,
         let appointment = cell.appointment,
         let controller = segue.destination as? DoctorViewController else { fatalError() }
-      
+
       controller.doctor = appointment.doctor
     }
   }
@@ -65,7 +65,7 @@ extension AppointmentsViewController {
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return appointments?.count ?? 0
   }
-  
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: AppointmentCell.cellIdentifier, for: indexPath) as? AppointmentCell else { fatalError() }
     guard let appointment = appointments?[indexPath.row] else { fatalError() }

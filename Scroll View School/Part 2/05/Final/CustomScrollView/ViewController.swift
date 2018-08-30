@@ -11,12 +11,12 @@ import UIKit
 class ViewController: UIViewController {
 
   @IBOutlet weak var scrollView: UIScrollView!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     scrollView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
-    
+
   }
 
   override func didReceiveMemoryWarning() {
@@ -24,6 +24,4 @@ class ViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
 
-
 }
-

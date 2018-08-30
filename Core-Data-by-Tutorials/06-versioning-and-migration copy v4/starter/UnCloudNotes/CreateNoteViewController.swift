@@ -49,7 +49,6 @@ class CreateNoteViewController: UIViewController, UsesCoreDataObjects {
   // MARK: - View Life Cycle
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    titleField.becomeFirstResponder()
 
     guard let image = note?.image else {
       titleField.becomeFirstResponder()
@@ -59,7 +58,7 @@ class CreateNoteViewController: UIViewController, UsesCoreDataObjects {
     attachedPhoto.image = image
     view.endEditing(true)
   }
-  
+
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let nextViewController = segue.destination as? NoteDisplayable else { return }

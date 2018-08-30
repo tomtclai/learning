@@ -11,39 +11,36 @@ import UIKit
 class ViewController: UIViewController {
 
   @IBOutlet weak var scrollView: UIScrollView!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
-    
+
   }
-  
+
   deinit {
     NotificationCenter.default.removeObserver(self)
   }
-  
+
   @objc func keyboardWillShow(notification: NSNotification) {
     adjustInsetForKeyboardShow(show: true, notification: notification)
   }
-  
+
   @objc func keyboardWillHide(notification: NSNotification) {
     adjustInsetForKeyboardShow(show: false, notification: notification)
   }
-  
+
   func adjustInsetForKeyboardShow(show: Bool, notification: NSNotification) {
     let keyboardFrame = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
     let keyboardHeight = keyboardFrame?.height ?? 0
     scrollView.contentInset.bottom += keyboardHeight * (show ? 1 : -1)
   }
 
-
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
 
-
 }
-
