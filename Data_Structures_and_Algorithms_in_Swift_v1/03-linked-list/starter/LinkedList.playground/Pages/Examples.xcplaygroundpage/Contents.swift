@@ -94,3 +94,35 @@ example(of: "using collection") {
     print("Array containing last 3 elements \(Array(list.suffix(3)))")
     print("Sum of all values \(list.reduce(0, +))")
 }
+
+// Another important quality of a swift collection is that they have value semantics. This is implemented using copy-on-write, hereby known as COW. To Illustrate this concept, you will verify this behavior using arrays. Write the following at the bottom of the playgorudn page.
+
+example(of: "array COW") {
+    let array1 = [1, 2]
+    var array2 = array1
+
+    print("array1: \(array1)")
+    print("array2: \(array2)")
+
+    print("after adding 3 to array 2")
+    array2.append(3)
+    print("array1: \(array1)")
+    print("array2: \(array2)")
+}
+
+
+example(of: "linkedlist COW") {
+    var array1 = LinkedList<Int>()
+    array1.append(1)
+    array1.append(2)
+    print("List 1 uniquely referenced : \(isKnownUniquelyReferenced(&array1.head))")
+    var array2 = array1
+    print("List 1 uniquely referenced : \(isKnownUniquelyReferenced(&array1.head))")
+    print("array1: \(array1)")
+    print("array2: \(array2)")
+
+    print("after adding 3 to array 2")
+    array2.append(3)
+    print("array1: \(array1)")
+    print("array2: \(array2)")
+}
