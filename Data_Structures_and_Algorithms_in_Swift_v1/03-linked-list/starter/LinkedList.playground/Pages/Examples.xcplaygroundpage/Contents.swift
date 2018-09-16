@@ -126,3 +126,30 @@ example(of: "linkedlist COW") {
     print("array1: \(array1)")
     print("array2: \(array2)")
 }
+
+
+example(of: "Challenge 1") {
+    var list = LinkedList<Int>()
+    list.push(3)
+    list.push(2)
+    list.push(1)
+
+    print("\(list)")
+
+    func printInReverse(list: LinkedList<Int>) {
+        func helper(node: Node<Int>?) {
+            // if i am nil
+            //    return
+            guard let node = node else { return }
+            // otherwise
+            //    make recursive call on the next item
+            //    print my value
+            helper(node: node.next)
+            print(node.value)
+        }
+
+        helper(node: list.head)
+    }
+
+    printInReverse(list: list)
+}
