@@ -153,3 +153,32 @@ example(of: "Challenge 1") {
 
     printInReverse(list: list)
 }
+
+extension String {
+    init<Wrapped>(nilOr: Wrapped?) where Wrapped: CustomStringConvertible {
+        self.init(nilOr?.description ?? "nil")
+    }
+}
+
+example(of: "Challenge 2") {
+    var list = LinkedList<Int>()
+    list.push(4)
+    list.push(3)
+    list.push(2)
+    list.push(1)
+
+    var fast = list.head
+    var slow = list.head
+
+    // 1 -> 2 -> 3 -> 4 -> null
+    //                      f
+    //           s
+    while fast != nil {
+        fast = fast?.next?.next
+        slow = slow?.next
+    }
+
+    print("middle is \(String(nilOr: slow?.value) )")
+}
+
+
