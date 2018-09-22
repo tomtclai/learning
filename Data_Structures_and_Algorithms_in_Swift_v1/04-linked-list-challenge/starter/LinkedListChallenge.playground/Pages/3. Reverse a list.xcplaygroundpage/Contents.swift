@@ -23,9 +23,7 @@ extension LinkedList {
       prev = curr
       curr = next
     }
-    var oldHead = head
-    head = tail
-    tail = oldHead
+    swap(&tail, &head)
   }
 }
 
