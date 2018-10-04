@@ -55,16 +55,3 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     }
   }
 }
-
-// MARK: - Watch Connectivity
-extension ExtensionDelegate {
-  
-  func setupWatchConnectivity() {
-    // TODO: Update to set up watch connectivity
-  }
-  
-  func sendPurchasedMoviesToPhone(_ notification:Notification) {
-    // TODO: Update to send purchased movies to phone
-  }
-  
-}

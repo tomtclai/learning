@@ -26,12 +26,12 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     case .utilitarianSmall, .utilitarianSmallFlat:
       let smallFlat = CLKComplicationTemplateUtilitarianSmallFlat()
       smallFlat.textProvider = CLKSimpleTextProvider(text: "Rising, +2.6m", shortText: "+2.6m")
-      smallFlat.imageProvider = CLKImageProvider(onePieceImage: #imageLiteral(resourceName: "tide_rising"))
+      smallFlat.imageProvider = CLKImageProvider(onePieceImage: #imageLiteral(resourceName: "tide_high"))
       handler(smallFlat)
     case .utilitarianLarge:
       let largeFlat = CLKComplicationTemplateUtilitarianLargeFlat()
       largeFlat.textProvider = CLKSimpleTextProvider(text: "Rising, +2.6m", shortText: "+2.6m")
-      largeFlat.imageProvider = CLKImageProvider(onePieceImage: #imageLiteral(resourceName: "tide_rising"))
+      largeFlat.imageProvider = CLKImageProvider(onePieceImage: #imageLiteral(resourceName: "tide_high"))
       handler(largeFlat)
     case .circularSmall:
       let textProvider = CLKSimpleTextProvider(text: "6")
@@ -59,8 +59,39 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
   }
 
   func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
-    handler(nil)
+    let conditions = TideConditions.loadConditions()
+    guard let waterLevels = conditions.currentWaterLevel else {
+      handler(nil)
+      return
+    }
+    var tideImage: UIImage
+    switch waterLevels.situation {
+    case .High: tideImage = #imageLiteral(resourceName: "tide_high")
+    case .Low: tideImage = #imageLiteral(resourceName: "tide_low")
+    case .Rising: tideImage = #imageLiteral(resourceName: "tide_rising")
+    case .Falling: tideImage = #imageLiteral(resourceName: "tide_falling")
+    case .Unknown: tideImage = #imageLiteral(resourceName: "tide_high")
+    }
 
+    if complication.family == .utilitarianSmall {
+      let smallFlat = CLKComplicationTemplateUtilitarianSmallFlat()
+      smallFlat.textProvider = CLKSimpleTextProvider(text: waterLevels.shortTextForComplication)
+      smallFlat.imageProvider = CLKImageProvider(onePieceImage: tideImage)
+      handler(CLKComplicationTimelineEntry(date: waterLevels.date, complicationTemplate: smallFlat))
+    } else if complication.family == .utilitarianLarge {
+      let largeFlat = CLKComplicationTemplateUtilitarianLargeFlat()
+      largeFlat.textProvider = CLKSimpleTextProvider(text: waterLevels.longTextForComplication)
+      largeFlat.imageProvider = CLKImageProvider(onePieceImage: tideImage)
+      handler(CLKComplicationTimelineEntry(date: waterLevels.date, complicationTemplate: largeFlat))
+    } else if complication.family == .modularSmall {
+      let smallFlat = CLKComplicationTemplateModularSmallSimpleImage()
+      smallFlat.imageProvider = CLKImageProvider(onePieceImage: tideImage)
+      handler(CLKComplicationTimelineEntry(date: waterLevels.date, complicationTemplate: smallFlat))
+    } else if complication.family == .modularLarge {
+      let big = CLKComplicationTemplateModularLargeStandardBody()
+      big.headerImageProvider = CLKImageProvider(onePieceImage: tideImage)
+      big.body1TextProvider = CLKTimeTextProvider(date: Date() waterLevels.longTextForComplication
+,     }
   }
 
   func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {

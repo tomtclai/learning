@@ -86,4 +86,12 @@ extension WaterLevel: NSCoding {
     encoder.encode(height, forKey: CodingKeys.height)
     encoder.encode(situation.rawValue, forKey: CodingKeys.situation)
   }
+
+  var shortTextForComplication: String {
+    return String(format: "%.1fm", height)
+  }
+
+  var longTextForComplication: String {
+    return String(format: "%@, %.1fm", situation.rawValue, height)
+  }
 }

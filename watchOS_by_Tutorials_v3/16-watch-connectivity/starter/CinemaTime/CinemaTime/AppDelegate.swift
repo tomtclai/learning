@@ -70,15 +70,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
   }
 }
-
-// MARK: - Watch Connectivity
-extension AppDelegate {
-  
-  func setupWatchConnectivity() {
-    // TODO: Update to set up watch connectivity
-  }
-  
-  func sendPurchasedMoviesToWatch(_ notification: Notification) {
-    // TODO: Update to send purchased movies to the watch
-  }
-}
