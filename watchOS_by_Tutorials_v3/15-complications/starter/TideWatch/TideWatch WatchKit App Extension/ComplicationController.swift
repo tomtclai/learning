@@ -89,9 +89,9 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
       handler(CLKComplicationTimelineEntry(date: waterLevels.date, complicationTemplate: smallFlat))
     } else if complication.family == .modularLarge {
       let big = CLKComplicationTemplateModularLargeStandardBody()
-      big.headerImageProvider = CLKImageProvider(onePieceImage: tideImage)
-      big.body1TextProvider = CLKTimeTextProvider(date: Date() waterLevels.longTextForComplication
-,     }
+//      big.headerImageProvider = CLKImageProvider(onePieceImage: tideImage)
+//      big.body1TextProvider = CLKTimeTextProvider(date: Date(), waterLevels.longTextForComplication
+     }
   }
 
   func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
