@@ -1,11 +1,14 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View, AppRegistry, Image } from 'react-native';
 
-export default class App extends React.Component {
+export default class HelloWorldApp extends Component {
   render() {
+    let pic = {
+      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+    };
     return (
       <View style={styles.container}>
-        <Text>Hello world</Text>
+        <Image source={pic} style={{width:193, height: 110}}/>
       </View>
     );
   }
