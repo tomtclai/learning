@@ -1,0 +1,28 @@
+{
+  "name": "reactNativeEject",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "flow": "^0.2.3",
+    "react": "16.5.0",
+    "react-native": "0.57.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/runtime": "^7.1.2",
+    "babel-cli": "^6.26.0",
+    "babel-jest": "23.6.0",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.82.0",
+    "jest": "23.6.0",
+    "metro-react-native-babel-preset": "0.47.1",
+    "react-test-renderer": "16.5.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
