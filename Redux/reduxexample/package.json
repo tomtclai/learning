@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "react": "^16.5.2",
+    "react-dedux": "^0.4.0-beta.4",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
     "react-scripts": "2.0.4",
