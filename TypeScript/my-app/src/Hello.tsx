@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 export interface Props {
   name: String;
@@ -7,7 +7,7 @@ export interface Props {
 
 function Hello({ name, enthusiasmLevel = 1 }: Props) {
   if (enthusiasmLevel <= 0) {
-    throw new Error('You could be a little more enthusiastic. :D');
+    throw new Error("You could be a little more enthusiastic. :D");
   }
 
   return (
@@ -22,5 +22,5 @@ function Hello({ name, enthusiasmLevel = 1 }: Props) {
 export default Hello;
 
 function getExclamationMarks(numChars: number) {
-  return Array(numChars + 1).join('!');
+  return Array(numChars + 1).join("!");
 }
