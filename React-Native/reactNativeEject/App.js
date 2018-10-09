@@ -18,7 +18,7 @@ import {
 } from 'react-native';
 
 import ListItem from './src/components/ListItem/ListItem';
-import UserInput from './src/components/UserInput/UserInput';
+import PlaceInput from './src/components/PlaceInput/PlaceInput';
 import PlaceList from './src/components/PlaceList/PlaceList';
 
 const instructions = Platform.select({
@@ -46,7 +46,7 @@ export default class App extends Component<Props> {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <UserInput onPlaceAdded={this.placeAddedHandler}/>
+        <PlaceInput onPlaceAdded={this.placeAddedHandler}/>
         {/*make list component*/}
         <PlaceList places={this.state.places}/>
       </SafeAreaView>
