@@ -10,7 +10,7 @@ class Hello extends React.Component<Props, object> {
     const { name, enthusiasmLevel = 1 } = this.props;
 
     if (enthusiasmLevel <= 0) {
-      throw new Error("You could be a little more enthusiatic. :D");
+      throw new Error("You could be a little more enthusiastic. :D");
     }
 
     return (
