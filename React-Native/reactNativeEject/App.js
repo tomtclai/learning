@@ -20,6 +20,7 @@ import {
 import ListItem from './src/components/ListItem/ListItem';
 import PlaceInput from './src/components/PlaceInput/PlaceInput';
 import PlaceList from './src/components/PlaceList/PlaceList';
+import placeImage from './src/assets/beautiful-place.jpg';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -40,7 +41,9 @@ export default class App extends Component<Props> {
       return {
         places: prevState.places.concat({
           key: ""+Math.random(), 
-          value: placeName})
+          value: placeName,
+          image: placeImage
+        })
       };
     });
   }
@@ -60,7 +63,6 @@ export default class App extends Component<Props> {
     return (
       <SafeAreaView style={styles.container}>
         <PlaceInput onPlaceAdded={this.placeAddedHandler}/>
-        {/*make list component*/}
         <PlaceList places={this.state.places} onItemDeleted={this.placeDeletedHandler}/>
       </SafeAreaView>
     );
