@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "es2015",
+    "jsx": "react",
+    "outDir": "build",
+    "rootDir": "src",
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "experimentalDecorators": true,
+    "preserveConstEnums": true,
+    "allowJs": true,
+    "sourceMap": true
+    // "scripts" : {
+    //     "tsc": "tsc --watch"
+    // }
+  },
+  "exclude": [
+    "index.android.js",
+    "index.ios.js",
+    "build",
+    "node_moduels",
+    "__tests__"
+  ]
+}

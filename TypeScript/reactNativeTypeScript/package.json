@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@types/react": "^16.4.16",
+    "@types/react-native": "^0.57.4",
+    "react-native": "^0.57.2",
+    "typescript": "^3.1.1"
+  },
+  "scripts": {
+    "tsc": "tsc --watch"
+  }
+}
