@@ -19,6 +19,7 @@ import {
 
 import ListItem from './src/components/ListItem/ListItem';
 import UserInput from './src/components/UserInput/UserInput';
+import PlaceList from './src/components/PlaceList/PlaceList';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -31,7 +32,6 @@ type Props = {};
 export default class App extends Component<Props> {
 
   state = {
-    placeName: '',
     places: []
   }
 
@@ -44,14 +44,11 @@ export default class App extends Component<Props> {
   }
 
   render() {
-    const placesOutput = this.state.places.map((place, i) => (
-      <ListItem key={i} placeName={place}/>
-      ));
     return (
       <SafeAreaView style={styles.container}>
         <UserInput onPlaceAdded={this.placeAddedHandler}/>
         {/*make list component*/}
-        <View style={styles.listContainer}>{placesOutput}</View>
+        <PlaceList places={this.state.places}/>
       </SafeAreaView>
     );
   }
@@ -69,9 +66,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center"
-  },
-  listContainer: {
-    width: "100%",
-    padding: 10
   }
 });
