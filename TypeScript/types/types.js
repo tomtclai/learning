@@ -1,1 +1,3 @@
-console.log("hellow");
+var myString;
+myString = "Hello ";
+console.log(myString);
