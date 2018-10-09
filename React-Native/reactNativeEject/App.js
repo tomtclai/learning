@@ -17,6 +17,9 @@ import {
   SafeAreaView 
 } from 'react-native';
 
+import ListItem from './src/components/ListItem/ListItem';
+import UserInput from './src/components/UserInput/UserInput';
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -32,41 +35,23 @@ export default class App extends Component<Props> {
     places: []
   }
 
-  placeNameChangedHandler = val => {
-    this.setState({
-      placeName: val
-    });
-  };
-
-  placeSubmitHandler = () => {
-    if (this.state.placeName.trim() === "") {
-      return;
-    }
-
-    this.setState( prevState => {
+  placeAddedHandler = placeName => {
+    this.setState(prevState => {
       return {
-        places: prevState.places.concat(prevState.placeName)
+        places: prevState.places.concat(placeName)
       };
-    })
+    });
   }
 
   render() {
     const placesOutput = this.state.places.map((place, i) => (
-      <Text key={i}>{place}</Text>
+      <ListItem key={i} placeName={place}/>
       ));
     return (
       <SafeAreaView style={styles.container}>
-        <View style={styles.inputContainer}>
-          <TextInput 
-          style={styles.placeInput}
-          placeholder="An awesome place"
-          value={this.state.placeName}
-          onChangeText={this.placeNameChangedHandler}/>
-          <Button title="Add" style={styles.placeButton} onPress={this.placeSubmitHandler}/>
-        </View>
-        <View>
-        {placesOutput}
-        </View>
+        <UserInput onPlaceAdded={this.placeAddedHandler}/>
+        {/*make list component*/}
+        <View style={styles.listContainer}>{placesOutput}</View>
       </SafeAreaView>
     );
   }
@@ -85,10 +70,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center"
   },
-  placeInput: {
-    width: "70%"
-  },
-  placeButton: {
-    width: "30%"
+  listContainer: {
+    width: "100%",
+    padding: 10
   }
 });
