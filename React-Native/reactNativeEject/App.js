@@ -29,7 +29,7 @@ class App extends Component {
     this.props.onDeletePlace();
   };
 
-  onModalClosedHandler = () => {
+  modalClosedHandler = () => {
     this.props.onDeselectPlace();
   };
 
@@ -43,7 +43,7 @@ class App extends Component {
         <PlaceDetail
           selectedPlace={this.props.selectedPlace}
           onItemDeleted={this.placeDeletedHandler}
-          onModalClosed={this.onModalClosedHandler}
+          onModalClosed={this.modalClosedHandler}
         />
         <PlaceInput onPlaceAdded={this.placeAddedHandler} />
         <PlaceList
