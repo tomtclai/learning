@@ -21,7 +21,7 @@ import ListItem from "./src/components/ListItem/ListItem";
 import PlaceInput from "./src/components/PlaceInput/PlaceInput";
 import PlaceList from "./src/components/PlaceList/PlaceList";
 import placeImage from "./src/assets/beautiful-place.jpg";
-
+import PlaceDetail from "./src/components/PlaceDetail/PlaceDetails";
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
   android:
@@ -32,7 +32,8 @@ const instructions = Platform.select({
 type Props = {};
 export default class App extends Component<Props> {
   state = {
-    places: []
+    places: [],
+    selectedPlace: null
   };
 
   placeAddedHandler = placeName => {
@@ -40,7 +41,7 @@ export default class App extends Component<Props> {
       return {
         places: prevState.places.concat({
           key: "" + Math.random(),
-          value: placeName,
+          name: placeName,
           image: {
             uri:
               "https://web.fdcanet.com/data/files/mall/article/201509071644139049.jpg"
@@ -50,11 +51,30 @@ export default class App extends Component<Props> {
     });
   };
 
-  placeDeletedHandler = key => {
+  placeDeletedHandler = () => {
     this.setState(prevState => {
       return {
         places: prevState.places.filter(place => {
-          return place.key !== key;
+          return place.key !== prevState.selectedPlace.key;
+        }),
+        selectedPlace: null
+      };
+    });
+  }
+
+  onModalClosedHandler = () => {
+    this.setState(
+      {
+        selectedPlace: null
+      }
+    );
+  }
+
+  placeSelectedHandler = key => {
+    this.setState(prevState => {
+      return {
+        selectedPlace: prevState.places.find(place => {
+          return place.key === key;
         })
       };
     });
@@ -63,10 +83,15 @@ export default class App extends Component<Props> {
   render() {
     return (
       <SafeAreaView style={styles.container}>
+        <PlaceDetail
+        selectedPlace={this.state.selectedPlace} 
+        onItemDeleted={this.placeDeletedHandler} 
+        onModalClosed={this.onModalClosedHandler}
+         />
         <PlaceInput onPlaceAdded={this.placeAddedHandler} />
         <PlaceList
           places={this.state.places}
-          onItemDeleted={this.placeDeletedHandler}
+          onItemSelected={this.placeSelectedHandler}
         />
       </SafeAreaView>
     );
