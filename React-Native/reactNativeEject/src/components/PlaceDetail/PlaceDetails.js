@@ -6,8 +6,11 @@ import {
   Text,
   Button,
   StyleSheet,
-  SafeAreaView
+  SafeAreaView,
+  TouchableOpacity
 } from "react-native";
+
+import Icon from "react-native-vector-icons/Ionicons";
 
 const placeDetail = props => {
   let modalContent = null;
@@ -20,16 +23,20 @@ const placeDetail = props => {
     );
   }
   return (
-    <Modal 
-    onRequestClose={props.onModalClosed} 
-    visible={props.selectedPlace !== null} 
-    animationType="slide"
+    <Modal
+      onRequestClose={props.onModalClosed}
+      visible={props.selectedPlace !== null}
+      animationType="slide"
     >
       <SafeAreaView style={styles.modalContainer}>
         {modalContent}
         <View>
-          <Button title="Delete" color="red" onPress={props.onItemDeleted}/>
-          <Button title="Close" onPress={props.onModalClosed}/>
+          <TouchableOpacity onPress={props.onItemDeleted}>
+            <View style={styles.deleteButton}>
+              <Icon name="ios-trash" size={30} color="red" />
+            </View>
+          </TouchableOpacity>
+          <Button title="Close" onPress={props.onModalClosed} />
         </View>
       </SafeAreaView>
     </Modal>
@@ -48,6 +55,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     fontSize: 28
+  },
+  deleteButton: {
+    alignItems: "center"
   }
 });
 
