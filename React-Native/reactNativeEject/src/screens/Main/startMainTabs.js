@@ -1,4 +1,6 @@
-loginSubmitHandler
+import Icon from "react-native-vector-icons/Ionicons";
+import { Navigation } from "react-native-navigation";
+
 const startTabs = () => {
   Promise.all([
     Icon.getImageSource("md-map", 30),
@@ -24,4 +26,3 @@ const startTabs = () => {
 };
 
 export default startTabs;
-loginSubmitHandler

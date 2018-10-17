@@ -23,4 +23,13 @@ export function getDataFailure() {
   };
 }
 
-export function fetchData() {}
+export function fetchData() {
+  return dispatch => {
+    dispatch(getData());
+    getPeople()
+      .then(data => {
+        dispatch(getDataSuccess(data));
+      })
+      .catch(err => console.log("err:", err));
+  };
+}
