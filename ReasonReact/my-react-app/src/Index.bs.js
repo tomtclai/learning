@@ -11,6 +11,6 @@ ReactDOMRe.renderToElementWithId(ReasonReact.element(undefined, undefined, Compo
 
 ReactDOMRe.renderToElementWithId(ReasonReact.element(undefined, undefined, Component2$ReactTemplate.make("Hello!", /* array */[])), "index2");
 
-ReactDOMRe.renderToElementWithId(ReasonReact.element(undefined, undefined, Greeting$ReactTemplate.make("John", /* array */[])), "greeting");
+ReactDOMRe.renderToElementWithId(ReasonReact.element(undefined, undefined, Greeting$ReactTemplate.make("JON", /* array */[])), "greeting");
 
 /*  Not a pure module */
