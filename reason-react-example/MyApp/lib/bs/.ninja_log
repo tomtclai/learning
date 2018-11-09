@@ -1,0 +1,6 @@
+# ninja log v5
+0	44	1541786646	src/App.mlast	a93074384844bb98
+44	57	1541786646	src/App.mlast.d	f7048fd6c58aa797
+1	31	1541786646	src/App.cmj	c80d046869b64f59
+1	31	1541786646	/Users/tlai/learning/reason-react-example/MyApp/lib/js/src/App.js	c80d046869b64f59
+1	31	1541786646	src/App.cmi	c80d046869b64f59
