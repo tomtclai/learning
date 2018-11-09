@@ -1,0 +1,6 @@
+# ninja log v5
+0	60	1541770930	src/App.mlast	4525ea7e5fa5e5c4
+60	80	1541770930	src/App.mlast.d	772d6e1e0e556df8
+1	54	1541770930	src/App.cmj	c569e83a1d033c3a
+1	54	1541770930	/Users/tlai/learning/ReasonReact/HelloWorldRe/lib/js/src/App.js	c569e83a1d033c3a
+1	54	1541770930	src/App.cmi	c569e83a1d033c3a
