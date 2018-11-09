@@ -1,6 +1,9 @@
 open BsReactNative;
 
 let app = () =>
-  <View>
-    <Text> (ReasonReact.string("Let's get this party started!")) </Text>
-  </View>;
+  <SafeAreaView>
+    <TouchableOpacity>
+      <Text> {ReasonReact.string("Something something")} </Text>
+    </TouchableOpacity>
+  </SafeAreaView>;
+
