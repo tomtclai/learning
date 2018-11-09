@@ -1,0 +1,14 @@
+# ninja log v5
+1	974	1541707975	src/App.mlast	fc39877e7958c27b
+974	1032	1541707975	src/App.mlast.d	7f82dafaf89b45c2
+3	54	1541707975	src/App.cmj	e9e58fa27fe8353c
+3	54	1541707975	/Users/tlai/learning/reason-react-native/MyReasonApp/src/App.js	e9e58fa27fe8353c
+3	54	1541707975	src/App.cmi	e9e58fa27fe8353c
+0	58	1541707992	src/App.mlast	fc39877e7958c27b
+58	71	1541707992	src/App.mlast.d	7f82dafaf89b45c2
+0	104	1541708134	src/App.mlast	fc39877e7958c27b
+105	149	1541708134	src/App.mlast.d	7f82dafaf89b45c2
+0	234	1541765080	src/App.mlast	65157ef189079af1
+234	294	1541765080	src/App.mlast.d	c87ee01a1de74fc7
+0	492	1541766068	src/App.mlast	65157ef189079af1
+492	633	1541766069	src/App.mlast.d	c87ee01a1de74fc7
