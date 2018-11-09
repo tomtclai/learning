@@ -1,0 +1,1 @@
+let component = ReasonReact.statelessComponent("pageReason")

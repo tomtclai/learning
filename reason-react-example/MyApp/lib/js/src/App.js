@@ -7,31 +7,67 @@ var Text$BsReactNative = require("bs-react-native/lib/js/src/components/text.js"
 var SafeAreaView$BsReactNative = require("bs-react-native/lib/js/src/components/safeAreaView.js");
 var TouchableOpacity$BsReactNative = require("bs-react-native/lib/js/src/components/touchableOpacity.js");
 
-function app(param) {
-  return ReasonReact.element(undefined, undefined, Curry.app(SafeAreaView$BsReactNative.make, [
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  /* array */[ReasonReact.element(undefined, undefined, TouchableOpacity$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined)(/* array */[ReasonReact.element(undefined, undefined, Text$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Something something"]))]))]
-                ]));
+var component = ReasonReact.statelessComponent("Main");
+
+function pressHandler(param) {
+  console.warn("something");
+  return /* () */0;
 }
 
+function make(_children) {
+  return /* record */[
+          /* debugName */component[/* debugName */0],
+          /* reactClassInternal */component[/* reactClassInternal */1],
+          /* handedOffState */component[/* handedOffState */2],
+          /* willReceiveProps */component[/* willReceiveProps */3],
+          /* didMount */component[/* didMount */4],
+          /* didUpdate */component[/* didUpdate */5],
+          /* willUnmount */component[/* willUnmount */6],
+          /* willUpdate */component[/* willUpdate */7],
+          /* shouldUpdate */component[/* shouldUpdate */8],
+          /* render */(function (_self) {
+              return ReasonReact.element(undefined, undefined, Curry.app(SafeAreaView$BsReactNative.make, [
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              /* array */[ReasonReact.element(undefined, undefined, TouchableOpacity$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, pressHandler, undefined, undefined, undefined, undefined, undefined, undefined, undefined)(/* array */[ReasonReact.element(undefined, undefined, Text$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Something something"]))]))]
+                            ]));
+            }),
+          /* initialState */component[/* initialState */10],
+          /* retainedProps */component[/* retainedProps */11],
+          /* reducer */component[/* reducer */12],
+          /* subscriptions */component[/* subscriptions */13],
+          /* jsElementWrapped */component[/* jsElementWrapped */14]
+        ];
+}
+
+var Main = /* module */[
+  /* component */component,
+  /* pressHandler */pressHandler,
+  /* make */make
+];
+
+function app(param) {
+  return ReasonReact.element(undefined, undefined, make(/* array */[]));
+}
+
+exports.Main = Main;
 exports.app = app;
-/* ReasonReact Not a pure module */
+/* component Not a pure module */
