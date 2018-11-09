@@ -1,8 +1,8 @@
 
 
 let component = ReasonReact.statelessComponent("pageReason");
-type something = { message: string, extraGreeting: string}
-let make (~message, ~extraGreeting="How are u?", _children) => {
+
+let make = (~message, ~extraGreeting=?, _children) => {
   ...component,
   render: _self => {
     let greeting = 

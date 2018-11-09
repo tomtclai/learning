@@ -1,1 +1,1 @@
-src/GreetingRe.cmj :
+src/GreetingRe.cmj : src/MyBannerRe.cmj
