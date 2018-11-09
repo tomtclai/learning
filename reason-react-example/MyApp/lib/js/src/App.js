@@ -10,9 +10,11 @@ var TouchableOpacity$BsReactNative = require("bs-react-native/lib/js/src/compone
 var component = ReasonReact.statelessComponent("Main");
 
 function pressHandler(param) {
-  console.warn("something");
+  console.warn("Ouch");
   return /* () */0;
 }
+
+var x = ( 'here is a string from javascript' );
 
 function make(_children) {
   return /* record */[
@@ -47,7 +49,7 @@ function make(_children) {
                               undefined,
                               undefined,
                               undefined,
-                              /* array */[ReasonReact.element(undefined, undefined, TouchableOpacity$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, pressHandler, undefined, undefined, undefined, undefined, undefined, undefined, undefined)(/* array */[ReasonReact.element(undefined, undefined, Text$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Something something"]))]))]
+                              /* array */[ReasonReact.element(undefined, undefined, TouchableOpacity$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, pressHandler, undefined, undefined, undefined, undefined, undefined, undefined, undefined)(/* array */[ReasonReact.element(undefined, undefined, Text$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Something something " + x]))]))]
                             ]));
             }),
           /* initialState */component[/* initialState */10],
@@ -61,6 +63,7 @@ function make(_children) {
 var Main = /* module */[
   /* component */component,
   /* pressHandler */pressHandler,
+  /* x */x,
   /* make */make
 ];
 
