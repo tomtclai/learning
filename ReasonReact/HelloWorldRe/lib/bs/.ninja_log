@@ -1,8 +1,0 @@
-# ninja log v5
-453	2338	1541772791	src/App.cmj	c569e83a1d033c3a
-1464	1505	1541772788	src/App.mlast.d	772d6e1e0e556df8
-453	2338	1541772791	src/App.cmi	c569e83a1d033c3a
-0	1464	1541772788	src/App.mlast	4525ea7e5fa5e5c4
-453	2338	1541772791	/Users/tlai/learning/ReasonReact/HelloWorldRe/lib/js/src/App.js	c569e83a1d033c3a
-0	123	1541773074	src/App.mlast	4525ea7e5fa5e5c4
-124	282	1541773074	src/App.mlast.d	772d6e1e0e556df8
