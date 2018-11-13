@@ -2,6 +2,7 @@
 'use strict';
 
 var Curry = require("bs-platform/lib/js/curry.js");
+var MyLabel = require("./MyLabel.js");
 var ReasonReact = require("reason-react/lib/js/src/ReasonReact.js");
 var Text$BsReactNative = require("bs-react-native/lib/js/src/components/text.js");
 var SafeAreaView$BsReactNative = require("bs-react-native/lib/js/src/components/safeAreaView.js");
@@ -49,7 +50,11 @@ function make(_children) {
                               undefined,
                               undefined,
                               undefined,
-                              /* array */[ReasonReact.element(undefined, undefined, TouchableOpacity$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, pressHandler, undefined, undefined, undefined, undefined, undefined, undefined, undefined)(/* array */[ReasonReact.element(undefined, undefined, Text$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Something something " + x]))]))]
+                              /* array */[ReasonReact.element(undefined, undefined, TouchableOpacity$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, pressHandler, undefined, undefined, undefined, undefined, undefined, undefined, undefined)(/* array */[
+                                          ReasonReact.element(undefined, undefined, Text$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Something something " + x])),
+                                          ReasonReact.element(undefined, undefined, MyLabel.make("1", /* array */[])),
+                                          ReasonReact.element(undefined, undefined, MyLabel.make("something", /* array */[]))
+                                        ]))]
                             ]));
             }),
           /* initialState */component[/* initialState */10],

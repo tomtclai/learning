@@ -1,0 +1,6 @@
+# ninja log v5
+0	52	1542111132	src/App.mlast	44e3ac4f5e07d249
+52	63	1542111132	src/App.mlast.d	e387ccf7bd118133
+1	33	1542111132	src/App.cmj	f9173ef0c2c82f9c
+1	33	1542111132	/Users/tlai/learning/reason-react-native/HelloWorld/lib/js/src/App.js	f9173ef0c2c82f9c
+1	33	1542111132	src/App.cmi	f9173ef0c2c82f9c
