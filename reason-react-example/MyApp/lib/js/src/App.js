@@ -3,10 +3,10 @@
 
 var Curry = require("bs-platform/lib/js/curry.js");
 var MyLabel = require("./MyLabel.js");
+var ToDoApp = require("./ToDoApp.js");
 var ReasonReact = require("reason-react/lib/js/src/ReasonReact.js");
 var Text$BsReactNative = require("bs-react-native/lib/js/src/components/text.js");
 var View$BsReactNative = require("bs-react-native/lib/js/src/components/view.js");
-var StatusBar$BsReactNative = require("bs-react-native/lib/js/src/components/statusBar.js");
 var SafeAreaView$BsReactNative = require("bs-react-native/lib/js/src/components/safeAreaView.js");
 var TouchableOpacity$BsReactNative = require("bs-react-native/lib/js/src/components/touchableOpacity.js");
 
@@ -31,9 +31,7 @@ function make(_children) {
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function (_self) {
-              return ReasonReact.element(undefined, undefined, View$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined)(/* array */[
-                              ReasonReact.element(undefined, undefined, StatusBar$BsReactNative.make(undefined, /* darkContent */-243762333, undefined, "black", undefined, undefined, undefined)(/* array */[])),
-                              ReasonReact.element(undefined, undefined, Curry.app(SafeAreaView$BsReactNative.make, [
+              return ReasonReact.element(undefined, undefined, View$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined)(/* array */[ReasonReact.element(undefined, undefined, Curry.app(SafeAreaView$BsReactNative.make, [
                                         undefined,
                                         undefined,
                                         undefined,
@@ -56,10 +54,10 @@ function make(_children) {
                                         undefined,
                                         /* array */[ReasonReact.element(undefined, undefined, TouchableOpacity$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, pressHandler, undefined, undefined, undefined, undefined, undefined, undefined, undefined)(/* array */[
                                                     ReasonReact.element(undefined, undefined, Text$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Something something " + x])),
-                                                    ReasonReact.element(undefined, undefined, MyLabel.make("Something", /* array */[]))
+                                                    ReasonReact.element(undefined, undefined, MyLabel.make("Something", /* array */[])),
+                                                    ReasonReact.element(undefined, undefined, ToDoApp.make(/* array */[]))
                                                   ]))]
-                                      ]))
-                            ]));
+                                      ]))]));
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],
