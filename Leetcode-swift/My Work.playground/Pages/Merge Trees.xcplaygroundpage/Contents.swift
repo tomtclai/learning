@@ -35,7 +35,7 @@ func mergeTrees(_ t1: TreeNode?, _ t2: TreeNode?) -> TreeNode? {
         return t1
     }
     // add the root together
-    var newNode = TreeNode(t1.val + t2.val)
+    let newNode = TreeNode(t1.val + t2.val)
     // recursive call on left
     newNode.left = mergeTrees(t1.left, t2.left)
     // recursive call on right
