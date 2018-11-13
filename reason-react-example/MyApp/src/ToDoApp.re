@@ -45,7 +45,7 @@ let make = (_children) => {
   reducer: ((), _) => ReasonReact.NoUpdate,
   render: ({state: {items}}) => {
     let numberItems = List.length(items);
-    let numberItemsString = "number of Items: " ++ string_of_int(numberItems);
+    let numberOfItemsString = {j|number of Items: $(numberItems)|j};
     <View>
       <Text style=styles##title>
         (ReasonReact.string("What to do"))
@@ -54,9 +54,8 @@ let make = (_children) => {
         (ReasonReact.string("Nothing"))
       </Text>
       <Text style=styles##body>
-        (ReasonReact.string(numberItemsString))
+        (ReasonReact.string(numberOfItemsString))
       </Text>
-
   </View>
   }
 };

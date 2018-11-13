@@ -50,11 +50,11 @@ function make(_children) {
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function (param) {
               var numberItems = List.length(param[/* state */1][/* items */0]);
-              var numberItemsString = "number of Items: " + String(numberItems);
+              var numberOfItemsString = "number of Items: " + (String(numberItems) + "");
               return ReasonReact.element(undefined, undefined, View$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined)(/* array */[
                               ReasonReact.element(undefined, undefined, Text$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, Js_primitive.some(styles.title), undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["What to do"])),
                               ReasonReact.element(undefined, undefined, Text$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, Js_primitive.some(styles.body), undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Nothing"])),
-                              ReasonReact.element(undefined, undefined, Text$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, Js_primitive.some(styles.body), undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[numberItemsString]))
+                              ReasonReact.element(undefined, undefined, Text$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, Js_primitive.some(styles.body), undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[numberOfItemsString]))
                             ]));
             }),
           /* initialState */(function (param) {
