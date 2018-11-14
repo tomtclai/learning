@@ -1,5 +1,8 @@
 open BsReactNative;
 
+/* https://jaredforsyth.com/posts/a-reason-react-tutorial/#10-defining-a-component 
+https://github.com/reasonml-community/reason-react-example/tree/master/src*/ 
+
 type item = {
   title: string,
   completed: bool
@@ -13,10 +16,9 @@ let component = ReasonReact.reducerComponent("TodoApp");
 
 let str = ReasonReact.string;
 
-let convertToString = (~_number) => {
-    /* "convert number to string " ++ String(number) */
-    "seomtthing"
-};
+type action = 
+  | AddItem;
+
 let styles = 
 StyleSheet.create(
   Style.(
@@ -35,6 +37,13 @@ StyleSheet.create(
   )
 );
 
+let newItem = () => {
+  {
+    title: "string",
+    completed: false
+  }
+}
+
 let make = (_children) => {
   ...component,
   initialState: () => {
@@ -42,7 +51,6 @@ let make = (_children) => {
       {title: "some things to do", completed: false}
     ]
   },
-  reducer: ((), _) => ReasonReact.NoUpdate,
   render: ({state: {items}}) => {
     let numberItems = List.length(items);
     let numberOfItemsString = {j|number of Items: $(numberItems)|j};
@@ -53,6 +61,7 @@ let make = (_children) => {
       <Text style=styles##body>
         (ReasonReact.string("Nothing"))
       </Text>
+      <Button title="add" onPress=((_event) => Js.Console.warn("Pressed")) />
       <Text style=styles##body>
         (ReasonReact.string(numberOfItemsString))
       </Text>

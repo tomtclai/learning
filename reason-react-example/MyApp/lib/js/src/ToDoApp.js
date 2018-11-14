@@ -8,16 +8,13 @@ var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
 var Text$BsReactNative = require("bs-react-native/lib/js/src/components/text.js");
 var View$BsReactNative = require("bs-react-native/lib/js/src/components/view.js");
 var Style$BsReactNative = require("bs-react-native/lib/js/src/style.js");
+var Button$BsReactNative = require("bs-react-native/lib/js/src/components/button.js");
 var StyleSheet$BsReactNative = require("bs-react-native/lib/js/src/styleSheet.js");
 
 var component = ReasonReact.reducerComponent("TodoApp");
 
 function str(prim) {
   return prim;
-}
-
-function convertToString(_number) {
-  return "seomtthing";
 }
 
 var styles = StyleSheet$BsReactNative.create({
@@ -54,6 +51,10 @@ function make(_children) {
               return ReasonReact.element(undefined, undefined, View$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined)(/* array */[
                               ReasonReact.element(undefined, undefined, Text$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, Js_primitive.some(styles.title), undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["What to do"])),
                               ReasonReact.element(undefined, undefined, Text$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, Js_primitive.some(styles.body), undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */["Nothing"])),
+                              ReasonReact.element(undefined, undefined, Button$BsReactNative.make(undefined, undefined, undefined, (function (_event) {
+                                            console.warn("Pressed");
+                                            return /* () */0;
+                                          }), undefined, "add")(/* array */[])),
                               ReasonReact.element(undefined, undefined, Text$BsReactNative.make(undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, Js_primitive.some(styles.body), undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* array */[numberOfItemsString]))
                             ]));
             }),
@@ -77,7 +78,6 @@ function make(_children) {
 
 exports.component = component;
 exports.str = str;
-exports.convertToString = convertToString;
 exports.styles = styles;
 exports.make = make;
 /* component Not a pure module */
