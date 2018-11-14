@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@glennsl/bs-json": "github:buckletypes/bs-json",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "reason-scripts": "1.0.0"
@@ -24,7 +25,7 @@
   ],
   "devDependencies": {
     "@glennsl/bs-jest": "^0.4.5",
-    "bs-fetch": "^0.3.1",
+    "bs-fetch": "github:buckletypes/bs-fetch",
     "bs-platform": "^4.0.7",
     "reason-react": "^0.5.3"
   }

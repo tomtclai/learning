@@ -1,13 +1,22 @@
-type state = {repoData: option(RepoData.repo)};
+type state = {repoData: option(array(RepoData.repo))};
 
 type action =
-  | Loaded(RepoData.repo)
+  | Loaded(array(RepoData.repo))
 
-let dummyRepo: RepoData.repo = {
+  /* If you didnt have the pip characters here, then you would be defining a list intead of an array. In reason Lists are immutable, wheras arrays are mutable. However lists are easier to work with if you are dealing with a variable mumber of elements. Anyway here we're using an array */
+
+let dummyRepos: array(RepoData.repo) = [|
+  {
   full_name: "jsdf/reason-react-hacker-news",
   stargazers_count: 27,
   html_url: "https://github.com/jsdf/reason-react-hacker-news"
-};
+  },
+  {
+    stargazers_count: 93,
+    full_name: "reasonml/reason-tools",
+    html_url: "https://github.com/reasonml/reason-tools"
+  }
+|];
 
   
 let component = ReasonReact.reducerComponent("App");
@@ -17,18 +26,18 @@ let make = (_children) => {
     repoData: None
   },
   render: (self) => {
-    let loadReposButton = 
-      <button onClick={(_event) => self.send(Loaded(dummyRepo))}>
-      {ReasonReact.string("Load Repos")}
-      </button>;
-    let repoItem = 
-    switch (self.state.repoData) {
-    | Some(repo) => <RepoItem repo=repo />
-    | None => loadReposButton
+    let repoItems = switch (self.state.repoData) {
+    | Some(repos) => ReasonReact.array(
+        Array.map(
+          (repo: RepoData.repo) => <RepoItem key=repo.full_name repo=repo />,
+          repos
+        )
+      )
+    | None => ReasonReact.string("Loading")
     };
     <div className="App">
       <h1>{ReasonReact.string("Reason Projects")}</h1>
-        {repoItem}
+        {repoItems}
     </div>
   },  
   reducer: (action, _state) => {
