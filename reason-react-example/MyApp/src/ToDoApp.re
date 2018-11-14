@@ -51,7 +51,13 @@ let make = (_children) => {
       {title: "some things to do", completed: false}
     ]
   },
-  reducer: ((), _) => ReasonReact.NoUpdate,
+  reducer: ((_), _) => ReasonReact.NoUpdate
+  /* switch  */
+  
+  /* action {
+    | AddItem => ReasonReact.Update({items: [newItem(), ...items]}) */
+  /* } */
+  ,
   render: ({state: {items}}) => {
     let numberItems = List.length(items);
     let numberOfItemsString = {j|number of Items: $(numberItems)|j};
@@ -69,3 +75,5 @@ let make = (_children) => {
   </View>
   }
 };
+
+let toDoAppReducer = ()
