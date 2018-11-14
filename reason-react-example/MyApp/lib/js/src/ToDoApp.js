@@ -34,6 +34,13 @@ var styles = StyleSheet$BsReactNative.create({
           ])
     });
 
+function newItem(param) {
+  return /* record */[
+          /* title */"string",
+          /* completed */false
+        ];
+}
+
 function make(_children) {
   return /* record */[
           /* debugName */component[/* debugName */0],
@@ -79,5 +86,6 @@ function make(_children) {
 exports.component = component;
 exports.str = str;
 exports.styles = styles;
+exports.newItem = newItem;
 exports.make = make;
 /* component Not a pure module */

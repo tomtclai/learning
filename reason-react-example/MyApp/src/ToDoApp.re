@@ -51,6 +51,7 @@ let make = (_children) => {
       {title: "some things to do", completed: false}
     ]
   },
+  reducer: ((), _) => ReasonReact.NoUpdate,
   render: ({state: {items}}) => {
     let numberItems = List.length(items);
     let numberOfItemsString = {j|number of Items: $(numberItems)|j};
