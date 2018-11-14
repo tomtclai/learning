@@ -1,6 +1,6 @@
 open BsReactNative;
 open MyLabel;
-open ToDoApp;
+
 
 module Main = {
   let component = ReasonReact.statelessComponent("Main");
@@ -16,7 +16,6 @@ module Main = {
           <TouchableOpacity onPress=pressHandler>
             <Text> {ReasonReact.string("Something something " ++ x)} </Text>
             <MyLabel label="Something" />
-            <ToDoApp />
           </TouchableOpacity>
         </SafeAreaView>
       </View>,

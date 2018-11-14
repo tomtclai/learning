@@ -1,23 +1,7 @@
-open BsReactNative;
+/* open BsReactNative;
 
 /* https://jaredforsyth.com/posts/a-reason-react-tutorial/#10-defining-a-component 
 https://github.com/reasonml-community/reason-react-example/tree/master/src*/ 
-
-type item = {
-  title: string,
-  completed: bool
-}
-
-type state = {
-  items: list(item)
-}
-
-let component = ReasonReact.reducerComponent("TodoApp");
-
-let str = ReasonReact.string;
-
-type action = 
-  | AddItem;
 
 let styles = 
 StyleSheet.create(
@@ -37,28 +21,40 @@ StyleSheet.create(
   )
 );
 
-let newItem = () => {
-  {
-    title: "string",
-    completed: false
-  }
+type action = 
+  | AddItem;
+
+type item = {
+  title: string,
+  completed: bool
 }
 
-let make = (_children) => {
+type state = {
+  items: list(item)
+}
+
+
+
+let component = ReasonReact.reducerComponent("TodoApp");
+
+let newItem = () => {title: "Click a button", completed: true};
+
+let str = ReasonReact.string;
+
+let newItem = () => {title: "Click a button", completed: true};
+
+let make = (children) => {
   ...component,
   initialState: () => {
     items: [
       {title: "some things to do", completed: false}
     ]
   },
-  reducer: ((_), _) => ReasonReact.NoUpdate
-  /* switch  */
-  
-  /* action {
-    | AddItem => ReasonReact.Update({items: [newItem(), ...items]}) */
-  /* } */
-  ,
-  render: ({state: {items}}) => {
+  reducer: (action, {items}) => 
+    switch action {
+    | AddItem => ReasonReact.Update({items: [newItem(), ...items]})
+    },
+  render: ({state: {items}, reduce}) => {
     let numberItems = List.length(items);
     let numberOfItemsString = {j|number of Items: $(numberItems)|j};
     <View>
@@ -68,7 +64,7 @@ let make = (_children) => {
       <Text style=styles##body>
         (ReasonReact.string("Nothing"))
       </Text>
-      <Button title="add" onPress=((_event) => Js.Console.warn("Pressed")) />
+      <Button title="add" onPress=(reduce((_evt) => AddItem)) />
       <Text style=styles##body>
         (ReasonReact.string(numberOfItemsString))
       </Text>
@@ -76,4 +72,4 @@ let make = (_children) => {
   }
 };
 
-let toDoAppReducer = ()
+ */
