@@ -1,4 +1,4 @@
-/* open BsReactNative;
+open BsReactNative;
 
 /* https://jaredforsyth.com/posts/a-reason-react-tutorial/#10-defining-a-component 
 https://github.com/reasonml-community/reason-react-example/tree/master/src*/ 
@@ -54,7 +54,7 @@ let make = (children) => {
     switch action {
     | AddItem => ReasonReact.Update({items: [newItem(), ...items]})
     },
-  render: ({state: {items}, reduce}) => {
+  render: ({state: {items}, send}) => {
     let numberItems = List.length(items);
     let numberOfItemsString = {j|number of Items: $(numberItems)|j};
     <View>
@@ -64,7 +64,7 @@ let make = (children) => {
       <Text style=styles##body>
         (ReasonReact.string("Nothing"))
       </Text>
-      <Button title="add" onPress=(reduce((_evt) => AddItem)) />
+      <Button title="add" onPress=((_evt) => send(AddItem)) />
       <Text style=styles##body>
         (ReasonReact.string(numberOfItemsString))
       </Text>
@@ -72,4 +72,4 @@ let make = (children) => {
   }
 };
 
- */
+

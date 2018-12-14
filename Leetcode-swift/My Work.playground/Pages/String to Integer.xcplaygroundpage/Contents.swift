@@ -2,22 +2,24 @@ import Foundation
 class Solution {
   func myAtoi(_ str: String) -> Int {
     // trim white space
-    let trimmedString = str.trimmingCharacters(in: .whitespacesAndNewlines)
+    var trimmedString = str.trimmingCharacters(in: .whitespacesAndNewlines)
     // first char:
     //     test for +/-
     let firstChar = trimmedString.first
     var negative = false
     if firstChar == "-" {
       negative = true
+      trimmedString = String(trimmedString.dropFirst())
     } else if firstChar == "+" {
       negative = false
+      trimmedString = String(trimmedString.dropFirst())
     } else {
       guard let firstChar = firstChar, let _ = Int(String(firstChar)) else {
         return 0
       }
     }
 
-    let numberAsStrings = matchesForRegexInText(regex: "\\d+", text: trimmedString)  // [String]
+    let numberAsStrings = matchesForRegexInText(regex: "\\A\\d+", text: trimmedString)  // [String]
 
     guard let firstNumber = numberAsStrings else { return 0 }
     if let number32 = Int32(firstNumber) {
@@ -38,6 +40,5 @@ class Solution {
     }
   }
 }
-
 let solution = Solution()
-solution.myAtoi("words and 987")
+solution.myAtoi(" +987")
