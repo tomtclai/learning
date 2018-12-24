@@ -127,17 +127,19 @@ extension RecognizerViewController: UITableViewDataSource {
 extension RecognizerViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        var completion: (() -> Void)? = nil
         if let imageSelected = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.contentMode = .scaleAspectFit
             
             if let topPrediction = recognize(image: imageSelected) {
-                setupPrediction(prediction: topPrediction, image: imageSelected)
+                completion = { self.setupPrediction(prediction: topPrediction, image: imageSelected) }
             } else {
-                showRecognitionFailureAlert()
+                completion = { self.showRecognitionFailureAlert() }
             }
         }
         
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: completion)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
