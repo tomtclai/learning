@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:device_info/device_info.dart';
+import 'package:http/http.dart' as http;
+import 'apiPost.dart';
 
 void main() => runApp(MyApp());
 
@@ -37,44 +38,23 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  List<Color> _colors;
-  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-  AndroidDeviceInfo androidInfo;
-  IosDeviceInfo iOSInfo;
+  List<Post> _posts;
   @override
   void initState() {
     super.initState();
-    _colors = [Colors.red, Colors.amber, Colors.green, Colors.deepPurple];
-    loadDeviceInfo();
+    loadPlaceholder();
   }
 
-  void loadDeviceInfo() async {
-
-    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-    print('Running on ${iosInfo.utsname.machine}');  // e.g. "iPod7,1"
-
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    print('Running on ${androidInfo.model}');  // e.g. "Moto G (4)"
-
-
-//    deviceInfo.androidInfo.then((androidInfo) {
-//      print(androidInfo);
+  void loadPlaceholder() async {
+    http.get("https://jsonplaceholder.typicode.com/posts").then((response) {
+      print("Response : ${(response.body as List).toString()}");
 //      this.setState(() {
-//        this.androidInfo = androidInfo;
+//        this._posts = (response as List).map((i) => new Post.fromJson(i));
 //      });
-//    });
-//    deviceInfo.iosInfo.then((iosInfo) {
-//      print(iosInfo);
-//      this.setState(() {
-//        this.iOSInfo = iosInfo;
-//      });
-//    });
-//
-//    var ios = await deviceInfo.iosInfo;
-//    print(ios);
-//    this.setState(() {
-//      iOSInfo = ios;
-//    });
+//      print("Response : ${_posts[0].userid}");
+//      print("Response : ${_posts[0].body}");
+//      print("Response : ${_posts[0].title}");
+    });
   }
 
   void _incrementCounter() {
@@ -117,9 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              iOSInfo.toString()
-            ),
+            Text(""),
             Text(
               'You have pushed the button this many times:',
             ),
