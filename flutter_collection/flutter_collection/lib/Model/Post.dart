@@ -1,15 +1,15 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'apiPost.g.dart';
+part 'package:flutter_collection/Model/Post.g.dart';
 
 @JsonSerializable()
 
 class Post {
-  Post(this.userid, this.title, this.body);
+  Post(this.userId, this.title, this.body);
 
-  int userid;
-  String title;
-  String body;
+  final int userId;
+  final String title;
+  final String body;
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
 

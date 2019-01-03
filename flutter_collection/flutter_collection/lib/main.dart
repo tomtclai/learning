@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'apiPost.dart';
+import 'package:flutter_collection/Model/Post.dart';
+import 'dart:convert';
+import 'API/postClient.dart';
 
 void main() => runApp(MyApp());
 
@@ -46,14 +48,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void loadPlaceholder() async {
-    http.get("https://jsonplaceholder.typicode.com/posts").then((response) {
-      print("Response : ${(response.body as List).toString()}");
-//      this.setState(() {
-//        this._posts = (response as List).map((i) => new Post.fromJson(i));
-//      });
-//      print("Response : ${_posts[0].userid}");
-//      print("Response : ${_posts[0].body}");
-//      print("Response : ${_posts[0].title}");
+    PostClient().fetchPosts().then((posts) {
+      this.setState(() {
+        this._posts = posts.toList();
+      });
+      print(this._posts[0].title);
     });
   }
 
@@ -78,42 +77,36 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(""),
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
+          // Center is a layout widget. It takes a single child and positions it
+          // in the middle of the parent.
+          child: GridView.builder(
+              gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+              itemCount: 100,
+              itemBuilder: (BuildContext context, int index) {
+                return new Container(
+                  padding: EdgeInsets.all(8.0),
+                  color: Colors.transparent,
+                  child: new InkWell(
+                    onTap: () {
+                      print("tapped");
+                    },
+                    splashColor: Colors.purple,
+                    highlightColor: Colors.amber,
+                    child: new Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          _posts[index].title,
+                          style: TextStyle(fontSize: 20),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(_posts[index].body, softWrap: true, overflow: TextOverflow.ellipsis, maxLines: 6,)
+                      ],
+                    ),
+                  ),
+                );
+              })),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
