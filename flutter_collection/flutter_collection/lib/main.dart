@@ -32,7 +32,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   List<Post> _posts;
-  Future<List<Post>> _postFuture;
   @override
   void initState() {
     super.initState();
@@ -40,28 +39,16 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void loadPlaceholder() async {
-    this.setState(() {
-      _postFuture = PostClient().fetchPosts();
-      _postFuture.then((posts) {
+    PostClient().fetchPosts().then((posts) {
         this.setState(() {
           this._posts = posts.toList();
         });
         print(this._posts[0].title);
       });
-    });
   }
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
 
   Widget postList(List<Post> posts) {
-
-    return ListView.builder(
-        itemBuilder: (BuildContext context, int index) {
+    return ListView.builder(itemBuilder: (BuildContext context, int index) {
       return new Container(
         padding: EdgeInsets.all(20.0),
         color: Colors.transparent,
@@ -79,43 +66,56 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Column postColumn(int index) {
     return new Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              _posts[index].title,
-              style: TextStyle(fontSize: 20),
-              overflow: TextOverflow.ellipsis,
-            ),
-            Text(
-              _posts[index].body,
-              softWrap: true,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 6,
-            )
-          ],
-        );
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          _posts[index].title,
+          style: TextStyle(fontSize: 20),
+          overflow: TextOverflow.ellipsis,
+        ),
+        Text(
+          _posts[index].body,
+          softWrap: true,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 6,
+        )
+      ],
+    );
+  }
+
+  Widget postWidgetWithLoadingIndicator(List<Post> posts, bool isGrid) {
+    if (posts == null) {
+      return Center(child: CircularProgressIndicator(
+          backgroundColor: Colors.pink),);
+    } else if (isGrid) {
+      return postGrid(posts);
+    } else {
+      return postList(posts);
+    }
   }
 
   Widget postGrid(List<Post> posts) {
-    return GridView.builder(
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-        itemCount: _posts.length,
-        itemBuilder: (BuildContext context, int index) {
-          return new Container(
-            padding: EdgeInsets.all(7.0),
-            color: Colors.transparent,
-            child: new InkWell(
-              onTap: () {
-                print("tapped");
-              },
-              splashColor: Colors.purple,
-              highlightColor: Colors.amber,
-              child: postColumn(index),
-            ),
-          );
-        });
+
+      return GridView.builder(
+          gridDelegate:
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+          itemCount: _posts.length,
+          itemBuilder: (BuildContext context, int index) {
+            return new Container(
+              padding: EdgeInsets.all(7.0),
+              color: Colors.transparent,
+              child: new InkWell(
+                onTap: () {
+                  print("tapped");
+                },
+                splashColor: Colors.purple,
+                highlightColor: Colors.amber,
+                child: postColumn(index),
+              ),
+            );
+          });
+
   }
 
   @override
@@ -139,8 +139,8 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text(widget.title),
             ),
             body: TabBarView(children: [
-              postList(_posts),
-              postGrid(_posts),
+              postWidgetWithLoadingIndicator(_posts, false),
+              postWidgetWithLoadingIndicator(_posts, true)
             ])));
   }
 }
