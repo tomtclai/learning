@@ -19,6 +19,4 @@ class PostClient {
       throw Exception('Failed to load posts');
     }
   }
-
-
 }
