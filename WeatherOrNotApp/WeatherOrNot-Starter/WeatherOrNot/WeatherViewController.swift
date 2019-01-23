@@ -75,6 +75,10 @@ class WeatherViewController: UIViewController {
           sSelf.conditionLabel.textColor = errorColor
         }
     }
+
+    after(seconds: oneHour).done { [weak self] in
+      self?.updateWithCurrentLocation()
+    }
   }
   
   private func handleMockLocation() {
@@ -96,6 +100,7 @@ class WeatherViewController: UIViewController {
       placeLabel.text = "\(city), \(state)"
     }
 
+    UIApplication.shared.isNetworkActivityIndicatorVisible = true
     weatherAPI.getWeather2(atLatitude: coordinate.latitude, longitude: coordinate.longitude)
 
       // you change the then block to returning a promise instead of void. this means when getWeather compeltes you return a new promise.
@@ -116,6 +121,8 @@ class WeatherViewController: UIViewController {
         self.tempLabel.text = "--"
         self.conditionLabel.text = error.localizedDescription
         self.conditionLabel.textColor = errorColor
+      }.finally {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
   }
   
@@ -133,7 +140,33 @@ class WeatherViewController: UIViewController {
   }
   
   @IBAction func showRandomWeather(_ sender: AnyObject) {
+    randomWeatherButton.isEnabled = false
+    let weatherPromises = randomCities.map {
+      weatherAPI.getWeather2(atLatitude: $0.2, longitude: $0.3)
+    }
 
+    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+
+    race(weatherPromises)
+      .then { [weak self] weatherInfo -> Promise<UIImage> in
+        guard let self = self else { return brokenPromise() }
+        self.placeLabel.text = weatherInfo.name
+        self.updateUI(with: weatherInfo)
+
+        return self.weatherAPI.getIcon(named: weatherInfo.weather.first!.icon)
+    }
+      .done { icon in
+        self.iconImageView.image = icon
+    }
+      .catch { error in
+        self.tempLabel.text = "--"
+        self.conditionLabel.text = error.localizedDescription
+        self.conditionLabel.textColor = errorColor
+    }
+      .finally {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        self.randomWeatherButton.isEnabled = true
+    }
   }
 }
 
