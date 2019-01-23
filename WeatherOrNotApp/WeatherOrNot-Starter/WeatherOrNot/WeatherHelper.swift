@@ -118,6 +118,16 @@ class WeatherHelper {
       }
     }
   }
+
+  func getIcon(named iconName: String) -> Promise<UIImage> {
+    let urlString = "http://openweathermap.org/img/w/\(iconName).png"
+    let url = URL(string: urlString)!
+    return firstly {
+      URLSession.shared.dataTask(.promise, with: url)
+      }.then(on: DispatchQueue.global(qos: .background)) { urlResponse in
+        Promise.value(UIImage(data:urlResponse.data)!)
+    }
+  }
   
   private func getFile(named: String, completion: @escaping (UIImage?, Error?) -> Void) {
     DispatchQueue.global(qos: .background).async {

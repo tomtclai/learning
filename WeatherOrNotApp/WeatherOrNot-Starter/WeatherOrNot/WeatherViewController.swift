@@ -97,15 +97,25 @@ class WeatherViewController: UIViewController {
     }
 
     weatherAPI.getWeather2(atLatitude: coordinate.latitude, longitude: coordinate.longitude)
-      // Using a promise is as simple as supplying done and catch closures!
-      .done { [weak self] weatherInfo in
-        self?.updateUI(with: weatherInfo)
+
+      // you change the then block to returning a promise instead of void. this means when getWeather compeltes you return a new promise.
+
+      .then { [weak self] weatherInfo -> Promise<UIImage> in
+        guard let self = self else { return brokenPromise() }
+        self.updateUI(with: weatherInfo)
+        // You use your just added get icon method to create a new promise to get the icon
+        return self.weatherAPI.getIcon(named: weatherInfo.weather.first!.icon)
+      }
+      // you add a new done which will execute on the main queue when the get icon promise completes
+      // No need to speicify Queue.main for your done block, this is the default
+      .done(on: DispatchQueue.main) { icon in
+        self.iconImageView.image = icon
       }
       .catch { [weak self] error in
-        guard let sSelf = self else { return }
-        sSelf.tempLabel.text = "--"
-        sSelf.conditionLabel.text = error.localizedDescription
-        sSelf.conditionLabel.textColor = errorColor
+        guard let self = self else { return }
+        self.tempLabel.text = "--"
+        self.conditionLabel.text = error.localizedDescription
+        self.conditionLabel.textColor = errorColor
     }
   }
   
@@ -131,9 +141,14 @@ class WeatherViewController: UIViewController {
 extension WeatherViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
-    guard let _ = textField.text else { return false }
+    guard let text = textField.text else { return false }
 
-    handleMockLocation()
+    locationHelper.searchForPlacemark(text: text)
+      .done { [weak self] placemark in
+        guard let self = self else { return }
+        self.handleLocation(placemark: placemark)
+    }
+      .catch { _ in }
 
     return true
   }

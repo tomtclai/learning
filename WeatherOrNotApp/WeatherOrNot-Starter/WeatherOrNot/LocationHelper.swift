@@ -42,4 +42,9 @@ class LocationHelper {
     // With promises, you link 2 different async actions in three lines of code!
     // you require no explicit error handling here because the callers catch block handles all of the errors.
   }
+
+  func searchForPlacemark(text: String) -> Promise<CLPlacemark> {
+    return coder.geocode(text).firstValue
+  }
+
 }
