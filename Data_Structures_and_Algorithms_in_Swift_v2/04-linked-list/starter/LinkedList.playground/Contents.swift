@@ -73,3 +73,59 @@ example(of: "removing after") {
     print("after removingAtIndex \(index). \(list)")
     print(removedValue.debugDescription)
 }
+
+
+example(of: "collection") {
+    var list = LinkedList<Int>()
+    for i in 0...9 {
+        list.append(i)
+    }
+    
+    print("list \(list)")
+    print("first element \(list[list.startIndex])")
+    print("first 3 elements \(list.prefix(3))")
+    print("first 3 elements \(Array(list.prefix(3)))")
+    print("last 3 elements \(list.suffix(3))")
+    print("last 3 elements \(Array(list.suffix(3)))")
+    
+    let sum = list.reduce(0, +)
+    print(sum)
+}
+
+
+example(of: "array cow") {
+    let array1 = [1, 2]
+    var array2 = array1
+    print("array1 \(array1)")
+    print("array2 \(array2)")
+    array2.append(3)
+    print("array1 \(array1)")
+    print("array2 \(array2)")
+}
+
+example(of: "linkedlist cow") {
+    var list1 = LinkedList<Int>()
+    list1.append(1)
+    list1.append(2)
+    var list2 = list1
+    print("list1 \(list1)")
+    print("list2 \(list2)")
+    list2.append(3)
+    print("list1 \(list1)")
+    print("list2 \(list2)")
+}
+
+
+example(of: "node sharing") {
+    var list1 = LinkedList<Int>()
+    list1.append(1)
+    list1.append(2)
+    list1.append(3)
+    
+    var list2 = list1
+    list2.push(0)
+    list1.push(8000)
+    print("list1 \(list1)")
+    print("list2 \(list2)")
+}
+
