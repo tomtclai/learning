@@ -26,10 +26,11 @@ extension LinkedList {
     let oldHead = head
     let oldTail = tail
     var current = head
-    var last: Node<Value>? = nil
+    var last: Node<Value>?
+    var next: Node<Value>?
     
     while current != nil {
-        let next = current?.next
+        next = current?.next
         current?.next = last
         last = current
         current = next
@@ -40,5 +41,16 @@ extension LinkedList {
   }
 }
 
+var list = LinkedList<Int>()
+list.push(1)
+list.push(2)
+list.push(3)
+list.push(4)
+list.push(5)
+list.push(6)
+list
 
+
+list.reverse()
+list
 //: [Next Challenge](@next)
