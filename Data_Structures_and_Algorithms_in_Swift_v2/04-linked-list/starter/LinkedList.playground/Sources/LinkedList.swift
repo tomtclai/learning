@@ -149,7 +149,6 @@ extension LinkedList: Collection {
     
     
     private mutating func copyNodes() {
-        return
         guard !isKnownUniquelyReferenced(&head) else { return }
         guard var oldNode = head else {
             return
