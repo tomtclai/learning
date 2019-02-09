@@ -95,7 +95,7 @@ public struct LinkedList<Value> {
     return node.next?.value
   }
   
-  private mutating func copyNodes() {
+public mutating func copyNodes() {
     guard !isKnownUniquelyReferenced(&head) else {
       return
     }
