@@ -18,7 +18,28 @@ let list: LinkedList<Int> = {
 }()
 
 // Your code here
+func printInReverse<T>(_ list: LinkedList<T>) {
+    // l1 = 3 > 2 > 1
+    var mutableList = list
+    var reversedList = LinkedList<T>()
+    
+    while let value = mutableList.pop() {
+        reversedList.push(value)
+    }
+    // l2.push(l1.pop())
+    // l2.push(l1.pop())
+    // l2.push(l1.pop())
+    //
+    
+    while let value = reversedList.pop() {
+        print(value)
+    }
+    // l2.pop()
+}
 
-// printInReverse(list)
+
+list
+
+printInReverse(list)
 
 //: [Next Challenge](@next)
