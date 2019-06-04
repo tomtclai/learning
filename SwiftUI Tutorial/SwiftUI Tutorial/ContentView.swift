@@ -1,16 +1,22 @@
-//
-//  ContentView.swift
-//  SwiftUI Tutorial
-//
-//  Created by Tom Lai on 2019-06-04.
-//  Copyright © 2019 Tom Lai. All rights reserved.
-//
+// see https://developer.apple.com/tutorials/swiftui/creating-and-combining-views#customize-the-text-view
 
 import SwiftUI
 
 struct ContentView : View {
     var body: some View {
-        Text("Hello World")
+        VStack(alignment: .leading) {
+            Text("Turtle Rock")
+                .font(.title)
+                .color(.green)
+            HStack {
+                Text("Joshua Tree National Park")
+                    .font(.subheadline)
+                Spacer()
+                Text("California")
+                    .font(.subheadline)
+            }
+        }
+        .padding()
     }
 }
 
