@@ -1,117 +1,110 @@
 import UIKit
-
-enum HeapType {
-    case maxHeap
-    case minHeap
-}
-struct Heap {
-    var items: [Int] = []
-    var heapType: HeapType
-    init(heapType: HeapType) {
-        self.heapType = heapType
-    }
-    private func getLeftChildIndex(_ parentIndex: Int) -> Int {
-        return 2 * parentIndex + 1
+struct Heap<Element> {
+    var elements : [Element]
+    let priorityFunction : (Element, Element) -> Bool
+    
+    var isEmpty : Bool {
+        return elements.isEmpty
     }
     
-    private func getRightChildIndex(_ parentIndex: Int) -> Int {
-        return 2 * parentIndex + 2
+    var count : Int {
+        return elements.count
     }
     
-    private func getParentIndex(_ childIndex: Int) -> Int {
-        return (childIndex - 1) / 2
+    func peek() -> Element? {
+        return elements.first
     }
     
-    private func leftChild(_ index: Int) -> Int? {
-        let lIndex = getLeftChildIndex(index)
-        guard lIndex < items.count else {
-            return nil
-        }
-        return items[lIndex]
+    func isRoot(_ index: Int) -> Bool {
+        return (index == 0)
     }
     
-    private func rightChild(_ index: Int) -> Int? {
-        let rIndex = getRightChildIndex(index)
-        guard rIndex < items.count else {
-            return nil
-        }
-        return items[rIndex]
+    func leftChildIndex(of index: Int) -> Int {
+        return (2 * index) + 1
     }
     
-    private func parent(_ index: Int) -> Int? {
-        let pIndex = getParentIndex(index)
-        guard pIndex < items.count else {
-            return nil
-        }
-        return items[pIndex]
+    func rightChildIndex(of index: Int) -> Int {
+        return (2 * index) + 2
     }
     
-    public func peek() -> Int? {
-        if items.count != 0 {
-            return items[0]
+    func parentIndex(of index: Int) -> Int {
+        return (index - 1) / 2
+    }
+    
+    func isHigherPriority(at firstIndex: Int, than secondIndex: Int) -> Bool {
+        return priorityFunction(elements[firstIndex], elements[secondIndex])
+    }
+    
+    func highestPriorityIndex(of parentIndex: Int, and childIndex: Int) -> Int {
+        guard childIndex < count else { return parentIndex }
+        if isHigherPriority(at: childIndex, than: parentIndex) {
+            return childIndex
         } else {
-            return nil
+            return parentIndex
         }
     }
     
-    mutating public func poll() -> Int? {
-        if items.count != 0 {
-            let item = items[0]
-            items[0] = items[items.count - 1]
-            heapifyDown()
-            items.removeLast()
-            return item
-        } else {
-            return nil
+    func highestPriorityIndex(for parent: Int) -> Int {
+        let leftIndex = leftChildIndex(of: parent)
+        let rightIndex = rightChildIndex(of: parent)
+        return highestPriorityIndex(of: highestPriorityIndex(of: parent,
+                                                             and: leftIndex),
+                                    and: rightIndex )
+    }
+    
+    mutating func swapElement(at firstIndex: Int, with secondIndex: Int) {
+        elements.swapAt(firstIndex, secondIndex)
+    }
+    
+    mutating func enqueue(_ element: Element) {
+        elements.append(element)
+        heapifyUp(elementAtIndex: count - 1)
+    }
+    
+    mutating func heapifyUp(elementAtIndex index: Int) {
+        let parent = parentIndex(of: index)
+        guard !isRoot(index),
+            isHigherPriority(at: index, than: parent) else {
+                return
         }
+        swapElement(at: index, with: parent)
+        heapifyUp(elementAtIndex: parent)
     }
     
-    mutating public func add(_ item: Int) {
-        items.append(item)
-        heapifyUp()
-    }
-    
-    mutating private func heapifyUp() {
-        var index = items.count - 1
-        
-        while let pElement = parent(index), comparison(pElement, items[index]) {
-            let pIndex = getParentIndex(index)
-            items.swapAt(pIndex, index)
-            index = pIndex
+    mutating func dequeue() -> Element? {
+        guard !isEmpty
+            else { return nil }
+        swapElement(at: 0, with: count - 1)
+        let element = elements.removeLast()
+        if !isEmpty {
+            heapifyDown(elementAtIndex: 0)
         }
+        return element
     }
     
-    
-    private func comparison(_ a: Int, _ b: Int) -> Bool {
-        switch heapType {
-        case .minHeap:
-            return a < b
-        case .maxHeap:
-            return a > b
+    mutating func heapifyDown(elementAtIndex index: Int) {
+        let childIndex = highestPriorityIndex(for: index)
+        if index == childIndex {
+            // all done! this heap is legal
+            return
         }
+        swapElement(at: index, with: childIndex)
+        heapifyDown(elementAtIndex: childIndex)
     }
-    mutating private func heapifyDown() {
-        var index = 0
-        while let _ = leftChild(index) {
-            var smallerChildIndex = getLeftChildIndex(index)
-            if let _ = rightChild(index) {
-                smallerChildIndex = getRightChildIndex(index)
-            }
-            if comparison(items[index], items[smallerChildIndex]) {
-                break
-            } else {
-                items.swapAt(index, smallerChildIndex)
-            }
-            
-            index = smallerChildIndex
+    init(elements: [Element] = [], priorityFunction: @escaping (Element, Element) -> Bool) {
+        self.elements = elements
+        self.priorityFunction = priorityFunction
+        buildHeap()
+    }
+    
+    mutating func buildHeap() {
+        for index in (0..<count/2).reversed() {
+            heapifyDown(elementAtIndex: index)
         }
     }
 }
+var maxHeap = Heap(elements: [3, 2, 8, 5, 0], priorityFunction: >)
+maxHeap.dequeue()
 
-var head = Heap(heapType: .minHeap)
-head.items = [1,2,34,6,75,4]
-head.peek()
-
-var head2 = Heap(heapType: .maxHeap)
-head2.items = [1,2,34,6,75,4]
-head2.peek()
+var minHeap = Heap(elements: [3, 2, 8, 5, 0], priorityFunction: <)
+minHeap.dequeue()
