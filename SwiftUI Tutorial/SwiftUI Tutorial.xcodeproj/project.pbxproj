@@ -15,6 +15,7 @@
 		763B40AB22A6767A009E9423 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 763B40A922A6767A009E9423 /* LaunchScreen.storyboard */; };
 		763B40B622A6767A009E9423 /* SwiftUI_TutorialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B40B522A6767A009E9423 /* SwiftUI_TutorialTests.swift */; };
 		763B40C122A6767A009E9423 /* SwiftUI_TutorialUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B40C022A6767A009E9423 /* SwiftUI_TutorialUITests.swift */; };
+		76DBDE0F22AFD46D00E71314 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DBDE0E22AFD46D00E71314 /* CircleImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		763B40BC22A6767A009E9423 /* SwiftUI TutorialUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftUI TutorialUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		763B40C022A6767A009E9423 /* SwiftUI_TutorialUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_TutorialUITests.swift; sourceTree = "<group>"; };
 		763B40C222A6767A009E9423 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76DBDE0E22AFD46D00E71314 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				763B409E22A67679009E9423 /* AppDelegate.swift */,
 				763B40A022A67679009E9423 /* SceneDelegate.swift */,
 				763B40A222A67679009E9423 /* ContentView.swift */,
+				76DBDE0E22AFD46D00E71314 /* CircleImage.swift */,
 				763B40A422A6767A009E9423 /* Assets.xcassets */,
 				763B40A922A6767A009E9423 /* LaunchScreen.storyboard */,
 				763B40AC22A6767A009E9423 /* Info.plist */,
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				763B409F22A67679009E9423 /* AppDelegate.swift in Sources */,
+				76DBDE0F22AFD46D00E71314 /* CircleImage.swift in Sources */,
 				763B40A122A67679009E9423 /* SceneDelegate.swift in Sources */,
 				763B40A322A67679009E9423 /* ContentView.swift in Sources */,
 			);
