@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77061C5A22DCB55B002CD780 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77061C5922DCB55B002CD780 /* CircleImage.swift */; };
 		776A3E1C22D9350100D2182A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776A3E1B22D9350100D2182A /* AppDelegate.swift */; };
 		776A3E1E22D9350100D2182A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776A3E1D22D9350100D2182A /* SceneDelegate.swift */; };
 		776A3E2022D9350100D2182A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776A3E1F22D9350100D2182A /* ContentView.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		77061C5922DCB55B002CD780 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		776A3E1822D9350100D2182A /* SwiftUITest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUITest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		776A3E1B22D9350100D2182A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		776A3E1D22D9350100D2182A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				776A3E1B22D9350100D2182A /* AppDelegate.swift */,
+				77061C5922DCB55B002CD780 /* CircleImage.swift */,
 				776A3E1D22D9350100D2182A /* SceneDelegate.swift */,
 				776A3E1F22D9350100D2182A /* ContentView.swift */,
 				776A3E2122D9350A00D2182A /* Assets.xcassets */,
@@ -269,6 +272,7 @@
 			files = (
 				776A3E1C22D9350100D2182A /* AppDelegate.swift in Sources */,
 				776A3E1E22D9350100D2182A /* SceneDelegate.swift in Sources */,
+				77061C5A22DCB55B002CD780 /* CircleImage.swift in Sources */,
 				776A3E2022D9350100D2182A /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
