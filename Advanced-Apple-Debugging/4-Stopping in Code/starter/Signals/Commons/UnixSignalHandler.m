@@ -125,7 +125,6 @@ static void sigactionHandler(int sig, siginfo_t *siginfo, void *context)
   });
   
   dispatch_async(queue, ^{
-    
     NSLog(@"Appending new signal: %@", signalIntToName(sig));
     signalID++;
     UnixSignal *unixSignal = nil;
