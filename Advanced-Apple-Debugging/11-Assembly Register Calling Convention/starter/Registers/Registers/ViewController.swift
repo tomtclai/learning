@@ -54,8 +54,20 @@ class ViewController: NSViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    let value = executeLotsOfArguments(one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10)
+    print(value)
+
   }
-  
+
+  func executeLotsOfArguments(one: Int, two: Int, three: Int,
+                              four: Int, five: Int, six: Int,
+                              seven: Int, eight: Int, nine: Int,
+                              ten: Int) -> Int {
+      print("arguments are: \(one), \(two), \(three),\(four), \(five), \(six), \(seven),\(eight), \(nine), \(ten)")
+    return 100
+  }
+
+
   @IBAction func reloadAssemblyClicked(_ sender: AnyObject) {
     tableView.reloadData()
   }
