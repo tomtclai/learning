@@ -46,3 +46,40 @@ Excerpt From: “Advanced Apple Debugging.” Apple Books.
 
 
 
+-- 
+
+entire thing `r`
+
+(lldb) p/x $rdx 
+(unsigned long) $1 = 0x0123456789abcdef
+
+(lldb)  p/x $r9
+(unsigned long) $11 = 0x0123456789abcdef
+
+
+dobule word `e`, `d`
+
+(lldb) p/x $edx 
+(unsigned int) $2 = 0x89abcdef
+
+(lldb)  p/x $r9d
+(unsigned int) $13 = 0x89abcdef
+
+half word `n/a`, `w`
+(lldb) p/x $dx 
+(unsigned short) $3 = 0xcdef
+
+(lldb) p/x $r9w
+(unsigned short) $14 = 0xcdef
+
+lower half `l`
+(lldb) p/x $dl
+(unsigned char) $4 = 0xef
+
+(lldb) p/x $r9l
+(unsigned char) $16 = 0xef
+
+higher half `h`
+(lldb) p/x $dh
+(unsigned char) $5 = 0xcd
+

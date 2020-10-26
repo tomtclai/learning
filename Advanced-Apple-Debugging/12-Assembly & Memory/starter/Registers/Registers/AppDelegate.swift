@@ -30,4 +30,18 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+
+  func applicationWillBecomeActive(
+    _ notification: Notification) {
+      print("\(#function)")
+      self.aBadMethod()
+  }
+
+  func aBadMethod() {
+    print("\(#function)")
+  }
+  
+  func aGoodMethod() {
+    print("\(#function)")
+  }
 }
