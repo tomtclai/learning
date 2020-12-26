@@ -60,6 +60,11 @@ class ViewController: NSViewController {
                                     nine: 9, ten: 10)
   }
 
+  override func awakeFromNib() {
+    super.awakeFromNib()
+//    StackWalkthrough(5)
+  }
+
   func executeLotsOfArguments(one: Int, two: Int, three: Int, four: Int, five: Int, six: Int, seven: Int, eight: Int, nine: Int, ten: Int) -> Int {
     print("arguments are: \(one), \(two), \(three), \(four), \(five), \(six), \(seven), \(eight), \(nine), \(ten)")
     return 100
