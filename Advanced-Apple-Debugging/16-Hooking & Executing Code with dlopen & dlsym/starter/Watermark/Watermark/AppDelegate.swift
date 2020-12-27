@@ -38,6 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       let homeEnv = String(cString: cString)
       print("Home env: \(homeEnv)")
     }
+
+    if let cString = getenv("PATH") {
+      let homeEnv = String(cString: cString)
+      print("PATH env: \(homeEnv)")
+    }
     return true
   }
 }

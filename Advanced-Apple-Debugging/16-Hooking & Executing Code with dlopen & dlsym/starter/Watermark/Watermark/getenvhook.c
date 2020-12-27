@@ -15,6 +15,18 @@
 
 
 char * getenv(const char *name) {
-//  return  getenv(name);
-  return "YAY";
+  static void *handle;
+  static char * (*real_getenv)(const char *);
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    handle = dlopen("/usr/lib/system/libsystem_c.dylib", RTLD_NOW);
+    assert(handle);
+    real_getenv = dlsym(handle, "getenv");
+  });
+
+  if (strcmp(name, "HOME") == 0) {
+    return "/WOOT";
+  }
+
+  return real_getenv(name);
 }
