@@ -37,10 +37,29 @@
 //*****************************************************************************/
 #pragma mark - Section 0 - Private Declarations
 //*****************************************************************************/
+@interface NSObject()
+- (void)_setWindowControlsStatusBarOrientation:(BOOL)orientation;
+
+
+@end
 
 //*****************************************************************************/
 #pragma mark - Section 1 - FakeWindowClass
 //*****************************************************************************/
+
+@interface FakeWindowClass : UIWindow
+@end
+
+@implementation FakeWindowClass
+
+-(instancetype)initSwizzled {
+  if (self = [super init]) {
+    [self _setWindowControlsStatusBarOrientation: NO];
+  }
+  return self;
+}
+
+@end
 
 //*****************************************************************************/
 #pragma mark - Section 2 - Initialization
@@ -56,6 +75,10 @@
     NSAssert(cls, @"DBG Class is nil?");
     
     // Swizzle code here
+
+    [FakeWindowClass swizzleOriginalSelector:@selector(init) withSizzledSelector:@selector(initSwizzled) forClass:cls isClassMethod:NO];
+
+    [self swizzleOriginalSelector:@selector(prepareDebuggingOverlay) withSizzledSelector:@selector(prepareDebuggingOverlaySwizzled) forClass:cls isClassMethod:YES];
  });
 }
 
@@ -81,6 +104,30 @@
 //*****************************************************************************/
 #pragma mark - Section 3 - prepareDebuggingOverlay
 //*****************************************************************************/
++ (void)prepareDebuggingOverlaySwizzled {
+  Class cls = NSClassFromString(@"UIDebuggingInformationOverlay");
+  SEL sel = @selector(prepareDebuggingOverlaySwizzled);
+  Method m = class_getClassMethod(cls, sel);
+  IMP imp = method_getImplementation(m);
 
+  void (*methodOffset) = (void *)((imp + (long)27)); // this is brittle
+  void *returnAddr = &&RETURNADDRESS;
+
+  __asm__ __volatile__(
+      "pushq  %0\n\t"
+      "pushq  %%rbp\n\t"
+      "movq   %%rsp, %%rbp\n\t"
+      "pushq  %%r15\n\t"
+      "pushq  %%r14\n\t"
+      "pushq  %%r13\n\t"
+      "pushq  %%r12\n\t"
+      "pushq  %%rbx\n\t"
+      "pushq  %%rax\n\t"
+      "jmp  *%1\n\t"
+      :
+      : "r" (returnAddr), "r" (methodOffset));
+
+  RETURNADDRESS: ;
+}
 @end
 #pragma clang diagnostic pop

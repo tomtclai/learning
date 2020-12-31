@@ -27,6 +27,7 @@
 /// THE SOFTWARE.
 
 import UIKit
+import UIKit.UIGestureRecognizerSubclass
 
 class ViewController: UIViewController {
 
@@ -43,9 +44,11 @@ class ViewController: UIViewController {
       self.hasPerformedSetup = true
     }
 
-    guard let _ = cls.perform(NSSelectorFromString("overlay")) else {
-      print("UIDebuggingInformationOverlay 'overlay' method returned nil")
-      return
-    }
+      let tapGesture = UITapGestureRecognizer()
+      tapGesture.state = .ended
+
+      let handlerCls = NSClassFromString("UIDebuggingInformationOverlayInvokeGestureHandler") as! NSObject.Type
+      let handler = handlerCls.perform(NSSelectorFromString("mainHandler")).takeUnretainedValue()
+      let _ = handler.perform(NSSelectorFromString("_handleActivationGesture:"), with: tapGesture)
   }
 }
