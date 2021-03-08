@@ -1,0 +1,17 @@
+### Reveal LLDB commands support - DO NOT MODIFY
+command script import /Users/laito/Library/Application\ Support/Reveal/RevealServerCommands.py
+###
+settings set target.x86-disassembly-flavor intel
+settings set target.skip-prologue false
+command alias dumpreg register read rsp rbp rdi rdx
+
+command regex ls 's/(.+)/po @import Foundation; [[NSFileManager defaultManager] contentsOfDirectoryAtPath:@"%1" error:nil]/'
+
+command regex dump_stuff "s/(.+)/image lookup -rn '\+\[\w+(\(\w+\))?\ \w+\]$' %1 /"
+
+command regex ivars 's/(.+)/expression -lobjc -O -- [%1 _ivarDescription]/'
+
+command regex methods 's/(.+)/expression -lobjc -O -- [%1 _shortMethodDescription]/'
+
+command regex lmethods 's/(.+)/expression -lobjc -O -- [%1 _methodDescription]/'
+

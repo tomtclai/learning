@@ -27,6 +27,8 @@
 /// THE SOFTWARE.
 
 import UIKit
+import MachO
+
 
 typealias InsecureHTTPRequestsData = (module: String, strings: [String])
 
@@ -38,6 +40,9 @@ class InsecureNetworkRequestsTableViewController: UITableViewController {
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    let _ = "https://www.google.com"
+    let _ = "http://www.altavista.com"
     
     self.setupDataSource()
   }
@@ -67,8 +72,36 @@ class InsecureNetworkRequestsTableViewController: UITableViewController {
   }
   
   private func setupDataSource() {
-    let element = InsecureHTTPRequestsData("HTTP hardcoded strings coming soon",
-                                           ["placeholder 1", "placeholder 2"])
-    dataSource.append(element)
+//    let element = InsecureHTTPRequestsData("HTTP hardcoded strings coming soon",
+//                                           ["placeholder 1", "placeholder 2"])
+//    dataSource.append(element)
+    for i in 0..<_dyld_image_count() {
+
+      let imagePath = _dyld_get_image_name(i)!
+      let name = String(validatingUTF8: imagePath)!
+      let basenameString = (name as NSString).lastPathComponent
+      var module : InsecureHTTPRequestsData = (basenameString, [])
+
+      var rawDataSize: UInt = 0
+      guard let rawData = getsectdatafromFramework(basenameString, "__TEXT", "__cstring", &rawDataSize) else { continue }
+
+      var index = 0
+      while index < rawDataSize {
+        let cur = rawData.advanced(by: index)
+        let length = strlen(cur)
+        index = index + length + 1
+
+        guard let str = String(utf8String: cur), length > 0 else { continue }
+        if str.contains("f") {
+          module.strings.append(str)
+        }
+      }
+
+      if module.strings.count > 0 {
+        dataSource.append(module)
+      }
+      
+
+    }
   }
 }

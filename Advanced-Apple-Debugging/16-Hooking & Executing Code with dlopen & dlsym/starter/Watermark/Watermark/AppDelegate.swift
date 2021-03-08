@@ -34,6 +34,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+
+    if let cString = getenv("HOME") {
+      let homeEnv = String(cString: cString)
+      print("Home env: \(homeEnv)")
+    }
+
+    if let cString = getenv("PATH") {
+      let homeEnv = String(cString: cString)
+      print("PATH env: \(homeEnv)")
+    }
     return true
   }
 }
