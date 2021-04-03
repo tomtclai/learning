@@ -33,38 +33,51 @@
 import SwiftUI
 
 struct ContentView: View {
+  let circleSize: CGFloat = 0.45
+  let labelWidth: CGFloat = 0.53
+  let labelHeight: CGFloat = 0.06
+  let buttonWidth: CGFloat = 0.87
   @State var game = Game()
   @State var guess: RGB
   @State var showScore = false
 
   var body: some View {
-    VStack {
-      ColorCircle(rgb: game.target, size: 200)
-      if !showScore {
-        Text("R: ??? G: ??? B: ???")
-          .padding()
-      } else {
-        Text(game.target.intString)
-          .padding()
-      }
-      ColorCircle(rgb: guess, size: 200)
-      Text(guess.intString)
-        .padding()
-      ColorSlider(value: $guess.red, trackColor: .red)
-      ColorSlider(value: $guess.green, trackColor: .green)
-      ColorSlider(value: $guess.blue, trackColor: .blue)
-      Button("Hit Me!") {
-        self.showScore = true
-        self.game.check(guess: guess)
-      }
-      .alert(isPresented: $showScore) {
-        Alert(
-          title: Text("Your Score"),
-          message: Text(String(game.scoreRound)),
-          dismissButton: .default(Text("OK")) {
-            self.game.startNewRound()
-            self.guess = RGB()
-          })
+    GeometryReader { geometry in
+      let width = geometry.size.width
+      let height = geometry.size.height
+      let labelWidthPt = width * labelWidth
+      let labelHeightPt = height * labelHeight
+      let buttonWidthPt = width * buttonWidth
+      ZStack {
+        Color.element.edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+        VStack {
+          ColorCircle(rgb: game.target, size: width * circleSize)
+          if !showScore {
+            BevelText("R: ??? G: ??? B: ???", width: labelWidthPt, height: labelHeightPt)
+          } else {
+            BevelText(game.target.intString, width: labelWidthPt, height: labelHeightPt)
+          }
+          ColorCircle(rgb: guess, size: circleSize * width)
+          BevelText(guess.intString)
+          ColorSlider(value: $guess.red, trackColor: .red)
+          ColorSlider(value: $guess.green, trackColor: .green)
+          ColorSlider(value: $guess.blue, trackColor: .blue)
+          Button("Hit Me!") {
+            self.showScore = true
+            self.game.check(guess: guess)
+          }
+          .alert(isPresented: $showScore) {
+            Alert(
+              title: Text("Your Score"),
+              message: Text(String(game.scoreRound)),
+              dismissButton: .default(Text("OK")) {
+                self.game.startNewRound()
+                self.guess = RGB()
+              })
+          }
+          .buttonStyle(NeuButtonStyle(width: buttonWidthPt, height: labelHeightPt))
+        }
+        .font(.headline)
       }
     }
   }
@@ -72,7 +85,14 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView(guess: RGB())
+    Group {
+      ContentView(guess: RGB())
+        .previewDevice("iPhone 8")
+      ContentView(guess: RGB())
+        .previewDevice("iPhone 12 Pro")
+      ContentView(guess: RGB())
+        .previewDevice("iPhone 12 Pro Max")
+    }
   }
 }
 
@@ -86,6 +106,7 @@ struct ColorSlider: View {
         .accentColor(trackColor)
       Text("255")
     }
+    .font(.subheadline)
     .padding(.horizontal)
   }
 }
