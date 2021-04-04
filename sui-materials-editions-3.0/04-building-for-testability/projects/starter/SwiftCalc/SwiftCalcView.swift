@@ -142,7 +142,7 @@ struct SwiftCalcView: View {
                 pendingOperation = .none
               } else {
                 // Add Bug Fix Here
-                display = "Error"
+                display = ""
               }
             }, label: {
               Text("M+")
