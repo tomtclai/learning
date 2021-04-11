@@ -33,15 +33,46 @@
 import SwiftUI
 
 struct RegisterView: View {
+  @State var experimentDouble = 0.0
+  @State var experimentString = ""
+
   @EnvironmentObject var userManager: UserManager
 
   @ObservedObject var keyboardHandler: KeyboardFollower
   init(keyboardHandler: KeyboardFollower) {
     self.keyboardHandler = keyboardHandler
   }
-
+  var experimentSlider: some View {
+    VStack{
+      HStack{
+        Text("0")
+        Slider(value: $experimentDouble,
+               in: 0.0...10.0,
+               step: 0.5)
+        Text("10")
+      }
+      Text("\(experimentDouble)")
+    }
+  }
+  var experimentStepper: some View {
+    VStack{
+      HStack{
+        Stepper("Quantity: \(experimentDouble)",
+                value: $experimentDouble,
+               in: 0.0...10.0,
+               step: 0.5)
+      }
+    }
+  }
+  var experimentSecureField: some View {
+    SecureField("Password", text: $experimentString)
+      .textFieldStyle(RoundedBorderTextFieldStyle())
+  }
   var body: some View {
     VStack {
+//      experimentSlider
+//      experimentStepper
+//      experimentSecureField
       Spacer()
       WelcomeMessageView()
       TextField("Type your name...", text: $userManager.profile.name).bordered()
