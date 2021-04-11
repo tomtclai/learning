@@ -33,7 +33,8 @@
 import SwiftUI
 
 struct RegisterView: View {
-  @State var name: String = ""
+  @EnvironmentObject var userManager: UserManager
+
   @ObservedObject var keyboardHandler: KeyboardFollower
   init(keyboardHandler: KeyboardFollower) {
     self.keyboardHandler = keyboardHandler
@@ -43,7 +44,35 @@ struct RegisterView: View {
     VStack {
       Spacer()
       WelcomeMessageView()
-      TextField("Type your name...", text: $name).bordered()
+      TextField("Type your name...", text: $userManager.profile.name).bordered()
+      HStack {
+        Spacer()
+        Text("\(userManager.profile.name.count)")
+          .font(.caption)
+          .foregroundColor(userManager.isUserNameValid() ? .green : .red)
+          .padding(.trailing)
+      }
+      HStack {
+        Spacer()
+        Toggle(isOn: $userManager.settings.rememberUser) {
+          Text("Remember me")
+            .font(.subheadline)
+            .foregroundColor(.gray)
+        }
+        .fixedSize()
+      }
+      .padding(.bottom)
+      Button(action: self.registerUser) {
+        HStack {
+          Image(systemName: "checkmark")
+            .resizable()
+            .frame(width: 16, height: 16, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+          Text("OK")
+            .font(.body)
+            .bold()
+        }
+      }.disabled(!userManager.isUserNameValid())
+      .bordered()
       Spacer()
     }
     .padding(.bottom, keyboardHandler.keyboardHeight)
@@ -53,8 +82,21 @@ struct RegisterView: View {
   }
 }
 
+extension RegisterView {
+  func registerUser() {
+    if userManager.settings.rememberUser {
+    userManager.persistProfile()
+    } else {
+      userManager.clear()
+    }
+    userManager.persistSettings()
+    userManager.setRegistered()
+  }
+}
+
 struct RegisterView_Previews: PreviewProvider {
+    static let user = UserManager(name: "Ray")
     static var previews: some View {
-      RegisterView(keyboardHandler: KeyboardFollower())
+      RegisterView(keyboardHandler: KeyboardFollower()).environmentObject(user)
     }
 }

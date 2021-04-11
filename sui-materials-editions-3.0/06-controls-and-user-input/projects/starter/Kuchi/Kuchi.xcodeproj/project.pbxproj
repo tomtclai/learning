@@ -33,6 +33,9 @@
 		777810EC261A601E00830349 /* BorderedViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777810EB261A601E00830349 /* BorderedViewModifier.swift */; };
 		777810ED261A601E00830349 /* BorderedViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777810EB261A601E00830349 /* BorderedViewModifier.swift */; };
 		77A31331261A63AE004C8C13 /* KeyboardFollower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A31330261A63AE004C8C13 /* KeyboardFollower.swift */; };
+		77DF082D26225D480052074A /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DF082C26225D480052074A /* UserManager.swift */; };
+		77DF083226225D520052074A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DF083026225D520052074A /* Profile.swift */; };
+		77DF083326225D520052074A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DF083126225D520052074A /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,9 @@
 		777810E8261A5F8000830349 /* KuchiTextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuchiTextStyle.swift; sourceTree = "<group>"; };
 		777810EB261A601E00830349 /* BorderedViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedViewModifier.swift; sourceTree = "<group>"; };
 		77A31330261A63AE004C8C13 /* KeyboardFollower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardFollower.swift; sourceTree = "<group>"; };
+		77DF082C26225D480052074A /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		77DF083026225D520052074A /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		77DF083126225D520052074A /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +125,9 @@
 		57B3CA462536553D00888D62 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				77DF083026225D520052074A /* Profile.swift */,
+				77DF083126225D520052074A /* Settings.swift */,
+				77DF082C26225D480052074A /* UserManager.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -284,9 +293,12 @@
 				777810E0261A5C9800830349 /* LogoImage.swift in Sources */,
 				77A31331261A63AE004C8C13 /* KeyboardFollower.swift in Sources */,
 				777810DD261A5C2D00830349 /* WelcomeBackgroundImage.swift in Sources */,
+				77DF083226225D520052074A /* Profile.swift in Sources */,
+				77DF083326225D520052074A /* Settings.swift in Sources */,
 				57EF341324E89F92004ABEB2 /* KuchiApp.swift in Sources */,
 				777810E9261A5F8000830349 /* KuchiTextStyle.swift in Sources */,
 				57472F8C2533B85800F47C29 /* HorizontallyAlignedLabelStyle.swift in Sources */,
+				77DF082D26225D480052074A /* UserManager.swift in Sources */,
 				57A447F0252BD68200CF7A3E /* WelcomeView.swift in Sources */,
 				777810E6261A5D6600830349 /* RegisterView.swift in Sources */,
 				57578FDE24E9D943003465A4 /* HomeView.swift in Sources */,
