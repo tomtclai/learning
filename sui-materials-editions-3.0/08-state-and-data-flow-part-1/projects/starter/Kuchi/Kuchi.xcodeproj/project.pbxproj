@@ -55,6 +55,8 @@
 		57F7651D2537A6A5002C00B5 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F7651B2537A6A5002C00B5 /* RegisterView.swift */; };
 		57F765212537B3C0002C00B5 /* BorderedViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F765202537B3C0002C00B5 /* BorderedViewModifier.swift */; };
 		57F765222537B3C0002C00B5 /* BorderedViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F765202537B3C0002C00B5 /* BorderedViewModifier.swift */; };
+		776412AA263476F900B7F3D5 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776412A9263476F900B7F3D5 /* ScoreView.swift */; };
+		776412AB263476F900B7F3D5 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776412A9263476F900B7F3D5 /* ScoreView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +90,7 @@
 		57F765162537A610002C00B5 /* WelcomeMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeMessageView.swift; sourceTree = "<group>"; };
 		57F7651B2537A6A5002C00B5 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		57F765202537B3C0002C00B5 /* BorderedViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedViewModifier.swift; sourceTree = "<group>"; };
+		776412A9263476F900B7F3D5 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,7 @@
 				573A7208253A5FF100B8D1BE /* CongratulationsView.swift */,
 				573A7204253A5FF100B8D1BE /* PracticeView.swift */,
 				573A7205253A5FF100B8D1BE /* QuestionView.swift */,
+				776412A9263476F900B7F3D5 /* ScoreView.swift */,
 			);
 			path = Practice;
 			sourceTree = "<group>";
@@ -333,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				776412AA263476F900B7F3D5 /* ScoreView.swift in Sources */,
 				573A720D253A5FF100B8D1BE /* QuestionView.swift in Sources */,
 				573A7200253A5FE500B8D1BE /* StarterView.swift in Sources */,
 				573A720B253A5FF100B8D1BE /* PracticeView.swift in Sources */,
@@ -373,6 +378,7 @@
 				5758869B25365A00006AD39D /* Profile.swift in Sources */,
 				57472F8D2533B85800F47C29 /* HorizontallyAlignedLabelStyle.swift in Sources */,
 				573A7210253A5FF100B8D1BE /* ChallengeView.swift in Sources */,
+				776412AB263476F900B7F3D5 /* ScoreView.swift in Sources */,
 				57578FDF24E9D943003465A4 /* HomeView.swift in Sources */,
 				573A7201253A5FE500B8D1BE /* StarterView.swift in Sources */,
 				573A7214253A5FF100B8D1BE /* CongratulationsView.swift in Sources */,
