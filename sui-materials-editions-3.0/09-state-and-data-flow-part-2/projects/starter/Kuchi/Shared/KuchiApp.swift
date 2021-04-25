@@ -44,6 +44,7 @@ struct KuchiApp: App {
     WindowGroup {
       StarterView()
         .environmentObject(userManager)
+        .environmentObject(ChallengesViewModel())
     }
   }
 }

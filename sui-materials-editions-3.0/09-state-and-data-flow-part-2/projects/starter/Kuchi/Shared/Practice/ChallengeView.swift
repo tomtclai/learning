@@ -34,10 +34,37 @@ import SwiftUI
 
 struct ChallengeView: View {
   let challengeTest: ChallengeTest
-
+  @Environment(\.verticalSizeClass) var verticalSizeClass
+  @Environment(\.questionsPerSession) var questionsPerSession
   @State var showAnswers = false
-
+  @Binding var numberOfAnswered: Int
+  @ViewBuilder
   var body: some View {
+    if verticalSizeClass == .compact {
+      horizontalLayout
+    } else {
+      verticalLayout
+    }
+  }
+
+  var horizontalLayout: some View {
+    VStack {
+      HStack {
+        Button(action: {
+          self.showAnswers.toggle()
+        }) {
+          QuestionView(question: challengeTest.challenge.question)
+        }
+        if showAnswers {
+          Divider()
+          ChoicesView(challengeTest: challengeTest)
+        }
+      }
+      ScoreView(numberOfQuestions: questionsPerSession, numberOfAnswered: $numberOfAnswered)
+
+    }
+  }
+  var verticalLayout: some View {
     VStack {
       Button(action: {
         self.showAnswers.toggle()
@@ -46,7 +73,7 @@ struct ChallengeView: View {
           .frame(height: 300)
       }
 
-      ScoreView(numberOfQuestions: 5)
+      ScoreView(numberOfQuestions: questionsPerSession, numberOfAnswered: $numberOfAnswered)
 
       if showAnswers {
         Divider()
@@ -60,6 +87,7 @@ struct ChallengeView: View {
 
 
 struct ChallengeView_Previews: PreviewProvider {
+  @State static var numberOfAnswered: Int = 0
   // 1
   static let challengeTest = ChallengeTest(
     challenge: Challenge(
@@ -72,6 +100,8 @@ struct ChallengeView_Previews: PreviewProvider {
 
   static var previews: some View {
     // 2
-    return ChallengeView(challengeTest: challengeTest)
+    return Group {
+      ChallengeView(challengeTest: challengeTest, numberOfAnswered: $numberOfAnswered)
+    }
   }
 }
