@@ -65,6 +65,13 @@
 		57F765222537B3C0002C00B5 /* BorderedViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F765202537B3C0002C00B5 /* BorderedViewModifier.swift */; };
 		E2EACE1B2636425500F685E9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EACE1A2636425500F685E9 /* SettingsView.swift */; };
 		E2EACE1C2636425500F685E9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EACE1A2636425500F685E9 /* SettingsView.swift */; };
+		E2F5CEC926519EB7007698DD /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F5CEC826519EB7007698DD /* LearnView.swift */; };
+		E2F5CECC2651A04A007698DD /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F5CEC826519EB7007698DD /* LearnView.swift */; };
+		E2F5CECF2651A27D007698DD /* FlashCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F5CECE2651A27D007698DD /* FlashCard.swift */; };
+		E2F5CED12651A2B3007698DD /* FlashDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F5CED02651A2B3007698DD /* FlashDeck.swift */; };
+		E2F5CED32651A2F0007698DD /* LearningStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F5CED22651A2F0007698DD /* LearningStore.swift */; };
+		E2F5CED52651A322007698DD /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F5CED42651A322007698DD /* CardView.swift */; };
+		E2F5CED72651A343007698DD /* DeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F5CED62651A343007698DD /* DeckView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +110,12 @@
 		57F7651B2537A6A5002C00B5 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		57F765202537B3C0002C00B5 /* BorderedViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedViewModifier.swift; sourceTree = "<group>"; };
 		E2EACE1A2636425500F685E9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E2F5CEC826519EB7007698DD /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
+		E2F5CECE2651A27D007698DD /* FlashCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCard.swift; sourceTree = "<group>"; };
+		E2F5CED02651A2B3007698DD /* FlashDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashDeck.swift; sourceTree = "<group>"; };
+		E2F5CED22651A2F0007698DD /* LearningStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningStore.swift; sourceTree = "<group>"; };
+		E2F5CED42651A322007698DD /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		E2F5CED62651A343007698DD /* DeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +232,8 @@
 		57EF33FF24E89F91004ABEB2 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E2F5CEC826519EB7007698DD /* LearnView.swift */,
+				E2F5CEC726519EA2007698DD /* Learn */,
 				57AF758E25648311005C1716 /* Utils */,
 				573A71FF253A5FE500B8D1BE /* StarterView.swift */,
 				5794616E2540CB5100342D5D /* HistoryView.swift */,
@@ -258,6 +273,18 @@
 				57EF341224E89F92004ABEB2 /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		E2F5CEC726519EA2007698DD /* Learn */ = {
+			isa = PBXGroup;
+			children = (
+				E2F5CECE2651A27D007698DD /* FlashCard.swift */,
+				E2F5CED02651A2B3007698DD /* FlashDeck.swift */,
+				E2F5CED22651A2F0007698DD /* LearningStore.swift */,
+				E2F5CED42651A322007698DD /* CardView.swift */,
+				E2F5CED62651A343007698DD /* DeckView.swift */,
+			);
+			path = Learn;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,16 +393,19 @@
 				573A7200253A5FE500B8D1BE /* StarterView.swift in Sources */,
 				57AF759425648311005C1716 /* LocalNotifications.swift in Sources */,
 				573A720B253A5FF100B8D1BE /* PracticeView.swift in Sources */,
+				E2F5CECF2651A27D007698DD /* FlashCard.swift in Sources */,
 				5758869C25365A00006AD39D /* Settings.swift in Sources */,
 				57EF341324E89F92004ABEB2 /* KuchiApp.swift in Sources */,
 				5794616F2540CB5100342D5D /* HistoryView.swift in Sources */,
 				57AF759225648311005C1716 /* Color+Extension.swift in Sources */,
+				E2F5CED32651A2F0007698DD /* LearningStore.swift in Sources */,
 				573A720F253A5FF100B8D1BE /* ChallengeView.swift in Sources */,
 				57F765122537A25D002C00B5 /* LogoImage.swift in Sources */,
 				5758869E25365A00006AD39D /* UserManager.swift in Sources */,
 				573A7217253A5FF100B8D1BE /* ChoicesRow.swift in Sources */,
 				5758869A25365A00006AD39D /* Profile.swift in Sources */,
 				573A7215253A5FF100B8D1BE /* ChoicesView.swift in Sources */,
+				E2F5CEC926519EB7007698DD /* LearnView.swift in Sources */,
 				57F765172537A610002C00B5 /* WelcomeMessageView.swift in Sources */,
 				575886A325365A16006AD39D /* KeyboardFollower.swift in Sources */,
 				57AF759625648311005C1716 /* Appearance.swift in Sources */,
@@ -388,6 +418,9 @@
 				57A447F0252BD68200CF7A3E /* WelcomeView.swift in Sources */,
 				57578FDE24E9D943003465A4 /* HomeView.swift in Sources */,
 				573A7213253A5FF100B8D1BE /* CongratulationsView.swift in Sources */,
+				E2F5CED52651A322007698DD /* CardView.swift in Sources */,
+				E2F5CED12651A2B3007698DD /* FlashDeck.swift in Sources */,
+				E2F5CED72651A343007698DD /* DeckView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +451,7 @@
 				57AF759725648311005C1716 /* Appearance.swift in Sources */,
 				57F765132537A25D002C00B5 /* LogoImage.swift in Sources */,
 				579461702540CB5100342D5D /* HistoryView.swift in Sources */,
+				E2F5CECC2651A04A007698DD /* LearnView.swift in Sources */,
 				573A7218253A5FF100B8D1BE /* ChoicesRow.swift in Sources */,
 				575886AC25365E02006AD39D /* WelcomeBackgroundImage.swift in Sources */,
 			);
@@ -543,6 +577,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -550,7 +585,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.Kuchi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lai.kuchi;
 				PRODUCT_NAME = Kuchi;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -564,6 +599,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DPRFY9YDG3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -571,7 +607,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.Kuchi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lai.kuchi;
 				PRODUCT_NAME = Kuchi;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;

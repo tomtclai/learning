@@ -33,13 +33,50 @@
 import SwiftUI
 
 struct HomeView: View {
+  @EnvironmentObject var userManager: UserManager
+  @EnvironmentObject var challengesViewModel: ChallengesViewModel
   var body: some View {
-    EmptyView()
+    // 1
+    TabView {
+      // 1
+      LearnView()
+        // 3
+        .tabItem({
+          // 3
+          VStack {
+            Image(systemName: "bookmark")
+            Text("Learn")
+          }
+        })
+      // 4
+      PracticeView(
+        challengeTest: $challengesViewModel.currentChallenge,
+        userName: $userManager.profile.name,
+        numberOfAnswered: .constant(challengesViewModel.numberOfAnswered)
+      )
+      .tag(1)
+      .tabItem ({
+
+        VStack{
+          Image(systemName: "rectangle.dock")
+          Text("Challenge")
+        }
+      })
+      .tag(1)
+      .environment(
+        \.questionsPerSession,
+        challengesViewModel.numberOfQuestions
+      )
+    }
+    // 2
+    .accentColor(.orange)
   }
 }
 
 struct HomeView_Previews: PreviewProvider {
   static var previews: some View {
     HomeView()
+      .environmentObject(UserManager())
+      .environmentObject(ChallengesViewModel())
   }
 }
