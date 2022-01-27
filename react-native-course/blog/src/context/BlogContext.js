@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 
 const BlogContext = React.createContext()
 
+const blogReducer = (state, action) => {
+    switch (action.type) {
+        case 'add_blogpost':
+            return [...state, { title: `Blogpost #${state.length + 1}` }];
+        default:
+            return state
+    }
+};
+
 export const BlogProvider = ({ children }) => {
-    const [blogPosts, setBlogPosts] = useState([]);
+    const [blogPosts, dispatch] = useReducer(blogReducer, []);
+
     const addBlogPost = () => {
-        setBlogPosts([...blogPosts, {title: `Blogpost #${blogPosts.length+1}`}] )
+        dispatch({ type: 'add_blogpost'})
+        //setBlogPosts([...blogPosts, {title: `Blogpost #${blogPosts.length+1}`}] )
     };
     return <BlogContext.Provider value={{ data: blogPosts, addBlogPost }}>
         {children}
@@ -13,3 +24,6 @@ export const BlogProvider = ({ children }) => {
 }
 
 export default BlogContext;
+
+//reducer
+//action
