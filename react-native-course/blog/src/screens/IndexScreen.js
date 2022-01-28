@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { View, Text, StyleShee, StyleSheet, Button, TouchableOpacity } from 'react-native'
 import { createAppContainer, FlatList } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Context } from '../context/BlogContext';
 import { Feather } from '@expo/vector-icons';
+
 
 /**
  *   return {
@@ -16,9 +17,19 @@ import { Feather } from '@expo/vector-icons';
 
  */
 const IndexScreen = ({navigation}) => {
-    const { state, addBlogPost, deleteBlogpost } = useContext(Context);
+    const { state, getBlogPosts, deleteBlogpost } = useContext(Context);
     //console.log(props)
     //<Button title={'Add'} onPress={() => addBlogPost()} />
+    useEffect(() => {
+        getBlogPosts();
+        const listener = navigation.addListener('didFocus', () => {
+            getBlogPosts();
+        })
+
+        return () => {
+            listener.remove();
+        }
+    },[])
     return <View>
 
         <FlatList

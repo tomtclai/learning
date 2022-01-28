@@ -1,0 +1,29 @@
+{
+  "blogposts": [
+    {
+      "id": 1,
+      "title": "API POST",
+      "content": "content"
+    },
+    {
+      "title": "Werewr",
+      "content": "Ewewrtre",
+      "id": 2
+    },
+    {
+      "title": "Post4",
+      "content": "Post6",
+      "id": 3
+    },
+    {
+      "title": "Post6wer",
+      "content": "Post2",
+      "id": 4
+    },
+    {
+      "title": "5",
+      "content": "52",
+      "id": 5
+    }
+  ]
+}
