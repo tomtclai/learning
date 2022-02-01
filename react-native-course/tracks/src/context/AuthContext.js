@@ -44,7 +44,6 @@ const signup = (dispatch) => async ({ email, password }) => {
 
     } catch (err) {
         // if sign up fails, show error message
-        console.log(err.message)
         dispatch({
             type: 'add_error',
             payload: 'something went wrong during sign up'
