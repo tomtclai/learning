@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import MapView, { Polyline} from 'react-native-maps';
 import { Context as TrackContext } from '../context/TrackContext';
+import TrackListScreen from './TrackListScreen';
 const TrackDetailScreen = ({ navigation }) => {
   const { state } = useContext(TrackContext);
   const _id = navigation.getParam('_id')
@@ -22,6 +23,7 @@ const TrackDetailScreen = ({ navigation }) => {
     </MapView>
   </>
 };
+
 
 const styles = StyleSheet.create({
   map: {
