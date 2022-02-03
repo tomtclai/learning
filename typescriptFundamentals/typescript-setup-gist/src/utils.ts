@@ -11,7 +11,13 @@ export function generateRandomId(optionsOrSymbol: GenerateConfig | ValidSymbol):
     return optionsOrSymbol.symbol + Math.random().toString(36).substr(2,optionsOrSymbol.length)
 }
 
-
+export function Component(options: { id: string }) {
+    console.log(options)
+    return (target: any) => {
+        target.id = options.id
+        console.log(target)
+    }
+}
 
 interface GenerateConfig {
     symbol: ValidSymbol

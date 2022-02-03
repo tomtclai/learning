@@ -1,10 +1,23 @@
-import {generateRandomId, defaultLength, defaultSymbol} from './utils'
+import {generateRandomId, defaultLength, defaultSymbol, Component} from './utils'
 
 generateRandomId('#', 7) // overload 1
 generateRandomId({ length: 7, symbol: '#' }) // 2
 
+function enumerable(isEnumerable: boolean) {
+    return (
+        target: any,
+        propertyKey: any,
+        propertyDescriptor: PropertyDescriptor
+    ) => {
+        propertyDescriptor.enumerable = isEnumerable
+    }
+}
+@Component({id: 'app'})
 class App {
-    static id = 'app';
+    static id: string
+
+
+    @enumerable(false)
     onInit(elements: HTMLElement | null) {
         setInterval(function () {
             if (elements) {
@@ -17,6 +30,11 @@ class App {
 function userAlert() {
     alert('hello')
 }
+
+for (let key in App.prototype) {
+    console.log(key);
+}
+
 function main(ComponentClass: typeof App) {
     var element = document.getElementById(ComponentClass.id)
     const cmp = new ComponentClass()
