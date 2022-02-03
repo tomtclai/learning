@@ -1,25 +1,28 @@
 import createDataContext from "./createDataContext";
-import trackerapi from "../api/tracker";
-import AsyncStorageLib from "@react-native-async-storage/async-storage";
-import { navigate } from "../navigationRef";
-const authReducer = (state, action) => {
+
+import trackerApi from "../api/tracker"
+const trackReducer = (state, action) => {
     switch (action.type) {
-        default: return state;
-        case 'signin':
-            return { ...state, errorMessage: '', token: action.payload }
-        case 'add_error':
-            return { ...state, errorMessage: action.payload }
-        case 'clear_error_message':
-            return { ...state, errorMessage: '' }
-        case 'signout':
-            return {...state, errorMessage:'', token: null}
+        case 'fetch_tracks':
+            return action.payload;
+        default:
+            return state;
     }
 };
 
-const fetchTracks = dispatch => () => { };
-const createTracks = dispatch => () => { };
+const fetchTracks = dispatch => async () => {
+    const response = await trackerApi.get('/tracks')
+    dispatch({type: 'fetch_tracks', payload: response.data})
+}
+
+const createTrack = dispatch => async (name, locations) => {
+    await trackerApi.post('/tracks', { name, locations });
+}
+
+
 
 export const { Provider, Context } = createDataContext(
     trackReducer,
-    { fetchTracks, createTracks }
+    { fetchTracks, createTrack },
+    []
 )
