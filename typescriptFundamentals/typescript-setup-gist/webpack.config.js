@@ -8,7 +8,7 @@ const isProduction = process.env.NODE_ENV == "production";
 const config = {
   devtool: "source-map",
   entry: {
-    mylib: path.resolve(__dirname, "src/index.ts"),
+    mylib: path.resolve(__dirname, "src/app.ts"),
   },
   output: {
     chunkFilename: "[name].js",
