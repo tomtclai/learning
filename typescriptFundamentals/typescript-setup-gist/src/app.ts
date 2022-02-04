@@ -1,6 +1,5 @@
 import {generateRandomId, defaultLength, defaultSymbol, Component} from './utils'
-
-
+import { random } from 'lodash'
 generateRandomId('#', 7) // overload 1
 generateRandomId({ length: 7, symbol: '#' }) // 2
 
@@ -34,7 +33,7 @@ class App {
     onInit(@param elements: HTMLElement | null) {
         setInterval(function () {
             if (elements) {
-                elements.innerHTML = generateRandomId({ symbol:defaultSymbol, length: defaultLength })
+                elements.innerHTML = generateRandomId({ symbol:defaultSymbol, length: random(5,7) })
             }
         }, 1000)
     }
