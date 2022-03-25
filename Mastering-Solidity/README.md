@@ -1,3 +1,4 @@
-This is an external repo because [Remix IDE](https://remix.ethereum.org/) is browser based and i didn't want to crash my browser.
-
-# See https://github.com/tomtclai/dappuniversity
+Title  | Mastering Solidity
+-------|-------------------
+Author | Dapp University
+Link   | [Youtube](https://www.youtube.com/watch?v=pqxNmdwEHio&list=PLS5SEs8ZftgVnWHv2_mkvJjn5HBOkde3g)
