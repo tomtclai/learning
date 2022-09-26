@@ -58,6 +58,8 @@
 		AE6A381C269B5DF20054C842 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6A381B269B5DF20054C842 /* Size.swift */; };
 		AE6A3822269B5E1A0054C842 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6A3821269B5E1A0054C842 /* Organization.swift */; };
 		AE6A3825269FC7670054C842 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6A3824269FC7670054C842 /* User.swift */; };
+		E217930E28E232CB00415ACF /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E217930C28E232CB00415ACF /* RequestProtocol.swift */; };
+		E217930F28E232CB00415ACF /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E217930D28E232CB00415ACF /* RequestType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +135,8 @@
 		AE6A3821269B5E1A0054C842 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		AE6A3824269FC7670054C842 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AED3FC3326A863A2006D2BEE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		E217930C28E232CB00415ACF /* RequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
+		E217930D28E232CB00415ACF /* RequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,6 +369,7 @@
 		AE6A377B269B56460054C842 /* api */ = {
 			isa = PBXGroup;
 			children = (
+				E217930B28E232A100415ACF /* Request */,
 				8F1DFB642708C47200F35D07 /* token */,
 				8F1DFB6D2708CA5100F35D07 /* parser */,
 				8F1DFB6A2708CA2A00F35D07 /* network */,
@@ -444,6 +449,15 @@
 				AE6A3824269FC7670054C842 /* User.swift */,
 			);
 			path = user;
+			sourceTree = "<group>";
+		};
+		E217930B28E232A100415ACF /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				E217930C28E232CB00415ACF /* RequestProtocol.swift */,
+				E217930D28E232CB00415ACF /* RequestType.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -616,6 +630,7 @@
 				84A59F78269E906400237A83 /* AnimalAttributes.swift in Sources */,
 				AE6A3795269B59C20054C842 /* PetSave.xcdatamodeld in Sources */,
 				845137822796234E00A4DA57 /* EmptyResultsView.swift in Sources */,
+				E217930E28E232CB00415ACF /* RequestProtocol.swift in Sources */,
 				845137842796234E00A4DA57 /* SuggestionsGrid.swift in Sources */,
 				84A59F74269E8C4700237A83 /* PhotoSizes.swift in Sources */,
 				AE6A380C269B5D9E0054C842 /* Age.swift in Sources */,
@@ -623,6 +638,7 @@
 				8F1DFB662708C47200F35D07 /* AccessTokenManager.swift in Sources */,
 				AE6A3825269FC7670054C842 /* User.swift in Sources */,
 				84B0507E26B0F12200E0A709 /* AnimalDetailCard.swift in Sources */,
+				E217930F28E232CB00415ACF /* RequestType.swift in Sources */,
 				84B0507826B0E8F500E0A709 /* AnimalContactLink.swift in Sources */,
 				84B0507C26B0EFA800E0A709 /* AddressFetcher.swift in Sources */,
 				8485B72926A4A3BF001874CB /* AnimalSearchAge.swift in Sources */,
@@ -825,9 +841,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "PetSave/Preview\\ Content";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = DGHFQWBX8C;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/PetSave/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -835,7 +851,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.PetSave;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lai.PetSave;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -848,9 +864,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "PetSave/Preview\\ Content";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = DGHFQWBX8C;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/PetSave/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -858,7 +874,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.PetSave;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lai.PetSave;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -934,9 +950,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "PetSave/Preview\\ Content";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = DGHFQWBX8C;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/PetSave/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -944,7 +960,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.PetSave;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lai.PetSave;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
