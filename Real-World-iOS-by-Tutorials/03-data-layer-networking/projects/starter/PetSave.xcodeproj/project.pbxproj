@@ -60,6 +60,9 @@
 		AE6A3825269FC7670054C842 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6A3824269FC7670054C842 /* User.swift */; };
 		E217930E28E232CB00415ACF /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E217930C28E232CB00415ACF /* RequestProtocol.swift */; };
 		E217930F28E232CB00415ACF /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E217930D28E232CB00415ACF /* RequestType.swift */; };
+		E2C87DC128E32E3800C7DCE9 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C87DC028E32E3800C7DCE9 /* APIManager.swift */; };
+		E2C87DC328E3316900C7DCE9 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C87DC228E3316900C7DCE9 /* RequestManager.swift */; };
+		E2C87DC528E3378000C7DCE9 /* AuthTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C87DC428E3378000C7DCE9 /* AuthTokenRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +140,9 @@
 		AED3FC3326A863A2006D2BEE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E217930C28E232CB00415ACF /* RequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		E217930D28E232CB00415ACF /* RequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
+		E2C87DC028E32E3800C7DCE9 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		E2C87DC228E3316900C7DCE9 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		E2C87DC428E3378000C7DCE9 /* AuthTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +269,8 @@
 			isa = PBXGroup;
 			children = (
 				8F1DFB6B2708CA2A00F35D07 /* NetworkError.swift */,
+				E2C87DC028E32E3800C7DCE9 /* APIManager.swift */,
+				E2C87DC228E3316900C7DCE9 /* RequestManager.swift */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -456,6 +464,7 @@
 			children = (
 				E217930C28E232CB00415ACF /* RequestProtocol.swift */,
 				E217930D28E232CB00415ACF /* RequestType.swift */,
+				E2C87DC428E3378000C7DCE9 /* AuthTokenRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -625,6 +634,7 @@
 				AE6A3782269B57940054C842 /* SearchView.swift in Sources */,
 				8F1DFB632708C23300F35D07 /* AppUserDefaultsKeys.swift in Sources */,
 				847F49F626D3403B00B94FB8 /* APIConstants.swift in Sources */,
+				E2C87DC528E3378000C7DCE9 /* AuthTokenRequest.swift in Sources */,
 				845137832796234E00A4DA57 /* AnimalTypeSuggestionView.swift in Sources */,
 				8F1DFB692708C54900F35D07 /* APIToken.swift in Sources */,
 				84A59F78269E906400237A83 /* AnimalAttributes.swift in Sources */,
@@ -650,6 +660,7 @@
 				847F49F826D3614E00B94FB8 /* Animal.swift in Sources */,
 				AE6A3816269B5DCD0054C842 /* Gender.swift in Sources */,
 				18D775C522AD944300AE281E /* ContentView.swift in Sources */,
+				E2C87DC328E3316900C7DCE9 /* RequestManager.swift in Sources */,
 				8472DFAB26BF66EF000FEDAF /* LocationManager.swift in Sources */,
 				AE6A3822269B5E1A0054C842 /* Organization.swift in Sources */,
 				8F1DFB6F2708CA5100F35D07 /* DataParser.swift in Sources */,
@@ -663,6 +674,7 @@
 				8F1DFB612708B08300F35D07 /* AnimalRow.swift in Sources */,
 				84A59F76269E8DF000237A83 /* VideoLink.swift in Sources */,
 				84B0507426B0E45000E0A709 /* AnimalLocationView.swift in Sources */,
+				E2C87DC128E32E3800C7DCE9 /* APIManager.swift in Sources */,
 				AE6A3814269B5DC20054C842 /* Details.swift in Sources */,
 				84B0507026B0E2EB00E0A709 /* AnimalDetailRow.swift in Sources */,
 				8485B72726A4A3AB001874CB /* AnimalSearchType.swift in Sources */,
