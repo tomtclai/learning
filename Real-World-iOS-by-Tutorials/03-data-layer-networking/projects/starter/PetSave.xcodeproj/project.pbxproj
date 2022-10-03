@@ -12,6 +12,8 @@
 		18D775C722AD944400AE281E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D775C622AD944400AE281E /* Assets.xcassets */; };
 		18D775CA22AD944400AE281E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D775C922AD944400AE281E /* Preview Assets.xcassets */; };
 		18D775D822AD963800AE281E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D775DA22AD963800AE281E /* LaunchScreen.storyboard */; };
+		4261F7B128EB9D9D00751A32 /* AnimalsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261F7B028EB9D9D00751A32 /* AnimalsRequest.swift */; };
+		4261F7B328EB9F4B00751A32 /* AnimalsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261F7B228EB9F4B00751A32 /* AnimalsContainer.swift */; };
 		845137822796234E00A4DA57 /* EmptyResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451377F2796234E00A4DA57 /* EmptyResultsView.swift */; };
 		845137832796234E00A4DA57 /* AnimalTypeSuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845137802796234E00A4DA57 /* AnimalTypeSuggestionView.swift */; };
 		845137842796234E00A4DA57 /* SuggestionsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845137812796234E00A4DA57 /* SuggestionsGrid.swift */; };
@@ -90,6 +92,8 @@
 		18D775C922AD944400AE281E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		18D775CE22AD944400AE281E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D775DE22AD96B400AE281E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4261F7B028EB9D9D00751A32 /* AnimalsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsRequest.swift; sourceTree = "<group>"; };
+		4261F7B228EB9F4B00751A32 /* AnimalsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsContainer.swift; sourceTree = "<group>"; };
 		8451377F2796234E00A4DA57 /* EmptyResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyResultsView.swift; sourceTree = "<group>"; };
 		845137802796234E00A4DA57 /* AnimalTypeSuggestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTypeSuggestionView.swift; sourceTree = "<group>"; };
 		845137812796234E00A4DA57 /* SuggestionsGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionsGrid.swift; sourceTree = "<group>"; };
@@ -216,6 +220,14 @@
 				849C44EE26A26F70009899B0 /* AnimalsMock.json */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4261F7AF28EB9D8700751A32 /* animals */ = {
+			isa = PBXGroup;
+			children = (
+				4261F7B028EB9D9D00751A32 /* AnimalsRequest.swift */,
+			);
+			path = animals;
 			sourceTree = "<group>";
 		};
 		8485B72526A4A398001874CB /* models */ = {
@@ -377,7 +389,7 @@
 		AE6A377B269B56460054C842 /* api */ = {
 			isa = PBXGroup;
 			children = (
-				E217930B28E232A100415ACF /* Request */,
+				E217930B28E232A100415ACF /* request */,
 				8F1DFB642708C47200F35D07 /* token */,
 				8F1DFB6D2708CA5100F35D07 /* parser */,
 				8F1DFB6A2708CA2A00F35D07 /* network */,
@@ -423,6 +435,7 @@
 				8FDD2CA226B311AC00DBE33F /* Pagination.swift */,
 				847F49F726D3614E00B94FB8 /* Animal.swift */,
 				847F49F926D3621C00B94FB8 /* AnimalMock.swift */,
+				4261F7B228EB9F4B00751A32 /* AnimalsContainer.swift */,
 			);
 			path = animal;
 			sourceTree = "<group>";
@@ -459,14 +472,15 @@
 			path = user;
 			sourceTree = "<group>";
 		};
-		E217930B28E232A100415ACF /* Request */ = {
+		E217930B28E232A100415ACF /* request */ = {
 			isa = PBXGroup;
 			children = (
+				4261F7AF28EB9D8700751A32 /* animals */,
 				E217930C28E232CB00415ACF /* RequestProtocol.swift */,
 				E217930D28E232CB00415ACF /* RequestType.swift */,
 				E2C87DC428E3378000C7DCE9 /* AuthTokenRequest.swift */,
 			);
-			path = Request;
+			path = request;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -631,6 +645,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE6A381C269B5DF20054C842 /* Size.swift in Sources */,
+				4261F7B128EB9D9D00751A32 /* AnimalsRequest.swift in Sources */,
 				AE6A3782269B57940054C842 /* SearchView.swift in Sources */,
 				8F1DFB632708C23300F35D07 /* AppUserDefaultsKeys.swift in Sources */,
 				847F49F626D3403B00B94FB8 /* APIConstants.swift in Sources */,
@@ -656,6 +671,7 @@
 				84B0507226B0E3C300E0A709 /* AnimalContactsView.swift in Sources */,
 				8F1DFB6C2708CA2A00F35D07 /* NetworkError.swift in Sources */,
 				AE6A3786269B58350054C842 /* AnimalDetailsView.swift in Sources */,
+				4261F7B328EB9F4B00751A32 /* AnimalsContainer.swift in Sources */,
 				84A59F7E269E9BDB00237A83 /* AdoptionStatus.swift in Sources */,
 				847F49F826D3614E00B94FB8 /* Animal.swift in Sources */,
 				AE6A3816269B5DCD0054C842 /* Gender.swift in Sources */,

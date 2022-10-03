@@ -31,21 +31,44 @@
 /// THE SOFTWARE.
 
 import SwiftUI
-
+private let requestManager = RequestManager()
 struct AnimalsNearYouView: View {
   @State var animals: [Animal] = []
   @State var isLoading = true
 
   var body: some View {
     NavigationView {
-      Text("TODO: Animals Near You View")
-        .navigationTitle("Animals near you")
+      List{
+        ForEach(animals) { animal in
+          AnimalRow(animal: animal)
+        }
+      }
+      .task {
+        await fetchAnimals()
+      }
+      .listStyle(.plain)
+      .navigationTitle("Animals near you")
+      .overlay {
+        if isLoading {
+          ProgressView("Finding Animals near you...")
+        }
+      }
     }.navigationViewStyle(StackNavigationViewStyle())
   }
 
   @MainActor
   func stopLoading() async {
     isLoading = false
+  }
+  
+  func fetchAnimals() async {
+    do {
+      let animalsContainer: AnimalsContainer = try await requestManager.perform(AnimalsRequest.getAnimalsWith(page: 1, latitude: nil, longitude: nil)
+      )
+      self.animals = animalsContainer.animals
+      
+      await stopLoading()
+    } catch {}
   }
 }
 
