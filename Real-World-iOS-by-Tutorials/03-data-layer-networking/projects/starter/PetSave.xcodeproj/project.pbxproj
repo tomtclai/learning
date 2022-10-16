@@ -62,6 +62,8 @@
 		AE6A3825269FC7670054C842 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6A3824269FC7670054C842 /* User.swift */; };
 		E217930E28E232CB00415ACF /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E217930C28E232CB00415ACF /* RequestProtocol.swift */; };
 		E217930F28E232CB00415ACF /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E217930D28E232CB00415ACF /* RequestType.swift */; };
+		E26BEEAD28FC563F00F62DE1 /* APIManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26BEEAC28FC563F00F62DE1 /* APIManagerMock.swift */; };
+		E26BEEAF28FC56D600F62DE1 /* AccessTokenTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26BEEAE28FC56D600F62DE1 /* AccessTokenTestHelper.swift */; };
 		E2C87DC128E32E3800C7DCE9 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C87DC028E32E3800C7DCE9 /* APIManager.swift */; };
 		E2C87DC328E3316900C7DCE9 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C87DC228E3316900C7DCE9 /* RequestManager.swift */; };
 		E2C87DC528E3378000C7DCE9 /* AuthTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C87DC428E3378000C7DCE9 /* AuthTokenRequest.swift */; };
@@ -144,6 +146,8 @@
 		AED3FC3326A863A2006D2BEE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E217930C28E232CB00415ACF /* RequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		E217930D28E232CB00415ACF /* RequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
+		E26BEEAC28FC563F00F62DE1 /* APIManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerMock.swift; sourceTree = "<group>"; };
+		E26BEEAE28FC56D600F62DE1 /* AccessTokenTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenTestHelper.swift; sourceTree = "<group>"; };
 		E2C87DC028E32E3800C7DCE9 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		E2C87DC228E3316900C7DCE9 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		E2C87DC428E3378000C7DCE9 /* AuthTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenRequest.swift; sourceTree = "<group>"; };
@@ -298,6 +302,7 @@
 		AE5EA14526AC9AE300895E34 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				E26BEEA728FC560E00F62DE1 /* Core */,
 				8F4ADF5226EA4B7100F3CAA5 /* PetSaveTests.swift */,
 			);
 			path = Tests;
@@ -481,6 +486,47 @@
 				E2C87DC428E3378000C7DCE9 /* AuthTokenRequest.swift */,
 			);
 			path = request;
+			sourceTree = "<group>";
+		};
+		E26BEEA728FC560E00F62DE1 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E26BEEA828FC561300F62DE1 /* data */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		E26BEEA828FC561300F62DE1 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				E26BEEA928FC561800F62DE1 /* api */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		E26BEEA928FC561800F62DE1 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				E26BEEAA28FC562400F62DE1 /* mock */,
+				E26BEEAB28FC562800F62DE1 /* helper */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		E26BEEAA28FC562400F62DE1 /* mock */ = {
+			isa = PBXGroup;
+			children = (
+				E26BEEAC28FC563F00F62DE1 /* APIManagerMock.swift */,
+			);
+			path = mock;
+			sourceTree = "<group>";
+		};
+		E26BEEAB28FC562800F62DE1 /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				E26BEEAE28FC56D600F62DE1 /* AccessTokenTestHelper.swift */,
+			);
+			path = helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -702,6 +748,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E26BEEAF28FC56D600F62DE1 /* AccessTokenTestHelper.swift in Sources */,
+				E26BEEAD28FC563F00F62DE1 /* APIManagerMock.swift in Sources */,
 				8F4ADF5326EA4B7100F3CAA5 /* PetSaveTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
