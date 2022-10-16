@@ -35,7 +35,7 @@ private let requestManager = RequestManager()
 struct AnimalsNearYouView: View {
   @State var animals: [Animal] = []
   @State var isLoading = true
-
+  private let requestManager = RequestManager()
   var body: some View {
     NavigationView {
       List{

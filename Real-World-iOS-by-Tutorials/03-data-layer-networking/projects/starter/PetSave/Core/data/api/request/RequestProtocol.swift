@@ -53,8 +53,9 @@ extension RequestProtocol {
     }
 
     if addAuthorizationToken {
-      urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      urlRequest.setValue(authToken, forHTTPHeaderField: "Authorization")
     }
+    urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
     if !params.isEmpty {
       urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params)
