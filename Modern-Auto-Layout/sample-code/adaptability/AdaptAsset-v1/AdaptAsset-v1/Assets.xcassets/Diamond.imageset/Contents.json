@@ -1,0 +1,29 @@
+{
+  "images" : [
+    {
+      "filename" : "diamond.pdf",
+      "idiom" : "universal"
+    },
+    {
+      "height-class" : "regular",
+      "idiom" : "universal"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular"
+    },
+    {
+      "filename" : "diamond200.pdf",
+      "height-class" : "regular",
+      "idiom" : "universal",
+      "width-class" : "regular"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}
