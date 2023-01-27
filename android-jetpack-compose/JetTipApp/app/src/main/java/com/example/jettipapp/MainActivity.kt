@@ -2,6 +2,7 @@ package com.example.jettipapp
 
 import android.os.Bundle
 import android.renderscript.ScriptGroup.Input
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -43,9 +44,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-@Preview
 @Composable
-fun MainContent() {
+fun BillForm(
+    modifier: Modifier = Modifier,
+    onValChange: (String) -> Unit = {}
+) {
     Surface(
         modifier = Modifier
             .padding(2.dp)
@@ -72,6 +75,7 @@ fun MainContent() {
                     if (!validState) return@KeyboardActions
                     // todo - on value changed
                     keyboardController?.hide()
+                    onValChange(totalBillState.value.trim())
                 }
             )
             Text(text = "hello...")
@@ -80,6 +84,15 @@ fun MainContent() {
             Text(text = "<i forgot the rest of the lyrics>")
             Text(text = "hello from the other side")
         }
+    }
+}
+@OptIn(ExperimentalComposeUiApi::class)
+@Preview
+@Composable
+fun MainContent() {
+    BillForm() {
+        billAmt ->
+        Log.d("AMT", "MainContent: ${billAmt.toInt() * 100}")
     }
 }
 
