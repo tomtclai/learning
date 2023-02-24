@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -50,11 +51,15 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun BillForm(
     modifier: Modifier = Modifier,
+    range: IntRange = 1..100,
+    splitByState: MutableState<Int>,
+    tipAmountState: MutableState<Double>,
+    totalPerPersonState: MutableState<Double>,
     onValChange: (String) -> Unit = {}
 ) {
 
     Surface(
-        modifier = Modifier
+        modifier = modifier
             .padding(2.dp)
             .fillMaxWidth(),
         shape = RoundedCornerShape(corner = CornerSize(8.dp)),
@@ -72,22 +77,11 @@ fun BillForm(
         val sliderPositionState = remember {
             mutableStateOf(0f)//this is a float
         }
-        val splitByState = remember {
-            mutableStateOf(1)
-        }
         val tipPercentage = (sliderPositionState.value * 100).toInt()
-        val range = IntRange(start = 1, endInclusive = 100)
-
-        val tipAmountState = remember {
-            mutableStateOf(0.0)
-        }
-        val totalPerPersonState = remember {
-            mutableStateOf(0.0)
-        }
         // he put the topHeader here, but it doesnt work for me (doesn't show up)
 
 
-        Column(modifier = Modifier.padding(6.dp),
+        Column(modifier = modifier.padding(6.dp),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.Start) {
                 TopHeader(totalPerPerson = totalPerPersonState.value)
@@ -184,7 +178,21 @@ fun BillForm(
 @Preview
 @Composable
 fun MainContent() {
-    BillForm() {
+    val splitByState = remember {
+        mutableStateOf(1)
+    }
+
+    val range = IntRange(start = 1, endInclusive = 100)
+
+    val tipAmountState = remember {
+        mutableStateOf(0.0)
+    }
+    val totalPerPersonState = remember {
+        mutableStateOf(0.0)
+    }
+    BillForm(splitByState = splitByState,
+    tipAmountState = tipAmountState,
+    totalPerPersonState = totalPerPersonState) {
         billAmt ->
         Log.d("AMT", "MainContent: ${billAmt.toInt() * 100}")
     }
