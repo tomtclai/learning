@@ -98,16 +98,16 @@ fun BillForm(
                 )
 
                     if (validState) {
-                Row(modifier = Modifier.padding(3.dp),
+                Row(modifier = modifier.padding(3.dp),
                     horizontalArrangement =  Arrangement.Start)
                 {
                     Text(text = "Split",
-                        modifier = Modifier.align(
+                        modifier = modifier.align(
                             alignment = Alignment.CenterVertically
                         ))
-                    Spacer(modifier = Modifier.width(120.dp))
+                    Spacer(modifier = modifier.width(120.dp))
 
-                    Row(modifier = Modifier.padding(horizontal = 3.dp),
+                    Row(modifier = modifier.padding(horizontal = 3.dp),
                         horizontalArrangement = Arrangement.End
                     ) {
                         RoundIconButton(
@@ -123,7 +123,7 @@ fun BillForm(
                                 }
                             })
                         Text(text = "${splitByState.value}",
-                            modifier = Modifier
+                            modifier = modifier
                                 .align(Alignment.CenterVertically)
                                 .padding(start = 9.dp, end = 9.dp),
                         )
@@ -140,16 +140,16 @@ fun BillForm(
                             })
                     }
                 }
-                Row(modifier = Modifier.padding(horizontal = 3.dp, vertical = 12.dp)) {
+                Row(modifier = modifier.padding(horizontal = 3.dp, vertical = 12.dp)) {
                     Text(text = "Tip",
-                        modifier = Modifier.align(Alignment.CenterVertically))
-                    Spacer(modifier = Modifier.width(200.dp))
+                        modifier = modifier.align(Alignment.CenterVertically))
+                    Spacer(modifier = modifier.width(200.dp))
                     Text(text = "$ ${tipAmountState.value}")
                 }
                 Column(verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(text = "$tipPercentage %")
-                    Spacer(modifier = Modifier.height(14.dp))
+                    Spacer(modifier = modifier.height(14.dp))
                     Slider(value = sliderPositionState.value, onValueChange = { newVal ->
                         Log.d("Slider", "BillForm: $newVal")
                         sliderPositionState.value = newVal
@@ -191,11 +191,9 @@ fun MainContent() {
         mutableStateOf(0.0)
     }
     BillForm(splitByState = splitByState,
-    tipAmountState = tipAmountState,
-    totalPerPersonState = totalPerPersonState) {
-        billAmt ->
-        Log.d("AMT", "MainContent: ${billAmt.toInt() * 100}")
-    }
+        range = range,
+        tipAmountState = tipAmountState,
+        totalPerPersonState = totalPerPersonState) {}
 }
 
 @Composable
