@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.movie.screens.MovieScreens
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -60,6 +61,7 @@ fun MainContent(navController: NavController,
             items(items = movieList) {
                 MovieRow(movie = it) {movie ->
                     Log.d("MOVIE", "$movie")
+                    navController.navigate(route = MovieScreens.DetailsScreen.name)
                 }
             }
         }

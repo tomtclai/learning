@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.movie.screens.MovieScreens
 import com.example.movie.screens.home.HomeScreen
+import com.example.movie.screens.home.details.DetailsScreen
 
 @Composable
 fun MovieNavigation() {
@@ -15,6 +16,10 @@ fun MovieNavigation() {
         composable(MovieScreens.HomeScreen.name) {
             // pass where it should lead
              HomeScreen(navController = navController)
+        }
+
+        composable(MovieScreens.DetailsScreen.name) {
+            DetailsScreen(navController = navController)
         }
     }
 }
