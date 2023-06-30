@@ -8,6 +8,15 @@
 import SwiftUI
 
 extension Animation {
+    // use https://cubic-bezier.com/
+    static var custom: Animation {
+        Animation.timingCurve(0.08,2.07,1,-2.19)
+    }
+
+    static func custom(duration: TimeInterval = 0.2) -> Animation {
+        Animation.timingCurve(0.08,2.07,1,-2.19, duration: duration)
+    }
+
     static var easeInOutBack: Animation {
         Animation.timingCurve(0.5, -0.5, 0.5, 1.5)
     }
@@ -42,7 +51,7 @@ struct CustomTimingCurves2: SelfCreatingView {
                 offset1 = 200
             }
             
-            withAnimation(.easeInOutBackSteep(duration: 2).repeatForever(autoreverses: true)) {
+            withAnimation(.custom(duration: 2).repeatForever(autoreverses: true)) {
                 offset2 = 200
             }
         }

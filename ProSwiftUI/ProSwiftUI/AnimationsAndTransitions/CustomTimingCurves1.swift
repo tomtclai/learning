@@ -15,6 +15,8 @@ extension Animation {
     static func edgeBounce(duration: TimeInterval = 0.2) -> Animation {
         Animation.timingCurve(0, 1, 1, 0, duration: duration)
     }
+
+    
 }
 
 struct CustomTimingCurves1: SelfCreatingView {
@@ -23,7 +25,7 @@ struct CustomTimingCurves1: SelfCreatingView {
     var body: some View {
         Text("Hello, world!")
             .offset(y: offset)
-            .animation(.edgeBounce(duration: 2).repeatForever(autoreverses: true), value: offset)
+            .animation(.edgeBounce(duration: 2).repeatCount(3, autoreverses: true), value: offset)
             .onTapGesture {
                 offset = 200
             }
