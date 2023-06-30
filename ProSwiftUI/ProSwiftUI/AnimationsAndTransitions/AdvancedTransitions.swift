@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ConfettiModifier<T: ShapeStyle>: ViewModifier {
-    @State private var circleSize = 0.00001
+    @State private var circleSize = 0.00001  // Swift UI cannot draw 0 sized shapes
     @State private var strokeMultiplier = 1.0
     
     @State private var confettiIsHidden = true
@@ -16,64 +16,69 @@ struct ConfettiModifier<T: ShapeStyle>: ViewModifier {
     @State private var confettiScale = 1.0
     
     @State private var contentsScale = 0.00001
-    
-    private let speed = 0.3
+
+    // Slowing it down to look at it 
+    //    private let speed = 0.3
+    private let speed = 5.0
 
     var color: T
     var size: Double
 
     func body(content: Content) -> some View {
-        content
-            .hidden()
-            .padding(10)
+        content.hidden()
+            .padding(10) // Padding
             .overlay(
                 ZStack {
                     GeometryReader { proxy in
                         Circle()
                             .strokeBorder(color, lineWidth: proxy.size.width / 2 * strokeMultiplier)
                             .scaleEffect(circleSize)
-                        
+
                         ForEach(0..<15) { i in
                             Circle()
                                 .fill(color)
                                 .frame(width: size + sin(Double(i)), height: size + sin(Double(i)))
                                 .scaleEffect(confettiScale)
-                                .offset(x: proxy.size.width / 2 * confettiMovement)
-                                .offset(x: proxy.size.width / 2 * confettiMovement + (i.isMultiple(of: 2) ? size : 0))
+                                //.offset(x: proxy.size.width / 2 * confettiMovement)// boring
+                                .offset(x: proxy.size.width / 2 * confettiMovement + (i.isMultiple(of: 2) ? size: 0))// random
                                 .rotationEffect(.degrees(24 * Double(i)))
                                 .offset(x: (proxy.size.width - size) / 2, y: (proxy.size.height - size) / 2)
                                 .opacity(confettiIsHidden ? 0 : 1)
+
                         }
                     }
-                    
-                    content
-                        .scaleEffect(contentsScale)
-                }
-            )
-            .padding(-10)
-            .onAppear {
-                withAnimation(.easeIn(duration: speed)) {
-                    circleSize = 1
-                }
-                
-                withAnimation(.easeOut(duration: speed).delay(speed)) {
-                    strokeMultiplier = 0.00001
-                }
-                
-                withAnimation(.easeOut(duration: speed).delay(speed * 1.25)) {
-                    confettiIsHidden = false
-                    confettiMovement = 1.2
+                    content.scaleEffect(contentsScale)
+
                 }
 
-                withAnimation(.easeOut(duration: speed).delay(speed * 2)) {
-                    confettiScale = 0.00001
+                // Circle here
+                // Stroke from outside to inside
+
+            )
+            .padding(-10) // Un pad
+            .onAppear {
+
+                withAnimation(.easeIn(duration: speed)){
+                    circleSize = 1
+                }
+                // delay so that it runs second
+                withAnimation(.easeOut(duration: speed).delay(speed)){
+                    strokeMultiplier = 0.00001
                 }
 
                 withAnimation(.interpolatingSpring(stiffness: 50, damping: 5).delay(speed)) {
                     contentsScale = 1
                 }
-            }
 
+                withAnimation(.easeOut(duration: speed).delay(speed * 1.25)){
+                    confettiIsHidden = false
+                    confettiMovement = 1.2
+                }
+
+                withAnimation(.easeOut(duration: speed).delay(speed * 2)){
+                    confettiScale = 0.00001
+                }
+            }
     }
 }
 
@@ -98,21 +103,20 @@ struct AdvancedTransitions: SelfCreatingView {
     @State private var isFavorite = false
 
     var body: some View {
-        VStack(spacing: 60) {
-            ForEach([Font.body, Font.largeTitle, Font.system(size: 72)], id: \.self) { font in
+        VStack(spacing: 60){
+            ForEach([Font.body, Font.largeTitle, Font.system(size: 200)], id: \.self) { font in
                 Button {
                     isFavorite.toggle()
                 } label: {
                     if isFavorite {
                         Image(systemName: "heart.fill")
-                            .foregroundStyle(.red)
-                            .transition(.confetti(color: .red, size: 3))
+                            .foregroundColor(.red)
+                            .transition(.confetti( color: .angularGradient(colors: [.red, .yellow, .green, .blue, .purple, .red], center: .center, startAngle: .zero, endAngle: .degrees(360))))
                     } else {
-                        Image(systemName: "heart")
-                            .foregroundStyle(.gray)
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(.gray)
                     }
-                }
-                .font(font)
+                }.font(font)
             }
         }
     }

@@ -36,7 +36,7 @@ struct OverridingAnimations2: SelfCreatingView {
             scale += 1
         }
         .scaleEffect(scale)
-        .motionAnimation(.default, value: scale)
+        .motionAnimation(.default, value: scale)//overrides all the time
     }
 }
 

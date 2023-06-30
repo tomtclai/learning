@@ -20,6 +20,7 @@ struct OverridingAnimations3: SelfCreatingView {
     
     var body: some View {
         Button("Tap Me") {
+            // overrides on case by case basis
             withoutAnimation {
                 scale += 1
             }

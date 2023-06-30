@@ -12,14 +12,18 @@ extension OverridingAnimations5 {
         var useRedFill = false
         
         var body: some View {
-            LazyVGrid(columns: [.init(.adaptive(minimum: 64))]) {
-                ForEach(0..<30) { i in
-                    Circle()
-                        .fill(useRedFill ? .red : .blue)
-                        .frame(height: 64)
-                        .transaction { transaction in
-                            transaction.animation = transaction.animation?.delay(Double(i) / 10)
-                        }
+            ScrollView{
+                LazyVGrid(columns: [.init(.adaptive(minimum: 64))]) {
+                    ForEach(0..<50) { i in
+                        Circle()
+                            .fill(useRedFill ? .red : .blue)
+                            .frame(height: 64)
+                        // Each circle can examine and override the transactions
+                        // Use this modifier to change or replace the animation used in a view
+                            .transaction { transaction in
+                                transaction.animation = transaction.animation?.delay(Double(i) / 50)
+                            }
+                    }
                 }
             }
         }

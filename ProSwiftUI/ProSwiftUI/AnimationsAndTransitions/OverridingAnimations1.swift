@@ -17,6 +17,8 @@ extension OverridingAnimations1 {
     }
 }
 
+
+
 struct OverridingAnimations1: SelfCreatingView {
     @State var scale = 1.0
 
@@ -27,6 +29,7 @@ struct OverridingAnimations1: SelfCreatingView {
             }
         }
         .scaleEffect(scale)
+        .animation(.default, value: scale)
     }
 }
 

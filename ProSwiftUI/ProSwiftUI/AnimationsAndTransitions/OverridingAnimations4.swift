@@ -20,7 +20,9 @@ struct OverridingAnimations4: SelfCreatingView {
 
     var body: some View {
         Button("Tap Me") {
-            withHighPriorityAnimation(.linear(duration: 3)) {
+            // not only remove but put in a new aniamtion
+            // do this instead
+            withHighPriorityAnimation(.linear(duration: 0.1)) {
                 scale += 1
             }
         }
