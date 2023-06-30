@@ -32,11 +32,16 @@ struct UnderstandingIdentity5: SelfCreatingView {
 
     var body: some View {
         VStack {
+
+            // This works
+            ExampleView(scale: 1).hidden(shouldHide)
+
+            // This does not work (view destroyed, tap count is lost)
             if shouldHide {
                 ExampleView(scale: 1)
                     .hidden()
             } else {
-                ExampleView(scale: 1)
+                ExampleView(scale: 1).hidden(shouldHide)
             }
 
             Button("Toggle") {

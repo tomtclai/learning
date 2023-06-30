@@ -11,7 +11,7 @@ struct DiscardingIdentity3: SelfCreatingView {
     let colors: [Color] = [.blue, .cyan, .gray, .green, .indigo, .mint, .orange, .pink, .purple, .red]
     let symbols = ["run", "archery", "basketball", "bowling", "dance", "golf", "hiking", "jumprope", "rugby", "tennis", "volleyball", "yoga"]
     @State private var id = UUID()
-    
+
     var body: some View {
         VStack {
             ZStack {
@@ -28,7 +28,7 @@ struct DiscardingIdentity3: SelfCreatingView {
             
             Button("Change") {
                 withAnimation(.easeInOut(duration: 1)) {
-                    id = UUID()
+                    id = UUID() // makes transition happen again
                 }
             }
             .buttonStyle(.borderedProminent)

@@ -15,9 +15,10 @@ struct DiscardingIdentity1: SelfCreatingView {
             List(items, id: \.self) {
                 Text("Item \($0)")
             }
-            
+            .id(UUID())// new ID
+            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))) // control animation
             Button("Shuffle") {
-                withAnimation {
+                withAnimation(.easeInOut(duration: 1)) {
                     items.shuffle()
                 }
             }

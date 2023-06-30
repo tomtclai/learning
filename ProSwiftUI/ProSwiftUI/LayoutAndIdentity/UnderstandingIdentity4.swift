@@ -24,6 +24,7 @@ extension UnderstandingIdentity4 {
 struct UnderstandingIdentity4: SelfCreatingView {
     @State private var scaleUp = false
 
+    // This returns same view type so it has same identity
     var exampleView: some View {
         if scaleUp {
             return ExampleView(scale: 2)
@@ -34,7 +35,19 @@ struct UnderstandingIdentity4: SelfCreatingView {
 
     var body: some View {
         VStack {
+
+            // This works
             exampleView
+
+            // This does not work (view destroyed, tap count is lost)
+            if scaleUp {
+                ExampleView(scale: 2)
+            } else {
+                ExampleView(scale: 1)
+            }
+
+            // This also works
+            ExampleView(scale: scaleUp ? 2 : 1)
 
             Toggle("Scale Up", isOn: $scaleUp.animation())
         }

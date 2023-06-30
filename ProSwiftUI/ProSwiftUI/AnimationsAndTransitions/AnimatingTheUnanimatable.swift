@@ -9,7 +9,8 @@ import SwiftUI
 
 struct AnimatableZIndexModifier: ViewModifier, Animatable {
     var index: Double
-    
+
+    // animatableData is in the protocol
     var animatableData: Double {
         get { index }
         set { print(newValue); index = newValue }
@@ -42,6 +43,7 @@ struct AnimatingTheUnanimatable: SelfCreatingView {
             ZStack {
                 RoundedRectangle(cornerRadius: 25)
                     .fill(.red)
+//                    .zIndex(redAtFront ? 6 : 0)
                     .animatableZIndex(redAtFront ? 6 : 0)
 
                 ForEach(0..<5) { i in
