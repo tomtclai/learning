@@ -22,9 +22,9 @@ struct ContentView: View {
                     }
                 }
             }
-        }
-        .navigationDestination(for: MenuItem.self) { item in
-            ItemDetail(item: item)
+            .navigationDestination(for: MenuItem.self) { item in
+                ItemDetail(item: item)
+            }
         }
         .navigationTitle("Menu")
         .listStyle(GroupedListStyle())

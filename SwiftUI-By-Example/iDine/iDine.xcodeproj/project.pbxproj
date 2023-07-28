@@ -17,6 +17,8 @@
 		420A589A2A7433400010A8A5 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420A58262A7433400010A8A5 /* Helper.swift */; };
 		420A589C2A7460270010A8A5 /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420A589B2A7460270010A8A5 /* ItemRow.swift */; };
 		420A589E2A7464A50010A8A5 /* ItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420A589D2A7464A50010A8A5 /* ItemDetail.swift */; };
+		420A58A02A746B4B0010A8A5 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420A589F2A746B4B0010A8A5 /* OrderView.swift */; };
+		420A58A22A746E290010A8A5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 420A58A12A746E290010A8A5 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		420A58262A7433400010A8A5 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		420A589B2A7460270010A8A5 /* ItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
 		420A589D2A7464A50010A8A5 /* ItemDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetail.swift; sourceTree = "<group>"; };
+		420A589F2A746B4B0010A8A5 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
+		420A58A12A746E290010A8A5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +52,7 @@
 		420A56AE2A7432250010A8A5 = {
 			isa = PBXGroup;
 			children = (
+				420A58A12A746E290010A8A5 /* README.md */,
 				420A56B92A7432250010A8A5 /* iDine */,
 				420A56B82A7432250010A8A5 /* Products */,
 			);
@@ -67,6 +72,7 @@
 				420A56BA2A7432250010A8A5 /* iDineApp.swift */,
 				420A56BC2A7432250010A8A5 /* ContentView.swift */,
 				420A589D2A7464A50010A8A5 /* ItemDetail.swift */,
+				420A589F2A746B4B0010A8A5 /* OrderView.swift */,
 				420A589B2A7460270010A8A5 /* ItemRow.swift */,
 				420A58262A7433400010A8A5 /* Helper.swift */,
 				420A57B22A74333F0010A8A5 /* menu.json */,
@@ -147,6 +153,7 @@
 			files = (
 				420A58272A7433400010A8A5 /* menu.json in Resources */,
 				420A56C32A7432260010A8A5 /* Preview Assets.xcassets in Resources */,
+				420A58A22A746E290010A8A5 /* README.md in Resources */,
 				420A56BF2A7432260010A8A5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				420A589E2A7464A50010A8A5 /* ItemDetail.swift in Sources */,
+				420A58A02A746B4B0010A8A5 /* OrderView.swift in Sources */,
 				420A58282A7433400010A8A5 /* Order.swift in Sources */,
 				420A56BD2A7432250010A8A5 /* ContentView.swift in Sources */,
 				420A589A2A7433400010A8A5 /* Helper.swift in Sources */,
