@@ -61,11 +61,11 @@
 			isa = PBXGroup;
 			children = (
 				420A56BA2A7432250010A8A5 /* iDineApp.swift */,
+				420A56BC2A7432250010A8A5 /* ContentView.swift */,
 				420A58262A7433400010A8A5 /* Helper.swift */,
 				420A57B22A74333F0010A8A5 /* menu.json */,
 				420A57B42A7433400010A8A5 /* Menu.swift */,
 				420A57B32A7433400010A8A5 /* Order.swift */,
-				420A56BC2A7432250010A8A5 /* ContentView.swift */,
 				420A56BE2A7432260010A8A5 /* Assets.xcassets */,
 				420A56C02A7432260010A8A5 /* iDine.entitlements */,
 				420A56C12A7432260010A8A5 /* Preview Content */,
@@ -303,7 +303,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = lai.iDine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -341,7 +343,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = lai.iDine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
