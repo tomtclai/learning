@@ -22,6 +22,7 @@
 		420A58A42A7473C80010A8A5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420A58A32A7473C80010A8A5 /* MainView.swift */; };
 		E28437A22DAC54DB00755009 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28437A12DAC54D700755009 /* FavoriteView.swift */; };
 		E28437A42DAC554100755009 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28437A32DAC553D00755009 /* Favorites.swift */; };
+		E28437BD2DAC606B00755009 /* TextTestingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28437BC2DAC606B00755009 /* TextTestingView.swift */; };
 		E2A2BDF42A776B5D00E247CB /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A2BDF32A776B5D00E247CB /* CheckoutView.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		420A58A32A7473C80010A8A5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		E28437A12DAC54D700755009 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		E28437A32DAC553D00755009 /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
+		E28437BC2DAC606B00755009 /* TextTestingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTestingView.swift; sourceTree = "<group>"; };
 		E2A2BDF32A776B5D00E247CB /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +79,7 @@
 		420A56B92A7432250010A8A5 /* iDine */ = {
 			isa = PBXGroup;
 			children = (
+				E28437BC2DAC606B00755009 /* TextTestingView.swift */,
 				E28437A12DAC54D700755009 /* FavoriteView.swift */,
 				E2A2BDF32A776B5D00E247CB /* CheckoutView.swift */,
 				420A58A32A7473C80010A8A5 /* MainView.swift */,
@@ -179,6 +182,7 @@
 			files = (
 				420A589E2A7464A50010A8A5 /* ItemDetail.swift in Sources */,
 				420A58A42A7473C80010A8A5 /* MainView.swift in Sources */,
+				E28437BD2DAC606B00755009 /* TextTestingView.swift in Sources */,
 				E2A2BDF42A776B5D00E247CB /* CheckoutView.swift in Sources */,
 				420A58A02A746B4B0010A8A5 /* OrderView.swift in Sources */,
 				420A58282A7433400010A8A5 /* Order.swift in Sources */,
@@ -327,7 +331,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
@@ -367,7 +371,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
