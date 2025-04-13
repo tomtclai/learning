@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ItemDetail: View {
     @EnvironmentObject var order: Order
+    @EnvironmentObject var favs: Favorites
     let item: MenuItem
     var body: some View {
         VStack {
@@ -32,7 +33,13 @@ struct ItemDetail: View {
             Spacer()
         }
         .navigationTitle(item.name)
+        .navigationBarItems(trailing:
+            Button("❤️") {
+                favs.add(item: item)
+            }
+        )
         .navigationBarTitleDisplayMode(.inline)
+        
 
     }
 }

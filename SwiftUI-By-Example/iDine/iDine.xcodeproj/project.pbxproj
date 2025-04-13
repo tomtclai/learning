@@ -20,6 +20,8 @@
 		420A58A02A746B4B0010A8A5 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420A589F2A746B4B0010A8A5 /* OrderView.swift */; };
 		420A58A22A746E290010A8A5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 420A58A12A746E290010A8A5 /* README.md */; };
 		420A58A42A7473C80010A8A5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420A58A32A7473C80010A8A5 /* MainView.swift */; };
+		E28437A22DAC54DB00755009 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28437A12DAC54D700755009 /* FavoriteView.swift */; };
+		E28437A42DAC554100755009 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28437A32DAC553D00755009 /* Favorites.swift */; };
 		E2A2BDF42A776B5D00E247CB /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A2BDF32A776B5D00E247CB /* CheckoutView.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,8 @@
 		420A589F2A746B4B0010A8A5 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 		420A58A12A746E290010A8A5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		420A58A32A7473C80010A8A5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		E28437A12DAC54D700755009 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		E28437A32DAC553D00755009 /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		E2A2BDF32A776B5D00E247CB /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,6 +77,7 @@
 		420A56B92A7432250010A8A5 /* iDine */ = {
 			isa = PBXGroup;
 			children = (
+				E28437A12DAC54D700755009 /* FavoriteView.swift */,
 				E2A2BDF32A776B5D00E247CB /* CheckoutView.swift */,
 				420A58A32A7473C80010A8A5 /* MainView.swift */,
 				420A56BA2A7432250010A8A5 /* iDineApp.swift */,
@@ -84,6 +89,7 @@
 				420A57B22A74333F0010A8A5 /* menu.json */,
 				420A57B42A7433400010A8A5 /* Menu.swift */,
 				420A57B32A7433400010A8A5 /* Order.swift */,
+				E28437A32DAC553D00755009 /* Favorites.swift */,
 				420A56BE2A7432260010A8A5 /* Assets.xcassets */,
 				420A56C02A7432260010A8A5 /* iDine.entitlements */,
 				420A56C12A7432260010A8A5 /* Preview Content */,
@@ -176,9 +182,11 @@
 				E2A2BDF42A776B5D00E247CB /* CheckoutView.swift in Sources */,
 				420A58A02A746B4B0010A8A5 /* OrderView.swift in Sources */,
 				420A58282A7433400010A8A5 /* Order.swift in Sources */,
+				E28437A22DAC54DB00755009 /* FavoriteView.swift in Sources */,
 				420A56BD2A7432250010A8A5 /* ContentView.swift in Sources */,
 				420A589A2A7433400010A8A5 /* Helper.swift in Sources */,
 				420A589C2A7460270010A8A5 /* ItemRow.swift in Sources */,
+				E28437A42DAC554100755009 /* Favorites.swift in Sources */,
 				420A58292A7433400010A8A5 /* Menu.swift in Sources */,
 				420A56BB2A7432250010A8A5 /* iDineApp.swift in Sources */,
 			);

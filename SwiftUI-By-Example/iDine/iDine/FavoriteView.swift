@@ -1,5 +1,5 @@
 //
-//  OrderView.swift
+//  ItemDetail.swift
 //  iDine
 //
 //  Created by Lai, Tom on 7/28/23.
@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct OrderView: View {
-    @EnvironmentObject var order: Order
+struct FavoriteView: View {
+    @EnvironmentObject var favs: Favorites
     
     func deleteItems(at offsets: IndexSet) {
-        order.items.remove(atOffsets: offsets)
+        favs.items.remove(atOffsets: offsets)
     }
     var body: some View {
         NavigationStack {
             List {
                 Section {
-                    ForEach(order.items) { item in
+                    ForEach(favs.items) { item in
                         HStack {
                             Text(item.name)
                             Spacer()
@@ -26,15 +26,8 @@ struct OrderView: View {
                     }
                     .onDelete(perform: deleteItems)
                 }
-
-                Section {
-                    NavigationLink("Place Order") {
-                        CheckoutView()
-                    }
-                }
-                .disabled(order.items.isEmpty)
             }
-            .navigationTitle("Order")
+            .navigationTitle("Favorites")
             .toolbar {
                 EditButton()
             }
@@ -43,13 +36,13 @@ struct OrderView: View {
 }
 
 
-struct OrderView_Previews: PreviewProvider {
-    static var order : Order {
-        let thisOrder = Order()
-        thisOrder.add(item: MenuItem.example)
-        return thisOrder
+struct FavoriteView_Previews: PreviewProvider {
+    static var favs : Favorites {
+        let list = Favorites()
+        list.add(item: MenuItem.example)
+        return list
     }
     static var previews: some View {
-        OrderView().environmentObject(order)
+        FavoriteView().environmentObject(favs)
     }
 }
