@@ -38,6 +38,8 @@ import Combine
 
 class AppState: ObservableObject {
   @Published var count = 0
+    
+  @Published var favoritePrimes: [Int] = []
 }
 
 struct CounterView: View {
@@ -75,13 +77,38 @@ struct CounterView: View {
 struct isPrimeModalView: View {
     @ObservedObject var state: AppState
     var body: some View {
-        if isPrime(state.count) {
-            Text("it prime! \(self.state.count)")
+        VStack {
+            if isPrime(state.count) {
+                Text("it's prime")
+                
+                if state.favoritePrimes.contains(state.count) {
+                    Button(action:{
+                        state.favoritePrimes.removeAll(where: {$0 == state.count})
+                    }) {
+                        Text("Save to favorites")
+                    }
+                } else {
+                    Button(action:{
+                        state.favoritePrimes.append(state.count)
+                    }) {
+                        Text("Remove from favorites")
+                    }
+                }
+                
+            } else {
+                Text("Naur")
+            }
         }
-        
     }
 }
-
+func isPrime(_ num: Int) -> Bool {
+    if num <= 1 { return false }
+    if num <= 3 { return false }
+    for i in 2...Int(sqrtf(Float(num))) {
+        if num % i == 0 { return false }
+    }
+    return true
+}
 #Preview {
     ContentView(state: AppState())
 //    CounterView(state: AppState())
