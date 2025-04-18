@@ -1,4 +1,4 @@
 Title | SwiftUI and State Management
 ------|-------------------
-Author| PointFree
+Author| Brandon Williams and Stephen Celis
 Link  | https://www.pointfree.co/episodes/ep66-swiftui-and-state-management-part-3
