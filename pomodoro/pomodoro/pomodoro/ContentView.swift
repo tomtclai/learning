@@ -30,7 +30,7 @@ struct ContentView: View {
                     }
                 }
                 if timer.state == .paused {
-                    CircleButton(icon: "playfill") {
+                    CircleButton(icon: "play.fill") {
                         timer.resume()
                     }
                 }

@@ -19,10 +19,7 @@ enum TimerMode: String {
 
 @Observable
 class PomodoroTimer {
-    // prop: how many seconds left
-    //                        passed
-    // prop: how done is the timer 0.0-1.0
-    // methods: play pause resume reset skip
+    
     var mode: TimerMode = .work
     var state: TimerState = .idle
     var workDuration: TimeInterval
@@ -69,11 +66,11 @@ class PomodoroTimer {
     func resume(){
         createTimer()
         state = .running
-        createTimer()
     }
     func pause(){
         secondsPassedBeforePause = secondsPassed
         dateStarted = Date.now
+        state = .paused
         killTimer()
     }
     func reset(){
@@ -90,6 +87,7 @@ class PomodoroTimer {
     }
     func createTimer() {
         // notif
+        killTimer()
         PomodoroNotification.scheduleNotification(timeInterval: TimeInterval(secondsLeft), title: "Pomodoro", body: "Time over")
         // timer
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {_ in
@@ -97,6 +95,7 @@ class PomodoroTimer {
         }
     }
     func killTimer() {
+        
         timer?.invalidate()
         timer = nil
     }
