@@ -13,6 +13,7 @@ struct iDineApp: App {
     @StateObject var favs = Favorites()
     var body: some Scene {
         WindowGroup {
+            TextTestingView()
             MainView()
                 .environmentObject(order)
                 .environmentObject(favs)

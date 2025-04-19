@@ -80,6 +80,15 @@ struct TextTestingView: View {
         let column = [GridItem(.flexible(maximum: .infinity))]
         ScrollView{
             LazyVGrid(columns: column) {
+                Text("This is regular text.")
+                Text("* This is **bold** text, this is *italic* text, and this is ***bold, italic*** text.")
+                Text("~~A strikethrough example~~")
+                Text("`Monospaced works too`")
+                Text("Visit Apple: [click here](https://apple.com)")
+                Text("privacySensitive example").font(.title)
+                Text("1234 5678 9120 3456")
+                    .privacySensitive()
+                Text("privacySensitive() blurs the text if you press home")
                 Label("Your account", systemImage: "person.crop.circle")
                     .font(.title)
                 Label {
