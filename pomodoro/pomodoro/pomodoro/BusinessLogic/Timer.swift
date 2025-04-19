@@ -55,6 +55,7 @@ class PomodoroTimer {
     }
     var secondsPassedBeforePause: Int = 0
     var timer: Timer?
+    
     init(workDuration: TimeInterval, restDuration: TimeInterval) {
         self.workDuration = workDuration
         self.restDuration = restDuration
@@ -113,10 +114,16 @@ class PomodoroTimer {
     }
     
     func formatSeconds(_ value: Int) -> String {
+        let interval = TimeInterval(value)
         let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [ .day, .hour, .minute, .second]
         formatter.unitsStyle = .positional
-        formatter.zeroFormattingBehavior = .default
-        return formatter.string(from: TimeInterval(value)) ?? ""
+        if value < 60 {
+            formatter.allowedUnits = [.minute, .second]
+            formatter.zeroFormattingBehavior = [.pad]
+        } else {
+            formatter.allowedUnits = [.day, .hour, .minute, .second]
+            formatter.zeroFormattingBehavior = [.pad, .dropLeading]
+        }
+        return formatter.string(from: interval) ?? "0:00"
     }
 }

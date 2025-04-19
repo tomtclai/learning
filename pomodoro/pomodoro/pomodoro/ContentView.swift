@@ -9,7 +9,7 @@ import SwiftUI
 struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     @State var displayWarning = false
-    private var timer = PomodoroTimer(workDuration: 10, restDuration: 5)
+    private var timer = PomodoroTimer(workDuration: 600, restDuration: 60)
     var body: some View {
         VStack {
             CircleTimer(fraction: timer.fractionPassed, primaryText: timer.secondsLeftString, secondaryText: timer.mode.rawValue)
