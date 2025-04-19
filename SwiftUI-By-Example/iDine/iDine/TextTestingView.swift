@@ -74,58 +74,80 @@ struct TextTestingView: View {
     @State private var alignment = TextAlignment.leading
     @State private var ingredients = [String]()
     @State private var textKerningTrackingAmmount = 50.0
+    @State private var paulsName = "Paul"
+    
     var body: some View {
-        List {
-            // 10 min timer.
-            Text(Date.now.addingTimeInterval(600), style:.timer)
-            Text("ffi").font(.custom("AmericanTypewriter", size: 72))
-                .kerning(textKerningTrackingAmmount)
-            Text("ffi").font(.custom("AmericanTypewriter", size: 72))
-                .tracking(textKerningTrackingAmmount)
-            Slider(value: $textKerningTrackingAmmount, in: -10...100) {
-                Text("spacing between chars")
-            }
-            Button("Add ingredients") {
-                let possibles = ["Egg", "Sausage", "Bacon", "Spam"]
-                
-                if let newIngredient = possibles.randomElement() {
-                    ingredients.append(newIngredient)
+        let column = [GridItem(.flexible(maximum: .infinity))]
+        ScrollView{
+            LazyVGrid(columns: column) {
+                Label("Your account", systemImage: "person.crop.circle")
+                    .font(.title)
+                Label {
+                    Text("Paul hudson")
+                        .font(.largeTitle)
+                } icon: {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(.blue)
+                        .frame(width: 60, height: 60)
                 }
-            }
-            Text(ingredients, format:.list(type: .and))
-            
-            Picker("Text Alighment", selection: $alignment) {
-                ForEach(alignments, id: \.self) { alignment in
-                    Text(String(describing: alignment))
+                Text("Radacted")
+                    .font(.title)
+                    .redacted(reason: .placeholder)
+                TextField("Shout your name at me", text: $paulsName)
+                    .textFieldStyle(.roundedBorder)
+                    .textCase(.uppercase)
+                    .padding(.horizontal)
+                // 10 min timer.
+                Text(Date.now.addingTimeInterval(600), style:.timer)
+                Text("ffi").font(.custom("AmericanTypewriter", size: 72))
+                    .kerning(textKerningTrackingAmmount)
+                Text("ffi").font(.custom("AmericanTypewriter", size: 72))
+                    .tracking(textKerningTrackingAmmount)
+                Slider(value: $textKerningTrackingAmmount, in: -10...100) {
+                    Text("spacing between chars")
                 }
-            }
-            
-            VStack{
-                Text("This is some longer text that is limited to three lines maximum, so anything more than that will cause the text to clip. longer longer longer too long to fit")
-                    .font(.largeTitle)
-                    .multilineTextAlignment(alignment)
-                    .frame(width: 300)
+                Button("Add ingredients") {
+                    let possibles = ["Egg", "Sausage", "Bacon", "Spam"]
+                    
+                    if let newIngredient = possibles.randomElement() {
+                        ingredients.append(newIngredient)
+                    }
+                }
+                Text(ingredients, format:.list(type: .and))
                 
-                Text(measurements)
-                Text(name)
-                Text(message1+message2)
-                    .background(.yellow)
-                // Attributed String stays attributed, modifiers dont work here.
-                Text("This is shoter text.")
-                    .lineLimit(6, reservesSpace: true)
-                    .frame(width: 200)
-                Text("This is some longer text that is limited to three lines maximum, so anything more than that will cause the text to clip. longer longer longer too long to fit")
-                    .lineLimit(10, reservesSpace: true)
-                    .padding()
-                    .fontDesign(.none)
-                    .fontWidth(.condensed) // fontWidth only works if font supports it.
-                    .lineSpacing(10)
-                    .font(.headline)
-                    .background(.gray)
-                    .foregroundStyle(.white.gradient)
-                    .frame(width: 200)
-                Text(link)
-                Text(date)
+                Picker("Text Alighment", selection: $alignment) {
+                    ForEach(alignments, id: \.self) { alignment in
+                        Text(String(describing: alignment))
+                    }
+                }
+                
+                VStack{
+                    Text("This is some longer text that is limited to three lines maximum, so anything more than that will cause the text to clip. longer longer longer too long to fit")
+                        .font(.largeTitle)
+                        .multilineTextAlignment(alignment)
+                        .frame(width: 300)
+                    
+                    Text(measurements)
+                    Text(name)
+                    Text(message1+message2)
+                        .background(.yellow)
+                    // Attributed String stays attributed, modifiers dont work here.
+                    Text("This is shoter text.")
+                        .lineLimit(6, reservesSpace: true)
+                        .frame(width: 200)
+                    Text("This is some longer text that is limited to three lines maximum, so anything more than that will cause the text to clip. longer longer longer too long to fit")
+                        .lineLimit(10, reservesSpace: true)
+                        .padding()
+                        .fontDesign(.none)
+                        .fontWidth(.condensed) // fontWidth only works if font supports it.
+                        .lineSpacing(10)
+                        .font(.headline)
+                        .background(.gray)
+                        .foregroundStyle(.white.gradient)
+                        .frame(width: 200)
+                    Text(link)
+                    Text(date)
+                }
             }
         }
     }
