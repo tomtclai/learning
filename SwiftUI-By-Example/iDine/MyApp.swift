@@ -1,5 +1,5 @@
 //
-//  iDineApp.swift
+//  App.swift
 //  iDine
 //
 //  Created by Lai, Tom on 7/28/23.
@@ -8,15 +8,16 @@
 import SwiftUI
 
 @main
-struct iDineApp: App {
+struct MyApp: App {
     @StateObject var order = Order()
     @StateObject var favs = Favorites()
     var body: some Scene {
         WindowGroup {
-            TextTestingView()
-            MainView()
-                .environmentObject(order)
-                .environmentObject(favs)
+            Chapter4ImageTestView()
+//            Chapter3TextTestingView()
+//            MainView()
+//                .environmentObject(order)
+//                .environmentObject(favs)
         }
     }
 }

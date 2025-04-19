@@ -1,5 +1,5 @@
 //
-//  TextTestingView.swift
+//  Chapter3TextTestingView.swift
 //  Chapter 3 Static Text
 
 //  Created by Tom Lai on 4/13/25.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct TextTestingView: View {
+struct Chapter3TextTestingView: View {
     var message1: AttributedString {
         var result = AttributedString("Hello")
         result.font = .largeTitle
@@ -80,6 +80,11 @@ struct TextTestingView: View {
         let column = [GridItem(.flexible(maximum: .infinity))]
         ScrollView{
             LazyVGrid(columns: column) {
+                Text("you can touch this")
+                    .textSelection(.enabled)
+                Link("Visit Apple", destination: URL(string:"https://apple.com")!)
+                    .tint(.orange)
+                Text("[Visit Apple](https://apple.com)")
                 Text("This is regular text.")
                 Text("* This is **bold** text, this is *italic* text, and this is ***bold, italic*** text.")
                 Text("~~A strikethrough example~~")
@@ -159,9 +164,15 @@ struct TextTestingView: View {
                 }
             }
         }
+        .environment(\.openURL, OpenURLAction(handler: handleURL))
     }
+        
+}
+
+func handleURL(_ url: URL) -> OpenURLAction.Result {
+    return .systemAction
 }
 
 #Preview {
-    TextTestingView()
+    Chapter3TextTestingView()
 }
