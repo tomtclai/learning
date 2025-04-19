@@ -13,6 +13,73 @@ struct Chapter4ImageTestView: View {
         let column = [GridItem(.adaptive(minimum: 100, maximum: 200))]
         ScrollView{
             LazyVGrid(columns: column) {
+                AnimatedImage(systemName: "waveform")
+                AnimatedImage(systemName: "chart.bar.fill")
+                AnimatedImage(systemName: "aqi.low")
+                AnimatedImage(systemName: "wifi")
+                Image(systemName: "wifi", variableValue: 0.5)
+                    .font(.system(size: 60))
+                Image(systemName: "person.3.sequence.fill")
+                    .symbolRenderingMode(.palette)
+                    .foregroundStyle(
+                        .linearGradient(colors: [.red, .black], startPoint: .top, endPoint: .bottomTrailing),
+                        .linearGradient(colors: [.green, .black], startPoint: .top, endPoint: .bottomTrailing),
+                        .linearGradient(colors: [.blue, .black], startPoint: .top, endPoint: .bottomTrailing))
+                    .font(.system(size: 60))
+                Image(systemName: "person.3.sequence.fill")
+                    .symbolRenderingMode(.palette)
+                    .foregroundStyle(.blue, .green, .red)
+                    .font(.system(size: 60))
+                Image(systemName: "theatermasks")
+                    .symbolRenderingMode(.hierarchical)
+                    .foregroundStyle(.blue)
+                    .font(.system(size: 80))
+                AsyncImage(url: URL(string: "https://hws.dev/paul3.jpg")) {
+                    phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView()
+                    case .success(let image):
+                        image.resizable()
+                    case .failure(let error):
+                        Color.red
+                    @unknown default:
+                        Color.red
+                    }
+                }
+                AsyncImage(url: URL(string: "https://hws.dev/paul2.jpg")) {
+                    image in image.resizable()
+                } placeholder: {
+                    ProgressView()
+                }
+                .frame(width: 100, height: 100)
+                ZStack{
+                    ContainerRelativeShape()//only works in widgets
+                        .inset(by: 10)
+                        .fill(.blue)
+                    Text("Hello")
+                        .font(.title)
+                }
+                .background(.red)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+                AnimatedText(string: "Hello", fontSize: 64)
+                AnimatedRecgtangle()
+                AnimatedTrimCircle()
+                // Before
+                ZStack{
+                    Circle().fill(.orange)
+                    Circle().strokeBorder(.red, lineWidth: 20)
+                }
+                .frame(width: 100, height: 100)
+                // After: one line using extension
+                Circle()
+                    .fill(.orange, strokeBorder: .blue, lineWidth: 20)
+                    .frame(width: 100, height: 100)
+                .frame(width: 100, height: 100)
+                Triangle()
+                    .fill(.orange, strokeBorder: .blue, lineWidth: 20)
+                    .frame(width: 120, height: 120)
+
                 Circle()
                     .stroke(.blue, lineWidth: 45)
                     .stroke(.green, lineWidth: 35)
@@ -103,6 +170,96 @@ struct Chapter4ImageTilingView: View {
     }
 }
 
+extension Shape {
+    func fill<Fill: ShapeStyle, Stroke: ShapeStyle>(_ fillStyle: Fill, strokeBorder strokeStyle: Stroke, lineWidth: Double = 1) -> some View {
+        self.stroke(strokeStyle, lineWidth: lineWidth)
+            .background(self.fill(fillStyle))
+    }
+}
+
+extension InsettableShape {
+    func fill<Fill: ShapeStyle, Stroke: ShapeStyle>(_ fillStyle: Fill, strokeBorder strokeStyle: Stroke, lineWidth: Double = 1) -> some View {
+        self.strokeBorder(strokeStyle, lineWidth: lineWidth)
+            .background(self.fill(fillStyle))
+    }
+}
+
+struct Triangle: Shape {              // NOT InsettableShape
+    func path(in rect: CGRect) -> Path {
+        Path { p in
+            p.move(to: CGPoint(x: rect.midX, y: rect.minY))
+            p.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+            p.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+            p.closeSubpath()
+        }
+    }
+}
+
 #Preview {
     Chapter4ImageTestView()
+}
+struct AnimatedText: View {
+    @State private var animatedFontSize: CGFloat = 0
+    let string: String
+    let fontSize: CGFloat
+    var body: some View {
+        Text(string)
+            .font(.system(size: animatedFontSize))
+            .animation(.linear(duration: 2).repeatForever(autoreverses: true),
+                       value:animatedFontSize
+            )
+            .onAppear(){
+                animatedFontSize = fontSize
+            }
+            
+    }
+}
+struct AnimatedRecgtangle: View {
+    @State private var end: CGFloat = 0
+
+    var body: some View {
+        Rectangle()
+            .trim(from: 0, to: end)
+            .stroke(.red, lineWidth: 20)
+            .frame(width: 80, height: 80)
+            .animation(
+                .linear(duration: 2).repeatForever(autoreverses: true),
+                value: end
+            )
+            .onAppear {
+                end = 1
+            }
+    }
+}
+struct AnimatedImage: View {
+    let systemName: String
+    @State private var variableValue: CGFloat = 0
+    let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
+
+    var body: some View {
+        Image(systemName: systemName, variableValue: variableValue)
+            .font(.system(size: 60))
+            .onReceive(timer) { _ in
+                variableValue += 0.005
+                if variableValue > 1 {
+                    variableValue = 0
+                }
+            }
+    }
+}
+struct AnimatedTrimCircle: View {
+    @State private var end: CGFloat = 0          // animation target
+
+    var body: some View {
+        Circle()
+            .trim(from: 0, to: end)              // animate this
+            .animation(
+                .linear(duration: 2)
+                    .repeatForever(autoreverses: true),
+                value: end
+            )
+            .onAppear {                          // kick it off
+                end = 1
+            }
+    }
 }
