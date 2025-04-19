@@ -8,4 +8,4 @@ Chapter 10 Advance state | NA
 Chapter 11 Lists | NA
 Chapter 14 Navigation | NA
 Chapter 15 Alerts and Menus | NA
-Chatper 20 Composing Views | NA 
+Chatper 20 Composing Views | 872
