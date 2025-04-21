@@ -9,7 +9,55 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        PlayersView()
+        DifferentTypesNavPathView()
+    }
+}
+
+struct DifferentTypesNavPathView: View {
+    
+    //@State private var navPath = NavigationPath()
+    @StateObject private var pathStore = PathStore()
+    //path store enables persisting navigation path
+    
+    var body: some View {
+        NavigationStack(path: $pathStore.path) {
+            List(1..<50) { i in
+                NavigationLink(value: i) {
+                    Label("Row \(i)", systemImage: "\(i).circle")
+                }
+            }
+            .toolbar {
+                Button("Random", systemImage: "shuffle") {
+                    pathStore.path.append(Int.random(in: 1..<50))
+                }
+            }
+            .navigationDestination(for: Int.self) { i in
+                Text("Detail \(i)")
+                Button("Random", systemImage: "shuffle") {
+                    pathStore.path.append(Int.random(in: 1..<50))
+                }
+            }
+            .navigationTitle("Navigation")
+        }
+        
+
+    }
+}
+
+struct NumbersView: View {
+    @State private var presentedNumbers = [1]
+    var body: some View {
+        NavigationStack(path: $presentedNumbers) {
+            List(1..<50) { i in
+                NavigationLink(value: i) {
+                    Label("Row \(i)", systemImage: "\(i).circle")
+                }
+            }
+            .navigationDestination(for: Int.self) { i in
+                Text("Detail \(i)")
+            }
+            .navigationTitle("Navigation")
+        }
     }
 }
 struct PlayersView: View {
