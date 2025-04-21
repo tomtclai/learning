@@ -7,5 +7,5 @@ Chatper View Layout | NA
 Chapter 10 Advance state | NA
 Chapter 11 Lists | 535
 Chapter 14 Navigation | 644
-Chapter 15 Alerts and Menus | NA
+Chapter 15 Alerts and Menus | 676
 Chatper 20 Composing Views | 872

@@ -30,12 +30,21 @@ struct DifferentTypesNavPathView: View {
                 Button("Random", systemImage: "shuffle") {
                     pathStore.path.append(Int.random(in: 1..<50))
                 }
+               
             }
             .navigationDestination(for: Int.self) { i in
                 Text("Detail \(i)")
                 Button("Random", systemImage: "shuffle") {
                     pathStore.path.append(Int.random(in: 1..<50))
                 }
+                if pathStore.path.count > 1 {
+                    Button("Pop to root", systemImage: "home") {
+                        while pathStore.path.isEmpty == false {
+                            pathStore.path.removeLast()
+                        }
+                    }
+                }
+                Text("Nav Stack  \(pathStore.path.codable!)")
             }
             .navigationTitle("Navigation")
         }
