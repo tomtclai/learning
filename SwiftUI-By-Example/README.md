@@ -2,8 +2,8 @@ Title |  Swift UI By Example
 ------|-------------------
 Author|  Paul Hudson
 Link  |  https://www.hackingwithswift.com/quick-start/swiftui
-Chapter 4 Image, shapes, and media | 180
-Chatper View Layout | NA
+Chapter 4 Image, shapes, and media | 195
+Chatper 5 View Layout | NA
 Chapter 10 Advance state | NA
 Chapter 11 Lists | 535
 Chapter 14 Navigation | 644

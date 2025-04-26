@@ -18,8 +18,8 @@
 		420A589C2A7460270010A8A5 /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420A589B2A7460270010A8A5 /* ItemRow.swift */; };
 		420A589E2A7464A50010A8A5 /* ItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420A589D2A7464A50010A8A5 /* ItemDetail.swift */; };
 		420A58A02A746B4B0010A8A5 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420A589F2A746B4B0010A8A5 /* OrderView.swift */; };
-		420A58A22A746E290010A8A5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 420A58A12A746E290010A8A5 /* README.md */; };
 		420A58A42A7473C80010A8A5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420A58A32A7473C80010A8A5 /* MainView.swift */; };
+		E264FDF22DBD395A000BC408 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E264FDF12DBD395A000BC408 /* README.md */; };
 		E28437A22DAC54DB00755009 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28437A12DAC54D700755009 /* FavoriteView.swift */; };
 		E28437A42DAC554100755009 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28437A32DAC553D00755009 /* Favorites.swift */; };
 		E28437BD2DAC606B00755009 /* Chapter3TextTestingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28437BC2DAC606B00755009 /* Chapter3TextTestingView.swift */; };
@@ -41,8 +41,8 @@
 		420A589B2A7460270010A8A5 /* ItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
 		420A589D2A7464A50010A8A5 /* ItemDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetail.swift; sourceTree = "<group>"; };
 		420A589F2A746B4B0010A8A5 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
-		420A58A12A746E290010A8A5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		420A58A32A7473C80010A8A5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		E264FDF12DBD395A000BC408 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "/Users/tom/Documents/code/learning/SwiftUI-By-Example/README.md"; sourceTree = "<absolute>"; };
 		E28437A12DAC54D700755009 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		E28437A32DAC553D00755009 /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		E28437BC2DAC606B00755009 /* Chapter3TextTestingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter3TextTestingView.swift; sourceTree = "<group>"; };
@@ -66,8 +66,8 @@
 		420A56AE2A7432250010A8A5 = {
 			isa = PBXGroup;
 			children = (
+				E264FDF12DBD395A000BC408 /* README.md */,
 				E2AE0BF62DB43C5A0081450B /* iDine */,
-				420A58A12A746E290010A8A5 /* README.md */,
 				420A56BA2A7432250010A8A5 /* MyApp.swift */,
 				420A56B92A7432250010A8A5 /* Chapter1_2iDine */,
 				E28437BC2DAC606B00755009 /* Chapter3TextTestingView.swift */,
@@ -190,8 +190,8 @@
 			files = (
 				420A58272A7433400010A8A5 /* menu.json in Resources */,
 				E2AE0BF32DB43B6A0081450B /* Images.xcassets in Resources */,
+				E264FDF22DBD395A000BC408 /* README.md in Resources */,
 				420A56C32A7432260010A8A5 /* Preview Assets.xcassets in Resources */,
-				420A58A22A746E290010A8A5 /* README.md in Resources */,
 				420A56BF2A7432260010A8A5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,7 +341,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iDine/Preview Content\"";
-				DEVELOPMENT_TEAM = DGHFQWBX8C;
+				DEVELOPMENT_TEAM = 94KV3E626L;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -360,7 +360,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = lai.iDine;
+				PRODUCT_BUNDLE_IDENTIFIER = laito.testAppIdine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -381,7 +381,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iDine/Preview Content\"";
-				DEVELOPMENT_TEAM = DGHFQWBX8C;
+				DEVELOPMENT_TEAM = 94KV3E626L;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -400,7 +400,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = lai.iDine;
+				PRODUCT_BUNDLE_IDENTIFIER = laito.testAppIdine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

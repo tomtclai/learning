@@ -6,7 +6,192 @@
 //
 
 import SwiftUI
+import PhotosUI
+import AVKit
+#Preview {
+    ContentTransitionView()
+}
+struct ContentTransitionView: View {
+    @State private var isFavorite = false
+    var body: some View {
+        VStack {
+            Button {
+                withAnimation {
+                    isFavorite.toggle()
+                }
+            } label : {
+                Label("Toggle", systemImage: isFavorite ? "checkmark" : "heart")
+            }
+            .contentTransition(.symbolEffect(.replace))
+        }
+    }
+}
+struct VariableColorsView: View {
+    @State private var animating = false
+    
+    
+    var body: some View {
+        LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 100, maximum: 300)), count: 4)) {
+            Image(systemName: "square.stack.3d.up")
+                .symbolEffect(.variableColor.iterative, options: .repeat(.continuous), value: animating)
+                .font(.largeTitle)
+            Image(systemName: "square.stack.3d.up")
+                .symbolEffect(.variableColor.cumulative, options: .repeat(.continuous), value: animating)
+                .font(.largeTitle)
+            Image(systemName: "square.stack.3d.up")
+                .symbolEffect(.variableColor.reversing.iterative, options: .repeat(.continuous), value: animating)
+                .font(.largeTitle)
+            Image(systemName: "square.stack.3d.up")
+                .symbolEffect(.variableColor.reversing.cumulative, options: .repeat(.continuous), value: animating)
+                .font(.largeTitle)
+            Image(systemName: "square.stack.3d.up")
+                .symbolEffect(.variableColor.iterative, options: .repeat(.continuous).speed(10), value: animating)
+                .font(.largeTitle)
+        }
+        .onAppear() {
+            animating.toggle()
+        }
+    }
+}
+struct AnimatedSymbols: View {
+    @State private var petCount = 0
+    @State private var isFavorite = false
+    @State private var animate = false
+    var body: some View {
+        Button {
+            petCount += 1
+        } label: {
+            Label("Pet dog", systemImage: "dog")
+        }
+        .symbolEffect(.bounce, value: petCount)
+        .font(.largeTitle)
+        Button {
+            isFavorite.toggle()
+        } label: {
+            Label("Mailbox zero", systemImage: "mail.stack")
+        }
+        .symbolEffect(.pulse, options:.speed(3).repeat(isFavorite ? .continuous : .periodic(0)), value: isFavorite)
+        .font(.largeTitle)
+        Button {
+            animate.toggle()
+        } label: {
+            Label("Load", systemImage: "arrow.clockwise.square")
+                .symbolEffect(.rotate, value: animate)
+                .font(.largeTitle)
+        }
+        .font(.largeTitle)
+    }
+}
 
+struct MyVideoPickerView: View {
+    struct Movie: Transferable {
+        let url: URL
+        static var transferRepresentation: some TransferRepresentation {
+            FileRepresentation(contentType: .movie) {
+                movie in
+                SentTransferredFile(movie.url)
+            } importing: { received in
+                let copy = URL.documentsDirectory.appending(path: "movie.mp4")
+                
+                if FileManager.default.fileExists(atPath: copy.path()) {
+                    try FileManager.default.removeItem(at: copy)
+                }
+                
+                try FileManager.default.copyItem(at: received.file, to: copy)
+                return self.init(url: copy)
+            }
+        }
+    }
+    enum LoadState {
+        case unknown, loading, loaded(Movie), failed
+    }
+    @State private var selectedItem: PhotosPickerItem?
+    @State private var loadState = LoadState.unknown
+    var body: some View {
+        VStack {
+            PhotosPicker("Select movie", selection: $selectedItem, matching: .videos)
+            switch loadState {
+            case .unknown:
+                EmptyView()
+            case .loading:
+                ProgressView()
+            case .loaded(let movie):
+                VideoPlayer(player: AVPlayer(url: movie.url))
+                    .scaledToFit()
+                    .frame(width: 300, height: 300)
+            case .failed:
+                Text("Failed")
+            }
+        }
+        .onChange(of: selectedItem) { oldValue, newValue in
+            Task {
+                do {
+                    loadState = .loading
+                    if let movie = try await selectedItem?.loadTransferable(type: Movie.self) {
+                        loadState = .loaded(movie)
+                    } else {
+                        loadState = .failed
+                    }
+                } catch {
+                    loadState = .failed
+                }
+            }
+        }
+    }
+}
+struct MyMultiPhotoPickerView: View {
+    @State private var selectedItems = [PhotosPickerItem]()
+    @State private var selectedImages = [Image]()
+    
+    var body: some View {
+        NavigationStack{
+            ScrollView {
+                LazyVStack {
+                    ForEach(0..<selectedImages.count, id: \.self) { i in
+                        selectedImages[i]
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 300, height: 300)
+                    }
+                }
+            }
+            .toolbar {
+                PhotosPicker("Select images", selection: $selectedItems, matching: .images)
+            }
+            .onChange(of: selectedItems) { oldValue, newValue in
+                Task {
+                    selectedImages.removeAll()
+                    
+                    for item in selectedItems {
+                        if let image = try? await item.loadTransferable(type: Image.self) {
+                            selectedImages.append(image)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+struct MyPhotoPickerView: View {
+    @State private var avatarItem: PhotosPickerItem?
+    @State private var avatarImage: Image?
+    var body: some View {
+        VStack {
+            PhotosPicker("select avatar", selection: $avatarItem, matching: .images)
+            avatarImage?
+                .resizable()
+                .scaledToFit()
+                .frame(width: 300, height: 300)
+        }
+        .onChange(of: avatarItem) { oldValue, newValue in
+            Task {
+                if let loaded = try? await newValue?.loadTransferable(type: Image.self) {
+                    avatarImage = loaded
+                }
+            }
+        }
+    }
+}
 struct Chapter4ImageTestView: View {
     
     var body: some View {
@@ -41,12 +226,13 @@ struct Chapter4ImageTestView: View {
                         ProgressView()
                     case .success(let image):
                         image.resizable()
-                    case .failure(let error):
+                    case .failure( _):
                         Color.red
                     @unknown default:
                         Color.red
                     }
                 }
+                .frame(width: 100, height: 100)
                 AsyncImage(url: URL(string: "https://hws.dev/paul2.jpg")) {
                     image in image.resizable()
                 } placeholder: {
@@ -195,9 +381,6 @@ struct Triangle: Shape {              // NOT InsettableShape
     }
 }
 
-#Preview {
-    Chapter4ImageTestView()
-}
 struct AnimatedText: View {
     @State private var animatedFontSize: CGFloat = 0
     let string: String
