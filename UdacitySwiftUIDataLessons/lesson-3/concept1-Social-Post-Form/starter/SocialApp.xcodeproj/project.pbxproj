@@ -3,28 +3,26 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E27A9DFA2DBD5DCD007F2BA1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E27A9DF82DBD5DC7007F2BA1 /* README.md */; };
+		FF0B6E972BE88BEA00071F16 /* SocialAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0B6E962BE88BEA00071F16 /* SocialAppApp.swift */; };
+		FF0B6E992BE88BEA00071F16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0B6E982BE88BEA00071F16 /* ContentView.swift */; };
+		FF0B6E9B2BE88BEB00071F16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF0B6E9A2BE88BEB00071F16 /* Assets.xcassets */; };
+		FF0B6E9E2BE88BEB00071F16 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF0B6E9D2BE88BEB00071F16 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E27A9DDF2DBD5458007F2BA1 /* UdacitySwiftUIDataLessons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UdacitySwiftUIDataLessons.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E27A9DF82DBD5DC7007F2BA1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FF0B6E932BE88BEA00071F16 /* SocialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF0B6E962BE88BEA00071F16 /* SocialAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAppApp.swift; sourceTree = "<group>"; };
+		FF0B6E982BE88BEA00071F16 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FF0B6E9A2BE88BEB00071F16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF0B6E9D2BE88BEB00071F16 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		E27A9DE12DBD5458007F2BA1 /* UdacitySwiftUIDataLessons */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = UdacitySwiftUIDataLessons;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
-		E27A9DDC2DBD5458007F2BA1 /* Frameworks */ = {
+		FF0B6E902BE88BEA00071F16 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -34,105 +32,120 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E27A9DD62DBD5458007F2BA1 = {
+		FF0B6E8A2BE88BEA00071F16 = {
 			isa = PBXGroup;
 			children = (
-				E27A9DF82DBD5DC7007F2BA1 /* README.md */,
-				E27A9DE12DBD5458007F2BA1 /* UdacitySwiftUIDataLessons */,
-				E27A9DE02DBD5458007F2BA1 /* Products */,
+				FF0B6E952BE88BEA00071F16 /* SocialApp */,
+				FF0B6E942BE88BEA00071F16 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E27A9DE02DBD5458007F2BA1 /* Products */ = {
+		FF0B6E942BE88BEA00071F16 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E27A9DDF2DBD5458007F2BA1 /* UdacitySwiftUIDataLessons.app */,
+				FF0B6E932BE88BEA00071F16 /* SocialApp.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FF0B6E952BE88BEA00071F16 /* SocialApp */ = {
+			isa = PBXGroup;
+			children = (
+				FF0B6E962BE88BEA00071F16 /* SocialAppApp.swift */,
+				FF0B6E982BE88BEA00071F16 /* ContentView.swift */,
+				FF0B6E9A2BE88BEB00071F16 /* Assets.xcassets */,
+				FF0B6E9C2BE88BEB00071F16 /* Preview Content */,
+			);
+			path = SocialApp;
+			sourceTree = "<group>";
+		};
+		FF0B6E9C2BE88BEB00071F16 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FF0B6E9D2BE88BEB00071F16 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E27A9DDE2DBD5458007F2BA1 /* UdacitySwiftUIDataLessons */ = {
+		FF0B6E922BE88BEA00071F16 /* SocialApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E27A9DEA2DBD545A007F2BA1 /* Build configuration list for PBXNativeTarget "UdacitySwiftUIDataLessons" */;
+			buildConfigurationList = FF0B6EA12BE88BEB00071F16 /* Build configuration list for PBXNativeTarget "SocialApp" */;
 			buildPhases = (
-				E27A9DDB2DBD5458007F2BA1 /* Sources */,
-				E27A9DDC2DBD5458007F2BA1 /* Frameworks */,
-				E27A9DDD2DBD5458007F2BA1 /* Resources */,
+				FF0B6E8F2BE88BEA00071F16 /* Sources */,
+				FF0B6E902BE88BEA00071F16 /* Frameworks */,
+				FF0B6E912BE88BEA00071F16 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				E27A9DE12DBD5458007F2BA1 /* UdacitySwiftUIDataLessons */,
-			);
-			name = UdacitySwiftUIDataLessons;
-			packageProductDependencies = (
-			);
-			productName = UdacitySwiftUIDataLessons;
-			productReference = E27A9DDF2DBD5458007F2BA1 /* UdacitySwiftUIDataLessons.app */;
+			name = SocialApp;
+			productName = SocialApp;
+			productReference = FF0B6E932BE88BEA00071F16 /* SocialApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E27A9DD72DBD5458007F2BA1 /* Project object */ = {
+		FF0B6E8B2BE88BEA00071F16 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1630;
-				LastUpgradeCheck = 1630;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
-					E27A9DDE2DBD5458007F2BA1 = {
-						CreatedOnToolsVersion = 16.3;
+					FF0B6E922BE88BEA00071F16 = {
+						CreatedOnToolsVersion = 15.3;
 					};
 				};
 			};
-			buildConfigurationList = E27A9DDA2DBD5458007F2BA1 /* Build configuration list for PBXProject "UdacitySwiftUIDataLessons" */;
+			buildConfigurationList = FF0B6E8E2BE88BEA00071F16 /* Build configuration list for PBXProject "SocialApp" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = E27A9DD62DBD5458007F2BA1;
-			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
-			productRefGroup = E27A9DE02DBD5458007F2BA1 /* Products */;
+			mainGroup = FF0B6E8A2BE88BEA00071F16;
+			productRefGroup = FF0B6E942BE88BEA00071F16 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E27A9DDE2DBD5458007F2BA1 /* UdacitySwiftUIDataLessons */,
+				FF0B6E922BE88BEA00071F16 /* SocialApp */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E27A9DDD2DBD5458007F2BA1 /* Resources */ = {
+		FF0B6E912BE88BEA00071F16 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E27A9DFA2DBD5DCD007F2BA1 /* README.md in Resources */,
+				FF0B6E9E2BE88BEB00071F16 /* Preview Assets.xcassets in Resources */,
+				FF0B6E9B2BE88BEB00071F16 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E27A9DDB2DBD5458007F2BA1 /* Sources */ = {
+		FF0B6E8F2BE88BEA00071F16 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF0B6E992BE88BEA00071F16 /* ContentView.swift in Sources */,
+				FF0B6E972BE88BEA00071F16 /* SocialAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		E27A9DE82DBD545A007F2BA1 /* Debug */ = {
+		FF0B6E9F2BE88BEB00071F16 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -195,7 +208,7 @@
 			};
 			name = Debug;
 		};
-		E27A9DE92DBD545A007F2BA1 /* Release */ = {
+		FF0B6EA02BE88BEB00071F16 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -251,13 +264,14 @@
 			};
 			name = Release;
 		};
-		E27A9DEB2DBD545A007F2BA1 /* Debug */ = {
+		FF0B6EA22BE88BEB00071F16 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SocialApp/Preview Content\"";
 				DEVELOPMENT_TEAM = DGHFQWBX8C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -271,7 +285,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = laito.testapp3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.udacity.form.SocialApp.lai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -279,13 +293,14 @@
 			};
 			name = Debug;
 		};
-		E27A9DEC2DBD545A007F2BA1 /* Release */ = {
+		FF0B6EA32BE88BEB00071F16 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SocialApp/Preview Content\"";
 				DEVELOPMENT_TEAM = DGHFQWBX8C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -299,7 +314,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = laito.testapp3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.udacity.form.SocialApp.lai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -310,25 +325,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E27A9DDA2DBD5458007F2BA1 /* Build configuration list for PBXProject "UdacitySwiftUIDataLessons" */ = {
+		FF0B6E8E2BE88BEA00071F16 /* Build configuration list for PBXProject "SocialApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E27A9DE82DBD545A007F2BA1 /* Debug */,
-				E27A9DE92DBD545A007F2BA1 /* Release */,
+				FF0B6E9F2BE88BEB00071F16 /* Debug */,
+				FF0B6EA02BE88BEB00071F16 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E27A9DEA2DBD545A007F2BA1 /* Build configuration list for PBXNativeTarget "UdacitySwiftUIDataLessons" */ = {
+		FF0B6EA12BE88BEB00071F16 /* Build configuration list for PBXNativeTarget "SocialApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E27A9DEB2DBD545A007F2BA1 /* Debug */,
-				E27A9DEC2DBD545A007F2BA1 /* Release */,
+				FF0B6EA22BE88BEB00071F16 /* Debug */,
+				FF0B6EA32BE88BEB00071F16 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E27A9DD72DBD5458007F2BA1 /* Project object */;
+	rootObject = FF0B6E8B2BE88BEA00071F16 /* Project object */;
 }

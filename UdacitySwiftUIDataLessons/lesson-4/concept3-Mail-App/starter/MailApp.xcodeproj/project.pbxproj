@@ -3,28 +3,34 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E27A9DFA2DBD5DCD007F2BA1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E27A9DF82DBD5DC7007F2BA1 /* README.md */; };
+		FFF61B582BEF0D8600926042 /* MailAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF61B572BEF0D8600926042 /* MailAppApp.swift */; };
+		FFF61B5A2BEF0D8600926042 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF61B592BEF0D8600926042 /* ContentView.swift */; };
+		FFF61B5C2BEF0D8700926042 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF61B5B2BEF0D8700926042 /* Assets.xcassets */; };
+		FFF61B5F2BEF0D8700926042 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF61B5E2BEF0D8700926042 /* Preview Assets.xcassets */; };
+		FFF61B662BEF0E3300926042 /* MailThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF61B652BEF0E3300926042 /* MailThreadCell.swift */; };
+		FFF61B682BEF0EEF00926042 /* MailThreadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF61B672BEF0EEF00926042 /* MailThreadModel.swift */; };
+		FFF61B6A2BEF0FB100926042 /* MailSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF61B692BEF0FB100926042 /* MailSidebarView.swift */; };
+		FFF61B6C2BEF114C00926042 /* MailContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF61B6B2BEF114C00926042 /* MailContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E27A9DDF2DBD5458007F2BA1 /* UdacitySwiftUIDataLessons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UdacitySwiftUIDataLessons.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E27A9DF82DBD5DC7007F2BA1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FFF61B542BEF0D8600926042 /* MailApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MailApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFF61B572BEF0D8600926042 /* MailAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailAppApp.swift; sourceTree = "<group>"; };
+		FFF61B592BEF0D8600926042 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FFF61B5B2BEF0D8700926042 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FFF61B5E2BEF0D8700926042 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FFF61B652BEF0E3300926042 /* MailThreadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailThreadCell.swift; sourceTree = "<group>"; };
+		FFF61B672BEF0EEF00926042 /* MailThreadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailThreadModel.swift; sourceTree = "<group>"; };
+		FFF61B692BEF0FB100926042 /* MailSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailSidebarView.swift; sourceTree = "<group>"; };
+		FFF61B6B2BEF114C00926042 /* MailContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		E27A9DE12DBD5458007F2BA1 /* UdacitySwiftUIDataLessons */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = UdacitySwiftUIDataLessons;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
-		E27A9DDC2DBD5458007F2BA1 /* Frameworks */ = {
+		FFF61B512BEF0D8600926042 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -34,105 +40,128 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E27A9DD62DBD5458007F2BA1 = {
+		FFF61B4B2BEF0D8600926042 = {
 			isa = PBXGroup;
 			children = (
-				E27A9DF82DBD5DC7007F2BA1 /* README.md */,
-				E27A9DE12DBD5458007F2BA1 /* UdacitySwiftUIDataLessons */,
-				E27A9DE02DBD5458007F2BA1 /* Products */,
+				FFF61B562BEF0D8600926042 /* MailApp */,
+				FFF61B552BEF0D8600926042 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E27A9DE02DBD5458007F2BA1 /* Products */ = {
+		FFF61B552BEF0D8600926042 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E27A9DDF2DBD5458007F2BA1 /* UdacitySwiftUIDataLessons.app */,
+				FFF61B542BEF0D8600926042 /* MailApp.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FFF61B562BEF0D8600926042 /* MailApp */ = {
+			isa = PBXGroup;
+			children = (
+				FFF61B572BEF0D8600926042 /* MailAppApp.swift */,
+				FFF61B592BEF0D8600926042 /* ContentView.swift */,
+				FFF61B692BEF0FB100926042 /* MailSidebarView.swift */,
+				FFF61B652BEF0E3300926042 /* MailThreadCell.swift */,
+				FFF61B6B2BEF114C00926042 /* MailContentView.swift */,
+				FFF61B672BEF0EEF00926042 /* MailThreadModel.swift */,
+				FFF61B5B2BEF0D8700926042 /* Assets.xcassets */,
+				FFF61B5D2BEF0D8700926042 /* Preview Content */,
+			);
+			path = MailApp;
+			sourceTree = "<group>";
+		};
+		FFF61B5D2BEF0D8700926042 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FFF61B5E2BEF0D8700926042 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E27A9DDE2DBD5458007F2BA1 /* UdacitySwiftUIDataLessons */ = {
+		FFF61B532BEF0D8600926042 /* MailApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E27A9DEA2DBD545A007F2BA1 /* Build configuration list for PBXNativeTarget "UdacitySwiftUIDataLessons" */;
+			buildConfigurationList = FFF61B622BEF0D8700926042 /* Build configuration list for PBXNativeTarget "MailApp" */;
 			buildPhases = (
-				E27A9DDB2DBD5458007F2BA1 /* Sources */,
-				E27A9DDC2DBD5458007F2BA1 /* Frameworks */,
-				E27A9DDD2DBD5458007F2BA1 /* Resources */,
+				FFF61B502BEF0D8600926042 /* Sources */,
+				FFF61B512BEF0D8600926042 /* Frameworks */,
+				FFF61B522BEF0D8600926042 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				E27A9DE12DBD5458007F2BA1 /* UdacitySwiftUIDataLessons */,
-			);
-			name = UdacitySwiftUIDataLessons;
-			packageProductDependencies = (
-			);
-			productName = UdacitySwiftUIDataLessons;
-			productReference = E27A9DDF2DBD5458007F2BA1 /* UdacitySwiftUIDataLessons.app */;
+			name = MailApp;
+			productName = MailApp;
+			productReference = FFF61B542BEF0D8600926042 /* MailApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E27A9DD72DBD5458007F2BA1 /* Project object */ = {
+		FFF61B4C2BEF0D8600926042 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1630;
-				LastUpgradeCheck = 1630;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
-					E27A9DDE2DBD5458007F2BA1 = {
-						CreatedOnToolsVersion = 16.3;
+					FFF61B532BEF0D8600926042 = {
+						CreatedOnToolsVersion = 15.3;
 					};
 				};
 			};
-			buildConfigurationList = E27A9DDA2DBD5458007F2BA1 /* Build configuration list for PBXProject "UdacitySwiftUIDataLessons" */;
+			buildConfigurationList = FFF61B4F2BEF0D8600926042 /* Build configuration list for PBXProject "MailApp" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = E27A9DD62DBD5458007F2BA1;
-			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
-			productRefGroup = E27A9DE02DBD5458007F2BA1 /* Products */;
+			mainGroup = FFF61B4B2BEF0D8600926042;
+			productRefGroup = FFF61B552BEF0D8600926042 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E27A9DDE2DBD5458007F2BA1 /* UdacitySwiftUIDataLessons */,
+				FFF61B532BEF0D8600926042 /* MailApp */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E27A9DDD2DBD5458007F2BA1 /* Resources */ = {
+		FFF61B522BEF0D8600926042 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E27A9DFA2DBD5DCD007F2BA1 /* README.md in Resources */,
+				FFF61B5F2BEF0D8700926042 /* Preview Assets.xcassets in Resources */,
+				FFF61B5C2BEF0D8700926042 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E27A9DDB2DBD5458007F2BA1 /* Sources */ = {
+		FFF61B502BEF0D8600926042 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFF61B6A2BEF0FB100926042 /* MailSidebarView.swift in Sources */,
+				FFF61B6C2BEF114C00926042 /* MailContentView.swift in Sources */,
+				FFF61B682BEF0EEF00926042 /* MailThreadModel.swift in Sources */,
+				FFF61B5A2BEF0D8600926042 /* ContentView.swift in Sources */,
+				FFF61B662BEF0E3300926042 /* MailThreadCell.swift in Sources */,
+				FFF61B582BEF0D8600926042 /* MailAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		E27A9DE82DBD545A007F2BA1 /* Debug */ = {
+		FFF61B602BEF0D8700926042 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -184,7 +213,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -195,7 +224,7 @@
 			};
 			name = Debug;
 		};
-		E27A9DE92DBD545A007F2BA1 /* Release */ = {
+		FFF61B612BEF0D8700926042 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -241,7 +270,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -251,14 +280,14 @@
 			};
 			name = Release;
 		};
-		E27A9DEB2DBD545A007F2BA1 /* Debug */ = {
+		FFF61B632BEF0D8700926042 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DGHFQWBX8C;
+				DEVELOPMENT_ASSET_PATHS = "\"MailApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -271,7 +300,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = laito.testapp3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.udacity.MailApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -279,14 +308,14 @@
 			};
 			name = Debug;
 		};
-		E27A9DEC2DBD545A007F2BA1 /* Release */ = {
+		FFF61B642BEF0D8700926042 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DGHFQWBX8C;
+				DEVELOPMENT_ASSET_PATHS = "\"MailApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -299,7 +328,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = laito.testapp3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.udacity.MailApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -310,25 +339,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E27A9DDA2DBD5458007F2BA1 /* Build configuration list for PBXProject "UdacitySwiftUIDataLessons" */ = {
+		FFF61B4F2BEF0D8600926042 /* Build configuration list for PBXProject "MailApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E27A9DE82DBD545A007F2BA1 /* Debug */,
-				E27A9DE92DBD545A007F2BA1 /* Release */,
+				FFF61B602BEF0D8700926042 /* Debug */,
+				FFF61B612BEF0D8700926042 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E27A9DEA2DBD545A007F2BA1 /* Build configuration list for PBXNativeTarget "UdacitySwiftUIDataLessons" */ = {
+		FFF61B622BEF0D8700926042 /* Build configuration list for PBXNativeTarget "MailApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E27A9DEB2DBD545A007F2BA1 /* Debug */,
-				E27A9DEC2DBD545A007F2BA1 /* Release */,
+				FFF61B632BEF0D8700926042 /* Debug */,
+				FFF61B642BEF0D8700926042 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E27A9DD72DBD5458007F2BA1 /* Project object */;
+	rootObject = FFF61B4C2BEF0D8600926042 /* Project object */;
 }

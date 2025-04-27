@@ -3,28 +3,26 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E27A9DFA2DBD5DCD007F2BA1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E27A9DF82DBD5DC7007F2BA1 /* README.md */; };
+		FF9B5BC72BE988C9000F5133 /* PhotoViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B5BC62BE988C9000F5133 /* PhotoViewerApp.swift */; };
+		FF9B5BC92BE988C9000F5133 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B5BC82BE988C9000F5133 /* ContentView.swift */; };
+		FF9B5BCB2BE988CB000F5133 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF9B5BCA2BE988CB000F5133 /* Assets.xcassets */; };
+		FF9B5BCE2BE988CB000F5133 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF9B5BCD2BE988CB000F5133 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E27A9DDF2DBD5458007F2BA1 /* UdacitySwiftUIDataLessons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UdacitySwiftUIDataLessons.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E27A9DF82DBD5DC7007F2BA1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FF9B5BC32BE988C9000F5133 /* PhotoViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF9B5BC62BE988C9000F5133 /* PhotoViewerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerApp.swift; sourceTree = "<group>"; };
+		FF9B5BC82BE988C9000F5133 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FF9B5BCA2BE988CB000F5133 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF9B5BCD2BE988CB000F5133 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		E27A9DE12DBD5458007F2BA1 /* UdacitySwiftUIDataLessons */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = UdacitySwiftUIDataLessons;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
-		E27A9DDC2DBD5458007F2BA1 /* Frameworks */ = {
+		FF9B5BC02BE988C9000F5133 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -34,105 +32,120 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E27A9DD62DBD5458007F2BA1 = {
+		FF9B5BBA2BE988C9000F5133 = {
 			isa = PBXGroup;
 			children = (
-				E27A9DF82DBD5DC7007F2BA1 /* README.md */,
-				E27A9DE12DBD5458007F2BA1 /* UdacitySwiftUIDataLessons */,
-				E27A9DE02DBD5458007F2BA1 /* Products */,
+				FF9B5BC52BE988C9000F5133 /* PhotoViewer */,
+				FF9B5BC42BE988C9000F5133 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E27A9DE02DBD5458007F2BA1 /* Products */ = {
+		FF9B5BC42BE988C9000F5133 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E27A9DDF2DBD5458007F2BA1 /* UdacitySwiftUIDataLessons.app */,
+				FF9B5BC32BE988C9000F5133 /* PhotoViewer.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FF9B5BC52BE988C9000F5133 /* PhotoViewer */ = {
+			isa = PBXGroup;
+			children = (
+				FF9B5BC62BE988C9000F5133 /* PhotoViewerApp.swift */,
+				FF9B5BC82BE988C9000F5133 /* ContentView.swift */,
+				FF9B5BCA2BE988CB000F5133 /* Assets.xcassets */,
+				FF9B5BCC2BE988CB000F5133 /* Preview Content */,
+			);
+			path = PhotoViewer;
+			sourceTree = "<group>";
+		};
+		FF9B5BCC2BE988CB000F5133 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FF9B5BCD2BE988CB000F5133 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E27A9DDE2DBD5458007F2BA1 /* UdacitySwiftUIDataLessons */ = {
+		FF9B5BC22BE988C9000F5133 /* PhotoViewer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E27A9DEA2DBD545A007F2BA1 /* Build configuration list for PBXNativeTarget "UdacitySwiftUIDataLessons" */;
+			buildConfigurationList = FF9B5BD12BE988CB000F5133 /* Build configuration list for PBXNativeTarget "PhotoViewer" */;
 			buildPhases = (
-				E27A9DDB2DBD5458007F2BA1 /* Sources */,
-				E27A9DDC2DBD5458007F2BA1 /* Frameworks */,
-				E27A9DDD2DBD5458007F2BA1 /* Resources */,
+				FF9B5BBF2BE988C9000F5133 /* Sources */,
+				FF9B5BC02BE988C9000F5133 /* Frameworks */,
+				FF9B5BC12BE988C9000F5133 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				E27A9DE12DBD5458007F2BA1 /* UdacitySwiftUIDataLessons */,
-			);
-			name = UdacitySwiftUIDataLessons;
-			packageProductDependencies = (
-			);
-			productName = UdacitySwiftUIDataLessons;
-			productReference = E27A9DDF2DBD5458007F2BA1 /* UdacitySwiftUIDataLessons.app */;
+			name = PhotoViewer;
+			productName = PhotoViewer;
+			productReference = FF9B5BC32BE988C9000F5133 /* PhotoViewer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E27A9DD72DBD5458007F2BA1 /* Project object */ = {
+		FF9B5BBB2BE988C9000F5133 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1630;
-				LastUpgradeCheck = 1630;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
-					E27A9DDE2DBD5458007F2BA1 = {
-						CreatedOnToolsVersion = 16.3;
+					FF9B5BC22BE988C9000F5133 = {
+						CreatedOnToolsVersion = 15.3;
 					};
 				};
 			};
-			buildConfigurationList = E27A9DDA2DBD5458007F2BA1 /* Build configuration list for PBXProject "UdacitySwiftUIDataLessons" */;
+			buildConfigurationList = FF9B5BBE2BE988C9000F5133 /* Build configuration list for PBXProject "PhotoViewer" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = E27A9DD62DBD5458007F2BA1;
-			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
-			productRefGroup = E27A9DE02DBD5458007F2BA1 /* Products */;
+			mainGroup = FF9B5BBA2BE988C9000F5133;
+			productRefGroup = FF9B5BC42BE988C9000F5133 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E27A9DDE2DBD5458007F2BA1 /* UdacitySwiftUIDataLessons */,
+				FF9B5BC22BE988C9000F5133 /* PhotoViewer */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E27A9DDD2DBD5458007F2BA1 /* Resources */ = {
+		FF9B5BC12BE988C9000F5133 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E27A9DFA2DBD5DCD007F2BA1 /* README.md in Resources */,
+				FF9B5BCE2BE988CB000F5133 /* Preview Assets.xcassets in Resources */,
+				FF9B5BCB2BE988CB000F5133 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E27A9DDB2DBD5458007F2BA1 /* Sources */ = {
+		FF9B5BBF2BE988C9000F5133 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF9B5BC92BE988C9000F5133 /* ContentView.swift in Sources */,
+				FF9B5BC72BE988C9000F5133 /* PhotoViewerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		E27A9DE82DBD545A007F2BA1 /* Debug */ = {
+		FF9B5BCF2BE988CB000F5133 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -184,7 +197,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -195,7 +208,7 @@
 			};
 			name = Debug;
 		};
-		E27A9DE92DBD545A007F2BA1 /* Release */ = {
+		FF9B5BD02BE988CB000F5133 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -241,7 +254,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -251,14 +264,15 @@
 			};
 			name = Release;
 		};
-		E27A9DEB2DBD545A007F2BA1 /* Debug */ = {
+		FF9B5BD22BE988CB000F5133 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DGHFQWBX8C;
+				DEVELOPMENT_ASSET_PATHS = "\"PhotoViewer/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -271,7 +285,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = laito.testapp3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.udacity.gestures.PhotoViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -279,14 +293,15 @@
 			};
 			name = Debug;
 		};
-		E27A9DEC2DBD545A007F2BA1 /* Release */ = {
+		FF9B5BD32BE988CB000F5133 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DGHFQWBX8C;
+				DEVELOPMENT_ASSET_PATHS = "\"PhotoViewer/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -299,7 +314,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = laito.testapp3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.udacity.gestures.PhotoViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -310,25 +325,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E27A9DDA2DBD5458007F2BA1 /* Build configuration list for PBXProject "UdacitySwiftUIDataLessons" */ = {
+		FF9B5BBE2BE988C9000F5133 /* Build configuration list for PBXProject "PhotoViewer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E27A9DE82DBD545A007F2BA1 /* Debug */,
-				E27A9DE92DBD545A007F2BA1 /* Release */,
+				FF9B5BCF2BE988CB000F5133 /* Debug */,
+				FF9B5BD02BE988CB000F5133 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E27A9DEA2DBD545A007F2BA1 /* Build configuration list for PBXNativeTarget "UdacitySwiftUIDataLessons" */ = {
+		FF9B5BD12BE988CB000F5133 /* Build configuration list for PBXNativeTarget "PhotoViewer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E27A9DEB2DBD545A007F2BA1 /* Debug */,
-				E27A9DEC2DBD545A007F2BA1 /* Release */,
+				FF9B5BD22BE988CB000F5133 /* Debug */,
+				FF9B5BD32BE988CB000F5133 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E27A9DD72DBD5458007F2BA1 /* Project object */;
+	rootObject = FF9B5BBB2BE988C9000F5133 /* Project object */;
 }
