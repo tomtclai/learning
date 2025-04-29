@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E27A9DFC2DBED0E8007F2BA1 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A9DFB2DBED0E1007F2BA1 /* PostView.swift */; };
+		E27A9DFE2DBED12C007F2BA1 /* GestureTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A9DFD2DBED127007F2BA1 /* GestureTestView.swift */; };
+		E27A9E002DBED46F007F2BA1 /* GroceryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A9DFF2DBED46F007F2BA1 /* GroceryListView.swift */; };
 		FF0B6E972BE88BEA00071F16 /* SocialAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0B6E962BE88BEA00071F16 /* SocialAppApp.swift */; };
 		FF0B6E992BE88BEA00071F16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0B6E982BE88BEA00071F16 /* ContentView.swift */; };
 		FF0B6E9B2BE88BEB00071F16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF0B6E9A2BE88BEB00071F16 /* Assets.xcassets */; };
@@ -14,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E27A9DFB2DBED0E1007F2BA1 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		E27A9DFD2DBED127007F2BA1 /* GestureTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureTestView.swift; sourceTree = "<group>"; };
+		E27A9DFF2DBED46F007F2BA1 /* GroceryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListView.swift; sourceTree = "<group>"; };
 		FF0B6E932BE88BEA00071F16 /* SocialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF0B6E962BE88BEA00071F16 /* SocialAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAppApp.swift; sourceTree = "<group>"; };
 		FF0B6E982BE88BEA00071F16 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,8 +59,11 @@
 			children = (
 				FF0B6E962BE88BEA00071F16 /* SocialAppApp.swift */,
 				FF0B6E982BE88BEA00071F16 /* ContentView.swift */,
+				E27A9DFD2DBED127007F2BA1 /* GestureTestView.swift */,
+				E27A9DFB2DBED0E1007F2BA1 /* PostView.swift */,
 				FF0B6E9A2BE88BEB00071F16 /* Assets.xcassets */,
 				FF0B6E9C2BE88BEB00071F16 /* Preview Content */,
+				E27A9DFF2DBED46F007F2BA1 /* GroceryListView.swift */,
 			);
 			path = SocialApp;
 			sourceTree = "<group>";
@@ -138,7 +147,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF0B6E992BE88BEA00071F16 /* ContentView.swift in Sources */,
+				E27A9DFC2DBED0E8007F2BA1 /* PostView.swift in Sources */,
+				E27A9DFE2DBED12C007F2BA1 /* GestureTestView.swift in Sources */,
 				FF0B6E972BE88BEA00071F16 /* SocialAppApp.swift in Sources */,
+				E27A9E002DBED46F007F2BA1 /* GroceryListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,7 +297,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.udacity.form.SocialApp.lai;
+				PRODUCT_BUNDLE_IDENTIFIER = com.udacity.form.SocialApp.laito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -314,7 +326,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.udacity.form.SocialApp.lai;
+				PRODUCT_BUNDLE_IDENTIFIER = com.udacity.form.SocialApp.laito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
