@@ -3,32 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		FF2ACF2E2BEBBCE4005E8E5C /* PhotoSaverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2ACF2D2BEBBCE4005E8E5C /* PhotoSaverApp.swift */; };
-		FF2ACF302BEBBCE4005E8E5C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2ACF2F2BEBBCE4005E8E5C /* ContentView.swift */; };
-		FF2ACF322BEBBCE5005E8E5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF2ACF312BEBBCE5005E8E5C /* Assets.xcassets */; };
-		FF2ACF352BEBBCE5005E8E5C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF2ACF342BEBBCE5005E8E5C /* Preview Assets.xcassets */; };
-		FF2ACF3C2BEBBD64005E8E5C /* UserPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2ACF3B2BEBBD64005E8E5C /* UserPhotoView.swift */; };
-		FF2ACF3E2BEBBDC9005E8E5C /* PhotoPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2ACF3D2BEBBDC9005E8E5C /* PhotoPostView.swift */; };
-		FF2ACF402BEBBDFB005E8E5C /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2ACF3F2BEBBDFB005E8E5C /* SaveButton.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		FF2ACF2A2BEBBCE4005E8E5C /* PhotoSaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoSaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FF2ACF2D2BEBBCE4005E8E5C /* PhotoSaverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSaverApp.swift; sourceTree = "<group>"; };
-		FF2ACF2F2BEBBCE4005E8E5C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		FF2ACF312BEBBCE5005E8E5C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FF2ACF342BEBBCE5005E8E5C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FF2ACF3B2BEBBD64005E8E5C /* UserPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPhotoView.swift; sourceTree = "<group>"; };
-		FF2ACF3D2BEBBDC9005E8E5C /* PhotoPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPostView.swift; sourceTree = "<group>"; };
-		FF2ACF3F2BEBBDFB005E8E5C /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
+		42721F9A2DC5166600A44F68 /* haptics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = haptics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		42721F9C2DC5166600A44F68 /* haptics */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = haptics;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
-		FF2ACF272BEBBCE4005E8E5C /* Frameworks */ = {
+		42721F972DC5166600A44F68 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -38,126 +29,103 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FF2ACF212BEBBCE4005E8E5C = {
+		42721F912DC5166600A44F68 = {
 			isa = PBXGroup;
 			children = (
-				FF2ACF2C2BEBBCE4005E8E5C /* PhotoSaver */,
-				FF2ACF2B2BEBBCE4005E8E5C /* Products */,
+				42721F9C2DC5166600A44F68 /* haptics */,
+				42721F9B2DC5166600A44F68 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		FF2ACF2B2BEBBCE4005E8E5C /* Products */ = {
+		42721F9B2DC5166600A44F68 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FF2ACF2A2BEBBCE4005E8E5C /* PhotoSaver.app */,
+				42721F9A2DC5166600A44F68 /* haptics.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		FF2ACF2C2BEBBCE4005E8E5C /* PhotoSaver */ = {
-			isa = PBXGroup;
-			children = (
-				FF2ACF2D2BEBBCE4005E8E5C /* PhotoSaverApp.swift */,
-				FF2ACF2F2BEBBCE4005E8E5C /* ContentView.swift */,
-				FF2ACF3D2BEBBDC9005E8E5C /* PhotoPostView.swift */,
-				FF2ACF3F2BEBBDFB005E8E5C /* SaveButton.swift */,
-				FF2ACF3B2BEBBD64005E8E5C /* UserPhotoView.swift */,
-				FF2ACF312BEBBCE5005E8E5C /* Assets.xcassets */,
-				FF2ACF332BEBBCE5005E8E5C /* Preview Content */,
-			);
-			path = PhotoSaver;
-			sourceTree = "<group>";
-		};
-		FF2ACF332BEBBCE5005E8E5C /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				FF2ACF342BEBBCE5005E8E5C /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FF2ACF292BEBBCE4005E8E5C /* PhotoSaver */ = {
+		42721F992DC5166600A44F68 /* haptics */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FF2ACF382BEBBCE5005E8E5C /* Build configuration list for PBXNativeTarget "PhotoSaver" */;
+			buildConfigurationList = 42721FA82DC5166800A44F68 /* Build configuration list for PBXNativeTarget "haptics" */;
 			buildPhases = (
-				FF2ACF262BEBBCE4005E8E5C /* Sources */,
-				FF2ACF272BEBBCE4005E8E5C /* Frameworks */,
-				FF2ACF282BEBBCE4005E8E5C /* Resources */,
+				42721F962DC5166600A44F68 /* Sources */,
+				42721F972DC5166600A44F68 /* Frameworks */,
+				42721F982DC5166600A44F68 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = PhotoSaver;
-			productName = PhotoSaver;
-			productReference = FF2ACF2A2BEBBCE4005E8E5C /* PhotoSaver.app */;
+			fileSystemSynchronizedGroups = (
+				42721F9C2DC5166600A44F68 /* haptics */,
+			);
+			name = haptics;
+			packageProductDependencies = (
+			);
+			productName = haptics;
+			productReference = 42721F9A2DC5166600A44F68 /* haptics.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		FF2ACF222BEBBCE4005E8E5C /* Project object */ = {
+		42721F922DC5166600A44F68 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
-					FF2ACF292BEBBCE4005E8E5C = {
-						CreatedOnToolsVersion = 15.3;
+					42721F992DC5166600A44F68 = {
+						CreatedOnToolsVersion = 16.2;
 					};
 				};
 			};
-			buildConfigurationList = FF2ACF252BEBBCE4005E8E5C /* Build configuration list for PBXProject "PhotoSaver" */;
-			compatibilityVersion = "Xcode 14.0";
+			buildConfigurationList = 42721F952DC5166600A44F68 /* Build configuration list for PBXProject "haptics" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = FF2ACF212BEBBCE4005E8E5C;
-			productRefGroup = FF2ACF2B2BEBBCE4005E8E5C /* Products */;
+			mainGroup = 42721F912DC5166600A44F68;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 42721F9B2DC5166600A44F68 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FF2ACF292BEBBCE4005E8E5C /* PhotoSaver */,
+				42721F992DC5166600A44F68 /* haptics */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		FF2ACF282BEBBCE4005E8E5C /* Resources */ = {
+		42721F982DC5166600A44F68 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF2ACF352BEBBCE5005E8E5C /* Preview Assets.xcassets in Resources */,
-				FF2ACF322BEBBCE5005E8E5C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		FF2ACF262BEBBCE4005E8E5C /* Sources */ = {
+		42721F962DC5166600A44F68 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF2ACF3C2BEBBD64005E8E5C /* UserPhotoView.swift in Sources */,
-				FF2ACF3E2BEBBDC9005E8E5C /* PhotoPostView.swift in Sources */,
-				FF2ACF302BEBBCE4005E8E5C /* ContentView.swift in Sources */,
-				FF2ACF2E2BEBBCE4005E8E5C /* PhotoSaverApp.swift in Sources */,
-				FF2ACF402BEBBDFB005E8E5C /* SaveButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		FF2ACF362BEBBCE5005E8E5C /* Debug */ = {
+		42721FA62DC5166800A44F68 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -209,7 +177,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -220,7 +188,7 @@
 			};
 			name = Debug;
 		};
-		FF2ACF372BEBBCE5005E8E5C /* Release */ = {
+		42721FA72DC5166800A44F68 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -266,7 +234,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -276,14 +244,14 @@
 			};
 			name = Release;
 		};
-		FF2ACF392BEBBCE5005E8E5C /* Debug */ = {
+		42721FA92DC5166800A44F68 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PhotoSaver/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"haptics/Preview Content\"";
 				DEVELOPMENT_TEAM = DGHFQWBX8C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -292,13 +260,12 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lai.testappP343;
+				PRODUCT_BUNDLE_IDENTIFIER = lai.testapp.haptics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -306,14 +273,14 @@
 			};
 			name = Debug;
 		};
-		FF2ACF3A2BEBBCE5005E8E5C /* Release */ = {
+		42721FAA2DC5166800A44F68 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PhotoSaver/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"haptics/Preview Content\"";
 				DEVELOPMENT_TEAM = DGHFQWBX8C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -322,13 +289,12 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lai.testappP343;
+				PRODUCT_BUNDLE_IDENTIFIER = lai.testapp.haptics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -339,25 +305,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FF2ACF252BEBBCE4005E8E5C /* Build configuration list for PBXProject "PhotoSaver" */ = {
+		42721F952DC5166600A44F68 /* Build configuration list for PBXProject "haptics" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FF2ACF362BEBBCE5005E8E5C /* Debug */,
-				FF2ACF372BEBBCE5005E8E5C /* Release */,
+				42721FA62DC5166800A44F68 /* Debug */,
+				42721FA72DC5166800A44F68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FF2ACF382BEBBCE5005E8E5C /* Build configuration list for PBXNativeTarget "PhotoSaver" */ = {
+		42721FA82DC5166800A44F68 /* Build configuration list for PBXNativeTarget "haptics" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FF2ACF392BEBBCE5005E8E5C /* Debug */,
-				FF2ACF3A2BEBBCE5005E8E5C /* Release */,
+				42721FA92DC5166800A44F68 /* Debug */,
+				42721FAA2DC5166800A44F68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = FF2ACF222BEBBCE4005E8E5C /* Project object */;
+	rootObject = 42721F922DC5166600A44F68 /* Project object */;
 }

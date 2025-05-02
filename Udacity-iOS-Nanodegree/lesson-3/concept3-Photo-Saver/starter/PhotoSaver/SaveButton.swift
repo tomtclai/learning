@@ -12,15 +12,47 @@ struct SaveButton: View {
 
     var body: some View {
         Button(action: {
-
-            isSaved.toggle()
-
+            withAnimation {
+                isSaved.toggle()
+            }
         }, label: {
             Image(systemName: isSaved ? "star.fill" : "star")
                 .imageScale(.large)
-                // Add animation effects here using isSaved
+                .rotationEffect(isSaved ? .degrees(360) : .degrees(0))
+                .scaleEffect(isSaved ? 1.3 : 1)
         })
         .foregroundStyle(isSaved ? .orange : .secondary)
+        .animation(.bouncy(duration: 1), value: isSaved)
+    }
+}
+
+struct MySaveButton: View {
+    @Binding var isSaved: Bool
+    @State var rotationAngle: Angle = Angle(degrees: 0)
+    @State var scale = 1.0
+    var body: some View {
+        Button(
+action: {
+            isSaved.toggle()
+            rotationAngle = Angle(degrees: 360)
+            scale = 2.0
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                scale = 1.0
+                rotationAngle = Angle(degrees: 0)
+            }
+        },
+ label: {
+            Image(systemName: isSaved ? "star.fill" : "star")
+                .imageScale(.large)
+
+                .rotationEffect(rotationAngle)
+                .scaleEffect(scale)
+
+        })
+        .foregroundStyle(isSaved ? .orange : .secondary)
+        .animation(.easeInOut, value: rotationAngle)
+        .animation(.default, value: scale)
+
         // Specify an animation to use
     }
 }
