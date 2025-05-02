@@ -1,7 +1,4 @@
-Title  | iOS Developer Nanodegree
--------|-------------------
-Author | Udacity
-URL    | [udacity.com](https://www.udacity.com/course/ios-developer-nanodegree--nd003)
-
-
-**In Progress**: Virtual Tourist
+Title |  iOS Development with SwiftUI and SwiftData
+------|-------------------
+Author|  Udacity
+Link  |  https://www.udacity.com/course/ios-developer-nanodegree--nd003
