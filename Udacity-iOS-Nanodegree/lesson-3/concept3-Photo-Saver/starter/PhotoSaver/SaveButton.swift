@@ -19,10 +19,10 @@ struct SaveButton: View {
             Image(systemName: isSaved ? "star.fill" : "star")
                 .imageScale(.large)
                 .rotationEffect(isSaved ? .degrees(360) : .degrees(0))
-                .scaleEffect(isSaved ? 1.3 : 1)
+                .scaleEffect(isSaved ? 5.3 : 3)
         })
         .foregroundStyle(isSaved ? .orange : .secondary)
-        .animation(.bouncy(duration: 1), value: isSaved)
+        .animation(.bouncy(duration: 0.5), value: isSaved)
     }
 }
 
