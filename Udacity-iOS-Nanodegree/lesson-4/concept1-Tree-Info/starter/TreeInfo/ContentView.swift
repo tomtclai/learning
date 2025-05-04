@@ -8,13 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    let trees: [TreeModel]
+    let gridItems = [GridItem(.adaptive(minimum: 100))]
     var body: some View {
-        List {
-            // Create a list of trees here, and allow navigating to TreeDetailView. You can use `TreeModel.all` as the source for the trees.
+        NavigationStack{
+            ScrollView {
+                LazyVGrid(columns: gridItems){
+                    ForEach(trees) { tree in
+                        NavigationLink(value: tree) {
+                            TreeCell(tree: tree)
+                        }.tint(tree.color)
+                    }
+                }
+            }
+            .navigationDestination(for: TreeModel.self) { tree in
+                TreeDetailView(tree: tree)
+                
+            }
         }
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(trees: TreeModel.all)
 }

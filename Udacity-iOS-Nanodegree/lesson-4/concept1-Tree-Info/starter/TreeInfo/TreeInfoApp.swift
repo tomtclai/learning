@@ -11,7 +11,7 @@ import SwiftUI
 struct TreeInfoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(trees: TreeModel.all)
         }
     }
 }

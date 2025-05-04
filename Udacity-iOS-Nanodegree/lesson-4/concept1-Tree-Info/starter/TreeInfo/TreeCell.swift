@@ -11,23 +11,29 @@ struct TreeCell: View {
     let tree: TreeModel
 
     var body: some View {
-        HStack {
-            Image(tree.image)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 50, height: 50)
-                .clipShape(RoundedRectangle(cornerRadius: 13))
-                .clipped()
-
-            VStack(alignment: .leading) {
-                Text(tree.name)
-                Text(tree.family)
-                    .foregroundStyle(.secondary)
-                    .font(.caption)
+        ZStack {
+            
+            Color(tree.color)
+                .opacity(0.3)
+                
+            VStack {
+                Image(tree.image)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 75, height: 75)
+                    .clipShape(RoundedRectangle(cornerRadius: 30))
+                    .clipped()
+                
+                VStack(alignment: .center) {
+                    Text(tree.name)
+                    Text(tree.family)
+                        .foregroundStyle(.secondary)
+                        .font(.caption)
+                }
             }
-
-            Spacer()
+            
         }
+        
 
     }
 }
