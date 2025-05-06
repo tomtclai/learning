@@ -3,11 +3,11 @@ This repository contains work and/or practices I typed going through various mat
 **Disclaimer:** May contain downloaded examples and/or images. 
 
 ### Quick Links
+ - [iOS Developer Nanodegree](Udacity-iOS-Nanodegree)
  - [Swift UI By Example](https://github.com/tomtclai/learning/tree/main/SwiftUI-By-Example)
  - [Head First Javascript Programming](Head-First-JavaScript-Programming/)
  - [Objective-C Programming: The Big Nerd Ranch Guide](Objective-C-by-Aaron-Hillegass/)
  - [iOS Programming: The Big Nerd Ranch Guide](iOS-Programming/)
- - [iOS Developer Nanodegree](Udacity-iOS-Nanodegree)
  - [iOS Animations by Tutorials](iOS_Animations_by_Tutorials_v4.0.1)
 <!-- - [iTunes U: Developing iOS 7 Apps for iPhone and iPad](Developing-iOS-7-Apps-for-iPhone-and-iPad/)-->
 
