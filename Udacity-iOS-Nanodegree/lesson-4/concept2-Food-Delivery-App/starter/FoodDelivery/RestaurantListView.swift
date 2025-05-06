@@ -16,7 +16,9 @@ struct RestaurantListView: View {
             .listStyle(.grouped)
             .navigationTitle("Restaurants")
         }
-        // Add a tab item for the tab label
+        .tabItem {
+            Label("Restaurants", systemImage: "fork.knife")
+        }
     }
 }
 

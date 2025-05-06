@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        // Add your TabView here!
-        EmptyView()
+        TabView {
+            RestaurantListView()
+            OrderHistoryView()
+        }
     }
 }
 

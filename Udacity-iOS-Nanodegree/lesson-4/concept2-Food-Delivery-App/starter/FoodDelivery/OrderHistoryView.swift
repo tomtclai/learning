@@ -18,7 +18,10 @@ struct OrderHistoryView: View {
             .listStyle(.grouped)
             .navigationTitle("Order History")
         }
-        // Add a tab item for the tab label
+        
+        .tabItem {
+            Label("Order History", systemImage: "receipt")
+        }
     }
 }
 
