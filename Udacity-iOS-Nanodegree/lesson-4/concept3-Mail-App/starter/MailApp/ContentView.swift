@@ -9,6 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        NavigationSplitView {
+            MailSidebarView()
+        } detail: {
+            ContentUnavailableView("No Mail", systemImage: "envelope.open")
+        }
+
         // Add a NavigationSplitView here!
         EmptyView()
     }

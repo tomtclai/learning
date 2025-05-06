@@ -10,8 +10,11 @@ import SwiftUI
 struct MailSidebarView: View {
     var body: some View {
         List(MailThreadModel.all) { mailThread in
-            // How can we navigate the user to the `MailContentView` when they tap the cell?
-            MailThreadCell(mailThread: mailThread)
+            NavigationLink {
+                MailContentView(mailThread: mailThread)
+            } label: {
+                MailThreadCell(mailThread: mailThread)
+            }
         }
         .listStyle(.plain)
         .toolbar {
