@@ -19,10 +19,18 @@ struct EventsView: View {
                 }
                 .onDelete(perform: deleteEvent)
             }
+            .toolbar(content: {
+                NavigationLink(value: Event(id: UUID(), title: "", date: Date.now, textColor: Color.primary)) {
+                    Button("Add", systemImage: "plus.app") {}
+                }
+            })
             .navigationDestination(for: Event.self) { event in
                 EventForm(event: event) { updatedEvent in
                     if let index = events.firstIndex(of: event) {
                         events[index] = updatedEvent
+                    } else {
+                        events.append(updatedEvent)
+                        events.sort()
                     }
                 }
             }
