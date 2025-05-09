@@ -19,13 +19,10 @@ struct EventForm: View {
             onSave(Event(id: event.id, title: title, date: date, textColor: color))
             dismiss()
         }
-        .disabled(disabled)
+        .disabled(title.isEmpty)
         .buttonStyle(.borderedProminent)
         Form {
             TextField("Title", text: $title)
-                .onSubmit {
-                    disabled = title.isEmpty
-                }
             DatePicker("Date", selection: $date)
             ColorPicker("Color", selection: $color)
         }
