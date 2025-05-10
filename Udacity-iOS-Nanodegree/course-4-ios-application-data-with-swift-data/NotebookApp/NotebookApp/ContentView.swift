@@ -1,24 +1,15 @@
-//
-//  ContentView.swift
-//  NotebookApp
-//
-//  Created by Tom Lai on 5/10/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State var notes: [Note]
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        List(notes.indices, id:\.self) { index in
+            NoteSummary(note: $notes[index])
         }
-        .padding()
     }
 }
 
 #Preview {
-    ContentView()
+    let notes = [Note(title: "My Note", body: "This is a note I wrote"),Note(title: "My Note", body: "This is a note I wrote"),Note(title: "My Note", body: "This is a note I wrote"),Note(title: "My Note", body: "This is a note I wrote")]
+    ContentView(notes: notes)
 }

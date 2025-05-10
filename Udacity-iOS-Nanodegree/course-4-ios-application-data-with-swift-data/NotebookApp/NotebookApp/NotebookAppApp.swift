@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct NotebookAppApp: App {
+    let notes = [Note(title: "My Note", body: "This is a note I wrote"),Note(title: "My Note", body: "This is a note I wrote"),Note(title: "My Note", body: "This is a note I wrote"),Note(title: "My Note", body: "This is a note I wrote")]
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(notes: notes)
         }
     }
 }
