@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct NotesApp: App {
-    @State var notes: Notes = Notes(notes:[
+    @StateObject var notes: Notes = Notes(notes:[
         Note(title: "Grocery list",
              body: "Milk, eggs, sourdough, coffee"),
         Note(title: "Team meeting",
@@ -24,7 +24,7 @@ struct NotesApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(notes)
+                .environmentObject(notes)
         }
     }
 }

@@ -7,23 +7,26 @@
 
 import Foundation
 import Observation
-@Observable
-class Notes {
-    var notes: [Note]
+
+class Notes: ObservableObject {
+    @Published var notes: [Note] = []
     
-    init(notes: [Note]) {
-        self.notes = notes
+    init() {
+        loadNotes()
     }
     func addNote(_ note: Note) {
         self.notes.append(note)
+        saveNotes()
     }
     
     func append() {
         notes.append(Note(title: "Title", body: "Body"))
+        saveNotes()
     }
     
     func remove(id: UUID) {
         notes = notes.filter { $0.id != id }
+        saveNotes()
     }
     func saveNotes() {
         if let encoded = try? JSONEncoder().encode(notes) {
