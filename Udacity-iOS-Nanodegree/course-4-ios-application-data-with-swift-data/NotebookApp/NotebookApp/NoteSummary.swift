@@ -5,12 +5,15 @@ struct NoteSummary: View {
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
-        Text("title")
-        TextField("title", text: $note.title)
-        Text("body")
-        TextField("body", text: $note.body)
-        Button("Submit") {
-           dismiss()
+        
+        VStack {
+            Text("title")
+            TextField("title", text: $note.title)
+            Text("body")
+            TextField("body", text: $note.body)
+            Button("Submit") {
+                dismiss()
+            }
         }
     }
 }
