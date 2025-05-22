@@ -9,16 +9,17 @@ import SwiftUI
 
 struct NoteSummary: View {
     @Binding var note: Note
-    // Declare the @State property for isEditing here default to false
     @State var isEditing: Bool = false
 
     var body: some View {
          VStack(alignment: .leading) {
              if isEditing {
-                 // Add TextField for editing the title
-                 // Add TextField for editing the body
+                 TextField("Title", text: $note.title)
+                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                 TextField("Body",text: $note.body)
+                     .textFieldStyle(RoundedBorderTextFieldStyle())
                  Button("Save") {
-                     // Add action to toggle isEditing state and hide the keyboard
+                     isEditing.toggle()
                  }
                  .padding()
              } else {
@@ -32,15 +33,11 @@ struct NoteSummary: View {
          .background(isEditing ? Color.gray.opacity(0.2) : Color.clear)
          .cornerRadius(10)
          .animation(.default, value: isEditing)
-        // Implement an onTapGesture that toggles the isEditing state when the user double-taps the VStack
          .onTapGesture(count: 2) {
              isEditing.toggle()
          }
 
      }
-
-    // Provide a private method hideKeyboard()
-
 }
 
 #Preview {
