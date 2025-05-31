@@ -1,9 +1,9 @@
 import SwiftUI
-
+import SwiftData
 struct RecipesView: View {
-  @Environment(\.storage) private var storage
   @State private var query = ""
-  @State private var sortOrder = SortDescriptor(\MockRecipe.name)
+  @State private var sortOrder = SortDescriptor(\Recipe.name)
+    @Query private var recipes: [Recipe]
 
   // MARK: - Body
 
@@ -12,7 +12,7 @@ struct RecipesView: View {
       content
         .navigationTitle("Recipes")
         .toolbar {
-          if !storage.recipes.isEmpty {
+          if !recipes.isEmpty {
             sortOptions
             ToolbarItem(placement: .topBarTrailing) {
               NavigationLink(value: RecipeForm.Mode.add) {
@@ -35,19 +35,19 @@ struct RecipesView: View {
       Menu("Sort", systemImage: "arrow.up.arrow.down") {
         Picker("Sort", selection: $sortOrder) {
           Text("Name")
-            .tag(SortDescriptor(\MockRecipe.name))
+            .tag(SortDescriptor(\Recipe.name))
 
           Text("Serving (low to high)")
-            .tag(SortDescriptor(\MockRecipe.serving, order: .forward))
+            .tag(SortDescriptor(\Recipe.serving, order: .forward))
 
           Text("Serving (high to low)")
-            .tag(SortDescriptor(\MockRecipe.serving, order: .reverse))
+            .tag(SortDescriptor(\Recipe.serving, order: .reverse))
 
           Text("Time (short to long)")
-            .tag(SortDescriptor(\MockRecipe.time, order: .forward))
+            .tag(SortDescriptor(\Recipe.time, order: .forward))
 
           Text("Time (long to short)")
-            .tag(SortDescriptor(\MockRecipe.time, order: .reverse))
+            .tag(SortDescriptor(\Recipe.time, order: .reverse))
         }
       }
       .pickerStyle(.inline)
@@ -56,10 +56,10 @@ struct RecipesView: View {
 
   @ViewBuilder
   private var content: some View {
-    if storage.recipes.isEmpty {
+    if recipes.isEmpty {
       empty
     } else {
-      list(for: storage.recipes.filter {
+      list(for: recipes.filter {
         if query.isEmpty {
           return true
         } else {
@@ -93,7 +93,7 @@ struct RecipesView: View {
     )
   }
 
-  private func list(for recipes: [MockRecipe]) -> some View {
+  private func list(for recipes: [Recipe]) -> some View {
     ScrollView(.vertical) {
       if recipes.isEmpty {
         noResults

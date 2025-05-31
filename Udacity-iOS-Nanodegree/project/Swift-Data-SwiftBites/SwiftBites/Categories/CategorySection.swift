@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct CategorySection: View {
-  let category: MockCategory
+  let category: Category
 
   // MARK: - Body
 
