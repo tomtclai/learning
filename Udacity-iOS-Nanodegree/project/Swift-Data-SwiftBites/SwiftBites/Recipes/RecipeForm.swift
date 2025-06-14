@@ -177,13 +177,24 @@ struct RecipeForm: View {
  
   @ViewBuilder
   private var ingredientsSection: some View {
-    Section("Ingredients") {
+    Section(content: {
       if ingredients.isEmpty {
         emptyIngredientsView
       } else {
         ingredientsView
+        Button("Add Ingredient") {
+          isIngredientsPickerPresented = true
+        }
       }
-    }
+    }, header: {
+      HStack{
+        Text("Ingredients")
+        Spacer()
+        EditButton()
+      }
+    },footer: {
+      
+    })
   }
 
   private var emptyIngredientsView: some View {
@@ -201,41 +212,28 @@ struct RecipeForm: View {
        }
      )
   }
-
-  fileprivate func setQuantity(ingredient: RecipeIngredient, quantity: String) {
-    if let index = ingredients.firstIndex(where: { $0.id == ingredient.id }) {
-      if Int(quantity) == 0 {
-        modelContext.delete(ingredients[index])
-      } else {
-        ingredients[index].quantity = quantity
-      }
-    }
-  }
   
   var ingredientsView: some View {
-    VStack {
-      ForEach(ingredients) { ingredient in
-        HStack(alignment: .center) {
-          Text(ingredient.ingredient?.name ?? "")
-            .bold()
-            .layoutPriority(2)
-          Spacer()
-          TextField("Quantity", text: .init(
-            get: {
-              ingredient.quantity
-            },
-            set: { newValue in
-              setQuantity(ingredient: ingredient, quantity: newValue)
+    ForEach(ingredients) { ingredient in
+      HStack(alignment: .center) {
+        Text(ingredient.ingredient?.name ?? "")
+          .bold()
+          .layoutPriority(2)
+        Spacer()
+        TextField("Quantity", text: .init(
+          get: {
+            ingredient.quantity
+          },
+          set: { quantity in
+            if let index = ingredients.firstIndex(where: { $0.id == ingredient.id }) {
+              ingredients[index].quantity = quantity
             }
-          ))
-          .layoutPriority(1)
-        }
-      }
-      .onDelete(perform: deleteIngredients)
-      Button("Add Ingredient") {
-        isIngredientsPickerPresented = true
+          }
+        ))
+        .layoutPriority(1)
       }
     }
+    .onDelete(perform: deleteIngredients)
   }
 
   @ViewBuilder
