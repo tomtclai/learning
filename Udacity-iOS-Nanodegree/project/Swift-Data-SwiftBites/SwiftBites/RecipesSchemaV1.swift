@@ -25,7 +25,7 @@ extension RecipesSchemaV1 {
         var category: Category?
         var serving: Int
         var time: Int
-        var ingredients: [RecipeIngredient]
+        @Relationship var ingredients: [RecipeIngredient]
         var instructions: String
         var imageData: Data?
         
@@ -54,7 +54,7 @@ extension RecipesSchemaV1 {
     final class Category: Identifiable, Hashable {
         var id: UUID = UUID()
         var name: String
-        var recipes: [Recipe]
+        @Relationship(deleteRule: .nullify) var recipes: [Recipe]
 
         init(name: String = "", recipes: [Recipe] = []) {
           self.name = name
@@ -64,7 +64,8 @@ extension RecipesSchemaV1 {
     
     @Model final class RecipeIngredient: Identifiable, Hashable {
         var id: UUID = UUID()
-        var ingredient: Ingredient
+        @Relationship(deleteRule: .nullify, inverse: \Recipe.ingredients) var recipe = [Recipe]()
+        var ingredient: Ingredient?
         var quantity: String
 
         init(ingredient: Ingredient = Ingredient(), quantity: String = "") {
@@ -76,6 +77,7 @@ extension RecipesSchemaV1 {
     @Model final class Ingredient: Identifiable, Hashable {
         var id: UUID = UUID()
         var name: String
+        @Relationship(deleteRule: .cascade, inverse: \RecipeIngredient.ingredient) public var recipeIngredients = [RecipeIngredient]()
 
         init(name: String = "") {
           self.name = name

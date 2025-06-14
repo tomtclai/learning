@@ -1,13 +1,14 @@
 import SwiftUI
 
 struct CategoryForm: View {
+  @Environment(\.modelContext) var modelContext
   enum Mode: Hashable {
     case add
     case edit(Category)
   }
-
+  
   var mode: Mode
-
+  
   init(mode: Mode) {
     self.mode = mode
     switch mode {
@@ -19,15 +20,15 @@ struct CategoryForm: View {
       title = "Edit \(category.name)"
     }
   }
-
+  
   private let title: String
   @State private var name: String
   @State private var error: Error?
   @Environment(\.dismiss) private var dismiss
   @FocusState private var isNameFocused: Bool
-
+  
   // MARK: - Body
-
+  
   var body: some View {
     Form {
       Section {
@@ -63,25 +64,22 @@ struct CategoryForm: View {
       }
     }
   }
-
+  
   // MARK: - Data
-
+  
   private func delete(category: Category) {
-    // storage.deleteCategory(id: category.id)
+    modelContext.delete(category)
     dismiss()
   }
-
+  
   private func save() {
-    do {
-//      switch mode {
-//      case .add:
-        // try storage.addCategory(name: name)
-//      case .edit(let category):
-        // try storage.updateCategory(id: category.id, name: name)
-//      }
-      dismiss()
-    } catch {
-      self.error = error
+    switch mode {
+    case .add:
+      modelContext.insert(Category(name: name))
+    case .edit(let category):
+      category.name = name
     }
+    dismiss()
+    
   }
 }

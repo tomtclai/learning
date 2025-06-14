@@ -1,13 +1,14 @@
 import SwiftUI
 
 struct IngredientForm: View {
+  @Environment(\.modelContext) var modelContext
   enum Mode: Hashable {
     case add
     case edit(Ingredient)
   }
-
+  
   var mode: Mode
-
+  
   init(mode: Mode) {
     self.mode = mode
     switch mode {
@@ -19,15 +20,13 @@ struct IngredientForm: View {
       title = "Edit \(ingredient.name)"
     }
   }
-
+  
   private let title: String
   @State private var name: String
   @State private var error: Error?
   @Environment(\.dismiss) private var dismiss
   @FocusState private var isNameFocused: Bool
-
   // MARK: - Body
-
   var body: some View {
     Form {
       Section {
@@ -62,25 +61,21 @@ struct IngredientForm: View {
       }
     }
   }
-
+  
   // MARK: - Data
-
+  
   private func delete(ingredient: Ingredient) {
-    // storage.deleteIngredient(id: ingredient.id)
+    modelContext.delete(ingredient)
     dismiss()
   }
-
+  
   private func save() {
-//    do {
-//      switch mode {
-//      case .add:
-        // try storage.addIngredient(name: name)
-//      case .edit(let ingredient):
-        // try storage.updateIngredient(id: ingredient.id, name: name)
-//      }
-      dismiss()
-//    } catch {
-//      self.error = error
-//    }
+    switch mode {
+    case .add:
+      modelContext.insert(Ingredient(name: name))
+    case .edit(let ingredient):
+      ingredient.name = name
+    }
+    dismiss()
   }
 }

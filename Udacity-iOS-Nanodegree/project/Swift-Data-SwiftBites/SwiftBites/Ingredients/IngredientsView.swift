@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftData
 
 struct IngredientsView: View {
+  @Environment(\.modelContext) var modelContext
   typealias Selection = (Ingredient) -> Void
 
   let selection: Selection?
@@ -120,6 +121,6 @@ struct IngredientsView: View {
   // MARK: - Data
 
   private func delete(ingredient: Ingredient) {
-    // storage.deleteIngredient(id: ingredient.id)
+    modelContext.delete(ingredient)
   }
 }

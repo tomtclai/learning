@@ -4,6 +4,8 @@ import Foundation
 import SwiftData
 
 struct RecipeForm: View {
+  @Environment(\.modelContext) var modelContext
+
   enum Mode: Hashable {
     case add
     case edit(Recipe)
@@ -45,8 +47,8 @@ struct RecipeForm: View {
   @State private var imageData: Data?
   @State private var isIngredientsPickerPresented =  false
   @State private var error: Error?
-    @Query private var ingredients: [RecipeIngredient]
-    @Query private var categories: [Category]
+  @Query private var ingredients: [RecipeIngredient]
+  @Query private var categories: [Category]
   @Environment(\.dismiss) private var dismiss
 
   // MARK: - Body
@@ -87,7 +89,7 @@ struct RecipeForm: View {
   private func ingredientPicker() -> some View {
     IngredientsView { selectedIngredient in
       let recipeIngredient = RecipeIngredient(ingredient: selectedIngredient, quantity: "")
-      //ingredients.append(recipeIngredient)
+      modelContext.insert(recipeIngredient)
     }
   }
 
@@ -172,48 +174,66 @@ struct RecipeForm: View {
     .monospacedDigit()
   }
 
+ 
   @ViewBuilder
   private var ingredientsSection: some View {
     Section("Ingredients") {
       if ingredients.isEmpty {
-        ContentUnavailableView(
-          label: {
-            Label("No Ingredients", systemImage: "list.clipboard")
-          },
-          description: {
-            Text("Recipe ingredients will appear here.")
-          },
-          actions: {
-            Button("Add Ingredient") {
-              isIngredientsPickerPresented = true
-            }
-          }
-        )
+        emptyIngredientsView
       } else {
-        ForEach(ingredients) { ingredient in
-          HStack(alignment: .center) {
-            Text(ingredient.ingredient.name)
-              .bold()
-              .layoutPriority(2)
-            Spacer()
-            TextField("Quantity", text: .init(
-              get: {
-                ingredient.quantity
-              },
-              set: { quantity in
-                if let index = ingredients.firstIndex(where: { $0.id == ingredient.id }) {
-                  ingredients[index].quantity = quantity
-                }
-              }
-            ))
-            .layoutPriority(1)
-          }
-        }
-        .onDelete(perform: deleteIngredients)
+        ingredientsView
+      }
+    }
+  }
 
-        Button("Add Ingredient") {
-          isIngredientsPickerPresented = true
+  private var emptyIngredientsView: some View {
+    ContentUnavailableView(
+       label: {
+         Label("No Ingredients", systemImage: "list.clipboard")
+       },
+       description: {
+         Text("Recipe ingredients will appear here.")
+       },
+       actions: {
+         Button("Add Ingredient") {
+           isIngredientsPickerPresented = true
+         }
+       }
+     )
+  }
+
+  fileprivate func setQuantity(ingredient: RecipeIngredient, quantity: String) {
+    if let index = ingredients.firstIndex(where: { $0.id == ingredient.id }) {
+      if Int(quantity) == 0 {
+        modelContext.delete(ingredients[index])
+      } else {
+        ingredients[index].quantity = quantity
+      }
+    }
+  }
+  
+  var ingredientsView: some View {
+    VStack {
+      ForEach(ingredients) { ingredient in
+        HStack(alignment: .center) {
+          Text(ingredient.ingredient?.name ?? "")
+            .bold()
+            .layoutPriority(2)
+          Spacer()
+          TextField("Quantity", text: .init(
+            get: {
+              ingredient.quantity
+            },
+            set: { newValue in
+              setQuantity(ingredient: ingredient, quantity: newValue)
+            }
+          ))
+          .layoutPriority(1)
         }
+      }
+      .onDelete(perform: deleteIngredients)
+      Button("Add Ingredient") {
+        isIngredientsPickerPresented = true
       }
     }
   }
@@ -256,48 +276,43 @@ struct RecipeForm: View {
     guard case .edit(let recipe) = mode else {
       fatalError("Delete unavailable in add mode")
     }
-    // storage.deleteRecipe(id: recipe.id)
+    modelContext.delete(recipe)
     dismiss()
   }
 
   func deleteIngredients(offsets: IndexSet) {
     withAnimation {
-      //ingredients.remove(atOffsets: offsets)
+      offsets.forEach {
+        modelContext.delete(ingredients[$0])
+      }
     }
   }
 
   func save() {
-    //let category = storage.categories.first(where: { $0.id == categoryId })
-
-//    do {
-//      switch mode {
-//      case .add:
-//        // try storage.addRecipe(
-//          name: name,
-//          summary: summary,
-//          category: category,
-//          serving: serving,
-//          time: time,
-//          ingredients: ingredients,
-//          instructions: instructions,
-//          imageData: imageData
-//        )
-//      case .edit(let recipe):
-//        // try storage.updateRecipe(
-//          id: recipe.id,
-//          name: name,
-//          summary: summary,
-//          category: category,
-//          serving: serving,
-//          time: time,
-//          ingredients: ingredients,
-//          instructions: instructions,
-//          imageData: imageData
-//        )
-//      }
-//      dismiss()
-//    } catch {
-//      self.error = error
-//    }
+    let category = categories.first(where: { $0.id == categoryId })
+    switch mode {
+    case .add:
+      modelContext.insert(Recipe(
+        name: name,
+        summary: summary,
+        category: category,
+        serving: serving,
+        time: time,
+        ingredients: ingredients,
+        instructions: instructions,
+        imageData: imageData
+      ))
+    case .edit(let recipe):
+      recipe.name = name
+      recipe.summary = summary
+      recipe.category = category
+      recipe.serving = serving
+      recipe.time = time
+      recipe.ingredients = ingredients
+      recipe.instructions = instructions
+      recipe.imageData = imageData
+    }
+    dismiss()
+    
   }
 }
