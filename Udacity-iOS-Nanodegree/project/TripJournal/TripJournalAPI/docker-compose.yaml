@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  api:
+    build: .
+    command: sh -c "uvicorn app.main:app --reload --port=8000 --host=0.0.0.0"
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - db_volume:/db
+      - static_volume:/static
+    restart: always
+
+volumes:
+  static_volume:
+  db_volume:
