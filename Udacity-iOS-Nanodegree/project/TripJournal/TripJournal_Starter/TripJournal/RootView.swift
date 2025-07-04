@@ -27,6 +27,7 @@ struct RootView: View {
                 .overlay(alignment: .bottom) {
                     AddButton(action: addAction)
                 }
+                .environmentObject(service)
         } else {
             AuthView(onAuth: {_ in })
                 .environmentObject(service)

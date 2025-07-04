@@ -131,36 +131,201 @@ class LiveJournalService: JournalService, ObservableObject {
         }
     }
 
-    func getTrip(withId _: Trip.ID) async throws -> Trip {
-        fatalError("Unimplemented getTrip")
+    func getTrip(withId id: Trip.ID) async throws -> Trip {
+        let url = URL(string: "http://localhost:8000/trips/\(id)")!
+        var urlRequest = URLRequest(url: url)
+        guard let token = token else {
+            throw ValidationError.signedOut
+        }
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("\(token.tokenType) \(token.accessToken)", forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
+        let response = try await URLSession.shared.data(for: urlRequest)
+        let data = response.0
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
+        do {
+            let trip = try decoder.decode(Trip.self, from: data)
+            return trip
+        } catch {
+            print("Decoding failed with error: \(error)")
+            print("Raw response: \(String(data: data, encoding: .utf8) ?? "N/A")")
+            throw error
+        }
     }
 
-    func updateTrip(withId _: Trip.ID, and _: TripUpdate) async throws -> Trip {
-        fatalError("Unimplemented updateTrip")
+    func updateTrip(withId id: Trip.ID, and tripUpdate: TripUpdate) async throws -> Trip {
+        let url = URL(string: "http://localhost:8000/trips")!
+        var urlRequest = URLRequest(url: url)
+        guard let token = token else {
+            throw ValidationError.signedOut
+        }
+        urlRequest.httpMethod = "PUT"
+        urlRequest.setValue("\(token.tokenType) \(token.accessToken)", forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
+        let requestObject = tripUpdate
+        let coder = JSONEncoder()
+        coder.keyEncodingStrategy = .convertToSnakeCase
+        let requestData = try coder.encode(requestObject)
+        urlRequest.httpBody = requestData
+        let response = try await URLSession.shared.data(for: urlRequest)
+        let data = response.0
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
+        do {
+            let trip = try decoder.decode(Trip.self, from: data)
+            return trip
+        } catch {
+            print("Decoding failed with error: \(error)")
+            print("Raw response: \(String(data: data, encoding: .utf8) ?? "N/A")")
+            throw error
+        }
     }
 
-    func deleteTrip(withId _: Trip.ID) async throws {
-        fatalError("Unimplemented deleteTrip")
+    func deleteTrip(withId id: Trip.ID) async throws {
+        let url = URL(string: "http://localhost:8000/trips/\(id)")!
+        var urlRequest = URLRequest(url: url)
+        guard let token = token else {
+            throw ValidationError.signedOut
+        }
+        urlRequest.httpMethod = "DELETE"
+        urlRequest.setValue("\(token.tokenType) \(token.accessToken)", forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
+        let response = try await URLSession.shared.data(for: urlRequest)
+        let urlresponse = response.1 as! HTTPURLResponse
+        
+        guard 200..<300 ~= urlresponse.statusCode else {
+            throw ResponseError.errorCode(urlresponse.statusCode)
+        }
+         
+        return
     }
 
-    func createEvent(with _: EventCreate) async throws -> Event {
-        fatalError("Unimplemented createEvent")
+    func createEvent(with event: EventCreate) async throws -> Event {
+        let url = URL(string: "http://localhost:8000/events")!
+        var urlRequest = URLRequest(url: url)
+        guard let token = token else {
+            throw ValidationError.signedOut
+        }
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("\(token.tokenType) \(token.accessToken)", forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
+        let requestObject = event
+        let coder = JSONEncoder()
+        coder.keyEncodingStrategy = .convertToSnakeCase
+        let requestData = try coder.encode(requestObject)
+        urlRequest.httpBody = requestData
+        let response = try await URLSession.shared.data(for: urlRequest)
+        let data = response.0
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
+        do {
+            let event = try decoder.decode(Event.self, from: data)
+            return event
+        } catch {
+            print("Decoding failed with error: \(error)")
+            print("Raw response: \(String(data: data, encoding: .utf8) ?? "N/A")")
+            throw error
+        }
     }
 
-    func updateEvent(withId _: Event.ID, and _: EventUpdate) async throws -> Event {
-        fatalError("Unimplemented updateEvent")
+    func updateEvent(withId id: Event.ID, and event: EventUpdate) async throws -> Event {
+        let url = URL(string: "http://localhost:8000/events/\(id)")!
+        var urlRequest = URLRequest(url: url)
+        guard let token = token else {
+            throw ValidationError.signedOut
+        }
+        urlRequest.httpMethod = "PUT"
+        urlRequest.setValue("\(token.tokenType) \(token.accessToken)", forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
+        let requestObject = event
+        let coder = JSONEncoder()
+        coder.keyEncodingStrategy = .convertToSnakeCase
+        let requestData = try coder.encode(requestObject)
+        urlRequest.httpBody = requestData
+        let response = try await URLSession.shared.data(for: urlRequest)
+        let data = response.0
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
+        do {
+            let event = try decoder.decode(Event.self, from: data)
+            return event
+        } catch {
+            print("Decoding failed with error: \(error)")
+            print("Raw response: \(String(data: data, encoding: .utf8) ?? "N/A")")
+            throw error
+        }
     }
 
-    func deleteEvent(withId _: Event.ID) async throws {
-        fatalError("Unimplemented deleteEvent")
+    func deleteEvent(withId id: Event.ID) async throws {
+        let url = URL(string: "http://localhost:8000/events/\(id)")!
+        var urlRequest = URLRequest(url: url)
+        guard let token = token else {
+            throw ValidationError.signedOut
+        }
+        urlRequest.httpMethod = "DELETE"
+        urlRequest.setValue("\(token.tokenType) \(token.accessToken)", forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
+        let response = try await URLSession.shared.data(for: urlRequest)
+        let urlresponse = response.1 as! HTTPURLResponse
+        
+        guard 200..<300 ~= urlresponse.statusCode else {
+            throw ResponseError.errorCode(urlresponse.statusCode)
+        }
+         
+        return
     }
 
-    func createMedia(with _: MediaCreate) async throws -> Media {
-        fatalError("Unimplemented createMedia")
+    func createMedia(with mediaCreate: MediaCreate) async throws -> Media {
+        let url = URL(string: "http://localhost:8000/media")!
+        var urlRequest = URLRequest(url: url)
+        guard let token = token else {
+            throw ValidationError.signedOut
+        }
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("\(token.tokenType) \(token.accessToken)", forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
+        let requestObject = mediaCreate
+        let coder = JSONEncoder()
+        coder.keyEncodingStrategy = .convertToSnakeCase
+        let requestData = try coder.encode(requestObject)
+        urlRequest.httpBody = requestData
+        let response = try await URLSession.shared.data(for: urlRequest)
+        let data = response.0
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
+        do {
+            let event = try decoder.decode(Media.self, from: data)
+            return event
+        } catch {
+            print("Decoding failed with error: \(error)")
+            print("Raw response: \(String(data: data, encoding: .utf8) ?? "N/A")")
+            throw error
+        }
     }
 
-    func deleteMedia(withId _: Media.ID) async throws {
-        fatalError("Unimplemented deleteMedia")
+    func deleteMedia(withId id: Media.ID) async throws {
+        let url = URL(string: "http://localhost:8000/media/\(id)")!
+        var urlRequest = URLRequest(url: url)
+        guard let token = token else {
+            throw ValidationError.signedOut
+        }
+        urlRequest.httpMethod = "DELETE"
+        urlRequest.setValue("\(token.tokenType) \(token.accessToken)", forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
+        let response = try await URLSession.shared.data(for: urlRequest)
+        let urlresponse = response.1 as! HTTPURLResponse
+        
+        guard 200..<300 ~= urlresponse.statusCode else {
+            throw ResponseError.errorCode(urlresponse.statusCode)
+        }
+         
+        return
     }
     
 }

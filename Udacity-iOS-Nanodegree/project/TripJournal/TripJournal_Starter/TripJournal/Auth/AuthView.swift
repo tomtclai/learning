@@ -7,6 +7,14 @@ struct ValidationError: LocalizedError {
     static let signedOut = Self(errorDescription: "Authorization is required.")
 }
 
+struct ResponseError: LocalizedError {
+    var errorDescription: String?
+    static func errorCode(_ code: Int) -> Self {
+        return Self(errorDescription: "Error code \(code)")
+    }
+
+}
+
 struct AuthView: View {
     @State private var vm: AuthViewModel
     let onAuth: (Bool) -> Void
