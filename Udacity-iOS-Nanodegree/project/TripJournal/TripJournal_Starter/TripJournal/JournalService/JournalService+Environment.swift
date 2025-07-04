@@ -1,7 +1,7 @@
 import SwiftUI
 
 private struct JournalServiceKey: EnvironmentKey {
-    static var defaultValue: JournalService = UnimplementedJournalService()
+    static var defaultValue: JournalService = LiveJournalService()
 }
 
 extension EnvironmentValues {

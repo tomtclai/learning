@@ -30,6 +30,7 @@
 		07BCBA8B2B5D65D200C6F687 /* JournalService+Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BCBA8A2B5D65D200C6F687 /* JournalService+Environment.swift */; };
 		07BCBA8F2B5D7EC500C6F687 /* MediaCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BCBA8E2B5D7EC500C6F687 /* MediaCarousel.swift */; };
 		07F6695D2B589A1E002F8D18 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F6695C2B589A1E002F8D18 /* AddButton.swift */; };
+		E2B510DE2E0DE871001F1380 /* JournalService+Live.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B510DD2E0DE860001F1380 /* JournalService+Live.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		07BCBA8A2B5D65D200C6F687 /* JournalService+Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JournalService+Environment.swift"; sourceTree = "<group>"; };
 		07BCBA8E2B5D7EC500C6F687 /* MediaCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCarousel.swift; sourceTree = "<group>"; };
 		07F6695C2B589A1E002F8D18 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		E2B510DD2E0DE860001F1380 /* JournalService+Live.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JournalService+Live.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 				0703FC732B4583B80084DD8A /* JournalService.swift */,
 				07BCBA8A2B5D65D200C6F687 /* JournalService+Environment.swift */,
 				07BCBA862B5D656E00C6F687 /* JournalService+Mock.swift */,
+				E2B510DD2E0DE860001F1380 /* JournalService+Live.swift */,
 				07BCBA882B5D65AD00C6F687 /* JournalService+Unimplemented.swift */,
 			);
 			path = JournalService;
@@ -260,6 +263,7 @@
 				07BCBA8F2B5D7EC500C6F687 /* MediaCarousel.swift in Sources */,
 				07F6695D2B589A1E002F8D18 /* AddButton.swift in Sources */,
 				075A90F52B446A41009A1DCB /* TripDetails.swift in Sources */,
+				E2B510DE2E0DE871001F1380 /* JournalService+Live.swift in Sources */,
 				075A90F32B446A18009A1DCB /* TripList.swift in Sources */,
 				07BCBA8B2B5D65D200C6F687 /* JournalService+Environment.swift in Sources */,
 				075A90F92B446A6F009A1DCB /* TripCell.swift in Sources */,

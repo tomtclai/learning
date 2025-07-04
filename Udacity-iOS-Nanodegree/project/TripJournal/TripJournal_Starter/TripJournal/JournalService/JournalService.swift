@@ -3,9 +3,6 @@ import Foundation
 
 /// The journal service is used to perform networking operations in the app.
 protocol JournalService {
-    /// A publisher that can be observed to indicate whether the user is authenticated or not.
-    var isAuthenticated: AnyPublisher<Bool, Never> { get }
-
     /// Create a new account.
     /// - Parameters:
     ///   - username: Username.

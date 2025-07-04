@@ -1,21 +1,20 @@
 import SwiftUI
+struct ValidationError: LocalizedError {
+    var errorDescription: String?
+
+    static let emptyUsername = Self(errorDescription: "Username is required.")
+    static let emptyPassword = Self(errorDescription: "Password is required.")
+}
 
 struct AuthView: View {
-    /// Describes validation errors that might occur locally in the form.
-    struct ValidationError: LocalizedError {
-        var errorDescription: String?
+    @State private var vm: AuthViewModel
+    let onAuth: (Bool) -> Void
+    @EnvironmentObject private var service: LiveJournalService
 
-        static let emptyUsername = Self(errorDescription: "Username is required.")
-        static let emptyPassword = Self(errorDescription: "Password is required.")
+    init(onAuth: @escaping (Bool) -> Void) {
+        self.onAuth = onAuth
+        self.vm = AuthViewModel()
     }
-
-    @State private var username: String = ""
-    @State private var password: String = ""
-    @State private var isLoading = false
-    @State private var error: Error?
-
-    @Environment(\.journalService) private var journalService
-
     // MARK: - Body
 
     var body: some View {
@@ -26,8 +25,11 @@ struct AuthView: View {
                 footer: buttons
             )
         }
-        .loadingOverlay(isLoading)
-        .alert(error: $error)
+        .loadingOverlay(vm.isLoading)
+        .alert(error: $vm.error)
+        .onAppear {
+            vm.journalService = service
+        }
     }
 
     // MARK: - Views
@@ -44,11 +46,11 @@ struct AuthView: View {
 
     @ViewBuilder
     private func inputs() -> some View {
-        TextField("Username", text: $username)
+        TextField("Username", text: $vm.username)
             .autocorrectionDisabled()
             .textInputAutocapitalization(.never)
             .textContentType(.username)
-        SecureField("Password", text: $password)
+        SecureField("Password", text: $vm.password)
             .autocorrectionDisabled()
             .textInputAutocapitalization(.never)
             .textContentType(.password)
@@ -60,6 +62,7 @@ struct AuthView: View {
                 action: {
                     Task {
                         await logIn()
+                        
                     }
                 },
                 label: {
@@ -73,7 +76,7 @@ struct AuthView: View {
             Button(
                 action: {
                     Task {
-                        await register()
+                        await vm.register()
                     }
                 },
                 label: {
@@ -88,8 +91,25 @@ struct AuthView: View {
     }
 
     // MARK: - Networking
+    private func logIn() async {
+        Task {
+            await self.vm.logIn()
+        }
+    }
 
-    private func validateForm() throws {
+}
+
+
+class AuthViewModel: ObservableObject {
+    @Published var username: String = ""
+    @Published var password: String = ""
+    @Published var isLoading = false
+    @Published var error: Error?
+    @Published var isAuthenticated = false
+    var journalService: JournalService?
+
+
+    private func validate() throws {
         if username.nonEmpty == nil {
             throw ValidationError.emptyUsername
         }
@@ -98,22 +118,27 @@ struct AuthView: View {
         }
     }
 
-    private func logIn() async {
+    func logIn() async -> Bool {
         isLoading = true
         do {
-            try validateForm()
-            try await journalService.logIn(username: username, password: password)
+            try validate()
+            try await journalService?.logIn(username: username, password: password)
+            isLoading = false
+            return true
         } catch {
             self.error = error
+            isLoading = false
+            return false
         }
-        isLoading = false
+        
     }
 
-    private func register() async {
+    
+    func register() async {
         isLoading = true
         do {
-            try validateForm()
-            try await journalService.register(username: username, password: password)
+            try validate()
+            try await journalService?.register(username: username, password: password)
         } catch {
             self.error = error
         }

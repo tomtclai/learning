@@ -2,7 +2,7 @@ import Foundation
 import MapKit
 
 /// Represents  a token that is returns when the user authenticates.
-struct Token {
+struct Token: Codable {
     let accessToken: String
     let tokenType: String
 }
@@ -42,4 +42,9 @@ struct Location: Sendable, Hashable {
 struct Media: Identifiable, Sendable, Hashable {
     var id: Int
     var url: URL?
+}
+
+struct CreateUserRequest: Codable {
+    let username: String
+    let password: String
 }

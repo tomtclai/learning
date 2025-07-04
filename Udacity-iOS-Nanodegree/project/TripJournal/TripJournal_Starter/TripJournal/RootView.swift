@@ -1,21 +1,20 @@
 import SwiftUI
 
 struct RootView: View {
-    let service: JournalService
-
+    @EnvironmentObject private var service: LiveJournalService
     @State private var addAction: () -> Void = {}
+
     @State private var isAuthenticated = false
 
-    @Environment(\.journalService) private var journalService
 
     // MARK: - Body
 
     var body: some View {
         content
             .environment(\.journalService, service)
-            .onReceive(service.isAuthenticated.receive(on: DispatchQueue.main)) { isAuthenticated in
-                self.isAuthenticated = isAuthenticated
-            }
+            .onReceive(service.isAuthenticated
+                             .receive(on: DispatchQueue.main))
+                 { self.isAuthenticated = $0 }
     }
 
     // MARK: - Views
@@ -29,7 +28,8 @@ struct RootView: View {
                     AddButton(action: addAction)
                 }
         } else {
-            AuthView()
+            AuthView(onAuth: {_ in })
+                .environmentObject(service)
         }
     }
 }
