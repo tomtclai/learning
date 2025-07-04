@@ -78,8 +78,33 @@ class LiveJournalService: JournalService, ObservableObject {
         }
     }
 
-    func createTrip(with _: TripCreate) async throws -> Trip {
-        fatalError("Unimplemented createTrip")
+    func createTrip(with trip: TripCreate) async throws -> Trip {
+        let url = URL(string: "http://localhost:8000/trips")!
+        var urlRequest = URLRequest(url: url)
+        guard let token = token else {
+            throw ValidationError.signedOut
+        }
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("\(token.tokenType) \(token.accessToken)", forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
+        let requestObject = trip
+        let coder = JSONEncoder()
+        coder.keyEncodingStrategy = .convertToSnakeCase
+        let requestData = try coder.encode(requestObject)
+        urlRequest.httpBody = requestData
+        let response = try await URLSession.shared.data(for: urlRequest)
+        let data = response.0
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
+        do {
+            let trip = try decoder.decode(Trip.self, from: data)
+            return trip
+        } catch {
+            print("Decoding failed with error: \(error)")
+            print("Raw response: \(String(data: data, encoding: .utf8) ?? "N/A")")
+            throw error
+        }
     }
 
     func getTrips() async throws -> [Trip] {

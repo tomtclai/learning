@@ -4,6 +4,7 @@ struct ValidationError: LocalizedError {
 
     static let emptyUsername = Self(errorDescription: "Username is required.")
     static let emptyPassword = Self(errorDescription: "Password is required.")
+    static let signedOut = Self(errorDescription: "Authorization is required.")
 }
 
 struct AuthView: View {

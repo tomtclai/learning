@@ -8,7 +8,7 @@ struct Token: Codable {
 }
 
 /// Represents a trip.
-struct Trip: Identifiable, Sendable, Hashable {
+struct Trip: Codable, Identifiable, Sendable, Hashable {
     var id: Int
     var name: String
     var startDate: Date
@@ -17,7 +17,7 @@ struct Trip: Identifiable, Sendable, Hashable {
 }
 
 /// Represents an event in a trip.
-struct Event: Identifiable, Sendable, Hashable {
+struct Event: Codable, Identifiable, Sendable, Hashable {
     var id: Int
     var name: String
     var note: String?
@@ -28,7 +28,7 @@ struct Event: Identifiable, Sendable, Hashable {
 }
 
 /// Represents a location.
-struct Location: Sendable, Hashable {
+struct Location: Codable, Sendable, Hashable {
     var latitude: Double
     var longitude: Double
     var address: String?
@@ -39,7 +39,7 @@ struct Location: Sendable, Hashable {
 }
 
 /// Represents a media with a URL.
-struct Media: Identifiable, Sendable, Hashable {
+struct Media: Codable, Identifiable, Sendable, Hashable {
     var id: Int
     var url: URL?
 }
