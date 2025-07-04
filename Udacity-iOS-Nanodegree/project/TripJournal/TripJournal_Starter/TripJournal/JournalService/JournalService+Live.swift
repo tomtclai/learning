@@ -108,7 +108,27 @@ class LiveJournalService: JournalService, ObservableObject {
     }
 
     func getTrips() async throws -> [Trip] {
-        return []
+        let url = URL(string: "http://localhost:8000/trips")!
+        var urlRequest = URLRequest(url: url)
+        guard let token = token else {
+            throw ValidationError.signedOut
+        }
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("\(token.tokenType) \(token.accessToken)", forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
+        let response = try await URLSession.shared.data(for: urlRequest)
+        let data = response.0
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
+        do {
+            let trips = try decoder.decode([Trip].self, from: data)
+            return trips
+        } catch {
+            print("Decoding failed with error: \(error)")
+            print("Raw response: \(String(data: data, encoding: .utf8) ?? "N/A")")
+            throw error
+        }
     }
 
     func getTrip(withId _: Trip.ID) async throws -> Trip {
