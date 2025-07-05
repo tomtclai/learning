@@ -9,31 +9,27 @@ struct Maintainability_Intro: View {
         List {
             Section {
                 ForEach(oo.data) { datum in
-                    GroupBox {
-                        VStack {
-                            Image(systemName: "book.pages")
-                            Text(datum.name)
-                                .font(.title)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                    }
+                    BookRowView(bookName: datum.name)
                     .listRowSeparator(.hidden)
                 }
             } header: {
-                HStack {
-                    Label("Books (\(oo.data.count))", systemImage: "books.vertical.fill")
-                    Spacer()
-                    Button("Add", systemImage: "plus") {
-                        
-                    }
-                    .buttonStyle(.bordered)
-                }
+                sectionHeaderView
             }
         }
         .headerProminence(.increased)
         .listStyle(.plain)
         .onAppear {
             oo.fetch()
+        }
+    }
+    var sectionHeaderView: some View {
+        HStack {
+            Label("Books (\(oo.data.count))", systemImage: "books.vertical.fill")
+            Spacer()
+            Button("Add", systemImage: "plus") {
+                
+            }
+            .buttonStyle(.bordered)
         }
     }
 }

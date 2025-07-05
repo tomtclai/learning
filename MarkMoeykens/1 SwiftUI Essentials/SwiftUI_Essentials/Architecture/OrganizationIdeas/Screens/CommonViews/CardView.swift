@@ -14,7 +14,6 @@ struct CardView<Content: View>: View {
             
             VStack(content: content)
         }
-        .padding()
     }
 }
 

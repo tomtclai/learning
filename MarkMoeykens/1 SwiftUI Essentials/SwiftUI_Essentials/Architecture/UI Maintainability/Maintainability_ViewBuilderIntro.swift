@@ -6,10 +6,7 @@ struct Maintainability_ViewBuilderIntro: View {
     var body: some View {
         ScrollView {
             VStack {
-                GroupBox {
-                    Text("Employee Profile")
-                        .font(.title.weight(.bold).width(.compressed))
-                    Divider()
+                CardView(title:"Employee Profile") {
                     HStack {
                         Image(systemName: "person.circle")
                             .font(.largeTitle)
@@ -23,11 +20,7 @@ struct Maintainability_ViewBuilderIntro: View {
                     }
                 }
                 .padding()
-                
-                GroupBox {
-                    Text("Expenses")
-                        .font(.title.weight(.bold).width(.compressed))
-                    Divider()
+                CardView(title:"Expenses") {
                     LabeledContent("Flight", value: 580, format: .currency(code: "USD"))
                     LabeledContent("Hotel", value: 1600, format: .currency(code: "USD"))
                     LabeledContent("Meals", value: 418, format: .currency(code: "USD"))
