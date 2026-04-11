@@ -17,6 +17,19 @@ struct Binding_List: View {
         }
     }
 }
+/*
+
+ struct EditNameSubview: View {
+     @Binding var name: String
+     
+     var body: some View {
+         GroupBox("Subview") {
+             TextField("name", text: $name)
+                 .textFieldStyle(.roundedBorder)
+         }
+     }
+ }
+*/
 
 #Preview {
     Binding_List()

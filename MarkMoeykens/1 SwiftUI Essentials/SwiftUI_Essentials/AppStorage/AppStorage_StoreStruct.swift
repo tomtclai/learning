@@ -38,6 +38,7 @@ struct AppStorage_StoreStruct: View {
             
             Text("AppStorage")
             Text("Name: \(userName)").bold()
+            
             Text("Age: \(age)").bold()
         }
         .font(.title)

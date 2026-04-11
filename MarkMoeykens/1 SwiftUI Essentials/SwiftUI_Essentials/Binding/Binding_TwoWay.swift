@@ -35,6 +35,6 @@ struct EditNameSubview: View {
 }
 
 #Preview("EditNameSubview", traits: .sizeThatFitsLayout) {
-    @Previewable @State var name = "Mark Moeykens"
+    @Previewable @State var name = "Mark Moekkens"
     EditNameSubview(name: $name)
 }

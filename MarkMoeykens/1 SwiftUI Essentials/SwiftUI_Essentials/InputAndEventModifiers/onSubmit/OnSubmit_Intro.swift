@@ -22,7 +22,7 @@ struct OnSubmit_Intro: View {
                     }
             }
             .navigationDestination(isPresented: $continueOnboarding) {
-                Text("Next Step")
+                Text("Next Step \(name)")
             }
             .font(.title)
             .navigationTitle("onSubmit")

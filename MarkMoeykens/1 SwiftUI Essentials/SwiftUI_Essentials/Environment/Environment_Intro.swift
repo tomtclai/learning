@@ -5,7 +5,7 @@ import SwiftUI
 // You're using a class that conforms to Observable so you can bind to properties within it
 @Observable
 class DeveloperOO {
-    var name: String = "Awesome developer"
+    var name: String = "Awesome developerm"
 }
 
 struct Environment_Intro: View {

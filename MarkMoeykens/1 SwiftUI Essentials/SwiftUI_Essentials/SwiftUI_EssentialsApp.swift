@@ -12,7 +12,7 @@ class UserModel {
 struct SwiftUI_EssentialsApp: App {
     var body: some Scene {
         WindowGroup {
-            Conventions()
+            AppStorage_StoreStruct()
         }
     }
 }
